@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wshibin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true,"width":260},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="泛型数据类型Generic Data Types泛型是具体类型或其他属性的抽象替代,高效的处理重复概念的工具 函数Function中fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T &amp;#123;    let mut largest &#x3D; list[0];    for &amp;item in list.iter() &amp;#123;        if item">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WShiBin&#39;s blogs">
+<meta property="og:url" content="https://wshibin.github.io/rust/10.%20Generic%20Types,%20Traits,%20and%20Lifetimes.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="泛型数据类型Generic Data Types泛型是具体类型或其他属性的抽象替代,高效的处理重复概念的工具 函数Function中fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T &amp;#123;    let mut largest &#x3D; list[0];    for &amp;item in list.iter() &amp;#123;        if item">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-09T15:12:32.976Z">
+<meta property="article:modified_time" content="2020-07-09T15:12:32.970Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="WShiBin">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wshibin.github.io/rust/10.%20Generic%20Types,%20Traits,%20and%20Lifetimes">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | WShiBin's blogs
+</title>
+  
+    <script>
+      function sendPageView() {
+        if (CONFIG.hostname !== location.hostname) return;
+        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
+        localStorage.setItem('uid', uid);
+        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
+          v  : 1,
+          tid: 'UA-149513847-1',
+          cid: uid,
+          t  : 'pageview',
+          dp : encodeURIComponent(location.pathname)
+        }));
+      }
+      document.addEventListener('pjax:complete', sendPageView);
+      sendPageView();
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">WShiBin's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">但行好事，莫问前程!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-c++">
+
+    <a href="/c++/" rel="section"><i class="fa fa-book fa-fw"></i>C++</a>
+
+  </li>
+
+
+      
+        
+            
+  <li class="menu-item menu-item-git">
+
+    <a href="/git/" rel="section"><i class="fa fa-book fa-fw"></i>Git</a>
+
+  </li>
+
+
+      
+        
+            
+  <li class="menu-item menu-item-rust">
+
+    <a href="/rust/" rel="section"><i class="fa fa-book fa-fw"></i>Rust</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub" aria-label="GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+
+      
+      
+
+      
+      
+
+      
+
+        
+        <ul id="sub-menu" class="sub-menu menu">
+          
+            
+          
+        </ul>
+        
+
+        
+
+                
+                
+
+                
+                
+
+                
+                
+        
+      
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h2 id="泛型数据类型Generic-Data-Types"><a href="#泛型数据类型Generic-Data-Types" class="headerlink" title="泛型数据类型Generic Data Types"></a>泛型数据类型Generic Data Types</h2><p>泛型是具体类型或其他属性的抽象替代,高效的处理重复概念的工具</p>
+<h3 id="函数Function中"><a href="#函数Function中" class="headerlink" title="函数Function中"></a>函数Function中</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">largest</span></span>&lt;T&gt;(list: &amp;[T]) -&gt; T &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> largest = list[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> &amp;item <span class="keyword">in</span> list.iter() &#123;</span><br><span class="line">        <span class="keyword">if</span> item &gt; largest &#123;</span><br><span class="line">            largest = item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    largest</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> list = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line">    <span class="keyword">let</span> num = largest(&amp;list);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"num = &#123;:?&#125;"</span>, num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="结构体中"><a href="#结构体中" class="headerlink" title="结构体中"></a>结构体中</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Pointer</span></span>&lt;T, U&gt; &#123;</span><br><span class="line">    x: T,</span><br><span class="line">    y: U,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> integer = Pointer &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    <span class="keyword">let</span> float = Pointer &#123; x: <span class="number">1.0</span>, y: <span class="number">2.0</span> &#125;;</span><br><span class="line">  	<span class="keyword">let</span> mul = Pointer &#123; x: <span class="number">10</span>, y: <span class="number">20</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="enum中"><a href="#enum中" class="headerlink" title="enum中"></a>enum中</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Option</span></span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="literal">Ok</span>(T),</span><br><span class="line">    <span class="literal">None</span>(),</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Result</span></span>&lt;T, E&gt; &#123;</span><br><span class="line">    <span class="literal">Ok</span>(T),</span><br><span class="line">    <span class="literal">Err</span>(E),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="在方法Method中"><a href="#在方法Method中" class="headerlink" title="在方法Method中"></a>在方法Method中</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span>&lt;T, U&gt; &#123;</span><br><span class="line">    x: T,</span><br><span class="line">    y: U,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;T, U&gt; Point&lt;T, U&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">x</span></span>(&amp;<span class="keyword">self</span>) -&gt; &amp;T &#123;</span><br><span class="line">        &amp;<span class="keyword">self</span>.x</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> Point&lt;<span class="built_in">f32</span>, <span class="built_in">f32</span>&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">distance_from_origin</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">f32</span> &#123;</span><br><span class="line">        (<span class="keyword">self</span>.x.powi(<span class="number">2</span>) + <span class="keyword">self</span>.y.powi(<span class="number">2</span>)).sqrt()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;T, U&gt; Point&lt;T, U&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">mixup</span></span>&lt;K, W&gt;(<span class="keyword">self</span>, other: Point&lt;K, W&gt;) -&gt; Point&lt;T, W&gt; &#123;</span><br><span class="line">        Point &#123;</span><br><span class="line">            x: (<span class="keyword">self</span>.x),</span><br><span class="line">            y: (other.y),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> integer = Point &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    <span class="keyword">let</span> float: Point&lt;<span class="built_in">f32</span>, <span class="built_in">f32</span>&gt; = Point &#123; x: <span class="number">1.0</span>, y: <span class="number">2.0</span> &#125;;</span><br><span class="line">    <span class="keyword">let</span> x = integer.x;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"x = &#123;:?&#125;"</span>, x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> s = float.distance_from_origin();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"s = &#123;:?&#125;"</span>, s);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> mix = Point &#123; x: <span class="number">10</span>, y: <span class="number">20.0</span> &#125;;</span><br><span class="line">    <span class="keyword">let</span> mix = float.mixup(mix);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"mix = &#123;:#?&#125;"</span>, mix);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="泛型代码的性能"><a href="#泛型代码的性能" class="headerlink" title="泛型代码的性能"></a>泛型代码的性能</h3><blockquote>
+<p>Rust 实现了泛型，使得使用泛型类型参数的代码相比使用具体类型并没有任何速度上的损失</p>
+<p>Rust 通过在编译时进行泛型代码的 <strong>单态化(<em>monomorphization</em>)</strong>来保证效率。单态化是一个 通过填充编译时使用的具体类型，将通用代码转换为特定代码的过程,</p>
+<p>编译器寻找所有泛型代 码被调用的位置并使用泛型代码<strong>针对具体类型生成代码</strong></p>
+</blockquote>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Option_i32</span></span> &#123;</span><br><span class="line">    <span class="literal">Some</span>(<span class="built_in">i32</span>),</span><br><span class="line">    <span class="literal">None</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Option_f64</span></span> &#123;</span><br><span class="line">    <span class="literal">Some</span>(<span class="built_in">f64</span>),</span><br><span class="line">    <span class="literal">None</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="comment">// let integer = Some(5); // i32</span></span><br><span class="line">    <span class="comment">// let float = Some(5.0); // f64</span></span><br><span class="line">    <span class="keyword">let</span> integer = Option_i32::<span class="literal">Some</span>(<span class="number">5</span>);</span><br><span class="line">    <span class="keyword">let</span> float = Option_f64::<span class="literal">Some</span>(<span class="number">5.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="trait-定义共享的行为"><a href="#trait-定义共享的行为" class="headerlink" title="trait:定义共享的行为"></a><strong>trait</strong>:定义共享的行为</h2><p><strong>trait</strong>:这是一个定义泛型行为的方法。trait 可以与泛型结合来将泛型限制为 拥有特定行为的类型，而不是任意类型</p>
+<p>某个特定类型拥有可能与其他类型共享的功能</p>
+<blockquote>
+<p>类似于其它语言中的接口</p>
+</blockquote>
+<ul>
+<li>一个trait可以有多个行为</li>
+<li>语法：一行一个方法签名且都以分号结尾</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">trait</span> <span class="title">Summary</span></span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">fn</span> <span class="title">summarize</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">String</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="为类型实现-trait"><a href="#为类型实现-trait" class="headerlink" title="为类型实现 trait"></a>为类型实现 <strong>trait</strong></h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">trait</span> <span class="title">Summary</span></span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">summarize</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">String</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">NewsArticle</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> headline: <span class="built_in">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> location: <span class="built_in">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> author: <span class="built_in">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> content: <span class="built_in">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">impl</span> Summary <span class="keyword">for</span> NewsArticle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">summarize</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">        <span class="built_in">format!</span>(<span class="string">"&#123;&#125;, by &#123;&#125; (&#123;&#125;)"</span>, <span class="keyword">self</span>.headline, <span class="keyword">self</span>.author, <span class="keyword">self</span>.location)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Tweet</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> username: <span class="built_in">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> content: <span class="built_in">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> reply: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> retweet: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">impl</span> Summary <span class="keyword">for</span> Tweet &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">summarize</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">        <span class="built_in">format!</span>(<span class="string">"&#123;&#125;: &#123;&#125;"</span>, <span class="keyword">self</span>.username, <span class="keyword">self</span>.content)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="默认实现"><a href="#默认实现" class="headerlink" title="默认实现"></a>默认实现</h3><h3 id="trait-作为参数"><a href="#trait-作为参数" class="headerlink" title="trait 作为参数"></a><strong>trait</strong> 作为参数</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">notify</span></span>(item: <span class="keyword">impl</span> Summary) -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">    <span class="built_in">format!</span>(<span class="string">"breaking news! &#123;&#125;"</span>, item.summarize())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-指定多个-trait-bound"><a href="#通过-指定多个-trait-bound" class="headerlink" title="通过 + 指定多个 trait bound"></a>通过 <strong>+</strong> 指定多个 trait bound</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">notify</span></span>(item: <span class="keyword">impl</span> Summary + Display) &#123;&#125;</span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">notify</span></span>&lt;T: Summary + Display&gt;(item: T) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-where-简化-trait-bound"><a href="#通过-where-简化-trait-bound" class="headerlink" title="通过 where 简化 trait bound"></a>通过 <strong>where</strong> 简化 <strong>trait bound</strong></h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">some_function</span></span>&lt;T: Display + <span class="built_in">Clone</span>, U: <span class="built_in">Clone</span> + <span class="built_in">Debug</span>&gt;(t: T, u: U) -&gt; <span class="built_in">i32</span> &#123;&#125;</span><br><span class="line"><span class="comment">// 简化后</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">some_function</span></span>&lt;T, U&gt;(t: T, u: U) -&gt; <span class="built_in">i32</span></span><br><span class="line">    <span class="keyword">where</span> T: Display + <span class="built_in">Clone</span>,</span><br><span class="line">          U: <span class="built_in">Clone</span> + <span class="built_in">Debug</span>,</span><br><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="返回实现了-trait-的类型"><a href="#返回实现了-trait-的类型" class="headerlink" title="返回实现了 trait 的类型"></a>返回实现了 <strong>trait</strong> 的类型</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">returns_summarizable</span></span>() -&gt; <span class="keyword">impl</span> Summary &#123;</span><br><span class="line">    Tweet &#123;</span><br><span class="line">        username: <span class="built_in">String</span>::from(<span class="string">"horse_ebooks"</span>),</span><br><span class="line">        content: <span class="built_in">String</span>::from(<span class="string">"of course, as you probably already know, people"</span>),</span><br><span class="line">        reply: <span class="literal">false</span>,</span><br><span class="line">        retweet: <span class="literal">false</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-trait-bound-有条件地实现方法"><a href="#使用-trait-bound-有条件地实现方法" class="headerlink" title="使用 trait bound 有条件地实现方法"></a>使用 <strong>trait bound</strong> 有条件地实现方法</h3><h2 id="生命周期与引用有效性"><a href="#生命周期与引用有效性" class="headerlink" title="生命周期与引用有效性"></a>生命周期与引用有效性</h2><p>Rust 中的每一个引用都有其 生命周期(<em>lifetime</em>)，也就是引用保持有效的作用域</p>
+<p>当因为有多种可能类型的时候必须注明类型，也会出现引用的生命周期以一些不同方式相关联的情况，所以 Rust 需要我们使用泛型生命周期参数来注明他们的关系，这样就能确保运行时<strong>实际使用的引用绝对是有效的</strong></p>
+<p>它是一类允许我们向编译器提供引用如何相互关联的泛 型。Rust 的生命周期功能允许在很多场景下借用值的同时仍然使编译器能够检查这些引用的 有效性。</p>
+<h3 id="生命周期避免了悬垂引用"><a href="#生命周期避免了悬垂引用" class="headerlink" title="生命周期避免了悬垂引用"></a>生命周期避免了悬垂引用</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> x;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> y = <span class="number">20</span>;</span><br><span class="line">        x = &amp;y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"x = &#123;:?&#125;"</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="借用检查器"><a href="#借用检查器" class="headerlink" title="借用检查器"></a>借用检查器</h3><p>Rust 编译器有一个 <strong>借用检查器</strong>(<em>borrow checker</em>)，它比较作用域来确保所有的借用都是有效的。</p>
+<p>rust会去检查一个变量的生命周期范围</p>
+<h3 id="函数中的泛型生命周期"><a href="#函数中的泛型生命周期" class="headerlink" title="函数中的泛型生命周期"></a>函数中的泛型生命周期</h3><p>生 命周期注解描述了多个引用生命周期相互的关系</p>
+<p>格式:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">&amp;<span class="built_in">i32</span> <span class="comment">// 引用</span></span><br><span class="line">&amp;<span class="symbol">'a</span> <span class="built_in">i32</span> <span class="comment">// 带有显式生命周期的引用 </span></span><br><span class="line">&amp;<span class="symbol">'a</span> <span class="keyword">mut</span> <span class="built_in">i32</span> <span class="comment">// 带有显式生命周期的可变引用</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="深入理解生命周期"><a href="#深入理解生命周期" class="headerlink" title="深入理解生命周期"></a>深入理解生命周期</h3><p>生命周期语法是用于将函数的多个参数与其返回值的生命周期进行关联的，Rust 就有了足够的信息来允许内存安全的操作并阻止会产生悬垂指针亦或 是违反内存安全的行为</p>
+<h3 id="结构体定义中的生命周期注解"><a href="#结构体定义中的生命周期注解" class="headerlink" title="结构体定义中的生命周期注解"></a>结构体定义中的生命周期注解</h3><h3 id="生命周期省略-Lifetime-Elision"><a href="#生命周期省略-Lifetime-Elision" class="headerlink" title="生命周期省略(Lifetime Elision)"></a>生命周期省略(<strong>Lifetime Elision</strong>)</h3><blockquote>
+<p>省略规则并不提供完整的推断:如果 Rust 在明确遵守这些规则的前提下变量的生命周期仍然 是模棱两可的话，它不会猜测剩余引用的生命周期应该是什么。在这种情况，编译器会给出 一个错误，这可以通过增加对应引用之间相联系的生命周期注解来解决。</p>
+</blockquote>
+<p>判断引用何时不需要明确的注解:</p>
+<ul>
+<li>第一条规则是每一个是引用的参数都有它自己的生命周期参数。换句话说就是，有一个引用参数的函数有一个生命周期参数: fn foo&lt;&#39;a&gt;(x: &amp;&#39;a i32) ，有两个引用参数的函数有两个不 同的生命周期参数， fn foo&lt;&#39;a, &#39;b&gt;(x: &amp;&#39;a i32, y: &amp;&#39;b i32) ，依此类推。</li>
+<li>第二条规则是如果只有一个输入生命周期参数，那么它被赋予所有输出生命周期参数: fn foo&lt;&#39;a&gt;(x: &amp;&#39;a i32) -&gt; &amp;&#39;a i32 。</li>
+<li>第三条规则是如果方法有多个输入生命周期参数，不过其中之一因为方法的缘故为 &amp;self 或 &amp;mut self ，那么 self 的生命周期被赋给所有输出生命周期参数。第三条规则使得方法更容易读写，因为只需更少的符号。</li>
+</ul>
+<h3 id="方法定义中的生命周期注解"><a href="#方法定义中的生命周期注解" class="headerlink" title="方法定义中的生命周期注解"></a>方法定义中的生命周期注解</h3><h3 id="静态生命周期"><a href="#静态生命周期" class="headerlink" title="静态生命周期"></a>静态生命周期</h3><blockquote>
+<p> &#39;static ，其生命周期能够存活于整个程序期间。所 有的字符串字面值都拥有 &#39;static 生命周期</p>
+</blockquote>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> s: &amp;<span class="symbol">'static</span> <span class="built_in">str</span> = <span class="string">"I have a static lifetime."</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结合泛型类型参数、trait-bounds-和生命周期"><a href="#结合泛型类型参数、trait-bounds-和生命周期" class="headerlink" title="结合泛型类型参数、trait bounds 和生命周期"></a>结合泛型类型参数、<strong>trait bounds</strong> 和生命周期</h3><p>语法</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fmt::Display;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">longest_with_an_announcement</span></span>&lt;<span class="symbol">'a</span>, T&gt;(x: &amp;<span class="symbol">'a</span> <span class="built_in">str</span>, y: &amp;<span class="symbol">'a</span> <span class="built_in">str</span>, ann: T) -&gt; &amp;<span class="symbol">'a</span> <span class="built_in">str</span></span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    T: Display,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"Announcement! &#123;&#125;"</span>, ann);</span><br><span class="line">    <span class="keyword">if</span> x.len() &gt; y.len() &#123;</span><br><span class="line">        x</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        y</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型数据类型Generic-Data-Types"><span class="nav-number">1.</span> <span class="nav-text">泛型数据类型Generic Data Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数Function中"><span class="nav-number">1.1.</span> <span class="nav-text">函数Function中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体中"><span class="nav-number">1.2.</span> <span class="nav-text">结构体中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum中"><span class="nav-number">1.3.</span> <span class="nav-text">enum中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在方法Method中"><span class="nav-number">1.4.</span> <span class="nav-text">在方法Method中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型代码的性能"><span class="nav-number">1.5.</span> <span class="nav-text">泛型代码的性能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trait-定义共享的行为"><span class="nav-number">2.</span> <span class="nav-text">trait:定义共享的行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为类型实现-trait"><span class="nav-number">2.1.</span> <span class="nav-text">为类型实现 trait</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认实现"><span class="nav-number">2.2.</span> <span class="nav-text">默认实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trait-作为参数"><span class="nav-number">2.3.</span> <span class="nav-text">trait 作为参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-指定多个-trait-bound"><span class="nav-number">2.4.</span> <span class="nav-text">通过 + 指定多个 trait bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-where-简化-trait-bound"><span class="nav-number">2.5.</span> <span class="nav-text">通过 where 简化 trait bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回实现了-trait-的类型"><span class="nav-number">2.6.</span> <span class="nav-text">返回实现了 trait 的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-trait-bound-有条件地实现方法"><span class="nav-number">2.7.</span> <span class="nav-text">使用 trait bound 有条件地实现方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期与引用有效性"><span class="nav-number">3.</span> <span class="nav-text">生命周期与引用有效性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期避免了悬垂引用"><span class="nav-number">3.1.</span> <span class="nav-text">生命周期避免了悬垂引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#借用检查器"><span class="nav-number">3.2.</span> <span class="nav-text">借用检查器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数中的泛型生命周期"><span class="nav-number">3.3.</span> <span class="nav-text">函数中的泛型生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解生命周期"><span class="nav-number">3.4.</span> <span class="nav-text">深入理解生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体定义中的生命周期注解"><span class="nav-number">3.5.</span> <span class="nav-text">结构体定义中的生命周期注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期省略-Lifetime-Elision"><span class="nav-number">3.6.</span> <span class="nav-text">生命周期省略(Lifetime Elision)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法定义中的生命周期注解"><span class="nav-number">3.7.</span> <span class="nav-text">方法定义中的生命周期注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态生命周期"><span class="nav-number">3.8.</span> <span class="nav-text">静态生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合泛型类型参数、trait-bounds-和生命周期"><span class="nav-number">3.9.</span> <span class="nav-text">结合泛型类型参数、trait bounds 和生命周期</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NexT</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly9waXNjZXMudGhlbWUtbmV4dC5vcmc=">NexT.Pisces</span> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://wshibin.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://wshibin.github.io/rust/10.%20Generic%20Types,%20Traits,%20and%20Lifetimes.html";
+    this.page.identifier = "rust/10. Generic Types, Traits, and Lifetimes.html";
+    this.page.title = "";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wshibin.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

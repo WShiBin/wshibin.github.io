@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wshibin.github.io/PostgreSQL/index.html</loc>
+    
+    <lastmod>2020-07-29T15:42:34.996Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/</loc>
+    
+    <lastmod>2020-07-18T17:37:49.410Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/Understand-Command-Line-Programming/</loc>
+    
+    <lastmod>2020-07-18T15:09:22.710Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/Homebrew/</loc>
+    
+    <lastmod>2020-07-18T15:09:02.996Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/Understand-Git/</loc>
+    
+    <lastmod>2020-07-18T15:08:35.356Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wshibin.github.io/rust/index.html</loc>
     
     <lastmod>2020-07-18T14:53:17.533Z</lastmod>
@@ -142,27 +177,6 @@
   </url>
   
   <url>
-    <loc>https://wshibin.github.io/Homebrew/</loc>
-    
-    <lastmod>2020-07-05T08:57:22.131Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/Understand-Git/</loc>
-    
-    <lastmod>2020-07-05T08:57:22.131Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/Understand-Command-Line-Programming/</loc>
-    
-    <lastmod>2020-07-05T08:57:22.131Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wshibin.github.io/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/</loc>
     
     <lastmod>2020-07-05T08:57:22.130Z</lastmod>
@@ -191,14 +205,14 @@
   </url>
   
   <url>
-    <loc>https://wshibin.github.io/c++/general-utilities-library/index.html</loc>
+    <loc>https://wshibin.github.io/c++/language/index.html</loc>
     
     <lastmod>2020-03-22T03:14:40.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wshibin.github.io/c++/language/index.html</loc>
+    <loc>https://wshibin.github.io/c++/general-utilities-library/index.html</loc>
     
     <lastmod>2020-03-22T03:14:40.000Z</lastmod>
     

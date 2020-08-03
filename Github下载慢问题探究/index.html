@@ -24,18 +24,23 @@
     var CONFIG = {"hostname":"wshibin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true,"width":260},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WShiBin&#39;s blogs">
-<meta property="og:url" content="https://wshibin.github.io/rust/11.%20Writing%20Automated%20Tests.html">
+  <meta name="description" content="公司对网络进行了限制,还不能开代理,Github下载的那个项目又非常大,后来对这个问题进行了思索,随记录下来  git clone 经常是这样:17.00 KiB&#x2F;s ??? [I] ➜ git clone http:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git git_Cloning into &#39;git&#39;...warning: redirecting to https:&#x2F;&#x2F;github.com&#x2F;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github下载慢问题探究">
+<meta property="og:url" content="https://wshibin.github.io/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="公司对网络进行了限制,还不能开代理,Github下载的那个项目又非常大,后来对这个问题进行了思索,随记录下来  git clone 经常是这样:17.00 KiB&#x2F;s ??? [I] ➜ git clone http:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git git_Cloning into &#39;git&#39;...warning: redirecting to https:&#x2F;&#x2F;github.com&#x2F;g">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-09T16:27:50.945Z">
-<meta property="article:modified_time" content="2020-07-09T16:27:50.933Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/WShiBin/pic-repo/master/20200718235642.png">
+<meta property="article:published_time" content="2020-07-18T23:00:53.000Z">
+<meta property="article:modified_time" content="2020-07-18T17:37:49.410Z">
 <meta property="article:author" content="Shi Bin">
-<meta property="article:tag" content="WShiBin">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/WShiBin/pic-repo/master/20200718235642.png">
 
-<link rel="canonical" href="https://wshibin.github.io/rust/11.%20Writing%20Automated%20Tests">
+<link rel="canonical" href="https://wshibin.github.io/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/">
 
 
 <script id="page-configurations">
@@ -43,13 +48,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title> | WShiBin's blogs
-</title>
+  <title>Github下载慢问题探究 | WShiBin's blogs</title>
   
     <script>
       function sendPageView() {
@@ -238,72 +242,162 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
 
-      
-      
-
-      
-      
-
-      
-
-        
-        <ul id="sub-menu" class="sub-menu menu">
-          
-            
-          
-        </ul>
-        
-
-        
-
-                
-                
-
-                
-                
-
-                
-                
-        
-      
-  
-
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Github下载慢问题探究
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2020-07-18 23:00:53 / 修改时间：17:37:49" itemprop="dateCreated datePublished" datetime="2020-07-18T23:00:53Z">2020-07-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Github下载慢问题探究/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
+        <blockquote>
+<p>公司对网络进行了限制,还不能开代理,Github下载的那个项目又非常大,后来对这个问题进行了思索,随记录下来</p>
+</blockquote>
+<p>git clone 经常是这样:17.00 KiB/s ???</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[I] ➜ git clone http://github.com/git/git git_</span><br><span class="line">Cloning into 'git'...</span><br><span class="line">warning: redirecting to https://github.com/git/git/</span><br><span class="line">remote: Enumerating objects: 289445, done.</span><br><span class="line">Receiving objects:   0% (2548/289445), 1.14 MiB | 17.00 KiB/s</span><br></pre></td></tr></table></figure>
+
+
+
+<p>抽象的归纳下,本质上是:下载一个资源慢的问题?</p>
+<p>那下载时间的长短取决于:<strong>网速+资源大小</strong></p>
+<a id="more"></a>
+
+<h3 id="网速"><a href="#网速" class="headerlink" title="网速:"></a>网速:</h3><blockquote>
+<p>这里不考虑本地带宽,服务器资源带宽,p2p其它因素,这些因素影响没有那么大; </p>
+</blockquote>
+<p>明显Github的服务器部署在国外,这时候有两个主要的办法</p>
+<p><strong>代理:</strong>这个就不多解释了</p>
+<p><strong>把仓库搬到国内:</strong>国内码云提供了相应的功能,一键将Github的repo迁移到国内,相关文章<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmdpdGVlLmNvbS8yMDE4LzA2LzA1L2dpdGh1Yl90b19naXRlZS8=">https://blog.gitee.com/2018/06/05/github_to_gitee/<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="资源大小"><a href="#资源大小" class="headerlink" title="资源大小:"></a>资源大小:</h3><p>如果是平时下载一个文件,下载一个小电影之类,这里就不用讨论了,但这里是下载的一个git仓库</p>
+<p>通常去github下载一个仓库会不加思索的:git clone url.没错,我以前就是这么干的. 这样带来什么问题,默认这样clone下来的是远程仓库的完整复制版本,带从项目创建到当前最后的提交,包括所以有远程分支.Tags</p>
+<p>不经想问:这都是你需要的吗? 对于大多数人的需求来说,答案都是否定的</p>
+<h4 id="Git-commit-branch模型"><a href="#Git-commit-branch模型" class="headerlink" title="Git commit-branch模型"></a>Git commit-branch模型</h4><img data-src="https://raw.githubusercontent.com/WShiBin/pic-repo/master/20200718235642.png" style="zoom:80%;" />
+
+<p>看完这张图,可能会说,我只想到v1.0这个版本的代码,其它有要不要无所谓; 这图并不是突显出问题,说个数据git源代码的仓库现在快有6W个commit次提交.</p>
+<p>其实git clone也提供了相应的选项: </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">help</span> <span class="built_in">clone</span></span><br><span class="line">		--depth &lt;depth&gt; <span class="comment"># commit的个数,默认只clone一个分支 👍</span></span><br><span class="line">		--single-branch <span class="comment"># clone单个分支</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>测试:</strong></p>
+<p>clone全部:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[I] ➜ git clone --branch master http://github.com/git/git</span><br><span class="line">Cloning into 'git'...</span><br><span class="line">warning: redirecting to https://github.com/git/git/</span><br><span class="line">remote: Enumerating objects: 289445, done.</span><br><span class="line">remote: Total 289445 (delta 0), reused 0 (delta 0), pack-reused 289445</span><br><span class="line">Receiving objects: 100% (289445/289445), 139.10 MiB | 999.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (215497/215497), done.</span><br><span class="line">Updating files: 100% (3779/3779), done.</span><br></pre></td></tr></table></figure>
+
+<p>clone单个branch:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[I] ➜ git clone --single-branch http://github.com/git/git git_single_branch</span><br><span class="line">Cloning into 'git_single_branch'...</span><br><span class="line">warning: redirecting to https://github.com/git/git/</span><br><span class="line">remote: Enumerating objects: 776, done.</span><br><span class="line">remote: Counting objects: 100% (770/770), done.</span><br><span class="line">remote: Compressing objects: 100% (770/770), done.</span><br><span class="line">remote: Total 281961 (delta 0), reused 770 (delta 0), pack-reused 281191</span><br><span class="line">Receiving objects: 100% (281961/281961), 134.84 MiB | 1.53 MiB/s, done.</span><br><span class="line">Resolving deltas: 100% (210884/210884), done.</span><br><span class="line">Updating files: 100% (3779/3779), done.</span><br></pre></td></tr></table></figure>
+
+<p>clone单个commit:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[I] ➜ git clone --depth 1 http://github.com/git/git git_depth</span><br><span class="line">Cloning into 'git_depth'...</span><br><span class="line">warning: redirecting to https://github.com/git/git/</span><br><span class="line">remote: Enumerating objects: 3872, done.</span><br><span class="line">remote: Counting objects: 100% (3872/3872), done.</span><br><span class="line">remote: Compressing objects: 100% (3465/3465), done.</span><br><span class="line">remote: Total 3872 (delta 325), reused 1877 (delta 250), pack-reused 0</span><br><span class="line">Receiving objects: 100% (3872/3872), 9.13 MiB | 660.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (325/325), done.</span><br></pre></td></tr></table></figure>
+
+<p>139.10 MiB --&gt; 9.13 MiB下载的代码从139MB降低到了9MB, nice</p>
+<h4 id="项目为什么这么大"><a href="#项目为什么这么大" class="headerlink" title="项目为什么这么大?"></a>项目为什么这么大?</h4><p>这时候看下这个项目目录大小, 55M ??? 不是说好的9M吗?</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[I] ➜ du -sh ./git_depth</span><br><span class="line"> 55M	../git_depth</span><br></pre></td></tr></table></figure>
+
+<p>git clone的时候会干一件事,把远程的repo拉到本地仓库,然后把mater分支从本地仓库checkout出来,所以checkout出来的代码不会算做下载的大小.查看.git及目录的大小</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[I] ➜ du -hd1 .git</span><br><span class="line"> 10M	.git/objects</span><br><span class="line">4.0K	.git/info</span><br><span class="line"> 12K	.git/logs</span><br><span class="line"> 52K	.git/hooks</span><br><span class="line"> 12K	.git/refs</span><br><span class="line"> 11M	.git</span><br></pre></td></tr></table></figure>
+
+<p>看上去差不多了.</p>
+<p>压缩:40M的代码 --&gt; 9M仓库里面 </p>
+<p>这个大小是怎么来的?Git是如何保存文件的</p>
+<p>保存的全文件</p>
+<h4 id="资源大小是怎么计算的"><a href="#资源大小是怎么计算的" class="headerlink" title="资源大小是怎么计算的"></a>资源大小是怎么计算的</h4><p>git gc zip压缩</p>
+
     </div>
-    
 
     
     
     
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Github/" rel="tag"># Github</a>
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Googletest-Primer/" rel="prev" title="译文:Googletest Primer">
+      <i class="fa fa-chevron-left"></i> 译文:Googletest Primer
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
 
 
           </div>
@@ -361,6 +455,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#网速"><span class="nav-number">1.</span> <span class="nav-text">网速:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源大小"><span class="nav-number">2.</span> <span class="nav-text">资源大小:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-commit-branch模型"><span class="nav-number">2.1.</span> <span class="nav-text">Git commit-branch模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目为什么这么大"><span class="nav-number">2.2.</span> <span class="nav-text">项目为什么这么大?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源大小是怎么计算的"><span class="nav-number">2.3.</span> <span class="nav-text">资源大小是怎么计算的</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -523,9 +618,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://wshibin.github.io/rust/11.%20Writing%20Automated%20Tests.html";
-    this.page.identifier = "rust/11. Writing Automated Tests.html";
-    this.page.title = "";
+    this.page.url = "https://wshibin.github.io/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/";
+    this.page.identifier = "Github下载慢问题探究/";
+    this.page.title = "Github下载慢问题探究";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

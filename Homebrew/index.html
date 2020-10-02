@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -17,11 +17,12 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wshibin.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true,"width":260},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+    var CONFIG = {"hostname":"wshibin.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="是什么？ The Missing Package(软件) Manager for macOS (or Linux)  在Mac&#x2F;Linux缺失的软件包管理器  App Store --&gt; GUI,官方 Homebrew --&gt; CMD,第三方维护">
@@ -39,10 +40,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/WShiBin/pic-repo/master/20200614014551-homebrew_internal.png">
 
+
 <link rel="canonical" href="https://wshibin.github.io/Homebrew/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -78,49 +80,62 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">WShiBin's blogs</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">但行好事，莫问前程!</p>
   </div>
@@ -134,29 +149,13 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
-
-  </li>
-        
-            
-  <li class="menu-item menu-item-c++">
-
-    <a href="/c++/" rel="section"><i class="fa fa-book fa-fw"></i>C++</a>
-
-  </li>
-
-
-      
         
             
   <li class="menu-item menu-item-git">
@@ -169,9 +168,9 @@
       
         
             
-  <li class="menu-item menu-item-rust">
+  <li class="menu-item menu-item-cmake">
 
-    <a href="/rust/" rel="section"><i class="fa fa-book fa-fw"></i>Rust</a>
+    <a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a>
 
   </li>
 
@@ -185,6 +184,11 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -208,7 +212,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -216,9 +220,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -226,6 +230,82 @@
   </div>
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么？"><span class="nav-number">1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用它？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用它？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么用？"><span class="nav-number">3.</span> <span class="nav-text">怎么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install安装"><span class="nav-number">3.1.</span> <span class="nav-text">Install安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App-store有什么样的功能"><span class="nav-number">3.2.</span> <span class="nav-text">App store有什么样的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和Hombrew相关的命令"><span class="nav-number">3.3.</span> <span class="nav-text">和Hombrew相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和安装CMD软件相关的命令"><span class="nav-number">3.4.</span> <span class="nav-text">和安装CMD软件相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和安装macOS-native-apps相关的命令"><span class="nav-number">3.5.</span> <span class="nav-text">和安装macOS native apps相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和Service相关的命令"><span class="nav-number">3.6.</span> <span class="nav-text">和Service相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和软件仓库Taps相关的命令"><span class="nav-number">3.7.</span> <span class="nav-text">和软件仓库Taps相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和开发者相关的命令"><span class="nav-number">3.8.</span> <span class="nav-text">和开发者相关的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部原理"><span class="nav-number">4.</span> <span class="nav-text">内部原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装的时候做了什么"><span class="nav-number">4.1.</span> <span class="nav-text">安装的时候做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过几个命令看看他干了什么"><span class="nav-number">4.2.</span> <span class="nav-text">通过几个命令看看他干了什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关配置"><span class="nav-number">5.</span> <span class="nav-text">相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew相关的配置"><span class="nav-number">5.1.</span> <span class="nav-text">Homebrew相关的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换源"><span class="nav-number">5.2.</span> <span class="nav-text">更换源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭自动更新"><span class="nav-number">5.3.</span> <span class="nav-text">关闭自动更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭匿名上传数据"><span class="nav-number">5.4.</span> <span class="nav-text">关闭匿名上传数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建自己的仓库和软件"><span class="nav-number">6.</span> <span class="nav-text">创建自己的仓库和软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">7.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何安装老版本软件："><span class="nav-number">7.1.</span> <span class="nav-text">如何安装老版本软件：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#大的老版本："><span class="nav-number">7.1.1.</span> <span class="nav-text">大的老版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特定版本："><span class="nav-number">7.1.2.</span> <span class="nav-text">特定版本：</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -236,14 +316,15 @@
 
   <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub" aria-label="GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content post posts-expand">
-            
+    <div class="main-inner post posts-expand">
+      
+
+      
 
     
   
@@ -260,36 +341,40 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
     </span>
+
+    
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           Homebrew上手
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-11T00:00:00Z">2020-05-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-18 15:09:02" itemprop="dateModified" datetime="2020-07-18T15:09:02Z">2020-07-18</time>
-              </span>
+      <time title="创建时间：2020-05-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-11T00:00:00Z">2020-05-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-18 15:09:02" itemprop="dateModified" datetime="2020-07-18T15:09:02Z">2020-07-18</time>
+      </span>
 
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
   
   <span class="post-meta-item">
     
@@ -304,6 +389,7 @@
   </span>
   
   
+</div>
 
         </div>
       </header>
@@ -312,8 +398,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><blockquote>
 <p><strong>The Missing Package(软件) Manager for macOS (or Linux)</strong></p>
 </blockquote>
@@ -501,27 +585,26 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Homebrew/" rel="tag"># Homebrew</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/" rel="prev" title="本站搭建相关文档">
-      <i class="fa fa-chevron-left"></i> 本站搭建相关文档
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/Understand-Git/" rel="next" title="理解 Git">
-      理解 Git <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/" rel="prev" title="本站搭建相关文档">
+                  <i class="fa fa-chevron-left"></i> 本站搭建相关文档
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Understand-Git/" rel="next" title="理解 Git">
+                  理解 Git <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
@@ -529,8 +612,7 @@
 
 
 
-          </div>
-          
+      
     
   <div class="comments">
     <div id="disqus_thread">
@@ -546,7 +628,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -555,98 +637,20 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么？"><span class="nav-number">1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用它？"><span class="nav-number">2.</span> <span class="nav-text">为什么要用它？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么用？"><span class="nav-number">3.</span> <span class="nav-text">怎么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install安装"><span class="nav-number">3.1.</span> <span class="nav-text">Install安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App-store有什么样的功能"><span class="nav-number">3.2.</span> <span class="nav-text">App store有什么样的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和Hombrew相关的命令"><span class="nav-number">3.3.</span> <span class="nav-text">和Hombrew相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和安装CMD软件相关的命令"><span class="nav-number">3.4.</span> <span class="nav-text">和安装CMD软件相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和安装macOS-native-apps相关的命令"><span class="nav-number">3.5.</span> <span class="nav-text">和安装macOS native apps相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和Service相关的命令"><span class="nav-number">3.6.</span> <span class="nav-text">和Service相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和软件仓库Taps相关的命令"><span class="nav-number">3.7.</span> <span class="nav-text">和软件仓库Taps相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和开发者相关的命令"><span class="nav-number">3.8.</span> <span class="nav-text">和开发者相关的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部原理"><span class="nav-number">4.</span> <span class="nav-text">内部原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装的时候做了什么"><span class="nav-number">4.1.</span> <span class="nav-text">安装的时候做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过几个命令看看他干了什么"><span class="nav-number">4.2.</span> <span class="nav-text">通过几个命令看看他干了什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关配置"><span class="nav-number">5.</span> <span class="nav-text">相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew相关的配置"><span class="nav-number">5.1.</span> <span class="nav-text">Homebrew相关的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换源"><span class="nav-number">5.2.</span> <span class="nav-text">更换源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭自动更新"><span class="nav-number">5.3.</span> <span class="nav-text">关闭自动更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭匿名上传数据"><span class="nav-number">5.4.</span> <span class="nav-text">关闭匿名上传数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建自己的仓库和软件"><span class="nav-number">6.</span> <span class="nav-text">创建自己的仓库和软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">7.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何安装老版本软件："><span class="nav-number">7.1.</span> <span class="nav-text">如何安装老版本软件：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#大的老版本："><span class="nav-number">7.1.1.</span> <span class="nav-text">大的老版本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特定版本："><span class="nav-number">7.1.2.</span> <span class="nav-text">特定版本：</span></a></li></ol></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Shi Bin"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">Shi Bin</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">6</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
-      </span>
-      <span class="links-of-author-item">
-        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
+      
 
 <div class="copyright">
   
@@ -657,12 +661,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">NexT</span>
 </div>
-  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly9waXNjZXMudGhlbWUtbmV4dC5vcmc=">NexT.Pisces</span> 强力驱动
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -671,7 +670,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -681,46 +679,38 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
 
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -751,7 +741,7 @@
     this.page.identifier = "Homebrew/";
     this.page.title = "Homebrew上手";
     };
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+  NexT.utils.loadComments('#disqus_thread', () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,

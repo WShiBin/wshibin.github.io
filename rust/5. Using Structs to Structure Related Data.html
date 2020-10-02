@@ -25,21 +25,19 @@
     var CONFIG = {"hostname":"wshibin.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
-  <meta name="description" content="vectorDoc:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;vec&#x2F;struct.Vec.html more example:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;rust-by-example&#x2F;std&#x2F;vec.html fn vec_func() &amp;#123;    &#x2F;&#x2F; Creating    let mut v: Vec&lt;i32&gt;">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
-<meta property="og:url" content="https://wshibin.github.io/rust/8.%20Common%20Collections.html">
+<meta property="og:url" content="https://wshibin.github.io/rust/5.%20Using%20Structs%20to%20Structure%20Related%20Data.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="vectorDoc:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;vec&#x2F;struct.Vec.html more example:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;rust-by-example&#x2F;std&#x2F;vec.html fn vec_func() &amp;#123;    &#x2F;&#x2F; Creating    let mut v: Vec&lt;i32&gt;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-05T16:52:53.095Z">
-<meta property="article:modified_time" content="2020-07-05T16:52:53.095Z">
+<meta property="article:published_time" content="2020-09-13T08:40:14.959Z">
+<meta property="article:modified_time" content="2020-08-23T03:32:26.176Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wshibin.github.io/rust/8.%20Common%20Collections">
+<link rel="canonical" href="https://wshibin.github.io/rust/5.%20Using%20Structs%20to%20Structure%20Related%20Data">
 
 
 <script class="page-configurations">
@@ -239,7 +237,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -251,7 +249,6 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vector"><span class="nav-number">1.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash-map"><span class="nav-number">3.</span> <span class="nav-text">hash map</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -353,13 +350,7 @@
       
       
       <div class="post-body">
-          <h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><p>Doc:<span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9zdGQvdmVjL3N0cnVjdC5WZWMuaHRtbA==">https://doc.rust-lang.org/std/vec/struct.Vec.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>more example:<span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9zdGFibGUvcnVzdC1ieS1leGFtcGxlL3N0ZC92ZWMuaHRtbA==">https://doc.rust-lang.org/stable/rust-by-example/std/vec.html<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">vec_func</span></span>() &#123;</span><br><span class="line">    <span class="comment">// Creating</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = <span class="built_in">Vec</span>::new(); <span class="comment">// new</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> v = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]; <span class="comment">// mocro</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// update</span></span><br><span class="line">    v.push(<span class="number">10</span>);</span><br><span class="line">    v.push(<span class="number">20</span>);</span><br><span class="line">    v.push(<span class="number">30</span>);</span><br><span class="line">    v.push(<span class="number">40</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get element</span></span><br><span class="line">    <span class="keyword">let</span> v = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> third: &amp;<span class="built_in">i32</span> = &amp;v[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"The third element is &#123;&#125;"</span>, third);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">match</span> v.get(<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="literal">Some</span>(third) =&gt; <span class="built_in">println!</span>(<span class="string">"The third element is &#123;&#125;"</span>, third),</span><br><span class="line">        <span class="literal">None</span> =&gt; <span class="built_in">println!</span>(<span class="string">"There is no third element."</span>),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// iterating</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> v = <span class="built_in">vec!</span>[<span class="number">100</span>, <span class="number">32</span>, <span class="number">57</span>];</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> &amp;v &#123; <span class="comment">// unmutable</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;&#125;"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> &amp;<span class="keyword">mut</span> v &#123; <span class="comment">// mutable</span></span><br><span class="line">        *i += <span class="number">50</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i, x) <span class="keyword">in</span> v.iter().enumerate() &#123; <span class="comment">// with index</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"In position &#123;&#125; we have value &#123;&#125;"</span>, i, x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// with enum</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">SpreadsheetCell</span></span> &#123;</span><br><span class="line">        Int(<span class="built_in">i32</span>),</span><br><span class="line">        Float(<span class="built_in">f64</span>),</span><br><span class="line">        Text(<span class="built_in">String</span>),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> row = <span class="built_in">vec!</span>[</span><br><span class="line">        SpreadsheetCell::Int(<span class="number">3</span>),</span><br><span class="line">        SpreadsheetCell::Text(<span class="built_in">String</span>::from(<span class="string">"blue"</span>)),</span><br><span class="line">        SpreadsheetCell::Float(<span class="number">10.12</span>),</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h2 id="hash-map"><a href="#hash-map" class="headerlink" title="hash map"></a>hash map</h2>
+          
       </div>
       
       
@@ -497,8 +488,8 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://wshibin.github.io/rust/8.%20Common%20Collections.html";
-    this.page.identifier = "rust/8. Common Collections.html";
+    this.page.url = "https://wshibin.github.io/rust/5.%20Using%20Structs%20to%20Structure%20Related%20Data.html";
+    this.page.identifier = "rust/5. Using Structs to Structure Related Data.html";
     this.page.title = "";
     };
   NexT.utils.loadComments('#disqus_thread', () => {

@@ -25,21 +25,21 @@
     var CONFIG = {"hostname":"wshibin.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
-  <meta name="description" content="vectorDoc:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;vec&#x2F;struct.Vec.html more example:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;rust-by-example&#x2F;std&#x2F;vec.html fn vec_func() &amp;#123;    &#x2F;&#x2F; Creating    let mut v: Vec&lt;i32&gt;">
+  <meta name="description" content="“Common Programming Concepts3.1. Variables and Mutability3.2. Data Types3.3. Functions3.4. Comments3.5. Control Flow Variables and Mutability变量声明可变性  变量遮蔽(Shadowing)模式解构 tuple struct tuple struct enum">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
-<meta property="og:url" content="https://wshibin.github.io/rust/8.%20Common%20Collections.html">
+<meta property="og:url" content="https://wshibin.github.io/rust/3.%20Common%20Programming%20Concepts.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="vectorDoc:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;vec&#x2F;struct.Vec.html more example:https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;rust-by-example&#x2F;std&#x2F;vec.html fn vec_func() &amp;#123;    &#x2F;&#x2F; Creating    let mut v: Vec&lt;i32&gt;">
+<meta property="og:description" content="“Common Programming Concepts3.1. Variables and Mutability3.2. Data Types3.3. Functions3.4. Comments3.5. Control Flow Variables and Mutability变量声明可变性  变量遮蔽(Shadowing)模式解构 tuple struct tuple struct enum">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-05T16:52:53.095Z">
-<meta property="article:modified_time" content="2020-07-05T16:52:53.095Z">
+<meta property="article:published_time" content="2020-09-13T16:13:59.776Z">
+<meta property="article:modified_time" content="2020-09-13T16:13:59.769Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wshibin.github.io/rust/8.%20Common%20Collections">
+<link rel="canonical" href="https://wshibin.github.io/rust/3.%20Common%20Programming%20Concepts">
 
 
 <script class="page-configurations">
@@ -251,7 +251,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vector"><span class="nav-number">1.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash-map"><span class="nav-number">3.</span> <span class="nav-text">hash map</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#“Common-Programming-Concepts"><span class="nav-number">1.</span> <span class="nav-text">“Common Programming Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Variables-and-Mutability"><span class="nav-number">1.1.</span> <span class="nav-text">Variables and Mutability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量声明"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变性"><span class="nav-number">1.1.2.</span> <span class="nav-text">可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量遮蔽-Shadowing"><span class="nav-number">1.1.3.</span> <span class="nav-text">变量遮蔽(Shadowing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式解构"><span class="nav-number">1.1.4.</span> <span class="nav-text">模式解构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型推导"><span class="nav-number">1.1.5.</span> <span class="nav-text">类型推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型别名"><span class="nav-number">1.1.6.</span> <span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态变量"><span class="nav-number">1.1.7.</span> <span class="nav-text">静态变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">1.1.8.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Types"><span class="nav-number">1.2.</span> <span class="nav-text">Data Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#char"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">char</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整数类型"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">整数类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整数溢出"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">整数溢出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点类型"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">浮点类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指针类型"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">指针类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合数据类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">复合数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum"><span class="nav-number">1.2.3.</span> <span class="nav-text">enum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union"><span class="nav-number">1.2.4.</span> <span class="nav-text">union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换as"><span class="nav-number">1.2.5.</span> <span class="nav-text">类型转换as</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions"><span class="nav-number">1.3.</span> <span class="nav-text">Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comments"><span class="nav-number">1.4.</span> <span class="nav-text">Comments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Flow"><span class="nav-number">1.5.</span> <span class="nav-text">Control Flow</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -353,13 +353,133 @@
       
       
       <div class="post-body">
-          <h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><p>Doc:<span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9zdGQvdmVjL3N0cnVjdC5WZWMuaHRtbA==">https://doc.rust-lang.org/std/vec/struct.Vec.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>more example:<span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9zdGFibGUvcnVzdC1ieS1leGFtcGxlL3N0ZC92ZWMuaHRtbA==">https://doc.rust-lang.org/stable/rust-by-example/std/vec.html<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">vec_func</span></span>() &#123;</span><br><span class="line">    <span class="comment">// Creating</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> v: <span class="built_in">Vec</span>&lt;<span class="built_in">i32</span>&gt; = <span class="built_in">Vec</span>::new(); <span class="comment">// new</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> v = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]; <span class="comment">// mocro</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// update</span></span><br><span class="line">    v.push(<span class="number">10</span>);</span><br><span class="line">    v.push(<span class="number">20</span>);</span><br><span class="line">    v.push(<span class="number">30</span>);</span><br><span class="line">    v.push(<span class="number">40</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get element</span></span><br><span class="line">    <span class="keyword">let</span> v = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> third: &amp;<span class="built_in">i32</span> = &amp;v[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"The third element is &#123;&#125;"</span>, third);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">match</span> v.get(<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="literal">Some</span>(third) =&gt; <span class="built_in">println!</span>(<span class="string">"The third element is &#123;&#125;"</span>, third),</span><br><span class="line">        <span class="literal">None</span> =&gt; <span class="built_in">println!</span>(<span class="string">"There is no third element."</span>),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// iterating</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> v = <span class="built_in">vec!</span>[<span class="number">100</span>, <span class="number">32</span>, <span class="number">57</span>];</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> &amp;v &#123; <span class="comment">// unmutable</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;&#125;"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> &amp;<span class="keyword">mut</span> v &#123; <span class="comment">// mutable</span></span><br><span class="line">        *i += <span class="number">50</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i, x) <span class="keyword">in</span> v.iter().enumerate() &#123; <span class="comment">// with index</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"In position &#123;&#125; we have value &#123;&#125;"</span>, i, x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// with enum</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">SpreadsheetCell</span></span> &#123;</span><br><span class="line">        Int(<span class="built_in">i32</span>),</span><br><span class="line">        Float(<span class="built_in">f64</span>),</span><br><span class="line">        Text(<span class="built_in">String</span>),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> row = <span class="built_in">vec!</span>[</span><br><span class="line">        SpreadsheetCell::Int(<span class="number">3</span>),</span><br><span class="line">        SpreadsheetCell::Text(<span class="built_in">String</span>::from(<span class="string">"blue"</span>)),</span><br><span class="line">        SpreadsheetCell::Float(<span class="number">10.12</span>),</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="“Common-Programming-Concepts"><a href="#“Common-Programming-Concepts" class="headerlink" title="“Common Programming Concepts"></a><a href="#common-programming-concepts">“Common Programming Concepts</a></h1><p><a href="ch03-01-variables-and-mutability.html"><strong>3.1.</strong> Variables and Mutability</a><br><a href="ch03-02-data-types.html"><strong>3.2.</strong> Data Types</a><br><a href="ch03-03-how-functions-work.html"><strong>3.3.</strong> Functions</a><br><a href="ch03-04-comments.html"><strong>3.4.</strong> Comments</a><br><a href="ch03-05-control-flow.html"><strong>3.5.</strong> Control Flow</a></p>
+<h2 id="Variables-and-Mutability"><a href="#Variables-and-Mutability" class="headerlink" title="Variables and Mutability"></a>Variables and Mutability</h2><h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><h3 id="可变性"><a href="#可变性" class="headerlink" title="可变性"></a>可变性</h3><blockquote>
+</blockquote>
+<h3 id="变量遮蔽-Shadowing"><a href="#变量遮蔽-Shadowing" class="headerlink" title="变量遮蔽(Shadowing)"></a>变量遮蔽(<strong>Shadowing</strong>)</h3><h3 id="模式解构"><a href="#模式解构" class="headerlink" title="模式解构"></a>模式解构</h3><ul>
+<li>tuple</li>
+<li>struct</li>
+<li>tuple struct</li>
+<li>enum</li>
+</ul>
+<h3 id="类型推导"><a href="#类型推导" class="headerlink" title="类型推导"></a>类型推导</h3><p>Rust只允许“局部变量/全局变量”实现类型推导，而函数签名等场 景下是不允许的</p>
+<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// `NanoSecond` 是 `u64` 的新名字。</span></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="title">NanoSecond</span></span> = <span class="built_in">u64</span>;</span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="title">Inch</span></span> = <span class="built_in">u64</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="title">Age</span></span> = <span class="built_in">u32</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><p>变量的生命周期是整个程序，从启动到退出</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> GLOBAL: <span class="built_in">i32</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>不可变的变量</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> GLOBAL: <span class="built_in">i32</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h2 id="hash-map"><a href="#hash-map" class="headerlink" title="hash map"></a>hash map</h2>
+<h2 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+<li>bool</li>
+<li>char</li>
+<li>整数类型</li>
+<li>浮点类型</li>
+<li>指针类型</li>
+</ul>
+<h4 id="char"><a href="#char" class="headerlink" title="char"></a>char</h4><p>现代语言,没有历史包袱, 它可以描述任何一个符合unicode标准的字符值</p>
+<h4 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h4><table>
+<thead>
+<tr>
+<th>整数类型</th>
+<th>在符号</th>
+<th>无符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8 bits</td>
+<td>i8</td>
+<td>u8</td>
+</tr>
+<tr>
+<td>16 bits</td>
+<td>i16</td>
+<td>u16</td>
+</tr>
+<tr>
+<td>32 bits</td>
+<td>i32</td>
+<td>u32</td>
+</tr>
+<tr>
+<td>64 bits</td>
+<td>i64</td>
+<td>u64</td>
+</tr>
+<tr>
+<td>128 bits</td>
+<td>i128</td>
+<td>i128</td>
+</tr>
+<tr>
+<td>Pointer size</td>
+<td>isize</td>
+<td>usize</td>
+</tr>
+</tbody></table>
+<p>默认为i32类型(“缺省”类型)</p>
+<p>前缀声明(0x,0o,0b)</p>
+<p>后缀类型声明</p>
+<p>数字中的<code>_</code>字符</p>
+<h4 id="整数溢出"><a href="#整数溢出" class="headerlink" title="整数溢出"></a>整数溢出</h4><p>默认情况下，在debug模式 下编译器会自动插入整数溢出检查，一旦发生溢出，则会引发panic;  在release模式下，不检查整数溢出，而是采用自动舍弃高位的方式。</p>
+<h4 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型"></a>浮点类型</h4><p>Rust提供了基于IEEE 754-2008标准的浮点类型; 分别为f32和f64, 默认f64</p>
+<h4 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h4><p><span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9yZWZlcmVuY2UvdHlwZXMvcG9pbnRlci5odG1s">https://doc.rust-lang.org/reference/types/pointer.html<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>References (&amp; and &amp;mut)</li>
+<li>Shared references (&amp;)</li>
+<li>Mutable references (&amp;mut)</li>
+<li>Raw pointers (*const and *mut)</li>
+<li>Smart pointer<ul>
+<li><code>Box&lt;T&gt;</code> for allocating values on the heap</li>
+<li><code>Rc&lt;T&gt;</code>, a reference counting type that enables multiple ownership</li>
+<li><code>Ref&lt;T&gt;</code> and <code>RefMut&lt;T&gt;</code>, accessed through <code>RefCell&lt;T&gt;</code>, a type that enforces the borrowing rules at runtime instead of compile time</li>
+</ul>
+</li>
+</ul>
+<h3 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h3><ul>
+<li>tuple</li>
+<li>unit(单元类型:tuple中一个元素也没有)</li>
+<li>struct</li>
+<li>tuple struct</li>
+<li>enum</li>
+<li>union</li>
+</ul>
+<p>模式匹配</p>
+<p><strong>tuple、struct、struct tuple对比</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">类型名称</th>
+<th align="center">tuple</th>
+<th align="center">struct</th>
+<th align="center">struct tuple</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">语法</td>
+<td align="center">没有名字+圆括号</td>
+<td align="center">名字+大括号</td>
+<td align="center">名字+圆括号</td>
+</tr>
+<tr>
+<td align="center">类型名字</td>
+<td align="center">没有单独的名字</td>
+<td align="center">有单独的名字</td>
+<td align="center">有单独的名字</td>
+</tr>
+<tr>
+<td align="center">成员名字</td>
+<td align="center">没有单独的名字</td>
+<td align="center">有单独的名字</td>
+<td align="center">没有单独的名字</td>
+</tr>
+</tbody></table>
+<h3 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h3><p>可 以像空结构体一样，不指定它的类型;也可以像tuple struct一样，用圆 括号加无名成员;还可以像正常结构体一样，用大括号加带名字的成 员。</p>
+<h3 id="union"><a href="#union" class="headerlink" title="union"></a>union</h3><p>Rust里面也支持union类型，这个类型与C语言中的union完全一 致。但在Rust里面，读取它内部的值被认为是unsafe行为，一般情况下 我们不使用这种类型。它存在的主要目的是为了方便与C语言进行交 互。</p>
+<h3 id="类型转换as"><a href="#类型转换as" class="headerlink" title="类型转换as"></a>类型转换as</h3><h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><h2 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h2>
       </div>
       
       
@@ -497,8 +617,8 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://wshibin.github.io/rust/8.%20Common%20Collections.html";
-    this.page.identifier = "rust/8. Common Collections.html";
+    this.page.url = "https://wshibin.github.io/rust/3.%20Common%20Programming%20Concepts.html";
+    this.page.identifier = "rust/3. Common Programming Concepts.html";
     this.page.title = "";
     };
   NexT.utils.loadComments('#disqus_thread', () => {

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wshibin.github.io/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/404/index.html</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wshibin.github.io/2020/12/28/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2021-01-14</lastmod>
@@ -284,7 +298,7 @@
 
   <url>
     <loc>https://wshibin.github.io/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -292,91 +306,98 @@
   
   <url>
     <loc>https://wshibin.github.io/tags/Hexo/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/Next/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/Homebrew/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/git/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/help/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/manual/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/Test/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/googletest/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/Github/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/Git/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/VS-code/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/GCC/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/tags/C/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/tags/DBus/</loc>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -385,35 +406,35 @@
   
   <url>
     <loc>https://wshibin.github.io/categories/Git/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/categories/CMD/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/categories/Test/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/categories/VS-code/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wshibin.github.io/categories/C/</loc>
-    <lastmod>2021-01-14</lastmod>
+    <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

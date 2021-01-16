@@ -149,9 +149,10 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+        <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -229,7 +230,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -269,6 +270,108 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">libuuid上手教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-16 23:49:23" itemprop="dateCreated datePublished" datetime="2021-01-16T23:49:23Z">2021-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/01/17/libuuid上手教程/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
+<p>  用于生成UUID(Universally Unique Identifier，通用唯一标识符)的库，一个UUID是一个16字节(128位)的数字，一般通过32个十六进制表示，一个UUID被连字符分成5段，标准的UUID格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，即形式为8-4-4-4-12的32个字符，其中字母是16进制表示，大小写无关。</p>
+</blockquote>
+<p>repo :<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NlcnRpay91dWlk">https://github.com/certik/uuid<i class="fa fa-external-link-alt"></i></span> (copy from <span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9VdGlsLWxpbnV4">util-linux<i class="fa fa-external-link-alt"></i></span>)</p>
+<p><strong>两种生成uuid的方式</strong></p>
+<ul>
+<li>基于随机数生成UUID(优先)</li>
+<li>基于时间生成UUID</li>
+</ul>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>头文件：uuid.h</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// uuid结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="keyword">uuid_t</span>[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Variant definitions */</span> <span class="comment">// uuid variant</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_NCS	0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_DCE	1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_MICROSOFT	2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_OTHER	3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Type definitions */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_TYPE_DCE_TIME   1 <span class="comment">// uuid类型(基于事件生成)</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_TYPE_DCE_RANDOM 4 <span class="comment">// uuid类型(基于随机数生成)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* clear.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_clear</span><span class="params">(<span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 清理uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* compare.c */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu1, <span class="keyword">const</span> <span class="keyword">uuid_t</span> uu2)</span></span>; <span class="comment">// 比较uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* copy.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_copy</span><span class="params">(<span class="keyword">uuid_t</span> dst, <span class="keyword">const</span> <span class="keyword">uuid_t</span> src)</span></span>; <span class="comment">// copy uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* gen_uuid.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_generate</span><span class="params">(<span class="keyword">uuid_t</span> out)</span></span>; <span class="comment">// 基于随机数或时间生成uuid,优先随机数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_generate_random</span><span class="params">(<span class="keyword">uuid_t</span> out)</span></span>;　<span class="comment">// 基于随机数生成uuid</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_generate_time</span><span class="params">(<span class="keyword">uuid_t</span> out)</span></span>; <span class="comment">// 基于事件生成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* isnull.c */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_is_null</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 判断是否为空</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* parse.c */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_parse</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *in, <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 把一个字符串(理论上是36个长度)解析成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* unparse.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_unparse</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, <span class="keyword">char</span> *out)</span></span>; <span class="comment">// uuid转成16进制字符(xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_unparse_lower</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, <span class="keyword">char</span> *out)</span></span>; <span class="comment">// uuid转成16进制小写字符</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_unparse_upper</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, <span class="keyword">char</span> *out)</span></span>; <span class="comment">// uuid转成16进制大写字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* uuid_time.c */</span></span><br><span class="line"><span class="function"><span class="keyword">time_t</span> <span class="title">uuid_time</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, struct timeval *ret_tv)</span></span>; <span class="comment">// 根据uuid获取其中时间</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_type</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 判断uuid的类型</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_variant</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 获取uuid variant(用来标识uuid的格式和编码: wiki:https://en.wikipedia.org/wiki/Universally_unique_identifier#Variants)</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;uuid.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">uuid_t</span> uuid;</span><br><span class="line">    <span class="keyword">char</span>   uuid_str[<span class="number">37</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.uuid_generate</span></span><br><span class="line">    uuid_generate(uuid);           <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.uuid_generate_random</span></span><br><span class="line">    uuid_generate_random(uuid);    <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on random uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.uuid_generate_time</span></span><br><span class="line">    uuid_generate_time(uuid);      <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on time uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. uuid_time, uuid_type, uuid_variant</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">    <span class="keyword">time_t</span>         time = uuid_time(uuid, &amp;tv);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;tv = (%ld, %ld); time = %s&quot;</span>, tv.tv_sec, tv.tv_usec, ctime(&amp;time));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> type = uuid_type(uuid);</span><br><span class="line">    <span class="keyword">if</span> (type == UUID_TYPE_DCE_TIME) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_TIME\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == UUID_TYPE_DCE_RANDOM) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_RANDOM\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> variant = uuid_variant(uuid);</span><br><span class="line">    <span class="keyword">if</span> (variant == UUID_VARIANT_NCS) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_NCS\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_DCE) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_DCE\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_MICROSOFT) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_MICROSOFT\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_OTHER) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_OTHER\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5.other: uuid_is_null, uuid_unparse_lower, uuid_unparse_upper, uuid_clear</span></span><br><span class="line">    <span class="keyword">int</span> ret = uuid_is_null(uuid);</span><br><span class="line">    <span class="keyword">if</span> (ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is null\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is not null\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uuid_unparse_lower(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;lower uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line">    uuid_unparse_upper(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;upper uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    uuid_clear(uuid);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uuid &#x3D; dd18aa44-9594-41a2-b80c-d894851508a8</span><br><span class="line">base on random uuid &#x3D; 71e08c50-47f5-45ef-adad-b1af80e40e98</span><br><span class="line">base on time uuid &#x3D; e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line"></span><br><span class="line">tv &#x3D; (1604563623, 547984); time &#x3D; Thu Nov  5 16:07:03 2020</span><br><span class="line">uuid type is : UUID_TYPE_DCE_TIME</span><br><span class="line">uuid variant is : UUID_VARIANT_DCE</span><br><span class="line"></span><br><span class="line">uuid is not null</span><br><span class="line">lower uuid &#x3D; e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line">upper uuid &#x3D; E3840B20-1F3D-11EB-B204-6378FB95E6AE</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1256,104 +1359,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2017/06/14/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%96%9C%E6%AC%A2%E7%94%A8%E9%94%AE%E7%9B%98.%E5%BF%AB%E6%8D%B7%E9%94%AE.%E8%80%8C%E4%B8%8D%E6%98%AF%E9%BC%A0%E6%A0%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/06/14/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%96%9C%E6%AC%A2%E7%94%A8%E9%94%AE%E7%9B%98.%E5%BF%AB%E6%8D%B7%E9%94%AE.%E8%80%8C%E4%B8%8D%E6%98%AF%E9%BC%A0%E6%A0%87/" class="post-title-link" itemprop="url">我为什么喜欢用键盘/快捷键,而不是鼠标?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-06-13 23:56:30" itemprop="dateCreated datePublished" datetime="2017-06-13T23:56:30Z">2017-06-13</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/06/14/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%96%9C%E6%AC%A2%E7%94%A8%E9%94%AE%E7%9B%98.%E5%BF%AB%E6%8D%B7%E9%94%AE.%E8%80%8C%E4%B8%8D%E6%98%AF%E9%BC%A0%E6%A0%87/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/14/我为什么喜欢用键盘.快捷键.而不是鼠标/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>Note:以前写的文章，搬运过来 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f40f984c1212">我为什么喜欢用键盘/快捷键,而不是鼠标?</a></p>
-</blockquote>
-<blockquote>
-<p>首先, 这有个前提,我是一名Android程序员,然后,基本不打游戏,也很少做画图这种设计师该做的事,所以,不可能去强迫一个人用键盘/触摸板去打LOL, 也不可能去强迫一个名设计师用触摸板去画图, 结果可想而知. 当然, 一般设计师也会使用大量的快捷键.</p>
-</blockquote>
-<h2 id="其实在最开始我思考的问题是-如何去提高工作效率"><a href="#其实在最开始我思考的问题是-如何去提高工作效率" class="headerlink" title="其实在最开始我思考的问题是: 如何去提高工作效率?"></a>其实在最开始我思考的问题是: 如何去提高工作效率?</h2><p>一方面是软件工具的使用,而另一方面是对键盘/快捷键的思考,从而发现以下几点:</p>
-<ul>
-<li>按键永远比鼠标来的明确,高效,直接</li>
-<li>快捷键的记忆其实可以很简单</li>
-<li>如果你的手不停的在鼠标和键盘之间来回移动,这简直就是浪费生命</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/06/14/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%96%9C%E6%AC%A2%E7%94%A8%E9%94%AE%E7%9B%98.%E5%BF%AB%E6%8D%B7%E9%94%AE.%E8%80%8C%E4%B8%8D%E6%98%AF%E9%BC%A0%E6%A0%87/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      
-
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 <script>

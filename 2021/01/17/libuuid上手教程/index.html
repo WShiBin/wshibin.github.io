@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+<meta name="description" content="Overview   用于生成UUID(Universally Unique Identifier，通用唯一标识符)的库，一个UUID是一个16字节(128位)的数字，一般通过32个十六进制表示，一个UUID被连字符分成5段，标准的UUID格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，即形式为8-4-4-4-12的32个字符，其中字母是16进制表示，大小写无关。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="libuuid上手教程">
+<meta property="og:url" content="https://wshibin.github.io/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="Overview   用于生成UUID(Universally Unique Identifier，通用唯一标识符)的库，一个UUID是一个16字节(128位)的数字，一般通过32个十六进制表示，一个UUID被连字符分成5段，标准的UUID格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，即形式为8-4-4-4-12的32个字符，其中字母是16进制表示，大小写无关。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-16T23:49:23.000Z">
+<meta property="article:modified_time" content="2021-01-16T15:52:12.175Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="UUID">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>libuuid上手教程 | WShiBin's blogs</title>
+  
+    <script>
+      function sendPageView() {
+        if (CONFIG.hostname !== location.hostname) return;
+        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
+        localStorage.setItem('uid', uid);
+        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
+          v  : 1,
+          tid: 'UA-149513847-1',
+          cid: uid,
+          t  : 'pageview',
+          dp : encodeURIComponent(location.pathname)
+        }));
+      }
+      document.addEventListener('pjax:complete', sendPageView);
+      sendPageView();
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">WShiBin's blogs</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">但行好事，莫问前程!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>首页</a></li>
+        
+            
+  <li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li>
+
+
+      
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+        <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">2.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          libuuid上手教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-16 23:49:23" itemprop="dateCreated datePublished" datetime="2021-01-16T23:49:23Z">2021-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/01/17/libuuid上手教程/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
+<p>  用于生成UUID(Universally Unique Identifier，通用唯一标识符)的库，一个UUID是一个16字节(128位)的数字，一般通过32个十六进制表示，一个UUID被连字符分成5段，标准的UUID格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，即形式为8-4-4-4-12的32个字符，其中字母是16进制表示，大小写无关。</p>
+</blockquote>
+<p>repo :<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NlcnRpay91dWlk">https://github.com/certik/uuid<i class="fa fa-external-link-alt"></i></span> (copy from <span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9VdGlsLWxpbnV4">util-linux<i class="fa fa-external-link-alt"></i></span>)</p>
+<p><strong>两种生成uuid的方式</strong></p>
+<ul>
+<li>基于随机数生成UUID(优先)</li>
+<li>基于时间生成UUID</li>
+</ul>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>头文件：uuid.h</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// uuid结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="keyword">uuid_t</span>[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Variant definitions */</span> <span class="comment">// uuid variant</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_NCS	0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_DCE	1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_MICROSOFT	2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_VARIANT_OTHER	3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Type definitions */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_TYPE_DCE_TIME   1 <span class="comment">// uuid类型(基于事件生成)</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UUID_TYPE_DCE_RANDOM 4 <span class="comment">// uuid类型(基于随机数生成)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* clear.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_clear</span><span class="params">(<span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 清理uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* compare.c */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu1, <span class="keyword">const</span> <span class="keyword">uuid_t</span> uu2)</span></span>; <span class="comment">// 比较uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* copy.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_copy</span><span class="params">(<span class="keyword">uuid_t</span> dst, <span class="keyword">const</span> <span class="keyword">uuid_t</span> src)</span></span>; <span class="comment">// copy uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* gen_uuid.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_generate</span><span class="params">(<span class="keyword">uuid_t</span> out)</span></span>; <span class="comment">// 基于随机数或时间生成uuid,优先随机数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_generate_random</span><span class="params">(<span class="keyword">uuid_t</span> out)</span></span>;　<span class="comment">// 基于随机数生成uuid</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_generate_time</span><span class="params">(<span class="keyword">uuid_t</span> out)</span></span>; <span class="comment">// 基于事件生成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* isnull.c */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_is_null</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 判断是否为空</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* parse.c */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_parse</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *in, <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 把一个字符串(理论上是36个长度)解析成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* unparse.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_unparse</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, <span class="keyword">char</span> *out)</span></span>; <span class="comment">// uuid转成16进制字符(xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_unparse_lower</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, <span class="keyword">char</span> *out)</span></span>; <span class="comment">// uuid转成16进制小写字符</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uuid_unparse_upper</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, <span class="keyword">char</span> *out)</span></span>; <span class="comment">// uuid转成16进制大写字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* uuid_time.c */</span></span><br><span class="line"><span class="function"><span class="keyword">time_t</span> <span class="title">uuid_time</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu, struct timeval *ret_tv)</span></span>; <span class="comment">// 根据uuid获取其中时间</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_type</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 判断uuid的类型</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uuid_variant</span><span class="params">(<span class="keyword">const</span> <span class="keyword">uuid_t</span> uu)</span></span>; <span class="comment">// 获取uuid variant(用来标识uuid的格式和编码: wiki:https://en.wikipedia.org/wiki/Universally_unique_identifier#Variants)</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;uuid.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">uuid_t</span> uuid;</span><br><span class="line">    <span class="keyword">char</span>   uuid_str[<span class="number">37</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.uuid_generate</span></span><br><span class="line">    uuid_generate(uuid);           <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.uuid_generate_random</span></span><br><span class="line">    uuid_generate_random(uuid);    <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on random uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.uuid_generate_time</span></span><br><span class="line">    uuid_generate_time(uuid);      <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on time uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. uuid_time, uuid_type, uuid_variant</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">    <span class="keyword">time_t</span>         time = uuid_time(uuid, &amp;tv);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;tv = (%ld, %ld); time = %s&quot;</span>, tv.tv_sec, tv.tv_usec, ctime(&amp;time));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> type = uuid_type(uuid);</span><br><span class="line">    <span class="keyword">if</span> (type == UUID_TYPE_DCE_TIME) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_TIME\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == UUID_TYPE_DCE_RANDOM) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_RANDOM\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> variant = uuid_variant(uuid);</span><br><span class="line">    <span class="keyword">if</span> (variant == UUID_VARIANT_NCS) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_NCS\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_DCE) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_DCE\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_MICROSOFT) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_MICROSOFT\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_OTHER) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_OTHER\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5.other: uuid_is_null, uuid_unparse_lower, uuid_unparse_upper, uuid_clear</span></span><br><span class="line">    <span class="keyword">int</span> ret = uuid_is_null(uuid);</span><br><span class="line">    <span class="keyword">if</span> (ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is null\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is not null\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uuid_unparse_lower(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;lower uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line">    uuid_unparse_upper(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;upper uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    uuid_clear(uuid);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uuid &#x3D; dd18aa44-9594-41a2-b80c-d894851508a8</span><br><span class="line">base on random uuid &#x3D; 71e08c50-47f5-45ef-adad-b1af80e40e98</span><br><span class="line">base on time uuid &#x3D; e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line"></span><br><span class="line">tv &#x3D; (1604563623, 547984); time &#x3D; Thu Nov  5 16:07:03 2020</span><br><span class="line">uuid type is : UUID_TYPE_DCE_TIME</span><br><span class="line">uuid variant is : UUID_VARIANT_DCE</span><br><span class="line"></span><br><span class="line">uuid is not null</span><br><span class="line">lower uuid &#x3D; e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line">upper uuid &#x3D; E3840B20-1F3D-11EB-B204-6378FB95E6AE</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2020/12/28/通过-字符串-调用同名的函数/" rel="bookmark">通过'字符串'调用同名的函数</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2021/01/16/libdbus上手教程/" rel="bookmark">libdbus上手教程</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+              <a href="/tags/UUID/" rel="tag"># UUID</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/" rel="prev" title="libdbus上手教程">
+                  <i class="fa fa-chevron-left"></i> libdbus上手教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    <div class="pjax">
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink.listen({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://wshibin.github.io/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/',]
+      });
+      });
+  </script>
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://WShiBin.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://wshibin.github.io/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/";
+    this.page.identifier = "2021/01/17/libuuid上手教程/";
+    this.page.title = "libuuid上手教程";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://WShiBin.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

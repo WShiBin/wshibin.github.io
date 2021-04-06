@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wshibin.github.io/2021/03/29/docker%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2021-04-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wshibin.github.io/rust/4.%20Understanding%20Ownership.html</loc>
     
     <lastmod>2021-04-05</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://wshibin.github.io/rust/2.%20Programming%20a%20Guessing%20Game.html</loc>
     
     <lastmod>2021-04-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/2021/03/29/docker%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2021-04-04</lastmod>
     
   </url>
   

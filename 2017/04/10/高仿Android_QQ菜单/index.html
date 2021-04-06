@@ -16,7 +16,7 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
   <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
@@ -27,7 +27,7 @@
   </script>
 <meta name="description" content="Note:以前写的文章，搬迁过来 高仿Android QQ菜单,左侧抽屉,底部导航   实现这种效果的方式有很多,在不使用第三方包的前提下,这里用V4包原生DrawerLayout+FragmentTabHost控件实现, 先来张效果图:   ##实现这种效果的技术点:  DrawerLayout拖动菜单时主内容布局不会跟着移动 DrawerLayout拖动时很生硬,是直接拖出来的 Fragme">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高仿Android QQ菜单,左侧抽屉,底部导航">
+<meta property="og:title" content="【Android】高仿Android QQ菜单,左侧抽屉,底部导航">
 <meta property="og:url" content="https://wshibin.github.io/2017/04/10/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="Note:以前写的文章，搬迁过来 高仿Android QQ菜单,左侧抽屉,底部导航   实现这种效果的方式有很多,在不使用第三方包的前提下,这里用V4包原生DrawerLayout+FragmentTabHost控件实现, 先来张效果图:   ##实现这种效果的技术点:  DrawerLayout拖动菜单时主内容布局不会跟着移动 DrawerLayout拖动时很生硬,是直接拖出来的 Fragme">
@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://wshibin.github.io/images/Xnip2021-01-16_22-26-25.jpg">
 <meta property="og:image" content="https://wshibin.github.io/images/Xnip2021-01-16_22-27-01.jpg">
 <meta property="article:published_time" content="2017-04-10T02:09:04.000Z">
-<meta property="article:modified_time" content="2021-01-16T15:49:47.189Z">
+<meta property="article:modified_time" content="2021-02-21T15:35:13.380Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
@@ -62,7 +62,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>高仿Android QQ菜单,左侧抽屉,底部导航 | WShiBin's blogs</title>
+<title>【Android】高仿Android QQ菜单,左侧抽屉,底部导航 | WShiBin's blogs</title>
   
     <script>
       function sendPageView() {
@@ -164,8 +164,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
       <li class="menu-item menu-item-search">
@@ -239,13 +239,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -308,7 +308,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          高仿Android QQ菜单,左侧抽屉,底部导航
+          【Android】高仿Android QQ菜单,左侧抽屉,底部导航
         </h1>
 
         <div class="post-meta-container">
@@ -401,10 +401,10 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/04/25/ButterKnife使用详解/" rel="bookmark">ButterKnife使用详解</a></div>
+      <div class="popular-posts-title"><a href="/2017/04/25/ButterKnife使用详解/" rel="bookmark">【Android】ButterKnife使用详解</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/04/26/翻了一遍EventBus官方文档/" rel="bookmark">翻了一遍EventBus官方文档</a></div>
+      <div class="popular-posts-title"><a href="/2017/04/26/翻了一遍EventBus官方文档/" rel="bookmark">【Android】翻了一遍EventBus官方文档</a></div>
     </li>
   </ul>
 
@@ -420,8 +420,8 @@
             <div class="post-nav-item">
             </div>
             <div class="post-nav-item">
-                <a href="/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" rel="next" title="ButterKnife使用详解">
-                  ButterKnife使用详解 <i class="fa fa-chevron-right"></i>
+                <a href="/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" rel="next" title="【Android】ButterKnife使用详解">
+                  【Android】ButterKnife使用详解 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -501,11 +501,11 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script>
 var pjax = new Pjax({
@@ -610,7 +610,7 @@ document.addEventListener('pjax:success', () => {
 </script>
 
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
       quicklink.listen({
@@ -635,7 +635,7 @@ document.addEventListener('pjax:success', () => {
   var disqus_config = function() {
     this.page.url = "https://wshibin.github.io/2017/04/10/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/";
     this.page.identifier = "2017/04/10/高仿Android_QQ菜单/";
-    this.page.title = "高仿Android QQ菜单,左侧抽屉,底部导航";
+    this.page.title = "【Android】高仿Android QQ菜单,左侧抽屉,底部导航";
     };
   NexT.utils.loadComments('#disqus_thread', () => {
     if (window.DISQUS) {

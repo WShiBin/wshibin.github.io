@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>高仿Android QQ菜单,左侧抽屉,底部导航</title>
+    <title>【Android】高仿Android QQ菜单,左侧抽屉,底部导航</title>
     <url>/2017/04/10/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/</url>
     <content><![CDATA[<blockquote>
 <p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hMDJjZGJhNDkzNDk=">高仿Android QQ菜单,左侧抽屉,底部导航<i class="fa fa-external-link-alt"></i></span></p>
@@ -47,7 +47,7 @@
       </tags>
   </entry>
   <entry>
-    <title>ButterKnife使用详解</title>
+    <title>【Android】ButterKnife使用详解</title>
     <url>/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<blockquote>
 <p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC84MjU2NTU0ZGVhNmU=">ButterKnife使用详解<i class="fa fa-external-link-alt"></i></span></p>
@@ -158,7 +158,7 @@
       </tags>
   </entry>
   <entry>
-    <title>翻了一遍EventBus官方文档</title>
+    <title>【Android】翻了一遍EventBus官方文档</title>
     <url>/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/</url>
     <content><![CDATA[<blockquote>
 <p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hNTM2Y2YwMDc3MGI=">翻了一遍EventBus官方文档<i class="fa fa-external-link-alt"></i></span></p>
@@ -267,7 +267,7 @@
       </tags>
   </entry>
   <entry>
-    <title>我为什么喜欢用键盘/快捷键,而不是鼠标?</title>
+    <title>【Personal】我为什么喜欢用键盘/快捷键,而不是鼠标?</title>
     <url>/2017/06/14/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%96%9C%E6%AC%A2%E7%94%A8%E9%94%AE%E7%9B%98.%E5%BF%AB%E6%8D%B7%E9%94%AE.%E8%80%8C%E4%B8%8D%E6%98%AF%E9%BC%A0%E6%A0%87/</url>
     <content><![CDATA[<blockquote>
 <p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9mNDBmOTg0YzEyMTI=">我为什么喜欢用键盘/快捷键,而不是鼠标?<i class="fa fa-external-link-alt"></i></span></p>
@@ -337,7 +337,7 @@
 ]]></content>
   </entry>
   <entry>
-    <title>本站搭建相关文档</title>
+    <title>【Hexo】本站搭建相关文档</title>
     <url>/2020/05/01/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/</url>
     <content><![CDATA[<blockquote>
 <p>写这篇文章是为了自己在修改本站时，方便查找相关文档</p>
@@ -364,7 +364,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Homebrew上手教程</title>
+    <title>【Mac】Homebrew上手教程</title>
     <url>/2020/05/11/Homebrew/</url>
     <content><![CDATA[<h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><blockquote>
 <p><strong>The Missing Package(软件) Manager for macOS (or Linux)</strong></p>
@@ -542,7 +542,7 @@
       </tags>
   </entry>
   <entry>
-    <title>理解 Git</title>
+    <title>【Git】理解 Git</title>
     <url>/2020/05/27/Understand-Git/</url>
     <content><![CDATA[<blockquote>
 <p>Git的学习曲线和难度相对较高,理解内部的原理和一些核心概念对使用git帮助极大</p>
@@ -608,7 +608,7 @@
       </tags>
   </entry>
   <entry>
-    <title>理解命令行程序</title>
+    <title>【CMD】理解命令行程序</title>
     <url>/2020/05/27/Understand-Command-Line-Programming/</url>
     <content><![CDATA[<blockquote>
 <p> <strong><span class="exturl" data-url="aHR0cHM6Ly9uZXdzLnljb21iaW5hdG9yLmNvbS9pdGVtP2lkPTIyNDc2ODYw">Hacker News<i class="fa fa-external-link-alt"></i></span>**上有一个关于man手册的讨论非常有意思:**对于Gui程序,界面可以去指导/指示用户去如何使用程序;而对于命令行的程序你必需去阅读man手册才能了解如何去使用它,所以应该把命令行的man手册视为命令行程序的一部分</strong></p>
@@ -691,7 +691,7 @@
 </ul>
 <h3 id="man命令的本质"><a href="#man命令的本质" class="headerlink" title="man命令的本质"></a>man命令的本质</h3><p>man还有个命令选项<code>$ man -w cmd_name</code>，可以去查找命令手册所在的路径。用vim打开，这个文件本质上就是一个拥有特定语法的文档，所以手册的本质上就是一个文档文件，</p>
 <h3 id="man手册中的语法"><a href="#man手册中的语法" class="headerlink" title="man手册中的语法"></a>man手册中的语法</h3><ul>
-<li>包括哪些部分<br>* </li>
+<li>包括哪些部分<br>*</li>
 <li>SYNOPSIS中的语法含义<ul>
 <li><code>[...]</code>:可选</li>
 <li><code>a|b</code>:二选一</li>
@@ -709,7 +709,7 @@
       </tags>
   </entry>
   <entry>
-    <title>译文:Googletest Primer</title>
+    <title>【Test】译文:Googletest Primer</title>
     <url>/2020/05/31/Googletest-Primer/</url>
     <content><![CDATA[<p>文档:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9nb29nbGV0ZXN0L2Jsb2IvbWFzdGVyL2dvb2dsZXRlc3QvZG9jcy9wcmltZXIubWQ=">https://github.com/google/googletest/blob/master/googletest/docs/primer.md<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="简介-为什么要使用googletest"><a href="#简介-为什么要使用googletest" class="headerlink" title="简介:为什么要使用googletest?"></a>简介:为什么要使用googletest?</h2><p><em>googletest</em>能帮助你写更好的C++测试代码.</p>
@@ -742,7 +742,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Github下载慢问题探究</title>
+    <title>【Github】Github下载慢问题探究</title>
     <url>/2020/07/19/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/</url>
     <content><![CDATA[<blockquote>
 <p>公司对网络进行了限制,还不能开代理,Github下载的那个项目又非常大,后来对这个问题进行了思索,随记录下来</p>
@@ -795,7 +795,7 @@
       </tags>
   </entry>
   <entry>
-    <title>VS code C/C++ 环境配置</title>
+    <title>【VS code】VS code C/C++ 环境配置</title>
     <url>/2020/11/30/VS-code-C-C-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>VS Code C/C++ 开发环境搭建</p>
 <p>B站视频教学地址：todo</p>
@@ -823,7 +823,7 @@
       </tags>
   </entry>
   <entry>
-    <title>通过&#39;字符串&#39;调用同名的函数</title>
+    <title>【C】通过&quot;字符串&quot;调用同名的函数</title>
     <url>/2020/12/28/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p>在GUI编程里面,在写静态xml布局时;比如Android中,可以通过在xml中指定<code>onClick</code>的回调函数名,即可以实现,在事件触发时调用相应的函数</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">    android:id=&quot;@+id/login_btn&quot;</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:onClick=&quot;onLoginClick&quot;</span><br><span class="line">    android:text=&quot;Login&quot; /&gt;</span><br></pre></td></tr></table></figure>
@@ -878,7 +878,7 @@
       </tags>
   </entry>
   <entry>
-    <title>libdbus上手教程</title>
+    <title>【C】libdbus上手教程</title>
     <url>/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<!-- # libdbus Overview -->
 
@@ -1006,7 +1006,7 @@
       </tags>
   </entry>
   <entry>
-    <title>libuuid上手教程</title>
+    <title>【C】libuuid上手教程</title>
     <url>/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
 <p>  用于生成UUID(Universally Unique Identifier，通用唯一标识符)的库，一个UUID是一个16字节(128位)的数字，一般通过32个十六进制表示，一个UUID被连字符分成5段，标准的UUID格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，即形式为8-4-4-4-12的32个字符，其中字母是16进制表示，大小写无关。</p>
@@ -1029,6 +1029,125 @@
       <tags>
         <tag>C</tag>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】2020总结,2021展望</title>
+    <url>/2021/02/22/2020%E6%80%BB%E7%BB%93-2021%E5%B1%95%E6%9C%9B/</url>
+    <content><![CDATA[<h1 id="2020总结"><a href="#2020总结" class="headerlink" title="2020总结"></a>2020总结</h1><ul>
+<li>疫情</li>
+<li>新装备</li>
+<li>用qt写了个桌面项目</li>
+<li>组织公司内部培训</li>
+<li>当导师带新人</li>
+<li>学习Rust，后来写了个1000多行的小玩具</li>
+<li>参加Rust China Conf 2020</li>
+<li>公司改革，架构调整</li>
+<li>成为UP主，在B站发视频</li>
+<li>健身房弄伤膝盖</li>
+<li>关于技术</li>
+</ul>
+<h2 id="疫情："><a href="#疫情：" class="headerlink" title="疫情："></a>疫情：</h2><h2 id="用qt写了个桌面项目"><a href="#用qt写了个桌面项目" class="headerlink" title="用qt写了个桌面项目"></a>用qt写了个桌面项目</h2><p>这个项目基本从零开始,不过做的还算比较顺利,做完之后收获比较多:<br>最开始预言这个项目的时候叫上了我,我很纳闷,叫我干啥? 杜工来了句:看看,到时候分个模块写下</p>
+<p>比较顺利的原因在于:</p>
+<ul>
+<li>参考了别人的软件界面,逻辑</li>
+<li>跑去一线,实地参观考察</li>
+<li>qt开源,示例代码和文档完善(不会就通篇读下文档,在跑跑示例代码,在不去就去翻一下源码)</li>
+<li>把qt中UI的部分分给了另外一个同事(ui的部分对于新手来说,是个大问题,对UI控件没有个全面认知,看到复杂的控件都不知道用什么去实现)</li>
+</ul>
+<p>qt强大的地方在于:一个是signal &amp; slot;还有一个是它写了大量的库,并且质量很高.cpp标准库都会来参考qt的代码</p>
+<p>收获:</p>
+<p><strong>MVP(英语:minimum viable product)最小可行产品</strong><br>对于预言的项目,最迫切的问题可能是把方案定下来,用什么方式去实现,不是去讨论细节问题,这时候就需要<strong>最小可行性验证</strong>,一种方式性不通,立马去换一个新的方案来做验证</p>
+<h2 id="组织公司内部培训"><a href="#组织公司内部培训" class="headerlink" title="组织公司内部培训"></a>组织公司内部培训</h2><p>​</p>
+<h1 id="2021展望"><a href="#2021展望" class="headerlink" title="2021展望"></a>2021展望</h1>]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Tools】docker入门</title>
+    <url>/2021/03/29/docker%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在公司开发项目的时候,为了避免不出什么幺蛾子,会尽量保证多人的开发环境一致:系统版本,编译器版本,甚至交叉编译器目录都安装成一样的,避免因为环境出错而导致的不必要的成本.一切都运行的很好,直到有次遇到了问题,需要到杜工电脑上编译时,可能编译过多个项目的代码,依赖库的版本也可能和我们的环境不一样,折腾了二十分钟,最后还是在我电脑编译了发给他.</p>
+<p>我电脑之前就因为不同项目有依赖同一个软件的不同版本,最后电脑崩了,直接新装了系统.</p>
+<p><strong>问题场景:</strong></p>
+<ul>
+<li>一个人的主机编译不同的项目,不同的项目可能会依赖同一个软件/库的不同版本.有的项目依赖java5,有的依赖java8</li>
+<li>项目的开发,测试和部署环境不一致.导致:”我这儿都跑的好好的,怎么在你那里运行就有问题”</li>
+<li>程序部署到不同系统环境的server,(公司的不台服务器装有不同的系统,又或者你把程序发给客户)</li>
+</ul>
+<p>前者导致自己维护主机的环境困难,可能会和我一样弄的重装系统;后者导致会增加一些不必要的工作</p>
+<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>如果我给一个项目创建一个虚拟机,这个问题就能解决了.这个虚拟机的运行环境专门为这个项目定制的</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>占用资源高:占CPU,占内存,占磁盘</li>
+<li>启动慢:需要先启动一个系统</li>
+<li>共享麻烦:环境共享给别人时,拷贝一个系统实例?</li>
+</ul>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbS8=">https://www.docker.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p>Docker中的容器是虚拟了操作系统,而虚拟机虚拟了硬件资源</p>
+<p>能保证开发,测试,部署的环境一致,和主机无关的环境</p>
+<p><img src="./2021-03-28_docker%E5%85%A5%E9%97%A8.assets/image-20210328205725519.png" alt="image-20210328205725519"></p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>占用资源低:用多少给多少</li>
+<li>启动快:像本地启动一个进程一样快</li>
+<li>共享麻烦:共享一个Dockerfile文件;或者共享一个docker hub的链接</li>
+<li>管理方便:不用就删了</li>
+</ul>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><img src="./2021-03-28_docker%E5%85%A5%E9%97%A8.assets/image-20210328202950078.png" alt="image-20210328202950078"></p>
+<ul>
+<li>镜像image:和虚拟机类比,就是系统镜像文件(里面包括一个程序必要的<strong>编译</strong>或<strong>运行环境</strong>)</li>
+<li>容器container:和虚拟机类比,就是安装好的虚拟机系统</li>
+<li>docker hub:一个下载镜像image的远程仓库,</li>
+<li>Dockerfile文件:一个用于创建镜像image的规则文件(添加软件去年依赖)</li>
+</ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>官网文档:<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZ2V0LWRvY2tlci8=">https://docs.docker.com/get-docker/<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a><strong>帮助命令</strong></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看子命令的help: docker subcommand --help</span></span><br><span class="line">$ docker image --<span class="built_in">help</span></span><br><span class="line">$ docker container --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<h4 id="镜像image相关命令"><a href="#镜像image相关命令" class="headerlink" title="镜像image相关命令"></a><strong>镜像image相关命令</strong></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看本机的镜像列表</span></span><br><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line"><span class="comment"># pull/push</span></span><br><span class="line">$ docker pull image_name <span class="comment"># 从docker hub拉取Ubuntu镜像</span></span><br><span class="line">$ docker push image_name <span class="comment"># 把本地镜像推到docker hub (可能需要用docker tag先重命令,需要和docker hub中的同名)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个tag</span></span><br><span class="line">$ docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存/导入镜像(共享给其它人同一个环境)</span></span><br><span class="line">$ docker save -o ubuntu.tar ubuntu20</span><br><span class="line">$ docker import ubuntu.tar ubuntu20_import:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># rm image</span></span><br><span class="line">$ docker rmi image_name</span><br></pre></td></tr></table></figure>
+<h4 id="容器container相关命令"><a href="#容器container相关命令" class="headerlink" title="容器container相关命令"></a><strong>容器container相关命令</strong></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker run [OPTIONS] IMAGE </span></span><br><span class="line"><span class="comment"># 用某个镜像image创建container</span></span><br><span class="line">$ docker run --name ubuntu20 -d ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于镜像ubuntu,创建名为ubuntu20的容器,并以交互的模式启动容器ubuntu20</span></span><br><span class="line"><span class="comment"># 	-name:指定创建的容器名为ubuntu20</span></span><br><span class="line"><span class="comment">#		-i -t:交互模式运行</span></span><br><span class="line">$ docker run --name ubuntu20 \</span><br><span class="line">					-i -t ubuntu </span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于镜像ubuntu,创建名为ubuntu20的容器,并以交互的模式启动容器ubuntu20</span></span><br><span class="line"><span class="comment"># 	-w:指定工作目录,进入到容器之后的目录</span></span><br><span class="line"><span class="comment"># 	-v:把本机的目录/home/shibin/repo/linux-kit,映射到容器的目录/workspace/linux-kit</span></span><br><span class="line">$ docker run --name ubuntu20 \</span><br><span class="line">					-w /workspace/linux-kit \</span><br><span class="line">					-v /home/shibin/repo/linux-kit:/workspace/linux-kit \</span><br><span class="line">					-it ubuntu <span class="comment"># 创建一个容器container,并启动容器container,以交互的方式运行</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前container的状态</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">$ docker start container_name/id    <span class="comment"># 启动一个容器container</span></span><br><span class="line">$ docker start -i container_name/id <span class="comment"># (i/interactive)启动一个容器container,交互模式运行</span></span><br><span class="line">$ docker restart container_name/id  <span class="comment"># 重启</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入到正在运行的container</span></span><br><span class="line">$ docker attach container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">$ docker stop container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器container</span></span><br><span class="line">$ docker rm container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器运行的log</span></span><br><span class="line">$ docker logs container_name/id    <span class="comment"># 查看下log,并退出</span></span><br><span class="line">$ docker logs -f container_name/id <span class="comment"># (f/follow)查看log,不退出</span></span><br></pre></td></tr></table></figure>
+<h4 id="Dockerfile相关命令和语法"><a href="#Dockerfile相关命令和语法" class="headerlink" title="Dockerfile相关命令和语法"></a><strong>Dockerfile相关命令和语法</strong></h4><p>文档:<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL3JlZmVyZW5jZS9idWlsZGVyLw==">https://docs.docker.com/engine/reference/builder/<i class="fa fa-external-link-alt"></i></span></p>
+<p>Dockerfile是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。</p>
+<p><strong>语法:</strong></p>
+<ul>
+<li>FROM:定义使用哪个为基础镜像</li>
+<li>ENV:设置环境变量</li>
+<li>COPY:将主机的文件复制到容器内</li>
+<li>VOLUME:将主机的文件映射到容器内</li>
+<li>EXPOSE:</li>
+<li>WORKDIR:工作目录</li>
+<li>RUN:执行的命令</li>
+<li>CMD:最后执行的命令</li>
+</ul>
+<p><strong>Dockerfile文件example</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">20.04</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash">  apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; <span class="built_in">export</span> DEBIAN_FRONTEND=<span class="string">&quot;noninteractive&quot;</span> \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -y locales build-essential cmake cppcheck valgrind gdb vim \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get autoremove -y \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get clean -y \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="bash">    &amp;&amp; localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> /opt/arm-linux-gnueabihf /opt/arm-linux-gnueabihf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> PATH=<span class="string">&quot;/opt/arm-linux-gnueabihf/bin:$&#123;PATH&#125;&quot;</span></span><br><span class="line"><span class="keyword">ENV</span> LANG=en_US.utf8</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /workspace/linux-kit</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">&quot;echo&quot;</span>, <span class="string">&quot;hello dockerfile&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+<p><strong>生成镜像</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker build -t image_name . <span class="comment"># .是指Dockerfile的目录</span></span><br></pre></td></tr></table></figure>
+<p><strong>通过镜像启动container</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run --name container_name \</span><br><span class="line">					-w /workspace/linux-kit \								</span><br><span class="line">					-v /home/shibin/repo/linux-kit:/workspace/linux-kit \ <span class="comment"># 映射项目代码</span></span><br><span class="line">					-it ubuntu \</span><br><span class="line">					bash -c <span class="string">&quot;echo hello container&quot;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 总结:镜像是用来构建程序的编译或运行环境,在运行项目的时候把代码映射进去</p>
+</blockquote>
+<h3 id="Docker-compose"><a href="#Docker-compose" class="headerlink" title="Docker compose"></a>Docker compose</h3><p>文档:<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vY29tcG9zZS8=">https://docs.docker.com/compose/<i class="fa fa-external-link-alt"></i></span></p>
+<p>如果容器多了,管理就成了问题,启动的命令也这么长,不可能一个个的敲,把这些写到配置文件<code>docker-compose.yml</code>里面,</p>
+<p>一个简单的命令就能开启一个或多个container</p>
+<p><strong>docker-compose.yml示例</strong></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.4&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">service_name:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">image_name</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/home/shibin/repo/linux-kit:/workspace/linux-kit</span></span><br><span class="line">    <span class="attr">working_dir:</span> <span class="string">/workspace/linux-kit</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">bash</span> <span class="string">-c</span> <span class="string">&quot;echo hello docker-compose&quot;</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">  	<span class="string">xxx</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">  	<span class="string">xxx</span></span><br></pre></td></tr></table></figure>
+<p><strong>启动</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker-compose up</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="VScode配合docker"><a href="#VScode配合docker" class="headerlink" title="VScode配合docker"></a>VScode配合docker</h2><p>文档:<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvY29udGFpbmVycw==">https://code.visualstudio.com/docs/remote/containers<i class="fa fa-external-link-alt"></i></span></p>
+<p>安装插件:Remote - Containers</p>
+<p>实现:在Container里面装了一个VS Code Server,</p>
+<p><img src="./2021-03-28_docker%E5%85%A5%E9%97%A8.assets/image-20210328215327455.png" alt="image-20210328215327455"></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
 </search>

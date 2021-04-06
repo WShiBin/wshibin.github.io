@@ -16,7 +16,7 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
   <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
@@ -25,15 +25,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Gemini","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
-<meta name="description" content="“Common Programming Concepts3.1. Variables and Mutability3.2. Data Types3.3. Functions3.4. Comments3.5. Control Flow Variables and Mutability变量声明可变性  变量遮蔽(Shadowing)模式解构 tuple struct tuple struct enum">
+<meta name="description" content="Common Programming Concepts3.1. Variables and Mutability3.2. Data Types3.3. Functions3.4. Comments3.5. Control Flow Variables and Mutability变量声明变量和可变性变量默认是不可变的(immutable),rust鼓励你使用不可变变量 常量:永久不可变,需要指定类">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/rust/3.%20Common%20Programming%20Concepts.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="“Common Programming Concepts3.1. Variables and Mutability3.2. Data Types3.3. Functions3.4. Comments3.5. Control Flow Variables and Mutability变量声明可变性  变量遮蔽(Shadowing)模式解构 tuple struct tuple struct enum">
+<meta property="og:description" content="Common Programming Concepts3.1. Variables and Mutability3.2. Data Types3.3. Functions3.4. Comments3.5. Control Flow Variables and Mutability变量声明变量和可变性变量默认是不可变的(immutable),rust鼓励你使用不可变变量 常量:永久不可变,需要指定类">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-10T06:12:43.390Z">
-<meta property="article:modified_time" content="2021-01-10T06:12:43.389Z">
+<meta property="article:published_time" content="2021-04-05T14:34:36.777Z">
+<meta property="article:modified_time" content="2021-04-05T14:34:36.759Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
@@ -154,8 +154,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
       <li class="menu-item menu-item-search">
@@ -214,7 +214,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%9CCommon-Programming-Concepts"><span class="nav-number">1.</span> <span class="nav-text">“Common Programming Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Variables-and-Mutability"><span class="nav-number">1.1.</span> <span class="nav-text">Variables and Mutability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E6%80%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E9%81%AE%E8%94%BD-Shadowing"><span class="nav-number">1.1.3.</span> <span class="nav-text">变量遮蔽(Shadowing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%A7%A3%E6%9E%84"><span class="nav-number">1.1.4.</span> <span class="nav-text">模式解构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.1.5.</span> <span class="nav-text">类型推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="nav-number">1.1.6.</span> <span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.7.</span> <span class="nav-text">静态变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">1.1.8.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Types"><span class="nav-number">1.2.</span> <span class="nav-text">Data Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#char"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">char</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">整数类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E6%BA%A2%E5%87%BA"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">整数溢出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">浮点类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">指针类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">复合数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum"><span class="nav-number">1.2.3.</span> <span class="nav-text">enum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union"><span class="nav-number">1.2.4.</span> <span class="nav-text">union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2as"><span class="nav-number">1.2.5.</span> <span class="nav-text">类型转换as</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions"><span class="nav-number">1.3.</span> <span class="nav-text">Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comments"><span class="nav-number">1.4.</span> <span class="nav-text">Comments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Flow"><span class="nav-number">1.5.</span> <span class="nav-text">Control Flow</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-Programming-Concepts"><span class="nav-number">1.</span> <span class="nav-text">Common Programming Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Variables-and-Mutability"><span class="nav-number">1.1.</span> <span class="nav-text">Variables and Mutability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E5%8F%AF%E5%8F%98%E6%80%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">变量和可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E9%81%AE%E8%94%BD-Shadowing"><span class="nav-number">1.1.3.</span> <span class="nav-text">变量遮蔽(Shadowing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">标量类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">复合类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">1.3.</span> <span class="nav-text">注释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%B3%A8%E9%87%8A"><span class="nav-number">1.3.1.</span> <span class="nav-text">普通注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E6%B3%A8%E9%87%8A"><span class="nav-number">1.3.2.</span> <span class="nav-text">文档注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="nav-number">1.4.</span> <span class="nav-text">控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.4.1.</span> <span class="nav-text">if表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.4.2.</span> <span class="nav-text">循环表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%A7%A3%E6%9E%84"><span class="nav-number">1.4.3.</span> <span class="nav-text">模式解构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.4.4.</span> <span class="nav-text">类型推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="nav-number">1.4.5.</span> <span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">1.4.6.</span> <span class="nav-text">静态变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">1.4.7.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Types"><span class="nav-number">1.5.</span> <span class="nav-text">Data Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#char"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">char</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">整数类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E6%BA%A2%E5%87%BA"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">整数溢出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">浮点类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">指针类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.2.</span> <span class="nav-text">复合数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum"><span class="nav-number">1.5.3.</span> <span class="nav-text">enum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union"><span class="nav-number">1.5.4.</span> <span class="nav-text">union</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,13 +230,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -299,10 +299,131 @@
       
       
       <div class="post-body">
-          <h1 id="“Common-Programming-Concepts"><a href="#“Common-Programming-Concepts" class="headerlink" title="“Common Programming Concepts"></a><a href="#common-programming-concepts">“Common Programming Concepts</a></h1><p><a href="ch03-01-variables-and-mutability.html"><strong>3.1.</strong> Variables and Mutability</a><br><a href="ch03-02-data-types.html"><strong>3.2.</strong> Data Types</a><br><a href="ch03-03-how-functions-work.html"><strong>3.3.</strong> Functions</a><br><a href="ch03-04-comments.html"><strong>3.4.</strong> Comments</a><br><a href="ch03-05-control-flow.html"><strong>3.5.</strong> Control Flow</a></p>
-<h2 id="Variables-and-Mutability"><a href="#Variables-and-Mutability" class="headerlink" title="Variables and Mutability"></a>Variables and Mutability</h2><h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><h3 id="可变性"><a href="#可变性" class="headerlink" title="可变性"></a>可变性</h3><blockquote>
+          <h1 id="Common-Programming-Concepts"><a href="#Common-Programming-Concepts" class="headerlink" title="Common Programming Concepts"></a><a href="#common-programming-concepts">Common Programming Concepts</a></h1><p><a href="ch03-01-variables-and-mutability.html"><strong>3.1.</strong> Variables and Mutability</a><br><a href="ch03-02-data-types.html"><strong>3.2.</strong> Data Types</a><br><a href="ch03-03-how-functions-work.html"><strong>3.3.</strong> Functions</a><br><a href="ch03-04-comments.html"><strong>3.4.</strong> Comments</a><br><a href="ch03-05-control-flow.html"><strong>3.5.</strong> Control Flow</a></p>
+<h2 id="Variables-and-Mutability"><a href="#Variables-and-Mutability" class="headerlink" title="Variables and Mutability"></a>Variables and Mutability</h2><h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><h3 id="变量和可变性"><a href="#变量和可变性" class="headerlink" title="变量和可变性"></a>变量和可变性</h3><p>变量默认是不可变的(immutable),rust鼓励你使用不可变变量</p>
+<p>常量:永久不可变,需要指定类型,需要在编译期能确定值,生命周期和整个程序的一样</p>
+<h3 id="变量遮蔽-Shadowing"><a href="#变量遮蔽-Shadowing" class="headerlink" title="变量遮蔽(Shadowing)"></a>变量遮蔽(<strong>Shadowing</strong>)</h3><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h4><p><strong>整型</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">长度</th>
+<th align="center">有符号</th>
+<th align="center">无符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">8-bit</td>
+<td align="center">i8</td>
+<td align="center">u8</td>
+</tr>
+<tr>
+<td align="center">16-bit</td>
+<td align="center">i16</td>
+<td align="center">u16</td>
+</tr>
+<tr>
+<td align="center">32-bit</td>
+<td align="center">i32</td>
+<td align="center">u32</td>
+</tr>
+<tr>
+<td align="center">64-bit</td>
+<td align="center">i64</td>
+<td align="center">u64</td>
+</tr>
+<tr>
+<td align="center">128-bit</td>
+<td align="center">i128</td>
+<td align="center">u128</td>
+</tr>
+<tr>
+<td align="center">arch</td>
+<td align="center">isize</td>
+<td align="center">usize</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Note: <code>isize</code>和<code>usize</code>依赖于架构,64位架构是64位,32位架构是32位. 主要用作当集合的索引,长度</p>
 </blockquote>
-<h3 id="变量遮蔽-Shadowing"><a href="#变量遮蔽-Shadowing" class="headerlink" title="变量遮蔽(Shadowing)"></a>变量遮蔽(<strong>Shadowing</strong>)</h3><h3 id="模式解构"><a href="#模式解构" class="headerlink" title="模式解构"></a>模式解构</h3><ul>
+<p>字面值表示方式</p>
+<table>
+<thead>
+<tr>
+<th>Number literals</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Decimal</td>
+<td><code>98_222</code></td>
+</tr>
+<tr>
+<td>Hex</td>
+<td><code>0xff</code></td>
+</tr>
+<tr>
+<td>Octal</td>
+<td><code>0o77</code></td>
+</tr>
+<tr>
+<td>Binary</td>
+<td><code>0b1111_0000</code></td>
+</tr>
+<tr>
+<td>Byte (<code>u8</code> only)</td>
+<td><code>b&#39;A&#39;</code></td>
+</tr>
+</tbody></table>
+<p><strong>浮点型</strong> </p>
+<p>关键字<code>f32</code>和<code>f64</code>,采用IEEE-754标准,字面值默认是f64</p>
+<p><strong>布尔类型</strong> </p>
+<p><strong>字符类型</strong></p>
+<p>char:用单引号表示,大小为4个bytes,代表一个Unicode标量值</p>
+<blockquote>
+<p> Unicode标量值包含从U+0000到U+D7FF和U+E000到U+10FFFF在内的值,</p>
+</blockquote>
+<h4 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h4><p><strong>元组类型</strong>(tuple)</p>
+<p>是一个将多个其他类型的值组合刊一个复合类型的主要方式,元组长度固定,一旦声明,其长度不会增加或减少</p>
+<ul>
+<li>获取里面的元素:通过索引index</li>
+<li>解构(destructure):通过模式匹配</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="comment">// 1.定义一个元组</span></span><br><span class="line">    <span class="keyword">let</span> tup: (<span class="built_in">i32</span>, <span class="built_in">f64</span>, <span class="built_in">u8</span>) = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.获取里面的元素</span></span><br><span class="line">    <span class="keyword">let</span> x: (<span class="built_in">i32</span>, <span class="built_in">f64</span>, <span class="built_in">u8</span>) = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> five_hundred = x.<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> six_point_four = x.<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> one = x.<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.解构</span></span><br><span class="line">    <span class="keyword">let</span> tup = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> (x, y, z) = tup;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of y is: &#123;&#125;&quot;</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>数组类型</strong></p>
+<p>数组:类型相同,长度固定</p>
+<ul>
+<li>定义方式</li>
+<li>索引</li>
+<li>编译期检查越界</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="comment">// 1.定义一个数组</span></span><br><span class="line">    <span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">let</span> months = [</span><br><span class="line">        <span class="string">&quot;January&quot;</span>,</span><br><span class="line">        <span class="string">&quot;February&quot;</span>,</span><br><span class="line">        <span class="string">&quot;March&quot;</span>,</span><br><span class="line">        <span class="string">&quot;April&quot;</span>,</span><br><span class="line">        <span class="string">&quot;May&quot;</span>,</span><br><span class="line">        <span class="string">&quot;June&quot;</span>,</span><br><span class="line">        <span class="string">&quot;July&quot;</span>,</span><br><span class="line">        <span class="string">&quot;August&quot;</span>,</span><br><span class="line">        <span class="string">&quot;September&quot;</span>,</span><br><span class="line">        <span class="string">&quot;October&quot;</span>,</span><br><span class="line">        <span class="string">&quot;November&quot;</span>,</span><br><span class="line">        <span class="string">&quot;December&quot;</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="keyword">let</span> a: [<span class="built_in">i32</span>; <span class="number">5</span>] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">let</span> a = [<span class="number">3</span>; <span class="number">5</span>]; <span class="comment">// 初始值是3,有5个元素,等同于下面定义</span></span><br><span class="line">    <span class="keyword">let</span> a = [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.通过索引获取里面元素</span></span><br><span class="line">    <span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">let</span> first = a[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> second = a[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.编译期检查越界</span></span><br><span class="line">    <span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">let</span> element = a[index];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of element is: &#123;&#125;&quot;</span>, element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><blockquote>
+<p>Rust是一门基于表达式的语言</p>
+</blockquote>
+<p><strong>语句(<em>Statements</em>)和表达式(<em>Expressions</em>)</strong></p>
+<p>语句:执行一些操作,但不返回值的指令</p>
+<p>表达式:计算并产生一个值</p>
+<p>分号<code>;</code>是表示语句的结束. 加了分号就变成了语句,不会有返回值;不加分号就是表达式,会有返回值</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><h3 id="普通注释"><a href="#普通注释" class="headerlink" title="普通注释"></a>普通注释</h3><p>用快捷键生成,不用记忆</p>
+<h3 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h3><p>后面讲</p>
+<h2 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h2><h3 id="if表达式"><a href="#if表达式" class="headerlink" title="if表达式"></a>if表达式</h3><ul>
+<li>if </li>
+<li>else if</li>
+<li>if let</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="comment">// 1.if</span></span><br><span class="line">    <span class="keyword">let</span> number = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> number &lt; <span class="number">5</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;condition was true&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;condition was false&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.if else if</span></span><br><span class="line">    <span class="keyword">let</span> number = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> number % <span class="number">4</span> == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;number is divisible by 4&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> number % <span class="number">3</span> == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;number is divisible by 3&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> number % <span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;number is divisible by 2&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;number is not divisible by 4, 3, or 2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.if let</span></span><br><span class="line">    <span class="keyword">let</span> condition = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">let</span> number = <span class="keyword">if</span> condition &#123; <span class="number">5</span> &#125; <span class="keyword">else</span> &#123; <span class="number">6</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of number is: &#123;&#125;&quot;</span>, number);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="循环表达式"><a href="#循环表达式" class="headerlink" title="循环表达式"></a>循环表达式</h3><ul>
+<li>普通loop</li>
+<li>带返回值的loop</li>
+<li>while循环</li>
+<li>for in循环</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="comment">// 1.循环</span></span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;again!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.循环带返回值</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">loop</span> &#123;</span><br><span class="line">        counter += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> counter == <span class="number">10</span> &#123;</span><br><span class="line">            <span class="keyword">break</span> counter * <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The result is &#123;&#125;&quot;</span>, result);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.循环:带判断条件</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> number = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> number != <span class="number">0</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;!&quot;</span>, number);</span><br><span class="line">        number -= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;LIFTOFF!!!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.1 for in循环</span></span><br><span class="line">    <span class="keyword">let</span> a = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> a.iter() &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;the value is: &#123;&#125;&quot;</span>, element);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.2 for in循环</span></span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> (<span class="number">1</span>..<span class="number">4</span>).rev() &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;!&quot;</span>, number);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;LIFTOFF!!!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="模式解构"><a href="#模式解构" class="headerlink" title="模式解构"></a>模式解构</h3><ul>
 <li>tuple</li>
 <li>struct</li>
 <li>tuple struct</li>
@@ -422,7 +543,7 @@
 </tbody></table>
 <h3 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h3><p>可 以像空结构体一样，不指定它的类型;也可以像tuple struct一样，用圆 括号加无名成员;还可以像正常结构体一样，用大括号加带名字的成 员。</p>
 <h3 id="union"><a href="#union" class="headerlink" title="union"></a>union</h3><p>Rust里面也支持union类型，这个类型与C语言中的union完全一 致。但在Rust里面，读取它内部的值被认为是unsafe行为，一般情况下 我们不使用这种类型。它存在的主要目的是为了方便与C语言进行交 互。</p>
-<h3 id="类型转换as"><a href="#类型转换as" class="headerlink" title="类型转换as"></a>类型转换as</h3><h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><h2 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h2>
+
       </div>
       
       
@@ -500,11 +621,11 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script>
 var pjax = new Pjax({
@@ -609,7 +730,7 @@ document.addEventListener('pjax:success', () => {
 </script>
 
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
       quicklink.listen({

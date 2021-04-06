@@ -16,7 +16,7 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
   <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
@@ -27,14 +27,14 @@
   </script>
 <meta name="description" content="公司对网络进行了限制,还不能开代理,Github下载的那个项目又非常大,后来对这个问题进行了思索,随记录下来  git clone 经常是这样:17.00 KiB&#x2F;s ??? [I] ➜ git clone http:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git git_Cloning into &amp;#x27;git&amp;#x27;...warning: redirecting to https:&#x2F;&#x2F;gi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github下载慢问题探究">
+<meta property="og:title" content="【Github】Github下载慢问题探究">
 <meta property="og:url" content="https://wshibin.github.io/2020/07/19/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="公司对网络进行了限制,还不能开代理,Github下载的那个项目又非常大,后来对这个问题进行了思索,随记录下来  git clone 经常是这样:17.00 KiB&#x2F;s ??? [I] ➜ git clone http:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git git_Cloning into &amp;#x27;git&amp;#x27;...warning: redirecting to https:&#x2F;&#x2F;gi">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wshibin.github.io/images/Xnip2020-07-18_23-56-42.jpg">
 <meta property="article:published_time" content="2020-07-18T23:00:53.000Z">
-<meta property="article:modified_time" content="2021-01-14T16:17:48.163Z">
+<meta property="article:modified_time" content="2021-02-21T15:31:03.875Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Github">
@@ -54,7 +54,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>Github下载慢问题探究 | WShiBin's blogs</title>
+<title>【Github】Github下载慢问题探究 | WShiBin's blogs</title>
   
     <script>
       function sendPageView() {
@@ -156,8 +156,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
       <li class="menu-item menu-item-search">
@@ -232,13 +232,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -301,7 +301,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Github下载慢问题探究
+          【Github】Github下载慢问题探究
         </h1>
 
         <div class="post-meta-container">
@@ -406,7 +406,7 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2020/05/27/Understand-Git/" rel="bookmark">理解 Git</a></div>
+      <div class="popular-posts-title"><a href="/2020/05/27/Understand-Git/" rel="bookmark">【Git】理解 Git</a></div>
     </li>
   </ul>
 
@@ -421,13 +421,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/05/31/Googletest-Primer/" rel="prev" title="译文:Googletest Primer">
-                  <i class="fa fa-chevron-left"></i> 译文:Googletest Primer
+                <a href="/2020/05/31/Googletest-Primer/" rel="prev" title="【Test】译文:Googletest Primer">
+                  <i class="fa fa-chevron-left"></i> 【Test】译文:Googletest Primer
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/11/30/VS-code-C-C-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="next" title="VS code C/C++ 环境配置">
-                  VS code C/C++ 环境配置 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/11/30/VS-code-C-C-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="next" title="【VS code】VS code C/C++ 环境配置">
+                  【VS code】VS code C/C++ 环境配置 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -507,11 +507,11 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script>
 var pjax = new Pjax({
@@ -616,7 +616,7 @@ document.addEventListener('pjax:success', () => {
 </script>
 
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
       quicklink.listen({
@@ -641,7 +641,7 @@ document.addEventListener('pjax:success', () => {
   var disqus_config = function() {
     this.page.url = "https://wshibin.github.io/2020/07/19/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/";
     this.page.identifier = "2020/07/19/Github下载慢问题探究/";
-    this.page.title = "Github下载慢问题探究";
+    this.page.title = "【Github】Github下载慢问题探究";
     };
   NexT.utils.loadComments('#disqus_thread', () => {
     if (window.DISQUS) {

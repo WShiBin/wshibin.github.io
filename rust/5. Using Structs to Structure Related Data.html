@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
@@ -16,22 +16,21 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Gemini","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;wshibin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;wshibin&#x2F;wshibin.github.io@master&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:true,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:260},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:true,&quot;lazyload&quot;:false,&quot;pangu&quot;:true,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:&quot;disqus&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:{&quot;disqus&quot;:{&quot;text&quot;:&quot;Load Disqus&quot;,&quot;order&quot;:-1}},&quot;activeClass&quot;:&quot;disqus&quot;},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:true}}</script>
+<meta name="description" content="Using Structs to Structure Related Data内容:  元组和结构体 方法 关联函数  定义并实例化结构体结构体(structs):struct User &amp;#123;    username: String,    email: String,    sign_in_count: u64,    active: bool,&amp;#125;fn main() &amp;#123">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/rust/5.%20Using%20Structs%20to%20Structure%20Related%20Data.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="Using Structs to Structure Related Data内容:  元组和结构体 方法 关联函数  定义并实例化结构体结构体(structs):struct User &amp;#123;    username: String,    email: String,    sign_in_count: u64,    active: bool,&amp;#125;fn main() &amp;#123">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-10T06:12:43.392Z">
-<meta property="article:modified_time" content="2021-01-10T06:12:43.392Z">
+<meta property="article:published_time" content="2021-04-09T16:42:57.788Z">
+<meta property="article:modified_time" content="2021-04-09T16:42:57.782Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
@@ -40,73 +39,22 @@
 <link rel="canonical" href="https://wshibin.github.io/rust/5.%20Using%20Structs%20to%20Structure%20Related%20Data">
 
 
-<script data-pjax class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;rust&#x2F;5.%20Using%20Structs%20to%20Structure%20Related%20Data.html&quot;,&quot;path&quot;:&quot;rust&#x2F;5. Using Structs to Structure Related Data.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
 <title> | WShiBin's blogs
-</title>
+</title><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
   
-    <script>
-      function sendPageView() {
-        if (CONFIG.hostname !== location.hostname) return;
-        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
-        localStorage.setItem('uid', uid);
-        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
-          v  : 1,
-          tid: 'UA-149513847-1',
-          cid: uid,
-          t  : 'pageview',
-          dp : encodeURIComponent(location.pathname)
-        }));
-      }
-      document.addEventListener('pjax:complete', sendPageView);
-      sendPageView();
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-149513847-1&quot;,&quot;only_pageview&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
 
 
 
 
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
 </head>
 
@@ -152,7 +100,7 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
@@ -199,7 +147,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -212,6 +160,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-Structs-to-Structure-Related-Data"><span class="nav-number">1.</span> <span class="nav-text">Using Structs to Structure Related Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%B9%B6%E5%AE%9E%E4%BE%8B%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.1.</span> <span class="nav-text">定义并实例化结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93-structs"><span class="nav-number">1.1.1.</span> <span class="nav-text">结构体(structs):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%BB%84%E7%BB%93%E6%9E%84%E4%BD%93-tuple-structs"><span class="nav-number">1.1.2.</span> <span class="nav-text">元组结构体(tuple structs):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8D%95%E5%85%83%E7%BB%93%E6%9E%84%E4%BD%93-unit-like-structs"><span class="nav-number">1.1.3.</span> <span class="nav-text">类单元结构体(unit-like structs):</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">一个使用结构体的示例程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.3.</span> <span class="nav-text">方法语句:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">方法定义:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E6%9B%B4%E5%A4%9A%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">带更多参数的方法:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">关联函数:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AAimpl%E5%9D%97"><span class="nav-number">1.3.4.</span> <span class="nav-text">多个impl块:</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -233,7 +182,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -259,7 +208,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -296,7 +245,49 @@
       
       
       <div class="post-body">
-          
+          <h1 id="Using-Structs-to-Structure-Related-Data"><a href="#Using-Structs-to-Structure-Related-Data" class="headerlink" title="Using Structs to Structure Related Data"></a>Using Structs to Structure Related Data</h1><p>内容:</p>
+<ul>
+<li>元组和结构体</li>
+<li>方法</li>
+<li>关联函数</li>
+</ul>
+<h2 id="定义并实例化结构体"><a href="#定义并实例化结构体" class="headerlink" title="定义并实例化结构体"></a>定义并实例化结构体</h2><h3 id="结构体-structs"><a href="#结构体-structs" class="headerlink" title="结构体(structs):"></a>结构体(structs):</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span></span> &#123;</span><br><span class="line">    username: <span class="built_in">String</span>,</span><br><span class="line">    email: <span class="built_in">String</span>,</span><br><span class="line">    sign_in_count: <span class="built_in">u64</span>,</span><br><span class="line">    active: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> user1 = User &#123;</span><br><span class="line">        email: <span class="built_in">String</span>::from(<span class="string">&quot;someone@example.com&quot;</span>),</span><br><span class="line">        username: <span class="built_in">String</span>::from(<span class="string">&quot;someusername123&quot;</span>),</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    user1.email = <span class="built_in">String</span>::from(<span class="string">&quot;anotheremail@example.com&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> user2 = User &#123;</span><br><span class="line">        email: <span class="built_in">String</span>::from(<span class="string">&quot;another@example.com&quot;</span>),</span><br><span class="line">        username: <span class="built_in">String</span>::from(<span class="string">&quot;anotherusername567&quot;</span>),</span><br><span class="line">        active: user1.active,</span><br><span class="line">        sign_in_count: user1.sign_in_count,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  	<span class="comment">// 简写</span></span><br><span class="line">    <span class="keyword">let</span> user2 = User &#123;</span><br><span class="line">        email: <span class="built_in">String</span>::from(<span class="string">&quot;another@example.com&quot;</span>),</span><br><span class="line">        username: <span class="built_in">String</span>::from(<span class="string">&quot;anotherusername567&quot;</span>),</span><br><span class="line">        ..user1</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">build_user</span></span>(email: <span class="built_in">String</span>, username: <span class="built_in">String</span>) -&gt; User &#123;</span><br><span class="line">    User &#123;</span><br><span class="line">        email: email,</span><br><span class="line">        username: username,</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同名:可以简化</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">build_user1</span></span>(email: <span class="built_in">String</span>, username: <span class="built_in">String</span>) -&gt; User &#123;</span><br><span class="line">    User &#123;</span><br><span class="line">        email,</span><br><span class="line">        username,</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="元组结构体-tuple-structs"><a href="#元组结构体-tuple-structs" class="headerlink" title="元组结构体(tuple structs):"></a>元组结构体(tuple structs):</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="comment">// 元组结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Color</span></span>(<span class="built_in">i32</span>, <span class="built_in">i32</span>, <span class="built_in">i32</span>);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span>(<span class="built_in">i32</span>, <span class="built_in">i32</span>, <span class="built_in">i32</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> black = Color(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> origin = Point(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> r = black.<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> g = black.<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> b = black.<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类单元结构体-unit-like-structs"><a href="#类单元结构体-unit-like-structs" class="headerlink" title="类单元结构体(unit-like structs):"></a>类单元结构体(unit-like structs):</h3><p><code>()</code>,即unit类型, </p>
+<p>你想要某个类型实现trait,但不需要在类型中存储数据的时候发挥作用,</p>
+<h2 id="一个使用结构体的示例程序"><a href="#一个使用结构体的示例程序" class="headerlink" title="一个使用结构体的示例程序"></a>一个使用结构体的示例程序</h2><p><strong>示例:</strong></p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> width1 = <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">let</span> height1 = <span class="number">50</span>;</span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>,</span><br><span class="line">        area(width1, height1)</span><br><span class="line">  	); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">area</span></span>(width: <span class="built_in">u32</span>, height: <span class="built_in">u32</span>) -&gt; <span class="built_in">u32</span> &#123;</span><br><span class="line">    width * height</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>元组重构:</strong></p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> rect1 = (<span class="number">30</span>, <span class="number">50</span>);</span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>,</span><br><span class="line">        area(rect1)</span><br><span class="line">  	); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">area</span></span>(dimensions: (<span class="built_in">u32</span>, <span class="built_in">u32</span>)) -&gt; <span class="built_in">u32</span> &#123;</span><br><span class="line">    dimensions.<span class="number">0</span> * dimensions.<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>结构体重构:</strong></p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rectangle</span></span> &#123;</span><br><span class="line">    width: <span class="built_in">u32</span>,</span><br><span class="line">    height: <span class="built_in">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> rect1 = Rectangle &#123; width: <span class="number">30</span>, height: <span class="number">50</span> &#125;;</span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>,</span><br><span class="line">        area(&amp;rect1)</span><br><span class="line">  	); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">area</span></span>(rectangle: &amp;Rectangle) -&gt; <span class="built_in">u32</span> &#123;</span><br><span class="line">    rectangle.width * rectangle.height</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>通过派生Trait增加实用功能:</strong></p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rectangle</span></span> &#123;</span><br><span class="line">    width: <span class="built_in">u32</span>,</span><br><span class="line">    height: <span class="built_in">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> rect1 = Rectangle &#123; width: <span class="number">30</span>, height: <span class="number">50</span> &#125;;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect1 is &#123;&#125;&quot;</span>, rect1);</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect1 is  &#123;:#?&#125;&quot;</span>, rect1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法语句"><a href="#方法语句" class="headerlink" title="方法语句:"></a>方法语句:</h2><h3 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义:"></a>方法定义:</h3><p>方法(method)与函数(function):</p>
+<ul>
+<li>相同点:有<code>fn</code>关键字,有参数,有返回值,有被调用的会执行的代码,</li>
+<li>不同点:方法定义在结构体上下文中(或是枚举,或是trait的上下文中), 并且方法的第一个参数总是self</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rectangle</span></span> &#123;</span><br><span class="line">    width: <span class="built_in">u32</span>,</span><br><span class="line">    height: <span class="built_in">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">impl</span> Rectangle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">area</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">u32</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width * <span class="keyword">self</span>.height</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> rect1 = Rectangle &#123; width: <span class="number">30</span>, height: <span class="number">50</span> &#125;;</span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>,</span><br><span class="line">        rect1.area()</span><br><span class="line">  	); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>所有权与<code>self</code>:</strong></p>
+<p>第一个参数<code>self</code>,<code>&amp;self</code>和<code>&amp;mut self</code>.</p>
+<p><strong><code>C/C++</code>中的指针运算符号<code>-&gt;</code>:</strong></p>
+<p>Rust有<strong>自动引用</strong>和<strong>解引用</strong>的功能. 原理:当调用方法时,Rust会为object添加<code>&amp;</code>,<code>&amp;mut</code>和<code>*</code>与方法签名匹配.</p>
+<h3 id="带更多参数的方法"><a href="#带更多参数的方法" class="headerlink" title="带更多参数的方法:"></a>带更多参数的方法:</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rectangle</span></span> &#123;</span><br><span class="line">    width: <span class="built_in">u32</span>,</span><br><span class="line">    height: <span class="built_in">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">impl</span> Rectangle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">area</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">u32</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width * <span class="keyword">self</span>.height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">can_hold</span></span>(&amp;<span class="keyword">self</span>, other: &amp;Rectangle) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width &gt; other.width &amp;&amp; <span class="keyword">self</span>.height &gt; other.height</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> rect1 = Rectangle &#123; width: <span class="number">30</span>, height: <span class="number">50</span> &#125;;</span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>,</span><br><span class="line">        rect1.area()</span><br><span class="line">  	); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关联函数"><a href="#关联函数" class="headerlink" title="关联函数:"></a>关联函数:</h3><p>定义:在<code>impl</code>块中定义不以<code>self</code>作为参数的函数,被称为关联函数<em>associated functions</em>. 与结构体关联,但仍然是函数而不是方法,比如<code>String::from()</code>. 在其它语言中被称为静态函数</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rectangle</span></span> &#123;</span><br><span class="line">    width: <span class="built_in">u32</span>,</span><br><span class="line">    height: <span class="built_in">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">impl</span> Rectangle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">area</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">u32</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width * <span class="keyword">self</span>.height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">can_hold</span></span>(&amp;<span class="keyword">self</span>, other: &amp;Rectangle) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width &gt; other.width &amp;&amp; <span class="keyword">self</span>.height &gt; other.height</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 关联函数</span></span><br><span class="line"><span class="keyword">impl</span> Rectangle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">square</span></span>(size: <span class="built_in">u32</span>) -&gt; Rectangle &#123;</span><br><span class="line">        Rectangle &#123; width: size, height: size &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> rect1 = Rectangle &#123; width: <span class="number">30</span>, height: <span class="number">50</span> &#125;;</span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>,</span><br><span class="line">        rect1.area()</span><br><span class="line">  	); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多个impl块"><a href="#多个impl块" class="headerlink" title="多个impl块:"></a>多个<code>impl</code>块:</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> Rectangle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">area</span></span>(&amp;<span class="keyword">self</span>) -&gt; <span class="built_in">u32</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width * <span class="keyword">self</span>.height</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">impl</span> Rectangle &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">can_hold</span></span>(&amp;<span class="keyword">self</span>, other: &amp;Rectangle) -&gt; <span class="built_in">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width &gt; other.width &amp;&amp; <span class="keyword">self</span>.height &gt; other.height</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       </div>
       
       
@@ -311,29 +302,7 @@
   <div class="comments" id="disqus_thread">
     <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
-  
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/comments.js"></script>
 </div>
   </main>
 
@@ -350,7 +319,7 @@
   <span class="author" itemprop="copyrightHolder">Shi Bin</span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -358,7 +327,7 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -374,157 +343,41 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '.page-configurations',
-    '.main-inner',
-    '.post-toc-wrap',
-    '.languages',
-    '.pjax'
-  ],
-  analytics: false,
-  cacheBust: false,
-  scrollRestoration: false,
-  scrollTo: !CONFIG.bookmark.enable
-});
-
-document.addEventListener('pjax:success', () => {
-  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  const hasTOC = document.querySelector('.post-toc');
-  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
-  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
-  NexT.utils.updateSidebarPosition();
-});
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/pjax.js"></script>
 
   
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/search/local-search.js"></script>
 
 
 
 
 
-  <script>
-    NProgress.configure({
-      showSpinner: true
-    });
-    NProgress.start();
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'interactive') {
-        NProgress.inc(0.8);
-      }
-      if (document.readyState === 'complete') {
-        NProgress.done();
-      }
-    });
-    document.addEventListener('pjax:send', () => {
-      NProgress.start();
-    });
-    document.addEventListener('pjax:success', () => {
-      NProgress.done();
-    });
-  </script>
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/nprogress.js"></script>
 
   
   <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
-    <div class="pjax">
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'none'
-      },
-      options: {
-        renderActions: {
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/math/mathjax.js"></script>
 
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink.listen({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://wshibin.github.io/rust/5.%20Using%20Structs%20to%20Structure%20Related%20Data.html',]
-      });
-      });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;rust&#x2F;5.%20Using%20Structs%20to%20Structure%20Related%20Data.html&quot;}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:true,&quot;shortname&quot;:&quot;WShiBin&quot;,&quot;count&quot;:true,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/comments/disqus.js"></script>
 
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://WShiBin.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  var disqus_config = function() {
-    this.page.url = "https://wshibin.github.io/rust/5.%20Using%20Structs%20to%20Structure%20Related%20Data.html";
-    this.page.identifier = "rust/5. Using Structs to Structure Related Data.html";
-    this.page.title = "";
-    };
-  NexT.utils.loadComments('#disqus_thread', () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://WShiBin.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
-
-    </div>
 </body>
 </html>

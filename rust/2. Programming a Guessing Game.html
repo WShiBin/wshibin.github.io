@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
@@ -16,21 +16,18 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Gemini","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
-  </script>
-<meta name="description" content="编写猜猜看游戏介绍常用概念:let, match, 方法, 关联函数, 外部crate等 游戏:  新建项目 处理一次猜测 生成一个秘密数字 比较猜测的数字和秘密数字 使用循环来允许多次猜测  1.新建项目$ cargo new guessing_game 2.处理一次猜测use std::io;fn main() &amp;#123;    println!(&quot;Guess the number">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;wshibin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;wshibin&#x2F;wshibin.github.io@master&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:true,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:260},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:true,&quot;lazyload&quot;:false,&quot;pangu&quot;:true,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:&quot;disqus&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:{&quot;disqus&quot;:{&quot;text&quot;:&quot;Load Disqus&quot;,&quot;order&quot;:-1}},&quot;activeClass&quot;:&quot;disqus&quot;},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:true}}</script>
+<meta name="description" content="编写猜猜看游戏介绍常用概念:let, match, 方法, 关联函数, 外部crate等 游戏:  新建项目 处理一次猜测 生成一个秘密数字 比较猜测的数字和秘密数字 使用循环来允许多次猜测  1.新建项目$ cargo new guessing_game  2.处理一次猜测use std::io;fn main() &amp;#123;    println!(&quot;Guess the numbe">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/rust/2.%20Programming%20a%20Guessing%20Game.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="编写猜猜看游戏介绍常用概念:let, match, 方法, 关联函数, 外部crate等 游戏:  新建项目 处理一次猜测 生成一个秘密数字 比较猜测的数字和秘密数字 使用循环来允许多次猜测  1.新建项目$ cargo new guessing_game 2.处理一次猜测use std::io;fn main() &amp;#123;    println!(&quot;Guess the number">
+<meta property="og:description" content="编写猜猜看游戏介绍常用概念:let, match, 方法, 关联函数, 外部crate等 游戏:  新建项目 处理一次猜测 生成一个秘密数字 比较猜测的数字和秘密数字 使用循环来允许多次猜测  1.新建项目$ cargo new guessing_game  2.处理一次猜测use std::io;fn main() &amp;#123;    println!(&quot;Guess the numbe">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-05T10:03:21.031Z">
 <meta property="article:modified_time" content="2021-04-05T10:03:20.979Z">
@@ -42,73 +39,22 @@
 <link rel="canonical" href="https://wshibin.github.io/rust/2.%20Programming%20a%20Guessing%20Game">
 
 
-<script data-pjax class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;rust&#x2F;2.%20Programming%20a%20Guessing%20Game.html&quot;,&quot;path&quot;:&quot;rust&#x2F;2. Programming a Guessing Game.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
 <title> | WShiBin's blogs
-</title>
+</title><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
   
-    <script>
-      function sendPageView() {
-        if (CONFIG.hostname !== location.hostname) return;
-        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
-        localStorage.setItem('uid', uid);
-        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
-          v  : 1,
-          tid: 'UA-149513847-1',
-          cid: uid,
-          t  : 'pageview',
-          dp : encodeURIComponent(location.pathname)
-        }));
-      }
-      document.addEventListener('pjax:complete', sendPageView);
-      sendPageView();
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-149513847-1&quot;,&quot;only_pageview&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
 
 
 
 
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
 </head>
 
@@ -154,7 +100,7 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
@@ -236,7 +182,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -262,7 +208,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -309,7 +255,9 @@
 <li>使用循环来允许多次猜测</li>
 </ol>
 <h2 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1.新建项目"></a>1.新建项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cargo new guessing_game</span><br></pre></td></tr></table></figure>
+
 <h2 id="2-处理一次猜测"><a href="#2-处理一次猜测" class="headerlink" title="2.处理一次猜测"></a>2.处理一次猜测</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;please input your number:&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line">    io::stdin()</span><br><span class="line">        .read_line(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">        .expect(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;guess = &#123;&#125;&quot;</span>, guess);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>use</code>关键字</p>
 <p>rust程序会隐式的导入<span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9zdGQvaW5kZXguaHRtbA==">std<i class="fa fa-external-link-alt"></i></span>::<span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9zdGQvcHJlbHVkZS9pbmRleC5odG1s">prelude<i class="fa fa-external-link-alt"></i></span>模块:包含一些常用的,必要的模块</p>
 <p>变量默认不可变</p>
@@ -328,11 +276,13 @@
 </li>
 </ul>
 <figure class="highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="section">[package]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;guessing_game&quot;</span></span><br><span class="line"><span class="attr">version</span> = <span class="string">&quot;0.1.0&quot;</span></span><br><span class="line"><span class="attr">authors</span> = [<span class="string">&quot;shibin &lt;15519900807@qq.com&gt;&quot;</span>]</span><br><span class="line"><span class="attr">edition</span> = <span class="string">&quot;2018&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span></span><br><span class="line"></span><br><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">rand</span> = <span class="string">&quot;0.8.3&quot;</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>0.8.3</code>事实上是<code>^0.8.3</code>的简写,表示”任何与0.8.3版本公有API相兼容的版本”</p>
 <p>语义化版本:<span class="exturl" data-url="aHR0cHM6Ly9zZW12ZXIub3JnLw==">Semantic Versioning<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cargo build</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>cargo会从<em>registry</em>上获取所有包的最新版本信息,从<span class="exturl" data-url="aHR0cHM6Ly9jcmF0ZXMuaW8v">crates.io<i class="fa fa-external-link-alt"></i></span>获取,</li>
 <li>下载缺失的依赖,以及依赖的依赖…</li>
@@ -340,10 +290,13 @@
 </ul>
 <p>Cargo.lock文件:确保构建是可重现的</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新依赖:只会更新PATCH版本,不会更新MAJOR.MINOR版本</span></span><br><span class="line">$ cargo udpate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成当前项目及依赖的文档,并用浏览器打开</span></span><br><span class="line">$ cargo doc --open </span><br></pre></td></tr></table></figure>
+
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;please input your number:&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line">    io::stdin()</span><br><span class="line">        .read_line(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">        .expect(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> num = rand::thread_rng().gen_range(<span class="number">0</span>..=<span class="number">100</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;the secret number = &#123;&#125;&quot;</span>, num);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;guess = &#123;&#125;&quot;</span>, guess);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+
 <h2 id="4-比较猜测的数字和秘密数字"><a href="#4-比较猜测的数字和秘密数字" class="headerlink" title="4.比较猜测的数字和秘密数字"></a>4.比较猜测的数字和秘密数字</h2><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::&#123;cmp::Ordering, io&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;please input your number:&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line">    io::stdin()</span><br><span class="line">        .read_line(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">        .expect(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> secret_number = rand::thread_rng().gen_range(<span class="number">0</span>..=<span class="number">100</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;the secret number = &#123;&#125;&quot;</span>, secret_number);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> guess: <span class="built_in">i32</span> = guess.trim().parse().expect(<span class="string">&quot;Failed to parse guess&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">match</span> guess.cmp(&amp;secret_number) &#123;</span><br><span class="line">        Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;too small&quot;</span>),</span><br><span class="line">        Ordering::Equal =&gt; <span class="built_in">println!</span>(<span class="string">&quot;you win&quot;</span>),</span><br><span class="line">        Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;too big&quot;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>std::cmp::Ordering</code> 枚举:</p>
 <p>match表达式:</p>
 <p>变量<em>shadow</em>:新的变量隐藏以前的变量值.常用在需要转换值类型的场景</p>
@@ -353,6 +306,7 @@
 <li>用match处理输入错误</li>
 </ul>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"><span class="keyword">use</span> std::&#123;cmp::Ordering, io&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;please input your number:&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> secret_number = rand::thread_rng().gen_range(<span class="number">0</span>..=<span class="number">100</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;the secret number = &#123;&#125;&quot;</span>, secret_number);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line">        io::stdin()</span><br><span class="line">            .read_line(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">            .expect(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> guess: <span class="built_in">i32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">            <span class="literal">Ok</span>(number) =&gt; number,</span><br><span class="line">            <span class="literal">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">match</span> guess.cmp(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;too small&quot;</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;too big&quot;</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;you win&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       </div>
       
@@ -368,29 +322,7 @@
   <div class="comments" id="disqus_thread">
     <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
-  
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/comments.js"></script>
 </div>
   </main>
 
@@ -407,7 +339,7 @@
   <span class="author" itemprop="copyrightHolder">Shi Bin</span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -415,7 +347,7 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -431,157 +363,41 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '.page-configurations',
-    '.main-inner',
-    '.post-toc-wrap',
-    '.languages',
-    '.pjax'
-  ],
-  analytics: false,
-  cacheBust: false,
-  scrollRestoration: false,
-  scrollTo: !CONFIG.bookmark.enable
-});
-
-document.addEventListener('pjax:success', () => {
-  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  const hasTOC = document.querySelector('.post-toc');
-  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
-  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
-  NexT.utils.updateSidebarPosition();
-});
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/pjax.js"></script>
 
   
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/search/local-search.js"></script>
 
 
 
 
 
-  <script>
-    NProgress.configure({
-      showSpinner: true
-    });
-    NProgress.start();
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'interactive') {
-        NProgress.inc(0.8);
-      }
-      if (document.readyState === 'complete') {
-        NProgress.done();
-      }
-    });
-    document.addEventListener('pjax:send', () => {
-      NProgress.start();
-    });
-    document.addEventListener('pjax:success', () => {
-      NProgress.done();
-    });
-  </script>
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/nprogress.js"></script>
 
   
   <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
-    <div class="pjax">
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'none'
-      },
-      options: {
-        renderActions: {
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/math/mathjax.js"></script>
 
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink.listen({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://wshibin.github.io/rust/2.%20Programming%20a%20Guessing%20Game.html',]
-      });
-      });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;rust&#x2F;2.%20Programming%20a%20Guessing%20Game.html&quot;}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:true,&quot;shortname&quot;:&quot;WShiBin&quot;,&quot;count&quot;:true,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/comments/disqus.js"></script>
 
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://WShiBin.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  var disqus_config = function() {
-    this.page.url = "https://wshibin.github.io/rust/2.%20Programming%20a%20Guessing%20Game.html";
-    this.page.identifier = "rust/2. Programming a Guessing Game.html";
-    this.page.title = "";
-    };
-  NexT.utils.loadComments('#disqus_thread', () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://WShiBin.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
-
-    </div>
 </body>
 </html>

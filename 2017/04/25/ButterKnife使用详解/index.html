@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
@@ -16,15 +16,12 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Gemini","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;wshibin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;wshibin&#x2F;wshibin.github.io@master&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:true,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:260},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:true,&quot;lazyload&quot;:false,&quot;pangu&quot;:true,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:&quot;disqus&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:{&quot;disqus&quot;:{&quot;text&quot;:&quot;Load Disqus&quot;,&quot;order&quot;:-1}},&quot;activeClass&quot;:&quot;disqus&quot;},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:true}}</script>
 <meta name="description" content="Note:以前写的文章，搬迁过来 ButterKnife使用详解   注解库, JakeWharton大神的杰作  Note:文章基于8.5.1版本,不同的版本之间用法可能会稍有差异,实际版本使用以官方文档为主 项目地址:https:&#x2F;&#x2F;github.com&#x2F;JakeWharton&#x2F;butterknife文档地址:http:&#x2F;&#x2F;jakewharton.github.io&#x2F;butterknife&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Android】ButterKnife使用详解">
@@ -42,72 +39,21 @@
 <link rel="canonical" href="https://wshibin.github.io/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">
 
 
-<script data-pjax class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-<title>【Android】ButterKnife使用详解 | WShiBin's blogs</title>
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;2017&#x2F;04&#x2F;25&#x2F;ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3&#x2F;&quot;,&quot;path&quot;:&quot;2017&#x2F;04&#x2F;25&#x2F;ButterKnife使用详解&#x2F;&quot;,&quot;title&quot;:&quot;【Android】ButterKnife使用详解&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>【Android】ButterKnife使用详解 | WShiBin's blogs</title><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
   
-    <script>
-      function sendPageView() {
-        if (CONFIG.hostname !== location.hostname) return;
-        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
-        localStorage.setItem('uid', uid);
-        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
-          v  : 1,
-          tid: 'UA-149513847-1',
-          cid: uid,
-          t  : 'pageview',
-          dp : encodeURIComponent(location.pathname)
-        }));
-      }
-      document.addEventListener('pjax:complete', sendPageView);
-      sendPageView();
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-149513847-1&quot;,&quot;only_pageview&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
 
 
 
 
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
 </head>
 
@@ -153,7 +99,7 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
@@ -235,7 +181,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -261,7 +207,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -313,7 +259,7 @@
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -366,27 +312,38 @@
 </ul>
 <p><strong>在Module的build.gradle中添加</strong><br>如果你要在哪个Module中使用,就不需要在哪个Module中添加</p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  compile <span class="string">&#x27;com.jakewharton:butterknife:8.5.1&#x27;</span></span><br><span class="line">  annotationProcessor <span class="string">&#x27;com.jakewharton:butterknife-compiler:8.5.1&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>在项目的build.gradle中添加</strong></p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">  repositories &#123;</span><br><span class="line">     mavenCentral()</span><br><span class="line">  &#125;</span><br><span class="line">  dependencies &#123;</span><br><span class="line">    classpath <span class="string">&#x27;com.jakewharton:butterknife-gradle-plugin:8.5.1&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>在主程序依赖Module的build.gradle中添加</strong></p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.android.library&#x27;</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.jakewharton.butterknife&#x27;</span></span><br></pre></td></tr></table></figure>
 <p><strong>Note:在依赖Module中使用,声明注解时用R2替代R, Like this</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R2.id.user)</span> EditText username;</span><br><span class="line">  <span class="meta">@BindView(R2.id.pass)</span> EditText password;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>###添加/声明对应的注解<br>####在Activity中绑定View</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.title)</span> TextView title;</span><br><span class="line">  <span class="meta">@BindView(R.id.subtitle)</span> TextView subtitle;</span><br><span class="line">  <span class="meta">@BindView(R.id.footer)</span> TextView footer;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.simple_activity);</span><br><span class="line">    ButterKnife.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>只要在TextView title;加了@BindView(R.id.title),这个title就和布局simple_activity.xm中的id为title的TextView控件绑定了,并且帮你实例化了,就可以直接用它的相关方法:title.setXxx(..)之类.相当于帮你写了,title = (TextView)this.findViewById(R.id.title);这段代码,实际上在build项目的时候它就去生成了包含这样代码的文件,目录:项目名-&gt;Module名-&gt;build-&gt;generated-&gt;source-&gt;apt-&gt;debug-&gt;对应的包名下一些XXX$$ViewBinder的类,代码大致如下:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">(ExampleActivity activity)</span> </span>&#123;</span><br><span class="line">  activity.subtitle = (android.widget.TextView) activity.findViewById(<span class="number">2130968578</span>);</span><br><span class="line">  activity.footer = (android.widget.TextView) activity.findViewById(<span class="number">2130968579</span>);</span><br><span class="line">  activity.title = (android.widget.TextView) activity.findViewById(<span class="number">2130968577</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="资源文件绑定"><a href="#资源文件绑定" class="headerlink" title="资源文件绑定"></a>资源文件绑定</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindString(R.string.title)</span> String title;</span><br><span class="line">  <span class="meta">@BindDrawable(R.drawable.graphic)</span> Drawable graphic;</span><br><span class="line">  <span class="meta">@BindColor(R.color.red)</span> <span class="keyword">int</span> red; <span class="comment">// int or ColorStateList field</span></span><br><span class="line">  <span class="meta">@BindDimen(R.dimen.spacer)</span> Float spacer; <span class="comment">// int (for pixel size) or float (for exact value) field</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>####在非Activity中呢<br>在Activity中使用的是:ButterKnife.bind(this);<br>有非Activity中则是使用:ButterKnife.bind(this, view);<br><strong>Fragment中使用</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.button1)</span> Button button1;</span><br><span class="line">  <span class="meta">@BindView(R.id.button2)</span> Button button2;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</span><br><span class="line">    ButterKnife.bind(<span class="keyword">this</span>, view);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>在Adapter的ViewHolder中使用</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View view, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">    ViewHolder holder;</span><br><span class="line">    <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</span><br><span class="line">      holder = (ViewHolder) view.getTag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      view = inflater.inflate(R.layout.whatever, parent, <span class="keyword">false</span>);</span><br><span class="line">      holder = <span class="keyword">new</span> ViewHolder(view);</span><br><span class="line">      view.setTag(holder);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    holder.name.setText(<span class="string">&quot;John Doe&quot;</span>);</span><br><span class="line">    <span class="comment">// etc...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">    <span class="meta">@BindView(R.id.title)</span> TextView name;</span><br><span class="line">    <span class="meta">@BindView(R.id.job_title)</span> TextView jobTitle;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">      ButterKnife.bind(<span class="keyword">this</span>, view);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>#####View列表<br>你可以一次性将多个views绑定到一个List或数组中：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@BindViews(&#123; R.id.first_name, R.id.middle_name, R.id.last_name &#125;)</span></span><br><span class="line">List&lt;EditText&gt; nameViews;</span><br></pre></td></tr></table></figure>
+
 <p>apply函数可以让集合中的View执行相同的操作:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ButterKnife.apply(nameViews, DISABLE);</span><br><span class="line">ButterKnife.apply(nameViews, ENABLED, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+
 <p>实现ButterKnife.Action或ButterKnife.Setter接口,如果你在项目中有这样的需求:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ButterKnife.Action&lt;View&gt; DISABLE = <span class="keyword">new</span> ButterKnife.Action&lt;View&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">apply</span><span class="params">(View view, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    view.setEnabled(<span class="keyword">false</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ButterKnife.Setter&lt;View, Boolean&gt; ENABLED = <span class="keyword">new</span> ButterKnife.Setter&lt;View, Boolean&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(View view, Boolean value, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    view.setEnabled(value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>apply函数还提供设置View属性的方法:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ButterKnife.apply(nameViews, View.ALPHA, <span class="number">0.0f</span>);</span><br></pre></td></tr></table></figure>
 <p>#####支持的属性大概如下:</p>
@@ -418,15 +375,20 @@
 </ul>
 <p>####基于事件的绑定<br>给一个id设置OnClick事件,不用写xxx.setOnClickListener(…)了:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">submit</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO submit data to server...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>方法名是自己定义的,没有过多要求,参数中的View也是可选的,可以加,可以不加:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHi</span><span class="params">(Button button)</span> </span>&#123;</span><br><span class="line">  button.setText(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
 <p>还可以为回调中的View加上指定的类型,但不要乱来,本来是个Button,非要写个TextView,Like this:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHi</span><span class="params">(Button button)</span> </span>&#123;</span><br><span class="line">  button.setText(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>当然,也可以为多个控件id设置为同一个回调方法:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(&#123; R.id.door1, R.id.door2, R.id.door3 &#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pickDoor</span><span class="params">(DoorView door)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (door.hasPrizeBehind()) &#123;</span><br><span class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">&quot;You win!&quot;</span>, LENGTH_SHORT).show();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">&quot;Try again&quot;</span>, LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在自定义View中使用,不需要指定id:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyButton</span> <span class="keyword">extends</span> <span class="title">Button</span> </span>&#123;</span><br><span class="line">  <span class="meta">@OnClick</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// TODO do something!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>####控件事件的绑定列表大致如下:</p>
 <ul>
 <li>OnCheckedChanged</li>
@@ -443,8 +405,10 @@
 </ul>
 <p>###解绑<br>上面的内容一直在说绑定绑定绑定,ButterKnife.bind(this);是有返回值的,返回一个Unbinder对象,你需要在合适的生命周期里去解绑,调用它的unbind()函数,比如,Activity中的onDestroy方法,Fragment的onDestroyView方法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.button1)</span> Button button1;</span><br><span class="line">  <span class="meta">@BindView(R.id.button2)</span> Button button2;</span><br><span class="line">  <span class="keyword">private</span> Unbinder unbinder;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</span><br><span class="line">    unbinder = ButterKnife.bind(<span class="keyword">this</span>, view);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroyView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDestroyView();</span><br><span class="line">    unbinder.unbind();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>###可选的绑定<br>情况是这样的:上面说的绑定View,绑定资源,绑定事件,如果绑定的目标id没有找到,这时候ButterKnife就会抛出异常,为了抑制这种情况的发生,可以使用Android自带注解库中的@Nullable来添加到Field上,和ButterKnife中的@Optional添加到Method上</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Nullable</span> <span class="meta">@BindView(R.id.might_not_be_there)</span> TextView mightNotBeThere;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Optional</span> <span class="meta">@OnClick(R.id.maybe_missing)</span> <span class="function"><span class="keyword">void</span> <span class="title">onMaybeMissingClicked</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>###最后<br>Butter Knife提供了一个findViewById的简化代码:findById,用这个方法可以在View,Activity和Dialog中找到想要View,而且,该方法使用的泛型来对返回值进行转换,也就是说,你可以省去findViewById前面的强制转换了.强迫症的福因:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">View view = LayoutInflater.from(context).inflate(R.layout.thing, <span class="keyword">null</span>);</span><br><span class="line">TextView firstName = ButterKnife.findById(view, R.id.first_name);</span><br><span class="line">TextView lastName = ButterKnife.findById(view, R.id.last_name);</span><br><span class="line">ImageView photo = ButterKnife.findById(view, R.id.photo);</span><br></pre></td></tr></table></figure>
     </div>
@@ -496,29 +460,7 @@
   <div class="comments" id="disqus_thread">
     <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
-  
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/comments.js"></script>
 </div>
   </main>
 
@@ -535,7 +477,7 @@
   <span class="author" itemprop="copyrightHolder">Shi Bin</span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -543,7 +485,7 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -559,157 +501,41 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '.page-configurations',
-    '.main-inner',
-    '.post-toc-wrap',
-    '.languages',
-    '.pjax'
-  ],
-  analytics: false,
-  cacheBust: false,
-  scrollRestoration: false,
-  scrollTo: !CONFIG.bookmark.enable
-});
-
-document.addEventListener('pjax:success', () => {
-  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  const hasTOC = document.querySelector('.post-toc');
-  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
-  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
-  NexT.utils.updateSidebarPosition();
-});
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/pjax.js"></script>
 
   
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/search/local-search.js"></script>
 
 
 
 
 
-  <script>
-    NProgress.configure({
-      showSpinner: true
-    });
-    NProgress.start();
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'interactive') {
-        NProgress.inc(0.8);
-      }
-      if (document.readyState === 'complete') {
-        NProgress.done();
-      }
-    });
-    document.addEventListener('pjax:send', () => {
-      NProgress.start();
-    });
-    document.addEventListener('pjax:success', () => {
-      NProgress.done();
-    });
-  </script>
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/nprogress.js"></script>
 
   
   <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
-    <div class="pjax">
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'none'
-      },
-      options: {
-        renderActions: {
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/math/mathjax.js"></script>
 
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink.listen({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://wshibin.github.io/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/',]
-      });
-      });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;2017&#x2F;04&#x2F;25&#x2F;ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3&#x2F;&quot;}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:true,&quot;shortname&quot;:&quot;WShiBin&quot;,&quot;count&quot;:true,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/comments/disqus.js"></script>
 
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://WShiBin.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  var disqus_config = function() {
-    this.page.url = "https://wshibin.github.io/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/";
-    this.page.identifier = "2017/04/25/ButterKnife使用详解/";
-    this.page.title = "【Android】ButterKnife使用详解";
-    };
-  NexT.utils.loadComments('#disqus_thread', () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://WShiBin.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
-
-    </div>
 </body>
 </html>

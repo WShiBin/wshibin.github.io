@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
@@ -16,15 +16,12 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Gemini","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;wshibin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;wshibin&#x2F;wshibin.github.io@master&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:true,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:260},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:true,&quot;lazyload&quot;:false,&quot;pangu&quot;:true,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:&quot;disqus&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:{&quot;disqus&quot;:{&quot;text&quot;:&quot;Load Disqus&quot;,&quot;order&quot;:-1}},&quot;activeClass&quot;:&quot;disqus&quot;},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:true}}</script>
 <meta name="description" content="Note:以前写的文章，搬迁过来 翻了一遍EventBus官方文档   EventBus事件总线.以观察者模式实现,消息推送&#x2F;订阅.用于Android组件之间相互通信  Note:文章基于EventBus3.0  项目地址:https:&#x2F;&#x2F;github.com&#x2F;greenrobot&#x2F;EventBusDocments:http:&#x2F;&#x2F;greenrobot.org&#x2F;eventbus&#x2F;documenta">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Android】翻了一遍EventBus官方文档">
@@ -47,72 +44,21 @@
 <link rel="canonical" href="https://wshibin.github.io/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/">
 
 
-<script data-pjax class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-<title>【Android】翻了一遍EventBus官方文档 | WShiBin's blogs</title>
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;2017&#x2F;04&#x2F;26&#x2F;%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3&#x2F;&quot;,&quot;path&quot;:&quot;2017&#x2F;04&#x2F;26&#x2F;翻了一遍EventBus官方文档&#x2F;&quot;,&quot;title&quot;:&quot;【Android】翻了一遍EventBus官方文档&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>【Android】翻了一遍EventBus官方文档 | WShiBin's blogs</title><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
   
-    <script>
-      function sendPageView() {
-        if (CONFIG.hostname !== location.hostname) return;
-        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
-        localStorage.setItem('uid', uid);
-        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
-          v  : 1,
-          tid: 'UA-149513847-1',
-          cid: uid,
-          t  : 'pageview',
-          dp : encodeURIComponent(location.pathname)
-        }));
-      }
-      document.addEventListener('pjax:complete', sendPageView);
-      sendPageView();
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-149513847-1&quot;,&quot;only_pageview&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
 
 
 
 
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/noscript.css">
+  </noscript>
 <link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
 </head>
 
@@ -158,7 +104,7 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
@@ -239,7 +185,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -265,7 +211,7 @@
     </header>
 
     
-  <div class="back-to-top" role="button">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -317,7 +263,7 @@
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -374,9 +320,11 @@
 </ul>
 <p>###添加依赖</p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">&#x27;org.greenrobot:eventbus:3.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
+
 <p>###使用三步曲:</p>
 <p>####1,定义事件类<br>事件类是通信过程中的数据的载体,用来传递数据,这里写一个最简单的事件类,后面说如何传递数据</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>####2.注册事件<br>上面提到数据的发送者和接收者, 注册事件是针对接收者的, 哪个组件需要接收消息,就在哪个组件中去注册</p>
 <ul>
 <li>注册: EventBus.getDefault().register(this);</li>
@@ -387,12 +335,15 @@
 <p><strong>Note:一个事件是可以有多个接收者(订阅者)</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
 <p>####3.发送事件<br>最后,消息的发送者发送事件, 这时候上面添加@Subscribe注解的函数会被调用</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+
 <p>**这时候在回来看这张大图,So easy,**点击查看大图<br><img src="/images/Xnip2021-01-16_23-22-08.jpg"></p>
 <p>这里顺便吐槽下官方示例代码:<br><img src="/images/Xnip2021-01-16_23-22-29.jpg"></p>
 <p>如果你打算把注册写在onStart中,请在前面加上判断</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>###上面是EventBus的基本使用流程,其实这才开始:</p>
 <ul>
 <li>在事件中传递数据</li>
@@ -405,8 +356,10 @@
 <p>###传递数据<br>不过,上面只是发了一个空的消息,没有传递任何的数据,比如:我修改了用户的头像,上传到服务器,服务器返回一个Url,这时候我需要修改其它界面的头像,这时候我要把这个url数据传到其它界面:怎么做呢?</p>
 <p>####1.只需要去修改定义事件类中的构造函数,增加一个参数,在加上set和get方法,如下:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateHeadPicEvent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">UpdateHeadPicEvent</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>####2.在发送事件的地方,使用这个带参的构造去创建对象:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> UpdateHeadImgEvent(url));</span><br></pre></td></tr></table></figure>
+
 <p>####3.在接收消息的回调中用get方法去获取</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>**Note:**这里只是用了一个String的Url做参考,可以传递的数据还有很多,List集合,Bean对象…</p>
@@ -424,15 +377,19 @@
 <li>首先,发送的是黏性事件,代码将post改为postSticky</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>然后,订阅者要声明自己能够接收到黏性事件的消息:代码中@Subscribe注解中的sticky值为true,满足了这两点,就能愉快的玩耍了.</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>测试Log日志<br><img src="/images/Xnip2021-01-16_23-22-51.jpg"></p>
 <p>###接收事件的优先级别<br>EventBus可以定义接收事件方的优先级别,在@Subscribe注解中有一个priority的参数,默认值是0,可以自行配置1.2.3.4…数值越大优先级越低,会越晚收到消息</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>###中止事件传递<br>类似于有序广播,优先级高的订阅者,可以终止事件向下传递,EventBus也提供了此功能</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>###订阅者索引<br>这个新特性是在EventBus 3.0推出,简单的说:利用annotationProcessor去生成一个关于订阅者的索引类,保存订阅者的相关信息.<br>有什么用?提高效率,注册从运行时的反射,转移到了编译时<br>怎么用?两种方式:</p>
 <ul>
 <li>在gradle版本2.2.0以前使用：Android-apt</li>
@@ -447,6 +404,7 @@
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">arguments = [<span class="attr">eventBusIndex:</span> <span class="string">&#x27;com.example.myapp.MyEventBusIndex&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p>更改默认配置也需要多添加一行代码:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus eventBus = EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusAppIndex())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusLibIndex())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
+
 <p>最后代码地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9FdmVudGJ1c2RlbW8=">https://github.com/Shib90/Eventbusdemo<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
@@ -498,29 +456,7 @@
   <div class="comments" id="disqus_thread">
     <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
-  
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/comments.js"></script>
 </div>
   </main>
 
@@ -537,7 +473,7 @@
   <span class="author" itemprop="copyrightHolder">Shi Bin</span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -545,7 +481,7 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -561,157 +497,41 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '.page-configurations',
-    '.main-inner',
-    '.post-toc-wrap',
-    '.languages',
-    '.pjax'
-  ],
-  analytics: false,
-  cacheBust: false,
-  scrollRestoration: false,
-  scrollTo: !CONFIG.bookmark.enable
-});
-
-document.addEventListener('pjax:success', () => {
-  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  const hasTOC = document.querySelector('.post-toc');
-  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
-  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
-  NexT.utils.updateSidebarPosition();
-});
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/pjax.js"></script>
 
   
-<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/search/local-search.js"></script>
 
 
 
 
 
-  <script>
-    NProgress.configure({
-      showSpinner: true
-    });
-    NProgress.start();
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'interactive') {
-        NProgress.inc(0.8);
-      }
-      if (document.readyState === 'complete') {
-        NProgress.done();
-      }
-    });
-    document.addEventListener('pjax:send', () => {
-      NProgress.start();
-    });
-    document.addEventListener('pjax:success', () => {
-      NProgress.done();
-    });
-  </script>
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/nprogress.js"></script>
 
   
   <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
-    <div class="pjax">
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'none'
-      },
-      options: {
-        renderActions: {
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/math/mathjax.js"></script>
 
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink.listen({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://wshibin.github.io/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/',]
-      });
-      });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;2017&#x2F;04&#x2F;26&#x2F;%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3&#x2F;&quot;}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:true,&quot;shortname&quot;:&quot;WShiBin&quot;,&quot;count&quot;:true,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/comments/disqus.js"></script>
 
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://WShiBin.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  var disqus_config = function() {
-    this.page.url = "https://wshibin.github.io/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/";
-    this.page.identifier = "2017/04/26/翻了一遍EventBus官方文档/";
-    this.page.title = "【Android】翻了一遍EventBus官方文档";
-    };
-  NexT.utils.loadComments('#disqus_thread', () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://WShiBin.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
-
-    </div>
 </body>
 </html>

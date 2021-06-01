@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;wshibin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;wshibin&#x2F;wshibin.github.io@master&#x2F;images&quot;,&quot;scheme&quot;:&quot;Pisces&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:true,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:240},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:true,&quot;lazyload&quot;:false,&quot;pangu&quot;:true,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:&quot;disqus&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:{&quot;disqus&quot;:{&quot;text&quot;:&quot;Load Disqus&quot;,&quot;order&quot;:-1}},&quot;activeClass&quot;:&quot;disqus&quot;},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:true}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/config.min.js"></script>
+<meta name="description" content="Hello world Hello world 仪式  步骤 在根目录新建CMakeLists.txt文件 在CMakeLists.txt文件中添加脚本 写C源代码main.c  CMakeLists.txt文件: cmake_minimum_required(VERSION 3.12 FATAL_ERROR)project(00helloworld)add_executable(hellowor">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WShiBin&#39;s blogs">
+<meta property="og:url" content="https://wshibin.github.io/cmake/Docs/01.helloworld.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="Hello world Hello world 仪式  步骤 在根目录新建CMakeLists.txt文件 在CMakeLists.txt文件中添加脚本 写C源代码main.c  CMakeLists.txt文件: cmake_minimum_required(VERSION 3.12 FATAL_ERROR)project(00helloworld)add_executable(hellowor">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-01T13:56:07.260Z">
+<meta property="article:modified_time" content="2021-05-31T16:12:04.381Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="WShiBin">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wshibin.github.io/cmake/Docs/01.helloworld">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;cmake&#x2F;Docs&#x2F;01.helloworld.html&quot;,&quot;path&quot;:&quot;cmake&#x2F;Docs&#x2F;01.helloworld.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title> | WShiBin's blogs
+</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-149513847-1&quot;,&quot;only_pageview&quot;:true}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">WShiBin's blogs</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">但行好事，莫问前程!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>首页</a></li>
+        
+            
+  <li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li>
+
+
+      
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+        <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-world"><span class="nav-number">1.</span> <span class="nav-text">Hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-number">1.2.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmake%E5%91%BD%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">cmake命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.5.</span> <span class="nav-text">其它概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">1.5.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">1.5.2.</span> <span class="nav-text">构建方式</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+
+      
+
+        
+        <ul class="sub-menu menu">
+          
+            
+          
+        </ul>
+        
+
+        
+        
+      
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/cmake/">CMAKE</a></li>
+            <li><a href="/cmake/Docs/">DOCS</a></li>
+            <li>01.HELLOWORLD</li>
+          
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h1><blockquote>
+<p>Hello world 仪式</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>在根目录新建<code>CMakeLists.txt</code>文件</li>
+<li>在<code>CMakeLists.txt</code>文件中添加脚本</li>
+<li>写C源代码<code>main.c</code></li>
+</ol>
+<p><code>CMakeLists.txt</code>文件:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span> FATAL_ERROR)</span><br><span class="line"><span class="keyword">project</span>(<span class="number">00</span>helloworld)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(helloworld main.c)</span><br></pre></td></tr></table></figure>
+
+<p><code>main.c</code>文件:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;hello cmake\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译命令:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir build</span><br><span class="line">$ <span class="built_in">cd</span> build</span><br><span class="line">$ cmake ..</span><br><span class="line">$ make</span><br><span class="line">$ ./helloworld</span><br><span class="line">hello cmake</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h2 id="cmake命令"><a href="#cmake命令" class="headerlink" title="cmake命令"></a>cmake命令</h2><h2 id="其它概念"><a href="#其它概念" class="headerlink" title="其它概念"></a>其它概念</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h3 id="构建方式"><a href="#构建方式" class="headerlink" title="构建方式"></a>构建方式</h3><ul>
+<li>外部构架 out-of-source build👍</li>
+<li>内部构建 in-source build</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/cmake/">CMAKE</a></li>
+            <li><a href="/cmake/Docs/">DOCS</a></li>
+            <li>01.HELLOWORLD</li>
+          
+  </ul>
+
+    
+    
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/pjax.min.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/nprogress.min.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js" integrity="sha256-KK3rvmDcW72MSl9jzzNZWlQjZNrRzAuGhAQ+0SFOg7Q=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;cmake&#x2F;Docs&#x2F;01.helloworld.html&quot;}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/quicklink.min.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:true,&quot;shortname&quot;:&quot;WShiBin&quot;,&quot;count&quot;:true,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

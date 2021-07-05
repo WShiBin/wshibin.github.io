@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
 
@@ -21,16 +21,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;wshibin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;wshibin&#x2F;wshibin.github.io@master&#x2F;images&quot;,&quot;scheme&quot;:&quot;Pisces&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:true,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:240},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:true,&quot;lazyload&quot;:false,&quot;pangu&quot;:true,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:&quot;disqus&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:{&quot;disqus&quot;:{&quot;text&quot;:&quot;Load Disqus&quot;,&quot;order&quot;:-1}},&quot;activeClass&quot;:&quot;disqus&quot;},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:true}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/config.min.js"></script>
-<meta name="description" content="Note:以前写的文章，搬迁过来 ButterKnife使用详解   注解库, JakeWharton大神的杰作  Note:文章基于8.5.1版本,不同的版本之间用法可能会稍有差异,实际版本使用以官方文档为主 项目地址:https:&#x2F;&#x2F;github.com&#x2F;JakeWharton&#x2F;butterknife文档地址:http:&#x2F;&#x2F;jakewharton.github.io&#x2F;butterknife&#x2F;">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
+<meta name="description" content="注解库, JakeWharton大神的杰作  Note:文章基于8.5.1版本,不同的版本之间用法可能会稍有差异,实际版本使用以官方文档为主 项目地址:https:&#x2F;&#x2F;github.com&#x2F;JakeWharton&#x2F;butterknife文档地址:http:&#x2F;&#x2F;jakewharton.github.io&#x2F;butterknife&#x2F; 有什么用?初始化View,资源,绑定View事件.不用去写findV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Android】ButterKnife使用详解">
 <meta property="og:url" content="https://wshibin.github.io/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="Note:以前写的文章，搬迁过来 ButterKnife使用详解   注解库, JakeWharton大神的杰作  Note:文章基于8.5.1版本,不同的版本之间用法可能会稍有差异,实际版本使用以官方文档为主 项目地址:https:&#x2F;&#x2F;github.com&#x2F;JakeWharton&#x2F;butterknife文档地址:http:&#x2F;&#x2F;jakewharton.github.io&#x2F;butterknife&#x2F;">
+<meta property="og:description" content="注解库, JakeWharton大神的杰作  Note:文章基于8.5.1版本,不同的版本之间用法可能会稍有差异,实际版本使用以官方文档为主 项目地址:https:&#x2F;&#x2F;github.com&#x2F;JakeWharton&#x2F;butterknife文档地址:http:&#x2F;&#x2F;jakewharton.github.io&#x2F;butterknife&#x2F; 有什么用?初始化View,资源,绑定View事件.不用去写findV">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-04-24T21:40:41.000Z">
-<meta property="article:modified_time" content="2021-02-21T15:35:02.013Z">
+<meta property="article:modified_time" content="2021-07-05T17:58:29.920Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
@@ -40,13 +40,13 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;2017&#x2F;04&#x2F;25&#x2F;ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3&#x2F;&quot;,&quot;path&quot;:&quot;2017&#x2F;04&#x2F;25&#x2F;ButterKnife使用详解&#x2F;&quot;,&quot;title&quot;:&quot;【Android】ButterKnife使用详解&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/","path":"2017/04/25/ButterKnife使用详解/","title":"【Android】ButterKnife使用详解"}</script>
 
-<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>【Android】ButterKnife使用详解 | WShiBin's blogs</title>
   
-  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-149513847-1&quot;,&quot;only_pageview&quot;:true}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
 
 
 
@@ -100,9 +100,7 @@
 
       
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
-        <li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,12 +157,13 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">怎么用?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5ButterKnife"><span class="nav-number">1.1.</span> <span class="nav-text">引入ButterKnife</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">资源文件绑定</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">有什么用?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">怎么用?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5ButterKnife"><span class="nav-number">2.1.</span> <span class="nav-text">引入ButterKnife</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-%E5%A3%B0%E6%98%8E%E5%AF%B9%E5%BA%94%E7%9A%84%E6%B3%A8%E8%A7%A3"><span class="nav-number">2.2.</span> <span class="nav-text">添加&#x2F;声明对应的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8Activity%E4%B8%AD%E7%BB%91%E5%AE%9AView"><span class="nav-number">2.2.1.</span> <span class="nav-text">在Activity中绑定View</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="nav-number">2.2.2.</span> <span class="nav-text">资源文件绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E9%9D%9EActivity%E4%B8%AD%E5%91%A2"><span class="nav-number">2.2.3.</span> <span class="nav-text">在非Activity中呢</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#View%E5%88%97%E8%A1%A8"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">View列表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B1%9E%E6%80%A7%E5%A4%A7%E6%A6%82%E5%A6%82%E4%B8%8B"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">支持的属性大概如下:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E9%9D%A2%E8%AF%B4%E7%9A%84%E5%A4%A7%E5%A4%9A%E6%98%AF%E5%9F%BA%E4%BA%8EView%E6%8E%A7%E4%BB%B6-%E8%B5%84%E6%BA%90%E7%9A%84%E7%BB%91%E5%AE%9A-%E7%9C%8B%E4%B8%8B%E6%BA%90%E4%BB%A3%E7%A0%81%E8%BF%99%E4%B8%AA%E7%89%88%E6%9C%AC%E5%A4%A7%E6%A6%82%E5%B0%B1%E4%B8%8B%E9%9D%A2%E8%BF%99%E4%BA%9B"><span class="nav-number">2.2.4.</span> <span class="nav-text">上面说的大多是基于View控件,资源的绑定,看下源代码这个版本大概就下面这些:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%BB%91%E5%AE%9A"><span class="nav-number">2.2.5.</span> <span class="nav-text">基于事件的绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E4%BB%B6%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%BB%91%E5%AE%9A%E5%88%97%E8%A1%A8%E5%A4%A7%E8%87%B4%E5%A6%82%E4%B8%8B"><span class="nav-number">2.2.6.</span> <span class="nav-text">控件事件的绑定列表大致如下:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E7%BB%91"><span class="nav-number">2.3.</span> <span class="nav-text">解绑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E7%9A%84%E7%BB%91%E5%AE%9A"><span class="nav-number">2.4.</span> <span class="nav-text">可选的绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">2.5.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Shi Bin"
       src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">Shi Bin</p>
@@ -175,7 +174,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -197,6 +196,7 @@
 
 
 
+          </div>
         </div>
       </div>
     </div>
@@ -290,14 +290,11 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC84MjU2NTU0ZGVhNmU=">ButterKnife使用详解<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<blockquote>
 <p>注解库, JakeWharton大神的杰作</p>
 </blockquote>
 <p><strong>Note:文章基于8.5.1版本,不同的版本之间用法可能会稍有差异,实际版本使用以官方文档为主</strong></p>
 <p>项目地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0pha2VXaGFydG9uL2J1dHRlcmtuaWZl">https://github.com/JakeWharton/butterknife<i class="fa fa-external-link-alt"></i></span><br>文档地址:<span class="exturl" data-url="aHR0cDovL2pha2V3aGFydG9uLmdpdGh1Yi5pby9idXR0ZXJrbmlmZS8=">http://jakewharton.github.io/butterknife/<i class="fa fa-external-link-alt"></i></span></p>
-<p>##有什么用?<br>初始化View,资源,绑定View事件.不用去写findViewById(…), setOn…Listener(…),只需要加上一行注解,配合Studio插件:Android ButterKnife Zelezny,自动生成View注解, 大爱</p>
+<h2 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用?"></a>有什么用?</h2><p>初始化View,资源,绑定View事件.不用去写<code>findViewById(...)</code>, <code>setOn...Listener(...)</code>,只需要加上一行注解,配合Studio插件:Android ButterKnife Zelezny,自动生成View注解, 大爱</p>
 <h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用?"></a>怎么用?</h2><ul>
 <li>引入ButterKnife</li>
 <li>添加/声明对应的注解</li>
@@ -307,10 +304,11 @@
 </blockquote>
 <ul>
 <li>项目的build.gradle:在项目的根目录下</li>
-<li>主程序的build.gradle:通常是一个名为app Module下的build.gradle,文件第一行是:apply plugin: ‘com.android.application’,这名代码的意思是用来声明这个Module是主程序Module</li>
-<li>依赖Module的build.gradle:一个项目通常只有一个主程序Module,其它的就是依赖Module,当然,是可以建多个主程序Module的,文件第一行代码是:apply plugin: ‘com.android.library’,用来声明这是一个依赖Module</li>
+<li>主程序的build.gradle:通常是一个名为app Module下的build.gradle,文件第一行是:<code>apply plugin: &#39;com.android.application&#39;</code>,这名代码的意思是用来声明这个Module是主程序Module</li>
+<li>依赖Module的build.gradle:一个项目通常只有一个主程序Module,其它的就是依赖Module,当然,是可以建多个主程序Module的,文件第一行代码是:<code>apply plugin: &#39;com.android.library&#39;</code>,用来声明这是一个依赖Module</li>
 </ul>
-<p><strong>在Module的build.gradle中添加</strong><br>如果你要在哪个Module中使用,就不需要在哪个Module中添加</p>
+<p><strong>在Module的build.gradle中添加</strong></p>
+<p>如果你要在哪个Module中使用,就不需要在哪个Module中添加</p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  compile <span class="string">&#x27;com.jakewharton:butterknife:8.5.1&#x27;</span></span><br><span class="line">  annotationProcessor <span class="string">&#x27;com.jakewharton:butterknife-compiler:8.5.1&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>在项目的build.gradle中添加</strong></p>
@@ -318,24 +316,25 @@
 
 <p><strong>在主程序依赖Module的build.gradle中添加</strong></p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.android.library&#x27;</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.jakewharton.butterknife&#x27;</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>Note:在依赖Module中使用,声明注解时用R2替代R, Like this</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R2.id.user)</span> EditText username;</span><br><span class="line">  <span class="meta">@BindView(R2.id.pass)</span> EditText password;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>###添加/声明对应的注解<br>####在Activity中绑定View</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.title)</span> TextView title;</span><br><span class="line">  <span class="meta">@BindView(R.id.subtitle)</span> TextView subtitle;</span><br><span class="line">  <span class="meta">@BindView(R.id.footer)</span> TextView footer;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.simple_activity);</span><br><span class="line">    ButterKnife.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="添加-声明对应的注解"><a href="#添加-声明对应的注解" class="headerlink" title="添加/声明对应的注解"></a>添加/声明对应的注解</h3><h4 id="在Activity中绑定View"><a href="#在Activity中绑定View" class="headerlink" title="在Activity中绑定View"></a>在Activity中绑定View</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.title)</span> TextView title;</span><br><span class="line">  <span class="meta">@BindView(R.id.subtitle)</span> TextView subtitle;</span><br><span class="line">  <span class="meta">@BindView(R.id.footer)</span> TextView footer;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.simple_activity);</span><br><span class="line">    ButterKnife.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>只要在TextView title;加了@BindView(R.id.title),这个title就和布局simple_activity.xm中的id为title的TextView控件绑定了,并且帮你实例化了,就可以直接用它的相关方法:title.setXxx(..)之类.相当于帮你写了,title = (TextView)this.findViewById(R.id.title);这段代码,实际上在build项目的时候它就去生成了包含这样代码的文件,目录:项目名-&gt;Module名-&gt;build-&gt;generated-&gt;source-&gt;apt-&gt;debug-&gt;对应的包名下一些XXX$$ViewBinder的类,代码大致如下:</p>
+<p>只要在<code>TextView title</code>;加了<code>@BindView(R.id.title)</code>,这个title就和布局simple_activity.xml中的id为title的TextView控件绑定了,并且帮你实例化了,就可以直接用它的相关方法:<code>itle.setXxx(..)</code>之类.相当于帮你写了,<code>title = (TextView)this.findViewById(R.id.title)</code>;这段代码,实际上在build项目的时候它就去生成了包含这样代码的文件,目录:项目名-&gt;Module名-&gt;build-&gt;generated-&gt;source-&gt;apt-&gt;debug-&gt;对应的包名下一些<code>XXX$$ViewBinder</code>的类,代码大致如下:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">(ExampleActivity activity)</span> </span>&#123;</span><br><span class="line">  activity.subtitle = (android.widget.TextView) activity.findViewById(<span class="number">2130968578</span>);</span><br><span class="line">  activity.footer = (android.widget.TextView) activity.findViewById(<span class="number">2130968579</span>);</span><br><span class="line">  activity.title = (android.widget.TextView) activity.findViewById(<span class="number">2130968577</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="资源文件绑定"><a href="#资源文件绑定" class="headerlink" title="资源文件绑定"></a>资源文件绑定</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindString(R.string.title)</span> String title;</span><br><span class="line">  <span class="meta">@BindDrawable(R.drawable.graphic)</span> Drawable graphic;</span><br><span class="line">  <span class="meta">@BindColor(R.color.red)</span> <span class="keyword">int</span> red; <span class="comment">// int or ColorStateList field</span></span><br><span class="line">  <span class="meta">@BindDimen(R.dimen.spacer)</span> Float spacer; <span class="comment">// int (for pixel size) or float (for exact value) field</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>####在非Activity中呢<br>在Activity中使用的是:ButterKnife.bind(this);<br>有非Activity中则是使用:ButterKnife.bind(this, view);<br><strong>Fragment中使用</strong></p>
+<h4 id="在非Activity中呢"><a href="#在非Activity中呢" class="headerlink" title="在非Activity中呢"></a>在非Activity中呢</h4><p>在Activity中使用的是:<code>ButterKnife.bind(this)</code>;<br>有非Activity中则是使用:<code>ButterKnife.bind(this, view)</code>;</p>
+<p><strong>Fragment中使用</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.button1)</span> Button button1;</span><br><span class="line">  <span class="meta">@BindView(R.id.button2)</span> Button button2;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</span><br><span class="line">    ButterKnife.bind(<span class="keyword">this</span>, view);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>在Adapter的ViewHolder中使用</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View view, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">    ViewHolder holder;</span><br><span class="line">    <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</span><br><span class="line">      holder = (ViewHolder) view.getTag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      view = inflater.inflate(R.layout.whatever, parent, <span class="keyword">false</span>);</span><br><span class="line">      holder = <span class="keyword">new</span> ViewHolder(view);</span><br><span class="line">      view.setTag(holder);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    holder.name.setText(<span class="string">&quot;John Doe&quot;</span>);</span><br><span class="line">    <span class="comment">// etc...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">    <span class="meta">@BindView(R.id.title)</span> TextView name;</span><br><span class="line">    <span class="meta">@BindView(R.id.job_title)</span> TextView jobTitle;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">      ButterKnife.bind(<span class="keyword">this</span>, view);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>#####View列表<br>你可以一次性将多个views绑定到一个List或数组中：</p>
+<h5 id="View列表"><a href="#View列表" class="headerlink" title="View列表"></a>View列表</h5><p>你可以一次性将多个views绑定到一个List或数组中：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@BindViews(&#123; R.id.first_name, R.id.middle_name, R.id.last_name &#125;)</span></span><br><span class="line">List&lt;EditText&gt; nameViews;</span><br></pre></td></tr></table></figure>
 
 <p>apply函数可以让集合中的View执行相同的操作:</p>
@@ -346,8 +345,7 @@
 
 <p>apply函数还提供设置View属性的方法:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ButterKnife.apply(nameViews, View.ALPHA, <span class="number">0.0f</span>);</span><br></pre></td></tr></table></figure>
-<p>#####支持的属性大概如下:</p>
-<ul>
+<h5 id="支持的属性大概如下"><a href="#支持的属性大概如下" class="headerlink" title="支持的属性大概如下:"></a>支持的属性大概如下:</h5><ul>
 <li>ALPHA - 透明度</li>
 <li>TRANSLATION_X - 平移(相对于自身控件)</li>
 <li>TRANSLATION_Y</li>
@@ -361,8 +359,7 @@
 <li>SCALE_X - 缩放</li>
 <li>SCALE_Y</li>
 </ul>
-<p>####上面说的大多是基于View控件,资源的绑定,看下源代码这个版本大概就下面这些:</p>
-<ul>
+<h4 id="上面说的大多是基于View控件-资源的绑定-看下源代码这个版本大概就下面这些"><a href="#上面说的大多是基于View控件-资源的绑定-看下源代码这个版本大概就下面这些" class="headerlink" title="上面说的大多是基于View控件,资源的绑定,看下源代码这个版本大概就下面这些:"></a>上面说的大多是基于View控件,资源的绑定,看下源代码这个版本大概就下面这些:</h4><ul>
 <li>BindArray</li>
 <li>BindBitmap</li>
 <li>BindBool</li>
@@ -373,12 +370,11 @@
 <li>BindView</li>
 <li>BindViews</li>
 </ul>
-<p>####基于事件的绑定<br>给一个id设置OnClick事件,不用写xxx.setOnClickListener(…)了:</p>
+<h4 id="基于事件的绑定"><a href="#基于事件的绑定" class="headerlink" title="基于事件的绑定"></a>基于事件的绑定</h4><p>给一个id设置OnClick事件,不用写<code>xxx.setOnClickListener(...)</code>了:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">submit</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO submit data to server...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>方法名是自己定义的,没有过多要求,参数中的View也是可选的,可以加,可以不加:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHi</span><span class="params">(Button button)</span> </span>&#123;</span><br><span class="line">  button.setText(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
 <p>还可以为回调中的View加上指定的类型,但不要乱来,本来是个Button,非要写个TextView,Like this:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHi</span><span class="params">(Button button)</span> </span>&#123;</span><br><span class="line">  button.setText(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -389,8 +385,7 @@
 <p>在自定义View中使用,不需要指定id:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyButton</span> <span class="keyword">extends</span> <span class="title">Button</span> </span>&#123;</span><br><span class="line">  <span class="meta">@OnClick</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// TODO do something!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>####控件事件的绑定列表大致如下:</p>
-<ul>
+<h4 id="控件事件的绑定列表大致如下"><a href="#控件事件的绑定列表大致如下" class="headerlink" title="控件事件的绑定列表大致如下:"></a>控件事件的绑定列表大致如下:</h4><ul>
 <li>OnCheckedChanged</li>
 <li>OnClick</li>
 <li>OnEditorAction</li>
@@ -403,13 +398,13 @@
 <li>OnTextChanged</li>
 <li>OnTouch</li>
 </ul>
-<p>###解绑<br>上面的内容一直在说绑定绑定绑定,ButterKnife.bind(this);是有返回值的,返回一个Unbinder对象,你需要在合适的生命周期里去解绑,调用它的unbind()函数,比如,Activity中的onDestroy方法,Fragment的onDestroyView方法</p>
+<h3 id="解绑"><a href="#解绑" class="headerlink" title="解绑"></a>解绑</h3><p>上面的内容一直在说绑定绑定绑定,<code>ButterKnife.bind(this)</code>;是有返回值的,返回一个Unbinder对象,你需要在合适的生命周期里去解绑,调用它的<code>unbind()</code>函数,比如,Activity中的onDestroy方法,Fragment的onDestroyView方法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.button1)</span> Button button1;</span><br><span class="line">  <span class="meta">@BindView(R.id.button2)</span> Button button2;</span><br><span class="line">  <span class="keyword">private</span> Unbinder unbinder;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</span><br><span class="line">    unbinder = ButterKnife.bind(<span class="keyword">this</span>, view);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroyView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDestroyView();</span><br><span class="line">    unbinder.unbind();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>###可选的绑定<br>情况是这样的:上面说的绑定View,绑定资源,绑定事件,如果绑定的目标id没有找到,这时候ButterKnife就会抛出异常,为了抑制这种情况的发生,可以使用Android自带注解库中的@Nullable来添加到Field上,和ButterKnife中的@Optional添加到Method上</p>
+<h3 id="可选的绑定"><a href="#可选的绑定" class="headerlink" title="可选的绑定"></a>可选的绑定</h3><p>情况是这样的:上面说的绑定View,绑定资源,绑定事件,如果绑定的目标id没有找到,这时候ButterKnife就会抛出异常,为了抑制这种情况的发生,可以使用Android自带注解库中的<code>@Nullable</code>来添加到Field上,和ButterKnife中的<code>@Optional</code>添加到Method上</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Nullable</span> <span class="meta">@BindView(R.id.might_not_be_there)</span> TextView mightNotBeThere;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Optional</span> <span class="meta">@OnClick(R.id.maybe_missing)</span> <span class="function"><span class="keyword">void</span> <span class="title">onMaybeMissingClicked</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>###最后<br>Butter Knife提供了一个findViewById的简化代码:findById,用这个方法可以在View,Activity和Dialog中找到想要View,而且,该方法使用的泛型来对返回值进行转换,也就是说,你可以省去findViewById前面的强制转换了.强迫症的福因:</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>Butter Knife提供了一个findViewById的简化代码:findById,用这个方法可以在View,Activity和Dialog中找到想要View,而且,该方法使用的泛型来对返回值进行转换,也就是说,你可以省去findViewById前面的强制转换了.强迫症的福因:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">View view = LayoutInflater.from(context).inflate(R.layout.thing, <span class="keyword">null</span>);</span><br><span class="line">TextView firstName = ButterKnife.findById(view, R.id.first_name);</span><br><span class="line">TextView lastName = ButterKnife.findById(view, R.id.last_name);</span><br><span class="line">ImageView photo = ButterKnife.findById(view, R.id.photo);</span><br></pre></td></tr></table></figure>
     </div>
 
@@ -507,17 +502,15 @@
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/pjax.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/comments.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/pjax.js"></script>
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/search/local-search.js"></script>
 
 
 
-
-
-  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/nprogress.min.js"></script>
+  <script class="next-config" data-name="nprogress" type="application/json">{"enable":true,"spinner":true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/nprogress.js"></script>
 
   
   <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -527,15 +520,15 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/math/mathjax.min.js"></script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/math/mathjax.js"></script>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js" integrity="sha256-KK3rvmDcW72MSl9jzzNZWlQjZNrRzAuGhAQ+0SFOg7Q=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;wshibin.github.io&#x2F;2017&#x2F;04&#x2F;25&#x2F;ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3&#x2F;&quot;}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/quicklink.min.js"></script>
-<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:true,&quot;shortname&quot;:&quot;WShiBin&quot;,&quot;count&quot;:true,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.5.0/source/js/third-party/comments/disqus.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://wshibin.github.io/2017/04/25/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>

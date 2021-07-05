@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
+<meta name="description" content="文档:https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;v3.20&#x2F;manual&#x2F;cmake-commands.7.html CMake有自己DSL语言, 变量、函数、宏、条件、循环、注释等等 命令分类 脚本命令Scripting Commands 变量命令 流程控制命令 常用工具命令 自定义命令   项目命令Project Commands CTest Commands  变量命令 se">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Common script commands">
+<meta property="og:url" content="https://wshibin.github.io/cmake/docs/02_common_script_commands.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="文档:https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;v3.20&#x2F;manual&#x2F;cmake-commands.7.html CMake有自己DSL语言, 变量、函数、宏、条件、循环、注释等等 命令分类 脚本命令Scripting Commands 变量命令 流程控制命令 常用工具命令 自定义命令   项目命令Project Commands CTest Commands  变量命令 se">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-06T00:56:43.000Z">
+<meta property="article:modified_time" content="2021-07-05T17:03:16.165Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="CMake">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wshibin.github.io/cmake/docs/02_common_script_commands">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/cmake/docs/02_common_script_commands.html","path":"cmake/docs/02_common_script_commands.html","title":"Common script commands"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Common script commands | WShiBin's blogs
+</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">WShiBin's blogs</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">但行好事，莫问前程!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>首页</a></li>
+        
+            
+  <li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li>
+
+
+      
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">命令分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">变量命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">set命令:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unset%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">unset命令:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option%E5%91%BD%E4%BB%A4"><span class="nav-number">2.3.</span> <span class="nav-text">option命令:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if-else-elseif-endif%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">if&#x2F;else&#x2F;elseif&#x2F;endif命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#foreach-endforeach%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">foreach&#x2F;endforeach命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while-endwhile%E5%91%BD%E4%BB%A4"><span class="nav-number">3.3.</span> <span class="nav-text">while&#x2F;endwhile命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break-continue%E5%91%BD%E4%BB%A4"><span class="nav-number">3.4.</span> <span class="nav-text">break&#x2F;continue命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">常用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#list%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">list命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">string命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file%E5%91%BD%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">file命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#math%E5%91%BD%E4%BB%A4"><span class="nav-number">4.4.</span> <span class="nav-text">math命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">自定义命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#function-endfunction%E5%91%BD%E4%BB%A4"><span class="nav-number">5.1.</span> <span class="nav-text">function&#x2F;endfunction命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macro-endmacro%E5%91%BD%E4%BB%A4"><span class="nav-number">5.2.</span> <span class="nav-text">macro&#x2F;endmacro命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8function-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8macro"><span class="nav-number">5.3.</span> <span class="nav-text">什么时候用function,什么时候用macro?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMake%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-number">6.</span> <span class="nav-text">CMake中的变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%8F%98%E9%87%8F"><span class="nav-number">6.1.</span> <span class="nav-text">普通变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E5%8F%98%E9%87%8F"><span class="nav-number">6.2.</span> <span class="nav-text">缓存变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">6.3.</span> <span class="nav-text">环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMake-policies%E7%AD%96%E7%95%A5"><span class="nav-number">7.</span> <span class="nav-text">CMake-policies策略</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+
+      
+
+        
+        <ul class="sub-menu menu">
+          
+            
+          
+          
+            
+                
+  <li class="menu-item menu-item-hello-world"><a href="/cmake/docs/01_helloworld.html" rel="section"><i class="fa fa-flag fa-fw"></i>Hello World</a></li>
+
+
+          
+            
+                
+  <li class="menu-item menu-item-common-script-commands"><a href="/cmake/docs/02_common_script_commands.html" rel="section"><i class="fa fa-terminal fa-fw"></i>Common script commands</a></li>
+
+
+          
+            
+                
+  <li class="menu-item menu-item-target"><a href="/cmake/docs/03_target.html" rel="section"><i class="fa fa-lightbulb fa-fw"></i>Target</a></li>
+
+
+          
+            
+                
+  <li class="menu-item menu-item-modules"><a href="/cmake/docs/04_modules.html" rel="section"><i class="fa fa-chart-pie fa-fw"></i>Modules</a></li>
+
+
+          
+            
+                
+  <li class="menu-item menu-item-thirty-part-library"><a href="/cmake/docs/05_thirty_part_library.html" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Thirty part library</a></li>
+
+
+          
+            
+                
+  <li class="menu-item menu-item-cross-compiling"><a href="/cmake/docs/06_cross_compiling.html" rel="section"><i class="fa fa-crosshairs fa-fw"></i>Cross compiling</a></li>
+
+
+          
+            
+                
+  <li class="menu-item menu-item-install-package"><a href="/cmake/docs/07_install_pack.html" rel="section"><i class="fa fa-download fa-fw"></i>Install package</a></li>
+
+
+        </ul>
+        
+
+        
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+        
+      
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Common script commands
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/cmake/">CMAKE</a></li>
+            <li><a href="/cmake/docs/">DOCS</a></li>
+            <li>02_COMMON_SCRIPT_COMMANDS</li>
+          
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <p>文档:<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC92My4yMC9tYW51YWwvY21ha2UtY29tbWFuZHMuNy5odG1s">https://cmake.org/cmake/help/v3.20/manual/cmake-commands.7.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>CMake有自己DSL语言, 变量、函数、宏、条件、循环、注释等等</p>
+<h2 id="命令分类"><a href="#命令分类" class="headerlink" title="命令分类"></a>命令分类</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC92My4yMC9tYW51YWwvY21ha2UtY29tbWFuZHMuNy5odG1sI3NjcmlwdGluZy1jb21tYW5kcw==">脚本命令Scripting Commands<i class="fa fa-external-link-alt"></i></span><ul>
+<li>变量命令</li>
+<li>流程控制命令</li>
+<li>常用工具命令</li>
+<li>自定义命令</li>
+</ul>
+</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC92My4yMC9tYW51YWwvY21ha2UtY29tbWFuZHMuNy5odG1sI3Byb2plY3QtY29tbWFuZHM=">项目命令Project Commands<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC92My4yMC9tYW51YWwvY21ha2UtY29tbWFuZHMuNy5odG1sI2N0ZXN0LWNvbW1hbmRz">CTest Commands<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="变量命令"><a href="#变量命令" class="headerlink" title="变量命令"></a>变量命令</h2><ul>
+<li>set/unset</li>
+<li>option</li>
+</ul>
+<p><strong>变量数据类型</strong></p>
+<ul>
+<li>BOOL类型</li>
+<li>STRING类型</li>
+<li>FILEPATH类型,文件路径</li>
+<li>PATH类型,目录路径</li>
+<li>INTERNAL类型</li>
+<li>LIST类型,链表集合(自己加的)</li>
+</ul>
+<h3 id="set命令"><a href="#set命令" class="headerlink" title="set命令:"></a><code>set</code>命令:</h3><p>类似编程语言中的赋值等号<code>=</code>.给一个变量赋值</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 普通变量</span></span><br><span class="line"><span class="comment"># 语法: set(&lt;variable&gt; &lt;value&gt;... [PARENT_SCOPE])</span></span><br><span class="line"><span class="comment"># * BOOL类型</span></span><br><span class="line"><span class="comment"># * STRING类型</span></span><br><span class="line"><span class="comment"># * FILEPATH类型,文件路径</span></span><br><span class="line"><span class="comment"># * PATH类型,目录路径</span></span><br><span class="line"><span class="comment"># * LIST类型,链表集合</span></span><br><span class="line"><span class="keyword">set</span>(bool_val1 <span class="keyword">ON</span>) <span class="comment"># bool bool_val1 = ON;</span></span><br><span class="line"><span class="keyword">set</span>(bool_val2 <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">set</span>(string_val <span class="string">&quot;xixi&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(filepath_val <span class="string">&quot;/Users/shibin/repo/CMakeTutorial/examples/01_common_cmd/CMakeLists.txt&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(path_val <span class="string">&quot;/Users/shibin/repo/CMakeTutorial/examples/01_common_cmd&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(list_val1 <span class="string">&quot;xixi&quot;</span> <span class="string">&quot;hehe&quot;</span> <span class="string">&quot;haha&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(list_val2 <span class="string">&quot;xixi;hehe;haha&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缓存变量</span></span><br><span class="line"><span class="comment"># 语法: set(&lt;variable&gt; &lt;value&gt;... CACHE &lt;type&gt; &lt;docstring&gt; [FORCE])</span></span><br><span class="line"><span class="keyword">set</span>(foo <span class="string">&quot;bar&quot;</span> CACHE <span class="keyword">STRING</span> <span class="string">&quot;description for foo variable&quot;</span> FORCE)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;foo: $&#123;foo&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line"><span class="comment"># 语法: set(ENV&#123;&lt;variable&gt;&#125;)</span></span><br><span class="line"><span class="comment"># EDITOR=vim</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;ENV&#123;EDITOR&#125;: $ENV&#123;EDITOR&#125;&quot;</span>) <span class="comment"># vim</span></span><br><span class="line"><span class="keyword">set</span>(ENV&#123;EDITOR&#125; vi)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;ENV&#123;EDITOR&#125;: $ENV&#123;EDITOR&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="unset命令"><a href="#unset命令" class="headerlink" title="unset命令:"></a><code>unset</code>命令:</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 普通变量或缓存变量</span></span><br><span class="line"><span class="comment"># 语法: unset(&lt;variable&gt; [CACHE | PARENT_SCOPE])</span></span><br><span class="line"><span class="keyword">unset</span>(CMAKE_BUILD_TYPE)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line"><span class="comment"># 语法: unset(ENV&#123;&lt;variable&gt;&#125;)</span></span><br><span class="line"><span class="keyword">unset</span>(ENV&#123;EDITOR&#125;)</span><br><span class="line"><span class="keyword">message</span>(STATUS <span class="string">&quot;EDITOR = $ENV&#123;EDITOR&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="option命令"><a href="#option命令" class="headerlink" title="option命令:"></a><code>option</code>命令:</h3><p>提供一个开关的默认选项:如果<code>option()</code>命令中的变量已经存在了,当前的<code>option()</code>命令就不执行,变量值<code>ON/OFF</code></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span>(cross_compiling_option_val <span class="keyword">ON</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 语法: option(&lt;variable&gt; &quot;&lt;help_text&gt;&quot; [value])</span></span><br><span class="line"><span class="keyword">option</span>(cross_compiling_option_val <span class="string">&quot;开启交叉编译&quot;</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;cross_compiling_option_val: $&#123;cross_compiling_option_val&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><ul>
+<li>if/else/elseif/endif</li>
+<li>foreach/endforeach</li>
+<li>while/endwhile</li>
+<li>break/continue</li>
+</ul>
+<h3 id="if-else-elseif-endif命令"><a href="#if-else-elseif-endif命令" class="headerlink" title="if/else/elseif/endif命令"></a><code>if/else/elseif/endif</code>命令</h3><p><strong>语法</strong>:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(&lt;condition&gt;)</span><br><span class="line">  &lt;commands&gt;</span><br><span class="line"><span class="keyword">elseif</span>(&lt;condition&gt;) <span class="comment"># optional block, can be repeated</span></span><br><span class="line">  &lt;commands&gt;</span><br><span class="line"><span class="keyword">else</span>()              <span class="comment"># optional block</span></span><br><span class="line">  &lt;commands&gt;</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
+
+<p><strong>条件表达式分类</strong>:</p>
+<ul>
+<li>基本表达式</li>
+<li>逻辑操作符</li>
+<li>是否存在的检查</li>
+<li>文件操作</li>
+<li>比较</li>
+<li>版本比较</li>
+</ul>
+<p>CMake中的<code>True/False</code>:</p>
+<ul>
+<li>True: <code>1</code>, <code>ON</code>, <code>YES</code>, <code>TRUE</code>, <code>Y</code>, 非0的数字</li>
+<li>False: <code>0</code>, <code>OFF</code>, <code>NO</code>, <code>FALSE</code>, <code>N</code>, <code>IGNORE</code>, <code>NOTFOUND</code>, 空字符串或以<code>-NOTFOUND</code>为后缀的字符串</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基本表达式</span></span><br><span class="line"><span class="comment">## if(&lt;constant&gt;)</span></span><br><span class="line"><span class="comment">## if(&lt;variable|string&gt;)</span></span><br><span class="line"><span class="keyword">set</span>(bool_val3 <span class="keyword">ON</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$&#123;bool_val3&#125;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;bool_val3 is ON&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 逻辑操作符</span></span><br><span class="line"><span class="comment"># if(NOT &lt;condition&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;cond1&gt; AND &lt;cond2&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;cond1&gt; OR &lt;cond2&gt;)</span></span><br><span class="line"><span class="comment"># if((condition) AND (condition OR (condition)))</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">NOT</span> <span class="variable">$&#123;bool_val3&#125;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;NOT true: $&#123;bool_val3&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;NOT false: $&#123;bool_val3&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否存在的检查</span></span><br><span class="line"><span class="comment"># if(COMMAND command-name)</span></span><br><span class="line"><span class="comment"># if(POLICY policy-id)</span></span><br><span class="line"><span class="comment"># if(TARGET target-name)</span></span><br><span class="line"><span class="comment"># if(TEST test-name)</span></span><br><span class="line"><span class="comment"># if(DEFINED &lt;name&gt;|CACHE&#123;&lt;name&gt;&#125;|ENV&#123;&lt;name&gt;&#125;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; IN_LIST &lt;variable&gt;)</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">POLICY</span> CMP0077)</span><br><span class="line">    <span class="keyword">cmake_policy</span>(<span class="keyword">SET</span> CMP0077 NEW)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;set cmake_policy: cmp0077 new&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件操作</span></span><br><span class="line"><span class="comment"># if(EXISTS path-to-file-or-directory)</span></span><br><span class="line"><span class="comment"># if(file1 IS_NEWER_THAN file2)</span></span><br><span class="line"><span class="comment"># if(IS_DIRECTORY path-to-directory)</span></span><br><span class="line"><span class="comment"># if(IS_SYMLINK file-name)</span></span><br><span class="line"><span class="comment"># if(IS_ABSOLUTE path)</span></span><br><span class="line"><span class="comment"># message(&quot;CMAKE_SOURCE_DIR: $&#123;CMAKE_SOURCE_DIR&#125;&quot;)</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">EXISTS</span> <span class="string">&quot;$&#123;CMAKE_SOURCE_DIR&#125;/CMakeLists.txt&quot;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;$&#123;CMAKE_SOURCE_DIR&#125;/CMakeLists.txt exists&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; MATCHES regex)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; LESS &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; GREATER &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; LESS_EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; GREATER_EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; STRLESS &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; STRGREATER &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; STREQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; STRLESS_EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; STRGREATER_EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">10</span> <span class="keyword">GREATER</span> <span class="number">8</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;10 GREATER 8&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;abcde&quot;</span> <span class="keyword">STRGREATER</span> <span class="string">&quot;abcdf&quot;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;abcde STRGREATER abcdf&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;abcde STRLESS abcdf&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 版本比较</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; VERSION_LESS &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; VERSION_GREATER &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; VERSION_EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; VERSION_LESS_EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="comment"># if(&lt;variable|string&gt; VERSION_GREATER_EQUAL &lt;variable|string&gt;)</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">1.2</span> <span class="keyword">VERSION_GREATER</span> <span class="number">1.1</span>.<span class="number">8</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;1.2 VERSION_GREATER 1.1.8&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="foreach-endforeach命令"><a href="#foreach-endforeach命令" class="headerlink" title="foreach/endforeach命令"></a><code>foreach/endforeach</code>命令</h3><p><strong>语法</strong>:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span>(&lt;loop_var&gt; &lt;items&gt;)</span><br><span class="line">  &lt;commands&gt;</span><br><span class="line"><span class="keyword">endforeach</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(&lt;loop_var&gt; RANGE &lt;stop&gt;)</span><br><span class="line"><span class="keyword">foreach</span>(&lt;loop_var&gt; RANGE &lt;start&gt; &lt;stop&gt; [&lt;step&gt;])</span><br><span class="line"><span class="keyword">foreach</span>(&lt;loop_var&gt; IN [LISTS [&lt;lists&gt;]] [ITEMS [&lt;items&gt;]])</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.</span></span><br><span class="line"><span class="comment"># foreach(&lt;loop_var&gt; &lt;items&gt;)</span></span><br><span class="line"><span class="comment">#   &lt;commands&gt;</span></span><br><span class="line"><span class="comment"># endforeach()</span></span><br><span class="line"><span class="keyword">set</span>(<span class="keyword">list</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>)</span><br><span class="line"><span class="keyword">foreach</span>(item <span class="variable">$&#123;list&#125;</span>) <span class="comment"># 0.1.2.3.4.5.6.7.8.9</span></span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;item = $&#123;item&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endforeach</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.</span></span><br><span class="line"><span class="comment"># foreach(&lt;loop_var&gt; RANGE &lt;stop&gt;)</span></span><br><span class="line"><span class="keyword">foreach</span>(item RANGE <span class="number">10</span>) <span class="comment"># 0.1.2.3.4.5.6.7.8.9</span></span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;item = $&#123;item&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endforeach</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.</span></span><br><span class="line"><span class="comment"># foreach(&lt;loop_var&gt; RANGE &lt;start&gt; &lt;stop&gt; [&lt;step&gt;])</span></span><br><span class="line"><span class="keyword">foreach</span>(item RANGE <span class="number">3</span> <span class="number">10</span> <span class="number">2</span>) <span class="comment"># 范围3~9,上升为2: 3.5.7.9</span></span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;item = $&#123;item&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endforeach</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.</span></span><br><span class="line"><span class="comment"># foreach(&lt;loop_var&gt; IN [LISTS [&lt;lists&gt;]] [ITEMS [&lt;items&gt;]])</span></span><br><span class="line"><span class="keyword">set</span>(A <span class="number">0</span>;<span class="number">1</span>)</span><br><span class="line"><span class="keyword">set</span>(B <span class="number">2</span> <span class="number">3</span>)</span><br><span class="line"><span class="keyword">set</span>(C <span class="string">&quot;4 5&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(D <span class="number">6</span>;<span class="number">7</span> <span class="number">8</span>)</span><br><span class="line"><span class="keyword">set</span>(E <span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="keyword">foreach</span>(item IN LISTS A B C D E)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;item = $&#123;item&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endforeach</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="while-endwhile命令"><a href="#while-endwhile命令" class="headerlink" title="while/endwhile命令"></a><code>while/endwhile</code>命令</h3><p><strong>语法</strong>:</p>
+<p><code>&lt;condition&gt;</code>条件表达式参考上面<code>if/else/elseif/endif命令</code></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># while(&lt;condition&gt;)</span></span><br><span class="line"><span class="comment">#   &lt;commands&gt;</span></span><br><span class="line"><span class="comment"># endwhile()</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="break-continue命令"><a href="#break-continue命令" class="headerlink" title="break/continue命令"></a><code>break/continue</code>命令</h3><p>针对<code>foreach</code>和<code>while命令</code>,和编程语言中的<code>break/continue</code>意思一样</p>
+<ul>
+<li><code>break()</code>:跳出循环</li>
+<li><code>continue()</code>:继续下一次循环</li>
+</ul>
+<h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><ul>
+<li>list</li>
+<li>string</li>
+<li>file</li>
+<li>math</li>
+</ul>
+<h3 id="list命令"><a href="#list命令" class="headerlink" title="list命令"></a><code>list</code>命令</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="comment">#   list(LENGTH &lt;list&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   list(GET &lt;list&gt; &lt;element index&gt; [&lt;index&gt; ...] &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   list(JOIN &lt;list&gt; &lt;glue&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   list(SUBLIST &lt;list&gt; &lt;begin&gt; &lt;length&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="keyword">set</span>(<span class="keyword">list</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span>)</span><br><span class="line"><span class="keyword">list</span>(LENGTH <span class="keyword">list</span> output)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;LENGTH output = $&#123;output&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">list</span>(GET <span class="keyword">list</span> <span class="number">3</span> output) <span class="comment"># 获取index为3的item元素</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;GET output = $&#123;output&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索</span></span><br><span class="line"><span class="comment">#   list(FIND &lt;list&gt; &lt;value&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="keyword">list</span>(FIND <span class="keyword">list</span> <span class="number">5</span> output) <span class="comment"># 返回值为5的index</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;FIND output = $&#123;output&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line"><span class="comment">#   list(APPEND &lt;list&gt; [&lt;element&gt;...])</span></span><br><span class="line"><span class="comment">#   list(FILTER &lt;list&gt; &#123;INCLUDE | EXCLUDE&#125; REGEX &lt;regex&gt;)</span></span><br><span class="line"><span class="comment">#   list(INSERT &lt;list&gt; &lt;index&gt; [&lt;element&gt;...])</span></span><br><span class="line"><span class="comment">#   list(POP_BACK &lt;list&gt; [&lt;out-var&gt;...])</span></span><br><span class="line"><span class="comment">#   list(POP_FRONT &lt;list&gt; [&lt;out-var&gt;...])</span></span><br><span class="line"><span class="comment">#   list(PREPEND &lt;list&gt; [&lt;element&gt;...])</span></span><br><span class="line"><span class="comment">#   list(REMOVE_ITEM &lt;list&gt; &lt;value&gt;...)</span></span><br><span class="line"><span class="comment">#   list(REMOVE_AT &lt;list&gt; &lt;index&gt;...)</span></span><br><span class="line"><span class="comment">#   list(REMOVE_DUPLICATES &lt;list&gt;)</span></span><br><span class="line"><span class="comment">#   list(TRANSFORM &lt;list&gt; &lt;ACTION&gt; [...])</span></span><br><span class="line"><span class="keyword">list</span>(APPEND <span class="keyword">list</span> <span class="number">100</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;APPEND list = $&#123;list&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">list</span>(INSERT <span class="keyword">list</span> <span class="number">0</span> <span class="number">200</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;INSERT list = $&#123;list&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">list</span>(POP_BACK <span class="keyword">list</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;POP_BACK list = $&#123;list&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">list</span>(REMOVE_AT <span class="keyword">list</span> <span class="number">0</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;REMOVE_AT list = $&#123;list&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序</span></span><br><span class="line"><span class="comment">#   list(REVERSE &lt;list&gt;)</span></span><br><span class="line"><span class="comment">#   list(SORT &lt;list&gt; [COMPARE &lt;compare&gt;] [CASE &lt;case&gt;] [ORDER &lt;order&gt;])</span></span><br><span class="line"><span class="keyword">list</span>(REVERSE <span class="keyword">list</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;REVERSE list = $&#123;list&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">list</span>(APPEND <span class="keyword">list</span> <span class="number">10</span>)</span><br><span class="line"><span class="keyword">list</span>(SORT <span class="keyword">list</span> COMPARE NATURAL ORDER ASCENDING)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;SORT list = $&#123;list&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="string命令"><a href="#string命令" class="headerlink" title="string命令"></a><code>string</code>命令</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜索和替换</span></span><br><span class="line"><span class="comment">#   string(FIND &lt;string&gt; &lt;substring&gt; &lt;out-var&gt; [...])</span></span><br><span class="line"><span class="comment">#   string(REPLACE &lt;match-string&gt; &lt;replace-string&gt; &lt;out-var&gt; &lt;input&gt;...)</span></span><br><span class="line"><span class="comment">#   string(REGEX MATCH &lt;match-regex&gt; &lt;out-var&gt; &lt;input&gt;...)</span></span><br><span class="line"><span class="comment">#   string(REGEX MATCHALL &lt;match-regex&gt; &lt;out-var&gt; &lt;input&gt;...)</span></span><br><span class="line"><span class="comment">#   string(REGEX REPLACE &lt;match-regex&gt; &lt;replace-expr&gt; &lt;out-var&gt; &lt;input&gt;...)</span></span><br><span class="line"><span class="keyword">set</span>(input <span class="string">&quot;hello world&quot;</span>)</span><br><span class="line"><span class="comment"># FINE</span></span><br><span class="line"><span class="keyword">string</span>(FIND <span class="variable">$&#123;input&#125;</span> <span class="string">&quot;world&quot;</span> output)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;FIND output = $&#123;output&#125;&quot;</span>)</span><br><span class="line"><span class="comment"># REPLACE</span></span><br><span class="line"><span class="keyword">string</span>(REPLACE <span class="string">&quot;world&quot;</span> <span class="string">&quot;cmake&quot;</span> output <span class="variable">$&#123;input&#125;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;REPLACE output = $&#123;output&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 操作</span></span><br><span class="line"><span class="comment">#   string(APPEND &lt;string-var&gt; [&lt;input&gt;...])</span></span><br><span class="line"><span class="comment">#   string(PREPEND &lt;string-var&gt; [&lt;input&gt;...])</span></span><br><span class="line"><span class="comment">#   string(CONCAT &lt;out-var&gt; [&lt;input&gt;...])</span></span><br><span class="line"><span class="comment">#   string(JOIN &lt;glue&gt; &lt;out-var&gt; [&lt;input&gt;...])</span></span><br><span class="line"><span class="comment">#   string(TOLOWER &lt;string&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(TOUPPER &lt;string&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(LENGTH &lt;string&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(SUBSTRING &lt;string&gt; &lt;begin&gt; &lt;length&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(STRIP &lt;string&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(GENEX_STRIP &lt;string&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(REPEAT &lt;string&gt; &lt;count&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="keyword">set</span>(input <span class="string">&quot; hello world &quot;</span>)</span><br><span class="line"><span class="comment"># APPEND</span></span><br><span class="line"><span class="keyword">string</span>(APPEND  output <span class="variable">$&#123;input&#125;</span> <span class="string">&quot;xixi&quot;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;APPEND output:--$&#123;output&#125;--&quot;</span>)</span><br><span class="line"><span class="comment"># TOUPPER</span></span><br><span class="line"><span class="keyword">string</span>(TOUPPER <span class="variable">$&#123;input&#125;</span> output)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;TOUPPER output:--$&#123;output&#125;--&quot;</span>)</span><br><span class="line"><span class="comment"># STRIP</span></span><br><span class="line"><span class="keyword">string</span>(STRIP <span class="variable">$&#123;input&#125;</span> output)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;STRIP output:--$&#123;output&#125;--&quot;</span>)</span><br><span class="line"><span class="comment"># REPEAT</span></span><br><span class="line"><span class="keyword">string</span>(REPEAT <span class="variable">$&#123;output&#125;</span> <span class="number">3</span> output)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;REPEAT output:--$&#123;output&#125;--&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较</span></span><br><span class="line"><span class="comment">#   string(COMPARE &lt;op&gt; &lt;string1&gt; &lt;string2&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#       &lt;op&gt;:LESS/GREATER/EQUAL/NOTEQUAL/LESS_EQUAL/GREATER_EQUAL</span></span><br><span class="line"><span class="keyword">string</span>(COMPARE <span class="keyword">EQUAL</span> <span class="string">&quot;hello&quot;</span> <span class="string">&quot;hello&quot;</span> output)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;COMPARE EQUAL output:$&#123;output&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 哈希</span></span><br><span class="line"><span class="comment">#   string(&lt;HASH&gt; &lt;out-var&gt; &lt;input&gt;)</span></span><br><span class="line"><span class="comment">#       &lt;HASH&gt;:MD5/SHA1/SHA224/SHA256/SHA384/SHA512/SHA3_224/SHA3_256/SHA3_384/SHA3_512</span></span><br><span class="line"><span class="keyword">set</span>(input <span class="string">&quot;hello world&quot;</span>)</span><br><span class="line"><span class="keyword">string</span>(MD5 output <span class="variable">$&#123;input&#125;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;MD5 output:$&#123;output&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generation</span></span><br><span class="line"><span class="comment">#   string(ASCII &lt;number&gt;... &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(HEX &lt;string&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(CONFIGURE &lt;string&gt; &lt;out-var&gt; [...])</span></span><br><span class="line"><span class="comment">#   string(MAKE_C_IDENTIFIER &lt;string&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(RANDOM [&lt;option&gt;...] &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   string(TIMESTAMP &lt;out-var&gt; [&lt;format string&gt;] [UTC])</span></span><br><span class="line"><span class="comment">#   string(UUID &lt;out-var&gt; ...)</span></span><br><span class="line"><span class="comment"># ASCII</span></span><br><span class="line"><span class="keyword">string</span>(ASCII <span class="number">97</span> output) <span class="comment"># a</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;ASCII output:$&#123;output&#125;&quot;</span>)</span><br><span class="line"><span class="comment"># HEX</span></span><br><span class="line"><span class="keyword">string</span>(HEX <span class="string">&quot;a&quot;</span> output) <span class="comment"># 0x61</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;HEX output:$&#123;output&#125;&quot;</span>)</span><br><span class="line"><span class="comment"># RANDOM</span></span><br><span class="line"><span class="keyword">string</span>(RANDOM LENGTH <span class="number">10</span> ALPHABET <span class="string">&quot;abcdef&quot;</span> output)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;RANDOM output:$&#123;output&#125;&quot;</span>)</span><br><span class="line"><span class="comment"># TIMESTAMP</span></span><br><span class="line"><span class="keyword">string</span>(TIMESTAMP output <span class="string">&quot;%Y-%m-%dT%H:%M:%S&quot;</span> UTC)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;TIMESTAMP output:$&#123;output&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="file命令"><a href="#file命令" class="headerlink" title="file命令"></a><code>file</code>命令</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="comment">#   file(READ &lt;filename&gt; &lt;out-var&gt; [...])</span></span><br><span class="line"><span class="comment">#   file(STRINGS &lt;filename&gt; &lt;out-var&gt; [...])</span></span><br><span class="line"><span class="comment">#   file(&lt;HASH&gt; &lt;filename&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   file(TIMESTAMP &lt;filename&gt; &lt;out-var&gt; [...])</span></span><br><span class="line"><span class="comment">#   file(GET_RUNTIME_DEPENDENCIES [...])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line"><span class="comment">#   file(&#123;WRITE | APPEND&#125; &lt;filename&gt; &lt;content&gt;...)</span></span><br><span class="line"><span class="comment">#   file(&#123;TOUCH | TOUCH_NOCREATE&#125; [&lt;file&gt;...])</span></span><br><span class="line"><span class="comment">#   file(GENERATE OUTPUT &lt;output-file&gt; [...])</span></span><br><span class="line"><span class="comment">#   file(CONFIGURE OUTPUT &lt;output-file&gt; CONTENT &lt;content&gt; [...])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件系统</span></span><br><span class="line"><span class="comment">#   file(&#123;GLOB | GLOB_RECURSE&#125; &lt;out-var&gt; [...] [&lt;globbing-expr&gt;...])</span></span><br><span class="line"><span class="comment">#   file(RENAME &lt;oldname&gt; &lt;newname&gt;)</span></span><br><span class="line"><span class="comment">#   file(&#123;REMOVE | REMOVE_RECURSE &#125; [&lt;files&gt;...])</span></span><br><span class="line"><span class="comment">#   file(MAKE_DIRECTORY [&lt;dir&gt;...])</span></span><br><span class="line"><span class="comment">#   file(&#123;COPY | INSTALL&#125; &lt;file&gt;... DESTINATION &lt;dir&gt; [...])</span></span><br><span class="line"><span class="comment">#   file(SIZE &lt;filename&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   file(READ_SYMLINK &lt;linkname&gt; &lt;out-var&gt;)</span></span><br><span class="line"><span class="comment">#   file(CREATE_LINK &lt;original&gt; &lt;linkname&gt; [...])</span></span><br><span class="line"><span class="comment">#   file(CHMOD &lt;files&gt;... &lt;directories&gt;... PERMISSIONS &lt;permissions&gt;... [...])</span></span><br><span class="line"><span class="comment">#   file(CHMOD_RECURSE &lt;files&gt;... &lt;directories&gt;... PERMISSIONS &lt;permissions&gt;... [...])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Path转换</span></span><br><span class="line"><span class="comment">#   file(REAL_PATH &lt;path&gt; &lt;out-var&gt; [BASE_DIRECTORY &lt;dir&gt;])</span></span><br><span class="line"><span class="comment">#   file(RELATIVE_PATH &lt;out-var&gt; &lt;directory&gt; &lt;file&gt;)</span></span><br><span class="line"><span class="comment">#   file(&#123;TO_CMAKE_PATH | TO_NATIVE_PATH&#125; &lt;path&gt; &lt;out-var&gt;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 传输</span></span><br><span class="line"><span class="comment">#   file(DOWNLOAD &lt;url&gt; [&lt;file&gt;] [...])</span></span><br><span class="line"><span class="comment">#   file(UPLOAD &lt;file&gt; &lt;url&gt; [...])</span></span><br><span class="line"><span class="keyword">file</span>(DOWNLOAD <span class="string">&quot;https://www.baidu.com/index.html&quot;</span> index.html)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 锁</span></span><br><span class="line"><span class="comment">#   file(LOCK &lt;path&gt; [...])</span></span><br><span class="line"><span class="keyword">file</span>(LOCK <span class="string">&quot;cmake.lock&quot;</span>)</span><br><span class="line"><span class="keyword">file</span>(LOCK <span class="string">&quot;cmake.lock&quot;</span> RELEASE)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 归档/打包</span></span><br><span class="line"><span class="comment">#   file(ARCHIVE_CREATE OUTPUT &lt;archive&gt; PATHS &lt;paths&gt;... [...])</span></span><br><span class="line"><span class="comment">#   file(ARCHIVE_EXTRACT INPUT &lt;archive&gt; [...])</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="math命令"><a href="#math命令" class="headerlink" title="math命令"></a><code>math</code>命令</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: math(EXPR &lt;variable&gt; &quot;&lt;expression&gt;&quot; [OUTPUT_FORMAT &lt;format&gt;])</span></span><br><span class="line"><span class="keyword">math</span>(EXPR output <span class="string">&quot;100 * 0xA&quot;</span> OUTPUT_FORMAT DECIMAL)      <span class="comment"># output is set to &quot;1000&quot;</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;output = $&#123;output&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">math</span>(EXPR output <span class="string">&quot;100 * 0xA&quot;</span> OUTPUT_FORMAT HEXADECIMAL)  <span class="comment"># output is set to &quot;0x3e8&quot;</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;output = $&#123;output&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><ul>
+<li>function/endfunction命令</li>
+<li>macro/endmacro命令</li>
+</ul>
+<p>之前使用的都是cmake内置的命令,命令也可以自行定义</p>
+<ul>
+<li>能通过<code>function()</code> 或 <code>macro()</code>添加命令</li>
+<li>当添加了一个新的命令替换成存在的命令,使用老的命令需要在命令前面加下划线前缀<code>_</code>.</li>
+</ul>
+<h3 id="function-endfunction命令"><a href="#function-endfunction命令" class="headerlink" title="function/endfunction命令"></a><code>function/endfunction</code>命令</h3><p><strong>语法</strong>:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>(&lt;name&gt; [&lt;arg1&gt; ...])</span><br><span class="line">  &lt;commands&gt;</span><br><span class="line"><span class="keyword">endfunction</span>()</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义</span></span><br><span class="line"><span class="keyword">function</span>(my_command input output)</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">set</span>(<span class="variable">$&#123;output&#125;</span> ... PARENT_SCOPE)</span><br><span class="line"><span class="keyword">endfunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用</span></span><br><span class="line">my_command(foo bar)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>function</code>中变量有作用域范围,可以设置变量的<code>PARENT_SCOPE</code>来改变</li>
+<li>可用的变量:input,output,ARGC,ARGV,ARGN,ARG0, ARG1, ARG2, …</li>
+<li>Example:<code>$&#123;output&#125;</code> expands to bar.</li>
+</ul>
+<h3 id="macro-endmacro命令"><a href="#macro-endmacro命令" class="headerlink" title="macro/endmacro命令"></a><code>macro/endmacro</code>命令</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义</span></span><br><span class="line"><span class="keyword">macro</span>(my_command input output)</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">endmacro</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用</span></span><br><span class="line">my_command(foo bar)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>macro</code>中的变量没有作用域,(宏在处理时会被替换)</li>
+<li>Text replacements:${input},${output},${ARGC},${ARGV}, ${ARGN}, ${ARG0}, ${ARG1}, ${ARG2}, …</li>
+<li>Example:<code>$&#123;output&#125;</code> is replaced by bar.</li>
+</ul>
+<h3 id="什么时候用function-什么时候用macro"><a href="#什么时候用function-什么时候用macro" class="headerlink" title="什么时候用function,什么时候用macro?"></a>什么时候用function,什么时候用macro?</h3><blockquote>
+<p>Create macros to wrap commands that have output parametes.Otherwise, create a function.<br>​            – C++Now 2017: Daniel Pfeifer “Effective CMake”</p>
+</blockquote>
+<p>如果这个命令需要有输出参数,就使用macro,否则使用function</p>
+<h2 id="CMake中的变量"><a href="#CMake中的变量" class="headerlink" title="CMake中的变量"></a>CMake中的变量</h2><p><strong>变量分类</strong>:普通变量/缓存变量/环境变量</p>
+<h3 id="普通变量"><a href="#普通变量" class="headerlink" title="普通变量"></a><strong>普通变量</strong></h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: set(&lt;variable&gt; &lt;value&gt;... [PARENT_SCOPE])</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_BUILD_TYPE Debug) <span class="comment"># gcc -g ...</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_POSITION_INDEPENDENT_CODE <span class="keyword">ON</span>) <span class="comment"># gcc -fPIC ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_STANDARD <span class="number">11</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_STANDARD_REQUIRED <span class="keyword">ON</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">14</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="keyword">ON</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="缓存变量"><a href="#缓存变量" class="headerlink" title="缓存变量"></a>缓存变量</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: set(&lt;variable&gt; &lt;value&gt;... CACHE &lt;type&gt; &lt;docstring&gt; [FORCE])</span></span><br><span class="line"><span class="keyword">set</span>(foo <span class="string">&quot;bar&quot;</span> CACHE <span class="keyword">STRING</span> <span class="string">&quot;none, for demo&quot;</span> FORCE)</span><br></pre></td></tr></table></figure>
+
+<p>变量会保存到构建目录的<code>CMakeCache.txt</code>文件中,</p>
+<ul>
+<li>如果缓存中不存在同名的变量,则将这个变量写入缓存并使用</li>
+<li>如果缓存中存在同名的变量,根据<code>FORCE</code>来决定是否写入缓存:<ul>
+<li>如果没有带<code>FORCE</code>,这条语句不起作用,使用缓存中的变量</li>
+<li>如果有带<code>FORCE</code>,使用当前设置的值</li>
+</ul>
+</li>
+</ul>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: set(ENV&#123;&lt;variable&gt;&#125; [&lt;value&gt;])</span></span><br><span class="line"><span class="keyword">set</span>(ENV&#123;EDITOR&#125; vim)</span><br><span class="line"><span class="keyword">message</span>(STATUS <span class="string">&quot;EDITOR = $ENV&#123;EDITOR&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="CMake-policies策略"><a href="#CMake-policies策略" class="headerlink" title="CMake-policies策略"></a><span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvbWFudWFsL2NtYWtlLXBvbGljaWVzLjcuaHRtbA==">CMake-policies<i class="fa fa-external-link-alt"></i></span>策略</h2><p><strong>问题</strong>:</p>
+<p>CMake软件本身也在不断更新和扩展, 以增加对新工具,平台和特性的支持,可能在老版本有些地方设计不够好,不合理的地方;cmake会在新版本中完善更新,这就会导致新的问题. 比如,同样的命令在不同的cmake版本中会有不同的行为,哪种方式来执行呢?</p>
+<p><strong>作用</strong>:</p>
+<p>CMake 中的策略用于在多个版本之间保持向后兼容的行为. 允许项目使用“和CMake版本X.Y.Z的行为一样”</p>
+<p><strong>例子:</strong></p>
+<p><code>option()</code>命令在不同的cmake版本中有不同的行为,cmake 3.13之前只支持<code>缓存变量</code>,3.13之后支持<code>普通变量</code>.这时候就需要用户来去指定使用哪种行为,通过<code>cmake_policy</code>命令</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvcG9saWN5L0NNUDAwNzcuaHRtbA==">CMP0077: option() honors normal variables.<i class="fa fa-external-link-alt"></i></span>.(New in version 3.13.)</p>
+<p><strong>两种行为</strong>:</p>
+<ul>
+<li><code>OLD</code>:即使有相同名字的普通变量存在,<code>option</code>还是会继续执行,并创建这个变量,然后在删除之前同名的普通变量</li>
+<li><code>NEW</code>:当存在同名的普通变量时,此策略的行为是不执行任何操作. 普通变量不会被删除</li>
+</ul>
+<p><strong>cmake_policy命令</strong>:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法:</span></span><br><span class="line"><span class="comment"># 设置cmake policy是基于哪个版本: cmake_policy(VERSION &lt;min&gt;[...&lt;max&gt;])</span></span><br><span class="line"><span class="comment"># 设置cmake policy使用新的行为: cmake_policy(SET CMP&lt;NNNN&gt; NEW)</span></span><br><span class="line"><span class="comment"># 设置cmake policy使用老的行为: cmake_policy(SET CMP&lt;NNNN&gt; OLD)</span></span><br><span class="line"><span class="comment"># 获取cmake policy使用老的行为: cmake_policy(GET CMP&lt;NNNN&gt; &lt;variable&gt;)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">cmake_policy</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">POLICY</span> CMP0077)</span><br><span class="line">    <span class="keyword">cmake_policy</span>(<span class="keyword">SET</span> CMP0077 NEW)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;set cmake_policy: cmp0077 new&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>CMP&lt;NNNN&gt;</code></strong></p>
+<ul>
+<li><code>CMP</code>是CMake Policy缩写</li>
+<li><code>&lt;NNNN&gt;</code>是CMake Policy中定义的<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvbWFudWFsL2NtYWtlLXBvbGljaWVzLjcuaHRtbCNwb2xpY2llcy1pbnRyb2R1Y2VkLWJ5LWNtYWtlLTItNg==">策略列序号<i class="fa fa-external-link-alt"></i></span>,随cmake版本更新</li>
+</ul>
+<p>前面讲过:</p>
+<p>message<br>cmake_minimum_required</p>
+<p>后面讲:</p>
+<p>include<br>configure_file<br>find_package</p>
+<p>不讲:</p>
+<p>cmake_host_system_information<br>cmake_language<br>cmake_parse_arguments<br>cmake_path<br>cmake_policy<br>execute_process<br>find_file<br>find_library<br>find_path<br>find_program<br>get_cmake_property<br>get_directory_property<br>get_filename_component<br>get_property<br>include_guard<br>mark_as_advanced<br>separate_arguments<br>set_directory_properties<br>set_property<br>site_name<br>variable_watch</p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/cmake/">CMAKE</a></li>
+            <li><a href="/cmake/docs/">DOCS</a></li>
+            <li>02_COMMON_SCRIPT_COMMANDS</li>
+          
+  </ul>
+
+    
+    
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/comments.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/utils.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/next-boot.js"></script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/pjax.js"></script>
+
+  
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/search/local-search.js"></script>
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{"enable":true,"spinner":true}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/nprogress.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://wshibin.github.io/cmake/docs/02_common_script_commands.html"}</script>
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

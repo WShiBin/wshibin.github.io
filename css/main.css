@@ -1442,6 +1442,9 @@ pre code {
   padding: 18px 10px;
   text-align: center;
 }
+.site-overview {
+  max-height: var(--sidebar-wrapper-height);
+}
 .site-overview-item:not(:first-child) {
   margin-top: 10px;
 }
@@ -1483,29 +1486,24 @@ pre code {
 .sidebar .sidebar-button:not(:first-child) {
   margin-top: 15px;
 }
-.sidebar .sidebar-button a {
+.sidebar .sidebar-button button {
+  background: transparent;
+  color: #fc6423;
+  cursor: pointer;
+  line-height: 2;
+  padding: 0 15px;
   border: 1px solid #fc6423;
   border-radius: 4px;
-  color: #fc6423;
-  display: inline-block;
-  padding: 0 15px;
 }
-.sidebar .sidebar-button a .fa,
-.sidebar .sidebar-button a .fab,
-.sidebar .sidebar-button a .far,
-.sidebar .sidebar-button a .fas {
-  margin-right: 5px;
-}
-.sidebar .sidebar-button a:hover {
+.sidebar .sidebar-button button:hover {
   background: #fc6423;
-  border: 1px solid #fc6423;
   color: #fff;
 }
-.sidebar .sidebar-button a:hover .fa,
-.sidebar .sidebar-button a:hover .fab,
-.sidebar .sidebar-button a:hover .far,
-.sidebar .sidebar-button a:hover .fas {
-  color: #fff;
+.sidebar .sidebar-button button .fa,
+.sidebar .sidebar-button button .fab,
+.sidebar .sidebar-button button .far,
+.sidebar .sidebar-button button .fas {
+  margin-right: 5px;
 }
 .links-of-blogroll {
   font-size: 0.8125em;
@@ -2388,19 +2386,18 @@ pre code {
 }
 .reward-container button {
   background: transparent;
-  border: 2px solid #fc6423;
-  border-radius: 2px;
   color: #fc6423;
   cursor: pointer;
   line-height: 2;
-  outline: 0;
   padding: 0 15px;
+  border: 2px solid #fc6423;
+  border-radius: 2px;
+  outline: 0;
   transition: all 0.2s ease-in-out;
   vertical-align: text-top;
 }
 .reward-container button:hover {
   background: #fc6423;
-  border: 2px solid transparent;
   color: #fff;
 }
 .post-reward {
@@ -2986,20 +2983,15 @@ mjx-container[display="true"] + br {
   border-bottom: 1px dotted #ccc;
   border-top: 1px dotted #ccc;
 }
-.sidebar .sidebar-button a {
+.sidebar .sidebar-button button {
   border: 0;
   color: #fc6423;
   display: block;
+  width: 100%;
 }
-.sidebar .sidebar-button a:hover {
+.sidebar .sidebar-button button:hover {
   background: none;
   border: 0;
-  color: #e34603;
-}
-.sidebar .sidebar-button a:hover .fa,
-.sidebar .sidebar-button a:hover .fab,
-.sidebar .sidebar-button a:hover .far,
-.sidebar .sidebar-button a:hover .fas {
   color: #e34603;
 }
 .links-of-author {

@@ -7,6 +7,11 @@
 <meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
   <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
   <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
   <meta name="yandex-verification" content="71a56869afc0e0fd">
@@ -22,15 +27,15 @@
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
-<meta name="description" content="早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的,被骗了. 听别人讲故事和自己去经历这事件区别很大, 本文用来记录  有篇经典的文章叫提问的智慧, 如果你遇到了Bug,这时会怎么做:  看现象:推测哪里&#x2F;哪一阶段出了问题 搜索:搜索什么关键词 看文档:(不熟悉的东西就会去看文档,弄清底下干了什么) 提问:问有经验的人  描述问题症状而非你的猜测有个同事调用">
+<meta name="description" content="早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了. 听别人讲故事和自己去经历这事件区别很大, 本文用来记录  圈子里有篇经典的文章叫提问的智慧, 如果你遇到了Bug,这时会怎么做: 看现象:推测哪里&#x2F;哪一阶段出了问题 Google:搜索什么关键词 看文档:(不熟悉的东西就会去看文档,弄清底下干了什么) 提问:问有经验的人  这里主要讨论提问:如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Work】编程中如何跟人描述Bug">
 <meta property="og:url" content="https://wshibin.github.io/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的,被骗了. 听别人讲故事和自己去经历这事件区别很大, 本文用来记录  有篇经典的文章叫提问的智慧, 如果你遇到了Bug,这时会怎么做:  看现象:推测哪里&#x2F;哪一阶段出了问题 搜索:搜索什么关键词 看文档:(不熟悉的东西就会去看文档,弄清底下干了什么) 提问:问有经验的人  描述问题症状而非你的猜测有个同事调用">
+<meta property="og:description" content="早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了. 听别人讲故事和自己去经历这事件区别很大, 本文用来记录  圈子里有篇经典的文章叫提问的智慧, 如果你遇到了Bug,这时会怎么做: 看现象:推测哪里&#x2F;哪一阶段出了问题 Google:搜索什么关键词 看文档:(不熟悉的东西就会去看文档,弄清底下干了什么) 提问:问有经验的人  这里主要讨论提问:如">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-12T00:47:28.000Z">
-<meta property="article:modified_time" content="2021-07-05T17:25:17.617Z">
+<meta property="article:modified_time" content="2021-07-06T16:55:01.402Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Personal">
 <meta name="twitter:card" content="summary">
@@ -157,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E9%97%AE%E9%A2%98%E7%97%87%E7%8A%B6%E8%80%8C%E9%9D%9E%E4%BD%A0%E7%9A%84%E7%8C%9C%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">描述问题症状而非你的猜测</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E9%81%87%E5%88%B0%E4%BA%86Bug-%E8%BF%99%E6%97%B6%E4%BC%9A%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-number">1.</span> <span class="nav-text">如果你遇到了Bug,这时会怎么做:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E9%97%AE%E9%A2%98%E7%97%87%E7%8A%B6%E8%80%8C%E9%9D%9E%E4%BD%A0%E7%9A%84%E7%8C%9C%E6%B5%8B-%E7%BB%93%E8%AE%BA"><span class="nav-number">2.</span> <span class="nav-text">描述问题症状而非你的猜测&#x2F;结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E8%B0%88%E9%97%AE%E9%A2%98Bug"><span class="nav-number">3.</span> <span class="nav-text">在谈问题Bug</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -299,18 +304,26 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的,被骗了.</p>
+<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了.</p>
 <p>听别人讲故事和自己去经历这事件区别很大, 本文用来记录</p>
 </blockquote>
-<p>有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
-<p><strong>如果你遇到了Bug,这时会怎么做:</strong></p>
-<ol>
+<p>圈子里有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
+<h2 id="如果你遇到了Bug-这时会怎么做"><a href="#如果你遇到了Bug-这时会怎么做" class="headerlink" title="如果你遇到了Bug,这时会怎么做:"></a>如果你遇到了Bug,这时会怎么做:</h2><ol>
 <li>看现象:推测哪里/哪一阶段出了问题</li>
-<li>搜索:搜索什么关键词</li>
+<li>Google:搜索什么关键词</li>
 <li>看文档:(不熟悉的东西就会去看文档,弄清底下干了什么)</li>
-<li>提问:问有经验的人</li>
+<li><strong>提问:问有经验的人</strong></li>
 </ol>
-<h2 id="描述问题症状而非你的猜测"><a href="#描述问题症状而非你的猜测" class="headerlink" title="描述问题症状而非你的猜测"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测<i class="fa fa-external-link-alt"></i></span></h2><p>有个同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>),然后我就被带到坑里去了,沿着他说的问题去追踪,最后导致浪费了些时间. 在新闻里有一个很熟悉的场景,即便犯人被抓到了,即便是在法官宣判前已经确认事实了.都会称他为”犯罪嫌疑人”. 如果你同事告诉你</p>
+<p>这里主要讨论<strong>提问</strong>:如何跟人去描述问题</p>
+<h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
+<p><strong>正确的流程</strong>:</p>
+<ol>
+<li>表明意图: 在做一个什么功能? 调试什么东西? 用到哪些技术,模块?</li>
+<li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
+<li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
+</ol>
+<h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
+<p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
 
     </div>
 
@@ -322,6 +335,9 @@
   <ul class="popular-posts">
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2021/02/22/2020总结-2021展望/" rel="bookmark">【Personal】2020总结,2021展望</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2021/07/07/记一次生病经历/" rel="bookmark">【Personal】记一次生病经历</a></div>
     </li>
   </ul>
 
@@ -340,6 +356,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/07/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86/" rel="next" title="【Personal】记一次生病经历">
+                  【Personal】记一次生病经历 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -2,6 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wshibin.github.io/cmake/01_helloworld.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/cmake/02_common_script_commands.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/cmake/index.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/cmake/07_install_pack.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/cmake/06_cross_compiling.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/cmake/05_thirty_part_library.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/cmake/04_modules.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/cmake/03_target.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/linux/index.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wshibin.github.io/about/index.html</loc>
+    
+    <lastmod>2021-07-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wshibin.github.io/2021/07/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/</loc>
     
     <lastmod>2021-07-06</lastmod>
@@ -37,63 +107,7 @@
   </url>
   
   <url>
-    <loc>https://wshibin.github.io/cmake/docs/01_helloworld.html</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/cmake/docs/03_target.html</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/cmake/docs/02_common_script_commands.html</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/cmake/index.html</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wshibin.github.io/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/cmake/docs/04_modules.html</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/cmake/docs/07_install_pack.html</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/cmake/docs/06_cross_compiling.html</loc>
-    
-    <lastmod>2021-07-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wshibin.github.io/cmake/docs/05_thirty_part_library.html</loc>
     
     <lastmod>2021-07-05</lastmod>
     
@@ -289,14 +303,14 @@
   </url>
   
   <url>
-    <loc>https://wshibin.github.io/unix/%E8%BF%9B%E7%A8%8B.html</loc>
+    <loc>https://wshibin.github.io/linux/%E8%BF%9B%E7%A8%8B.html</loc>
     
     <lastmod>2021-01-10</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wshibin.github.io/unix/environment.html</loc>
+    <loc>https://wshibin.github.io/linux/environment.html</loc>
     
     <lastmod>2021-01-10</lastmod>
     

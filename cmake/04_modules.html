@@ -27,23 +27,25 @@
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
+<meta name="description" content="https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;latest&#x2F;manual&#x2F;cmake-modules.7.html   拓展CMake的功能  两类: CMake内置的module 自己定制的module    FetchContent  Modules are &lt;script&gt;.cmake files located in the CMAKE_MODULE_PATH. M">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
-<meta property="og:url" content="https://wshibin.github.io/cmake/docs/06_cross_compiling.html">
+<meta property="og:url" content="https://wshibin.github.io/cmake/04_modules.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;latest&#x2F;manual&#x2F;cmake-modules.7.html   拓展CMake的功能  两类: CMake内置的module 自己定制的module    FetchContent  Modules are &lt;script&gt;.cmake files located in the CMAKE_MODULE_PATH. M">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-05T16:34:05.733Z">
-<meta property="article:modified_time" content="2021-07-05T16:34:05.733Z">
+<meta property="article:published_time" content="2021-07-06T17:43:46.524Z">
+<meta property="article:modified_time" content="2021-07-06T17:43:46.524Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wshibin.github.io/cmake/docs/06_cross_compiling">
+<link rel="canonical" href="https://wshibin.github.io/cmake/04_modules">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/cmake/docs/06_cross_compiling.html","path":"cmake/docs/06_cross_compiling.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/cmake/04_modules.html","path":"cmake/04_modules.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title> | WShiBin's blogs
@@ -103,8 +105,15 @@
 
 
       
+        
+            
+  <li class="menu-item menu-item-linux系统编程"><a href="/linux" rel="section"><i class="fa fa-book fa-fw"></i>Linux系统编程</a></li>
+
+
+      
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +157,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -161,6 +170,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">两类:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9B%B8%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">其它相关:</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -236,43 +246,43 @@
           
             
                 
-  <li class="menu-item menu-item-hello-world"><a href="/cmake/docs/01_helloworld.html" rel="section"><i class="fa fa-flag fa-fw"></i>Hello World</a></li>
+  <li class="menu-item menu-item-hello-world"><a href="/cmake/01_helloworld.html" rel="section"><i class="fa fa-flag fa-fw"></i>Hello World</a></li>
 
 
           
             
                 
-  <li class="menu-item menu-item-common-script-commands"><a href="/cmake/docs/02_common_script_commands.html" rel="section"><i class="fa fa-terminal fa-fw"></i>Common script commands</a></li>
+  <li class="menu-item menu-item-common-script-commands"><a href="/cmake/02_common_script_commands.html" rel="section"><i class="fa fa-terminal fa-fw"></i>Common script commands</a></li>
 
 
           
             
                 
-  <li class="menu-item menu-item-target"><a href="/cmake/docs/03_target.html" rel="section"><i class="fa fa-lightbulb fa-fw"></i>Target</a></li>
+  <li class="menu-item menu-item-target"><a href="/cmake/03_target.html" rel="section"><i class="fa fa-lightbulb fa-fw"></i>Target</a></li>
 
 
           
             
                 
-  <li class="menu-item menu-item-modules"><a href="/cmake/docs/04_modules.html" rel="section"><i class="fa fa-chart-pie fa-fw"></i>Modules</a></li>
+  <li class="menu-item menu-item-modules"><a href="/cmake/04_modules.html" rel="section"><i class="fa fa-chart-pie fa-fw"></i>Modules</a></li>
 
 
           
             
                 
-  <li class="menu-item menu-item-thirty-part-library"><a href="/cmake/docs/05_thirty_part_library.html" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Thirty part library</a></li>
+  <li class="menu-item menu-item-thirty-part-library"><a href="/cmake/05_thirty_part_library.html" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Thirty part library</a></li>
 
 
           
             
                 
-  <li class="menu-item menu-item-cross-compiling"><a href="/cmake/docs/06_cross_compiling.html" rel="section"><i class="fa fa-crosshairs fa-fw"></i>Cross compiling</a></li>
+  <li class="menu-item menu-item-cross-compiling"><a href="/cmake/06_cross_compiling.html" rel="section"><i class="fa fa-crosshairs fa-fw"></i>Cross compiling</a></li>
 
 
           
             
                 
-  <li class="menu-item menu-item-install-package"><a href="/cmake/docs/07_install_pack.html" rel="section"><i class="fa fa-download fa-fw"></i>Install package</a></li>
+  <li class="menu-item menu-item-install-package"><a href="/cmake/07_install_pack.html" rel="section"><i class="fa fa-download fa-fw"></i>Install package</a></li>
 
 
         </ul>
@@ -302,6 +312,9 @@
                 
         
       
+
+      
+      
   
 
 
@@ -314,12 +327,6 @@
 </h1>
 
 <div class="post-meta-container">
-  <ul class="breadcrumb">
-            <li><a href="/cmake/">CMAKE</a></li>
-            <li><a href="/cmake/docs/">DOCS</a></li>
-            <li>06_CROSS_COMPILING</li>
-          
-  </ul>
 </div>
 
 </header>
@@ -327,18 +334,35 @@
       
       
       <div class="post-body">
-          
+          <p><span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvbWFudWFsL2NtYWtlLW1vZHVsZXMuNy5odG1s">https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p> 拓展CMake的功能</p>
+</blockquote>
+<h2 id="两类"><a href="#两类" class="headerlink" title="两类:"></a>两类:</h2><ul>
+<li>CMake内置的module</li>
+<li>自己定制的module</li>
+</ul>
+<ul>
+<li><input disabled="" type="checkbox"> <em>FetchContent</em></li>
+</ul>
+<p>Modules are <code>&lt;script&gt;.cmake</code> files located in the <code>CMAKE_MODULE_PATH</code>.</p>
+<p>Modules can be loaded with the <code>include()</code> command.</p>
+<h2 id="其它相关"><a href="#其它相关" class="headerlink" title="其它相关:"></a>其它相关:</h2><p>变量:<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html#variable:CMAKE_MODULE_PATH"><code>CMAKE_MODULE_PATH</code></a></p>
+<p>通过include来引入</p>
+<p>cmake –help-module module_name</p>
+<p><strong>CMakeDependentOption</strong></p>
+<blockquote>
+<p>设置一个option依赖于另一个option</p>
+</blockquote>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span>(CMakeDependentOption)</span><br><span class="line"></span><br><span class="line">cmake_dependent_option(</span><br><span class="line">    option_var <span class="string">&quot;docs&quot;</span></span><br><span class="line">        <span class="keyword">ON</span> <span class="string">&quot;condition_expreesion&quot;</span> <span class="keyword">OFF</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>如果condition_expreesion是true, option_var是ON, 反之option_var是OFF</p>
+
       </div>
       
       
       
     </div>
-  <ul class="breadcrumb">
-            <li><a href="/cmake/">CMAKE</a></li>
-            <li><a href="/cmake/docs/">DOCS</a></li>
-            <li>06_CROSS_COMPILING</li>
-          
-  </ul>
 
     
     
@@ -418,7 +442,7 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://wshibin.github.io/cmake/docs/06_cross_compiling.html"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://wshibin.github.io/cmake/04_modules.html"}</script>
   <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/quicklink.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
 <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/comments/disqus.js"></script>

@@ -171,127 +171,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Android】翻了一遍EventBus官方文档</title>
-    <url>/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<blockquote>
-<p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hNTM2Y2YwMDc3MGI=">翻了一遍EventBus官方文档<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<blockquote>
-<p>EventBus事件总线.以观察者模式实现,消息推送/订阅.用于Android组件之间相互通信</p>
-</blockquote>
-<p>Note:文章基于EventBus3.0</p>
-<p><img src="/images/Xnip2021-01-16_23-21-38.jpg"></p>
-<p>项目地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyZWVucm9ib3QvRXZlbnRCdXM=">https://github.com/greenrobot/EventBus<i class="fa fa-external-link-alt"></i></span><br>Docments:<span class="exturl" data-url="aHR0cDovL2dyZWVucm9ib3Qub3JnL2V2ZW50YnVzL2RvY3VtZW50YXRpb24vaG93LXRvLWdldC1zdGFydGVkLw==">http://greenrobot.org/eventbus/documentation/how-to-get-started/<i class="fa fa-external-link-alt"></i></span></p>
-<p>###先来聊聊:什么是通信?</p>
-<blockquote>
-<p>Wiki中国: <strong>通信</strong>是发送者通过某种媒体以某种<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JUEwJUJDJUU1JUJDJThG">格式<i class="fa fa-external-link-alt"></i></span>来传递<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU0JUJGJUExJUU2JTgxJUFG">信息<i class="fa fa-external-link-alt"></i></span>到收信者以达致某个目的。在古代，人们通过<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUE5JTlCJUU3JUFCJTk5">驿站<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUEzJTlFJUU5JUI4JUJEJUU0JUJDJUEwJUU0JUI5JUE2">飞鸽传书<i class="fa fa-external-link-alt"></i></span>、烽火报警、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUFDJUE2JUU4JTk5JTlG">符号<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUFBJTlFJUU4JUE4JTgw">语言<i class="fa fa-external-link-alt"></i></span>、眼神、触碰等方式进行信息传递。到了今天，随着科技水平的飞速发展，通信基本完全利用有线或无线电完成，相继出现了<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3cvaW5kZXgucGhwP3RpdGxlPSVFNiU5QyU4OSVFNyVCNyU5QSVFOSU5QiVCQiVFOCVBOSVCMSZhY3Rpb249ZWRpdCZyZWRsaW5rPTE=">有线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU1JTlCJUJBJUU1JUFFJTlBJUU3JTk0JUI1JUU4JUFGJTlE">固定电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JTg0JUExJUU3JUI3JTlBJUU5JTlCJUJCJUU4JUE5JUIx">无线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JTg5JThCJUU2JUE5JTlG">手机<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUI2JUIyJUU5JTlBJTlCJUU3JUI2JUIyJUU4JUI3JUFG">互联网<i class="fa fa-external-link-alt"></i></span>甚至<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUE2JTk2JUU4JUE4JThBJUU5JTlCJUJCJUU4JUE5JUIx">视频电话<i class="fa fa-external-link-alt"></i></span>等各种通信方式。通信技术拉近了人与人之间的距离，提高了通信的效率，深刻的改变了人类的通信。交流也是一种方法让其他人理解你。</p>
-</blockquote>
-<p>上面是Wiki的解释,通信本身是个很抽象,宽泛的词, 你跟朋友打个电话叫通信, 发个Email也叫通信, 两个App之间传数据也叫通信,也叫为进程间通信, Activity和Activity之间传递数据叫组件间通信, 说到这里,来下个通俗点的定义:一个东西给另一个东西传递东西(数据),就叫通信.</p>
-<p>##EventBus有什么用?解决了什么问题?<br>方便Android组件间相互通信.在Activity,Service,Fragment之间传递数据,例如,你在个人主页编辑头像的界面修改了头像,这时候其它页面的头像也需要去修改,这时候可以试试EventBus.<br>基于观察者模式:这个好理解, 有消息的发送者,也有消息的接收者,当然,也可以是一发送者对应多个接收者, EventBus使用起来非常简单,可以用来提供广播之类</p>
-<p>##怎么用?</p>
-<ul>
-<li>添加依赖</li>
-<li>使用三歩曲:<ul>
-<li>定义事件类</li>
-<li>注册事件</li>
-<li>发送事件</li>
-</ul>
-</li>
-</ul>
-<p>###添加依赖</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">&#x27;org.greenrobot:eventbus:3.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>###使用三步曲:</p>
-<p>####1,定义事件类<br>事件类是通信过程中的数据的载体,用来传递数据,这里写一个最简单的事件类,后面说如何传递数据</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>####2.注册事件<br>上面提到数据的发送者和接收者, 注册事件是针对接收者的, 哪个组件需要接收消息,就在哪个组件中去注册</p>
-<ul>
-<li>注册: EventBus.getDefault().register(this);</li>
-<li>添加函数注解@Subscribe:当数据的发送者发出消息后,添加这个注解的函数会被调用</li>
-<li>添加@Subscribe注解的函数参数,写上接收事件类型,表示这个组件会接收这类事件的消息</li>
-<li>注销:EventBus:EventBus.getDefault().unregister(this);</li>
-</ul>
-<p><strong>Note:一个事件是可以有多个接收者(订阅者)</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>####3.发送事件<br>最后,消息的发送者发送事件, 这时候上面添加@Subscribe注解的函数会被调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
-
-<p>**这时候在回来看这张大图,So easy,**点击查看大图<br><img src="/images/Xnip2021-01-16_23-22-08.jpg"></p>
-<p>这里顺便吐槽下官方示例代码:<br><img src="/images/Xnip2021-01-16_23-22-29.jpg"></p>
-<p>如果你打算把注册写在onStart中,请在前面加上判断</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###上面是EventBus的基本使用流程,其实这才开始:</p>
-<ul>
-<li>在事件中传递数据</li>
-<li>指定事件接收线程</li>
-<li>发送黏性事件Sticky Events</li>
-<li>接收事件的优先级别</li>
-<li>中止事件传递</li>
-<li>订阅者索引</li>
-</ul>
-<p>###传递数据<br>不过,上面只是发了一个空的消息,没有传递任何的数据,比如:我修改了用户的头像,上传到服务器,服务器返回一个Url,这时候我需要修改其它界面的头像,这时候我要把这个url数据传到其它界面:怎么做呢?</p>
-<p>####1.只需要去修改定义事件类中的构造函数,增加一个参数,在加上set和get方法,如下:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateHeadPicEvent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">UpdateHeadPicEvent</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>####2.在发送事件的地方,使用这个带参的构造去创建对象:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> UpdateHeadImgEvent(url));</span><br></pre></td></tr></table></figure>
-
-<p>####3.在接收消息的回调中用get方法去获取</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>**Note:**这里只是用了一个String的Url做参考,可以传递的数据还有很多,List集合,Bean对象…</p>
-<p>###指定事件接收的线程<br>前面说了加上@Subscribe注解,这个函数在消息推送之后会被回调,其实这个注解还有几个属性,其中threadMode能为该函数指定线程,如果不写,也会有个默认值:ThreadMode.POSTING,意思是和发送事件所在线程一样</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.POSTING)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####ThreadMode列表</p>
-<ul>
-<li>ThreadMode.POSTING:和发送事件在同一个线程</li>
-<li>ThreadMode.MAIN:主线程</li>
-<li>ThreadMode.BACKGROUND:子线程</li>
-<li>ThreadMode.ASYNC:异步线程</li>
-</ul>
-<p>####发送黏性事件Sticky Events<br>上面示例代码所说的情况是:当发送消息推送者推送消息的时候,订阅者会立马收到消息,它会把消息推送给它所有的订阅者.注意后面这句话:<strong>如果你希望在消息推送完成之后,让新注册的订阅者也能收到这条消息,这时候你可以试试Sticky Events</strong>,这个事件就像一个常驻广播,只要是有新的订阅者订阅了这个事件,就会收到消息.当然,有两点要求:</p>
-<ol>
-<li>首先,发送的是黏性事件,代码将post改为postSticky</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>然后,订阅者要声明自己能够接收到黏性事件的消息:代码中@Subscribe注解中的sticky值为true,满足了这两点,就能愉快的玩耍了.</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试Log日志<br><img src="/images/Xnip2021-01-16_23-22-51.jpg"></p>
-<p>###接收事件的优先级别<br>EventBus可以定义接收事件方的优先级别,在@Subscribe注解中有一个priority的参数,默认值是0,可以自行配置1.2.3.4…数值越大优先级越低,会越晚收到消息</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###中止事件传递<br>类似于有序广播,优先级高的订阅者,可以终止事件向下传递,EventBus也提供了此功能</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###订阅者索引<br>这个新特性是在EventBus 3.0推出,简单的说:利用annotationProcessor去生成一个关于订阅者的索引类,保存订阅者的相关信息.<br>有什么用?提高效率,注册从运行时的反射,转移到了编译时<br>怎么用?两种方式:</p>
-<ul>
-<li>在gradle版本2.2.0以前使用：Android-apt</li>
-<li>在gradle版本2.2.0以上使用：annotationProcessor</li>
-</ul>
-<p>这里说annotationProcessor的方式,现在新建项目一般都在2.2.0以上:<br>添加好Gradle设置之后,重新build项目,就会为你生成这样的类:MyEventBusIndex<br>![](/assets/EventBus Annotation Processor.png)</p>
-<p>用法:将它配置应用于默认的EventBus,调用下面代码:可放在Application的onCreate中调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.builder().addIndex(<span class="keyword">new</span> MyEventBusIndex()).installDefaultEventBus();</span><br></pre></td></tr></table></figure>
-<p>未添加前和添加后我分别做了三次测试,注册完成的时间对比,速度快了不止一倍,这还是只有两个订阅者的时候,如果订阅订阅者更多呢,</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//未添加前</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892487664</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892487666</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892568177</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892568180</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892715342</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892715344</span><br><span class="line"></span><br><span class="line">//添加后</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892648185</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892648186</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892814517</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892814518</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892868879</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892868880</span><br></pre></td></tr></table></figure>
-<p>#####在Lib的model中使用:<br>build.gradle也要添加上图中同样的参数,在上图中,这个参数是自定义的,不同的model可以为他生成不同的索引类:</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">arguments = [<span class="attr">eventBusIndex:</span> <span class="string">&#x27;com.example.myapp.MyEventBusIndex&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<p>更改默认配置也需要多添加一行代码:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus eventBus = EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusAppIndex())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusLibIndex())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
-
-<p>最后代码地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9FdmVudGJ1c2RlbW8=">https://github.com/Shib90/Eventbusdemo<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Personal】我为什么喜欢用键盘/快捷键,而不是鼠标?</title>
     <url>/2017/06/14/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%96%9C%E6%AC%A2%E7%94%A8%E9%94%AE%E7%9B%98.%E5%BF%AB%E6%8D%B7%E9%94%AE.%E8%80%8C%E4%B8%8D%E6%98%AF%E9%BC%A0%E6%A0%87/</url>
     <content><![CDATA[<blockquote>
@@ -578,6 +457,127 @@
       <tags>
         <tag>Homebrew</tag>
         <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Android】翻了一遍EventBus官方文档</title>
+    <url>/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<blockquote>
+<p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hNTM2Y2YwMDc3MGI=">翻了一遍EventBus官方文档<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<blockquote>
+<p>EventBus事件总线.以观察者模式实现,消息推送/订阅.用于Android组件之间相互通信</p>
+</blockquote>
+<p>Note:文章基于EventBus3.0</p>
+<p><img src="/images/Xnip2021-01-16_23-21-38.jpg"></p>
+<p>项目地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyZWVucm9ib3QvRXZlbnRCdXM=">https://github.com/greenrobot/EventBus<i class="fa fa-external-link-alt"></i></span><br>Docments:<span class="exturl" data-url="aHR0cDovL2dyZWVucm9ib3Qub3JnL2V2ZW50YnVzL2RvY3VtZW50YXRpb24vaG93LXRvLWdldC1zdGFydGVkLw==">http://greenrobot.org/eventbus/documentation/how-to-get-started/<i class="fa fa-external-link-alt"></i></span></p>
+<p>###先来聊聊:什么是通信?</p>
+<blockquote>
+<p>Wiki中国: <strong>通信</strong>是发送者通过某种媒体以某种<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JUEwJUJDJUU1JUJDJThG">格式<i class="fa fa-external-link-alt"></i></span>来传递<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU0JUJGJUExJUU2JTgxJUFG">信息<i class="fa fa-external-link-alt"></i></span>到收信者以达致某个目的。在古代，人们通过<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUE5JTlCJUU3JUFCJTk5">驿站<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUEzJTlFJUU5JUI4JUJEJUU0JUJDJUEwJUU0JUI5JUE2">飞鸽传书<i class="fa fa-external-link-alt"></i></span>、烽火报警、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUFDJUE2JUU4JTk5JTlG">符号<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUFBJTlFJUU4JUE4JTgw">语言<i class="fa fa-external-link-alt"></i></span>、眼神、触碰等方式进行信息传递。到了今天，随着科技水平的飞速发展，通信基本完全利用有线或无线电完成，相继出现了<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3cvaW5kZXgucGhwP3RpdGxlPSVFNiU5QyU4OSVFNyVCNyU5QSVFOSU5QiVCQiVFOCVBOSVCMSZhY3Rpb249ZWRpdCZyZWRsaW5rPTE=">有线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU1JTlCJUJBJUU1JUFFJTlBJUU3JTk0JUI1JUU4JUFGJTlE">固定电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JTg0JUExJUU3JUI3JTlBJUU5JTlCJUJCJUU4JUE5JUIx">无线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JTg5JThCJUU2JUE5JTlG">手机<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUI2JUIyJUU5JTlBJTlCJUU3JUI2JUIyJUU4JUI3JUFG">互联网<i class="fa fa-external-link-alt"></i></span>甚至<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUE2JTk2JUU4JUE4JThBJUU5JTlCJUJCJUU4JUE5JUIx">视频电话<i class="fa fa-external-link-alt"></i></span>等各种通信方式。通信技术拉近了人与人之间的距离，提高了通信的效率，深刻的改变了人类的通信。交流也是一种方法让其他人理解你。</p>
+</blockquote>
+<p>上面是Wiki的解释,通信本身是个很抽象,宽泛的词, 你跟朋友打个电话叫通信, 发个Email也叫通信, 两个App之间传数据也叫通信,也叫为进程间通信, Activity和Activity之间传递数据叫组件间通信, 说到这里,来下个通俗点的定义:一个东西给另一个东西传递东西(数据),就叫通信.</p>
+<p>##EventBus有什么用?解决了什么问题?<br>方便Android组件间相互通信.在Activity,Service,Fragment之间传递数据,例如,你在个人主页编辑头像的界面修改了头像,这时候其它页面的头像也需要去修改,这时候可以试试EventBus.<br>基于观察者模式:这个好理解, 有消息的发送者,也有消息的接收者,当然,也可以是一发送者对应多个接收者, EventBus使用起来非常简单,可以用来提供广播之类</p>
+<p>##怎么用?</p>
+<ul>
+<li>添加依赖</li>
+<li>使用三歩曲:<ul>
+<li>定义事件类</li>
+<li>注册事件</li>
+<li>发送事件</li>
+</ul>
+</li>
+</ul>
+<p>###添加依赖</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">&#x27;org.greenrobot:eventbus:3.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>###使用三步曲:</p>
+<p>####1,定义事件类<br>事件类是通信过程中的数据的载体,用来传递数据,这里写一个最简单的事件类,后面说如何传递数据</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####2.注册事件<br>上面提到数据的发送者和接收者, 注册事件是针对接收者的, 哪个组件需要接收消息,就在哪个组件中去注册</p>
+<ul>
+<li>注册: EventBus.getDefault().register(this);</li>
+<li>添加函数注解@Subscribe:当数据的发送者发出消息后,添加这个注解的函数会被调用</li>
+<li>添加@Subscribe注解的函数参数,写上接收事件类型,表示这个组件会接收这类事件的消息</li>
+<li>注销:EventBus:EventBus.getDefault().unregister(this);</li>
+</ul>
+<p><strong>Note:一个事件是可以有多个接收者(订阅者)</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>####3.发送事件<br>最后,消息的发送者发送事件, 这时候上面添加@Subscribe注解的函数会被调用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+
+<p>**这时候在回来看这张大图,So easy,**点击查看大图<br><img src="/images/Xnip2021-01-16_23-22-08.jpg"></p>
+<p>这里顺便吐槽下官方示例代码:<br><img src="/images/Xnip2021-01-16_23-22-29.jpg"></p>
+<p>如果你打算把注册写在onStart中,请在前面加上判断</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###上面是EventBus的基本使用流程,其实这才开始:</p>
+<ul>
+<li>在事件中传递数据</li>
+<li>指定事件接收线程</li>
+<li>发送黏性事件Sticky Events</li>
+<li>接收事件的优先级别</li>
+<li>中止事件传递</li>
+<li>订阅者索引</li>
+</ul>
+<p>###传递数据<br>不过,上面只是发了一个空的消息,没有传递任何的数据,比如:我修改了用户的头像,上传到服务器,服务器返回一个Url,这时候我需要修改其它界面的头像,这时候我要把这个url数据传到其它界面:怎么做呢?</p>
+<p>####1.只需要去修改定义事件类中的构造函数,增加一个参数,在加上set和get方法,如下:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateHeadPicEvent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">UpdateHeadPicEvent</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####2.在发送事件的地方,使用这个带参的构造去创建对象:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> UpdateHeadImgEvent(url));</span><br></pre></td></tr></table></figure>
+
+<p>####3.在接收消息的回调中用get方法去获取</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>**Note:**这里只是用了一个String的Url做参考,可以传递的数据还有很多,List集合,Bean对象…</p>
+<p>###指定事件接收的线程<br>前面说了加上@Subscribe注解,这个函数在消息推送之后会被回调,其实这个注解还有几个属性,其中threadMode能为该函数指定线程,如果不写,也会有个默认值:ThreadMode.POSTING,意思是和发送事件所在线程一样</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.POSTING)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####ThreadMode列表</p>
+<ul>
+<li>ThreadMode.POSTING:和发送事件在同一个线程</li>
+<li>ThreadMode.MAIN:主线程</li>
+<li>ThreadMode.BACKGROUND:子线程</li>
+<li>ThreadMode.ASYNC:异步线程</li>
+</ul>
+<p>####发送黏性事件Sticky Events<br>上面示例代码所说的情况是:当发送消息推送者推送消息的时候,订阅者会立马收到消息,它会把消息推送给它所有的订阅者.注意后面这句话:<strong>如果你希望在消息推送完成之后,让新注册的订阅者也能收到这条消息,这时候你可以试试Sticky Events</strong>,这个事件就像一个常驻广播,只要是有新的订阅者订阅了这个事件,就会收到消息.当然,有两点要求:</p>
+<ol>
+<li>首先,发送的是黏性事件,代码将post改为postSticky</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>然后,订阅者要声明自己能够接收到黏性事件的消息:代码中@Subscribe注解中的sticky值为true,满足了这两点,就能愉快的玩耍了.</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试Log日志<br><img src="/images/Xnip2021-01-16_23-22-51.jpg"></p>
+<p>###接收事件的优先级别<br>EventBus可以定义接收事件方的优先级别,在@Subscribe注解中有一个priority的参数,默认值是0,可以自行配置1.2.3.4…数值越大优先级越低,会越晚收到消息</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###中止事件传递<br>类似于有序广播,优先级高的订阅者,可以终止事件向下传递,EventBus也提供了此功能</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###订阅者索引<br>这个新特性是在EventBus 3.0推出,简单的说:利用annotationProcessor去生成一个关于订阅者的索引类,保存订阅者的相关信息.<br>有什么用?提高效率,注册从运行时的反射,转移到了编译时<br>怎么用?两种方式:</p>
+<ul>
+<li>在gradle版本2.2.0以前使用：Android-apt</li>
+<li>在gradle版本2.2.0以上使用：annotationProcessor</li>
+</ul>
+<p>这里说annotationProcessor的方式,现在新建项目一般都在2.2.0以上:<br>添加好Gradle设置之后,重新build项目,就会为你生成这样的类:MyEventBusIndex<br>![](/assets/EventBus Annotation Processor.png)</p>
+<p>用法:将它配置应用于默认的EventBus,调用下面代码:可放在Application的onCreate中调用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.builder().addIndex(<span class="keyword">new</span> MyEventBusIndex()).installDefaultEventBus();</span><br></pre></td></tr></table></figure>
+<p>未添加前和添加后我分别做了三次测试,注册完成的时间对比,速度快了不止一倍,这还是只有两个订阅者的时候,如果订阅订阅者更多呢,</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//未添加前</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892487664</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892487666</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892568177</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892568180</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892715342</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892715344</span><br><span class="line"></span><br><span class="line">//添加后</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892648185</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892648186</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892814517</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892814518</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892868879</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892868880</span><br></pre></td></tr></table></figure>
+<p>#####在Lib的model中使用:<br>build.gradle也要添加上图中同样的参数,在上图中,这个参数是自定义的,不同的model可以为他生成不同的索引类:</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">arguments = [<span class="attr">eventBusIndex:</span> <span class="string">&#x27;com.example.myapp.MyEventBusIndex&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>更改默认配置也需要多添加一行代码:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus eventBus = EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusAppIndex())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusLibIndex())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
+
+<p>最后代码地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9FdmVudGJ1c2RlbW8=">https://github.com/Shib90/Eventbusdemo<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -1384,8 +1384,8 @@
 <li>插件:插件数量多,而且质量高</li>
 </ul>
 <p><strong>VSCode的定位</strong>:</p>
-<p><img src="/images/VSCode_image-20210421004416114.png" alt="image-20210421004416114"></p>
-<h2 id="UI外观"><a href="#UI外观" class="headerlink" title="UI外观"></a>UI外观</h2><p><img src="/images/VSCode_hero.png" alt="code basics hero"></p>
+<p><img src="/images/VSCode_image-20210421004416114.png" alt="VSCode的定位"></p>
+<h2 id="UI外观"><a href="#UI外观" class="headerlink" title="UI外观"></a>UI外观</h2><p><img src="/images/VSCode_hero.png" alt="VSCode UI"></p>
 <ul>
 <li>Editor Groups:编辑区</li>
 <li>Side Bar侧边栏:<ul>
@@ -1609,9 +1609,9 @@
 <p>如果tab无法生成模板,注意在上面空行</p>
 </blockquote>
 <h3 id="Error-Lens-把错误和警告显示在编辑区"><a href="#Error-Lens-把错误和警告显示在编辑区" class="headerlink" title="Error Lens:把错误和警告显示在编辑区"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi91c2VybmFtZWh3LmVycm9ybGVucw==">Error Lens<i class="fa fa-external-link-alt"></i></span>:把错误和警告显示在编辑区</h3><p>默认错误和警告在panel面板里面,查看不方便</p>
-<p><img src="/images/VSCode_demo.png" alt="Demo image"></p>
+<p><img src="/images/VSCode_demo.png" alt="Error Lens Demo"></p>
 <h3 id="vscode-icons-文件图标增强插件"><a href="#vscode-icons-文件图标增强插件" class="headerlink" title="vscode-icons:文件图标增强插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92c2NvZGUtaWNvbnMtdGVhbS52c2NvZGUtaWNvbnM=">vscode-icons<i class="fa fa-external-link-alt"></i></span>:文件图标增强插件</h3><p>配置演示图:</p>
-<p><img src="/images/VSCode_screenshot.gif" alt="demo"></p>
+<p><img src="/images/VSCode_screenshot.gif" alt="vscode-icons demo"></p>
 <h3 id="Todo-Tree-显示项目中的todo列表-高亮todo"><a href="#Todo-Tree-显示项目中的todo列表-高亮todo" class="headerlink" title="Todo Tree:显示项目中的todo列表,高亮todo"></a><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPUdydW50ZnVnZ2x5LnRvZG8tdHJlZQ==">Todo Tree<i class="fa fa-external-link-alt"></i></span>:显示项目中的todo列表,高亮todo</h3><img src="/images/VSCode_screenshot.png" style="zoom: 43%;" />
 
 
@@ -1621,16 +1621,20 @@
 <p>Snippets配置文件:<code>c.json</code>,<code>cpp.json</code></p>
 <p>代码格式化文件:<code>.clang-format</code></p>
 <p>代码静态分析文件:<code>.clangd</code></p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题:"></a>常见问题:</h2><h3 id="大项目全局搜索失效"><a href="#大项目全局搜索失效" class="headerlink" title="大项目全局搜索失效:"></a>大项目全局搜索失效:</h3><p>解决方式:</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题:"></a>常见问题:</h2><h3 id="1-VSCode遇到了Bug"><a href="#1-VSCode遇到了Bug" class="headerlink" title="1.VSCode遇到了Bug:"></a>1.VSCode遇到了Bug:</h3><p>重新加载VSCode</p>
+<h3 id="2-插件遇到了Bug"><a href="#2-插件遇到了Bug" class="headerlink" title="2.插件遇到了Bug:"></a>2.插件遇到了Bug:</h3><p>安装老版本,或者用过的相对稳定的版本的插件</p>
+<img src="/images/image-20210709005511695.png" alt="Install anothor version" style="zoom:50%;" />
+
+<h3 id="3-大项目全局搜索失效"><a href="#3-大项目全局搜索失效" class="headerlink" title="3.大项目全局搜索失效:"></a>3.大项目全局搜索失效:</h3><p>解决方式:</p>
 <ol>
 <li>配置只搜索哪些文件,和配置不搜索哪些文件</li>
 </ol>
-<img src="/images/VSCode_image-20210422011735490.png" alt="image-20210422011735490" style="zoom: 67%;" />
+<img src="/images/VSCode_image-20210422011735490.png" alt="Search" style="zoom: 67%;" />
 
 <ol start="2">
 <li>使用grep做为替代</li>
 </ol>
-<h3 id="大项目文件更新或者创建了VSCode不显示"><a href="#大项目文件更新或者创建了VSCode不显示" class="headerlink" title="大项目文件更新或者创建了VSCode不显示:"></a>大项目文件更新或者创建了VSCode不显示:</h3><p>项目文件过多,vscode无法跟踪目录下所有文件变化</p>
+<h3 id="4-大项目文件更新或者创建了VSCode不显示"><a href="#4-大项目文件更新或者创建了VSCode不显示" class="headerlink" title="4.大项目文件更新或者创建了VSCode不显示:"></a>4.大项目文件更新或者创建了VSCode不显示:</h3><p>项目文件过多,vscode无法跟踪目录下所有文件变化</p>
 <p>解决方式:</p>
 <ol>
 <li>配置VSCode不去跟踪哪些目录或文件的变化,来减少VSCode跟踪文件的数目</li>
@@ -1642,7 +1646,7 @@
 <ol start="2">
 <li>手动刷新</li>
 </ol>
-<img src="/images/VSCode_image-20210422004320976.png" alt="image-20210422004320976" style="zoom:67%;" />]]></content>
+<img src="/images/VSCode_image-20210422004320976.png" alt="Refresh explorer" style="zoom:67%;" />]]></content>
       <categories>
         <category>Tools</category>
       </categories>
@@ -1684,7 +1688,8 @@
 <h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
 <p><strong>正确的流程</strong>:</p>
 <ol>
-<li>表明意图: 在做一个什么功能? 调试什么东西? 用到哪些技术,模块?</li>
+<li>表明意图: 在做一个什么功能? 调试什么东西? </li>
+<li>你是如何做的,用到哪些技术,模块,整个流程是怎么样的?</li>
 <li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
 <li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
 </ol>
@@ -1711,8 +1716,34 @@
 <li>看医生前,自己先做好准备</li>
 <li>医生看病的局限性</li>
 </ul>
-<!-- todo -->
-
+<h2 id="运动注意循序渐进-对于不熟悉的器材-切勿自以为是的认为这个器材该如何使用"><a href="#运动注意循序渐进-对于不熟悉的器材-切勿自以为是的认为这个器材该如何使用" class="headerlink" title="运动注意循序渐进;对于不熟悉的器材,切勿自以为是的认为这个器材该如何使用"></a>运动注意循序渐进;对于不熟悉的器材,切勿自以为是的认为这个器材该如何使用</h2><p>循序渐进这个就不强调了,由于运动过猛导致第二天酸痛的经历,或者生病的人可能不少.年轻时会恢复的很快,年老了就恢复能力逐渐下降,最简单的例子就是,小孩子天天摔倒没啥事,但一个七老八十摔一下断骨头的事有常见.</p>
+<p>第二点是,对于你不熟悉的运动器材,别乱玩,好比自己第一次玩臂力器,第一次玩扎马步或是静蹲,玩不了几个,也坚持不了多久. 很简单,在此之前都没有这样发力过,相应的发力肌肉群都没有锻炼过. 而玩不熟悉的器材可能导致超负荷的使用以前未使用的关节或者肌肉群,远远超出它们的负荷,导致容易弄伤. 反之,比如跑步机,每天都在走路,有时自己也跑步,去健身房玩个跑步机一般问题不大</p>
+<h2 id="身体垮的比自己认为的快-恢复的比自己认为的慢"><a href="#身体垮的比自己认为的快-恢复的比自己认为的慢" class="headerlink" title="身体垮的比自己认为的快,恢复的比自己认为的慢"></a>身体垮的比自己认为的快,恢复的比自己认为的慢</h2><p>这次出问题的一部分原因是因为自己的自以为是,想想以前骑车去拉萨,能骑上一整天的自行车,这才哪跟哪,终究抵不过时间</p>
+<h2 id="有些依据-比如说疼痛并不能作为病好了的条件"><a href="#有些依据-比如说疼痛并不能作为病好了的条件" class="headerlink" title="有些依据,比如说疼痛并不能作为病好了的条件"></a>有些依据,比如说疼痛并不能作为病<strong>好了</strong>的条件</h2><p>中途有几次,膝盖内感觉不疼了,我错误的认为<strong>好了</strong>,误判之后浪了一波,导致反弹.疼的更严重了. <strong>疼痛</strong>并不能作为好没好的条件,类比其它,以前胃出问题了,后来不疼了,胃病就好了? 然并卵</p>
+<h2 id="别把自己交给医生-自己多查资料研究"><a href="#别把自己交给医生-自己多查资料研究" class="headerlink" title="别把自己交给医生,自己多查资料研究"></a>别把自己<strong>交给</strong>医生,自己多查资料研究</h2><p>试想一下,把自己的命交到一个坏人手上会怎么样? 当然这种假设把问题放大了.也只把问题放大了才能把问题看得更清楚.遇到了有医德的医生还好,遇到了医德不好的医生就坑人. 对于来说,500块也是给人治病,2w块也是给人治病.对你来说可能没有啥区别,对他来说收益可能更高.不幸的事,这次遇到了一个坑比医生.告诉我”吃这个药两周,没有什么改善,可能就需要手术了”.后来我去了第二家医院,医生告诉我,根本不用手术,反倒问了句”手术做什么东西呢?”,弄的我一时不知道怎么回答,但暗自窃喜,毕竟遇到了一个好医生.后来在另一个医生口中得知,给我开的两周的药是中成药,估计要吃一两个月才会有所改善.所以,我吃完这两周的要大致是没有什么改善,大致可能会来手术?</p>
+<h2 id="看医生前-自己先做好准备"><a href="#看医生前-自己先做好准备" class="headerlink" title="看医生前,自己先做好准备"></a>看医生前,自己先做好准备</h2><ul>
+<li>哪个地方伤了,确诊为什么病,确诊的依据是什么?</li>
+<li>在比如这个病情现在到哪一阶段了,意味着什么</li>
+<li>有哪些注意事项</li>
+<li>有哪些治疗方案,这个方案会不会产生什么后遗症</li>
+<li>建议的治疗方式是什么</li>
+</ul>
+<p>为啥要提前想好.医生很忙,每天见的都是同类的病人,你不问,他也懒得说. 他可能想着”赶紧下一个”</p>
+<h2 id="医生看病的局限性"><a href="#医生看病的局限性" class="headerlink" title="医生看病的局限性"></a>医生看病的局限性</h2><p>对于门诊的医生很忙,忙的他不会苦口婆心的跟你讲一套完整的治疗方案,以及注意事项.正如上面提到的,你不问他也懒得说了,给你开药就完事了.所以需要提前准备好问题</p>
+<p>在来.诊断/确诊的依据,依赖于你的描述,检测报告,以及医生的判断.判断有时和经验关系很多.其中有诸多不确定性,如何去提高我们描述的准确性,如何去找有经验,医术高超的医生,这是可以自己去把握的</p>
+<p>最后,是遇到医生的医德.这让我想起了我镇上的一个医生,有人说两天打针能治好的病,他会给你打四五天的医生,后来,这诊所关门了,人也搬家了.我姨夫也是个医生,医德比较好,卖的药也便宜.你去药房买药,人家恨不得多开几盒给你,我姨夫会把一盒药拆了,用剪刀剪开,卖一部分,”你先吃两餐(次),没好在来看看”.</p>
+<blockquote>
+<p>早前看了本书叫&lt;&lt;原则&gt;&gt;, 里面有个小故事,作者生了病. 有的医生告诉他活不了多久了;还有医生告诉他这是良性的,没有太大影响.好在作者比较聪明(有钱),把两个医生叫到了一起,两个医生一起讨论,之前区别非常大的结论就会往同一结论上靠, 最后,作者并没有得什么绝症</p>
+</blockquote>
+<p>因为上面的小故事,我也多跑了几家医院,多问了几个医院,也遇到了坑比,但结论算是好的</p>
+<h2 id="在聊医生"><a href="#在聊医生" class="headerlink" title="在聊医生"></a>在聊医生</h2><p>正直新冠疫情,在电视看到一批一批的医生派往武汉,众志成城.那时候在想,一个地方,有好官和好医生,民之所幸.</p>
+<p>在来思考下医生的环境,医生每天面对的都是病人,而病人有求于他.如果每天有人有求于你,并对你说的话深信不疑,这将是对人性是极大的考验.医生掌握一定的权力,怎么去用这个权力. 电影<span class="exturl" data-url="aHR0cHM6Ly9tb3ZpZS5kb3ViYW4uY29tL3N1YmplY3QvMzgwNTA5MS8=">死亡实验<i class="fa fa-external-link-alt"></i></span>就是一个放大版人性扭曲的例子.</p>
+<h2 id="去的几家医院对比"><a href="#去的几家医院对比" class="headerlink" title="去的几家医院对比"></a>去的几家医院对比</h2><p>自己主要咨询了三个医生,北大深圳医院,深圳二医院,西安交通大学第二附属医院(丁香医生上)</p>
+<p>北大深圳医院的坑比医生就不提了;后面两个两个医生开的药品和治疗方案都类似;丁香医生上的医生给的建议和治疗方案最全,从注意事项,治疗方案从热敷,理疗,药物治疗在到锻炼非常全.</p>
+<p><img src="/images/image-20210709003604362.png" alt="注意事项和治疗方案"></p>
+<p>感觉这个平台不错,上面有关于病的科普资料,还有很多公开的医生/病人对话案例,还有按打分排名的医生排行榜,让你找到比较好的医生.墙裂推荐</p>
+<p>前有”百度一下会死”. 在百度搜索一下某个病,我可能想要的是这个病的科普,而百度会推荐给你”方案”/“医院”,而这些”医院”通过通过花钱让你看到我, 这钱可能还得你来出.最怕的是花了钱,耽误了治疗,命还没了. 而不少慢性病,不治之症就成了财富密码.</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>望自己早日康复,锻炼身体</p>
 ]]></content>
       <categories>
         <category>Personal</category>

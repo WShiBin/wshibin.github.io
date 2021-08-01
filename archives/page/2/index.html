@@ -27,12 +27,10 @@
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
-<meta name="description" content="xixi">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/archives/page/2/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="xixi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
@@ -51,9 +49,14 @@
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
   <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
 
+  <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
 
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
   <noscript>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/css/noscript.css">
   </noscript>
@@ -95,7 +98,8 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li>
         
             
   <li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li>
@@ -176,7 +180,7 @@
     <img class="site-author-image" itemprop="image" alt="Shi Bin"
       src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">Shi Bin</p>
-  <div class="site-description" itemprop="description">xixi</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
@@ -200,6 +204,9 @@
       </span>
       <span class="links-of-author-item">
         <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
       </span>
   </div>
 
@@ -239,12 +246,218 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">【C】libdbus上手教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-15 22:54:10" itemprop="dateCreated datePublished" datetime="2021-01-15T22:54:10Z">2021-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/01/16/libdbus上手教程/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <!-- # libdbus Overview -->
+
+<p>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="What-is-D-Bus"><a href="#What-is-D-Bus" class="headerlink" title="What is D-Bus?"></a>What is D-Bus?</h2><blockquote>
+<p>D-Bus is <strong>a message bus system</strong>, a simple way for <strong>applications to talk to one another</strong>. In addition to interprocess communication, D-Bus helps <strong>coordinate process lifecycle</strong>; it makes it simple and reliable to code a “<strong>single instance</strong>“ application or daemon, and to <strong>launch applications</strong> and daemons on demand when their services are needed.</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>A message bus system<ul>
+<li>一对多(signal):类似于广播/订阅,可以携带消息数据,没有应答确认</li>
+<li>一对一(method call):有应答确认</li>
+</ul>
+</li>
+<li>其他功能<ul>
+<li>启动其它进程</li>
+<li>支持单个实例进程</li>
+<li>在app退出的时候,通知程序</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统bus和会话bus"><a href="#系统bus和会话bus" class="headerlink" title="系统bus和会话bus"></a>系统bus和会话bus</h2><p><strong>system bus</strong>: 在引导时就会启动,<br><strong>session bus</strong>: 在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
+<h2 id="Low-level-API-vs-high-level-binding-APIs"><a href="#Low-level-API-vs-high-level-binding-APIs" class="headerlink" title="Low-level API vs high-level binding APIs"></a>Low-level API vs high-level binding APIs</h2><p>low-level API: libdbus<br>high-level binding APIs: GLib, Qt, Python, Mono, Java, or whatever.</p>
+<p><strong>区别:</strong></p>
+<ul>
+<li>low-level:用起来更加复杂,定制程度可以更高,更加适合自己封装,改造</li>
+<li>high-level:用起来更加方便</li>
+</ul>
+<h2 id="Version-numbers"><a href="#Version-numbers" class="headerlink" title="Version numbers"></a>Version numbers</h2><blockquote>
+<p>软件版本格式:major.<strong>minor</strong>.patch</p>
+</blockquote>
+<p>minor version 是偶数的是stable版本,奇数的是dev版本<br>比如, development snapshots: 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions: 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
+<h2 id="D-Bus中的概念"><a href="#D-Bus中的概念" class="headerlink" title="D-Bus中的概念"></a>D-Bus中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>:</p>
+<ul>
+<li>启动bus daemon, 生成bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
+<li>获取bus daemon的connect连接, 注册bus name(com.mycompany.TextEditor)</li>
+<li>创建msg, 发给哪个bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
+<li>发送msg到bus daemon</li>
+<li>bus daemon发送到相应的bus name进程</li>
+<li>接收到消息后返回数据</li>
+<li>…</li>
+</ul>
+<p><img src="/images/Xnip2021-01-15_23-03-16.jpg"></p>
+<p><strong>相应概念:</strong></p>
+<p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
+<table>
+<thead>
+<tr>
+<th><strong>A…</strong></th>
+<th><strong>is identified by a(n)…</strong></th>
+<th><strong>which looks like…</strong></th>
+<th><strong>and is chosen by…</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bus</td>
+<td>address</td>
+<td><code>unix:path=/var/run/dbus/system_bus_socket</code></td>
+<td>system configuration</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>bus name</td>
+<td><code>:34-907</code> (<em>unique</em>) or <code>com.mycompany.TextEditor</code> (<em>well-known</em>)</td>
+<td>D-Bus (<em>unique</em>) or the owning program (<em>well-known</em>)</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>path</td>
+<td><code>/com/mycompany/TextFileManager</code></td>
+<td>the owning program</td>
+</tr>
+<tr>
+<td><em>Interface</em></td>
+<td><em>interface name</em></td>
+<td><code>org.freedesktop.Hal.Manager</code></td>
+<td><em>the owning program</em></td>
+</tr>
+<tr>
+<td>Member</td>
+<td>member name</td>
+<td><code>ListNames</code></td>
+<td>the owning program</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h3 id="D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface"><a href="#D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface" class="headerlink" title="D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?"></a><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbCNpZG0zOQ==">D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?<i class="fa fa-external-link-alt"></i></span></h3><p>If you imagine a C++ program that implements a network service, then the bus name is the hostname of the computer running this C++ program, the object path is a C++ object instance pointer, and an interface is a C++ class (a pure virtual or abstract class, to be exact).<br>In Java terms, the object path is an object reference, and an interface is a Java interface.<br>People get confused because if they write an application with a single object instance and a single interface, then the bus name, object path, and interface look redundant. For example, you might have a text editor that uses the bus name org.freedesktop.TextEditor, has a global singleton object called /org/freedesktop/TextEditor, and that singleton object could implement the interface org.freedesktop.TextEditor.<br>However, a text editor application could as easily own multiple bus names (for example, org.kde.KWrite in addition to generic TextEditor), have multiple objects (maybe /org/kde/documents/4352 where the number changes according to the document), and each object could implement multiple interfaces, such as org.freedesktop.DBus.Introspectable, org.freedesktop.BasicTextField, org.kde.RichTextDocument.</p>
+</blockquote>
+<h2 id="D-Bus消息类型"><a href="#D-Bus消息类型" class="headerlink" title="D-Bus消息类型"></a>D-Bus消息类型</h2><p>消息通过D-Bus在进程间传递。有四类消息：</p>
+<ul>
+<li>Method call消息：将触发对象的一个method</li>
+<li>Method return消息：触发的方法返回的结果</li>
+<li>Error消息：触发的方法返回一个异常</li>
+<li>Signal消息：通知，可以看作为事件消息。</li>
+</ul>
+<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h2 id="Command-line命令行工具"><a href="#Command-line命令行工具" class="headerlink" title="Command-line命令行工具"></a>Command-line命令行工具</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>: Message bus daemon</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>: 从shell脚本来启动message bus工具</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>: 发送消息到message bus</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>: debug probe to print message bus messages</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>: 生成UUIDs工具</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## launch message bus</span></span><br><span class="line">$ dbus-launch --sh-syntax</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-send</span></span><br><span class="line"><span class="comment"># send signal</span></span><br><span class="line">$ dbus-send --<span class="built_in">type</span>=signal /  org.signal.poweroff.test_signal string:<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># send message_call</span></span><br><span class="line">$ dbus-send --dest=org.freedesktop.ExampleName               \</span><br><span class="line">            /org/freedesktop/sample/object/name              \</span><br><span class="line">            org.freedesktop.ExampleInterface.ExampleMethod   \</span><br><span class="line">            int32:47 string:<span class="string">&#x27;hello world&#x27;</span> double:65.32       \</span><br><span class="line">            array:string:<span class="string">&quot;1st item&quot;</span>,<span class="string">&quot;next item&quot;</span>,<span class="string">&quot;last item&quot;</span>  \</span><br><span class="line">            dict:string:int32:<span class="string">&quot;one&quot;</span>,1,<span class="string">&quot;two&quot;</span>,2,<span class="string">&quot;three&quot;</span>,3      \</span><br><span class="line">            variant:int32:-8                                 \</span><br><span class="line">            objpath:/org/freedesktop/sample/object/name</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-uuidgen</span></span><br><span class="line"><span class="comment"># it just prints a new uuid</span></span><br><span class="line">$ dbus-uuidgen</span><br><span class="line">ebb40ad49f9d4d8f44faa3bc5fffdc27</span><br><span class="line"></span><br><span class="line"><span class="comment"># prints the machine UUID by default</span></span><br><span class="line">$ dbus-uuidgen --get</span><br><span class="line">5b86dc18cce752c5404d2f0a5ffd1885</span><br><span class="line"></span><br><span class="line">$ dbus-uuidgen --ensure=/usr/<span class="built_in">local</span>/var/lib/dbus/machine-id</span><br></pre></td></tr></table></figure>
+
+<p>dbus-launch启动脚本:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">## test for an existing bus daemon, just to be safe</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="comment">## if not found, launch a new one</span></span><br><span class="line">    <span class="built_in">eval</span> $(dbus-launch --sh-syntax --exit-with-session)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;D-Bus per-session daemon address is: <span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Graphical图形调试工具"><a href="#Graphical图形调试工具" class="headerlink" title="Graphical图形调试工具"></a>Graphical图形调试工具</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></li>
+<li>Bustle</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
+<li>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
+<li>dbus-specification规范: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>D-Bus FAQ: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>README: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
+<li>相关中文介绍文章:<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">In pseudocode, programming without proxies might look like <span class="keyword">this</span>:</span><br><span class="line"></span><br><span class="line">          Message message = <span class="keyword">new</span> Message(<span class="string">&quot;/remote/object/path&quot;</span>, <span class="string">&quot;MethodName&quot;</span>, arg1, arg2);</span><br><span class="line">          Connection connection = getBusConnection();</span><br><span class="line">          connection.send(message);</span><br><span class="line">          Message reply = connection.waitForReply(message);</span><br><span class="line">          <span class="keyword">if</span> (reply.isError()) &#123;</span><br><span class="line"></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             Object returnValue = reply.getReturnValue();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">Programming with proxies might look like <span class="keyword">this</span>:</span><br><span class="line"></span><br><span class="line">          Proxy proxy = <span class="keyword">new</span> Proxy(getBusConnection(), <span class="string">&quot;/remote/object/path&quot;</span>);</span><br><span class="line">          Object returnValue = proxy.MethodName(arg1, arg2);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2020/12/28/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -341,7 +554,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -443,7 +656,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -548,7 +761,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -646,7 +859,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -745,7 +958,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -843,7 +1056,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -937,7 +1150,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1027,7 +1240,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1112,198 +1325,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="xixi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/" class="post-title-link" itemprop="url">【Android】翻了一遍EventBus官方文档</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-04-26 13:21:27" itemprop="dateCreated datePublished" datetime="2017-04-26T13:21:27Z">2017-04-26</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/26/翻了一遍EventBus官方文档/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hNTM2Y2YwMDc3MGI=">翻了一遍EventBus官方文档<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<blockquote>
-<p>EventBus事件总线.以观察者模式实现,消息推送/订阅.用于Android组件之间相互通信</p>
-</blockquote>
-<p>Note:文章基于EventBus3.0</p>
-<p><img src="/images/Xnip2021-01-16_23-21-38.jpg"></p>
-<p>项目地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyZWVucm9ib3QvRXZlbnRCdXM=">https://github.com/greenrobot/EventBus<i class="fa fa-external-link-alt"></i></span><br>Docments:<span class="exturl" data-url="aHR0cDovL2dyZWVucm9ib3Qub3JnL2V2ZW50YnVzL2RvY3VtZW50YXRpb24vaG93LXRvLWdldC1zdGFydGVkLw==">http://greenrobot.org/eventbus/documentation/how-to-get-started/<i class="fa fa-external-link-alt"></i></span></p>
-<p>###先来聊聊:什么是通信?</p>
-<blockquote>
-<p>Wiki中国: <strong>通信</strong>是发送者通过某种媒体以某种<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JUEwJUJDJUU1JUJDJThG">格式<i class="fa fa-external-link-alt"></i></span>来传递<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU0JUJGJUExJUU2JTgxJUFG">信息<i class="fa fa-external-link-alt"></i></span>到收信者以达致某个目的。在古代，人们通过<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUE5JTlCJUU3JUFCJTk5">驿站<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUEzJTlFJUU5JUI4JUJEJUU0JUJDJUEwJUU0JUI5JUE2">飞鸽传书<i class="fa fa-external-link-alt"></i></span>、烽火报警、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUFDJUE2JUU4JTk5JTlG">符号<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUFBJTlFJUU4JUE4JTgw">语言<i class="fa fa-external-link-alt"></i></span>、眼神、触碰等方式进行信息传递。到了今天，随着科技水平的飞速发展，通信基本完全利用有线或无线电完成，相继出现了<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3cvaW5kZXgucGhwP3RpdGxlPSVFNiU5QyU4OSVFNyVCNyU5QSVFOSU5QiVCQiVFOCVBOSVCMSZhY3Rpb249ZWRpdCZyZWRsaW5rPTE=">有线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU1JTlCJUJBJUU1JUFFJTlBJUU3JTk0JUI1JUU4JUFGJTlE">固定电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JTg0JUExJUU3JUI3JTlBJUU5JTlCJUJCJUU4JUE5JUIx">无线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JTg5JThCJUU2JUE5JTlG">手机<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUI2JUIyJUU5JTlBJTlCJUU3JUI2JUIyJUU4JUI3JUFG">互联网<i class="fa fa-external-link-alt"></i></span>甚至<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUE2JTk2JUU4JUE4JThBJUU5JTlCJUJCJUU4JUE5JUIx">视频电话<i class="fa fa-external-link-alt"></i></span>等各种通信方式。通信技术拉近了人与人之间的距离，提高了通信的效率，深刻的改变了人类的通信。交流也是一种方法让其他人理解你。</p>
-</blockquote>
-<p>上面是Wiki的解释,通信本身是个很抽象,宽泛的词, 你跟朋友打个电话叫通信, 发个Email也叫通信, 两个App之间传数据也叫通信,也叫为进程间通信, Activity和Activity之间传递数据叫组件间通信, 说到这里,来下个通俗点的定义:一个东西给另一个东西传递东西(数据),就叫通信.</p>
-<p>##EventBus有什么用?解决了什么问题?<br>方便Android组件间相互通信.在Activity,Service,Fragment之间传递数据,例如,你在个人主页编辑头像的界面修改了头像,这时候其它页面的头像也需要去修改,这时候可以试试EventBus.<br>基于观察者模式:这个好理解, 有消息的发送者,也有消息的接收者,当然,也可以是一发送者对应多个接收者, EventBus使用起来非常简单,可以用来提供广播之类</p>
-<p>##怎么用?</p>
-<ul>
-<li>添加依赖</li>
-<li>使用三歩曲:<ul>
-<li>定义事件类</li>
-<li>注册事件</li>
-<li>发送事件</li>
-</ul>
-</li>
-</ul>
-<p>###添加依赖</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">&#x27;org.greenrobot:eventbus:3.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>###使用三步曲:</p>
-<p>####1,定义事件类<br>事件类是通信过程中的数据的载体,用来传递数据,这里写一个最简单的事件类,后面说如何传递数据</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>####2.注册事件<br>上面提到数据的发送者和接收者, 注册事件是针对接收者的, 哪个组件需要接收消息,就在哪个组件中去注册</p>
-<ul>
-<li>注册: EventBus.getDefault().register(this);</li>
-<li>添加函数注解@Subscribe:当数据的发送者发出消息后,添加这个注解的函数会被调用</li>
-<li>添加@Subscribe注解的函数参数,写上接收事件类型,表示这个组件会接收这类事件的消息</li>
-<li>注销:EventBus:EventBus.getDefault().unregister(this);</li>
-</ul>
-<p><strong>Note:一个事件是可以有多个接收者(订阅者)</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>####3.发送事件<br>最后,消息的发送者发送事件, 这时候上面添加@Subscribe注解的函数会被调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
-
-<p>**这时候在回来看这张大图,So easy,**点击查看大图<br><img src="/images/Xnip2021-01-16_23-22-08.jpg"></p>
-<p>这里顺便吐槽下官方示例代码:<br><img src="/images/Xnip2021-01-16_23-22-29.jpg"></p>
-<p>如果你打算把注册写在onStart中,请在前面加上判断</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###上面是EventBus的基本使用流程,其实这才开始:</p>
-<ul>
-<li>在事件中传递数据</li>
-<li>指定事件接收线程</li>
-<li>发送黏性事件Sticky Events</li>
-<li>接收事件的优先级别</li>
-<li>中止事件传递</li>
-<li>订阅者索引</li>
-</ul>
-<p>###传递数据<br>不过,上面只是发了一个空的消息,没有传递任何的数据,比如:我修改了用户的头像,上传到服务器,服务器返回一个Url,这时候我需要修改其它界面的头像,这时候我要把这个url数据传到其它界面:怎么做呢?</p>
-<p>####1.只需要去修改定义事件类中的构造函数,增加一个参数,在加上set和get方法,如下:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateHeadPicEvent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">UpdateHeadPicEvent</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>####2.在发送事件的地方,使用这个带参的构造去创建对象:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> UpdateHeadImgEvent(url));</span><br></pre></td></tr></table></figure>
-
-<p>####3.在接收消息的回调中用get方法去获取</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>**Note:**这里只是用了一个String的Url做参考,可以传递的数据还有很多,List集合,Bean对象…</p>
-<p>###指定事件接收的线程<br>前面说了加上@Subscribe注解,这个函数在消息推送之后会被回调,其实这个注解还有几个属性,其中threadMode能为该函数指定线程,如果不写,也会有个默认值:ThreadMode.POSTING,意思是和发送事件所在线程一样</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.POSTING)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####ThreadMode列表</p>
-<ul>
-<li>ThreadMode.POSTING:和发送事件在同一个线程</li>
-<li>ThreadMode.MAIN:主线程</li>
-<li>ThreadMode.BACKGROUND:子线程</li>
-<li>ThreadMode.ASYNC:异步线程</li>
-</ul>
-<p>####发送黏性事件Sticky Events<br>上面示例代码所说的情况是:当发送消息推送者推送消息的时候,订阅者会立马收到消息,它会把消息推送给它所有的订阅者.注意后面这句话:<strong>如果你希望在消息推送完成之后,让新注册的订阅者也能收到这条消息,这时候你可以试试Sticky Events</strong>,这个事件就像一个常驻广播,只要是有新的订阅者订阅了这个事件,就会收到消息.当然,有两点要求:</p>
-<ol>
-<li>首先,发送的是黏性事件,代码将post改为postSticky</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>然后,订阅者要声明自己能够接收到黏性事件的消息:代码中@Subscribe注解中的sticky值为true,满足了这两点,就能愉快的玩耍了.</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试Log日志<br><img src="/images/Xnip2021-01-16_23-22-51.jpg"></p>
-<p>###接收事件的优先级别<br>EventBus可以定义接收事件方的优先级别,在@Subscribe注解中有一个priority的参数,默认值是0,可以自行配置1.2.3.4…数值越大优先级越低,会越晚收到消息</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###中止事件传递<br>类似于有序广播,优先级高的订阅者,可以终止事件向下传递,EventBus也提供了此功能</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###订阅者索引<br>这个新特性是在EventBus 3.0推出,简单的说:利用annotationProcessor去生成一个关于订阅者的索引类,保存订阅者的相关信息.<br>有什么用?提高效率,注册从运行时的反射,转移到了编译时<br>怎么用?两种方式:</p>
-<ul>
-<li>在gradle版本2.2.0以前使用：Android-apt</li>
-<li>在gradle版本2.2.0以上使用：annotationProcessor</li>
-</ul>
-<p>这里说annotationProcessor的方式,现在新建项目一般都在2.2.0以上:<br>添加好Gradle设置之后,重新build项目,就会为你生成这样的类:MyEventBusIndex<br>![](/assets/EventBus Annotation Processor.png)</p>
-<p>用法:将它配置应用于默认的EventBus,调用下面代码:可放在Application的onCreate中调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.builder().addIndex(<span class="keyword">new</span> MyEventBusIndex()).installDefaultEventBus();</span><br></pre></td></tr></table></figure>
-<p>未添加前和添加后我分别做了三次测试,注册完成的时间对比,速度快了不止一倍,这还是只有两个订阅者的时候,如果订阅订阅者更多呢,</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//未添加前</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892487664</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892487666</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892568177</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892568180</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892715342</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892715344</span><br><span class="line"></span><br><span class="line">//添加后</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892648185</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892648186</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892814517</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892814518</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892868879</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892868880</span><br></pre></td></tr></table></figure>
-<p>#####在Lib的model中使用:<br>build.gradle也要添加上图中同样的参数,在上图中,这个参数是自定义的,不同的model可以为他生成不同的索引类:</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">arguments = [<span class="attr">eventBusIndex:</span> <span class="string">&#x27;com.example.myapp.MyEventBusIndex&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<p>更改默认配置也需要多添加一行代码:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus eventBus = EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusAppIndex())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusLibIndex())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
-
-<p>最后代码地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9FdmVudGJ1c2RlbW8=">https://github.com/Shib90/Eventbusdemo<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-      
-
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1324,22 +1345,6 @@
   <span class="author" itemprop="copyrightHolder">Shi Bin</span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
 </div>
   <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
   </div>

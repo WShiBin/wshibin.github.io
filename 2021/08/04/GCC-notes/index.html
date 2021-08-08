@@ -29,7 +29,7 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
 <meta name="description" content="小故事 通过在编译器里面做手脚，给程序加后门 TODO 编译器作用:把代码 翻译成可执行程序   如何编译?如何运行?这两个阶段干了什么? GCC编译器官网:https:&#x2F;&#x2F;gcc.gnu.org&#x2F; GCC文档:https:&#x2F;&#x2F;gcc.gnu.org&#x2F;onlinedocs&#x2F;gcc-8.5.0&#x2F;gcc&#x2F;#toc-GCC-Command-Options 书籍推荐:An Introduction to">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【GCC】GCC笔记记录">
+<meta property="og:title" content="【GCC】GCC笔记">
 <meta property="og:url" content="https://wshibin.github.io/2021/08/04/GCC-notes/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="小故事 通过在编译器里面做手脚，给程序加后门 TODO 编译器作用:把代码 翻译成可执行程序   如何编译?如何运行?这两个阶段干了什么? GCC编译器官网:https:&#x2F;&#x2F;gcc.gnu.org&#x2F; GCC文档:https:&#x2F;&#x2F;gcc.gnu.org&#x2F;onlinedocs&#x2F;gcc-8.5.0&#x2F;gcc&#x2F;#toc-GCC-Command-Options 书籍推荐:An Introduction to">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://wshibin.github.io/images/gcc/image-20210716002956629.png">
 <meta property="og:image" content="https://wshibin.github.io/images/gcc/image-20201216145626551.png">
 <meta property="article:published_time" content="2021-08-04T01:05:48.000Z">
-<meta property="article:modified_time" content="2021-08-03T17:22:47.733Z">
+<meta property="article:modified_time" content="2021-08-08T15:32:04.360Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="GCC">
 <meta property="article:tag" content="编译器">
@@ -49,10 +49,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2021/08/04/GCC-notes/","path":"2021/08/04/GCC-notes/","title":"【GCC】GCC笔记记录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2021/08/04/GCC-notes/","path":"2021/08/04/GCC-notes/","title":"【GCC】GCC笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>【GCC】GCC笔记记录 | WShiBin's blogs</title>
+<title>【GCC】GCC笔记 | WShiBin's blogs</title>
   
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
   <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
@@ -120,8 +120,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">25</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -196,13 +196,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -269,7 +269,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【GCC】GCC笔记记录
+          【GCC】GCC笔记
         </h1>
 
         <div class="post-meta-container">
@@ -632,6 +632,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/08/09/Vim-notes/" rel="next" title="【Vim】Vim笔记">
+                  【Vim】Vim笔记 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

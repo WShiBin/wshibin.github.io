@@ -1998,11 +1998,11 @@
 <li>  <code>Ctrl + b</code> 向上滚动一屏 Back Forward</li>
 </ul>
 <h3 id="分屏-Split"><a href="#分屏-Split" class="headerlink" title="分屏 Split"></a>分屏 Split</h3><ul>
-<li>  `:vs a.txt：竖直分割窗口,并打开a.txt</li>
-<li>  `:vsplit a.txt：同上</li>
-<li>  `:vertical split a.txt：同上</li>
-<li>  `:sp a.txt：水平分割窗口,并打开a.txt</li>
-<li>  `:split a.txt：同上</li>
+<li>  <code>:vs a.txt</code>：竖直分割窗口,并打开a.txt</li>
+<li>  <code>:vsplit a.txt</code>：同上</li>
+<li>  <code>:vertical split a.txt</code>：同上</li>
+<li>  <code>:sp a.txt</code>：水平分割窗口,并打开a.txt</li>
+<li>  <code>:split a.txt</code>：同上</li>
 </ul>
 <h3 id="窗口-Windows"><a href="#窗口-Windows" class="headerlink" title="窗口 Windows"></a>窗口 Windows</h3><ul>
 <li>  <code>Ctrl + W, c</code>：关闭光标所在的当前窗口 Close</li>

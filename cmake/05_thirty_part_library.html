@@ -26,14 +26,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.7.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
+<meta name="description" content="CMake中引入三方库引入方式使用本地库构建：Ubuntu 通过find模块 通过FindPkgConfig导入  使用源码构建：交叉编译 已经有使用CMake构建的项目（cJSON，dbus） 没有使用CMake构建的项目： 手动增加CMake（lvgl库） 会写编译脚本：先编译库，然后调用cmake编译项目（curl）">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/cmake/05_thirty_part_library.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="CMake中引入三方库引入方式使用本地库构建：Ubuntu 通过find模块 通过FindPkgConfig导入  使用源码构建：交叉编译 已经有使用CMake构建的项目（cJSON，dbus） 没有使用CMake构建的项目： 手动增加CMake（lvgl库） 会写编译脚本：先编译库，然后调用cmake编译项目（curl）">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-06T17:43:46.605Z">
-<meta property="article:modified_time" content="2021-07-06T17:43:46.604Z">
+<meta property="article:published_time" content="2021-08-22T08:24:41.639Z">
+<meta property="article:modified_time" content="2021-08-22T08:24:41.639Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
@@ -105,6 +107,12 @@
         <li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li>
         
             
+  <li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li>
+
+
+      
+        
+            
   <li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li>
 
 
@@ -115,8 +123,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">25</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -161,7 +169,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -174,6 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CMake%E4%B8%AD%E5%BC%95%E5%85%A5%E4%B8%89%E6%96%B9%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">CMake中引入三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">引入方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%BA%93%E6%9E%84%E5%BB%BA%EF%BC%9AUbuntu"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用本地库构建：Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%BA%90%E7%A0%81%E6%9E%84%E5%BB%BA%EF%BC%9A%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用源码构建：交叉编译</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -188,15 +197,13 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">7</span>
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">25</span>
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -241,6 +248,9 @@
 
     <div class="main-inner page posts-expand">
   
+
+      
+      
 
       
 
@@ -340,7 +350,19 @@
       
       
       <div class="post-body">
-          
+          <h1 id="CMake中引入三方库"><a href="#CMake中引入三方库" class="headerlink" title="CMake中引入三方库"></a>CMake中引入三方库</h1><h2 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h2><h3 id="使用本地库构建：Ubuntu"><a href="#使用本地库构建：Ubuntu" class="headerlink" title="使用本地库构建：Ubuntu"></a>使用本地库构建：Ubuntu</h3><ul>
+<li>通过find模块</li>
+<li>通过<strong>FindPkgConfig</strong>导入</li>
+</ul>
+<h3 id="使用源码构建：交叉编译"><a href="#使用源码构建：交叉编译" class="headerlink" title="使用源码构建：交叉编译"></a>使用源码构建：交叉编译</h3><ul>
+<li>已经有使用CMake构建的项目（cJSON，dbus）</li>
+<li>没有使用CMake构建的项目：<ul>
+<li>手动增加CMake（lvgl库）</li>
+<li>会写编译脚本：先编译库，然后调用cmake编译项目（curl）</li>
+</ul>
+</li>
+</ul>
+
       </div>
       
       

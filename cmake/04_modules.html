@@ -26,16 +26,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.6.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
-<meta name="description" content="https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;latest&#x2F;manual&#x2F;cmake-modules.7.html   拓展CMake的功能  两类: CMake内置的module 自己定制的module    FetchContent  Modules are &lt;script&gt;.cmake files located in the CMAKE_MODULE_PATH. M">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.7.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
+<meta name="description" content="Modules模块文档:https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;latest&#x2F;manual&#x2F;cmake-modules.7.html 定义：cmake中的modules类似于编程语言中的三方库。cmake的脚本有自己的语法，具有完成特定功能的脚本组合在一起就可以形成modules。需要用时引入即可。模块主要作用：提高开发效率 内置Modules： CMake内置的module 自">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/cmake/04_modules.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;latest&#x2F;manual&#x2F;cmake-modules.7.html   拓展CMake的功能  两类: CMake内置的module 自己定制的module    FetchContent  Modules are &lt;script&gt;.cmake files located in the CMAKE_MODULE_PATH. M">
+<meta property="og:description" content="Modules模块文档:https:&#x2F;&#x2F;cmake.org&#x2F;cmake&#x2F;help&#x2F;latest&#x2F;manual&#x2F;cmake-modules.7.html 定义：cmake中的modules类似于编程语言中的三方库。cmake的脚本有自己的语法，具有完成特定功能的脚本组合在一起就可以形成modules。需要用时引入即可。模块主要作用：提高开发效率 内置Modules： CMake内置的module 自">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-06T17:43:46.524Z">
-<meta property="article:modified_time" content="2021-07-06T17:43:46.524Z">
+<meta property="article:published_time" content="2021-08-22T08:24:10.385Z">
+<meta property="article:modified_time" content="2021-08-22T08:24:10.385Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
@@ -107,6 +107,12 @@
         <li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li>
         
             
+  <li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li>
+
+
+      
+        
+            
   <li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li>
 
 
@@ -117,8 +123,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">25</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -176,7 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">两类:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9B%B8%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">其它相关:</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Modules%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">Modules模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%BD%AEModules%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">内置Modules：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">相关命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97"><span class="nav-number">1.4.</span> <span class="nav-text">常用内置模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMakePrintHelpers%E6%A8%A1%E5%9D%97"><span class="nav-number">1.4.1.</span> <span class="nav-text">CMakePrintHelpers模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GNUInstallDirs"><span class="nav-number">1.4.2.</span> <span class="nav-text">GNUInstallDirs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CheckIncludeFile"><span class="nav-number">1.4.3.</span> <span class="nav-text">CheckIncludeFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CheckSymbolExists"><span class="nav-number">1.4.4.</span> <span class="nav-text">CheckSymbolExists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FetchContent"><span class="nav-number">1.4.5.</span> <span class="nav-text">FetchContent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMakePackageConfigHelpers"><span class="nav-number">1.4.6.</span> <span class="nav-text">CMakePackageConfigHelpers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9B%B8%E5%85%B3%EF%BC%9A"><span class="nav-number">1.5.</span> <span class="nav-text">其它相关：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -191,15 +197,13 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">7</span>
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">25</span>
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -244,6 +248,9 @@
 
     <div class="main-inner page posts-expand">
   
+
+      
+      
 
       
 
@@ -343,22 +350,95 @@
       
       
       <div class="post-body">
-          <p><span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvbWFudWFsL2NtYWtlLW1vZHVsZXMuNy5odG1s">https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p> 拓展CMake的功能</p>
-</blockquote>
-<h2 id="两类"><a href="#两类" class="headerlink" title="两类:"></a>两类:</h2><ul>
+          <h1 id="Modules模块"><a href="#Modules模块" class="headerlink" title="Modules模块"></a>Modules模块</h1><p>文档:<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvbWFudWFsL2NtYWtlLW1vZHVsZXMuNy5odG1s">https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><p>cmake中的modules类似于编程语言中的三方库。cmake的脚本有自己的语法，具有完成特定功能的脚本组合在一起就可以形成modules。需要用时引入即可。模块主要作用：<strong>提高开发效率</strong></p>
+<h2 id="内置Modules："><a href="#内置Modules：" class="headerlink" title="内置Modules："></a>内置Modules：</h2><ul>
 <li>CMake内置的module</li>
 <li>自己定制的module</li>
 </ul>
-<ul>
-<li><input disabled="" type="checkbox"> <em>FetchContent</em></li>
+<h2 id="相关命令："><a href="#相关命令：" class="headerlink" title="相关命令："></a>相关命令：</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 显示可用的module模块列表</span></span><br><span class="line">$ cmake --help-module-list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示指定模块的帮助信息</span></span><br><span class="line">$ cmake --help-module CMakePrintHelpers</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="常用内置模块"><a href="#常用内置模块" class="headerlink" title="常用内置模块"></a>常用内置模块</h2><ul>
+<li>CMakePrintHelpers：方便打印参数</li>
+<li>GNUInstallDirs：方便配置安装目录</li>
+<li>check系列模块<ul>
+<li>CheckIncludeFile：检查头文件是否存在</li>
+<li>CheckSymbolExists：检查Symbol是否存在</li>
+<li>CheckCCompilerFlag：检查C编译器Flag</li>
 </ul>
-<p>Modules are <code>&lt;script&gt;.cmake</code> files located in the <code>CMAKE_MODULE_PATH</code>.</p>
+</li>
+<li>FetchContent：下载内容模块(下载源代码,文件)</li>
+<li>CMakePackageConfigHelpers：包配置文件帮助模块</li>
+<li>Find Modules：用来找依赖库,下节讲</li>
+<li>CPack：打包模块,后面讲</li>
+<li>CTest：测试模块</li>
+<li>GoogleTest：Google测试模块</li>
+</ul>
+<h3 id="CMakePrintHelpers模块"><a href="#CMakePrintHelpers模块" class="headerlink" title="CMakePrintHelpers模块"></a>CMakePrintHelpers模块</h3><p><strong>提供了两个function/command</strong></p>
+<ul>
+<li>cmake_print_properties: 方便打印属性</li>
+<li>cmake_print_variables: 方便打印变量</li>
+</ul>
+<p><strong>模块的使用步骤:</strong></p>
+<ol>
+<li>使用<code>include()</code>命令引入模块</li>
+<li>使用模块中提供的function/command</li>
+</ol>
+<p>CMakeLists.txt文件:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span> FATAL_ERROR)</span><br><span class="line"><span class="keyword">project</span>(<span class="number">01</span>CMakePrintHelpers)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_BUILD_TYPE Debug)</span><br><span class="line"></span><br><span class="line"><span class="keyword">message</span>(STATUS <span class="string">&quot;WARNING:CMAKE_BUILD_TYPE = &quot;</span> <span class="variable">$&#123;CMAKE_BUILD_TYPE&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.引入模块</span></span><br><span class="line"><span class="keyword">include</span>(CMakePrintHelpers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.使用模块中提供的function/command</span></span><br><span class="line">cmake_print_variables(CMAKE_BUILD_TYPE)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(CMakePrintHelpers main.c)</span><br></pre></td></tr></table></figure>
+
+<h3 id="GNUInstallDirs"><a href="#GNUInstallDirs" class="headerlink" title="GNUInstallDirs"></a>GNUInstallDirs</h3><p><code>CMAKE_INSTALL_&lt;dir&gt;</code></p>
+<ul>
+<li><em>BINDIR</em>：直接运行的可执行文件、脚本和符号链接的位置。默认为bin。</li>
+<li><em>SBINDIR</em>：与BINDIR相似，不过是针对有系统管理权限的情况。默认为sbin。</li>
+<li><em>LIBDIR</em>：库和编译文件的路径。根据主机/目标平台，默认设置为lib或其他(可能包括特定于体系结构的子目录)。</li>
+<li><em>LIBEXECDIR</em>：不直接由用户调用的可执行文件，但可以通过启动脚本或位于BINDIR中的符号链接的方式运行。默认为 libexec</li>
+<li><em>INCLUDEDIR</em>：头文件目录。默认为include。</li>
+<li><em>DATAROOTDIR</em>：只读与结构无关的数据点。为了避开DOCDIR的警告，通常不直接引用。</li>
+<li><em>DATADIR</em>：与结构无关的只读数据，如图像和其他资源。默认值与DATAROOTDIR相同，用于覆盖项目数据位置的首选 方法。</li>
+<li><em>MANDIR</em>：man格式文档的路径。默认为DATAROOTDIR/man。</li>
+<li><em>DOCDIR</em>：通用文档路径。默认值为DATAROOTDIR/doc/PROJECT_NAME(参见下面的注释，了解为什么依赖这个默认 值是不安全的)。</li>
+</ul>
+<p>安装位置：</p>
+<ul>
+<li>Winodws：<code>C:\Program Files</code>或<code>C:\Program Files(x86)</code></li>
+<li>Unix/Linux：<code>/usr/local</code>或<code>/opt</code></li>
+</ul>
+<p><code>CMAKE_INSTALL_PREFIX</code>变量默认值：Windows平台是<code>C:\Program Files$&#123;PROJECT_NAME&#125;</code> ，基于Unix的平台上是<code>/usr/local</code> 。</p>
+<h3 id="CheckIncludeFile"><a href="#CheckIncludeFile" class="headerlink" title="CheckIncludeFile"></a>CheckIncludeFile</h3><p>检查头文件是否存在</p>
+<ul>
+<li><code>CHECK_INCLUDE_FILE(&lt;include&gt; &lt;variable&gt; [&lt;flags&gt;])</code></li>
+</ul>
+<p>CMakeLists.txt文件:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span> FATAL_ERROR)</span><br><span class="line"><span class="keyword">project</span>(<span class="number">03</span>CheckIncludeFile)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.引入模块</span></span><br><span class="line"><span class="keyword">include</span>(CheckIncludeFile)</span><br><span class="line">CHECK_INCLUDE_FILE(stdio.h HAVE_STDIO_H)</span><br><span class="line"></span><br><span class="line"><span class="keyword">configure_file</span>(<span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/header.h.in</span><br><span class="line">    <span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/header.h</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(CheckIncludeFile main.c)</span><br></pre></td></tr></table></figure>
+
+<p>header.h.in文件:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#cmakedefine HAVE_STDIO_H $&#123;HAVE_STDIO_H&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>main.c文件:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;header.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> HAVE_STDIO_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> HAVE_STDIO_H</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;have stdio.h\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CheckSymbolExists"><a href="#CheckSymbolExists" class="headerlink" title="CheckSymbolExists"></a>CheckSymbolExists</h3><p>检查Symbol是否存在</p>
+<p>Symbol: 符号/标记 (function, variable, macro)</p>
+<ul>
+<li><code>check_symbol_exists(&lt;symbol&gt; &lt;files&gt; &lt;variable&gt;)</code></li>
+</ul>
+<p>CMakeLists.txt文件:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span> FATAL_ERROR)</span><br><span class="line"><span class="keyword">project</span>(<span class="number">04</span>CheckSymbolExists)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.引入模块</span></span><br><span class="line"><span class="keyword">include</span>(CheckSymbolExists)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check for macro SEEK_SET</span></span><br><span class="line">check_symbol_exists(SEEK_SET <span class="string">&quot;stdio.h&quot;</span> HAVE_SEEK_SET)</span><br><span class="line"><span class="comment"># Check for function fopen</span></span><br><span class="line">check_symbol_exists(fopen <span class="string">&quot;stdio.h&quot;</span> HAVE_FOPEN)</span><br><span class="line"></span><br><span class="line"><span class="keyword">configure_file</span>(<span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/header.h.in</span><br><span class="line">    <span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/header.h</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(CheckSymbolExists main.c)</span><br></pre></td></tr></table></figure>
+
+<p>header.h.in文件:</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#cmakedefine HAVE_SEEK_SET $&#123;HAVE_SEEK_SET&#125;</span></span><br><span class="line"><span class="comment">#cmakedefine HAVE_FOPEN $&#123;HAVE_FOPEN&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>main.c文件:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;header.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> HAVE_FOPEN</span></span><br><span class="line">    FILE* file = fopen(<span class="string">&quot;CMakeLists.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> HAVE_SEEK_SET</span></span><br><span class="line">    fseek(file, <span class="number">0</span>, SEEK_SET);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="FetchContent"><a href="#FetchContent" class="headerlink" title="FetchContent"></a>FetchContent</h3><h3 id="CMakePackageConfigHelpers"><a href="#CMakePackageConfigHelpers" class="headerlink" title="CMakePackageConfigHelpers"></a>CMakePackageConfigHelpers</h3><p>Modules are <code>&lt;script&gt;.cmake</code> files located in the <code>CMAKE_MODULE_PATH</code>.</p>
 <p>Modules can be loaded with the <code>include()</code> command.</p>
-<h2 id="其它相关"><a href="#其它相关" class="headerlink" title="其它相关:"></a>其它相关:</h2><p>变量:<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html#variable:CMAKE_MODULE_PATH"><code>CMAKE_MODULE_PATH</code></a></p>
-<p>通过include来引入</p>
-<p>cmake –help-module module_name</p>
+<h2 id="其它相关："><a href="#其它相关：" class="headerlink" title="其它相关："></a>其它相关：</h2><p>变量: <code>CMAKE_MODULE_PATH</code></p>
+<p>通过<code>include()</code>和<code>find_package()</code>会去<code>CMAKE_MODULE_PATH</code>下找模块</p>
 <p><strong>CMakeDependentOption</strong></p>
 <blockquote>
 <p>设置一个option依赖于另一个option</p>

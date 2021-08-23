@@ -27,15 +27,15 @@
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/images","scheme":"Pisces","version":"8.7.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/config.js"></script>
-<meta name="description" content="文章基于LVGL V7.11.0版本  问题： LVGL启动流程 Widgets的数据是如何显示到屏幕 屏幕点击事件，是如何传递到对应空间的事件回调中 不同控件之间有什么关系？为什么返回的都是lv_obj_t 图片解码、缓存流程，显示  提前须知：LVGL中重要的数据结构：双向链表&#x2F;&#x2F; lv_ll.htypedef struct &amp;#123;    uint32_t n_size;    lv_">
+<meta name="description" content="文章基于LVGL V7.11.0版本https:&#x2F;&#x2F;github.com&#x2F;lvgl&#x2F;lvgl&#x2F;tree&#x2F;v7.11.0  问题： LVGL启动流程 Widgets的数据是如何显示到屏幕 屏幕点击事件，是如何传递到对应空间的事件回调中 不同控件之间有什么关系？为什么返回的都是lv_obj_t 图片解码、缓存流程，显示  提前须知：LVGL中重要的数据结构：双向链表&#x2F;&#x2F; lv_ll.htypedef">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【C】lVGL源码分析">
+<meta property="og:title" content="【C】LVGL源码分析">
 <meta property="og:url" content="https://wshibin.github.io/2021/08/15/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="文章基于LVGL V7.11.0版本  问题： LVGL启动流程 Widgets的数据是如何显示到屏幕 屏幕点击事件，是如何传递到对应空间的事件回调中 不同控件之间有什么关系？为什么返回的都是lv_obj_t 图片解码、缓存流程，显示  提前须知：LVGL中重要的数据结构：双向链表&#x2F;&#x2F; lv_ll.htypedef struct &amp;#123;    uint32_t n_size;    lv_">
+<meta property="og:description" content="文章基于LVGL V7.11.0版本https:&#x2F;&#x2F;github.com&#x2F;lvgl&#x2F;lvgl&#x2F;tree&#x2F;v7.11.0  问题： LVGL启动流程 Widgets的数据是如何显示到屏幕 屏幕点击事件，是如何传递到对应空间的事件回调中 不同控件之间有什么关系？为什么返回的都是lv_obj_t 图片解码、缓存流程，显示  提前须知：LVGL中重要的数据结构：双向链表&#x2F;&#x2F; lv_ll.htypedef">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-15T14:53:29.000Z">
-<meta property="article:modified_time" content="2021-08-22T17:39:58.445Z">
+<meta property="article:modified_time" content="2021-08-23T01:45:30.758Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="源码">
@@ -48,10 +48,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2021/08/15/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/","path":"2021/08/15/LVGL源码分析/","title":"【C】lVGL源码分析"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2021/08/15/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/","path":"2021/08/15/LVGL源码分析/","title":"【C】LVGL源码分析"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>【C】lVGL源码分析 | WShiBin's blogs</title>
+<title>【C】LVGL源码分析 | WShiBin's blogs</title>
   
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
   <script src="//cdn.jsdelivr.net/gh/wshibin/wshibin.github.io@master/js/third-party/analytics/google-analytics.js"></script>
@@ -184,7 +184,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%89%8D%E9%A1%BB%E7%9F%A5%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">提前须知：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LVGL%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">LVGL中重要的数据结构：双向链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E5%AE%8F%EF%BC%9ALV-ROOTS"><span class="nav-number">2.2.</span> <span class="nav-text">最重要的宏：LV_ROOTS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LVGL%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">LVGL启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Widgets%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E5%88%B0%E5%B1%8F%E5%B9%95"><span class="nav-number">4.</span> <span class="nav-text">Widgets的数据是如何显示到屏幕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%8F%E5%B9%95%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%EF%BC%8C%E6%98%AF%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%88%B0%E5%AF%B9%E5%BA%94%E7%A9%BA%E9%97%B4%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E4%B8%AD"><span class="nav-number">5.</span> <span class="nav-text">屏幕点击事件，是如何传递到对应空间的事件回调中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E6%8E%A7%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E7%9A%84%E9%83%BD%E6%98%AFlv-obj-t"><span class="nav-number">6.</span> <span class="nav-text">不同控件之间有什么关系？为什么返回的都是lv_obj_t</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E8%A7%A3%E7%A0%81%E3%80%81%E7%BC%93%E5%AD%98%E6%B5%81%E7%A8%8B%EF%BC%8C%E6%98%BE%E7%A4%BA"><span class="nav-number">7.</span> <span class="nav-text">图片解码、缓存流程，显示</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%89%8D%E9%A1%BB%E7%9F%A5%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">提前须知：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LVGL%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">LVGL中重要的数据结构：双向链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E5%AE%8F%EF%BC%9ALV-ROOTS"><span class="nav-number">2.2.</span> <span class="nav-text">最重要的宏：LV_ROOTS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%97%B6Widget%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9A%E7%88%B6%E5%AD%90%E5%85%B3%E7%B3%BB"><span class="nav-number">2.3.</span> <span class="nav-text">显示时Widget之间的关系：父子关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task%E4%BB%BB%E5%8A%A1"><span class="nav-number">2.4.</span> <span class="nav-text">Task任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LVGL%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">LVGL启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Widgets%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E5%88%B0%E5%B1%8F%E5%B9%95"><span class="nav-number">4.</span> <span class="nav-text">Widgets的数据是如何显示到屏幕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%8F%E5%B9%95%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%EF%BC%8C%E6%98%AF%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%88%B0%E5%AF%B9%E5%BA%94%E7%A9%BA%E9%97%B4%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%9B%9E%E8%B0%83%E4%B8%AD"><span class="nav-number">5.</span> <span class="nav-text">屏幕点击事件，是如何传递到对应空间的事件回调中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E6%8E%A7%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E7%9A%84%E9%83%BD%E6%98%AFlv-obj-t"><span class="nav-number">6.</span> <span class="nav-text">不同控件之间有什么关系？为什么返回的都是lv_obj_t</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E8%A7%A3%E7%A0%81%E3%80%81%E7%BC%93%E5%AD%98%E6%B5%81%E7%A8%8B%EF%BC%8C%E6%98%BE%E7%A4%BA"><span class="nav-number">7.</span> <span class="nav-text">图片解码、缓存流程，显示</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -272,7 +272,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【C】lVGL源码分析
+          【C】LVGL源码分析
         </h1>
 
         <div class="post-meta-container">
@@ -327,7 +327,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>文章基于LVGL V7.11.0版本</p>
+<p>文章基于LVGL V7.11.0版本<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x2Z2wvbHZnbC90cmVlL3Y3LjExLjA=">https://github.com/lvgl/lvgl/tree/v7.11.0<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><ul>
 <li>LVGL启动流程</li>
@@ -344,6 +344,8 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_task_ll;  <span class="comment">/*Linked list to store the lv_tasks*/</span></span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_disp_ll;  <span class="comment">/*Linked list of display device*/</span></span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_indev_ll; <span class="comment">/*Linked list of input device*/</span></span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_drv_ll;</span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_file_ll;</span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_anim_ll;</span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_group_ll;</span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_img_decoder_ll;</span><br><span class="line"><span class="keyword">lv_ll_t</span>                   _lv_obj_style_trans_ll;</span><br><span class="line"><span class="keyword">lv_img_cache_entry_t</span>*     _lv_img_cache_array;</span><br><span class="line"><span class="keyword">lv_task_t</span>*                _lv_task_act;</span><br><span class="line"><span class="keyword">lv_mem_buf_arr_t</span>          _lv_mem_buf;</span><br><span class="line"><span class="keyword">_lv_draw_mask_saved_arr_t</span> _lv_draw_mask_list;</span><br><span class="line"><span class="keyword">void</span>*                     _lv_theme_material_styles;</span><br><span class="line"><span class="keyword">void</span>*                     _lv_theme_template_styles;</span><br><span class="line"><span class="keyword">void</span>*                     _lv_theme_mono_styles;</span><br><span class="line"><span class="keyword">void</span>*                     _lv_theme_empty_styles;</span><br><span class="line"><span class="keyword">uint8_t</span>*                  _lv_font_decompr_buf;</span><br></pre></td></tr></table></figure>
 
 <p>基本上是lvgl的context：task、disp、indev、drv、anim、img_decoder、style、theme、font全定义了；<br>使用时一般会用<code>LV_GC_ROOT()</code>宏去获取使用，比如：<br><code>LV_GC_ROOT(_lv_task_ll)</code>、<code>LV_GC_ROOT(_lv_disp_ll)</code>、<code>&amp;LV_GC_ROOT(_lv_indev_ll)</code>；</p>
+<h3 id="显示时Widget之间的关系：父子关系"><a href="#显示时Widget之间的关系：父子关系" class="headerlink" title="显示时Widget之间的关系：父子关系"></a>显示时Widget之间的关系：父子关系</h3><p>todo：</p>
+<h3 id="Task任务"><a href="#Task任务" class="headerlink" title="Task任务"></a>Task任务</h3><p>todo:</p>
 <h2 id="LVGL启动流程"><a href="#LVGL启动流程" class="headerlink" title="LVGL启动流程"></a>LVGL启动流程</h2><p>基本上程序都会分为两个阶段：一个是正常正常前的初始化阶段，把个各模块做相应的初始化；第二个是正常运行阶段，各个模块相互协作，完成任务，完成事件流阶段</p>
 <ul>
 <li>初始化<ul>
@@ -367,15 +369,15 @@
 <ol start="2">
 <li>UI的刷新不是每次全部刷新，而是只刷新更新数据的区域</li>
 </ol>
-<p><strong>流程：</strong>简单的说</p>
+<p><strong>流程：</strong></p>
 <ol>
-<li>Widget在设置数据的时候，会告诉<code>lv_disp_t</code>”显示屏“哪块区域需要重新绘制（标记）</li>
-<li>当UI task开始执行时，<code>lv_disp_t</code>”显示屏“会调用driver驱动，去刷新对应的区域</li>
+<li>Widget在设置数据的时候，会告诉<code>lv_disp_t</code>“显示屏”哪块区域需要重新绘制（标记）</li>
+<li>当UI task开始执行时，<code>lv_disp_t</code>“显示屏”会调用driver驱动，去刷新对应的区域</li>
 </ol>
 <p><strong>流程详解：</strong></p>
 <ul>
-<li>无论是lv_lable_t的<code>void lv_label_set_text(lv_obj_t * label, const char * text)</code>，还是lv_img_t的<code>void lv_img_set_src(lv_obj_t * img, const void * src_img);</code>；都会去调用<code>lv_obj_invalidate(obj);</code>，标记需要重新绘制</li>
-<li>”区域“会保存到<code>lv_disp_t</code>的<code>inv_areas</code>数组字段中，<code>inv_p</code>会记录个数，也就是数组长度；</li>
+<li>无论是lv_lable_t的<code>lv_label_set_text(label, text)</code>，还是lv_img_t的<code>lv_img_set_src(img, src_img);</code>；都会去调用<code>lv_obj_invalidate(obj);</code>，标记需要重新绘制</li>
+<li>“区域”会保存到<code>lv_disp_t</code>的<code>inv_areas</code>数组字段中，<code>inv_p</code>会记录个数，也就是数组长度；</li>
 <li>当UI的task开始执行里，<ul>
 <li>调用<code>_lv_disp_refr_task</code> UI刷新task<ul>
 <li>调用<code>lv_refr_vdb_flush</code> 把内容刷新到UI上<ul>
@@ -387,7 +389,7 @@
 </ul>
 </li>
 </ul>
-<p>下面是结构体lv_disp_t，保留了关键字段：</p>
+<p>下面是结构体<code>lv_disp_t</code>，保留了关键字段：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">disp_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">lv_disp_drv_t</span> driver; <span class="comment">/**&lt; Driver to the display*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Invalidated (marked to redraw) areas*/</span></span><br><span class="line">    <span class="keyword">lv_area_t</span> inv_areas[LV_INV_BUF_SIZE];</span><br><span class="line">    <span class="keyword">uint8_t</span>   inv_area_joined[LV_INV_BUF_SIZE];</span><br><span class="line">    <span class="keyword">uint32_t</span>  inv_p : <span class="number">10</span>;</span><br><span class="line">&#125; <span class="keyword">lv_disp_t</span>;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -397,10 +399,10 @@
 <h2 id="屏幕点击事件，是如何传递到对应空间的事件回调中"><a href="#屏幕点击事件，是如何传递到对应空间的事件回调中" class="headerlink" title="屏幕点击事件，是如何传递到对应空间的事件回调中"></a>屏幕点击事件，是如何传递到对应空间的事件回调中</h2><p>我点击了屏幕TP，如何传递并调用我设置的回调函数<code>lv_obj_set_event_cb(obj, event_cb);</code></p>
 <p><strong>前提：</strong></p>
 <ol>
-<li>也会有一个task任务在不停的获取点击屏幕的坐标</li>
+<li>对应有一个task任务在不停的获取点击屏幕的坐标</li>
 </ol>
 <p><strong>流程：</strong></p>
-<ul>
+<ol>
 <li>读取点击到的坐标x、y，以及状态state(press/release)</li>
 <li>在press按压的时候搜索对应的Widget，递归查找<ul>
 <li>三层上搜索：sys layer &gt; top layer &gt; scr_act layer</li>
@@ -409,7 +411,7 @@
 </li>
 <li>按不同的情况触发不同的事件：<code>lv_event_send(indev_obj_act, LV_EVENT_XXX, NULL);</code></li>
 <li>内部会调用到创建Widget时设置的回调函数</li>
-</ul>
+</ol>
 <p><strong>代码跟踪流程：</strong></p>
 <ul>
 <li>_lv_indev_read_task<ul>
@@ -439,13 +441,17 @@
 </ul>
 <h2 id="不同控件之间有什么关系？为什么返回的都是lv-obj-t"><a href="#不同控件之间有什么关系？为什么返回的都是lv-obj-t" class="headerlink" title="不同控件之间有什么关系？为什么返回的都是lv_obj_t"></a>不同控件之间有什么关系？为什么返回的都是lv_obj_t</h2><p><code>lv_obj_t</code>通过一个<code>void*</code>拓展成不同的Widget，<code>lv_obj_t</code>定义共有/通用的部分，每个特别的Widget定义自己独特的部分，命名为<code>lv_xxx_ext_t</code>，比如<code>lv_label_ext_t</code>，<code>lv_img_ext_t</code>…</p>
 <p><strong>lv_obj_t：</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">lv_obj_t</span> &#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span>* ext_attr; <span class="comment">/**&lt; Object type specific extended data*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">lv_obj_t</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">lv_obj_t</span> &#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span>* ext_attr; <span class="comment">// 指向</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">lv_obj_t</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>lv_label_ext_t：</strong></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span> * text;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="keyword">char</span> * tmp_ptr;</span><br><span class="line">        <span class="keyword">char</span> tmp[LV_LABEL_DOT_NUM + <span class="number">1</span>];</span><br><span class="line">    &#125; dot;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span> dot_end;</span><br><span class="line">    <span class="keyword">uint16_t</span> anim_speed;</span><br><span class="line">    <span class="keyword">lv_point_t</span> offset;</span><br><span class="line">    <span class="keyword">lv_draw_label_hint_t</span> hint;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span> sel_start;</span><br><span class="line">    <span class="keyword">uint32_t</span> sel_end;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">lv_label_long_mode_t</span> long_mode : <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span> static_txt : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span> align : <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span> recolor : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span> expand : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span> dot_tmp_alloc : <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">lv_label_ext_t</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>lv_img_ext_t：</strong></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">void</span>* src;</span><br><span class="line">    <span class="keyword">lv_point_t</span>  offset;</span><br><span class="line">    <span class="keyword">lv_coord_t</span>  w;</span><br><span class="line">    <span class="keyword">lv_coord_t</span>  h;</span><br><span class="line">    <span class="keyword">uint16_t</span>    angle;</span><br><span class="line">    <span class="keyword">lv_point_t</span>  pivot;</span><br><span class="line">    <span class="keyword">uint16_t</span>    zoom;</span><br><span class="line">    <span class="keyword">uint8_t</span>     src_type : <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>     auto_size : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>     cf : <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>     antialias : <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">lv_img_ext_t</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>v8.0版本更改：</strong></p>
+<p><code>lv_label_t</code>嵌套<code>lv_obj_t</code>，嵌套结构体更加符合面向对象语言中的<strong>继承关系</strong>，父类有的子类会继承过来；改成嵌套结构体，可能还有一个原因：早前版本的<code>lv_xxx_create</code>至少会有两次malloc申请内存，一次malloc <code>lv_obj_t</code>，一次malloc <code>lv_xxx_ext_t</code>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">lv_obj_t</span> obj;</span><br><span class="line">    <span class="keyword">char</span>*    text;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="keyword">char</span>* tmp_ptr;</span><br><span class="line">        <span class="keyword">char</span>  tmp[LV_LABEL_DOT_NUM + <span class="number">1</span>];</span><br><span class="line">    &#125; dot;</span><br><span class="line">    <span class="keyword">uint32_t</span> dot_end;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">lv_draw_label_hint_t</span> hint;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span> sel_start;</span><br><span class="line">    <span class="keyword">uint32_t</span> sel_end;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">lv_point_t</span>           offset;</span><br><span class="line">    <span class="keyword">lv_label_long_mode_t</span> long_mode : <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>              static_txt : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>              recolor : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>              expand : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>              dot_tmp_alloc : <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">lv_label_t</span>;</span><br></pre></td></tr></table></figure>
 
 
 

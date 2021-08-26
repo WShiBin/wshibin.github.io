@@ -317,9 +317,27 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>上个月在写rust的时候，有几个依赖有点大，编译速度感人，其实rust的编译速度一直就被人诟病，当然，有些是rust自身的问题，比如编译期的检查，泛型，RAII，宏；然后去网上找了些资料，搜索到一篇很有价值的文章：<span class="exturl" data-url="aHR0cHM6Ly9lbmRsZXIuZGV2LzIwMjAvcnVzdC1jb21waWxlLXRpbWVzLyVFRiVCQyU4QyVFOSU4NyU4QyVFOSU5RCVBMiVFNiU4RiU5MCVFNSU4OCVCMCVFNCVCQSU4NiVFNCVCQSU5QiVFNSVCRSU4OCVFNiU5QyU4OSVFNiU4NCU4RiVFNiU4MCU5RCVFNyU5QSU4NCVFNyU4MiVCOSVFRiVCQyU5QSVFNiVCMyU5QiVFNSU5RSU4QiVFNCVCQyU5QSVFNSVCRCVCMSVFNSU5MyU4RCVFNSU4OCVCMCVFNyVCQyU5NiVFOCVBRiU5MSVFOSU4MCU5RiVFNSVCQSVBNiVFRiVCQyU4QyVFNSU5QiVBMCVFNCVCOCVCQSVFNSU5QyVBOCVFNyVCQyU5NiVFOCVBRiU5MSVFNyU5QSU4NCVFNiU5NyVCNiVFNSU4MCU5OSVFRiVCQyU4QyVFNCVCRCVCRiVFNyU5NCVBOCVFNiVCMyU5QiVFNSU5RSU4QiVFNyU5QSU4NCVFNCVCQiVBMyVFNyVBMCU4MSVFNCVCQyU5QSVFNSU4RSVCQiVFNyU5NCU5RiVFNiU4OCU5MCVFNiU5NiVCMCVFNyU5QSU4NCVFNCVCQiVBMyVFNyVBMCU4MSVFRiVCQyU4QyVFNSU4QyU4NSVFNiU4QiVBQyVFNCVCRCVBMCVFNSU4NiU5OSVFNyU5QSU4NCVFNCVCQiVBMyVFNyVBMCU4MSVFRiVCQyU4QyVFNCVCQiVBNSVFNSU4RiU4QSVFNiVCQSU5MCVFNCVCQiVBMyVFNyVBMCU4MSVFRiVCQyU5QiVFOCVCRiU5OCVFNiU5QyU4OSVFNCVCRCVCRiVFNyU5NCVBOCVFNyVCQyU5NiVFOCVBRiU5MSVFNyVCQyU5MyVFNSVBRCU5OCVFNSVCNyVBNSVFNSU4NSVCN1NjY2FjaGUlRUYlQkMlOUIlRTYlOUIlQjQlRTYlOEQlQTIlRTYlOUIlQjQlRTUlQkYlQUIlRTclOUElODQlRTklOTMlQkUlRTYlOEUlQTUlRTUlOTklQTglRTMlODAlODI=">https://endler.dev/2020/rust-compile-times/，里面提到了些很有意思的点：泛型会影响到编译速度，因为在编译的时候，使用泛型的代码会去生成新的代码，包括你写的代码，以及源代码；还有使用编译缓存工具Sccache；更换更快的链接器。<i class="fa fa-external-link-alt"></i></span></p>
+<p>上个月在写rust的时候，有几个依赖有点大，编译速度感人，其实rust的编译速度一直就被人诟病，当然，有些是rust自身的问题，比如编译期的检查，泛型，RAII，宏；然后去网上找了些资料，搜索到一篇很有价值的文章：<span class="exturl" data-url="aHR0cHM6Ly9lbmRsZXIuZGV2LzIwMjAvcnVzdC1jb21waWxlLXRpbWVzLw==">Tips for Faster Rust Compile Times<i class="fa fa-external-link-alt"></i></span>，里面提到了些很有意思的点：泛型会影响到编译速度，因为在编译的时候，使用泛型的代码会去生成新的代码，包括你写的代码，以及源代码；还有使用编译缓存工具Sccache；更换更快的链接器。</p>
 </blockquote>
-<p>1.多线程<br>2.换构建工具ninja<br>3.CMake命令：target_precompile_headers (CMake3.16)<br>4.编译缓存ccache(CMake 3.4)<br>5.更新新版本的编译器和链接器<br>6.删除没有使用的代码和依赖</p>
+<p>公司有套CMake项目的代码，往后项目也会越来越大，节省编译的时候将会变得很有意义。有时候如何去优化一个问题，需要你对整个流程有足够的了解，知道他有哪些阶段，不同的阶段会干什么。才能对不同的环节进行优化</p>
+<h2 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h2><ol>
+<li>并行编译</li>
+<li>更换更快的构建系统，比如Ninja</li>
+<li>预编译头文件：target_precompile_headers （CMake3.16）</li>
+<li>使用编译缓存Ccache（CMake 3.4）</li>
+<li>更新新版本的CMake、编译器和链接器</li>
+<li>删除没有使用的代码和依赖</li>
+</ol>
+<p>todo：</p>
+<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="使用编译缓存Ccache"><a href="#使用编译缓存Ccache" class="headerlink" title="使用编译缓存Ccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">Ccache<i class="fa fa-external-link-alt"></i></span></h2><p><span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_program</span>(CCACHE_PROGRAM ccache)</span><br><span class="line"><span class="keyword">if</span>(CCACHE_PROGRAM)</span><br><span class="line">    <span class="keyword">set_property</span>(GLOBAL PROPERTY RULE_LAUNCH_COMPILE <span class="string">&quot;$&#123;CCACHE_PROGRAM&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(SomeProject)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvR29sZF8obGlua2VyKQ==">https://en.wikipedia.org/wiki/Gold_(linker)<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="删除没有使用的代码和依赖"><a href="#删除没有使用的代码和依赖" class="headerlink" title="删除没有使用的代码和依赖"></a>删除没有使用的代码和依赖</h2><p>todo</p>
 
       
     </div>

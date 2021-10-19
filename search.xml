@@ -941,6 +941,154 @@
       </tags>
   </entry>
   <entry>
+    <title>【C】libdbus上手教程</title>
+    <url>/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<!-- # libdbus Overview -->
+
+<p>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="What-is-D-Bus"><a href="#What-is-D-Bus" class="headerlink" title="What is D-Bus?"></a>What is D-Bus?</h2><blockquote>
+<p>D-Bus is <strong>a message bus system</strong>, a simple way for <strong>applications to talk to one another</strong>. In addition to interprocess communication, D-Bus helps <strong>coordinate process lifecycle</strong>; it makes it simple and reliable to code a “<strong>single instance</strong>“ application or daemon, and to <strong>launch applications</strong> and daemons on demand when their services are needed.</p>
+</blockquote>
+<h3 id="概括："><a href="#概括：" class="headerlink" title="概括："></a>概括：</h3><ul>
+<li>一个消息总线系统<ul>
+<li>一对多(signal)：类似于广播/订阅，可以携带消息数据，没有应答确认</li>
+<li>一对一(method call)：有应答确认</li>
+</ul>
+</li>
+<li>其他功能<ul>
+<li>启动其它进程</li>
+<li>支持单个实例进程</li>
+<li>在app退出的时候,通知程序</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统bus和会话bus"><a href="#系统bus和会话bus" class="headerlink" title="系统bus和会话bus"></a>系统bus和会话bus</h2><p><strong>system bus</strong>：在引导时就会启动，应用场景（待定）<br><strong>session bus</strong>：在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
+<h2 id="Low-level-API-vs-high-level-binding-APIs"><a href="#Low-level-API-vs-high-level-binding-APIs" class="headerlink" title="Low-level API vs high-level binding APIs"></a>Low-level API vs high-level binding APIs</h2><p>low-level API：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">libdbus<i class="fa fa-external-link-alt"></i></span><br>high-level binding APIs：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1nbGliLw==">GLib<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kb2MucXQuaW8vcXQtNS9xdGRidXMtaW5kZXguaHRtbA==">Qt<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1weXRob24v">Python<i class="fa fa-external-link-alt"></i></span>, Mono, Java, or whatever.</p>
+<p><strong>区别:</strong></p>
+<ul>
+<li>low-level：依赖少，用起来更加麻烦/复杂,定制程度可以更高,更加适合自己封装,改造</li>
+<li>high-level：用起来更加方便</li>
+</ul>
+<h2 id="Version-numbers"><a href="#Version-numbers" class="headerlink" title="Version numbers"></a>Version numbers</h2><blockquote>
+<p>软件版本格式:major.<strong>minor</strong>.patch</p>
+</blockquote>
+<p>minor version 是偶数的是stable版本,奇数的是dev版本<br>比如, development snapshots: 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions: 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
+<h2 id="D-Bus中的概念"><a href="#D-Bus中的概念" class="headerlink" title="D-Bus中的概念"></a>D-Bus中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>:</p>
+<ul>
+<li>启动bus daemon, 生成bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
+<li>获取bus daemon的connect连接, 注册bus name(com.mycompany.TextEditor)</li>
+<li>创建msg, 发给哪个bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
+<li>发送msg到bus daemon</li>
+<li>bus daemon发送到相应的bus name进程</li>
+<li>接收到消息后返回数据</li>
+<li>…</li>
+</ul>
+<p><img src="/images/Xnip2021-01-15_23-03-16.jpg"></p>
+<p><strong>相应概念:</strong></p>
+<p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
+<table>
+<thead>
+<tr>
+<th><strong>A…</strong></th>
+<th><strong>is identified by a(n)…</strong></th>
+<th><strong>which looks like…</strong></th>
+<th><strong>and is chosen by…</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bus</td>
+<td>address</td>
+<td><code>unix:path=/var/run/dbus/system_bus_socket</code></td>
+<td>system configuration</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>bus name</td>
+<td><code>:34-907</code> (<em>unique</em>) or <code>com.mycompany.TextEditor</code> (<em>well-known</em>)</td>
+<td>D-Bus (<em>unique</em>) or the owning program (<em>well-known</em>)</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>path</td>
+<td><code>/com/mycompany/TextFileManager</code></td>
+<td>the owning program</td>
+</tr>
+<tr>
+<td><em>Interface</em></td>
+<td><em>interface name</em></td>
+<td><code>org.freedesktop.Hal.Manager</code></td>
+<td><em>the owning program</em></td>
+</tr>
+<tr>
+<td>Member</td>
+<td>member name</td>
+<td><code>ListNames</code></td>
+<td>the owning program</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h3 id="D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface"><a href="#D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface" class="headerlink" title="D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?"></a><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbCNpZG0zOQ==">D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?<i class="fa fa-external-link-alt"></i></span></h3><p>If you imagine a C++ program that implements a network service, then the bus name is the hostname of the computer running this C++ program, the object path is a C++ object instance pointer, and an interface is a C++ class (a pure virtual or abstract class, to be exact).<br>In Java terms, the object path is an object reference, and an interface is a Java interface.<br>People get confused because if they write an application with a single object instance and a single interface, then the bus name, object path, and interface look redundant. For example, you might have a text editor that uses the bus name org.freedesktop.TextEditor, has a global singleton object called /org/freedesktop/TextEditor, and that singleton object could implement the interface org.freedesktop.TextEditor.<br>However, a text editor application could as easily own multiple bus names (for example, org.kde.KWrite in addition to generic TextEditor), have multiple objects (maybe /org/kde/documents/4352 where the number changes according to the document), and each object could implement multiple interfaces, such as org.freedesktop.DBus.Introspectable, org.freedesktop.BasicTextField, org.kde.RichTextDocument.</p>
+</blockquote>
+<h2 id="D-Bus消息类型"><a href="#D-Bus消息类型" class="headerlink" title="D-Bus消息类型"></a>D-Bus消息类型</h2><p>消息通过D-Bus在进程间传递。有四类消息：</p>
+<ul>
+<li>Method call消息：将触发对象的一个method</li>
+<li>Method return消息：触发的方法返回的结果</li>
+<li>Signal消息：通知，可以看作为事件消息。</li>
+<li>Error消息：触发的方法返回一个异常</li>
+</ul>
+<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h3 id="Command-line命令行工具"><a href="#Command-line命令行工具" class="headerlink" title="Command-line命令行工具"></a>Command-line命令行工具</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>：Message bus daemon</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>：从shell脚本来启动message bus工具</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>：发送消息到message bus</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>：debug probe to print message bus messages</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>：生成UUIDs工具</li>
+</ul>
+<p>使用示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## launch message bus</span></span><br><span class="line">$ dbus-launch --sh-syntax</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-send</span></span><br><span class="line"><span class="comment"># send signal</span></span><br><span class="line">$ dbus-send --<span class="built_in">type</span>=signal /  org.signal.poweroff.test_signal string:<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># send message_call</span></span><br><span class="line">$ dbus-send --dest=org.freedesktop.ExampleName               \</span><br><span class="line">            /org/freedesktop/sample/object/name              \</span><br><span class="line">            org.freedesktop.ExampleInterface.ExampleMethod   \</span><br><span class="line">            int32:47 string:<span class="string">&#x27;hello world&#x27;</span> double:65.32       \</span><br><span class="line">            array:string:<span class="string">&quot;1st item&quot;</span>,<span class="string">&quot;next item&quot;</span>,<span class="string">&quot;last item&quot;</span>  \</span><br><span class="line">            dict:string:int32:<span class="string">&quot;one&quot;</span>,1,<span class="string">&quot;two&quot;</span>,2,<span class="string">&quot;three&quot;</span>,3      \</span><br><span class="line">            variant:int32:-8                                 \</span><br><span class="line">            objpath:/org/freedesktop/sample/object/name</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-uuidgen</span></span><br><span class="line"><span class="comment"># it just prints a new uuid</span></span><br><span class="line">$ dbus-uuidgen</span><br><span class="line">ebb40ad49f9d4d8f44faa3bc5fffdc27</span><br><span class="line"></span><br><span class="line"><span class="comment"># prints the machine UUID by default</span></span><br><span class="line">$ dbus-uuidgen --get</span><br><span class="line">5b86dc18cce752c5404d2f0a5ffd1885</span><br><span class="line"></span><br><span class="line">$ dbus-uuidgen --ensure=/usr/<span class="built_in">local</span>/var/lib/dbus/machine-id</span><br></pre></td></tr></table></figure>
+
+<p>dbus-daemon启动脚本:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">## test for an existing bus daemon, just to be safe</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="comment">## if not found, launch a new one</span></span><br><span class="line">    <span class="built_in">eval</span> $(dbus-launch --sh-syntax --exit-with-session)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;D-Bus per-session daemon address is: <span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Graphical图形调试工具"><a href="#Graphical图形调试工具" class="headerlink" title="Graphical图形调试工具"></a>Graphical图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
+<p><img src="/images/d-feet-overview.png" alt="d-feet-overview.png"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2J1c3RsZQ==">Bustle<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="libdbus使用实例："><a href="#libdbus使用实例：" class="headerlink" title="libdbus使用实例："></a>libdbus使用实例：</h2><h3 id="Method-Call消息例子："><a href="#Method-Call消息例子：" class="headerlink" title="Method Call消息例子："></a>Method Call消息例子：</h3><p>场景：launcher访问db_server获取设备信息，比如：获取cpu_id。launcher作为客户端，db_server做为服务端</p>
+<p><img src="/images/image-20210823144204174.png" alt="image-20210823144204174"></p>
+<p>launcher.c代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_LAUNCHER <span class="meta-string">&quot;com.vdiscovery.launcher&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bus_name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="comment">// iface</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="number">0</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_LAUNCHER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.创建消息</span></span><br><span class="line">    DBusMessage* req = dbus_message_new_method_call(</span><br><span class="line">        DBUS_BUS_NAME_DB_SERVER,</span><br><span class="line">        DBUS_OJBECT_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_IFACE_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.1.添加携带信息</span></span><br><span class="line">    <span class="keyword">char</span>* cpu_id = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    dbus_message_append_args(req, DBUS_TYPE_STRING, &amp;cpu_id, DBUS_TYPE_INVALID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取回应消息</span></span><br><span class="line">    DBusMessage* reply     = dbus_connection_send_with_reply_and_block(conn, req, <span class="number">1000</span> * <span class="number">4</span>, &amp;err);</span><br><span class="line">    <span class="keyword">char</span>*        reply_str = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_message_get_args(reply, &amp;err, DBUS_TYPE_STRING, &amp;reply_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;set_cpu_id:%s, reply:reply_str = %s\n&quot;</span>, cpu_id, reply_str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>db_server.c代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用唯一表示：name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// device_info</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// kv store</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_KV_STORE <span class="meta-string">&quot;/com/vdiscovery/db_server/kv_store&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_KV_STORE <span class="meta-string">&quot;com.vdiscovery.db_server.kv_store&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_PUT <span class="meta-string">&quot;put&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_GET <span class="meta-string">&quot;get&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_DELETE <span class="meta-string">&quot;delete&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// content</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_CONTENT <span class="meta-string">&quot;/com/vdiscovery/db_server/content&quot;</span></span></span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        imei_str = <span class="string">&quot;imei:fasdfasdflfasdk&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;imei_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply      = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        cpu_id_str = <span class="string">&quot;cpu_id:231412341&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;cpu_id_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">device_info_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125;  <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">kv_store_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">content_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusObjectPathVTable g_device_info_table = &#123;.message_function = device_info_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_kv_table          = &#123;.message_function = kv_store_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_content_table     = &#123;.message_function = content_handler&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="literal">false</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_DB_SERVER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.注册自己的Object</span></span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_DEVICE_INFO, &amp;g_device_info_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_KV_STORE, &amp;g_kv_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_CONTENT, &amp;g_content_table, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to register a object path for &#x27;TestObject&#x27;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.read/write/despatch消息</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        dbus_connection_read_write_dispatch(conn, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Signal消息例子："><a href="#Signal消息例子：" class="headerlink" title="Signal消息例子："></a>Signal消息例子：</h3><p>todo：</p>
+<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><h2 id="启动其它服务："><a href="#启动其它服务：" class="headerlink" title="启动其它服务："></a>启动其它服务：</h2><h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="我当时是怎么学习dbus的？"><a href="#我当时是怎么学习dbus的？" class="headerlink" title="我当时是怎么学习dbus的？"></a>我当时是怎么学习dbus的？</h3><p>核心结构体<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvZ3JvdXBfX0RCdXNDb25uZWN0aW9uLmh0bWw=">DBusConnection<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvc3RydWN0REJ1c01lc3NhZ2UuaHRtbA==">DBusMessage<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">D-Bus FAQ<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？"><a href="#Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？" class="headerlink" title="Dbus是如果连接上dbus-daemon，调用dbus_bus_get(DBUS_BUS_SESSION, &amp;err);就get到了？"></a>Dbus是如果连接上dbus-daemon，调用<code>dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</code>就get到了？</h3><p>换一种方式：如果把参数传给程序</p>
+<ul>
+<li>参数写死</li>
+<li>main参数<code>argv</code></li>
+<li>特定环境变量（程序自定义）</li>
+<li>配置文件（配置非常多）</li>
+</ul>
+<h3 id="DbusMessage："><a href="#DbusMessage：" class="headerlink" title="DbusMessage："></a>DbusMessage：</h3><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
+<li>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
+<li>dbus-specification规范: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>D-Bus FAQ: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>README: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
+<li>相关中文介绍文章:<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>DBus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【C】libuuid上手教程</title>
     <url>/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
@@ -1078,7 +1226,9 @@
 <p>修改 <code>/etc/docker/daemon.json</code> 文件并添加上 registry-mirrors 键值。（如果文件不存在，请新建该文件）</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://registry.docker-cn.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>修改保存后重启 Docker 以使配置生效。</p>
+<p>修改保存后重启 Docker 以使配置生效。Ubuntu重启Docker：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
 <p><strong>MacOS：</strong></p>
 <p>设置–&gt;Docker Engine： </p>
 <p><img src="/images/image-20210825165057417.png" alt="image-20210825165057417"></p>
@@ -1741,6 +1891,297 @@
       </tags>
   </entry>
   <entry>
+    <title>【GCC】GCC笔记</title>
+    <url>/2021/08/04/GCC-notes/</url>
+    <content><![CDATA[<h2 id="小故事"><a href="#小故事" class="headerlink" title="小故事"></a>小故事</h2><!-- todo -->
+<p>通过在编译器里面做手脚，给程序加后门 TODO</p>
+<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p>作用:把代码 翻译成可执行程序</p>
+<img src="/images/gcc/image-20210716002956629.png" alt="image-20210716002956629" style="zoom:50%;" />
+
+<p>如何编译?如何运行?这两个阶段干了什么?</p>
+<h2 id="GCC编译器"><a href="#GCC编译器" class="headerlink" title="GCC编译器"></a>GCC编译器</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy8=">https://gcc.gnu.org/<i class="fa fa-external-link-alt"></i></span></p>
+<p>GCC文档:<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy04LjUuMC9nY2MvI3RvYy1HQ0MtQ29tbWFuZC1PcHRpb25z">https://gcc.gnu.org/onlinedocs/gcc-8.5.0/gcc/#toc-GCC-Command-Options<i class="fa fa-external-link-alt"></i></span></p>
+<p>书籍推荐:<span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8xNzg3ODU0Lw==">An Introduction to GCC<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>Note:多版本并行开发.最新版本已经到了GCC11了, 老版本7.X也还在更新; 和普通微信及其他app开发有区别.</p>
+<p>之前在开阳开发时版本4.9.x, (<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9nY2MtNC45Lw==">GCC 4.9.4<i class="fa fa-external-link-alt"></i></span> released [2016-08-03])</p>
+</blockquote>
+<p>GCC全称GNU Compiler Collection, GCC是一个工具集合,在编译代码的时候也是团队协作,跟我们开发一样,不同的阶段交给不同的人去处理. 比如:预处理器,链接器(linker:ld)</p>
+<h3 id="编译四步骤"><a href="#编译四步骤" class="headerlink" title="编译四步骤:"></a>编译四步骤:</h3><ol>
+<li>预处理：宏定义展开、头文件展开、条件编译，这里并不会检查语法</li>
+<li>编译：检查语法，将预处理后文件编译生成汇编文件</li>
+<li>汇编：将汇编文件生成目标文件(二进制文件)</li>
+<li>链接：将目标文件链接为可执行程序</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.预处理</span></span><br><span class="line">$ gcc -E main.c -o main.i</span><br><span class="line">$ gcc -E -C main.c -o main.i <span class="comment"># 保留注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编译</span></span><br><span class="line">$ gcc -S main.c -o main.s</span><br><span class="line">$ gcc -S main.c -o main1.s -fverbose-asm <span class="comment"># verbose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.汇编</span></span><br><span class="line">$ gcc -c main.s -o main.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.链接</span></span><br><span class="line">$ gcc main.c -o a.out</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>实际项目编译,从输出日志可以分为两步:</strong></p>
+<p>取自cmake编译缓存文件；如果你要定要一个gcc编译器的公式的话，就是下面这些了（还有生成库）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一步:1.2.3.把项目里面单个.c文件编译成.o文件:gcc -o main.c -C main.o</span></span><br><span class="line">&lt;COMPILER&gt; &lt;DEFINES&gt; &lt;INCLUDES&gt; &lt;FLAGS&gt; -o &lt;OBJECT&gt; -c &lt;SOURCE&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第四步:4.链接,把上面编译出来的.o文件链接在一起,如果有库也会链接</span></span><br><span class="line">&lt;COMPILER&gt; &lt;FLAGS&gt; &lt;CMAKE_C_LINK_FLAGS&gt; &lt;LINK_FLAGS&gt; &lt;OBJECTS&gt; -o &lt;TARGET&gt; &lt;LINK_LIBRARIES&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="对于我们来说-要告诉编译器哪些"><a href="#对于我们来说-要告诉编译器哪些" class="headerlink" title="对于我们来说,要告诉编译器哪些:"></a>对于我们来说,要告诉编译器哪些:</h3><ul>
+<li>编译哪些源代码文件</li>
+<li>头文件搜索路径(默认/相对路径/三方库)</li>
+<li>库搜索路径(默认/相对路径/三方库)</li>
+<li>编译器/链接器选项 (语言标准, 优化选项, 警告)</li>
+<li>编译器/链接器特性</li>
+<li>链接库</li>
+<li>……</li>
+</ul>
+<h3 id="GCC怎么去解决这个问题"><a href="#GCC怎么去解决这个问题" class="headerlink" title="GCC怎么去解决这个问题:"></a>GCC怎么去解决这个问题:</h3><ul>
+<li>命令参数</li>
+<li><strong>命令选项</strong></li>
+<li>特定变量</li>
+</ul>
+<h3 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h3><p>gcc编译哪些源代码,库</p>
+<h3 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项:"></a>命令选项:</h3><p>选项大纲文档:<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy04LjUuMC9nY2MvT3B0aW9uLVN1bW1hcnkuaHRtbCNPcHRpb24tU3VtbWFyeQ==">https://gcc.gnu.org/onlinedocs/gcc-8.5.0/gcc/Option-Summary.html#Option-Summary<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>-Wall: 开启大部分警告提示(建议使用),turns on all the most commonly-used compiler warnings</li>
+<li>-std: 指定编译语言标准</li>
+<li>-o: 指定输出文件名(o:<strong>o</strong>utput)</li>
+<li>-Idir: 指定gcc找头文件的目录(大写i:<strong>i</strong>nclude首字母)</li>
+<li>-Ldir: 将dir目录加入搜索库的目录路径(大写l:<strong>l</strong>ibrary首字母)</li>
+<li>-llib: 连接lib库(小写l:library首字母)</li>
+<li>-o: 程序优化级别(o: optimization)</li>
+<li>-static: 禁止使用共享连接</li>
+<li>-shared: 生成共享目标文件, 通常用在建立共享库时使用</li>
+<li>-g: debug调试用,保存额外的信息到程序中</li>
+<li>-v: 显示编译详情(v: verbose)</li>
+</ul>
+<h3 id="Wall-开启大部分警告提示-建议使用"><a href="#Wall-开启大部分警告提示-建议使用" class="headerlink" title="-Wall: 开启大部分警告提示(建议使用)"></a>-Wall: 开启大部分警告提示(建议使用)</h3><p>gcc提供的对代码检查的选项,</p>
+<h3 id="std-指定编译标准"><a href="#std-指定编译标准" class="headerlink" title="-std:指定编译标准"></a>-std:指定编译标准</h3><p><img src="/images/gcc/image-20201216145626551.png" alt="image-20201216145626551"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">$ gcc -std=c11 main.c</span><br></pre></td></tr></table></figure>
+
+<h3 id="Idir-指定gcc找头文件的目录"><a href="#Idir-指定gcc找头文件的目录" class="headerlink" title="-Idir: 指定gcc找头文件的目录"></a>-Idir: 指定gcc找头文件的目录</h3><p><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2NwcC9TZWFyY2gtUGF0aC5odG1s">https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看gcc找头文件的目录</span></span><br><span class="line">$ cpp -v /dev/null -o /dev/null</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$ cpp -I/home/shibin/repo -v /dev/null -o /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">$ gcc -I/home/shibin/repo main.c</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ldir-指定gcc找库的目录"><a href="#Ldir-指定gcc找库的目录" class="headerlink" title="-Ldir: 指定gcc找库的目录"></a>-Ldir: 指定gcc找库的目录</h3><p>查找库详情:<code>man ld</code></p>
+<blockquote>
+<p>The linker uses the following search paths to locate required shared libraries:</p>
+<ol>
+<li> Any directories specified by <strong>-rpath-link</strong> options.</li>
+<li>Any directories specified by <strong>-rpath</strong> options.  The difference between -rpath and -rpath-link is that directories specified by -rpath options are included in the xecutable and used at runtime,<br> whereas the -rpath-link option is only effective at link time. Searching -rpath in this way is only supported by native linkers and cross linkers which have been configured with the<br> –with-sysroot option.</li>
+<li> On an ELF system, for native linkers, if the -rpath and -rpath-link options were not used, search the contents of the environment variable “<strong>LD_RUN_PATH</strong>“.</li>
+<li> On SunOS, if the <strong>-rpath</strong> option was not used, search any directories specified using <strong>-L</strong> options.</li>
+<li> For a native linker, search the contents of the environment variable “<strong>LD_LIBRARY_PATH</strong>“.</li>
+<li>For a native ELF linker, the directories in “<strong>DT_RUNPATH</strong>“ or “<strong>DT_RPATH</strong>“ of a shared library are searched for shared libraries needed by it. The “DT_RPATH” entries re ignored if “DT_RUNPATH”<br> entries exist.</li>
+<li> The default directories, normally <strong>/lib</strong> and <strong>/usr/lib</strong>.</li>
+<li> For a native linker on an ELF system, if the file <strong>/etc/ld.so.conf</strong> exists, the list of directories found in that file.<br>If the required shared library is not found, the linker will issue a warning and continue with the link.</li>
+</ol>
+</blockquote>
+<h3 id="llib-连接lib库"><a href="#llib-连接lib库" class="headerlink" title="-llib: 连接lib库"></a>-llib: 连接lib库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">$ gcc main.c -lpthread -lm -lrt</span><br></pre></td></tr></table></figure>
+
+<h3 id="o-程序优化级别-o-optimization"><a href="#o-程序优化级别-o-optimization" class="headerlink" title="-o: 程序优化级别(o: optimization)"></a>-o: 程序优化级别(o: optimization)</h3><p><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9PcHRpbWl6ZS1PcHRpb25zLmh0bWwjT3B0aW1pemUtT3B0aW9ucw==">https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#Optimize-Options<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8xNzg3ODU0Lw==">An Introduction to GCC<i class="fa fa-external-link-alt"></i></span>: 6 Compiling with optimization</p>
+<ul>
+<li>-O0 不优化 (default)</li>
+<li>-O1 优化.对于大函数,优化编译占用稍微多的时间和相当大的内存.</li>
+<li>-O2 多优化一些.除了涉及空间和速度交换的优化选项,执行几乎所有的优化工作.例如不进行循环展开(loop unrolling)和函数内嵌(inlining). 和-O选项比较,这个选项既增加了编译时间,也提高了生成代码的 运行效果.</li>
+<li>-O3 优化的更多.除了打开-O2所做的一切,它还打开了-finline-functions选项</li>
+</ul>
+<p><strong>推荐使用:</strong> -O2(经验)</p>
+<h3 id="static-禁止使用共享连接"><a href="#static-禁止使用共享连接" class="headerlink" title="-static: 禁止使用共享连接"></a>-static: 禁止使用共享连接</h3><p>一般不用; 当为了方便移植,可以使用</p>
+<h3 id="shared-生成共享目标文件-通常用在建立共享库时使用"><a href="#shared-生成共享目标文件-通常用在建立共享库时使用" class="headerlink" title="-shared: 生成共享目标文件, 通常用在建立共享库时使用"></a>-shared: 生成共享目标文件, 通常用在建立共享库时使用</h3><p>后面介绍</p>
+<h3 id="g-debug调试用-保存额外的信息到程序中"><a href="#g-debug调试用-保存额外的信息到程序中" class="headerlink" title="-g: debug调试用,保存额外的信息到程序中"></a>-g: debug调试用,保存额外的信息到程序中</h3><p>debug调试时用,会把代码,代码行号…打包到程序中,所以Debug版本的程序会比Release版本的程序大不少</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -g main.c</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-显示编译详情-v-verbose"><a href="#v-显示编译详情-v-verbose" class="headerlink" title="-v: 显示编译详情(v: verbose)"></a>-v: 显示编译详情(v: verbose)</h3><p>编译出问题,不复合预期时候用. 会告诉你gcc是怎么把程序编译出来的,有哪些选项参数,用的什么标准,开启了哪些选项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># gcc</span></span><br><span class="line">$ gcc -v main.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># make</span></span><br><span class="line">$ make VERBOSE=1</span><br><span class="line"></span><br><span class="line"><span class="comment"># cmake</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_VERBOSE_MAKEFILE ON)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="特定变量"><a href="#特定变量" class="headerlink" title="特定变量:"></a>特定变量:</h3><p><strong>LIBRARY_PATH</strong>:编译时需要的动态链接库</p>
+<p><strong>LD_LIBRARY_PATH</strong>:运行时能够自动找到需要的动态链接库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看程序依赖哪些共享库</span></span><br><span class="line">$ ldd /bin/ls</span><br><span class="line">        linux-vdso.so.1 (0x00007ffcc3563000)</span><br><span class="line">        libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00007f87e5459000)</span><br><span class="line">        libcap.so.2 =&gt; /lib64/libcap.so.2 (0x00007f87e5254000)</span><br><span class="line">        libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f87e4e92000)</span><br><span class="line">        libpcre.so.1 =&gt; /lib64/libpcre.so.1 (0x00007f87e4c22000)</span><br><span class="line">        libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f87e4a1e000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 (0x00005574bf12e000)</span><br><span class="line">        libattr.so.1 =&gt; /lib64/libattr.so.1 (0x00007f87e4817000)</span><br><span class="line">        libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007f87e45fa000)</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">export</span> LD_LIBRARY_PATH=/home/shibin/repo/linux-kit/target/lib ./a.out</span><br></pre></td></tr></table></figure>
+
+<h2 id="库"><a href="#库" class="headerlink" title="库"></a>库</h2><p>复用的代码</p>
+<p>编译时,主要发生在程序的链接阶段; 运行</p>
+<h3 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h3><p>目标文件的<strong>归档文档</strong>;可以理解成一组目标文件的集合; 用ar工具去打包,后缀名为.a,(archive file)</p>
+<p><strong>格式:</strong></p>
+<ul>
+<li>Unix:lib<strong>NAME</strong>.a</li>
+<li>Windows:lib<strong>NAME</strong>.lib</li>
+<li>macOS:lib<strong>NAME</strong>.a</li>
+</ul>
+<p><strong>特征:</strong></p>
+<ul>
+<li>文件格式是非可执行程序格式(elf格式)</li>
+<li>链接时,<strong>目标可执行程序</strong>只取我需要的部分,合并到可执行文件中.(可移植性高)；</li>
+<li>运行时会被全部加载到内存(内存占用高)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打包成静态库</span></span><br><span class="line">$ gcc -c add.c sub.c</span><br><span class="line">$ ar crs libname.a file1.o file2.o file3.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看静态库的内容表(table of content)</span></span><br><span class="line">$ ar t libname.a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用静态库</span></span><br><span class="line">$ gcc main.o -o a.out libname.a</span><br><span class="line">$ gcc main.o -o a.out -L. -lname</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态库-共享库"><a href="#动态库-共享库" class="headerlink" title="动态库(共享库)"></a>动态库(共享库)</h3><p>也叫共享库<strong>s</strong>hared <strong>o</strong>bject,顾名思义,可以多个程序共享; 文件后缀名为.so,</p>
+<p><strong>格式:</strong></p>
+<ul>
+<li>Unix:lib<strong>NAME</strong>.so</li>
+<li>Windows:lib<strong>NAME</strong>.dll</li>
+<li>macOS:lib<strong>NAME</strong>.dylib</li>
+</ul>
+<p><strong>特征:</strong></p>
+<ul>
+<li>文件格式是可执行程序格式(elf格式)</li>
+<li>链接时,<strong>目标可执行程序</strong>只记录相应的库信息(函数表).(可移植性低)(ldd executable_name)</li>
+<li>运行时调用该库函数时才会被全部加载到内存;并且多个程序只会加载一份到内存中(多个程序同时去年时.内存占用低)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打包动态库</span></span><br><span class="line">$ gcc -fpic -c file1.c file2.c</span><br><span class="line">$ gcc -shared -o libname.so file1.o file2.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看动态库中有哪些函数</span></span><br><span class="line">$ readelf -Ws /lib/x86_64-linux-gnu/libselinux.so.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用动态库</span></span><br><span class="line">$ gcc main.o -o a.out -L. -lname</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态库-vs-动态库"><a href="#静态库-vs-动态库" class="headerlink" title="静态库 vs 动态库:"></a>静态库 vs 动态库:</h3><ul>
+<li>移植性:静态库可移植性好,移植的时候拷贝程序就可以了</li>
+<li>更新,部署:动态库更新只需要更新单独的库;而静态库需要编译整个程序</li>
+<li>内存占用:动态库被一个或多个进程共享(代码段);静态库所在的每个进程,都会加载一份到内存</li>
+</ul>
+<h3 id="运行时"><a href="#运行时" class="headerlink" title="运行时:"></a>运行时:</h3><p>ldd:查看程序依赖的共享库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ldd /bin/ls</span><br><span class="line">        linux-vdso.so.1 (0x00007ffcc3563000)</span><br><span class="line">        libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00007f87e5459000)</span><br><span class="line">        libcap.so.2 =&gt; /lib64/libcap.so.2 (0x00007f87e5254000)</span><br><span class="line">        libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f87e4e92000)</span><br><span class="line">        libpcre.so.1 =&gt; /lib64/libpcre.so.1 (0x00007f87e4c22000)</span><br><span class="line">        libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f87e4a1e000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 (0x00005574bf12e000)</span><br><span class="line">        libattr.so.1 =&gt; /lib64/libattr.so.1 (0x00007f87e4817000)</span><br><span class="line">        libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007f87e45fa000)</span><br></pre></td></tr></table></figure>
+
+<h3 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题:"></a>思考问题:</h3><ol>
+<li>多个程序使用同一个共享库时,共享哪些内容?  (代码段,只读数据),</li>
+<li>如果同时安装了一个库的动态库和静态库,你的程序会link哪个库? 如果有动态库,默认就链接动态库</li>
+</ol>
+<h2 id="其它工具"><a href="#其它工具" class="headerlink" title="其它工具:"></a>其它工具:</h2><p>UNIX 系统的本地工具, GNU Binutils</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ar</td>
+<td>这是一个程序，可通过从文档中增加、删除和析取文件来维护库文件。通常使用该工具是为了创建和管理连接程序使用的目标库文档。该程序是 binutils 包的一部分</td>
+</tr>
+<tr>
+<td>as</td>
+<td>GNU 汇编器。实际上它是一族汇编器，因为它可以被编泽或能够在各种不同平台上工作。 该程序是 binutils 包的一部分</td>
+</tr>
+<tr>
+<td>ld</td>
+<td>GNU 连接程序。该程序将目标文件的集合组合成可执行程序。该程序是 binutils 包的一部</td>
+</tr>
+<tr>
+<td>gcov</td>
+<td>gprof 使用的配置工具，用来确定程序运行的时候哪一部分耗时最大</td>
+</tr>
+<tr>
+<td>gdb</td>
+<td>GNU 调试器，可用于检查程序运行时的值和行为</td>
+</tr>
+<tr>
+<td>gprof</td>
+<td>该程序会监督编泽程序的执行过程，并报告程序中各个函数的运行时间，可以根据所提供 的配置文件来优化程序。该程序是 binutils 包的一部分</td>
+</tr>
+<tr>
+<td>make</td>
+<td>一个工具程序，它会读 makefile 脚木来确定程序中的哪个部分需要编泽和连接，然后发布 必要的命令。它读出的脚木（叫做 makefile 或 Makefile）定义了文件关系和依赖关系</td>
+</tr>
+<tr>
+<td>objdump</td>
+<td>显示一个或多个目标文件中保存的多种不同信息。该程序是 binutils 包的一部分</td>
+</tr>
+<tr>
+<td>readelf</td>
+<td>从 ELF 格式的目标文件显示信息。该程序是 binutils 包的一部分</td>
+</tr>
+<tr>
+<td>size</td>
+<td>列出目标文件中每个部分的名字和尺寸。该程序是 binutils 包的一部分</td>
+</tr>
+<tr>
+<td>strings</td>
+<td>浏览所有类型的文件，析取出用于显示的字符串。该程序是 binutils 包的一部分</td>
+</tr>
+<tr>
+<td>strip</td>
+<td>从目标文件或文档库中去掉符号表，以及其他调试所需的信息。该程序是 binutils 包的一部</td>
+</tr>
+</tbody></table>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="兼容问题"><a href="#兼容问题" class="headerlink" title="兼容问题:"></a>兼容问题:</h3><ul>
+<li>系统平台差异</li>
+<li>C标准库实现差异,不同的实现<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9saWJjLw==">glibc<i class="fa fa-external-link-alt"></i></span>,<span class="exturl" data-url="aHR0cHM6Ly93d3cudWNsaWJjLm9yZy8=">uClibc<i class="fa fa-external-link-alt"></i></span>,<span class="exturl" data-url="aHR0cHM6Ly9zdm53ZWIuZnJlZWJzZC5vcmcvYmFzZS9oZWFkL2xpYi9saWJjLw==">FreeBSD libc<i class="fa fa-external-link-alt"></i></span></li>
+<li>同一个库不同版差异</li>
+<li>不同语言版本标准问题</li>
+<li>不同编译器版本</li>
+</ul>
+<h3 id="预处理时错误信息"><a href="#预处理时错误信息" class="headerlink" title="预处理时错误信息:"></a>预处理时错误信息:</h3><ul>
+<li>No such file or directory</li>
+</ul>
+<h3 id="编译时错误信息"><a href="#编译时错误信息" class="headerlink" title="编译时错误信息:"></a>编译时错误信息:</h3><ul>
+<li><p>‘variable’ undeclared (first use in this function)</p>
+</li>
+<li><p>warning: implicit declaration of function ‘…’</p>
+</li>
+<li><p>warning: unused variable ‘…’</p>
+</li>
+<li><p>warning: unused parameter ‘…’</p>
+</li>
+</ul>
+<h3 id="链接时错误信息"><a href="#链接时错误信息" class="headerlink" title="链接时错误信息:"></a>链接时错误信息:</h3><ul>
+<li><p>file not recognized: File format not recognized</p>
+</li>
+<li><p>undefined reference to ‘foo’ 找不到函数</p>
+</li>
+</ul>
+<h3 id="运行时错误信息"><a href="#运行时错误信息" class="headerlink" title="运行时错误信息:"></a>运行时错误信息:</h3><ul>
+<li>error while loading shared libraries:<br>cannot open shared object file: No such file or directory</li>
+</ul>
+<p><strong>段错误Segmentation fault:</strong></p>
+<ul>
+<li>dereferencing a null pointer or uninitialized pointer</li>
+<li>out-of-bounds array access</li>
+<li>incorrect use of malloc, free and related functions</li>
+<li>use of scanf with invalid arguments</li>
+</ul>
+<h2 id="交叉编译工具链"><a href="#交叉编译工具链" class="headerlink" title="交叉编译工具链"></a>交叉编译工具链</h2><p>在一种计算机环境中运行的编译程序, 能编译出在另外一种环境下运行的代码, 这个编译过程就叫交叉编译</p>
+<p>简单地说,就是<strong>在一个平台上生成另一个平台上的可执行代码</strong>.比如,X86机器上生成arm机器的程序</p>
+<p>交叉编译工具链是一个由编译器、连接器和解释器组成的综合开发环境，交叉编译工具链主要由binutils、gcc和glibc三个部分组成。有时出于减小 libc 库大小的考虑，也可以用别的 c 库来代替 glibc，例如 uClibc、dietlibc 和 newlib</p>
+<h3 id="分类和说明"><a href="#分类和说明" class="headerlink" title="分类和说明"></a>分类和说明</h3><p>从授权上，分为免费授权版和付费授权版。</p>
+<p>免费版目前有三大主流工具商提供，第一是GNU（提供源码，自行编译制作），第二是 Codesourcery，第三是Linora。</p>
+<p>收费版有ARM原厂提供的armcc、IAR提供的编译器等等，因为这些价格都比较昂贵，不适合学习用户使用，所以不做讲述。</p>
+<ul>
+<li>arm-none-linux-gnueabi-gcc：是 Codesourcery 公司（目前已经被Mentor收购）基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARM（32位）系统中所有环节的代码，包括裸机程序、u-boot、Linux kernel、filesystem和App应用程序。</li>
+<li>arm-linux-gnueabihf-gcc：是由 Linaro 公司基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARM（32位）系统中所有环节的代码，包括裸机程序、u-boot、Linux kernel、filesystem和App应用程序。</li>
+<li>aarch64-linux-gnu-gcc：是由 Linaro 公司基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARMv8 64位目标中的裸机程序、u-boot、Linux kernel、filesystem和App应用程序。</li>
+<li>arm-none-elf-gcc：是 Codesourcery 公司（目前已经被Mentor收购）基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARM MCU（32位）芯片，如ARM7、ARM9、Cortex-M/R芯片程序。</li>
+<li>arm-none-eabi-gcc：是 GNU 推出的的ARM交叉编译工具。可用于交叉编译ARM MCU（32位）芯片，如ARM7、ARM9、Cortex-M/R芯片程序。</li>
+</ul>
+<h3 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h3><p>交叉编译工具链的命名规则为：arch [-vendor] [-os] [-(gnu)eabi]</p>
+<ul>
+<li>arch – 体系架构，如ARM，MIPS（通过交叉编译工具生成的可执行文件或系统镜像的运行平台或环境）</li>
+<li>vendor – 工具链提供商</li>
+<li>os – 目标操作系统（host主要操作平台，也就是编译时的系统）</li>
+<li>eabi – 嵌入式应用二进制接口（Embedded Application Binary Interface）</li>
+</ul>
+<p>根据对操作系统的支持与否，ARM GCC可分为支持和不支持操作系统，如</p>
+<ul>
+<li>arm-none-eabi：这个是没有操作系统的，自然不可能支持那些跟操作系统关系密切的函数，比如fork(2)。他使用的是newlib这个专用于嵌入式系统的C库。</li>
+<li>arm-none-linux-eabi：用于Linux的，使用Glibc</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="1-arm-none-eabi-gcc"><a href="#1-arm-none-eabi-gcc" class="headerlink" title="1. arm-none-eabi-gcc"></a>1. arm-none-eabi-gcc</h4><p>（ARM architecture，no vendor，not target an operating system，complies with the ARM EABI）<br>用于编译 ARM 架构的裸机系统（包括 ARM Linux 的 boot、kernel，不适用编译 Linux 应用 Application），一般适合 ARM7、Cortex-M 和 Cortex-R 内核的芯片使用，所以不支持那些跟操作系统关系密切的函数，比如fork(2)，他使用的是 newlib 这个专用于嵌入式系统的C库。</p>
+<h4 id="2-arm-none-linux-gnueabi-gcc"><a href="#2-arm-none-linux-gnueabi-gcc" class="headerlink" title="2. arm-none-linux-gnueabi-gcc"></a>2. arm-none-linux-gnueabi-gcc</h4><p>(ARM architecture, no vendor, creates binaries that run on the Linux operating system, and uses the GNU EABI)</p>
+<p>主要用于基于ARM架构的Linux系统，可用于编译 ARM 架构的 u-boot、Linux内核、linux应用等。arm-none-linux-gnueabi基于GCC，使用Glibc库，经过 Codesourcery 公司优化过推出的编译器。arm-none-linux-gnueabi-xxx 交叉编译工具的浮点运算非常优秀。一般ARM9、ARM11、Cortex-A 内核，带有 Linux 操作系统的会用到。</p>
+<h4 id="3-arm-eabi-gcc"><a href="#3-arm-eabi-gcc" class="headerlink" title="3. arm-eabi-gcc"></a>3. arm-eabi-gcc</h4><p>Android ARM 编译器。</p>
+<h4 id="4-armcc"><a href="#4-armcc" class="headerlink" title="4. armcc"></a>4. armcc</h4><p>ARM 公司推出的编译工具，功能和 arm-none-eabi 类似，可以编译裸机程序（u-boot、kernel），但是不能编译 Linux 应用程序。armcc一般和ARM开发工具一起，Keil MDK、ADS、RVDS和DS-5中的编译器都是armcc，所以 armcc 编译器都是收费的（爱国版除外，呵呵~~）。</p>
+<h4 id="5-arm-none-uclinuxeabi-gcc-和-arm-none-symbianelf-gcc"><a href="#5-arm-none-uclinuxeabi-gcc-和-arm-none-symbianelf-gcc" class="headerlink" title="5. arm-none-uclinuxeabi-gcc 和 arm-none-symbianelf-gcc"></a>5. arm-none-uclinuxeabi-gcc 和 arm-none-symbianelf-gcc</h4><p>arm-none-uclinuxeabi 用于uCLinux，使用Glibc。</p>
+<p>arm-none-symbianelf 用于symbian，没用过，不知道C库是什么 。</p>
+<h3 id="Codesourcery"><a href="#Codesourcery" class="headerlink" title="Codesourcery"></a>Codesourcery</h3><p>Codesourcery推出的产品叫Sourcery G++ Lite Edition，其中基于command-line的编译器是免费的，在官网上可以下载，而其中包含的IDE和debug 工具是收费的，当然也有30天试用版本的。</p>
+<p>目前CodeSourcery已经由明导国际(Mentor Graphics)收购，所以原本的网站风格已经全部变为 Mentor 样式，但是 Sourcery G++ Lite Edition 同样可以注册后免费下载。</p>
+<p>Codesourcery一直是在做ARM目标 GCC 的开发和优化，它的ARM GCC在目前在市场上非常优秀，很多 patch 可能还没被gcc接受，所以还是应该直接用它的（而且他提供Windows下[mingw交叉编译的]和Linux下的二进制版本，比较方便；如果不是很有时间和兴趣，不建议下载 src 源码包自己编译，很麻烦，Codesourcery给的shell脚本很多时候根本没办法直接用，得自行提取关键的部分手工执行，又费精力又费时间，如果想知道细节，其实不用自己编译一遍，看看他是用什么步骤构建的即可，如果你对交叉编译器感兴趣的话。</p>
+<h3 id="ABI-和-EABI"><a href="#ABI-和-EABI" class="headerlink" title="ABI 和 EABI"></a>ABI 和 EABI</h3><p>ABI：二进制应用程序接口(Application Binary Interface (ABI) for the ARM Architecture)。在计算机中，应用二进制接口描述了应用程序（或者其他类型）和操作系统之间或其他应用程序的低级接口。</p>
+<p>EABI：嵌入式ABI。嵌入式应用二进制接口指定了文件格式、数据类型、寄存器使用、堆积组织优化和在一个嵌入式软件中的参数的标准约定。开发者使用自己的汇编语言也可以使用 EABI 作为与兼容的编译器生成的汇编语言的接口。</p>
+<p>两者主要区别是，ABI是计算机上的，EABI是嵌入式平台上（如ARM，MIPS等）。</p>
+<h3 id="arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc"><a href="#arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc" class="headerlink" title="arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc"></a>arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc</h3><p>两个交叉编译器分别适用于 armel 和 armhf 两个不同的架构，armel 和 armhf 这两种架构在对待浮点运算采取了不同的策略（有 fpu 的 arm 才能支持这两种浮点运算策略）</p>
+]]></content>
+      <categories>
+        <category>编译器</category>
+      </categories>
+      <tags>
+        <tag>GCC</tag>
+        <tag>编译器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Vim】Vim笔记</title>
     <url>/2021/08/09/Vim-notes/</url>
     <content><![CDATA[<h2 id="Vim介绍"><a href="#Vim介绍" class="headerlink" title="Vim介绍"></a>Vim介绍</h2><p><strong>Vim 编辑器之神, Emacs 神的编辑器</strong></p>
@@ -2248,15 +2689,47 @@
     <title>【Personal】阅读源码的技巧</title>
     <url>/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
-<li>前提：熟悉它的功能</li>
-<li>调试Debug分析</li>
+<li>前提：熟悉它的作用和功能</li>
 <li>有目的的看代码</li>
-<li>抽象：先看整体，然后看细节实现</li>
-<li>找核心代码</li>
-<li>改代码，改成你熟悉的方式（删代码）</li>
+<li>从代码的流程看</li>
+<li>从代码的架构看</li>
+<li>从代码的分类看</li>
+<li>调试Debug分析</li>
+<li>找核心代码（<strong>删代码</strong>）</li>
 <li>辅助工具：画图</li>
 </ul>
 <p>todo：</p>
+<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
+<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
+<li>架构是如何设计的</li>
+<li>某个功能是如何实现的</li>
+<li>…</li>
+</ul>
+<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
+<ol>
+<li>初始化</li>
+<li>正常运行（工作中）</li>
+<li>关闭（正常关闭）</li>
+</ol>
+<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
+<li>流程型</li>
+<li>处理型</li>
+</ul>
+<p>这两个名字是我自己起的：</p>
+<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
+<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
+<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
+<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
+<p>从单个函数看，一般代码分为三部分：</p>
+<ol>
+<li>条件不满足</li>
+<li>数据准备阶段</li>
+<li>核心处理函数调用</li>
+</ol>
+<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
+<li>脑子不够用了才发明了文字，图画</li>
+<li>画图本身也是在理思路的一个过程，内化的过程</li>
+</ul>
 ]]></content>
       <categories>
         <category>Personal</category>
@@ -2300,442 +2773,19 @@
       </tags>
   </entry>
   <entry>
-    <title>【C】libdbus上手教程</title>
-    <url>/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<!-- # libdbus Overview -->
-
-<p>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="What-is-D-Bus"><a href="#What-is-D-Bus" class="headerlink" title="What is D-Bus?"></a>What is D-Bus?</h2><blockquote>
-<p>D-Bus is <strong>a message bus system</strong>, a simple way for <strong>applications to talk to one another</strong>. In addition to interprocess communication, D-Bus helps <strong>coordinate process lifecycle</strong>; it makes it simple and reliable to code a “<strong>single instance</strong>“ application or daemon, and to <strong>launch applications</strong> and daemons on demand when their services are needed.</p>
-</blockquote>
-<h3 id="概括："><a href="#概括：" class="headerlink" title="概括："></a>概括：</h3><ul>
-<li>一个消息总线系统<ul>
-<li>一对多(signal)：类似于广播/订阅，可以携带消息数据，没有应答确认</li>
-<li>一对一(method call)：有应答确认</li>
-</ul>
-</li>
-<li>其他功能<ul>
-<li>启动其它进程</li>
-<li>支持单个实例进程</li>
-<li>在app退出的时候,通知程序</li>
-</ul>
-</li>
-</ul>
-<h2 id="系统bus和会话bus"><a href="#系统bus和会话bus" class="headerlink" title="系统bus和会话bus"></a>系统bus和会话bus</h2><p><strong>system bus</strong>：在引导时就会启动，应用场景（待定）<br><strong>session bus</strong>：在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
-<h2 id="Low-level-API-vs-high-level-binding-APIs"><a href="#Low-level-API-vs-high-level-binding-APIs" class="headerlink" title="Low-level API vs high-level binding APIs"></a>Low-level API vs high-level binding APIs</h2><p>low-level API：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">libdbus<i class="fa fa-external-link-alt"></i></span><br>high-level binding APIs：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1nbGliLw==">GLib<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kb2MucXQuaW8vcXQtNS9xdGRidXMtaW5kZXguaHRtbA==">Qt<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1weXRob24v">Python<i class="fa fa-external-link-alt"></i></span>, Mono, Java, or whatever.</p>
-<p><strong>区别:</strong></p>
-<ul>
-<li>low-level：依赖少，用起来更加麻烦/复杂,定制程度可以更高,更加适合自己封装,改造</li>
-<li>high-level：用起来更加方便</li>
-</ul>
-<h2 id="Version-numbers"><a href="#Version-numbers" class="headerlink" title="Version numbers"></a>Version numbers</h2><blockquote>
-<p>软件版本格式:major.<strong>minor</strong>.patch</p>
-</blockquote>
-<p>minor version 是偶数的是stable版本,奇数的是dev版本<br>比如, development snapshots: 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions: 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
-<h2 id="D-Bus中的概念"><a href="#D-Bus中的概念" class="headerlink" title="D-Bus中的概念"></a>D-Bus中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>:</p>
-<ul>
-<li>启动bus daemon, 生成bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
-<li>获取bus daemon的connect连接, 注册bus name(com.mycompany.TextEditor)</li>
-<li>创建msg, 发给哪个bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
-<li>发送msg到bus daemon</li>
-<li>bus daemon发送到相应的bus name进程</li>
-<li>接收到消息后返回数据</li>
-<li>…</li>
-</ul>
-<p><img src="/images/Xnip2021-01-15_23-03-16.jpg"></p>
-<p><strong>相应概念:</strong></p>
-<p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
-<table>
-<thead>
-<tr>
-<th><strong>A…</strong></th>
-<th><strong>is identified by a(n)…</strong></th>
-<th><strong>which looks like…</strong></th>
-<th><strong>and is chosen by…</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Bus</td>
-<td>address</td>
-<td><code>unix:path=/var/run/dbus/system_bus_socket</code></td>
-<td>system configuration</td>
-</tr>
-<tr>
-<td>Connection</td>
-<td>bus name</td>
-<td><code>:34-907</code> (<em>unique</em>) or <code>com.mycompany.TextEditor</code> (<em>well-known</em>)</td>
-<td>D-Bus (<em>unique</em>) or the owning program (<em>well-known</em>)</td>
-</tr>
-<tr>
-<td>Object</td>
-<td>path</td>
-<td><code>/com/mycompany/TextFileManager</code></td>
-<td>the owning program</td>
-</tr>
-<tr>
-<td><em>Interface</em></td>
-<td><em>interface name</em></td>
-<td><code>org.freedesktop.Hal.Manager</code></td>
-<td><em>the owning program</em></td>
-</tr>
-<tr>
-<td>Member</td>
-<td>member name</td>
-<td><code>ListNames</code></td>
-<td>the owning program</td>
-</tr>
-</tbody></table>
-<blockquote>
-<h3 id="D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface"><a href="#D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface" class="headerlink" title="D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?"></a><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbCNpZG0zOQ==">D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?<i class="fa fa-external-link-alt"></i></span></h3><p>If you imagine a C++ program that implements a network service, then the bus name is the hostname of the computer running this C++ program, the object path is a C++ object instance pointer, and an interface is a C++ class (a pure virtual or abstract class, to be exact).<br>In Java terms, the object path is an object reference, and an interface is a Java interface.<br>People get confused because if they write an application with a single object instance and a single interface, then the bus name, object path, and interface look redundant. For example, you might have a text editor that uses the bus name org.freedesktop.TextEditor, has a global singleton object called /org/freedesktop/TextEditor, and that singleton object could implement the interface org.freedesktop.TextEditor.<br>However, a text editor application could as easily own multiple bus names (for example, org.kde.KWrite in addition to generic TextEditor), have multiple objects (maybe /org/kde/documents/4352 where the number changes according to the document), and each object could implement multiple interfaces, such as org.freedesktop.DBus.Introspectable, org.freedesktop.BasicTextField, org.kde.RichTextDocument.</p>
-</blockquote>
-<h2 id="D-Bus消息类型"><a href="#D-Bus消息类型" class="headerlink" title="D-Bus消息类型"></a>D-Bus消息类型</h2><p>消息通过D-Bus在进程间传递。有四类消息：</p>
-<ul>
-<li>Method call消息：将触发对象的一个method</li>
-<li>Method return消息：触发的方法返回的结果</li>
-<li>Signal消息：通知，可以看作为事件消息。</li>
-<li>Error消息：触发的方法返回一个异常</li>
-</ul>
-<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h3 id="Command-line命令行工具"><a href="#Command-line命令行工具" class="headerlink" title="Command-line命令行工具"></a>Command-line命令行工具</h3><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>：Message bus daemon</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>：从shell脚本来启动message bus工具</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>：发送消息到message bus</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>：debug probe to print message bus messages</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>：生成UUIDs工具</li>
-</ul>
-<p>使用示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## launch message bus</span></span><br><span class="line">$ dbus-launch --sh-syntax</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-send</span></span><br><span class="line"><span class="comment"># send signal</span></span><br><span class="line">$ dbus-send --<span class="built_in">type</span>=signal /  org.signal.poweroff.test_signal string:<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># send message_call</span></span><br><span class="line">$ dbus-send --dest=org.freedesktop.ExampleName               \</span><br><span class="line">            /org/freedesktop/sample/object/name              \</span><br><span class="line">            org.freedesktop.ExampleInterface.ExampleMethod   \</span><br><span class="line">            int32:47 string:<span class="string">&#x27;hello world&#x27;</span> double:65.32       \</span><br><span class="line">            array:string:<span class="string">&quot;1st item&quot;</span>,<span class="string">&quot;next item&quot;</span>,<span class="string">&quot;last item&quot;</span>  \</span><br><span class="line">            dict:string:int32:<span class="string">&quot;one&quot;</span>,1,<span class="string">&quot;two&quot;</span>,2,<span class="string">&quot;three&quot;</span>,3      \</span><br><span class="line">            variant:int32:-8                                 \</span><br><span class="line">            objpath:/org/freedesktop/sample/object/name</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-uuidgen</span></span><br><span class="line"><span class="comment"># it just prints a new uuid</span></span><br><span class="line">$ dbus-uuidgen</span><br><span class="line">ebb40ad49f9d4d8f44faa3bc5fffdc27</span><br><span class="line"></span><br><span class="line"><span class="comment"># prints the machine UUID by default</span></span><br><span class="line">$ dbus-uuidgen --get</span><br><span class="line">5b86dc18cce752c5404d2f0a5ffd1885</span><br><span class="line"></span><br><span class="line">$ dbus-uuidgen --ensure=/usr/<span class="built_in">local</span>/var/lib/dbus/machine-id</span><br></pre></td></tr></table></figure>
-
-<p>dbus-daemon启动脚本:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">## test for an existing bus daemon, just to be safe</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="comment">## if not found, launch a new one</span></span><br><span class="line">    <span class="built_in">eval</span> $(dbus-launch --sh-syntax --exit-with-session)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;D-Bus per-session daemon address is: <span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Graphical图形调试工具"><a href="#Graphical图形调试工具" class="headerlink" title="Graphical图形调试工具"></a>Graphical图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="/images/d-feet-overview.png" alt="d-feet-overview.png"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2J1c3RsZQ==">Bustle<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="libdbus使用实例："><a href="#libdbus使用实例：" class="headerlink" title="libdbus使用实例："></a>libdbus使用实例：</h2><h3 id="Method-Call消息例子："><a href="#Method-Call消息例子：" class="headerlink" title="Method Call消息例子："></a>Method Call消息例子：</h3><p>场景：launcher访问db_server获取设备信息，比如：获取cpu_id。launcher作为客户端，db_server做为服务端</p>
-<p><img src="/images/image-20210823144204174.png" alt="image-20210823144204174"></p>
-<p>launcher.c代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_LAUNCHER <span class="meta-string">&quot;com.vdiscovery.launcher&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bus_name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="comment">// iface</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="number">0</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_LAUNCHER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.创建消息</span></span><br><span class="line">    DBusMessage* req = dbus_message_new_method_call(</span><br><span class="line">        DBUS_BUS_NAME_DB_SERVER,</span><br><span class="line">        DBUS_OJBECT_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_IFACE_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.1.添加携带信息</span></span><br><span class="line">    <span class="keyword">char</span>* cpu_id = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    dbus_message_append_args(req, DBUS_TYPE_STRING, &amp;cpu_id, DBUS_TYPE_INVALID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取回应消息</span></span><br><span class="line">    DBusMessage* reply     = dbus_connection_send_with_reply_and_block(conn, req, <span class="number">1000</span> * <span class="number">4</span>, &amp;err);</span><br><span class="line">    <span class="keyword">char</span>*        reply_str = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_message_get_args(reply, &amp;err, DBUS_TYPE_STRING, &amp;reply_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;set_cpu_id:%s, reply:reply_str = %s\n&quot;</span>, cpu_id, reply_str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>db_server.c代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用唯一表示：name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// device_info</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// kv store</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_KV_STORE <span class="meta-string">&quot;/com/vdiscovery/db_server/kv_store&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_KV_STORE <span class="meta-string">&quot;com.vdiscovery.db_server.kv_store&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_PUT <span class="meta-string">&quot;put&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_GET <span class="meta-string">&quot;get&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_DELETE <span class="meta-string">&quot;delete&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// content</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_CONTENT <span class="meta-string">&quot;/com/vdiscovery/db_server/content&quot;</span></span></span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        imei_str = <span class="string">&quot;imei:fasdfasdflfasdk&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;imei_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply      = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        cpu_id_str = <span class="string">&quot;cpu_id:231412341&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;cpu_id_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">device_info_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125;  <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">kv_store_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">content_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusObjectPathVTable g_device_info_table = &#123;.message_function = device_info_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_kv_table          = &#123;.message_function = kv_store_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_content_table     = &#123;.message_function = content_handler&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="literal">false</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_DB_SERVER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.注册自己的Object</span></span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_DEVICE_INFO, &amp;g_device_info_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_KV_STORE, &amp;g_kv_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_CONTENT, &amp;g_content_table, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to register a object path for &#x27;TestObject&#x27;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.read/write/despatch消息</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        dbus_connection_read_write_dispatch(conn, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Signal消息例子："><a href="#Signal消息例子：" class="headerlink" title="Signal消息例子："></a>Signal消息例子：</h3><p>todo：</p>
-<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><h2 id="启动其它服务："><a href="#启动其它服务：" class="headerlink" title="启动其它服务："></a>启动其它服务：</h2><h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="我当时是怎么学习dbus的？"><a href="#我当时是怎么学习dbus的？" class="headerlink" title="我当时是怎么学习dbus的？"></a>我当时是怎么学习dbus的？</h3><p>核心结构体<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvZ3JvdXBfX0RCdXNDb25uZWN0aW9uLmh0bWw=">DBusConnection<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvc3RydWN0REJ1c01lc3NhZ2UuaHRtbA==">DBusMessage<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">D-Bus FAQ<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？"><a href="#Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？" class="headerlink" title="Dbus是如果连接上dbus-daemon，调用dbus_bus_get(DBUS_BUS_SESSION, &amp;err);就get到了？"></a>Dbus是如果连接上dbus-daemon，调用<code>dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</code>就get到了？</h3><p>换一种方式：如果把参数传给程序</p>
-<ul>
-<li>参数写死</li>
-<li>main参数<code>argv</code></li>
-<li>特定环境变量（程序自定义）</li>
-<li>配置文件（配置非常多）</li>
-</ul>
-<h3 id="DbusMessage："><a href="#DbusMessage：" class="headerlink" title="DbusMessage："></a>DbusMessage：</h3><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
-<li>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
-<li>dbus-specification规范: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>D-Bus FAQ: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>README: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
-<li>相关中文介绍文章:<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
+    <title>【Tool】Clang-tidy——静态代码分析框架</title>
+    <url>/2021/08/29/Clang-tidy%E2%80%94%E2%80%94%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<p>clang-tidy具体可以检测以下几个部分：<br>（1）boost 检测boost库API使用问题<br>（2）cert 检测CERT的代码规范<br>（3）cpp-core-guidelines 检测是否违反cpp-core-guidelines<br>（4）google 检测是否违反google code style<br>（5）llvm 检测是否违反llvm code style<br>（6）readability 检测代码上相关问题，但又不明确属于任何代码规范的<br>（7）misc 其它一些零碎的check<br>（8）mpi 检测MPI API问题<br>（9）modernize 把C++03代码转换成C++11代码，使用C++11新特性<br>（10）performance 检测performance相关问题</p>
+<p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
+<p>实例：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9vcmJpdC9ibG9iL21haW4vLmNsYW5nLXRpZHk=">https://github.com/google/orbit/blob/main/.clang-tidy<i class="fa fa-external-link-alt"></i></span></p>
+<p>参考：<br><span class="exturl" data-url="aHR0cHM6Ly9ob2tlaW4uZ2l0aHViLmlvL2NsYW5nLXRvb2xzLXR1dG9yaWFsL2NsYW5nLXRpZHkuaHRtbA==">https://hokein.github.io/clang-tools-tutorial/clang-tidy.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3lwc2hvd20vMTAwMDQwNzI5">https://www.cxyzjd.com/article/ypshowm/100040729<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMxODcwNTcvYXJ0aWNsZS9kZXRhaWxzLzEwMzA1MjI3NQ==">https://blog.csdn.net/u013187057/article/details/103052275<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3dhZHMyMzQ1Ni8xMDgwMDk2MTc=">https://www.cxyzjd.com/article/wads23456/108009617<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9jb2RleWFybnMuY29tLzIwMTkvMDEvMjgvaG93LXRvLXVzZS1jbGFuZy10aWR5Lw==">https://codeyarns.com/2019/01/28/how-to-use-clang-tidy/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwNzAxNTk4MQ==">https://segmentfault.com/a/1190000007015981<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTEtbW9kZXJuaXplLXNvdXJjZS1jb2RlLXVzaW5nLWMxMWMxNC8=">https://www.kdab.com/clang-tidy-part-1-modernize-source-code-using-c11c14/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTItaW50ZWdyYXRlLXFtYWtlLWFuZC1vdGhlci1idWlsZC1zeXN0ZW1zLXVzaW5nLWJlYXIv">https://www.kdab.com/clang-tidy-part-2-integrate-qmake-and-other-build-systems-using-bear/<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
-        <category>C</category>
+        <category>Tool</category>
       </categories>
       <tags>
-        <tag>C</tag>
-        <tag>DBus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【GCC】GCC笔记</title>
-    <url>/2021/08/04/GCC-notes/</url>
-    <content><![CDATA[<h2 id="小故事"><a href="#小故事" class="headerlink" title="小故事"></a>小故事</h2><!-- todo -->
-<p>通过在编译器里面做手脚，给程序加后门 TODO</p>
-<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p>作用:把代码 翻译成可执行程序</p>
-<img src="/images/gcc/image-20210716002956629.png" alt="image-20210716002956629" style="zoom:50%;" />
-
-<p>如何编译?如何运行?这两个阶段干了什么?</p>
-<h2 id="GCC编译器"><a href="#GCC编译器" class="headerlink" title="GCC编译器"></a>GCC编译器</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy8=">https://gcc.gnu.org/<i class="fa fa-external-link-alt"></i></span></p>
-<p>GCC文档:<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy04LjUuMC9nY2MvI3RvYy1HQ0MtQ29tbWFuZC1PcHRpb25z">https://gcc.gnu.org/onlinedocs/gcc-8.5.0/gcc/#toc-GCC-Command-Options<i class="fa fa-external-link-alt"></i></span></p>
-<p>书籍推荐:<span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8xNzg3ODU0Lw==">An Introduction to GCC<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>Note:多版本并行开发.最新版本已经到了GCC11了, 老版本7.X也还在更新; 和普通微信及其他app开发有区别.</p>
-<p>之前在开阳开发时版本4.9.x, (<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9nY2MtNC45Lw==">GCC 4.9.4<i class="fa fa-external-link-alt"></i></span> released [2016-08-03])</p>
-</blockquote>
-<p>GCC全称GNU Compiler Collection, GCC是一个工具集合,在编译代码的时候也是团队协作,跟我们开发一样,不同的阶段交给不同的人去处理. 比如:预处理器,链接器(linker:ld)</p>
-<h3 id="编译四步骤"><a href="#编译四步骤" class="headerlink" title="编译四步骤:"></a>编译四步骤:</h3><ol>
-<li>预处理：宏定义展开、头文件展开、条件编译，这里并不会检查语法</li>
-<li>编译：检查语法，将预处理后文件编译生成汇编文件</li>
-<li>汇编：将汇编文件生成目标文件(二进制文件)</li>
-<li>链接：将目标文件链接为可执行程序</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.预处理</span></span><br><span class="line">$ gcc -E main.c -o main.i</span><br><span class="line">$ gcc -E -C main.c -o main.i <span class="comment"># 保留注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编译</span></span><br><span class="line">$ gcc -S main.c -o main.s</span><br><span class="line">$ gcc -S main.c -o main1.s -fverbose-asm <span class="comment"># verbose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.汇编</span></span><br><span class="line">$ gcc -c main.s -o main.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.链接</span></span><br><span class="line">$ gcc main.c -o a.out</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>实际项目编译,从输出日志可以分为两步:</strong></p>
-<p>取自cmake编译缓存文件；如果你要定要一个gcc编译器的公式的话，就是下面这些了（还有生成库）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一步:1.2.3.把项目里面单个.c文件编译成.o文件:gcc -o main.c -C main.o</span></span><br><span class="line">&lt;COMPILER&gt; &lt;DEFINES&gt; &lt;INCLUDES&gt; &lt;FLAGS&gt; -o &lt;OBJECT&gt; -c &lt;SOURCE&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第四步:4.链接,把上面编译出来的.o文件链接在一起,如果有库也会链接</span></span><br><span class="line">&lt;COMPILER&gt; &lt;FLAGS&gt; &lt;CMAKE_C_LINK_FLAGS&gt; &lt;LINK_FLAGS&gt; &lt;OBJECTS&gt; -o &lt;TARGET&gt; &lt;LINK_LIBRARIES&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="对于我们来说-要告诉编译器哪些"><a href="#对于我们来说-要告诉编译器哪些" class="headerlink" title="对于我们来说,要告诉编译器哪些:"></a>对于我们来说,要告诉编译器哪些:</h3><ul>
-<li>编译哪些源代码文件</li>
-<li>头文件搜索路径(默认/相对路径/三方库)</li>
-<li>库搜索路径(默认/相对路径/三方库)</li>
-<li>编译器/链接器选项 (语言标准, 优化选项, 警告)</li>
-<li>编译器/链接器特性</li>
-<li>链接库</li>
-<li>……</li>
-</ul>
-<h3 id="GCC怎么去解决这个问题"><a href="#GCC怎么去解决这个问题" class="headerlink" title="GCC怎么去解决这个问题:"></a>GCC怎么去解决这个问题:</h3><ul>
-<li>命令参数</li>
-<li><strong>命令选项</strong></li>
-<li>特定变量</li>
-</ul>
-<h3 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h3><p>gcc编译哪些源代码,库</p>
-<h3 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项:"></a>命令选项:</h3><p>选项大纲文档:<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy04LjUuMC9nY2MvT3B0aW9uLVN1bW1hcnkuaHRtbCNPcHRpb24tU3VtbWFyeQ==">https://gcc.gnu.org/onlinedocs/gcc-8.5.0/gcc/Option-Summary.html#Option-Summary<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li>-Wall: 开启大部分警告提示(建议使用),turns on all the most commonly-used compiler warnings</li>
-<li>-std: 指定编译语言标准</li>
-<li>-o: 指定输出文件名(o:<strong>o</strong>utput)</li>
-<li>-Idir: 指定gcc找头文件的目录(大写i:<strong>i</strong>nclude首字母)</li>
-<li>-Ldir: 将dir目录加入搜索库的目录路径(大写l:<strong>l</strong>ibrary首字母)</li>
-<li>-llib: 连接lib库(小写l:library首字母)</li>
-<li>-o: 程序优化级别(o: optimization)</li>
-<li>-static: 禁止使用共享连接</li>
-<li>-shared: 生成共享目标文件, 通常用在建立共享库时使用</li>
-<li>-g: debug调试用,保存额外的信息到程序中</li>
-<li>-v: 显示编译详情(v: verbose)</li>
-</ul>
-<h3 id="Wall-开启大部分警告提示-建议使用"><a href="#Wall-开启大部分警告提示-建议使用" class="headerlink" title="-Wall: 开启大部分警告提示(建议使用)"></a>-Wall: 开启大部分警告提示(建议使用)</h3><p>gcc提供的对代码检查的选项,</p>
-<h3 id="std-指定编译标准"><a href="#std-指定编译标准" class="headerlink" title="-std:指定编译标准"></a>-std:指定编译标准</h3><p><img src="/images/gcc/image-20201216145626551.png" alt="image-20201216145626551"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">$ gcc -std=c11 main.c</span><br></pre></td></tr></table></figure>
-
-<h3 id="Idir-指定gcc找头文件的目录"><a href="#Idir-指定gcc找头文件的目录" class="headerlink" title="-Idir: 指定gcc找头文件的目录"></a>-Idir: 指定gcc找头文件的目录</h3><p><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2NwcC9TZWFyY2gtUGF0aC5odG1s">https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看gcc找头文件的目录</span></span><br><span class="line">$ cpp -v /dev/null -o /dev/null</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$ cpp -I/home/shibin/repo -v /dev/null -o /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">$ gcc -I/home/shibin/repo main.c</span><br></pre></td></tr></table></figure>
-
-<h3 id="Ldir-指定gcc找库的目录"><a href="#Ldir-指定gcc找库的目录" class="headerlink" title="-Ldir: 指定gcc找库的目录"></a>-Ldir: 指定gcc找库的目录</h3><p>查找库详情:<code>man ld</code></p>
-<blockquote>
-<p>The linker uses the following search paths to locate required shared libraries:</p>
-<ol>
-<li> Any directories specified by <strong>-rpath-link</strong> options.</li>
-<li>Any directories specified by <strong>-rpath</strong> options.  The difference between -rpath and -rpath-link is that directories specified by -rpath options are included in the xecutable and used at runtime,<br> whereas the -rpath-link option is only effective at link time. Searching -rpath in this way is only supported by native linkers and cross linkers which have been configured with the<br> –with-sysroot option.</li>
-<li> On an ELF system, for native linkers, if the -rpath and -rpath-link options were not used, search the contents of the environment variable “<strong>LD_RUN_PATH</strong>“.</li>
-<li> On SunOS, if the <strong>-rpath</strong> option was not used, search any directories specified using <strong>-L</strong> options.</li>
-<li> For a native linker, search the contents of the environment variable “<strong>LD_LIBRARY_PATH</strong>“.</li>
-<li>For a native ELF linker, the directories in “<strong>DT_RUNPATH</strong>“ or “<strong>DT_RPATH</strong>“ of a shared library are searched for shared libraries needed by it. The “DT_RPATH” entries re ignored if “DT_RUNPATH”<br> entries exist.</li>
-<li> The default directories, normally <strong>/lib</strong> and <strong>/usr/lib</strong>.</li>
-<li> For a native linker on an ELF system, if the file <strong>/etc/ld.so.conf</strong> exists, the list of directories found in that file.<br>If the required shared library is not found, the linker will issue a warning and continue with the link.</li>
-</ol>
-</blockquote>
-<h3 id="llib-连接lib库"><a href="#llib-连接lib库" class="headerlink" title="-llib: 连接lib库"></a>-llib: 连接lib库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用示例</span></span><br><span class="line">$ gcc main.c -lpthread -lm -lrt</span><br></pre></td></tr></table></figure>
-
-<h3 id="o-程序优化级别-o-optimization"><a href="#o-程序优化级别-o-optimization" class="headerlink" title="-o: 程序优化级别(o: optimization)"></a>-o: 程序优化级别(o: optimization)</h3><p><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9PcHRpbWl6ZS1PcHRpb25zLmh0bWwjT3B0aW1pemUtT3B0aW9ucw==">https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#Optimize-Options<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8xNzg3ODU0Lw==">An Introduction to GCC<i class="fa fa-external-link-alt"></i></span>: 6 Compiling with optimization</p>
-<ul>
-<li>-O0 不优化 (default)</li>
-<li>-O1 优化.对于大函数,优化编译占用稍微多的时间和相当大的内存.</li>
-<li>-O2 多优化一些.除了涉及空间和速度交换的优化选项,执行几乎所有的优化工作.例如不进行循环展开(loop unrolling)和函数内嵌(inlining). 和-O选项比较,这个选项既增加了编译时间,也提高了生成代码的 运行效果.</li>
-<li>-O3 优化的更多.除了打开-O2所做的一切,它还打开了-finline-functions选项</li>
-</ul>
-<p><strong>推荐使用:</strong> -O2(经验)</p>
-<h3 id="static-禁止使用共享连接"><a href="#static-禁止使用共享连接" class="headerlink" title="-static: 禁止使用共享连接"></a>-static: 禁止使用共享连接</h3><p>一般不用; 当为了方便移植,可以使用</p>
-<h3 id="shared-生成共享目标文件-通常用在建立共享库时使用"><a href="#shared-生成共享目标文件-通常用在建立共享库时使用" class="headerlink" title="-shared: 生成共享目标文件, 通常用在建立共享库时使用"></a>-shared: 生成共享目标文件, 通常用在建立共享库时使用</h3><p>后面介绍</p>
-<h3 id="g-debug调试用-保存额外的信息到程序中"><a href="#g-debug调试用-保存额外的信息到程序中" class="headerlink" title="-g: debug调试用,保存额外的信息到程序中"></a>-g: debug调试用,保存额外的信息到程序中</h3><p>debug调试时用,会把代码,代码行号…打包到程序中,所以Debug版本的程序会比Release版本的程序大不少</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -g main.c</span><br></pre></td></tr></table></figure>
-
-<h3 id="v-显示编译详情-v-verbose"><a href="#v-显示编译详情-v-verbose" class="headerlink" title="-v: 显示编译详情(v: verbose)"></a>-v: 显示编译详情(v: verbose)</h3><p>编译出问题,不复合预期时候用. 会告诉你gcc是怎么把程序编译出来的,有哪些选项参数,用的什么标准,开启了哪些选项</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># gcc</span></span><br><span class="line">$ gcc -v main.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># make</span></span><br><span class="line">$ make VERBOSE=1</span><br><span class="line"></span><br><span class="line"><span class="comment"># cmake</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_VERBOSE_MAKEFILE ON)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="特定变量"><a href="#特定变量" class="headerlink" title="特定变量:"></a>特定变量:</h3><p><strong>LIBRARY_PATH</strong>:编译时需要的动态链接库</p>
-<p><strong>LD_LIBRARY_PATH</strong>:运行时能够自动找到需要的动态链接库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看程序依赖哪些共享库</span></span><br><span class="line">$ ldd /bin/ls</span><br><span class="line">        linux-vdso.so.1 (0x00007ffcc3563000)</span><br><span class="line">        libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00007f87e5459000)</span><br><span class="line">        libcap.so.2 =&gt; /lib64/libcap.so.2 (0x00007f87e5254000)</span><br><span class="line">        libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f87e4e92000)</span><br><span class="line">        libpcre.so.1 =&gt; /lib64/libpcre.so.1 (0x00007f87e4c22000)</span><br><span class="line">        libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f87e4a1e000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 (0x00005574bf12e000)</span><br><span class="line">        libattr.so.1 =&gt; /lib64/libattr.so.1 (0x00007f87e4817000)</span><br><span class="line">        libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007f87e45fa000)</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">export</span> LD_LIBRARY_PATH=/home/shibin/repo/linux-kit/target/lib ./a.out</span><br></pre></td></tr></table></figure>
-
-<h2 id="库"><a href="#库" class="headerlink" title="库"></a>库</h2><p>复用的代码</p>
-<p>编译时,主要发生在程序的链接阶段; 运行</p>
-<h3 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h3><p>目标文件的<strong>归档文档</strong>;可以理解成一组目标文件的集合; 用ar工具去打包,后缀名为.a,(archive file)</p>
-<p><strong>格式:</strong></p>
-<ul>
-<li>Unix:lib<strong>NAME</strong>.a</li>
-<li>Windows:lib<strong>NAME</strong>.lib</li>
-<li>macOS:lib<strong>NAME</strong>.a</li>
-</ul>
-<p><strong>特征:</strong></p>
-<ul>
-<li>文件格式是非可执行程序格式(elf格式)</li>
-<li>链接时,<strong>目标可执行程序</strong>只取我需要的部分,合并到可执行文件中.(可移植性高)；</li>
-<li>运行时会被全部加载到内存(内存占用高)</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打包成静态库</span></span><br><span class="line">$ gcc -c add.c sub.c</span><br><span class="line">$ ar crs libname.a file1.o file2.o file3.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看静态库的内容表(table of content)</span></span><br><span class="line">$ ar t libname.a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用静态库</span></span><br><span class="line">$ gcc main.o -o a.out libname.a</span><br><span class="line">$ gcc main.o -o a.out -L. -lname</span><br></pre></td></tr></table></figure>
-
-<h3 id="动态库-共享库"><a href="#动态库-共享库" class="headerlink" title="动态库(共享库)"></a>动态库(共享库)</h3><p>也叫共享库<strong>s</strong>hared <strong>o</strong>bject,顾名思义,可以多个程序共享; 文件后缀名为.so,</p>
-<p><strong>格式:</strong></p>
-<ul>
-<li>Unix:lib<strong>NAME</strong>.so</li>
-<li>Windows:lib<strong>NAME</strong>.dll</li>
-<li>macOS:lib<strong>NAME</strong>.dylib</li>
-</ul>
-<p><strong>特征:</strong></p>
-<ul>
-<li>文件格式是可执行程序格式(elf格式)</li>
-<li>链接时,<strong>目标可执行程序</strong>只记录相应的库信息(函数表).(可移植性低)(ldd executable_name)</li>
-<li>运行时调用该库函数时才会被全部加载到内存;并且多个程序只会加载一份到内存中(多个程序同时去年时.内存占用低)</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打包动态库</span></span><br><span class="line">$ gcc -fpic -c file1.c file2.c</span><br><span class="line">$ gcc -shared -o libname.so file1.o file2.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看动态库中有哪些函数</span></span><br><span class="line">$ readelf -Ws /lib/x86_64-linux-gnu/libselinux.so.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用动态库</span></span><br><span class="line">$ gcc main.o -o a.out -L. -lname</span><br></pre></td></tr></table></figure>
-
-<h3 id="静态库-vs-动态库"><a href="#静态库-vs-动态库" class="headerlink" title="静态库 vs 动态库:"></a>静态库 vs 动态库:</h3><ul>
-<li>移植性:静态库可移植性好,移植的时候拷贝程序就可以了</li>
-<li>更新,部署:动态库更新只需要更新单独的库;而静态库需要编译整个程序</li>
-<li>内存占用:动态库被一个或多个进程共享(代码段);静态库所在的每个进程,都会加载一份到内存</li>
-</ul>
-<h3 id="运行时"><a href="#运行时" class="headerlink" title="运行时:"></a>运行时:</h3><p>ldd:查看程序依赖的共享库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ldd /bin/ls</span><br><span class="line">        linux-vdso.so.1 (0x00007ffcc3563000)</span><br><span class="line">        libselinux.so.1 =&gt; /lib64/libselinux.so.1 (0x00007f87e5459000)</span><br><span class="line">        libcap.so.2 =&gt; /lib64/libcap.so.2 (0x00007f87e5254000)</span><br><span class="line">        libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f87e4e92000)</span><br><span class="line">        libpcre.so.1 =&gt; /lib64/libpcre.so.1 (0x00007f87e4c22000)</span><br><span class="line">        libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f87e4a1e000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 (0x00005574bf12e000)</span><br><span class="line">        libattr.so.1 =&gt; /lib64/libattr.so.1 (0x00007f87e4817000)</span><br><span class="line">        libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007f87e45fa000)</span><br></pre></td></tr></table></figure>
-
-<h3 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题:"></a>思考问题:</h3><ol>
-<li>多个程序使用同一个共享库时,共享哪些内容?  (代码段,只读数据),</li>
-<li>如果同时安装了一个库的动态库和静态库,你的程序会link哪个库? 如果有动态库,默认就链接动态库</li>
-</ol>
-<h2 id="其它工具"><a href="#其它工具" class="headerlink" title="其它工具:"></a>其它工具:</h2><p>UNIX 系统的本地工具, GNU Binutils</p>
-<table>
-<thead>
-<tr>
-<th>工具</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ar</td>
-<td>这是一个程序，可通过从文档中增加、删除和析取文件来维护库文件。通常使用该工具是为了创建和管理连接程序使用的目标库文档。该程序是 binutils 包的一部分</td>
-</tr>
-<tr>
-<td>as</td>
-<td>GNU 汇编器。实际上它是一族汇编器，因为它可以被编泽或能够在各种不同平台上工作。 该程序是 binutils 包的一部分</td>
-</tr>
-<tr>
-<td>ld</td>
-<td>GNU 连接程序。该程序将目标文件的集合组合成可执行程序。该程序是 binutils 包的一部</td>
-</tr>
-<tr>
-<td>gcov</td>
-<td>gprof 使用的配置工具，用来确定程序运行的时候哪一部分耗时最大</td>
-</tr>
-<tr>
-<td>gdb</td>
-<td>GNU 调试器，可用于检查程序运行时的值和行为</td>
-</tr>
-<tr>
-<td>gprof</td>
-<td>该程序会监督编泽程序的执行过程，并报告程序中各个函数的运行时间，可以根据所提供 的配置文件来优化程序。该程序是 binutils 包的一部分</td>
-</tr>
-<tr>
-<td>make</td>
-<td>一个工具程序，它会读 makefile 脚木来确定程序中的哪个部分需要编泽和连接，然后发布 必要的命令。它读出的脚木（叫做 makefile 或 Makefile）定义了文件关系和依赖关系</td>
-</tr>
-<tr>
-<td>objdump</td>
-<td>显示一个或多个目标文件中保存的多种不同信息。该程序是 binutils 包的一部分</td>
-</tr>
-<tr>
-<td>readelf</td>
-<td>从 ELF 格式的目标文件显示信息。该程序是 binutils 包的一部分</td>
-</tr>
-<tr>
-<td>size</td>
-<td>列出目标文件中每个部分的名字和尺寸。该程序是 binutils 包的一部分</td>
-</tr>
-<tr>
-<td>strings</td>
-<td>浏览所有类型的文件，析取出用于显示的字符串。该程序是 binutils 包的一部分</td>
-</tr>
-<tr>
-<td>strip</td>
-<td>从目标文件或文档库中去掉符号表，以及其他调试所需的信息。该程序是 binutils 包的一部</td>
-</tr>
-</tbody></table>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="兼容问题"><a href="#兼容问题" class="headerlink" title="兼容问题:"></a>兼容问题:</h3><ul>
-<li>系统平台差异</li>
-<li>C标准库实现差异,不同的实现<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9saWJjLw==">glibc<i class="fa fa-external-link-alt"></i></span>,<span class="exturl" data-url="aHR0cHM6Ly93d3cudWNsaWJjLm9yZy8=">uClibc<i class="fa fa-external-link-alt"></i></span>,<span class="exturl" data-url="aHR0cHM6Ly9zdm53ZWIuZnJlZWJzZC5vcmcvYmFzZS9oZWFkL2xpYi9saWJjLw==">FreeBSD libc<i class="fa fa-external-link-alt"></i></span></li>
-<li>同一个库不同版差异</li>
-<li>不同语言版本标准问题</li>
-<li>不同编译器版本</li>
-</ul>
-<h3 id="预处理时错误信息"><a href="#预处理时错误信息" class="headerlink" title="预处理时错误信息:"></a>预处理时错误信息:</h3><ul>
-<li>No such file or directory</li>
-</ul>
-<h3 id="编译时错误信息"><a href="#编译时错误信息" class="headerlink" title="编译时错误信息:"></a>编译时错误信息:</h3><ul>
-<li><p>‘variable’ undeclared (first use in this function)</p>
-</li>
-<li><p>warning: implicit declaration of function ‘…’</p>
-</li>
-<li><p>warning: unused variable ‘…’</p>
-</li>
-<li><p>warning: unused parameter ‘…’</p>
-</li>
-</ul>
-<h3 id="链接时错误信息"><a href="#链接时错误信息" class="headerlink" title="链接时错误信息:"></a>链接时错误信息:</h3><ul>
-<li><p>file not recognized: File format not recognized</p>
-</li>
-<li><p>undefined reference to ‘foo’ 找不到函数</p>
-</li>
-</ul>
-<h3 id="运行时错误信息"><a href="#运行时错误信息" class="headerlink" title="运行时错误信息:"></a>运行时错误信息:</h3><ul>
-<li>error while loading shared libraries:<br>cannot open shared object file: No such file or directory</li>
-</ul>
-<p><strong>段错误Segmentation fault:</strong></p>
-<ul>
-<li>dereferencing a null pointer or uninitialized pointer</li>
-<li>out-of-bounds array access</li>
-<li>incorrect use of malloc, free and related functions</li>
-<li>use of scanf with invalid arguments</li>
-</ul>
-<h2 id="交叉编译工具链"><a href="#交叉编译工具链" class="headerlink" title="交叉编译工具链"></a>交叉编译工具链</h2><p>在一种计算机环境中运行的编译程序, 能编译出在另外一种环境下运行的代码, 这个编译过程就叫交叉编译</p>
-<p>简单地说,就是<strong>在一个平台上生成另一个平台上的可执行代码</strong>.比如,X86机器上生成arm机器的程序</p>
-<p>交叉编译工具链是一个由编译器、连接器和解释器组成的综合开发环境，交叉编译工具链主要由binutils、gcc和glibc三个部分组成。有时出于减小 libc 库大小的考虑，也可以用别的 c 库来代替 glibc，例如 uClibc、dietlibc 和 newlib</p>
-<h3 id="分类和说明"><a href="#分类和说明" class="headerlink" title="分类和说明"></a>分类和说明</h3><p>从授权上，分为免费授权版和付费授权版。</p>
-<p>免费版目前有三大主流工具商提供，第一是GNU（提供源码，自行编译制作），第二是 Codesourcery，第三是Linora。</p>
-<p>收费版有ARM原厂提供的armcc、IAR提供的编译器等等，因为这些价格都比较昂贵，不适合学习用户使用，所以不做讲述。</p>
-<ul>
-<li>arm-none-linux-gnueabi-gcc：是 Codesourcery 公司（目前已经被Mentor收购）基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARM（32位）系统中所有环节的代码，包括裸机程序、u-boot、Linux kernel、filesystem和App应用程序。</li>
-<li>arm-linux-gnueabihf-gcc：是由 Linaro 公司基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARM（32位）系统中所有环节的代码，包括裸机程序、u-boot、Linux kernel、filesystem和App应用程序。</li>
-<li>aarch64-linux-gnu-gcc：是由 Linaro 公司基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARMv8 64位目标中的裸机程序、u-boot、Linux kernel、filesystem和App应用程序。</li>
-<li>arm-none-elf-gcc：是 Codesourcery 公司（目前已经被Mentor收购）基于GCC推出的的ARM交叉编译工具。可用于交叉编译ARM MCU（32位）芯片，如ARM7、ARM9、Cortex-M/R芯片程序。</li>
-<li>arm-none-eabi-gcc：是 GNU 推出的的ARM交叉编译工具。可用于交叉编译ARM MCU（32位）芯片，如ARM7、ARM9、Cortex-M/R芯片程序。</li>
-</ul>
-<h3 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h3><p>交叉编译工具链的命名规则为：arch [-vendor] [-os] [-(gnu)eabi]</p>
-<ul>
-<li>arch – 体系架构，如ARM，MIPS（通过交叉编译工具生成的可执行文件或系统镜像的运行平台或环境）</li>
-<li>vendor – 工具链提供商</li>
-<li>os – 目标操作系统（host主要操作平台，也就是编译时的系统）</li>
-<li>eabi – 嵌入式应用二进制接口（Embedded Application Binary Interface）</li>
-</ul>
-<p>根据对操作系统的支持与否，ARM GCC可分为支持和不支持操作系统，如</p>
-<ul>
-<li>arm-none-eabi：这个是没有操作系统的，自然不可能支持那些跟操作系统关系密切的函数，比如fork(2)。他使用的是newlib这个专用于嵌入式系统的C库。</li>
-<li>arm-none-linux-eabi：用于Linux的，使用Glibc</li>
-</ul>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="1-arm-none-eabi-gcc"><a href="#1-arm-none-eabi-gcc" class="headerlink" title="1. arm-none-eabi-gcc"></a>1. arm-none-eabi-gcc</h4><p>（ARM architecture，no vendor，not target an operating system，complies with the ARM EABI）<br>用于编译 ARM 架构的裸机系统（包括 ARM Linux 的 boot、kernel，不适用编译 Linux 应用 Application），一般适合 ARM7、Cortex-M 和 Cortex-R 内核的芯片使用，所以不支持那些跟操作系统关系密切的函数，比如fork(2)，他使用的是 newlib 这个专用于嵌入式系统的C库。</p>
-<h4 id="2-arm-none-linux-gnueabi-gcc"><a href="#2-arm-none-linux-gnueabi-gcc" class="headerlink" title="2. arm-none-linux-gnueabi-gcc"></a>2. arm-none-linux-gnueabi-gcc</h4><p>(ARM architecture, no vendor, creates binaries that run on the Linux operating system, and uses the GNU EABI)</p>
-<p>主要用于基于ARM架构的Linux系统，可用于编译 ARM 架构的 u-boot、Linux内核、linux应用等。arm-none-linux-gnueabi基于GCC，使用Glibc库，经过 Codesourcery 公司优化过推出的编译器。arm-none-linux-gnueabi-xxx 交叉编译工具的浮点运算非常优秀。一般ARM9、ARM11、Cortex-A 内核，带有 Linux 操作系统的会用到。</p>
-<h4 id="3-arm-eabi-gcc"><a href="#3-arm-eabi-gcc" class="headerlink" title="3. arm-eabi-gcc"></a>3. arm-eabi-gcc</h4><p>Android ARM 编译器。</p>
-<h4 id="4-armcc"><a href="#4-armcc" class="headerlink" title="4. armcc"></a>4. armcc</h4><p>ARM 公司推出的编译工具，功能和 arm-none-eabi 类似，可以编译裸机程序（u-boot、kernel），但是不能编译 Linux 应用程序。armcc一般和ARM开发工具一起，Keil MDK、ADS、RVDS和DS-5中的编译器都是armcc，所以 armcc 编译器都是收费的（爱国版除外，呵呵~~）。</p>
-<h4 id="5-arm-none-uclinuxeabi-gcc-和-arm-none-symbianelf-gcc"><a href="#5-arm-none-uclinuxeabi-gcc-和-arm-none-symbianelf-gcc" class="headerlink" title="5. arm-none-uclinuxeabi-gcc 和 arm-none-symbianelf-gcc"></a>5. arm-none-uclinuxeabi-gcc 和 arm-none-symbianelf-gcc</h4><p>arm-none-uclinuxeabi 用于uCLinux，使用Glibc。</p>
-<p>arm-none-symbianelf 用于symbian，没用过，不知道C库是什么 。</p>
-<h3 id="Codesourcery"><a href="#Codesourcery" class="headerlink" title="Codesourcery"></a>Codesourcery</h3><p>Codesourcery推出的产品叫Sourcery G++ Lite Edition，其中基于command-line的编译器是免费的，在官网上可以下载，而其中包含的IDE和debug 工具是收费的，当然也有30天试用版本的。</p>
-<p>目前CodeSourcery已经由明导国际(Mentor Graphics)收购，所以原本的网站风格已经全部变为 Mentor 样式，但是 Sourcery G++ Lite Edition 同样可以注册后免费下载。</p>
-<p>Codesourcery一直是在做ARM目标 GCC 的开发和优化，它的ARM GCC在目前在市场上非常优秀，很多 patch 可能还没被gcc接受，所以还是应该直接用它的（而且他提供Windows下[mingw交叉编译的]和Linux下的二进制版本，比较方便；如果不是很有时间和兴趣，不建议下载 src 源码包自己编译，很麻烦，Codesourcery给的shell脚本很多时候根本没办法直接用，得自行提取关键的部分手工执行，又费精力又费时间，如果想知道细节，其实不用自己编译一遍，看看他是用什么步骤构建的即可，如果你对交叉编译器感兴趣的话。</p>
-<h3 id="ABI-和-EABI"><a href="#ABI-和-EABI" class="headerlink" title="ABI 和 EABI"></a>ABI 和 EABI</h3><p>ABI：二进制应用程序接口(Application Binary Interface (ABI) for the ARM Architecture)。在计算机中，应用二进制接口描述了应用程序（或者其他类型）和操作系统之间或其他应用程序的低级接口。</p>
-<p>EABI：嵌入式ABI。嵌入式应用二进制接口指定了文件格式、数据类型、寄存器使用、堆积组织优化和在一个嵌入式软件中的参数的标准约定。开发者使用自己的汇编语言也可以使用 EABI 作为与兼容的编译器生成的汇编语言的接口。</p>
-<p>两者主要区别是，ABI是计算机上的，EABI是嵌入式平台上（如ARM，MIPS等）。</p>
-<h3 id="arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc"><a href="#arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc" class="headerlink" title="arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc"></a>arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc</h3><p>两个交叉编译器分别适用于 armel 和 armhf 两个不同的架构，armel 和 armhf 这两种架构在对待浮点运算采取了不同的策略（有 fpu 的 arm 才能支持这两种浮点运算策略）</p>
-]]></content>
-      <categories>
-        <category>编译器</category>
-      </categories>
-      <tags>
-        <tag>GCC</tag>
-        <tag>编译器</tag>
+        <tag>Clang-tidy</tag>
+        <tag>LLVM</tag>
       </tags>
   </entry>
 </search>

@@ -116,7 +116,7 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">32</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
@@ -194,7 +194,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -237,6 +237,111 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2020/07/19/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/07/19/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/" class="post-title-link" itemprop="url">【Github】Github下载慢问题探究</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-18 23:00:53" itemprop="dateCreated datePublished" datetime="2020-07-18T23:00:53Z">2020-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/07/19/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/19/Github下载慢问题探究/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>公司对网络进行了限制,还不能开代理,Github下载的那个项目又非常大,后来对这个问题进行了思索,随记录下来</p>
+</blockquote>
+<p>git clone 经常是这样:17.00 KiB/s ???</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[I] ➜ git clone http://github.com/git/git git_</span><br><span class="line">Cloning into &#x27;git&#x27;...</span><br><span class="line">warning: redirecting to https://github.com/git/git/</span><br><span class="line">remote: Enumerating objects: 289445, done.</span><br><span class="line">Receiving objects:   0% (2548/289445), 1.14 MiB | 17.00 KiB/s</span><br></pre></td></tr></table></figure>
+
+
+
+<p>抽象的归纳下,本质上是:下载一个资源慢的问题?</p>
+<p>那下载时间的长短取决于:<strong>网速+资源大小</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/19/Github%E4%B8%8B%E8%BD%BD%E6%85%A2%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

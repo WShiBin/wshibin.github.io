@@ -2749,19 +2749,32 @@
 <li>并行编译</li>
 <li>更换更快的构建系统，比如Ninja</li>
 <li>预编译头文件：target_precompile_headers （CMake3.16）</li>
-<li>使用编译缓存Ccache（CMake 3.4）</li>
+<li>使用编译缓存ccache、sccache（CMake 3.4）</li>
 <li>更新新版本的CMake、编译器和链接器</li>
 <li>删除没有使用的代码和依赖</li>
 </ol>
-<p>todo：</p>
-<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="使用编译缓存Ccache"><a href="#使用编译缓存Ccache" class="headerlink" title="使用编译缓存Ccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">Ccache<i class="fa fa-external-link-alt"></i></span></h2><p><span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><p>开多线程，废话</p>
+<h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><p>Android源码也是使用这个来编译</p>
+<p>Ninja Design goals：<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcvbWFudWFsLmh0bWwjX2Rlc2lnbl9nb2Fscw==">https://ninja-build.org/manual.html#_design_goals<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p>文章：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="使用编译缓存ccache、sccache"><a href="#使用编译缓存ccache、sccache" class="headerlink" title="使用编译缓存ccache、sccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span></h2><h3 id="ccache："><a href="#ccache：" class="headerlink" title="ccache："></a><span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>：</h3><p>使用cmake配置：<span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_program</span>(CCACHE_PROGRAM ccache)</span><br><span class="line"><span class="keyword">if</span>(CCACHE_PROGRAM)</span><br><span class="line">    <span class="keyword">set_property</span>(GLOBAL PROPERTY RULE_LAUNCH_COMPILE <span class="string">&quot;$&#123;CCACHE_PROGRAM&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(SomeProject)</span><br></pre></td></tr></table></figure>
 
+<h3 id="sccache："><a href="#sccache：" class="headerlink" title="sccache："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span>：</h3><p><strong>cmake配置：</strong></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">-DCMAKE_C_COMPILER_LAUNCHER=sccache</span><br><span class="line">-DCMAKE_CXX_COMPILER_LAUNCHER=sccache</span><br></pre></td></tr></table></figure>
+
+<p><strong>rust配置：</strong></p>
+<p>自己写rust是用的这个，编译速度会快上不少</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $HOME/.cargo/config</span></span><br><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">rustc-wrapper</span> = <span class="string">&quot;/path/to/sccache&quot;</span></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvR29sZF8obGlua2VyKQ==">https://en.wikipedia.org/wiki/Gold_(linker)<i class="fa fa-external-link-alt"></i></span></p>
+
+<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p>新版本cmake编译速度提升：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
+<p>速度更快的链接器mold：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J1aTMxNC9tb2xk">https://github.com/rui314/mold<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mold -run make &lt;make-options-if-any&gt;</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="删除没有使用的代码和依赖"><a href="#删除没有使用的代码和依赖" class="headerlink" title="删除没有使用的代码和依赖"></a>删除没有使用的代码和依赖</h2><p>todo</p>
 ]]></content>
       <categories>
@@ -2910,6 +2923,137 @@
         <tag>googletest</tag>
         <tag>C</tag>
         <tag>GTest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【JS】JavaScript基础</title>
+    <url>/2021/11/04/JavaScript-getting-started/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9jaGFubmVsOS5tc2RuLmNvbS9TZXJpZXMvQmVnaW5uZXJzLVNlcmllcy10by1KYXZhU2NyaXB0P1dULm1jX2lkPWJlZ2lubmVyLWM5LW5pbmVy">https://channel9.msdn.com/Series/Beginners-Series-to-JavaScript?WT.mc_id=beginner-c9-niner<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9iZWdpbm5lcnMtaW50cm8tamF2YXNjcmlwdC1ub2Rl">https://github.com/microsoft/beginners-intro-javascript-node<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9MZWFybi9KYXZhU2NyaXB0">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li>var：没有作用域（可以在定义前使用）</li>
+<li>let：有作用域</li>
+<li>const：类似let，但不能改变</li>
+</ul>
+<h2 id="类型："><a href="#类型：" class="headerlink" title="类型："></a>类型：</h2><h3 id="简单类型："><a href="#简单类型：" class="headerlink" title="简单类型："></a>简单类型：</h3><ul>
+<li>Number（float）</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Date</li>
+<li>Function</li>
+<li>Array</li>
+<li>Object</li>
+</ul>
+<h3 id="特别类型："><a href="#特别类型：" class="headerlink" title="特别类型："></a>特别类型：</h3><ul>
+<li>NaN：Not a number</li>
+<li>null：空</li>
+<li>undefined：未定义</li>
+</ul>
+<h3 id="类型检查："><a href="#类型检查：" class="headerlink" title="类型检查："></a>类型检查：</h3><ul>
+<li>typeof：返回字符串</li>
+<li>instanceof：返回boolean是否匹配类型</li>
+</ul>
+<h3 id="类型能改变："><a href="#类型能改变：" class="headerlink" title="类型能改变："></a>类型能改变：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="string">&#x27;something&#x27;</span>;</span><br><span class="line">x = <span class="number">1</span>;</span><br><span class="line">x = <span class="number">1</span> + <span class="string">&#x27;hello&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="相等"><a href="#相等" class="headerlink" title="相等:"></a>相等:</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">0</span> == <span class="string">&quot;&quot;</span>; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">let</span> y = <span class="number">0</span> === <span class="string">&quot;&quot;</span>; <span class="comment">// false, 关心类型</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> people = [<span class="string">&quot;Valentina&quot;</span>, <span class="string">&quot;Niko&quot;</span>, <span class="string">&quot;Eriberto&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> one = <span class="number">0</span>; <span class="comment">// 没有调用构造：new Number(1);</span></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;hello world&quot;</span>; <span class="comment">// 没有调用构造：new String(&quot;hello world&quot;)</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Valentina&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">person</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Hello &quot;</span> + person.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- typeof --&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> people); <span class="comment">// object(array也是object)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> one);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> str);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> b);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> person);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> sayHello);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- instanceof --&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(people <span class="keyword">instanceof</span> <span class="built_in">Array</span>);</span><br><span class="line"><span class="built_in">console</span>.log(one <span class="keyword">instanceof</span> <span class="built_in">Number</span>); <span class="comment">// false  因为没有调用构造</span></span><br><span class="line"><span class="built_in">console</span>.log(str <span class="keyword">instanceof</span> <span class="built_in">String</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(person <span class="keyword">instanceof</span> <span class="built_in">Object</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sayHello <span class="keyword">instanceof</span> <span class="built_in">Function</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Math："><a href="#Math：" class="headerlink" title="Math："></a>Math：</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num + <span class="number">25</span>);</span><br><span class="line"><span class="built_in">console</span>.log(num - <span class="number">100</span>);</span><br><span class="line"><span class="built_in">console</span>.log(num * <span class="number">100</span>);</span><br><span class="line"><span class="built_in">console</span>.log(num / <span class="number">1500</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num % <span class="number">1500</span>);</span><br><span class="line"><span class="built_in">console</span>.log(++ num);</span><br><span class="line"><span class="built_in">console</span>.log(--num);</span><br><span class="line"></span><br><span class="line">num = <span class="number">100</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.PI);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.sqrt(num));</span><br></pre></td></tr></table></figure>
+
+<h2 id="Converting数字和字符"><a href="#Converting数字和字符" class="headerlink" title="Converting数字和字符"></a>Converting数字和字符</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- parseInt() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> num = <span class="string">&quot;150&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;100&quot;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(num));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;ABC&quot;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;0xf&quot;</span>)); <span class="comment">// 15</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- parseFloat() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> flo1 = <span class="string">&quot;1.50&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot;1.5&quot;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot;1 + 1&quot;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot;ABC&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- parseInt() --&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;1.5&quot;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;1 + 1&quot;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + <span class="number">1</span>&#125;</span>`</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- toString() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> number = <span class="number">150</span>;</span><br><span class="line"><span class="keyword">let</span> float = <span class="number">1.5</span>;</span><br><span class="line"><span class="built_in">console</span>.log(number.toString());</span><br><span class="line"><span class="built_in">console</span>.log(float.toString());</span><br><span class="line"><span class="built_in">console</span>.log((<span class="number">100</span>).toString());</span><br></pre></td></tr></table></figure>
+
+<h2 id="无意识的行为"><a href="#无意识的行为" class="headerlink" title="无意识的行为"></a>无意识的行为</h2><ul>
+<li>Exception</li>
+<li>Error</li>
+<li>Throwing an Exception</li>
+</ul>
+<h3 id="异常try…catch…finally"><a href="#异常try…catch…finally" class="headerlink" title="异常try…catch…finally"></a>异常try…catch…finally</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">criticalCode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&quot;throwing an exception&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logError</span>(<span class="params">theException</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(theException);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- throwing exception --&quot;</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="string">&quot;myExcption&quot;</span>;</span><br><span class="line"><span class="keyword">throw</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- try catch --&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    criticalCode();</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    logError(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- throwing try catch --&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&quot;An Exception that is thrown every time&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    logError(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- try catch finally--&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    criticalCode();</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    logError(error);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Code that always will run&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Date日期"><a href="#Date日期" class="headerlink" title="Date日期"></a>Date日期</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- creating a date object --&quot;</span>);</span><br><span class="line"><span class="comment">// get right now</span></span><br><span class="line"><span class="keyword">const</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> randomDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2015</span>, <span class="number">3</span>, <span class="number">12</span>, <span class="number">6</span>, <span class="number">25</span>, <span class="number">58</span>);</span><br><span class="line"><span class="keyword">const</span> win95Launch = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">1995</span>, <span class="number">7</span>, <span class="number">24</span>);</span><br><span class="line"><span class="built_in">console</span>.log(now);</span><br><span class="line"><span class="built_in">console</span>.log(randomDate);</span><br><span class="line"><span class="built_in">console</span>.log(win95Launch);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- setting values --&quot;</span>);</span><br><span class="line"><span class="comment">// get right now</span></span><br><span class="line"><span class="keyword">const</span> now1 = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">now1.setFullYear(<span class="number">2014</span>);</span><br><span class="line">now1.setMonth(<span class="number">3</span>); <span class="comment">// April (counting starts at zero)</span></span><br><span class="line">now1.setDate(<span class="number">4</span>); <span class="comment">// set</span></span><br><span class="line">now1.setHours(<span class="number">4</span>); <span class="comment">// 24 hour clock</span></span><br><span class="line">now1.setMinutes(<span class="number">24</span>);</span><br><span class="line">now1.setSeconds(<span class="number">46</span>);</span><br><span class="line"><span class="built_in">console</span>.log(now1);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;-- getting values --&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> now2 = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">console</span>.log(now2.getMonth()); <span class="comment">// Month of the year</span></span><br><span class="line"><span class="built_in">console</span>.log(now2.getTime()); <span class="comment">// milliseconds since 1 Jan 1970</span></span><br><span class="line"><span class="built_in">console</span>.log(now2.getDay()); <span class="comment">// day of the week</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="IF语句"><a href="#IF语句" class="headerlink" title="IF语句"></a>IF语句</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &lt;    小于</span></span><br><span class="line"><span class="comment">// &lt;=   小于等于</span></span><br><span class="line"><span class="comment">// &gt;    大于</span></span><br><span class="line"><span class="comment">// &gt;=   大于等于</span></span><br><span class="line"><span class="comment">// ==   等等：检查值</span></span><br><span class="line"><span class="comment">//          &#x27;42&#x27; == 42 tests as true</span></span><br><span class="line"><span class="comment">// ===  等等：检查值和类型</span></span><br><span class="line"><span class="comment">//          &#x27;42&#x27; === 42 tests as false</span></span><br><span class="line"><span class="comment">// !=   不等于：检查值</span></span><br><span class="line"><span class="comment">// !==  不等于：检查值和类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> status = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">if</span> (status === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;OK!&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (status === <span class="number">400</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Error!&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Unknown status&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> message = status === <span class="number">200</span> ? <span class="string">&quot;OK!&quot;</span> : <span class="string">&quot;Error!&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(message);</span><br></pre></td></tr></table></figure>
+
+<h3 id="隐式的boolean值："><a href="#隐式的boolean值：" class="headerlink" title="隐式的boolean值："></a>隐式的boolean值：</h3><ul>
+<li>String：空的String是false</li>
+<li>Object：Null或undefined对象是false</li>
+<li>Numbers：0是false</li>
+</ul>
+<h3 id="比较组合："><a href="#比较组合：" class="headerlink" title="比较组合："></a>比较组合：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// And (both sides must be true)</span></span><br><span class="line">(x &amp; y)</span><br><span class="line">(x &amp;&amp; y)</span><br><span class="line"><span class="comment">// or (either side can be true)</span></span><br><span class="line">(x | y)</span><br><span class="line">(x || y)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Shortcut operators &amp;&amp; and ||</span></span><br><span class="line"><span class="comment">// stops evaluation if the answer is already known</span></span><br><span class="line">(x &amp;&amp; y) <span class="comment">// y not evaluated if x is false</span></span><br><span class="line">(y || y) <span class="comment">// y not evaluated if x is true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Switch-case-语句："><a href="#Switch-case-语句：" class="headerlink" title="Switch(case)语句："></a>Switch(case)语句：</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> status = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">switch</span> (status) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">200</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;OK!&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">400</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;Error!&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;Unknown value&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>todo：</p>
+]]></content>
+      <categories>
+        <category>Languages</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【C】cJSON源码 使用建议及吐嘈</title>
+    <url>/2021/12/27/cJSON/</url>
+    <content><![CDATA[<p><strong>cJSON repo：</strong><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04=">https://github.com/DaveGamble/cJSON<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
+</blockquote>
+<h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
+<p><img src="/images/cjson/Xnip2021-12-28_23-28-44.png"></p>
+<h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
+<ul>
+<li>简单，容易上手</li>
+<li>方便移植</li>
+<li>代码量少</li>
+<li>开发人员已经很熟悉</li>
+<li>是否经过大项目的检验（比如github上有些库会写，哪些产品引用了我这个库）</li>
+</ul>
+<h2 id="作者写cJSON的初衷："><a href="#作者写cJSON的初衷：" class="headerlink" title="作者写cJSON的初衷："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04jd2VsY29tZS10by1janNvbg==">作者写cJSON的初衷<i class="fa fa-external-link-alt"></i></span>：</h2><blockquote>
+<p>I lifted some JSON from this page: <span class="exturl" data-url="aHR0cDovL3d3dy5qc29uLm9yZy9mYXRmcmVlLmh0bWw=">http://www.json.org/fatfree.html<i class="fa fa-external-link-alt"></i></span> That page inspired me to write cJSON, which is a parser that tries to share the same philosophy as JSON itself. <strong>Simple, dumb, out of the way</strong>.</p>
+</blockquote>
+<h1 id="如何去实现一个JSON解析库？"><a href="#如何去实现一个JSON解析库？" class="headerlink" title="如何去实现一个JSON解析库？"></a>如何去实现一个JSON解析库？</h1><p>cjson的答案是：用一个数据结构去描述json的结构，用结构体cJSON去描述json中键值对（key：value）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* The cJSON structure: */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">child</span>;</span></span><br><span class="line">    <span class="keyword">int</span> type;</span><br><span class="line">    <span class="keyword">char</span> *valuestring;</span><br><span class="line">    <span class="keyword">int</span> valueint;</span><br><span class="line">    <span class="keyword">double</span> valuedouble;</span><br><span class="line">    <span class="keyword">char</span> *<span class="built_in">string</span>;</span><br><span class="line">&#125; cJSON;</span><br></pre></td></tr></table></figure>
+
+<p>字段string用来存储key，valuestring是来存放类型是String的值，valueint和valuedouble用来存放类型是Number的值；那json其它类型Boolean和Null数据存放在哪里呢？答案是放在type里面（<code>cJSON_False</code>，<code>cJSON_True</code>，<code>cJSON_NULL</code>），估计是为了省内存，没必要为这些json数据类型去增加字段去表示</p>
+<p>json结构图解：</p>
+<p><img src="/images/cjson/Xnip2021-12-29_00-14-15.png"></p>
+<h1 id="cJSON源码："><a href="#cJSON源码：" class="headerlink" title="cJSON源码："></a>cJSON源码：</h1><p>一个框架库里面有一些是核心的函数，其它的是些辅助或是拓展函数；</p>
+<h2 id="核心函数围绕三个主题："><a href="#核心函数围绕三个主题：" class="headerlink" title="核心函数围绕三个主题："></a>核心函数围绕三个主题：</h2><ul>
+<li><p>解析：<code>cJSON_Parse</code>内部递归调用<code>parse_value</code>去解析</p>
+</li>
+<li><p>CRUD节点：这部分没有必要多讲<code>cJSON_CreateXXX</code> <code>cJSON_AddXXX</code> <code>cJSON_DetachXXX</code> <code>cJSON_DeleteXXX</code> <code>cJSON_ReplaceXXX</code></p>
+</li>
+<li><p>转成字符串：<code>cJSON_Print</code>内部递归调用<code>print_value</code>去转成字符串；转成字符串中，需要有个buffer来存放字符串，当buffer不够的时候就会增长策略的问题，大约是<code>*2</code>，（函数<code>ensure</code>中<code>newsize = needed * 2;</code>)</p>
+</li>
+</ul>
+<h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><ul>
+<li>上面提到了使用递归，库会对嵌套的层级会有限制<code>#define CJSON_NESTING_LIMIT 1000</code></li>
+<li>对外暴露内存申请了释放的函数：通过<code>cJSON_InitHooks</code>函数</li>
+</ul>
+<h1 id="cJSON使用建议："><a href="#cJSON使用建议：" class="headerlink" title="cJSON使用建议："></a>cJSON使用建议：</h1><ul>
+<li>删除cJSON结构体中的valueint字段（历史原因保留），int和double数据已经存放在valuedouble上面了</li>
+<li>复用json中的key字符串，避免为key字符串malloc空间。使用cJSON_AddItemToObjectCS</li>
+<li>复用json中的value字符串，使用cJSON_CreateStringReference</li>
+<li>对于比较长的比较大的json，在转换成json字符串时，建议使用cJSON_PrintBuffered（指定长度）替代cJSON_Print和cJSON_PrintUnformatted，cJSON_Print和cJSON_PrintUnformatted会先分配一个256的buffer，如果不够会从新malloc和拷贝，字符串buffer增长策略基本等于<code>*2</code></li>
+</ul>
+<h1 id="cJSON吐嘈："><a href="#cJSON吐嘈：" class="headerlink" title="cJSON吐嘈："></a>cJSON吐嘈：</h1><p><strong>有几个API接口名字不太喜欢</strong></p>
+<ul>
+<li>cJSON_GetArraySize：看上去是获取json数组的大小，其实还能获取json对象的大小</li>
+<li>cJSON_Print：如果有print之类的，可能会想到的是printf，打印到标准输出；cJSON_ToString之类的是否更加合适</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>cJSON</tag>
       </tags>
   </entry>
 </search>

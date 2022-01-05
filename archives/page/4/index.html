@@ -116,8 +116,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -189,12 +189,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -237,6 +237,198 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/" class="post-title-link" itemprop="url">【Android】翻了一遍EventBus官方文档</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-26 13:21:27" itemprop="dateCreated datePublished" datetime="2017-04-26T13:21:27Z">2017-04-26</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/04/26/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/26/翻了一遍EventBus官方文档/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hNTM2Y2YwMDc3MGI=">翻了一遍EventBus官方文档<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<blockquote>
+<p>EventBus事件总线.以观察者模式实现,消息推送/订阅.用于Android组件之间相互通信</p>
+</blockquote>
+<p>Note:文章基于EventBus3.0</p>
+<p><img src="/images/eventbus/Xnip2021-01-16_23-21-38.jpg"></p>
+<p>项目地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyZWVucm9ib3QvRXZlbnRCdXM=">https://github.com/greenrobot/EventBus<i class="fa fa-external-link-alt"></i></span><br>Docments:<span class="exturl" data-url="aHR0cDovL2dyZWVucm9ib3Qub3JnL2V2ZW50YnVzL2RvY3VtZW50YXRpb24vaG93LXRvLWdldC1zdGFydGVkLw==">http://greenrobot.org/eventbus/documentation/how-to-get-started/<i class="fa fa-external-link-alt"></i></span></p>
+<p>###先来聊聊:什么是通信?</p>
+<blockquote>
+<p>Wiki中国: <strong>通信</strong>是发送者通过某种媒体以某种<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JUEwJUJDJUU1JUJDJThG">格式<i class="fa fa-external-link-alt"></i></span>来传递<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU0JUJGJUExJUU2JTgxJUFG">信息<i class="fa fa-external-link-alt"></i></span>到收信者以达致某个目的。在古代，人们通过<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUE5JTlCJUU3JUFCJTk5">驿站<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUEzJTlFJUU5JUI4JUJEJUU0JUJDJUEwJUU0JUI5JUE2">飞鸽传书<i class="fa fa-external-link-alt"></i></span>、烽火报警、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUFDJUE2JUU4JTk5JTlG">符号<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUFBJTlFJUU4JUE4JTgw">语言<i class="fa fa-external-link-alt"></i></span>、眼神、触碰等方式进行信息传递。到了今天，随着科技水平的飞速发展，通信基本完全利用有线或无线电完成，相继出现了<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3cvaW5kZXgucGhwP3RpdGxlPSVFNiU5QyU4OSVFNyVCNyU5QSVFOSU5QiVCQiVFOCVBOSVCMSZhY3Rpb249ZWRpdCZyZWRsaW5rPTE=">有线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU1JTlCJUJBJUU1JUFFJTlBJUU3JTk0JUI1JUU4JUFGJTlE">固定电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JTg0JUExJUU3JUI3JTlBJUU5JTlCJUJCJUU4JUE5JUIx">无线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JTg5JThCJUU2JUE5JTlG">手机<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUI2JUIyJUU5JTlBJTlCJUU3JUI2JUIyJUU4JUI3JUFG">互联网<i class="fa fa-external-link-alt"></i></span>甚至<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUE2JTk2JUU4JUE4JThBJUU5JTlCJUJCJUU4JUE5JUIx">视频电话<i class="fa fa-external-link-alt"></i></span>等各种通信方式。通信技术拉近了人与人之间的距离，提高了通信的效率，深刻的改变了人类的通信。交流也是一种方法让其他人理解你。</p>
+</blockquote>
+<p>上面是Wiki的解释,通信本身是个很抽象,宽泛的词, 你跟朋友打个电话叫通信, 发个Email也叫通信, 两个App之间传数据也叫通信,也叫为进程间通信, Activity和Activity之间传递数据叫组件间通信, 说到这里,来下个通俗点的定义:一个东西给另一个东西传递东西(数据),就叫通信.</p>
+<p>##EventBus有什么用?解决了什么问题?<br>方便Android组件间相互通信.在Activity,Service,Fragment之间传递数据,例如,你在个人主页编辑头像的界面修改了头像,这时候其它页面的头像也需要去修改,这时候可以试试EventBus.<br>基于观察者模式:这个好理解, 有消息的发送者,也有消息的接收者,当然,也可以是一发送者对应多个接收者, EventBus使用起来非常简单,可以用来提供广播之类</p>
+<p>##怎么用?</p>
+<ul>
+<li>添加依赖</li>
+<li>使用三歩曲:<ul>
+<li>定义事件类</li>
+<li>注册事件</li>
+<li>发送事件</li>
+</ul>
+</li>
+</ul>
+<p>###添加依赖</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">&#x27;org.greenrobot:eventbus:3.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>###使用三步曲:</p>
+<p>####1,定义事件类<br>事件类是通信过程中的数据的载体,用来传递数据,这里写一个最简单的事件类,后面说如何传递数据</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####2.注册事件<br>上面提到数据的发送者和接收者, 注册事件是针对接收者的, 哪个组件需要接收消息,就在哪个组件中去注册</p>
+<ul>
+<li>注册: EventBus.getDefault().register(this);</li>
+<li>添加函数注解@Subscribe:当数据的发送者发出消息后,添加这个注解的函数会被调用</li>
+<li>添加@Subscribe注解的函数参数,写上接收事件类型,表示这个组件会接收这类事件的消息</li>
+<li>注销:EventBus:EventBus.getDefault().unregister(this);</li>
+</ul>
+<p><strong>Note:一个事件是可以有多个接收者(订阅者)</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>####3.发送事件<br>最后,消息的发送者发送事件, 这时候上面添加@Subscribe注解的函数会被调用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+
+<p>**这时候在回来看这张大图,So easy,**点击查看大图<br><img src="/images/eventbus/Xnip2021-01-16_23-22-08.jpg"></p>
+<p>这里顺便吐槽下官方示例代码:<br><img src="/images/eventbus/Xnip2021-01-16_23-22-29.jpg"></p>
+<p>如果你打算把注册写在onStart中,请在前面加上判断</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###上面是EventBus的基本使用流程,其实这才开始:</p>
+<ul>
+<li>在事件中传递数据</li>
+<li>指定事件接收线程</li>
+<li>发送黏性事件Sticky Events</li>
+<li>接收事件的优先级别</li>
+<li>中止事件传递</li>
+<li>订阅者索引</li>
+</ul>
+<p>###传递数据<br>不过,上面只是发了一个空的消息,没有传递任何的数据,比如:我修改了用户的头像,上传到服务器,服务器返回一个Url,这时候我需要修改其它界面的头像,这时候我要把这个url数据传到其它界面:怎么做呢?</p>
+<p>####1.只需要去修改定义事件类中的构造函数,增加一个参数,在加上set和get方法,如下:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateHeadPicEvent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">UpdateHeadPicEvent</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####2.在发送事件的地方,使用这个带参的构造去创建对象:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> UpdateHeadImgEvent(url));</span><br></pre></td></tr></table></figure>
+
+<p>####3.在接收消息的回调中用get方法去获取</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>**Note:**这里只是用了一个String的Url做参考,可以传递的数据还有很多,List集合,Bean对象…</p>
+<p>###指定事件接收的线程<br>前面说了加上@Subscribe注解,这个函数在消息推送之后会被回调,其实这个注解还有几个属性,其中threadMode能为该函数指定线程,如果不写,也会有个默认值:ThreadMode.POSTING,意思是和发送事件所在线程一样</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.POSTING)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####ThreadMode列表</p>
+<ul>
+<li>ThreadMode.POSTING:和发送事件在同一个线程</li>
+<li>ThreadMode.MAIN:主线程</li>
+<li>ThreadMode.BACKGROUND:子线程</li>
+<li>ThreadMode.ASYNC:异步线程</li>
+</ul>
+<p>####发送黏性事件Sticky Events<br>上面示例代码所说的情况是:当发送消息推送者推送消息的时候,订阅者会立马收到消息,它会把消息推送给它所有的订阅者.注意后面这句话:<strong>如果你希望在消息推送完成之后,让新注册的订阅者也能收到这条消息,这时候你可以试试Sticky Events</strong>,这个事件就像一个常驻广播,只要是有新的订阅者订阅了这个事件,就会收到消息.当然,有两点要求:</p>
+<ol>
+<li>首先,发送的是黏性事件,代码将post改为postSticky</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>然后,订阅者要声明自己能够接收到黏性事件的消息:代码中@Subscribe注解中的sticky值为true,满足了这两点,就能愉快的玩耍了.</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试Log日志<br><img src="/images/eventbus/Xnip2021-01-16_23-22-51.jpg"></p>
+<p>###接收事件的优先级别<br>EventBus可以定义接收事件方的优先级别,在@Subscribe注解中有一个priority的参数,默认值是0,可以自行配置1.2.3.4…数值越大优先级越低,会越晚收到消息</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###中止事件传递<br>类似于有序广播,优先级高的订阅者,可以终止事件向下传递,EventBus也提供了此功能</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###订阅者索引<br>这个新特性是在EventBus 3.0推出,简单的说:利用annotationProcessor去生成一个关于订阅者的索引类,保存订阅者的相关信息.<br>有什么用?提高效率,注册从运行时的反射,转移到了编译时<br>怎么用?两种方式:</p>
+<ul>
+<li>在gradle版本2.2.0以前使用：Android-apt</li>
+<li>在gradle版本2.2.0以上使用：annotationProcessor</li>
+</ul>
+<p>这里说annotationProcessor的方式,现在新建项目一般都在2.2.0以上:<br>添加好Gradle设置之后,重新build项目,就会为你生成这样的类:MyEventBusIndex<br>![](/assets/EventBus Annotation Processor.png)</p>
+<p>用法:将它配置应用于默认的EventBus,调用下面代码:可放在Application的onCreate中调用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.builder().addIndex(<span class="keyword">new</span> MyEventBusIndex()).installDefaultEventBus();</span><br></pre></td></tr></table></figure>
+<p>未添加前和添加后我分别做了三次测试,注册完成的时间对比,速度快了不止一倍,这还是只有两个订阅者的时候,如果订阅订阅者更多呢,</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//未添加前</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892487664</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892487666</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892568177</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892568180</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892715342</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892715344</span><br><span class="line"></span><br><span class="line">//添加后</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892648185</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892648186</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892814517</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892814518</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892868879</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892868880</span><br></pre></td></tr></table></figure>
+<p>#####在Lib的model中使用:<br>build.gradle也要添加上图中同样的参数,在上图中,这个参数是自定义的,不同的model可以为他生成不同的索引类:</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">arguments = [<span class="attr">eventBusIndex:</span> <span class="string">&#x27;com.example.myapp.MyEventBusIndex&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>更改默认配置也需要多添加一行代码:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus eventBus = EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusAppIndex())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusLibIndex())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
+
+<p>最后代码地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9FdmVudGJ1c2RlbW8=">https://github.com/Shib90/Eventbusdemo<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -498,7 +690,7 @@
 <blockquote>
 <p>实现这种效果的方式有很多,在不使用第三方包的前提下,这里用V4包原生DrawerLayout+FragmentTabHost控件实现, 先来张效果图:</p>
 </blockquote>
-<p><img src="/images/QQNavigation.gif"></p>
+<p><img src="/images/qq_navigation/QQNavigation.gif"></p>
 <p>##实现这种效果的技术点:</p>
 <ul>
 <li>DrawerLayout拖动菜单时主内容布局不会跟着移动</li>
@@ -507,21 +699,21 @@
 <li>解决FragmentTabHost切换时,主布局Fragment会重走生命周期的问题</li>
 </ul>
 <p>好吧,你可能不知道我在说什么, 一个一个来:<br>###1. DrawerLayout拖动菜单时主内容布局不会跟着移动<br>你可能见到的DrawerLayout的使用效果是这样的,这是Google Play上的DrawerLayout,当手指侧滑时,左侧抽屉菜单会覆盖中间布局,中间布局不会随手指拖动而移动</p>
-<p><img src="/images/Google_Play.gif"></p>
+<p><img src="/images/qq_navigation/Google_Play.gif"></p>
 <p>解决这个问题很简单, 在DrawerLayout的监听事件onDrawerSlide回调中对其进行操作,slideOffset是滑动的偏移值:会在0~1之间变化:</p>
-<p><img src="/images/Xnip2021-01-16_22-19-42.jpg"></p>
+<p><img src="/images/qq_navigation/Xnip2021-01-16_22-19-42.jpg"></p>
 <p>###2. DrawerLayout拖动时很生硬,是直接拖出来的<br>DrawerLayout菜单拖出来时,默认最先展示到屏幕上的是菜单布局的边缘位置,而QQ的侧滑菜单最先展示在屏幕上的是菜单布局中间偏右的位置,目测大概是黄金分割点,如图:</p>
-<p><img src="/images/Xnip2021-01-16_22-20-21.jpg"></p>
+<p><img src="/images/qq_navigation/Xnip2021-01-16_22-20-21.jpg"></p>
 <p>解决这个问题也不难, 动态修改菜单布局的PadingLeft,在菜单滑出的过程中,PadingLeft从菜单宽度的(1-0.618)倍,动态减少到0方可实现这种效果:</p>
-<p><img src="/images/Xnip2021-01-16_22-21-08.jpg"></p>
+<p><img src="/images/qq_navigation/Xnip2021-01-16_22-21-08.jpg"></p>
 <p>###3. FragmentTabHost自定义底部Tab布局<br>第一次听说FragmentTabHost可以用来做导航之后,就去找资料,官方文档还给了示例代码<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5nb29nbGUuY24vcmVmZXJlbmNlL2FuZHJvaWQvc3VwcG9ydC92NC9hcHAvRnJhZ21lbnRUYWJIb3N0Lmh0bWw=">https://developer.android.google.cn/reference/android/support/v4/app/FragmentTabHost.html<i class="fa fa-external-link-alt"></i></span><br>当我跑上这段代码之后完全高兴不起来,太TM难看了,底部Tab就几个文字,然后就去查API,果然有了新的发现:</p>
-<p><img src="/images/Xnip2021-01-16_22-25-09.jpg"></p>
+<p><img src="/images/qq_navigation/Xnip2021-01-16_22-25-09.jpg"></p>
 <p>###4. 解决FragmentTabHost切换时,主布局Fragment会重走生命周期的问题<br>当切换底部的Tab时,主布局中的三个Fragment会重走生命周期,也就意味着页面的数据又得重新加载,这对用户体验都不是个好消息,解决的办法就是重写FragmentTabHost,其实就是改了原控件的几个方法:</p>
-<p>重写前是这样的:<br><img src="/images/Xnip2021-01-16_22-25-37.jpg"></p>
-<p>重写后是这样的:<br><img src="/images/Xnip2021-01-16_22-26-00.jpg"></p>
+<p>重写前是这样的:<br><img src="/images/qq_navigation/Xnip2021-01-16_22-25-37.jpg"></p>
+<p>重写后是这样的:<br><img src="/images/qq_navigation/Xnip2021-01-16_22-26-00.jpg"></p>
 <p>代码就是在原有控件的基础上改了三行:</p>
-<p><img src="/images/Xnip2021-01-16_22-26-25.jpg"></p>
-<p><img src="/images/Xnip2021-01-16_22-27-01.jpg"></p>
+<p><img src="/images/qq_navigation/Xnip2021-01-16_22-26-25.jpg"></p>
+<p><img src="/images/qq_navigation/Xnip2021-01-16_22-27-01.jpg"></p>
 <p>好了,原本不那么看好的控件经过改造,已经丑小鸭变成天鹅了.<br>**代码链接:**<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9RUU5hdmlnYXRpb25EZW1vLW1hc3Rlcg==">https://github.com/Shib90/QQNavigationDemo-master<i class="fa fa-external-link-alt"></i></span></p>
 <p>当然这个只是模仿拿来练手,还存在很多问题:</p>
 <ul>

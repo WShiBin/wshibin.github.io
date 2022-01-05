@@ -32,16 +32,16 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="网站:https:&#x2F;&#x2F;www.freedesktop.org&#x2F;wiki&#x2F;Software&#x2F;dbus&#x2F;代码:https:&#x2F;&#x2F;github.com&#x2F;freedesktop&#x2F;dbus What is D-Bus? D-Bus is a message bus system, a simple way for applications to talk to one another. In additi">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wshibin.github.io/images/Xnip2021-01-15_23-03-16.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/d-feet-overview.png">
-<meta property="og:image" content="https://wshibin.github.io/images/image-20210823144204174.png">
+<meta property="og:image" content="https://wshibin.github.io/images/dbus/Xnip2021-01-15_23-03-16.jpg">
+<meta property="og:image" content="https://wshibin.github.io/images/dbus/d-feet-overview.png">
+<meta property="og:image" content="https://wshibin.github.io/images/dbus/image-20210823144204174.png">
 <meta property="article:published_time" content="2021-01-15T22:54:10.000Z">
-<meta property="article:modified_time" content="2021-08-25T07:35:58.692Z">
+<meta property="article:modified_time" content="2022-01-05T15:32:53.259Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="DBus">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/Xnip2021-01-15_23-03-16.jpg">
+<meta name="twitter:image" content="https://wshibin.github.io/images/dbus/Xnip2021-01-15_23-03-16.jpg">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
@@ -125,8 +125,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -199,12 +199,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -364,7 +364,7 @@
 <li>接收到消息后返回数据</li>
 <li>…</li>
 </ul>
-<p><img src="/images/Xnip2021-01-15_23-03-16.jpg"></p>
+<p><img src="/images/dbus/Xnip2021-01-15_23-03-16.jpg"></p>
 <p><strong>相应概念:</strong></p>
 <p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
 <table>
@@ -433,10 +433,10 @@
 
 
 <h3 id="Graphical图形调试工具"><a href="#Graphical图形调试工具" class="headerlink" title="Graphical图形调试工具"></a>Graphical图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="/images/d-feet-overview.png" alt="d-feet-overview.png"></p>
+<p><img src="/images/dbus/d-feet-overview.png" alt="d-feet-overview.png"></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2J1c3RsZQ==">Bustle<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="libdbus使用实例："><a href="#libdbus使用实例：" class="headerlink" title="libdbus使用实例："></a>libdbus使用实例：</h2><h3 id="Method-Call消息例子："><a href="#Method-Call消息例子：" class="headerlink" title="Method Call消息例子："></a>Method Call消息例子：</h3><p>场景：launcher访问db_server获取设备信息，比如：获取cpu_id。launcher作为客户端，db_server做为服务端</p>
-<p><img src="/images/image-20210823144204174.png" alt="image-20210823144204174"></p>
+<p><img src="/images/dbus/image-20210823144204174.png" alt="image-20210823144204174"></p>
 <p>launcher.c代码：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_LAUNCHER <span class="meta-string">&quot;com.vdiscovery.launcher&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bus_name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="comment">// iface</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="number">0</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_LAUNCHER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.创建消息</span></span><br><span class="line">    DBusMessage* req = dbus_message_new_method_call(</span><br><span class="line">        DBUS_BUS_NAME_DB_SERVER,</span><br><span class="line">        DBUS_OJBECT_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_IFACE_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.1.添加携带信息</span></span><br><span class="line">    <span class="keyword">char</span>* cpu_id = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    dbus_message_append_args(req, DBUS_TYPE_STRING, &amp;cpu_id, DBUS_TYPE_INVALID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取回应消息</span></span><br><span class="line">    DBusMessage* reply     = dbus_connection_send_with_reply_and_block(conn, req, <span class="number">1000</span> * <span class="number">4</span>, &amp;err);</span><br><span class="line">    <span class="keyword">char</span>*        reply_str = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_message_get_args(reply, &amp;err, DBUS_TYPE_STRING, &amp;reply_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;set_cpu_id:%s, reply:reply_str = %s\n&quot;</span>, cpu_id, reply_str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

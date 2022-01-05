@@ -32,14 +32,14 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="在GUI编程里面,在写静态xml布局时;比如Android中,可以通过在xml中指定onClick的回调函数名,即可以实现,在事件触发时调用相应的函数 &lt;Button    android:id&#x3D;&quot;@+id&#x2F;login_btn&quot;    android:layout_width&#x3D;&quot;wrap_content&quot;    android:layout_heigh">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wshibin.github.io/images/Xnip2020-12-28_01-25-37.jpg">
+<meta property="og:image" content="https://wshibin.github.io/images/c/Xnip2020-12-28_01-25-37.jpg">
 <meta property="article:published_time" content="2020-12-27T20:30:16.000Z">
-<meta property="article:modified_time" content="2021-02-21T15:30:23.056Z">
+<meta property="article:modified_time" content="2022-01-05T15:42:07.958Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="GCC">
 <meta property="article:tag" content="C">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/Xnip2020-12-28_01-25-37.jpg">
+<meta name="twitter:image" content="https://wshibin.github.io/images/c/Xnip2020-12-28_01-25-37.jpg">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2020/12/28/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/">
@@ -123,8 +123,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -197,12 +197,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -364,7 +364,7 @@
 <p>这样,就可以把程序的数据中的数据放在自定义的段,自己去获取;</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现:"></a>实现:</h2><p>回到最开始的问题,<strong>可以把函数的地址放在自定义的section段</strong>,自己来这个section取数据就能实现;这样定义函数的地方和调用函数的地方就解耦了,没有依赖关系</p>
 <p><strong>示意图</strong>:这图是不严谨的,但我想表达这个那个意思</p>
-<p><img src="/images/Xnip2020-12-28_01-25-37.jpg" alt="img"></p>
+<p><img src="/images/c/Xnip2020-12-28_01-25-37.jpg" alt="img"></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">handler_info</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span>* name;</span><br><span class="line">    <span class="keyword">void</span> (*handler)();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 段名</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECTION_NAME <span class="meta-string">&quot;handler_section&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 段起始地址</span></span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">handler_info</span> __<span class="title">start_handler_section</span>[];</span>  <span class="comment">// 格式: __start_$&#123;section_name&#125;</span></span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">handler_info</span> __<span class="title">stop_handler_section</span>[];</span>   <span class="comment">// 格式:__stop_$&#123;section_name&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handler_func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;handler_func \n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 放在自定义段中的结构体数据</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">handler_info</span> <span class="title">info_func</span> __<span class="title">attribute__</span>((<span class="title">section</span>(<span class="title">SECTION_NAME</span>))) =</span> &#123;</span><br><span class="line">    .name    = <span class="string">&quot;func&quot;</span>,</span><br><span class="line">    .handler = handler_func,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;__start_handler_section = %p\n&quot;</span>, __start_handler_section);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;__stop_handler_section = %p\n&quot;</span>, __stop_handler_section);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(struct handler_info) = %ld\n&quot;</span>, <span class="keyword">sizeof</span>(struct handler_info));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;handler_section size = %ld\n&quot;</span>, __stop_handler_section - __start_handler_section);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;~~~~~~~\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历数据</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>*                name = <span class="string">&quot;func&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (struct handler_info* iter = __start_handler_section; iter &lt; __stop_handler_section; iter++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(name, iter-&gt;name) == <span class="number">0</span>) &#123;</span><br><span class="line">            iter-&gt;handler();  <span class="comment">// call func</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 

@@ -116,8 +116,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -189,12 +189,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -237,6 +237,127 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/02/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/02/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">【Personal】结构体还是结构体指针?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-01 20:54:18" itemprop="dateCreated datePublished" datetime="2021-08-01T20:54:18Z">2021-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/08/02/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/08/02/结构体还是结构体指针/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由:"></a>缘由:</h2><blockquote>
+<p>上周某日晚上的一个项目进度跟进会上，项目中有一个涉及到一个比较大的结构体，然后内部嵌套了好些结构体。后来我问了句：“为啥使用的是结构体，而不是结构体指针？” 同事答到：“都一样”。后来，讨论了一些“如果你嵌套的那个结构体非常大的话，而这个结构体在使用过程中没有被初使化用到，这样会很浪费内存，这种情况使用结构体指针会比较合适”。</p>
+</blockquote>
+<p>由于当时会议的重点不在这里，草草过了。后面越想越不对，这应该是一个值得思考的问题，嵌套时：是使用<strong>结构体</strong>还是<strong>结构体指针</strong>，应该是个哲学问题~~~。不过可以从一些角度来分析这个问题</p>
+<h2 id="不同角度分析"><a href="#不同角度分析" class="headerlink" title="不同角度分析:"></a>不同角度分析:</h2><ul>
+<li>从内存使用上</li>
+<li>抽象的关系上</li>
+<li>嵌套和继承/组合的关系</li>
+<li>参考优秀的代码</li>
+</ul>
+<h2 id="从内存使用上"><a href="#从内存使用上" class="headerlink" title="从内存使用上"></a>从内存使用上</h2><p>正如前因提到的：</p>
+<ul>
+<li>如果这个被嵌套的结构体字段很多；比如200个字段</li>
+<li>而这个被嵌套的结构体并不是很个场景都会用的上</li>
+</ul>
+<p>这时候用结构体指针可以省不少的空间，就很有意义；那就为了省内存而全使用结构体指针？</p>
+<h2 id="抽象的关系上"><a href="#抽象的关系上" class="headerlink" title="抽象的关系上"></a>抽象的关系上</h2><p>编程本质上也是给问题建模，抽象问题，代码也用来描述这些抽象之间的关系的，所以就有了下面的区别：</p>
+<ul>
+<li>嵌套的是结构体：有种“包含”或“属于”的关系。内部的结构体“属于”这个外部的在大结构体，内部是外部结构体的组成部分，是它的一员。比如，一个人属于这个部门的人；在比如，协议数据报中，嵌套的关系，一个结构体属于一个结构体</li>
+<li>嵌套的是结构体指针：有种引用的关系。内部的结构体不属于你，但会“用到”你。比如，为了完成一个项目，这时候需要由不同的部门抽调人过来组成一个项目团队（结构体），这个团队会“用到（引用）”其它部门的人，我在某一时期，某个阶段可能会用到你，也可能不会用到你（的功能）</li>
+</ul>
+<h2 id="结构体嵌套和继承-组合的关系"><a href="#结构体嵌套和继承-组合的关系" class="headerlink" title="结构体嵌套和继承/组合的关系"></a>结构体嵌套和继承/组合的关系</h2><p>后来突然冒出一个问题：类的继承如何在C语言中来实现？大概就是用嵌套结构体吧</p>
+<p>业内有名名言：“<strong>组合优于继承</strong>”，这时候：</p>
+<ul>
+<li>继承就是结构体<strong>嵌套结构体</strong>。（子类包含父类中的所有成员）</li>
+<li>而组合就是结构体<strong>嵌套结构体指针</strong>。（因为里面的对象都要new，而new是在heap上，所以是指针、引用）</li>
+</ul>
+<p>所以根据这句名言的结论就是：优先使用<strong>嵌套结构体指针</strong>？</p>
+<h2 id="参考优秀的代码"><a href="#参考优秀的代码" class="headerlink" title="参考优秀的代码"></a>参考优秀的代码</h2><p>有时候不知道怎么做合适，可以去参考下优秀的代码，归纳总结下，看看别人是怎么做的，参考参考（抄一抄）；下面linux源码，<span class="exturl" data-url="aHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvMS4zLjEwMC9zb3VyY2UvaW5jbHVkZS9saW51eC9zY2hlZC5o">进程的结构体<i class="fa fa-external-link-alt"></i></span>表示</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line"><span class="comment">/* these are hardcoded - don&#x27;t touch */</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">long</span> state;	<span class="comment">/* -1 unrunnable, 0 runnable, &gt;0 stopped */</span></span><br><span class="line">    <span class="keyword">long</span> counter;</span><br><span class="line">    <span class="keyword">long</span> priority;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> signal;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> blocked;	<span class="comment">/* bitmap of masked signals */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> flags;	<span class="comment">/* per process flags, defined below */</span></span><br><span class="line">    <span class="keyword">int</span> errno;</span><br><span class="line">    <span class="keyword">long</span> debugreg[<span class="number">8</span>];  <span class="comment">/* Hardware debugging registers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">exec_domain</span> *<span class="title">exec_domain</span>;</span></span><br><span class="line"><span class="comment">/* various fields */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">linux_binfmt</span> *<span class="title">binfmt</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_task</span>, *<span class="title">prev_task</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_run</span>,  *<span class="title">prev_run</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> saved_kernel_stack;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_stack_page;</span><br><span class="line">    <span class="keyword">int</span> exit_code, exit_signal;</span><br><span class="line">    <span class="comment">/* ??? */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> personality;</span><br><span class="line">    <span class="keyword">int</span> dumpable:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> did_exec:<span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* shouldn&#x27;t this be pid_t? */</span></span><br><span class="line">    <span class="keyword">int</span> pid;</span><br><span class="line">    <span class="keyword">int</span> pgrp;</span><br><span class="line">    <span class="keyword">int</span> tty_old_pgrp;</span><br><span class="line">    <span class="keyword">int</span> session;</span><br><span class="line">    <span class="comment">/* boolean value for session group leader */</span></span><br><span class="line">    <span class="keyword">int</span> leader;</span><br><span class="line">    <span class="keyword">int</span>	groups[NGROUPS];</span><br><span class="line">    <span class="comment">/* </span></span><br><span class="line"><span class="comment">     * pointers to (original) parent process, youngest child, younger sibling,</span></span><br><span class="line"><span class="comment">     * older sibling, respectively.  (p-&gt;father can be replaced with </span></span><br><span class="line"><span class="comment">     * p-&gt;p_pptr-&gt;pid)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">p_opptr</span>, *<span class="title">p_pptr</span>, *<span class="title">p_cptr</span>, *<span class="title">p_ysptr</span>, *<span class="title">p_osptr</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wait_queue</span> *<span class="title">wait_chldexit</span>;</span>	<span class="comment">/* for wait4() */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> uid,euid,suid,fsuid;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> gid,egid,sgid,fsgid;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> timeout, policy, rt_priority;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> it_real_value, it_prof_value, it_virt_value;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> it_real_incr, it_prof_incr, it_virt_incr;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timer_list</span> <span class="title">real_timer</span>;</span></span><br><span class="line">    <span class="keyword">long</span> utime, stime, cutime, cstime, start_time;</span><br><span class="line"><span class="comment">/* mm fault and swap info: this can arguably be seen as either mm-specific or thread-specific */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> min_flt, maj_flt, nswap, cmin_flt, cmaj_flt, cnswap;</span><br><span class="line">    <span class="keyword">int</span> swappable:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> swap_address;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> old_maj_flt;	<span class="comment">/* old value of maj_flt */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> dec_flt;		<span class="comment">/* page fault count of the last time */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> swap_cnt;		<span class="comment">/* number of pages to swap on next pass */</span></span><br><span class="line"><span class="comment">/* limits */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">rlimit</span> <span class="title">rlim</span>[<span class="title">RLIM_NLIMITS</span>];</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> used_math;</span><br><span class="line">    <span class="keyword">char</span> comm[<span class="number">16</span>];</span><br><span class="line"><span class="comment">/* file system info */</span></span><br><span class="line">    <span class="keyword">int</span> link_count;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tty_struct</span> *<span class="title">tty</span>;</span> <span class="comment">/* NULL if no tty */</span></span><br><span class="line"><span class="comment">/* ipc stuff */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_undo</span> *<span class="title">semundo</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_queue</span> *<span class="title">semsleeping</span>;</span></span><br><span class="line"><span class="comment">/* ldt for this task - used by Wine.  If NULL, default_ldt is used */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> *<span class="title">ldt</span>;</span></span><br><span class="line"><span class="comment">/* tss for this task */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_struct</span> <span class="title">tss</span>;</span></span><br><span class="line"><span class="comment">/* filesystem information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">fs_struct</span> *<span class="title">fs</span>;</span></span><br><span class="line"><span class="comment">/* open file information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span> *<span class="title">files</span>;</span></span><br><span class="line"><span class="comment">/* memory management info */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">mm_struct</span> *<span class="title">mm</span>;</span></span><br><span class="line"><span class="comment">/* signal handlers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">signal_struct</span> *<span class="title">sig</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __SMP__</span></span><br><span class="line">    <span class="keyword">int</span> processor;</span><br><span class="line">    <span class="keyword">int</span> last_processor;</span><br><span class="line">    <span class="keyword">int</span> lock_depth;		<span class="comment">/* Lock depth. We can context switch in and out of holding a syscall kernel lock... */</span>	</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>	</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中除了<code>struct thread_struct tss</code>和<code>struct rlimit rlim[RLIM_NLIMITS]</code>用的结构体，一个是线程，一个是进程资源大小的限制，更像是在表达这俩就“属于”进程，必不可少。其它的ipc，fs，memory management，signal handlers，更像是为了组合到一起来完成任务，会“用到”你们（的功能），它们各自有独立的功能。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好像结论已经很明显了，更加倾向于从抽象的角度看这个问题，如果是有“包含”或“属于”的关系在里面，就用<strong>嵌套结构体</strong>；而如果是有“组合”到一起完成某种功能，它承担了一些独特的任务功能，这时可以用<strong>嵌套结构体指针</strong>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -340,7 +461,7 @@
 <p>在来思考下医生的环境,医生每天面对的都是病人,而病人有求于他.如果每天有人有求于你,并对你说的话深信不疑,这将是对人性是极大的考验.医生掌握一定的权力,怎么去用这个权力. 电影<span class="exturl" data-url="aHR0cHM6Ly9tb3ZpZS5kb3ViYW4uY29tL3N1YmplY3QvMzgwNTA5MS8=">死亡实验<i class="fa fa-external-link-alt"></i></span>就是一个放大版人性扭曲的例子.</p>
 <h2 id="去的几家医院对比"><a href="#去的几家医院对比" class="headerlink" title="去的几家医院对比"></a>去的几家医院对比</h2><p>自己主要咨询了三个医生,北大深圳医院,深圳二医院,西安交通大学第二附属医院(丁香医生上)</p>
 <p>北大深圳医院的坑比医生就不提了;后面两个两个医生开的药品和治疗方案都类似;丁香医生上的医生给的建议和治疗方案最全,从注意事项,治疗方案从热敷,理疗,药物治疗在到锻炼非常全.</p>
-<p><img src="/images/image-20210709003604362.png" alt="注意事项和治疗方案"></p>
+<p><img src="/images/retrospective/image-20210709003604362.png" alt="注意事项和治疗方案"></p>
 <p>感觉这个平台不错,上面有关于病的科普资料,还有很多公开的医生/病人对话案例,还有按打分排名的医生排行榜,让你找到比较好的医生.墙裂推荐</p>
 <p>前有”百度一下会死”. 在百度搜索一下某个病,我可能想要的是这个病的科普,而百度会推荐给你”方案”/“医院”,而这些”医院”通过通过花钱让你看到我, 这钱可能还得你来出.最怕的是花了钱,耽误了治疗,命还没了. 而不少慢性病,不治之症就成了财富密码.</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>望自己早日康复,锻炼身体</p>
@@ -737,8 +858,8 @@
 <li>插件:插件数量多,而且质量高</li>
 </ul>
 <p><strong>VSCode的定位</strong>:</p>
-<p><img src="/images/VSCode_image-20210421004416114.png" alt="VSCode的定位"></p>
-<h2 id="UI外观"><a href="#UI外观" class="headerlink" title="UI外观"></a>UI外观</h2><p><img src="/images/VSCode_hero.png" alt="VSCode UI"></p>
+<p><img src="/images/vscode/VSCode_image-20210421004416114.png" alt="VSCode的定位"></p>
+<h2 id="UI外观"><a href="#UI外观" class="headerlink" title="UI外观"></a>UI外观</h2><p><img src="/images/vscode/VSCode_hero.png" alt="VSCode UI"></p>
 <ul>
 <li>Editor Groups:编辑区</li>
 <li>Side Bar侧边栏:<ul>
@@ -818,9 +939,9 @@
 <li>转跳到定义,在对应的变量上,右键<code>Go to Definition</code>或<code>F12</code></li>
 </ul>
 <h3 id="多光标编辑"><a href="#多光标编辑" class="headerlink" title="多光标编辑"></a>多光标编辑</h3><p><code>Alt+Click</code></p>
-<p><img src="/images/VSCode_multicursor.gif" alt="Multi-cursor"></p>
+<p><img src="/images/vscode/VSCode_multicursor.gif" alt="Multi-cursor"></p>
 <h3 id="列选中"><a href="#列选中" class="headerlink" title="列选中"></a>列选中</h3><p>按住<code>Shift+Alt</code>,同时按鼠标左键</p>
-<p><img src="/images/VSCode_column-select-20210421234606881.gif" alt="Column text selection"></p>
+<p><img src="/images/vscode/VSCode_column-select-20210421234606881.gif" alt="Column text selection"></p>
 <h3 id="查找与替换"><a href="#查找与替换" class="headerlink" title="查找与替换"></a>查找与替换</h3><ul>
 <li><strong>查找</strong>:<ul>
 <li>当前文件查找<code>Ctrl+F</code></li>
@@ -837,7 +958,7 @@
 <h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><p>配置文件<strong>自动保存</strong>,<strong>保存时并格式化</strong></p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.autoSave&quot;</span>: <span class="string">&quot;afterDelay&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;files.autoSaveDelay&quot;</span>: <span class="number">100</span>, 		<span class="comment">// 延时100ms保存文件</span></span><br><span class="line">    <span class="attr">&quot;editor.formatOnSave&quot;</span>: <span class="literal">true</span>,		<span class="comment">// 保存时格式化代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="代码折叠"><a href="#代码折叠" class="headerlink" title="代码折叠"></a>代码折叠</h3><p><img src="/images/VSCode_folding.png" alt="Folding"></p>
+<h3 id="代码折叠"><a href="#代码折叠" class="headerlink" title="代码折叠"></a>代码折叠</h3><p><img src="/images/vscode/VSCode_folding.png" alt="Folding"></p>
 <h2 id="Snippets"><a href="#Snippets" class="headerlink" title="Snippets"></a>Snippets</h2><p><strong>作用:</strong> 生成代码模板</p>
 <p><strong>使用:</strong><code>Tab</code>键补全,<code>Tab</code>键在定义的光标转跳</p>
 <p><img src="https://code.visualstudio.com/assets/docs/editor/userdefinedsnippets/ajax-snippet.gif" alt="ajax snippet"></p>
@@ -867,7 +988,7 @@
 <p>配置文件<code>.vscode/launch.json</code>,将<code>&lt;my program&gt;</code>替换成你的<strong>debug版本</strong>程序</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Use IntelliSense to learn about possible attributes.</span></span><br><span class="line">    <span class="comment">// Hover to view descriptions of existing attributes.</span></span><br><span class="line">    <span class="comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;lldb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/&lt;my program&gt;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/images/VSCode_debugging_hero.png?lastModify=1619022895" alt="Debugging diagram" style="zoom: 50%;" />
+<img src="/images/vscode/VSCode_debugging_hero.png?lastModify=1619022895" alt="Debugging diagram" style="zoom: 50%;" />
 
 
 
@@ -957,15 +1078,15 @@
 <li>命令<code>Add gitignore</code>,没有<code>.gitignore</code>会创建,有可以选择追加或覆盖</li>
 </ul>
 <h3 id="Doxygen-Documentation-Generator-生成注释模板插件"><a href="#Doxygen-Documentation-Generator-生成注释模板插件" class="headerlink" title="Doxygen Documentation Generator:生成注释模板插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9jc2NobG9zc2VyLmRveGRvY2dlbg==">Doxygen Documentation Generator<i class="fa fa-external-link-alt"></i></span>:生成注释模板插件</h3><p>输入<code>/**</code>,然后按<code>Tab</code>键生成注释模板</p>
-<p><img src="/images/VSCode_attributes.gif" alt="Attribute"></p>
+<p><img src="/images/vscode/VSCode_attributes.gif" alt="Attribute"></p>
 <blockquote>
 <p>如果tab无法生成模板,注意在上面空行</p>
 </blockquote>
 <h3 id="Error-Lens-把错误和警告显示在编辑区"><a href="#Error-Lens-把错误和警告显示在编辑区" class="headerlink" title="Error Lens:把错误和警告显示在编辑区"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi91c2VybmFtZWh3LmVycm9ybGVucw==">Error Lens<i class="fa fa-external-link-alt"></i></span>:把错误和警告显示在编辑区</h3><p>默认错误和警告在panel面板里面,查看不方便</p>
-<p><img src="/images/VSCode_demo.png" alt="Error Lens Demo"></p>
+<p><img src="/images/vscode/VSCode_demo.png" alt="Error Lens Demo"></p>
 <h3 id="vscode-icons-文件图标增强插件"><a href="#vscode-icons-文件图标增强插件" class="headerlink" title="vscode-icons:文件图标增强插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92c2NvZGUtaWNvbnMtdGVhbS52c2NvZGUtaWNvbnM=">vscode-icons<i class="fa fa-external-link-alt"></i></span>:文件图标增强插件</h3><p>配置演示图:</p>
-<p><img src="/images/VSCode_screenshot.gif" alt="vscode-icons demo"></p>
-<h3 id="Todo-Tree-显示项目中的todo列表-高亮todo"><a href="#Todo-Tree-显示项目中的todo列表-高亮todo" class="headerlink" title="Todo Tree:显示项目中的todo列表,高亮todo"></a><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPUdydW50ZnVnZ2x5LnRvZG8tdHJlZQ==">Todo Tree<i class="fa fa-external-link-alt"></i></span>:显示项目中的todo列表,高亮todo</h3><img src="/images/VSCode_screenshot.png" style="zoom: 43%;" />
+<p><img src="/images/vscode/VSCode_screenshot.gif" alt="vscode-icons demo"></p>
+<h3 id="Todo-Tree-显示项目中的todo列表-高亮todo"><a href="#Todo-Tree-显示项目中的todo列表-高亮todo" class="headerlink" title="Todo Tree:显示项目中的todo列表,高亮todo"></a><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPUdydW50ZnVnZ2x5LnRvZG8tdHJlZQ==">Todo Tree<i class="fa fa-external-link-alt"></i></span>:显示项目中的todo列表,高亮todo</h3><img src="/images/vscode/VSCode_screenshot.png" style="zoom: 43%;" />
 
 
 
@@ -976,13 +1097,13 @@
 <p>代码静态分析文件:<code>.clangd</code></p>
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题:"></a>常见问题:</h2><h3 id="1-VSCode遇到了Bug"><a href="#1-VSCode遇到了Bug" class="headerlink" title="1.VSCode遇到了Bug:"></a>1.VSCode遇到了Bug:</h3><p>重新加载VSCode</p>
 <h3 id="2-插件遇到了Bug"><a href="#2-插件遇到了Bug" class="headerlink" title="2.插件遇到了Bug:"></a>2.插件遇到了Bug:</h3><p>安装老版本,或者用过的相对稳定的版本的插件</p>
-<img src="/images/image-20210709005511695.png" alt="Install anothor version" style="zoom:50%;" />
+<img src="/images/vscode/image-20210709005511695.png" alt="Install anothor version" style="zoom:50%;" />
 
 <h3 id="3-大项目全局搜索失效"><a href="#3-大项目全局搜索失效" class="headerlink" title="3.大项目全局搜索失效:"></a>3.大项目全局搜索失效:</h3><p>解决方式:</p>
 <ol>
 <li>配置只搜索哪些文件,和配置不搜索哪些文件</li>
 </ol>
-<img src="/images/VSCode_image-20210422011735490.png" alt="Search" style="zoom: 67%;" />
+<img src="/images/vscode/VSCode_image-20210422011735490.png" alt="Search" style="zoom: 67%;" />
 
 <ol start="2">
 <li>使用grep做为替代</li>
@@ -999,7 +1120,7 @@
 <ol start="2">
 <li>手动刷新</li>
 </ol>
-<img src="/images/VSCode_image-20210422004320976.png" alt="Refresh explorer" style="zoom:67%;" />
+<img src="/images/vscode/VSCode_image-20210422004320976.png" alt="Refresh explorer" style="zoom:67%;" />
       
     </div>
 
@@ -1300,14 +1421,14 @@
 <h2 id="Docker介绍"><a href="#Docker介绍" class="headerlink" title="Docker介绍"></a>Docker介绍</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbS8=">https://www.docker.com/<i class="fa fa-external-link-alt"></i></span></p>
 <p>Docker中的容器是虚拟了操作系统，而虚拟机虚拟了硬件资源</p>
 <p>能<strong>保证开发，测试，部署的环境一致（编译环境和运行环境）</strong>，和主机无关的环境</p>
-<p><img src="/images/image-20210328205725519.png" alt="image-20210328205725519"></p>
+<p><img src="/images/docker/image-20210328205725519.png" alt="image-20210328205725519"></p>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
 <li>占用资源低：用多少给多少</li>
 <li>启动快：像本地启动一个进程一样快</li>
 <li>共享方便：共享一个Dockerfile文件；或者共享一个docker hub的链接</li>
 <li>管理方便：不用就删了</li>
 </ul>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><img src="/images/image-20210328202950078.png" alt="image-20210328202950078"></p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><img src="/images/docker/image-20210328202950078.png" alt="image-20210328202950078"></p>
 <ul>
 <li>镜像image：和虚拟机类比，就是系统镜像文件(里面包括一个程序必要的<strong>编译</strong>或<strong>运行环境</strong>)</li>
 <li>容器container：和虚拟机类比，就是安装好的虚拟机系统</li>
@@ -1315,7 +1436,7 @@
 <li>Dockerfile文件：一个用于创建镜像image的规则文件(添加软件去年依赖)</li>
 </ul>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>官网文档：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZ2V0LWRvY2tlci8=">https://docs.docker.com/get-docker/<i class="fa fa-external-link-alt"></i></span></p>
-<h4 id="Ubuntu安装："><a href="#Ubuntu安装：" class="headerlink" title="Ubuntu安装："></a>Ubuntu安装：</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.Update the apt package index and install packages to allow apt to use a repository over HTTPS:</span></span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg \</span><br><span class="line">    lsb-release</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.Add Docker’s official GPG key:</span></span><br><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.添加源（注意：当前是x86_64/amd64，其它的请参考官方文档）</span></span><br><span class="line">$ <span class="built_in">echo</span> \</span><br><span class="line">  <span class="string">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">  <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 4.安装docker</span></span><br><span class="line">$ sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<h4 id="Ubuntu安装："><a href="#Ubuntu安装：" class="headerlink" title="Ubuntu安装："></a>Ubuntu安装：</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.Update the apt package index and install packages to allow apt to use a repository over HTTPS:</span></span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg \</span><br><span class="line">    lsb-release</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.Add Docker’s official GPG key:</span></span><br><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.添加源（注意：当前是x86_64/amd64，其它的请参考官方文档）</span></span><br><span class="line">$ <span class="built_in">echo</span> \</span><br><span class="line">  <span class="string">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">  <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.安装docker</span></span><br><span class="line">$ sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note：</p>
@@ -1337,11 +1458,11 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
 
 <p><strong>MacOS：</strong></p>
-<p>设置–&gt;Docker Engine： </p>
-<p><img src="/images/image-20210825165057417.png" alt="image-20210825165057417"></p>
+<p>设置–&gt;Docker Engine：</p>
+<p><img src="/images/docker/image-20210825165057417.png" alt="image-20210825165057417"></p>
 <h3 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h3><h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看子命令的help: docker subcommand --help</span></span><br><span class="line">$ docker image --<span class="built_in">help</span></span><br><span class="line">$ docker container --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="镜像image相关命令"><a href="#镜像image相关命令" class="headerlink" title="镜像image相关命令"></a>镜像image相关命令</h4><p>Dockerhub：<span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS8=">https://hub.docker.com/<i class="fa fa-external-link-alt"></i></span>    </p>
+<h4 id="镜像image相关命令"><a href="#镜像image相关命令" class="headerlink" title="镜像image相关命令"></a>镜像image相关命令</h4><p>Dockerhub：<span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS8=">https://hub.docker.com/<i class="fa fa-external-link-alt"></i></span></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看本机的镜像列表</span></span><br><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line"><span class="comment"># pull/push</span></span><br><span class="line"><span class="comment"># docker pull [OPTIONS] NAME[:TAG|@DIGEST]</span></span><br><span class="line">$ docker pull image_name <span class="comment"># 从docker hub拉取Ubuntu镜像</span></span><br><span class="line">$ docker push image_name <span class="comment"># 把本地镜像推到docker hub (可能需要用docker tag先重命令，需要和docker hub中的同名)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个tag</span></span><br><span class="line">$ docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存/导入镜像(共享给其它人同一个环境)</span></span><br><span class="line">$ docker save -o ubuntu.tar ubuntu20</span><br><span class="line">$ docker import ubuntu.tar ubuntu20_import:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># rm image</span></span><br><span class="line">$ docker rmi image_name</span><br></pre></td></tr></table></figure>
 
 <h4 id="容器container相关命令"><a href="#容器container相关命令" class="headerlink" title="容器container相关命令"></a>容器container相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker run [OPTIONS] IMAGE</span></span><br><span class="line"><span class="comment"># 用某个镜像image创建container</span></span><br><span class="line">$ docker run --name ubuntu20 -d ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于镜像ubuntu，创建名为ubuntu20的容器，并以交互的模式启动容器ubuntu20</span></span><br><span class="line"><span class="comment"># 	-name:指定创建的容器名为ubuntu20</span></span><br><span class="line"><span class="comment">#		-i:交互模式运行</span></span><br><span class="line"><span class="comment">#   -t:分配一个终端</span></span><br><span class="line">$ docker run --name ubuntu20 \</span><br><span class="line">					-i -t ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于镜像ubuntu，创建名为ubuntu20的容器，并以交互的模式启动容器ubuntu20</span></span><br><span class="line"><span class="comment"># 	-w:指定工作目录，进入到容器之后的目录</span></span><br><span class="line"><span class="comment"># 	-v:把本机的目录/home/shibin/repo/linux-kit，映射到容器的目录/workspace/linux-kit</span></span><br><span class="line">$ docker run --name ubuntu20 \</span><br><span class="line">					-w /workspace/linux-kit \</span><br><span class="line">					-v /home/shibin/repo/linux-kit:/workspace/linux-kit \</span><br><span class="line">					-it ubuntu <span class="comment"># 创建一个容器container，并启动容器container，以交互的方式运行</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前container的状态</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">$ docker start container_name/id    <span class="comment"># 启动一个容器container</span></span><br><span class="line">$ docker start -i container_name/id <span class="comment"># (i/interactive)启动一个容器container，交互模式运行</span></span><br><span class="line">$ docker restart container_name/id  <span class="comment"># 重启</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入到正在运行的container</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it webserver bash</span><br><span class="line">$ docker attach container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将容器保存为镜像</span></span><br><span class="line"><span class="comment"># -a 作者</span></span><br><span class="line"><span class="comment"># -m message</span></span><br><span class="line">$ docker commit -a shibin -m <span class="string">&quot;linux-kit dev env&quot;</span> cb9050bdc3cc linux-kit:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">$ docker stop container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器container</span></span><br><span class="line">$ docker rm container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器运行的log</span></span><br><span class="line">$ docker logs container_name/id    <span class="comment"># 查看下log，并退出</span></span><br><span class="line">$ docker logs -f container_name/id <span class="comment"># (f/follow)查看log，不退出</span></span><br></pre></td></tr></table></figure>
@@ -1388,7 +1509,7 @@
 <p>构建镜像image：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker build -t linux-kit:latest . <span class="comment"># .是指Dockerfile文件所在的目录</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="把交叉编译器和代码映射到Container"><a href="#把交叉编译器和代码映射到Container" class="headerlink" title="把交叉编译器和代码映射到Container"></a>把交叉编译器和代码映射到Container</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 运行Container环境；把编译器，代码mount上去</span></span><br><span class="line">$ docker run -it \</span><br><span class="line">    -v /opt/arm-linux-gnueabihf:/opt/arm-linux-gnueabihf \</span><br><span class="line">    -v /home/shibin/repo/linux-kit:/workspace/linux-kit \</span><br><span class="line">    --env PATH=/opt/arm-linux-gnueabihf/bin:<span class="variable">$PATH</span> \</span><br><span class="line">    --name linux-kit linux-kit:latest \</span><br><span class="line">    bash</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 如果上一步成功，会进入到容器内</span></span><br><span class="line"><span class="comment"># bash CMD: do something what you want 编译、运行、测试</span></span><br></pre></td></tr></table></figure>
+<h3 id="把交叉编译器和代码映射到Container"><a href="#把交叉编译器和代码映射到Container" class="headerlink" title="把交叉编译器和代码映射到Container"></a>把交叉编译器和代码映射到Container</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 运行Container环境；把编译器，代码mount上去</span></span><br><span class="line">$ docker run -it \</span><br><span class="line">    -v /opt/arm-linux-gnueabihf:/opt/arm-linux-gnueabihf \</span><br><span class="line">    -v /home/shibin/repo/linux-kit:/workspace/linux-kit \</span><br><span class="line">    --env PATH=/opt/arm-linux-gnueabihf/bin:<span class="variable">$PATH</span> \</span><br><span class="line">    --name linux-kit linux-kit:latest \</span><br><span class="line">    bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果上一步成功，会进入到容器内</span></span><br><span class="line"><span class="comment"># bash CMD: do something what you want 编译、运行、测试</span></span><br></pre></td></tr></table></figure>
 
 <p>在次启动和进入容器：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方式1：直接启动容器Container，并进入</span></span><br><span class="line">$ docker start -i linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2：先启动容器Container，然后进入</span></span><br><span class="line">$ docker start linux-kit</span><br><span class="line">$ docker <span class="built_in">exec</span> -it linux-kit bash</span><br></pre></td></tr></table></figure>
@@ -1410,7 +1531,7 @@
 <h4 id="上传到Docker-hub："><a href="#上传到Docker-hub：" class="headerlink" title="上传到Docker hub："></a>上传到Docker hub：</h4><p>todo：</p>
 <h4 id="分发镜像文件："><a href="#分发镜像文件：" class="headerlink" title="分发镜像文件："></a>分发镜像文件：</h4><h5 id="把镜像打包分享"><a href="#把镜像打包分享" class="headerlink" title="把镜像打包分享"></a>把镜像打包分享</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.保存镜像linux-kit到linux-kit.tar</span></span><br><span class="line">$ docker save -o linux-kit.tar linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从linux-kit.tar导入镜像，新的镜像名是linux-kit</span></span><br><span class="line">$ docker import linux-kit.tar linux-kit:latest</span><br></pre></td></tr></table></figure>
 
-<h5 id="把Container打包成镜像分享"><a href="#把Container打包成镜像分享" class="headerlink" title="把Container打包成镜像分享"></a>把Container打包成镜像分享</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.把Container(cb9050bdc3cc)保存为镜像linux-kit:latest</span></span><br><span class="line">$ docker commit \</span><br><span class="line">    -a shibin \</span><br><span class="line">    -m <span class="string">&quot;linux-kit dev env&quot;</span> \</span><br><span class="line">    cb9050bdc3cc linux-kit:latest</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 2.保存镜像linux-kit到linux-kit.tar</span></span><br><span class="line">$ docker save -o linux-kit.tar linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.从linux-kit.tar导入镜像，新的镜像名是linux-kit:latest</span></span><br><span class="line">$ docker import linux-kit.tar linux-kit:latest</span><br></pre></td></tr></table></figure>
+<h5 id="把Container打包成镜像分享"><a href="#把Container打包成镜像分享" class="headerlink" title="把Container打包成镜像分享"></a>把Container打包成镜像分享</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.把Container(cb9050bdc3cc)保存为镜像linux-kit:latest</span></span><br><span class="line">$ docker commit \</span><br><span class="line">    -a shibin \</span><br><span class="line">    -m <span class="string">&quot;linux-kit dev env&quot;</span> \</span><br><span class="line">    cb9050bdc3cc linux-kit:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.保存镜像linux-kit到linux-kit.tar</span></span><br><span class="line">$ docker save -o linux-kit.tar linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.从linux-kit.tar导入镜像，新的镜像名是linux-kit:latest</span></span><br><span class="line">$ docker import linux-kit.tar linux-kit:latest</span><br></pre></td></tr></table></figure>
 
 
 
@@ -1429,7 +1550,7 @@
 <p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvY29udGFpbmVycw==">https://code.visualstudio.com/docs/remote/containers<i class="fa fa-external-link-alt"></i></span></p>
 <p>安装插件：Remote - Containers</p>
 <p>实现：在Container里面装了一个VS Code Server，</p>
-<p><img src="/images/image-20210328215327455.png" alt="image-20210328215327455"></p>
+<p><img src="/images/docker/image-20210328215327455.png" alt="image-20210328215327455"></p>
 <h2 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h2><p>书籍：<span class="exturl" data-url="aHR0cHM6Ly95ZWFzeS5naXRib29rLmlvL2RvY2tlcl9wcmFjdGljZS8=">Docker-从入门到实践<i class="fa fa-external-link-alt"></i></span></p>
 
       
@@ -1668,230 +1789,6 @@
 <p>输出:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uuid = dd18aa44-9594-41a2-b80c-d894851508a8</span><br><span class="line">base on random uuid = 71e08c50-47f5-45ef-adad-b1af80e40e98</span><br><span class="line">base on time uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line"></span><br><span class="line">tv = (1604563623, 547984); time = Thu Nov  5 16:07:03 2020</span><br><span class="line">uuid type is : UUID_TYPE_DCE_TIME</span><br><span class="line">uuid variant is : UUID_VARIANT_DCE</span><br><span class="line"></span><br><span class="line">uuid is not null</span><br><span class="line">lower uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line">upper uuid = E3840B20-1F3D-11EB-B204-6378FB95E6AE</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-      
-
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">【C】libdbus上手教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-01-15 22:54:10" itemprop="dateCreated datePublished" datetime="2021-01-15T22:54:10Z">2021-01-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/01/16/libdbus上手教程/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <!-- # libdbus Overview -->
-
-<p>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="What-is-D-Bus"><a href="#What-is-D-Bus" class="headerlink" title="What is D-Bus?"></a>What is D-Bus?</h2><blockquote>
-<p>D-Bus is <strong>a message bus system</strong>, a simple way for <strong>applications to talk to one another</strong>. In addition to interprocess communication, D-Bus helps <strong>coordinate process lifecycle</strong>; it makes it simple and reliable to code a “<strong>single instance</strong>“ application or daemon, and to <strong>launch applications</strong> and daemons on demand when their services are needed.</p>
-</blockquote>
-<h3 id="概括："><a href="#概括：" class="headerlink" title="概括："></a>概括：</h3><ul>
-<li>一个消息总线系统<ul>
-<li>一对多(signal)：类似于广播/订阅，可以携带消息数据，没有应答确认</li>
-<li>一对一(method call)：有应答确认</li>
-</ul>
-</li>
-<li>其他功能<ul>
-<li>启动其它进程</li>
-<li>支持单个实例进程</li>
-<li>在app退出的时候,通知程序</li>
-</ul>
-</li>
-</ul>
-<h2 id="系统bus和会话bus"><a href="#系统bus和会话bus" class="headerlink" title="系统bus和会话bus"></a>系统bus和会话bus</h2><p><strong>system bus</strong>：在引导时就会启动，应用场景（待定）<br><strong>session bus</strong>：在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
-<h2 id="Low-level-API-vs-high-level-binding-APIs"><a href="#Low-level-API-vs-high-level-binding-APIs" class="headerlink" title="Low-level API vs high-level binding APIs"></a>Low-level API vs high-level binding APIs</h2><p>low-level API：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">libdbus<i class="fa fa-external-link-alt"></i></span><br>high-level binding APIs：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1nbGliLw==">GLib<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kb2MucXQuaW8vcXQtNS9xdGRidXMtaW5kZXguaHRtbA==">Qt<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1weXRob24v">Python<i class="fa fa-external-link-alt"></i></span>, Mono, Java, or whatever.</p>
-<p><strong>区别:</strong></p>
-<ul>
-<li>low-level：依赖少，用起来更加麻烦/复杂,定制程度可以更高,更加适合自己封装,改造</li>
-<li>high-level：用起来更加方便</li>
-</ul>
-<h2 id="Version-numbers"><a href="#Version-numbers" class="headerlink" title="Version numbers"></a>Version numbers</h2><blockquote>
-<p>软件版本格式:major.<strong>minor</strong>.patch</p>
-</blockquote>
-<p>minor version 是偶数的是stable版本,奇数的是dev版本<br>比如, development snapshots: 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions: 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
-<h2 id="D-Bus中的概念"><a href="#D-Bus中的概念" class="headerlink" title="D-Bus中的概念"></a>D-Bus中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>:</p>
-<ul>
-<li>启动bus daemon, 生成bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
-<li>获取bus daemon的connect连接, 注册bus name(com.mycompany.TextEditor)</li>
-<li>创建msg, 发给哪个bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
-<li>发送msg到bus daemon</li>
-<li>bus daemon发送到相应的bus name进程</li>
-<li>接收到消息后返回数据</li>
-<li>…</li>
-</ul>
-<p><img src="/images/Xnip2021-01-15_23-03-16.jpg"></p>
-<p><strong>相应概念:</strong></p>
-<p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
-<table>
-<thead>
-<tr>
-<th><strong>A…</strong></th>
-<th><strong>is identified by a(n)…</strong></th>
-<th><strong>which looks like…</strong></th>
-<th><strong>and is chosen by…</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Bus</td>
-<td>address</td>
-<td><code>unix:path=/var/run/dbus/system_bus_socket</code></td>
-<td>system configuration</td>
-</tr>
-<tr>
-<td>Connection</td>
-<td>bus name</td>
-<td><code>:34-907</code> (<em>unique</em>) or <code>com.mycompany.TextEditor</code> (<em>well-known</em>)</td>
-<td>D-Bus (<em>unique</em>) or the owning program (<em>well-known</em>)</td>
-</tr>
-<tr>
-<td>Object</td>
-<td>path</td>
-<td><code>/com/mycompany/TextFileManager</code></td>
-<td>the owning program</td>
-</tr>
-<tr>
-<td><em>Interface</em></td>
-<td><em>interface name</em></td>
-<td><code>org.freedesktop.Hal.Manager</code></td>
-<td><em>the owning program</em></td>
-</tr>
-<tr>
-<td>Member</td>
-<td>member name</td>
-<td><code>ListNames</code></td>
-<td>the owning program</td>
-</tr>
-</tbody></table>
-<blockquote>
-<h3 id="D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface"><a href="#D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface" class="headerlink" title="D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?"></a><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbCNpZG0zOQ==">D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?<i class="fa fa-external-link-alt"></i></span></h3><p>If you imagine a C++ program that implements a network service, then the bus name is the hostname of the computer running this C++ program, the object path is a C++ object instance pointer, and an interface is a C++ class (a pure virtual or abstract class, to be exact).<br>In Java terms, the object path is an object reference, and an interface is a Java interface.<br>People get confused because if they write an application with a single object instance and a single interface, then the bus name, object path, and interface look redundant. For example, you might have a text editor that uses the bus name org.freedesktop.TextEditor, has a global singleton object called /org/freedesktop/TextEditor, and that singleton object could implement the interface org.freedesktop.TextEditor.<br>However, a text editor application could as easily own multiple bus names (for example, org.kde.KWrite in addition to generic TextEditor), have multiple objects (maybe /org/kde/documents/4352 where the number changes according to the document), and each object could implement multiple interfaces, such as org.freedesktop.DBus.Introspectable, org.freedesktop.BasicTextField, org.kde.RichTextDocument.</p>
-</blockquote>
-<h2 id="D-Bus消息类型"><a href="#D-Bus消息类型" class="headerlink" title="D-Bus消息类型"></a>D-Bus消息类型</h2><p>消息通过D-Bus在进程间传递。有四类消息：</p>
-<ul>
-<li>Method call消息：将触发对象的一个method</li>
-<li>Method return消息：触发的方法返回的结果</li>
-<li>Signal消息：通知，可以看作为事件消息。</li>
-<li>Error消息：触发的方法返回一个异常</li>
-</ul>
-<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h3 id="Command-line命令行工具"><a href="#Command-line命令行工具" class="headerlink" title="Command-line命令行工具"></a>Command-line命令行工具</h3><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>：Message bus daemon</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>：从shell脚本来启动message bus工具</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>：发送消息到message bus</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>：debug probe to print message bus messages</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>：生成UUIDs工具</li>
-</ul>
-<p>使用示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## launch message bus</span></span><br><span class="line">$ dbus-launch --sh-syntax</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-send</span></span><br><span class="line"><span class="comment"># send signal</span></span><br><span class="line">$ dbus-send --<span class="built_in">type</span>=signal /  org.signal.poweroff.test_signal string:<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># send message_call</span></span><br><span class="line">$ dbus-send --dest=org.freedesktop.ExampleName               \</span><br><span class="line">            /org/freedesktop/sample/object/name              \</span><br><span class="line">            org.freedesktop.ExampleInterface.ExampleMethod   \</span><br><span class="line">            int32:47 string:<span class="string">&#x27;hello world&#x27;</span> double:65.32       \</span><br><span class="line">            array:string:<span class="string">&quot;1st item&quot;</span>,<span class="string">&quot;next item&quot;</span>,<span class="string">&quot;last item&quot;</span>  \</span><br><span class="line">            dict:string:int32:<span class="string">&quot;one&quot;</span>,1,<span class="string">&quot;two&quot;</span>,2,<span class="string">&quot;three&quot;</span>,3      \</span><br><span class="line">            variant:int32:-8                                 \</span><br><span class="line">            objpath:/org/freedesktop/sample/object/name</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-uuidgen</span></span><br><span class="line"><span class="comment"># it just prints a new uuid</span></span><br><span class="line">$ dbus-uuidgen</span><br><span class="line">ebb40ad49f9d4d8f44faa3bc5fffdc27</span><br><span class="line"></span><br><span class="line"><span class="comment"># prints the machine UUID by default</span></span><br><span class="line">$ dbus-uuidgen --get</span><br><span class="line">5b86dc18cce752c5404d2f0a5ffd1885</span><br><span class="line"></span><br><span class="line">$ dbus-uuidgen --ensure=/usr/<span class="built_in">local</span>/var/lib/dbus/machine-id</span><br></pre></td></tr></table></figure>
-
-<p>dbus-daemon启动脚本:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">## test for an existing bus daemon, just to be safe</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="comment">## if not found, launch a new one</span></span><br><span class="line">    <span class="built_in">eval</span> $(dbus-launch --sh-syntax --exit-with-session)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;D-Bus per-session daemon address is: <span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Graphical图形调试工具"><a href="#Graphical图形调试工具" class="headerlink" title="Graphical图形调试工具"></a>Graphical图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="/images/d-feet-overview.png" alt="d-feet-overview.png"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2J1c3RsZQ==">Bustle<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="libdbus使用实例："><a href="#libdbus使用实例：" class="headerlink" title="libdbus使用实例："></a>libdbus使用实例：</h2><h3 id="Method-Call消息例子："><a href="#Method-Call消息例子：" class="headerlink" title="Method Call消息例子："></a>Method Call消息例子：</h3><p>场景：launcher访问db_server获取设备信息，比如：获取cpu_id。launcher作为客户端，db_server做为服务端</p>
-<p><img src="/images/image-20210823144204174.png" alt="image-20210823144204174"></p>
-<p>launcher.c代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_LAUNCHER <span class="meta-string">&quot;com.vdiscovery.launcher&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bus_name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="comment">// iface</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="number">0</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_LAUNCHER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.创建消息</span></span><br><span class="line">    DBusMessage* req = dbus_message_new_method_call(</span><br><span class="line">        DBUS_BUS_NAME_DB_SERVER,</span><br><span class="line">        DBUS_OJBECT_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_IFACE_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.1.添加携带信息</span></span><br><span class="line">    <span class="keyword">char</span>* cpu_id = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    dbus_message_append_args(req, DBUS_TYPE_STRING, &amp;cpu_id, DBUS_TYPE_INVALID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取回应消息</span></span><br><span class="line">    DBusMessage* reply     = dbus_connection_send_with_reply_and_block(conn, req, <span class="number">1000</span> * <span class="number">4</span>, &amp;err);</span><br><span class="line">    <span class="keyword">char</span>*        reply_str = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_message_get_args(reply, &amp;err, DBUS_TYPE_STRING, &amp;reply_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;set_cpu_id:%s, reply:reply_str = %s\n&quot;</span>, cpu_id, reply_str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>db_server.c代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用唯一表示：name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// device_info</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// kv store</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_KV_STORE <span class="meta-string">&quot;/com/vdiscovery/db_server/kv_store&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_KV_STORE <span class="meta-string">&quot;com.vdiscovery.db_server.kv_store&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_PUT <span class="meta-string">&quot;put&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_GET <span class="meta-string">&quot;get&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_DELETE <span class="meta-string">&quot;delete&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// content</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_CONTENT <span class="meta-string">&quot;/com/vdiscovery/db_server/content&quot;</span></span></span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        imei_str = <span class="string">&quot;imei:fasdfasdflfasdk&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;imei_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply      = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        cpu_id_str = <span class="string">&quot;cpu_id:231412341&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;cpu_id_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">device_info_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125;  <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">kv_store_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">content_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusObjectPathVTable g_device_info_table = &#123;.message_function = device_info_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_kv_table          = &#123;.message_function = kv_store_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_content_table     = &#123;.message_function = content_handler&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="literal">false</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_DB_SERVER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.注册自己的Object</span></span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_DEVICE_INFO, &amp;g_device_info_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_KV_STORE, &amp;g_kv_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_CONTENT, &amp;g_content_table, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to register a object path for &#x27;TestObject&#x27;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.read/write/despatch消息</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        dbus_connection_read_write_dispatch(conn, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Signal消息例子："><a href="#Signal消息例子：" class="headerlink" title="Signal消息例子："></a>Signal消息例子：</h3><p>todo：</p>
-<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><h2 id="启动其它服务："><a href="#启动其它服务：" class="headerlink" title="启动其它服务："></a>启动其它服务：</h2><h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="我当时是怎么学习dbus的？"><a href="#我当时是怎么学习dbus的？" class="headerlink" title="我当时是怎么学习dbus的？"></a>我当时是怎么学习dbus的？</h3><p>核心结构体<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvZ3JvdXBfX0RCdXNDb25uZWN0aW9uLmh0bWw=">DBusConnection<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvc3RydWN0REJ1c01lc3NhZ2UuaHRtbA==">DBusMessage<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">D-Bus FAQ<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？"><a href="#Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？" class="headerlink" title="Dbus是如果连接上dbus-daemon，调用dbus_bus_get(DBUS_BUS_SESSION, &amp;err);就get到了？"></a>Dbus是如果连接上dbus-daemon，调用<code>dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</code>就get到了？</h3><p>换一种方式：如果把参数传给程序</p>
-<ul>
-<li>参数写死</li>
-<li>main参数<code>argv</code></li>
-<li>特定环境变量（程序自定义）</li>
-<li>配置文件（配置非常多）</li>
-</ul>
-<h3 id="DbusMessage："><a href="#DbusMessage：" class="headerlink" title="DbusMessage："></a>DbusMessage：</h3><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
-<li>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
-<li>dbus-specification规范: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>D-Bus FAQ: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>README: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
-<li>相关中文介绍文章:<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
 
       
     </div>

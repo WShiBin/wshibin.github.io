@@ -116,8 +116,8 @@
 
 
       
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -189,12 +189,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -237,6 +237,131 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/01/06/Protocol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/06/Protocol/" class="post-title-link" itemprop="url">【Protocol】协议设计小记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-05 21:17:37" itemprop="dateCreated datePublished" datetime="2022-01-05T21:17:37Z">2022-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Protocol/" itemprop="url" rel="index"><span itemprop="name">Protocol</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/01/06/Protocol/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/06/Protocol/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>前天周二晚上做代码review时候，代码里面有部分在处理接收协议数据包的代码，对协议的处理代码基本全部揉在一起了；可能是项目在开始的时候没有考虑周全，又或者在项目开发过程中因为需求的变更，改的面目全非。当时就在想这个地方有点不太对，应该要做拆分，但没想好怎么拆；回家之后总结了几个常见的协议，总结下，或者这应该就是和协议设计有关，<strong>协议应该设计得让程序容易去分层，分模块。</strong></p>
+</blockquote>
+<p><strong>那协议的设计是否应该让程序更加的容易去分层，分模块？</strong></p>
+<h1 id="举例常见协议："><a href="#举例常见协议：" class="headerlink" title="举例常见协议："></a>举例常见协议：</h1><ul>
+<li>TCP/IP协议栈</li>
+<li>HTTP协议</li>
+<li>MQTT协议</li>
+<li>DBus协议</li>
+</ul>
+<h1 id="TCP-IP协议栈："><a href="#TCP-IP协议栈：" class="headerlink" title="TCP/IP协议栈："></a>TCP/IP协议栈：</h1><img src="/images/protocol/image-20220105213240854.png" alt="TCP/IP Protocol Stack" style="zoom:70%;" />
+
+<h1 id="HTTP协议："><a href="#HTTP协议：" class="headerlink" title="HTTP协议："></a>HTTP协议：</h1><img src="/images/protocol/image-20220105220038745.png" alt="HTTP Protocol" style="zoom:65%;" />
+
+<h1 id="MQTT协议："><a href="#MQTT协议：" class="headerlink" title="MQTT协议："></a>MQTT协议：</h1><img src="/images/protocol/image-20220105220502627.png" alt="MQTT Protocol" style="zoom:50%;" />
+
+<h1 id="DBus协议"><a href="#DBus协议" class="headerlink" title="DBus协议:"></a>DBus协议:</h1><img src="/images/protocol/image-20220105221750042.png" alt="DBUS Protocol" style="zoom:50%;" />
+
+<p>DBus参考资料：</p>
+<ul>
+<li>Message Protocol：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWwjbWVzc2FnZS1wcm90b2NvbA==">https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol<i class="fa fa-external-link-alt"></i></span></li>
+<li>dbus-protocol.h：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JyaWFubWNnaWxsaW9uL0RCdXMvYmxvYi9tYXN0ZXIvZGJ1cy9kYnVzLXByb3RvY29sLmg=">https://github.com/brianmcgillion/DBus/blob/master/dbus/dbus-protocol.h<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h1 id="上面协议特点："><a href="#上面协议特点：" class="headerlink" title="上面协议特点："></a>上面协议特点：</h1><ul>
+<li>TCP/IP协议栈属于<strong>流程处理协议</strong>，自己处理下然后交给下一个流程去处理；其它的属于<strong>终端协议</strong>，接收到的进程就是最终处理的进程。</li>
+<li>前面三个走网络，dbus走unix socket</li>
+<li>从这几个协议上看基本分为两部分：header + body，header属于协议数据包的概要信息，body里面放数据参数</li>
+</ul>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ul>
+<li>对于TCP/IP协议栈：每个模块只需要处理和关心属于自己部分的数据，然后交由下一阶段的去处理</li>
+<li>对于web server来说：可以通过协议里面的method和path去路由转发到对应的模块及函数去处理</li>
+<li>对于MQTT协议：可以通过message type来转发</li>
+<li>对于DBus协议：header里面包含了address；dbus-daemon只需要解析header部分就可以实现转发；信息接收可以通过message type，object path，method一层层的来转发，分给对应的模块及函数处理</li>
+</ul>
+<p>在刚开发看dbus的时候，不是很理解dbus搞了那么概念：bus name, message type, object path, method，类似一个socket链接，有个地址不就行了吗？后来才明白dbus就是复杂应用场景，为模块化设计的，可以通过前面的概念一级一级来转发，直到最后一个确定的处理函数</p>
+<h1 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h1><p>回到最开始的问题，答案似乎已经肯定了很多</p>
+<p>但，我好像又有了另外的疑问，项目中一次性上报所有数据包合理吗？如果上报数据越来越多？越来越大呢？这个问题就会越来越明显</p>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -311,7 +436,8 @@
 <p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
 </blockquote>
 <h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="/images/cjson/Xnip2021-12-28_23-28-44.png"></p>
+<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" alt="Native JSON Benchmark" style="zoom:50%;" />
+
 <h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
 <ul>
 <li>简单，容易上手</li>
@@ -2067,127 +2193,6 @@
 <p>EABI：嵌入式ABI。嵌入式应用二进制接口指定了文件格式、数据类型、寄存器使用、堆积组织优化和在一个嵌入式软件中的参数的标准约定。开发者使用自己的汇编语言也可以使用 EABI 作为与兼容的编译器生成的汇编语言的接口。</p>
 <p>两者主要区别是，ABI是计算机上的，EABI是嵌入式平台上（如ARM，MIPS等）。</p>
 <h3 id="arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc"><a href="#arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc" class="headerlink" title="arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc"></a>arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc</h3><p>两个交叉编译器分别适用于 armel 和 armhf 两个不同的架构，armel 和 armhf 这两种架构在对待浮点运算采取了不同的策略（有 fpu 的 arm 才能支持这两种浮点运算策略）</p>
-
-      
-    </div>
-
-    
-    
-    
-      
-
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/02/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/02/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">【Personal】结构体还是结构体指针?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-01 20:54:18" itemprop="dateCreated datePublished" datetime="2021-08-01T20:54:18Z">2021-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/08/02/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/08/02/结构体还是结构体指针/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由:"></a>缘由:</h2><blockquote>
-<p>上周某日晚上的一个项目进度跟进会上，项目中有一个涉及到一个比较大的结构体，然后内部嵌套了好些结构体。后来我问了句：“为啥使用的是结构体，而不是结构体指针？” 同事答到：“都一样”。后来，讨论了一些“如果你嵌套的那个结构体非常大的话，而这个结构体在使用过程中没有被初使化用到，这样会很浪费内存，这种情况使用结构体指针会比较合适”。</p>
-</blockquote>
-<p>由于当时会议的重点不在这里，草草过了。后面越想越不对，这应该是一个值得思考的问题，嵌套时：是使用<strong>结构体</strong>还是<strong>结构体指针</strong>，应该是个哲学问题~~~。不过可以从一些角度来分析这个问题</p>
-<h2 id="不同角度分析"><a href="#不同角度分析" class="headerlink" title="不同角度分析:"></a>不同角度分析:</h2><ul>
-<li>从内存使用上</li>
-<li>抽象的关系上</li>
-<li>嵌套和继承/组合的关系</li>
-<li>参考优秀的代码</li>
-</ul>
-<h2 id="从内存使用上"><a href="#从内存使用上" class="headerlink" title="从内存使用上"></a>从内存使用上</h2><p>正如前因提到的：</p>
-<ul>
-<li>如果这个被嵌套的结构体字段很多；比如200个字段</li>
-<li>而这个被嵌套的结构体并不是很个场景都会用的上</li>
-</ul>
-<p>这时候用结构体指针可以省不少的空间，就很有意义；那就为了省内存而全使用结构体指针？</p>
-<h2 id="抽象的关系上"><a href="#抽象的关系上" class="headerlink" title="抽象的关系上"></a>抽象的关系上</h2><p>编程本质上也是给问题建模，抽象问题，代码也用来描述这些抽象之间的关系的，所以就有了下面的区别：</p>
-<ul>
-<li>嵌套的是结构体：有种“包含”或“属于”的关系。内部的结构体“属于”这个外部的在大结构体，内部是外部结构体的组成部分，是它的一员。比如，一个人属于这个部门的人；在比如，协议数据报中，嵌套的关系，一个结构体属于一个结构体</li>
-<li>嵌套的是结构体指针：有种引用的关系。内部的结构体不属于你，但会“用到”你。比如，为了完成一个项目，这时候需要由不同的部门抽调人过来组成一个项目团队（结构体），这个团队会“用到（引用）”其它部门的人，我在某一时期，某个阶段可能会用到你，也可能不会用到你（的功能）</li>
-</ul>
-<h2 id="结构体嵌套和继承-组合的关系"><a href="#结构体嵌套和继承-组合的关系" class="headerlink" title="结构体嵌套和继承/组合的关系"></a>结构体嵌套和继承/组合的关系</h2><p>后来突然冒出一个问题：类的继承如何在C语言中来实现？大概就是用嵌套结构体吧</p>
-<p>业内有名名言：“<strong>组合优于继承</strong>”，这时候：</p>
-<ul>
-<li>继承就是结构体<strong>嵌套结构体</strong>。（子类包含父类中的所有成员）</li>
-<li>而组合就是结构体<strong>嵌套结构体指针</strong>。（因为里面的对象都要new，而new是在heap上，所以是指针、引用）</li>
-</ul>
-<p>所以根据这句名言的结论就是：优先使用<strong>嵌套结构体指针</strong>？</p>
-<h2 id="参考优秀的代码"><a href="#参考优秀的代码" class="headerlink" title="参考优秀的代码"></a>参考优秀的代码</h2><p>有时候不知道怎么做合适，可以去参考下优秀的代码，归纳总结下，看看别人是怎么做的，参考参考（抄一抄）；下面linux源码，<span class="exturl" data-url="aHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvMS4zLjEwMC9zb3VyY2UvaW5jbHVkZS9saW51eC9zY2hlZC5o">进程的结构体<i class="fa fa-external-link-alt"></i></span>表示</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line"><span class="comment">/* these are hardcoded - don&#x27;t touch */</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">long</span> state;	<span class="comment">/* -1 unrunnable, 0 runnable, &gt;0 stopped */</span></span><br><span class="line">    <span class="keyword">long</span> counter;</span><br><span class="line">    <span class="keyword">long</span> priority;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> signal;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> blocked;	<span class="comment">/* bitmap of masked signals */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> flags;	<span class="comment">/* per process flags, defined below */</span></span><br><span class="line">    <span class="keyword">int</span> errno;</span><br><span class="line">    <span class="keyword">long</span> debugreg[<span class="number">8</span>];  <span class="comment">/* Hardware debugging registers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">exec_domain</span> *<span class="title">exec_domain</span>;</span></span><br><span class="line"><span class="comment">/* various fields */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">linux_binfmt</span> *<span class="title">binfmt</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_task</span>, *<span class="title">prev_task</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_run</span>,  *<span class="title">prev_run</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> saved_kernel_stack;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_stack_page;</span><br><span class="line">    <span class="keyword">int</span> exit_code, exit_signal;</span><br><span class="line">    <span class="comment">/* ??? */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> personality;</span><br><span class="line">    <span class="keyword">int</span> dumpable:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> did_exec:<span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* shouldn&#x27;t this be pid_t? */</span></span><br><span class="line">    <span class="keyword">int</span> pid;</span><br><span class="line">    <span class="keyword">int</span> pgrp;</span><br><span class="line">    <span class="keyword">int</span> tty_old_pgrp;</span><br><span class="line">    <span class="keyword">int</span> session;</span><br><span class="line">    <span class="comment">/* boolean value for session group leader */</span></span><br><span class="line">    <span class="keyword">int</span> leader;</span><br><span class="line">    <span class="keyword">int</span>	groups[NGROUPS];</span><br><span class="line">    <span class="comment">/* </span></span><br><span class="line"><span class="comment">     * pointers to (original) parent process, youngest child, younger sibling,</span></span><br><span class="line"><span class="comment">     * older sibling, respectively.  (p-&gt;father can be replaced with </span></span><br><span class="line"><span class="comment">     * p-&gt;p_pptr-&gt;pid)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">p_opptr</span>, *<span class="title">p_pptr</span>, *<span class="title">p_cptr</span>, *<span class="title">p_ysptr</span>, *<span class="title">p_osptr</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wait_queue</span> *<span class="title">wait_chldexit</span>;</span>	<span class="comment">/* for wait4() */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> uid,euid,suid,fsuid;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> gid,egid,sgid,fsgid;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> timeout, policy, rt_priority;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> it_real_value, it_prof_value, it_virt_value;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> it_real_incr, it_prof_incr, it_virt_incr;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timer_list</span> <span class="title">real_timer</span>;</span></span><br><span class="line">    <span class="keyword">long</span> utime, stime, cutime, cstime, start_time;</span><br><span class="line"><span class="comment">/* mm fault and swap info: this can arguably be seen as either mm-specific or thread-specific */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> min_flt, maj_flt, nswap, cmin_flt, cmaj_flt, cnswap;</span><br><span class="line">    <span class="keyword">int</span> swappable:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> swap_address;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> old_maj_flt;	<span class="comment">/* old value of maj_flt */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> dec_flt;		<span class="comment">/* page fault count of the last time */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> swap_cnt;		<span class="comment">/* number of pages to swap on next pass */</span></span><br><span class="line"><span class="comment">/* limits */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">rlimit</span> <span class="title">rlim</span>[<span class="title">RLIM_NLIMITS</span>];</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> used_math;</span><br><span class="line">    <span class="keyword">char</span> comm[<span class="number">16</span>];</span><br><span class="line"><span class="comment">/* file system info */</span></span><br><span class="line">    <span class="keyword">int</span> link_count;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tty_struct</span> *<span class="title">tty</span>;</span> <span class="comment">/* NULL if no tty */</span></span><br><span class="line"><span class="comment">/* ipc stuff */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_undo</span> *<span class="title">semundo</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_queue</span> *<span class="title">semsleeping</span>;</span></span><br><span class="line"><span class="comment">/* ldt for this task - used by Wine.  If NULL, default_ldt is used */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> *<span class="title">ldt</span>;</span></span><br><span class="line"><span class="comment">/* tss for this task */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_struct</span> <span class="title">tss</span>;</span></span><br><span class="line"><span class="comment">/* filesystem information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">fs_struct</span> *<span class="title">fs</span>;</span></span><br><span class="line"><span class="comment">/* open file information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span> *<span class="title">files</span>;</span></span><br><span class="line"><span class="comment">/* memory management info */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">mm_struct</span> *<span class="title">mm</span>;</span></span><br><span class="line"><span class="comment">/* signal handlers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">signal_struct</span> *<span class="title">sig</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __SMP__</span></span><br><span class="line">    <span class="keyword">int</span> processor;</span><br><span class="line">    <span class="keyword">int</span> last_processor;</span><br><span class="line">    <span class="keyword">int</span> lock_depth;		<span class="comment">/* Lock depth. We can context switch in and out of holding a syscall kernel lock... */</span>	</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>	</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>其中除了<code>struct thread_struct tss</code>和<code>struct rlimit rlim[RLIM_NLIMITS]</code>用的结构体，一个是线程，一个是进程资源大小的限制，更像是在表达这俩就“属于”进程，必不可少。其它的ipc，fs，memory management，signal handlers，更像是为了组合到一起来完成任务，会“用到”你们（的功能），它们各自有独立的功能。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好像结论已经很明显了，更加倾向于从抽象的角度看这个问题，如果是有“包含”或“属于”的关系在里面，就用<strong>嵌套结构体</strong>；而如果是有“组合”到一起完成某种功能，它承担了一些独特的任务功能，这时可以用<strong>嵌套结构体指针</strong>。</p>
 
       
     </div>

@@ -1748,23 +1748,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Personal】编程漫谈</title>
-    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
-    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
-<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
-<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
-<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-  </entry>
-  <entry>
     <title>【Work】编程中如何跟人描述Bug</title>
     <url>/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/</url>
     <content><![CDATA[<blockquote>
@@ -1796,6 +1779,23 @@
       <tags>
         <tag>Personal</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>【Personal】编程漫谈</title>
+    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
+    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
+<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
+<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
+<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
   </entry>
   <entry>
     <title>【Personal】记一次生病经历复盘</title>
@@ -2926,6 +2926,66 @@
       </tags>
   </entry>
   <entry>
+    <title>【C】cJSON源码 使用建议及吐嘈</title>
+    <url>/2021/12/27/cJSON/</url>
+    <content><![CDATA[<p><strong>cJSON repo：</strong><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04=">https://github.com/DaveGamble/cJSON<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
+</blockquote>
+<h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
+<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" alt="Native JSON Benchmark" style="zoom:50%;" />
+
+<h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
+<ul>
+<li>简单，容易上手</li>
+<li>方便移植</li>
+<li>代码量少</li>
+<li>开发人员已经很熟悉</li>
+<li>是否经过大项目的检验（比如github上有些库会写，哪些产品引用了我这个库）</li>
+</ul>
+<h2 id="作者写cJSON的初衷："><a href="#作者写cJSON的初衷：" class="headerlink" title="作者写cJSON的初衷："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04jd2VsY29tZS10by1janNvbg==">作者写cJSON的初衷<i class="fa fa-external-link-alt"></i></span>：</h2><blockquote>
+<p>I lifted some JSON from this page: <span class="exturl" data-url="aHR0cDovL3d3dy5qc29uLm9yZy9mYXRmcmVlLmh0bWw=">http://www.json.org/fatfree.html<i class="fa fa-external-link-alt"></i></span> That page inspired me to write cJSON, which is a parser that tries to share the same philosophy as JSON itself. <strong>Simple, dumb, out of the way</strong>.</p>
+</blockquote>
+<h1 id="如何去实现一个JSON解析库？"><a href="#如何去实现一个JSON解析库？" class="headerlink" title="如何去实现一个JSON解析库？"></a>如何去实现一个JSON解析库？</h1><p>cjson的答案是：用一个数据结构去描述json的结构，用结构体cJSON去描述json中键值对（key：value）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* The cJSON structure: */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">child</span>;</span></span><br><span class="line">    <span class="keyword">int</span> type;</span><br><span class="line">    <span class="keyword">char</span> *valuestring;</span><br><span class="line">    <span class="keyword">int</span> valueint;</span><br><span class="line">    <span class="keyword">double</span> valuedouble;</span><br><span class="line">    <span class="keyword">char</span> *<span class="built_in">string</span>;</span><br><span class="line">&#125; cJSON;</span><br></pre></td></tr></table></figure>
+
+<p>字段string用来存储key，valuestring是来存放类型是String的值，valueint和valuedouble用来存放类型是Number的值；那json其它类型Boolean和Null数据存放在哪里呢？答案是放在type里面（<code>cJSON_False</code>，<code>cJSON_True</code>，<code>cJSON_NULL</code>），估计是为了省内存，没必要为这些json数据类型去增加字段去表示</p>
+<p>json结构图解：</p>
+<p><img src="/images/cjson/Xnip2021-12-29_00-14-15.png"></p>
+<h1 id="cJSON源码："><a href="#cJSON源码：" class="headerlink" title="cJSON源码："></a>cJSON源码：</h1><p>一个框架库里面有一些是核心的函数，其它的是些辅助或是拓展函数；</p>
+<h2 id="核心函数围绕三个主题："><a href="#核心函数围绕三个主题：" class="headerlink" title="核心函数围绕三个主题："></a>核心函数围绕三个主题：</h2><ul>
+<li><p>解析：<code>cJSON_Parse</code>内部递归调用<code>parse_value</code>去解析</p>
+</li>
+<li><p>CRUD节点：这部分没有必要多讲<code>cJSON_CreateXXX</code> <code>cJSON_AddXXX</code> <code>cJSON_DetachXXX</code> <code>cJSON_DeleteXXX</code> <code>cJSON_ReplaceXXX</code></p>
+</li>
+<li><p>转成字符串：<code>cJSON_Print</code>内部递归调用<code>print_value</code>去转成字符串；转成字符串中，需要有个buffer来存放字符串，当buffer不够的时候就会增长策略的问题，大约是<code>*2</code>，（函数<code>ensure</code>中<code>newsize = needed * 2;</code>)</p>
+</li>
+</ul>
+<h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><ul>
+<li>上面提到了使用递归，库会对嵌套的层级会有限制<code>#define CJSON_NESTING_LIMIT 1000</code></li>
+<li>对外暴露内存申请了释放的函数：通过<code>cJSON_InitHooks</code>函数</li>
+</ul>
+<h1 id="cJSON使用建议："><a href="#cJSON使用建议：" class="headerlink" title="cJSON使用建议："></a>cJSON使用建议：</h1><ul>
+<li>删除cJSON结构体中的valueint字段（历史原因保留），int和double数据已经存放在valuedouble上面了</li>
+<li>复用json中的key字符串，避免为key字符串malloc空间。使用cJSON_AddItemToObjectCS</li>
+<li>复用json中的value字符串，使用cJSON_CreateStringReference</li>
+<li>对于比较长的比较大的json，在转换成json字符串时，建议使用cJSON_PrintBuffered（指定长度）替代cJSON_Print和cJSON_PrintUnformatted，cJSON_Print和cJSON_PrintUnformatted会先分配一个256的buffer，如果不够会从新malloc和拷贝，字符串buffer增长策略基本等于<code>*2</code></li>
+</ul>
+<h1 id="cJSON吐嘈："><a href="#cJSON吐嘈：" class="headerlink" title="cJSON吐嘈："></a>cJSON吐嘈：</h1><p><strong>有几个API接口名字不太喜欢</strong></p>
+<ul>
+<li>cJSON_GetArraySize：看上去是获取json数组的大小，其实还能获取json对象的大小</li>
+<li>cJSON_Print：如果有print之类的，可能会想到的是printf，打印到标准输出；cJSON_ToString之类的是否更加合适</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>cJSON</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【JS】JavaScript基础</title>
     <url>/2021/11/04/JavaScript-getting-started/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9jaGFubmVsOS5tc2RuLmNvbS9TZXJpZXMvQmVnaW5uZXJzLVNlcmllcy10by1KYXZhU2NyaXB0P1dULm1jX2lkPWJlZ2lubmVyLWM5LW5pbmVy">https://channel9.msdn.com/Series/Beginners-Series-to-JavaScript?WT.mc_id=beginner-c9-niner<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9iZWdpbm5lcnMtaW50cm8tamF2YXNjcmlwdC1ub2Rl">https://github.com/microsoft/beginners-intro-javascript-node<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9MZWFybi9KYXZhU2NyaXB0">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript<i class="fa fa-external-link-alt"></i></span></p>
@@ -2995,66 +3055,6 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【C】cJSON源码 使用建议及吐嘈</title>
-    <url>/2021/12/27/cJSON/</url>
-    <content><![CDATA[<p><strong>cJSON repo：</strong><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04=">https://github.com/DaveGamble/cJSON<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
-</blockquote>
-<h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
-<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" alt="Native JSON Benchmark" style="zoom:50%;" />
-
-<h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
-<ul>
-<li>简单，容易上手</li>
-<li>方便移植</li>
-<li>代码量少</li>
-<li>开发人员已经很熟悉</li>
-<li>是否经过大项目的检验（比如github上有些库会写，哪些产品引用了我这个库）</li>
-</ul>
-<h2 id="作者写cJSON的初衷："><a href="#作者写cJSON的初衷：" class="headerlink" title="作者写cJSON的初衷："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04jd2VsY29tZS10by1janNvbg==">作者写cJSON的初衷<i class="fa fa-external-link-alt"></i></span>：</h2><blockquote>
-<p>I lifted some JSON from this page: <span class="exturl" data-url="aHR0cDovL3d3dy5qc29uLm9yZy9mYXRmcmVlLmh0bWw=">http://www.json.org/fatfree.html<i class="fa fa-external-link-alt"></i></span> That page inspired me to write cJSON, which is a parser that tries to share the same philosophy as JSON itself. <strong>Simple, dumb, out of the way</strong>.</p>
-</blockquote>
-<h1 id="如何去实现一个JSON解析库？"><a href="#如何去实现一个JSON解析库？" class="headerlink" title="如何去实现一个JSON解析库？"></a>如何去实现一个JSON解析库？</h1><p>cjson的答案是：用一个数据结构去描述json的结构，用结构体cJSON去描述json中键值对（key：value）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* The cJSON structure: */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">child</span>;</span></span><br><span class="line">    <span class="keyword">int</span> type;</span><br><span class="line">    <span class="keyword">char</span> *valuestring;</span><br><span class="line">    <span class="keyword">int</span> valueint;</span><br><span class="line">    <span class="keyword">double</span> valuedouble;</span><br><span class="line">    <span class="keyword">char</span> *<span class="built_in">string</span>;</span><br><span class="line">&#125; cJSON;</span><br></pre></td></tr></table></figure>
-
-<p>字段string用来存储key，valuestring是来存放类型是String的值，valueint和valuedouble用来存放类型是Number的值；那json其它类型Boolean和Null数据存放在哪里呢？答案是放在type里面（<code>cJSON_False</code>，<code>cJSON_True</code>，<code>cJSON_NULL</code>），估计是为了省内存，没必要为这些json数据类型去增加字段去表示</p>
-<p>json结构图解：</p>
-<p><img src="/images/cjson/Xnip2021-12-29_00-14-15.png"></p>
-<h1 id="cJSON源码："><a href="#cJSON源码：" class="headerlink" title="cJSON源码："></a>cJSON源码：</h1><p>一个框架库里面有一些是核心的函数，其它的是些辅助或是拓展函数；</p>
-<h2 id="核心函数围绕三个主题："><a href="#核心函数围绕三个主题：" class="headerlink" title="核心函数围绕三个主题："></a>核心函数围绕三个主题：</h2><ul>
-<li><p>解析：<code>cJSON_Parse</code>内部递归调用<code>parse_value</code>去解析</p>
-</li>
-<li><p>CRUD节点：这部分没有必要多讲<code>cJSON_CreateXXX</code> <code>cJSON_AddXXX</code> <code>cJSON_DetachXXX</code> <code>cJSON_DeleteXXX</code> <code>cJSON_ReplaceXXX</code></p>
-</li>
-<li><p>转成字符串：<code>cJSON_Print</code>内部递归调用<code>print_value</code>去转成字符串；转成字符串中，需要有个buffer来存放字符串，当buffer不够的时候就会增长策略的问题，大约是<code>*2</code>，（函数<code>ensure</code>中<code>newsize = needed * 2;</code>)</p>
-</li>
-</ul>
-<h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><ul>
-<li>上面提到了使用递归，库会对嵌套的层级会有限制<code>#define CJSON_NESTING_LIMIT 1000</code></li>
-<li>对外暴露内存申请了释放的函数：通过<code>cJSON_InitHooks</code>函数</li>
-</ul>
-<h1 id="cJSON使用建议："><a href="#cJSON使用建议：" class="headerlink" title="cJSON使用建议："></a>cJSON使用建议：</h1><ul>
-<li>删除cJSON结构体中的valueint字段（历史原因保留），int和double数据已经存放在valuedouble上面了</li>
-<li>复用json中的key字符串，避免为key字符串malloc空间。使用cJSON_AddItemToObjectCS</li>
-<li>复用json中的value字符串，使用cJSON_CreateStringReference</li>
-<li>对于比较长的比较大的json，在转换成json字符串时，建议使用cJSON_PrintBuffered（指定长度）替代cJSON_Print和cJSON_PrintUnformatted，cJSON_Print和cJSON_PrintUnformatted会先分配一个256的buffer，如果不够会从新malloc和拷贝，字符串buffer增长策略基本等于<code>*2</code></li>
-</ul>
-<h1 id="cJSON吐嘈："><a href="#cJSON吐嘈：" class="headerlink" title="cJSON吐嘈："></a>cJSON吐嘈：</h1><p><strong>有几个API接口名字不太喜欢</strong></p>
-<ul>
-<li>cJSON_GetArraySize：看上去是获取json数组的大小，其实还能获取json对象的大小</li>
-<li>cJSON_Print：如果有print之类的，可能会想到的是printf，打印到标准输出；cJSON_ToString之类的是否更加合适</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>cJSON</tag>
       </tags>
   </entry>
   <entry>

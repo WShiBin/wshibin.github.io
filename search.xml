@@ -1118,61 +1118,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Personal】2020总结，2021展望</title>
-    <url>/2021/02/22/2020%E6%80%BB%E7%BB%93-2021%E5%B1%95%E6%9C%9B/</url>
-    <content><![CDATA[<h1 id="2020-总结"><a href="#2020-总结" class="headerlink" title="2020 总结"></a>2020 总结</h1><ul>
-<li>  疫情</li>
-<li>  新装备</li>
-<li>  用 qt 写了个桌面项目</li>
-<li>  组织公司内部培训</li>
-<li>  当导师带新人</li>
-<li>  学习 Rust，后来写了个 1000 多行的小玩具</li>
-<li>  参加 Rust China Conf 2020</li>
-<li>  公司改革，架构调整</li>
-<li>  成为 UP 主，在 B 站发视频</li>
-<li>  健身房弄伤膝盖</li>
-<li>  关于技术</li>
-</ul>
-<h2 id="疫情："><a href="#疫情：" class="headerlink" title="疫情："></a>疫情：</h2><h2 id="用-qt-写了个桌面项目"><a href="#用-qt-写了个桌面项目" class="headerlink" title="用 qt 写了个桌面项目"></a>用 qt 写了个桌面项目</h2><p>这个项目基本从零开始，不过做的还算比较顺利，做完之后收获比较多:<br>最开始预言这个项目的时候叫上了我，我很纳闷，叫我干啥? 杜工来了句:看看，到时候分个模块写下</p>
-<p>比较顺利的原因在于:</p>
-<ul>
-<li>  参考了别人的软件界面，逻辑</li>
-<li>  跑去一线，实地参观考察</li>
-<li>  qt 开源，示例代码和文档完善(不会就通篇读下文档，在跑跑示例代码，在不去就去翻一下源码)</li>
-<li>  把 qt 中 UI 的部分分给了另外一个同事(ui 的部分对于新手来说，是个大问题，对 UI 控件没有个全面认知，看到复杂的控件都不知道用什么去实现)</li>
-</ul>
-<p>qt 强大的地方在于:一个是 <code>signal &amp; slot</code>；还有一个是它写了大量的库，并且质量很高.cpp 标准库都会来参考 qt 的代码</p>
-<p>收获:</p>
-<p><strong>MVP(英语:minimum viable product)最小可行产品</strong><br>对于预言的项目，最迫切的问题可能是把方案定下来，用什么方式去实现，不是去讨论细节问题，这时候就需要<strong>最小可行性验证</strong>，一种方式性不通，立马去换一个新的方案来做验证</p>
-<h2 id="组织公司内部培训"><a href="#组织公司内部培训" class="headerlink" title="组织公司内部培训"></a>组织公司内部培训</h2><h2 id="当导师带新人"><a href="#当导师带新人" class="headerlink" title="当导师带新人"></a>当导师带新人</h2><h2 id="学习-Rust，后来写了个-1000-多行的小玩具"><a href="#学习-Rust，后来写了个-1000-多行的小玩具" class="headerlink" title="学习 Rust，后来写了个 1000 多行的小玩具"></a>学习 Rust，后来写了个 1000 多行的小玩具</h2><p>偶然看到一条新闻:Rust 是<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS8=">Stack Overflow<i class="fa fa-external-link-alt"></i></span>调查中最收欢迎的语言，就去研究了下:</p>
-<ul>
-<li>  Rust 定位:高性能，安全，并发的系统级别语言</li>
-<li>  编程范式:</li>
-<li>  工具链很好用</li>
-<li>  上手成本相对偏高</li>
-<li>  不会成为 C/Java/JavaScript/Python 一类大众语言</li>
-<li>  生态还差了点</li>
-</ul>
-<h2 id="参加-Rust-China-Conf-2020"><a href="#参加-Rust-China-Conf-2020" class="headerlink" title="参加 Rust China Conf 2020"></a>参加 Rust China Conf 2020</h2><ul>
-<li>  张汉东:回忆 rust5 年的发展(现在有提升多少，你就知道以前的多烂)</li>
-<li>  Jit：即时编译</li>
-<li>  算法优化，存储优化:对整个的处理过程(原理)有足够的认识</li>
-<li>  Wasm 性能爆炸，访问系统级别 api，”未来只需要一台计算机”</li>
-</ul>
-<p>技术之外</p>
-<ul>
-<li>  博士也需要查英文字典翻译</li>
-<li>  PPT tips:文字中夹着粗体字，可以观众提高注意力</li>
-</ul>
-<h1 id="2021-展望"><a href="#2021-展望" class="headerlink" title="2021 展望"></a>2021 展望</h1>]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Tools】Docker入门</title>
     <url>/2021/03/29/docker%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在公司开发项目的时候，为了避免不出什么幺蛾子，会尽量保证多人的开发环境一致：系统版本，编译器版本，甚至交叉编译器目录都安装成一样的，避免因为环境出错而导致的不必要的成本.一切都运行的很好，直到有次遇到了问题，需要到杜工电脑上编译时，可能编译过多个项目的代码，依赖库的版本也可能和我们的环境不一样，折腾了二十分钟，最后还是在我电脑编译了发给他.</p>
@@ -1331,6 +1276,61 @@
       <tags>
         <tag>Docker</tag>
         <tag>Tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】2020总结，2021展望</title>
+    <url>/2021/02/22/2020%E6%80%BB%E7%BB%93-2021%E5%B1%95%E6%9C%9B/</url>
+    <content><![CDATA[<h1 id="2020-总结"><a href="#2020-总结" class="headerlink" title="2020 总结"></a>2020 总结</h1><ul>
+<li>  疫情</li>
+<li>  新装备</li>
+<li>  用 qt 写了个桌面项目</li>
+<li>  组织公司内部培训</li>
+<li>  当导师带新人</li>
+<li>  学习 Rust，后来写了个 1000 多行的小玩具</li>
+<li>  参加 Rust China Conf 2020</li>
+<li>  公司改革，架构调整</li>
+<li>  成为 UP 主，在 B 站发视频</li>
+<li>  健身房弄伤膝盖</li>
+<li>  关于技术</li>
+</ul>
+<h2 id="疫情："><a href="#疫情：" class="headerlink" title="疫情："></a>疫情：</h2><h2 id="用-qt-写了个桌面项目"><a href="#用-qt-写了个桌面项目" class="headerlink" title="用 qt 写了个桌面项目"></a>用 qt 写了个桌面项目</h2><p>这个项目基本从零开始，不过做的还算比较顺利，做完之后收获比较多:<br>最开始预言这个项目的时候叫上了我，我很纳闷，叫我干啥? 杜工来了句:看看，到时候分个模块写下</p>
+<p>比较顺利的原因在于:</p>
+<ul>
+<li>  参考了别人的软件界面，逻辑</li>
+<li>  跑去一线，实地参观考察</li>
+<li>  qt 开源，示例代码和文档完善(不会就通篇读下文档，在跑跑示例代码，在不去就去翻一下源码)</li>
+<li>  把 qt 中 UI 的部分分给了另外一个同事(ui 的部分对于新手来说，是个大问题，对 UI 控件没有个全面认知，看到复杂的控件都不知道用什么去实现)</li>
+</ul>
+<p>qt 强大的地方在于:一个是 <code>signal &amp; slot</code>；还有一个是它写了大量的库，并且质量很高.cpp 标准库都会来参考 qt 的代码</p>
+<p>收获:</p>
+<p><strong>MVP(英语:minimum viable product)最小可行产品</strong><br>对于预言的项目，最迫切的问题可能是把方案定下来，用什么方式去实现，不是去讨论细节问题，这时候就需要<strong>最小可行性验证</strong>，一种方式性不通，立马去换一个新的方案来做验证</p>
+<h2 id="组织公司内部培训"><a href="#组织公司内部培训" class="headerlink" title="组织公司内部培训"></a>组织公司内部培训</h2><h2 id="当导师带新人"><a href="#当导师带新人" class="headerlink" title="当导师带新人"></a>当导师带新人</h2><h2 id="学习-Rust，后来写了个-1000-多行的小玩具"><a href="#学习-Rust，后来写了个-1000-多行的小玩具" class="headerlink" title="学习 Rust，后来写了个 1000 多行的小玩具"></a>学习 Rust，后来写了个 1000 多行的小玩具</h2><p>偶然看到一条新闻:Rust 是<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS8=">Stack Overflow<i class="fa fa-external-link-alt"></i></span>调查中最收欢迎的语言，就去研究了下:</p>
+<ul>
+<li>  Rust 定位:高性能，安全，并发的系统级别语言</li>
+<li>  编程范式:</li>
+<li>  工具链很好用</li>
+<li>  上手成本相对偏高</li>
+<li>  不会成为 C/Java/JavaScript/Python 一类大众语言</li>
+<li>  生态还差了点</li>
+</ul>
+<h2 id="参加-Rust-China-Conf-2020"><a href="#参加-Rust-China-Conf-2020" class="headerlink" title="参加 Rust China Conf 2020"></a>参加 Rust China Conf 2020</h2><ul>
+<li>  张汉东:回忆 rust5 年的发展(现在有提升多少，你就知道以前的多烂)</li>
+<li>  Jit：即时编译</li>
+<li>  算法优化，存储优化:对整个的处理过程(原理)有足够的认识</li>
+<li>  Wasm 性能爆炸，访问系统级别 api，”未来只需要一台计算机”</li>
+</ul>
+<p>技术之外</p>
+<ul>
+<li>  博士也需要查英文字典翻译</li>
+<li>  PPT tips:文字中夹着粗体字，可以观众提高注意力</li>
+</ul>
+<h1 id="2021-展望"><a href="#2021-展望" class="headerlink" title="2021 展望"></a>2021 展望</h1>]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
       </tags>
   </entry>
   <entry>
@@ -2487,6 +2487,59 @@
       </tags>
   </entry>
   <entry>
+    <title>【Personal】阅读源码的技巧</title>
+    <url>/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
+<li>前提：熟悉它的作用和功能</li>
+<li>有目的的看代码</li>
+<li>从代码的流程看</li>
+<li>从代码的架构看</li>
+<li>从代码的分类看</li>
+<li>调试Debug分析</li>
+<li>找核心代码（<strong>删代码</strong>）</li>
+<li>辅助工具：画图</li>
+</ul>
+<p>todo：</p>
+<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
+<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
+<li>架构是如何设计的</li>
+<li>某个功能是如何实现的</li>
+<li>…</li>
+</ul>
+<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
+<ol>
+<li>初始化</li>
+<li>正常运行（工作中）</li>
+<li>关闭（正常关闭）</li>
+</ol>
+<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
+<li>流程型</li>
+<li>处理型</li>
+</ul>
+<p>这两个名字是我自己起的：</p>
+<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
+<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
+<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
+<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
+<p>从单个函数看，一般代码分为三部分：</p>
+<ol>
+<li>条件不满足</li>
+<li>数据准备阶段</li>
+<li>核心处理函数调用</li>
+</ol>
+<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
+<li>脑子不够用了才发明了文字，图画</li>
+<li>画图本身也是在理思路的一个过程，内化的过程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【C】LVGL源码分析</title>
     <url>/2021/08/15/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<blockquote>
@@ -2683,59 +2736,6 @@
         <tag>源码</tag>
         <tag>GUI</tag>
         <tag>LVGL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Personal】阅读源码的技巧</title>
-    <url>/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
-<li>前提：熟悉它的作用和功能</li>
-<li>有目的的看代码</li>
-<li>从代码的流程看</li>
-<li>从代码的架构看</li>
-<li>从代码的分类看</li>
-<li>调试Debug分析</li>
-<li>找核心代码（<strong>删代码</strong>）</li>
-<li>辅助工具：画图</li>
-</ul>
-<p>todo：</p>
-<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
-<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
-<li>架构是如何设计的</li>
-<li>某个功能是如何实现的</li>
-<li>…</li>
-</ul>
-<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
-<ol>
-<li>初始化</li>
-<li>正常运行（工作中）</li>
-<li>关闭（正常关闭）</li>
-</ol>
-<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
-<li>流程型</li>
-<li>处理型</li>
-</ul>
-<p>这两个名字是我自己起的：</p>
-<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
-<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
-<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
-<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
-<p>从单个函数看，一般代码分为三部分：</p>
-<ol>
-<li>条件不满足</li>
-<li>数据准备阶段</li>
-<li>核心处理函数调用</li>
-</ol>
-<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
-<li>脑子不够用了才发明了文字，图画</li>
-<li>画图本身也是在理思路的一个过程，内化的过程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
       </tags>
   </entry>
   <entry>
@@ -3117,7 +3117,6 @@
 <li>  关于 Rust</li>
 <li>  关于英语</li>
 <li>  关于源码</li>
-<li>  公司吐嘈</li>
 <li>  关于性格</li>
 <li>  程序员的焦虑</li>
 <li>  Linux 桌面系统</li>
@@ -3132,16 +3131,13 @@
 <li>  要去熟悉新人的代码风格，遵守公司的规范，这个得一次次，一点点</li>
 </ul>
 <p>毕竟公司又不是头部大厂，优秀的人都往这里跑；小公司去招人，人才已经被人筛选过一次又一次了；能招几个合适的能做事的，难；这种刚做了一年多了，东西套路都熟悉起来了，可以产出能干活了，啪，走了</p>
-<h2 id="关于膝盖伤"><a href="#关于膝盖伤" class="headerlink" title="关于膝盖伤"></a>关于膝盖伤</h2><p>之前写了一篇文章来<a href="https://wshibin.github.io/2021/07/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/">复盘</a>；看病的过程也出现过自己的误判，终究结果是好的；但其中的过程会很难熬，有一阵子都快有点抑郁了，看病的医生都说不是个小病，但一直没好，还一次给一次重；时间拉的过长了，有点搞心态；我想说的是另外一个点：</p>
-<p>人一般在遇到问题、挫折后，会有几种反应：</p>
+<h2 id="关于膝盖伤"><a href="#关于膝盖伤" class="headerlink" title="关于膝盖伤"></a>关于膝盖伤</h2><p>之前写了一篇文章来<a href="https://wshibin.github.io/2021/07/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/">复盘</a>；看病的过程也出现过自己的误判，终究结果是好的；但其中的过程会很难熬，有一阵子都快有点抑郁了，看病的医生都说不是个小病，但一直没好，还一次给一次重；时间拉的过长了，有点搞心态；我想说的是另外一个点：<br>人一般在遇到问题、挫折后，会有几种反应：</p>
 <ul>
 <li>  质疑自己 –&gt; 怎么去解决问题</li>
 <li>  看待问题的角度会发生改变</li>
 <li>  会重新去思考做某些事的意义</li>
 </ul>
-<p>前者可以找个实例，比如程序员：有的新人在遇到 bug 的时候，或者又恰好有个同事轻松的解决了，这时候这个人可能就会诞生一个想法：我到底适不适合干这个。别问我为啥会知道</p>
-<p>生病之后回老家休息了一个月，平时都是过年才回去，这次是正好赶上国庆，在家趟了一个月，有了新的角度重新认识了农村，回头另写一篇文章，先给自己挖个坑。</p>
-<p>元旦的时候：和黄师傅他们一起聚会，当时黄师傅的观点是：坚决不去加班的公司，到点下班，选择躺平；我当时问他，你应该不是一开始就选择躺平的，这里应该有一个过程，然后有了最后的选择是躺平；最后他谈论到是因为生了一次病，导致他去重新思考意义在哪里，然后选择了躺平</p>
+<p>前者可以找个实例，比如程序员：有的新人在遇到 bug 的时候，或者又恰好有个同事轻松的解决了，这时候这个人可能就会诞生一个想法：我到底适不适合干这个。别问我为啥会知道<br>生病之后回老家休息了一个月，平时都是过年才回去，这次是正好赶上国庆，在家趟了一个月，有了新的角度重新认识了农村，回头另写一篇文章，先给自己挖个坑。<br>元旦的时候：和黄师傅他们一起聚会，当时黄师傅的观点是：坚决不去加班的公司，到点下班，选择躺平；我当时问他，你应该不是一开始就选择躺平的，这里应该有一个过程，然后有了最后的选择是躺平；最后他谈论到是因为生了一次病，导致他去重新思考意义在哪里，然后选择了躺平</p>
 <h2 id="公司内部培训"><a href="#公司内部培训" class="headerlink" title="公司内部培训"></a>公司内部培训</h2><p>今年做了不少技术培训分享：</p>
 <ul>
 <li>  Linux 基础及常用命令</li>
@@ -3192,12 +3188,9 @@
 <li>  遇到问题尽量用英文去 Google 搜索；</li>
 </ul>
 <p>遇到不认识的还是不认识，需要去查；今年的英文文档阅读量上到了一个新的台阶，也刷了几本英文技术书，明年明继续努力，预定要刷的几本英文书</p>
-<h2 id="关于源码"><a href="#关于源码" class="headerlink" title="关于源码"></a>关于源码</h2><p>代码看多了，你会发现，好的代码大多都差不多，坏的代码千奇百怪，</p>
-<p>人也是个输入、输出系统，如果你输入的都是些简单的示例 demo 代码，那你输出的大致也就是这些，也会有浮动的空间。所以给自己输入些优秀的代码很有必要。然后写了个总结：<a href="https://wshibin.github.io/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/">阅读源码的技巧 </a></p>
-<h2 id="关于性格"><a href="#关于性格" class="headerlink" title="关于性格"></a>关于性格</h2><p>多年前我也经常健身，跑步，骑车，后来我看到了一个莽夫（身上有些肌肉，和别人杠起来就会动手的那种，做事也很暴力）；我突然在他身上看到了我的影子：性格被这些粗暴了运动影响了，后来运动就越来越少了。</p>
-<p>当我跳出一个坑的时候，又会跳到另一个坑。由于长期受到 Bug 的影响，有问题都是直奔主题的，所以性格也被强化了。就成了直男，这点不太好</p>
-<h2 id="程序员的焦虑"><a href="#程序员的焦虑" class="headerlink" title="程序员的焦虑"></a>程序员的焦虑</h2><p>突然就 30 了</p>
-<p>新人适合做业务，有经验的适合做架构，做基础设施</p>
+<h2 id="关于源码"><a href="#关于源码" class="headerlink" title="关于源码"></a>关于源码</h2><p>代码看多了，你会发现，好的代码大多都差不多，坏的代码千奇百怪，<br>人也是个输入、输出系统，如果你输入的都是些简单的示例 demo 代码，那你输出的大致也就是这些，也会有浮动的空间。所以给自己输入些优秀的代码很有必要。然后写了个总结：<a href="https://wshibin.github.io/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/">阅读源码的技巧 </a></p>
+<h2 id="关于性格"><a href="#关于性格" class="headerlink" title="关于性格"></a>关于性格</h2><p>多年前我也经常健身，跑步，骑车，后来我看到了一个莽夫（身上有些肌肉，和别人杠起来就会动手的那种，做事也很暴力）；我突然在他身上看到了我的影子：性格被这些粗暴了运动影响了，后来运动就越来越少了。<br>当我跳出一个坑的时候，又会跳到另一个坑。由于长期受到 Bug 的影响，有问题都是直奔主题的，所以性格也被强化了。就成了直男，这点不太好</p>
+<h2 id="程序员的焦虑"><a href="#程序员的焦虑" class="headerlink" title="程序员的焦虑"></a>程序员的焦虑</h2><p>突然就 30 了<br>新人适合做业务，有经验的适合做架构，做基础设施</p>
 <h2 id="Linux-桌面系统"><a href="#Linux-桌面系统" class="headerlink" title="Linux 桌面系统"></a>Linux 桌面系统</h2><p>切换到 Linux 桌面系统失败</p>
 <h1 id="2022-继续"><a href="#2022-继续" class="headerlink" title="2022 继续"></a>2022 继续</h1><ul>
 <li>  专利</li>

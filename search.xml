@@ -1121,48 +1121,75 @@
     <title>【Personal】2020总结,2021展望</title>
     <url>/2021/02/22/2020%E6%80%BB%E7%BB%93-2021%E5%B1%95%E6%9C%9B/</url>
     <content><![CDATA[<h1 id="2020总结"><a href="#2020总结" class="headerlink" title="2020总结"></a>2020总结</h1><ul>
-<li>疫情</li>
-<li>新装备</li>
-<li>用qt写了个桌面项目</li>
-<li>组织公司内部培训</li>
-<li>当导师带新人</li>
-<li>学习Rust，后来写了个1000多行的小玩具</li>
-<li>参加Rust China Conf 2020</li>
-<li>公司改革，架构调整</li>
-<li>成为UP主，在B站发视频</li>
-<li>健身房弄伤膝盖</li>
-<li>关于技术</li>
+<li><p>  疫情</p>
+</li>
+<li><p>  新装备</p>
+</li>
+<li><p>  用qt写了个桌面项目</p>
+</li>
+<li><p>  组织公司内部培训</p>
+</li>
+<li><p>  当导师带新人</p>
+</li>
+<li><p>  学习Rust，后来写了个1000多行的小玩具</p>
+</li>
+<li><p>  参加Rust China Conf 2020</p>
+</li>
+<li><p>  公司改革，架构调整</p>
+</li>
+<li><p>  成为UP主，在B站发视频</p>
+</li>
+<li><p>  健身房弄伤膝盖</p>
+</li>
+<li><p>  关于技术</p>
+</li>
 </ul>
 <h2 id="疫情："><a href="#疫情：" class="headerlink" title="疫情："></a>疫情：</h2><h2 id="用qt写了个桌面项目"><a href="#用qt写了个桌面项目" class="headerlink" title="用qt写了个桌面项目"></a>用qt写了个桌面项目</h2><p>这个项目基本从零开始,不过做的还算比较顺利,做完之后收获比较多:<br>最开始预言这个项目的时候叫上了我,我很纳闷,叫我干啥? 杜工来了句:看看,到时候分个模块写下</p>
 <p>比较顺利的原因在于:</p>
 <ul>
-<li>参考了别人的软件界面,逻辑</li>
-<li>跑去一线,实地参观考察</li>
-<li>qt开源,示例代码和文档完善(不会就通篇读下文档,在跑跑示例代码,在不去就去翻一下源码)</li>
-<li>把qt中UI的部分分给了另外一个同事(ui的部分对于新手来说,是个大问题,对UI控件没有个全面认知,看到复杂的控件都不知道用什么去实现)</li>
+<li><p>  参考了别人的软件界面,逻辑</p>
+</li>
+<li><p>  跑去一线,实地参观考察</p>
+</li>
+<li><p>  qt开源,示例代码和文档完善(不会就通篇读下文档,在跑跑示例代码,在不去就去翻一下源码)</p>
+</li>
+<li><p>  把qt中UI的部分分给了另外一个同事(ui的部分对于新手来说,是个大问题,对UI控件没有个全面认知,看到复杂的控件都不知道用什么去实现)</p>
+</li>
 </ul>
 <p>qt强大的地方在于:一个是signal &amp; slot;还有一个是它写了大量的库,并且质量很高.cpp标准库都会来参考qt的代码</p>
 <p>收获:</p>
 <p><strong>MVP(英语:minimum viable product)最小可行产品</strong><br>对于预言的项目,最迫切的问题可能是把方案定下来,用什么方式去实现,不是去讨论细节问题,这时候就需要<strong>最小可行性验证</strong>,一种方式性不通,立马去换一个新的方案来做验证</p>
 <h2 id="组织公司内部培训"><a href="#组织公司内部培训" class="headerlink" title="组织公司内部培训"></a>组织公司内部培训</h2><h2 id="当导师带新人"><a href="#当导师带新人" class="headerlink" title="当导师带新人"></a>当导师带新人</h2><h2 id="学习Rust，后来写了个1000多行的小玩具"><a href="#学习Rust，后来写了个1000多行的小玩具" class="headerlink" title="学习Rust，后来写了个1000多行的小玩具"></a>学习Rust，后来写了个1000多行的小玩具</h2><p>偶然看到一条新闻:Rust是<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS8=">Stack Overflow<i class="fa fa-external-link-alt"></i></span>调查中最收欢迎的语言,就去研究了下:</p>
 <ul>
-<li>Rust定位:高性能,安全,并发的系统级别语言</li>
-<li>编程范式:</li>
-<li>工具链很好用</li>
-<li>上手成本相对偏高</li>
-<li>不会成为C/Java/JavaScript/Python一类大众语言</li>
-<li>生态还差了点</li>
+<li><p>  Rust定位:高性能,安全,并发的系统级别语言</p>
+</li>
+<li><p>  编程范式:</p>
+</li>
+<li><p>  工具链很好用</p>
+</li>
+<li><p>  上手成本相对偏高</p>
+</li>
+<li><p>  不会成为C/Java/JavaScript/Python一类大众语言</p>
+</li>
+<li><p>  生态还差了点</p>
+</li>
 </ul>
 <h2 id="参加Rust-China-Conf-2020"><a href="#参加Rust-China-Conf-2020" class="headerlink" title="参加Rust China Conf 2020"></a>参加Rust China Conf 2020</h2><ul>
-<li>张汉东:回忆rust5年的发展(现在有提升多少,你就知道以前的多烂)</li>
-<li>Jit：即时编译</li>
-<li>算法优化,存储优化:对整个的处理过程(原理)有足够的认识</li>
-<li>Wasm性能爆炸,访问系统级别api,”未来只需要一台计算机”</li>
+<li><p>  张汉东:回忆rust5年的发展(现在有提升多少,你就知道以前的多烂)</p>
+</li>
+<li><p>  Jit：即时编译</p>
+</li>
+<li><p>  算法优化,存储优化:对整个的处理过程(原理)有足够的认识</p>
+</li>
+<li><p>  Wasm性能爆炸,访问系统级别api,”未来只需要一台计算机”</p>
+</li>
 </ul>
 <p>技术之外</p>
 <ul>
-<li>博士也需要查英文字典翻译</li>
-<li>PPT tips:文字中夹着粗体字,可以观众提高注意力</li>
+<li><p>  博士也需要查英文字典翻译</p>
+</li>
+<li><p>  PPT tips:文字中夹着粗体字,可以观众提高注意力</p>
+</li>
 </ul>
 <h1 id="2021展望"><a href="#2021展望" class="headerlink" title="2021展望"></a>2021展望</h1>]]></content>
       <categories>
@@ -1467,20 +1494,20 @@
   <entry>
     <title>【VSCode】VSCode C/C++环境</title>
     <url>/2021/05/05/VSCode-C-CPP-Environment/</url>
-    <content><![CDATA[<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
-<p>下载页面:<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vI2FsdC1kb3dubG9hZHM=">https://code.visualstudio.com/#alt-downloads<i class="fa fa-external-link-alt"></i></span></p>
+    <content><![CDATA[<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p>下载页面：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vI2FsdC1kb3dubG9hZHM=">https://code.visualstudio.com/#alt-downloads<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
-<li>开源:代码<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92c2NvZGU=">https://github.com/microsoft/vscode<i class="fa fa-external-link-alt"></i></span></li>
-<li>跨平台: 支持macOS,Linux,Windows,远程开发,容器开发(docker)</li>
-<li>更新快:一月一更</li>
-<li>插件:插件数量多,而且质量高</li>
+<li>开源：代码<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92c2NvZGU=">https://github.com/microsoft/vscode<i class="fa fa-external-link-alt"></i></span></li>
+<li>跨平台：支持macOS,Linux,Windows,远程开发,容器开发(docker)</li>
+<li>更新快：一月一更</li>
+<li>插件：插件数量多,而且质量高</li>
 </ul>
-<p><strong>VSCode的定位</strong>:</p>
+<p><strong>VSCode的定位</strong>：</p>
 <p><img src="/images/vscode/VSCode_image-20210421004416114.png" alt="VSCode的定位"></p>
 <h2 id="UI外观"><a href="#UI外观" class="headerlink" title="UI外观"></a>UI外观</h2><p><img src="/images/vscode/VSCode_hero.png" alt="VSCode UI"></p>
 <ul>
-<li>Editor Groups:编辑区</li>
-<li>Side Bar侧边栏:<ul>
+<li>Editor Groups：编辑区</li>
+<li>Side Bar侧边栏：<ul>
 <li>项目</li>
 <li>全局搜索</li>
 <li>版本管理</li>
@@ -1488,7 +1515,7 @@
 <li>插件管理</li>
 </ul>
 </li>
-<li>Status Bar状态栏:<ul>
+<li>Status Bar状态栏：<ul>
 <li>git相关信息</li>
 <li>错误和警告Problems</li>
 <li>光标位置</li>
@@ -1498,39 +1525,39 @@
 <li>当前文件的编程语言</li>
 </ul>
 </li>
-<li>Activity Bar:</li>
-<li>Panels面板:(<code>ctrl + J</code>显示和隐藏)<ul>
+<li>Activity Bar：</li>
+<li>Panels面板：(<code>ctrl + J</code>显示和隐藏)<ul>
 <li>Terminal终端</li>
 <li>Debug相关信息</li>
 <li>错误和警告Problems</li>
 </ul>
 </li>
 </ul>
-<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>VSCode中<strong>最最最最最</strong>重要的快捷键:<code>Ctrl+Shift+P / F1</code> Command Pattern</p>
-<p>这个窗口能执行VSCode所有操作/命令:</p>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>VSCode中<strong>最最最最最</strong>重要的快捷键：<code>Ctrl+Shift+P / F1</code> Command Pattern</p>
+<p>这个窗口能执行VSCode所有操作/命令：</p>
 <ul>
-<li>设置:VSCode设置,主题设置,语言设置…</li>
+<li>设置：VSCode设置,主题设置,语言设置…</li>
 <li>格式化代码</li>
-<li>Debug控制:</li>
-<li>git操作:切换分支,新建tag,</li>
+<li>Debug控制：</li>
+<li>git操作：切换分支,新建tag,</li>
 <li>…</li>
 </ul>
 <h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><ul>
 <li>默认设置(不能修改,提供初始设置,模板的作用)</li>
 <li>用户设置👍</li>
-<li>项目设置:项目根目录下<code>.vscode</code></li>
+<li>项目设置：项目根目录下<code>.vscode</code></li>
 </ul>
 <p>一般改用户配置就可以了,项目具体需要可以去添加项目设置</p>
-<p>修改设置有两种方式:<strong>UI修改</strong>和<strong>直接修改<code>settings.json</code>文件</strong>,本质都是修改<code>settings.json</code>文件</p>
-<p>命令<code>Preferences: Open Settings</code></p>
+<p>修改设置有两种方式：<strong>UI修改</strong>和<strong>直接修改<code>settings.json</code>文件</strong>,本质都是修改<code>settings.json</code>文件</p>
+<p>命令<code>Preferences：Open Settings</code></p>
 <h3 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h3><p>上千种主题</p>
-<p>命令<code>Preferences: Color Theme</code></p>
+<p>命令<code>Preferences：Color Theme</code></p>
 <h3 id="图标设置"><a href="#图标设置" class="headerlink" title="图标设置"></a>图标设置</h3><p>增加文件辨识度</p>
-<p>命令<code>Preferences: File Icon Theme</code></p>
+<p>命令<code>Preferences：File Icon Theme</code></p>
 <h3 id="语言设置"><a href="#语言设置" class="headerlink" title="语言设置"></a>语言设置</h3><p>VSCode默认是英文版本,可修改成中文</p>
-<p>命令:<code>Configure Display Language</code></p>
-<h3 id="键盘设置"><a href="#键盘设置" class="headerlink" title="键盘设置"></a>键盘设置</h3><p><strong>VSCode + Vim</strong>:能提供最高效的编辑代码方式</p>
-<p>命令:<code>Preferences: Keymaps</code></p>
+<p>命令：<code>Configure Display Language</code></p>
+<h3 id="键盘设置"><a href="#键盘设置" class="headerlink" title="键盘设置"></a>键盘设置</h3><p><strong>VSCode + Vim</strong>：能提供最高效的编辑代码方式</p>
+<p>命令：<code>Preferences：Keymaps</code></p>
 <h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><ul>
 <li>代码导航</li>
 <li>多光标编辑</li>
@@ -1561,7 +1588,7 @@
 <h3 id="列选中"><a href="#列选中" class="headerlink" title="列选中"></a>列选中</h3><p>按住<code>Shift+Alt</code>,同时按鼠标左键</p>
 <p><img src="/images/vscode/VSCode_column-select-20210421234606881.gif" alt="Column text selection"></p>
 <h3 id="查找与替换"><a href="#查找与替换" class="headerlink" title="查找与替换"></a>查找与替换</h3><ul>
-<li><strong>查找</strong>:<ul>
+<li><strong>查找</strong>：<ul>
 <li>当前文件查找<code>Ctrl+F</code></li>
 <li>项目里面查找(大项目可能有问题,用grep替代)<code>Ctrl+Shift+F</code></li>
 </ul>
@@ -1577,32 +1604,32 @@
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.autoSave&quot;</span>: <span class="string">&quot;afterDelay&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;files.autoSaveDelay&quot;</span>: <span class="number">100</span>, 		<span class="comment">// 延时100ms保存文件</span></span><br><span class="line">    <span class="attr">&quot;editor.formatOnSave&quot;</span>: <span class="literal">true</span>,		<span class="comment">// 保存时格式化代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="代码折叠"><a href="#代码折叠" class="headerlink" title="代码折叠"></a>代码折叠</h3><p><img src="/images/vscode/VSCode_folding.png" alt="Folding"></p>
-<h2 id="Snippets"><a href="#Snippets" class="headerlink" title="Snippets"></a>Snippets</h2><p><strong>作用:</strong> 生成代码模板</p>
-<p><strong>使用:</strong><code>Tab</code>键补全,<code>Tab</code>键在定义的光标转跳</p>
+<h2 id="Snippets"><a href="#Snippets" class="headerlink" title="Snippets"></a>Snippets</h2><p><strong>作用：</strong> 生成代码模板</p>
+<p><strong>使用：</strong><code>Tab</code>键补全,<code>Tab</code>键在定义的光标转跳</p>
 <p><img src="https://code.visualstudio.com/assets/docs/editor/userdefinedsnippets/ajax-snippet.gif" alt="ajax snippet"></p>
 <p><strong>配置Snippets</strong></p>
 <p>每个语言有对应的json配置文件;比如c语言对应的配置文件是<code>c.json</code></p>
 <p>命令<code>Preferences: Configure User Snippets</code>回车,选择<code>c.json</code></p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;init main&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;main&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;#include &lt;stdio.h&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#include &lt;stdlib.h&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#include &lt;string.h&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;int main(int argc, char *argv[])&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;    $0&quot;</span>,</span><br><span class="line">            <span class="string">&quot;    return 0;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Basic main function&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>配置解释:输入prefix里面的内容,Tab补全生成body中的模板</p>
-<h2 id="Terminal终端"><a href="#Terminal终端" class="headerlink" title="Terminal终端"></a>Terminal终端</h2><p>打开方式:</p>
+<p>配置解释：输入prefix里面的内容,Tab补全生成body中的模板</p>
+<h2 id="Terminal终端"><a href="#Terminal终端" class="headerlink" title="Terminal终端"></a>Terminal终端</h2><p>打开方式：</p>
 <ul>
 <li>快捷键<code>Ctrl+`</code>(Tab键上的按键)</li>
-<li>菜单栏:<strong>View</strong> &gt; <strong>Terminal</strong></li>
+<li>菜单栏：<strong>View</strong> &gt; <strong>Terminal</strong></li>
 </ul>
-<p>功能:</p>
+<p>功能：</p>
 <ul>
 <li>多窗口</li>
 <li>分屏</li>
 <li>最大化</li>
 </ul>
-<p>配置:设置选中同时复制</p>
+<p>配置：设置选中同时复制</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.copyOnSelection&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="Debug调试"><a href="#Debug调试" class="headerlink" title="Debug调试"></a>Debug调试</h2><p>需要安装插件:<strong><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92YWRpbWNuLnZzY29kZS1sbGRi">CodeLLDB<i class="fa fa-external-link-alt"></i></span></strong></p>
+<h2 id="Debug调试"><a href="#Debug调试" class="headerlink" title="Debug调试"></a>Debug调试</h2><p>需要安装插件：**<span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92YWRpbWNuLnZzY29kZS1sbGRi">CodeLLDB<i class="fa fa-external-link-alt"></i></span>**</p>
 <p>配置文件<code>.vscode/launch.json</code>,将<code>&lt;my program&gt;</code>替换成你的<strong>debug版本</strong>程序</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Use IntelliSense to learn about possible attributes.</span></span><br><span class="line">    <span class="comment">// Hover to view descriptions of existing attributes.</span></span><br><span class="line">    <span class="comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;lldb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/&lt;my program&gt;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1610,37 +1637,37 @@
 
 
 
-<h2 id="VSCode命令行"><a href="#VSCode命令行" class="headerlink" title="VSCode命令行"></a>VSCode命令行</h2><p>配置:将<code>code</code>命令添加到环境变量</p>
-<p>命令:<code>Shell Command: install code command in PATH</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.打开目录或文件</span></span><br><span class="line"><span class="comment"># 	语法: code &lt;file or dir&gt;</span></span><br><span class="line">$ code linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.简单对比文件差异</span></span><br><span class="line"><span class="comment"># 	语法: code -d &lt;file&gt; &lt;file&gt;</span></span><br><span class="line">$ code -d file1 file2</span><br></pre></td></tr></table></figure>
+<h2 id="VSCode命令行"><a href="#VSCode命令行" class="headerlink" title="VSCode命令行"></a>VSCode命令行</h2><p>配置：将<code>code</code>命令添加到环境变量</p>
+<p>命令：<code>Shell Command: install code command in PATH</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.打开目录或文件</span></span><br><span class="line"><span class="comment"># 	语法：code &lt;file or dir&gt;</span></span><br><span class="line">$ code linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.简单对比文件差异</span></span><br><span class="line"><span class="comment"># 	语法：code -d &lt;file&gt; &lt;file&gt;</span></span><br><span class="line">$ code -d file1 file2</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p><strong>推荐插件列表:</strong></p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p><strong>推荐插件列表：</strong></p>
 <ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWxsdm0tdnMtY29kZS1leHRlbnNpb25zLnZzY29kZS1jbGFuZ2Q=">clangd<i class="fa fa-external-link-alt"></i></span>:c/c++插件</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span>:debug插件</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXR3eHMuY21ha2U=">CMake<i class="fa fa-external-link-alt"></i></span>:CMake语法插件</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jbWFrZS10b29scw==">CMake Tools<i class="fa fa-external-link-alt"></i></span>:CMake工具插件</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWZvcm11bGFoZW5kcnkuY29kZS1ydW5uZXI=">Code Runner<i class="fa fa-external-link-alt"></i></span>:一键运行插件(c/c++:单个源文件)</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWVhbW9kaW8uZ2l0bGVucw==">GitLens<i class="fa fa-external-link-alt"></i></span>:Git增强插件</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWNvZGV6b21iaWVjaC5naXRpZ25vcmU=">gitignore<i class="fa fa-external-link-alt"></i></span>:Git ignore插件</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWNzY2hsb3NzZXIuZG94ZG9jZ2Vu">Doxygen Documentation Generator<i class="fa fa-external-link-alt"></i></span>:生成注释模板插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWxsdm0tdnMtY29kZS1leHRlbnNpb25zLnZzY29kZS1jbGFuZ2Q=">clangd<i class="fa fa-external-link-alt"></i></span>：c/c++插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span>：debug插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXR3eHMuY21ha2U=">CMake<i class="fa fa-external-link-alt"></i></span>：CMake语法插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jbWFrZS10b29scw==">CMake Tools<i class="fa fa-external-link-alt"></i></span>：CMake工具插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWZvcm11bGFoZW5kcnkuY29kZS1ydW5uZXI=">Code Runner<i class="fa fa-external-link-alt"></i></span>：一键运行插件(c/c++：单个源文件)</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWVhbW9kaW8uZ2l0bGVucw==">GitLens<i class="fa fa-external-link-alt"></i></span>：Git增强插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWNvZGV6b21iaWVjaC5naXRpZ25vcmU=">gitignore<i class="fa fa-external-link-alt"></i></span>：Git ignore插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWNzY2hsb3NzZXIuZG94ZG9jZ2Vu">Doxygen Documentation Generator<i class="fa fa-external-link-alt"></i></span>：生成注释模板插件</li>
 </ul>
-<p><strong>其它美化插件:</strong></p>
+<p><strong>其它美化插件：</strong></p>
 <ul>
-<li><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi91c2VybmFtZWh3LmVycm9ybGVucw==">Error Lens<i class="fa fa-external-link-alt"></i></span>:把错误和警告显示在编辑区</li>
-<li><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92c2NvZGUtaWNvbnMtdGVhbS52c2NvZGUtaWNvbnM=">vscode-icons<i class="fa fa-external-link-alt"></i></span>:文件图标增强插件</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPUdydW50ZnVnZ2x5LnRvZG8tdHJlZQ==">Todo Tree<i class="fa fa-external-link-alt"></i></span>:显示项目中的todo列表,高亮todo</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5hdW1vdnMuY29sb3ItaGlnaGxpZ2h0">Color Highlight<i class="fa fa-external-link-alt"></i></span>:颜色值高亮</li>
+<li><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi91c2VybmFtZWh3LmVycm9ybGVucw==">Error Lens<i class="fa fa-external-link-alt"></i></span>：把错误和警告显示在编辑区</li>
+<li><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92c2NvZGUtaWNvbnMtdGVhbS52c2NvZGUtaWNvbnM=">vscode-icons<i class="fa fa-external-link-alt"></i></span>：文件图标增强插件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPUdydW50ZnVnZ2x5LnRvZG8tdHJlZQ==">Todo Tree<i class="fa fa-external-link-alt"></i></span>：显示项目中的todo列表,高亮todo</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5hdW1vdnMuY29sb3ItaGlnaGxpZ2h0">Color Highlight<i class="fa fa-external-link-alt"></i></span>：颜色值高亮</li>
 </ul>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装:"></a>插件安装:</h3><ol>
+<h3 id="插件安装："><a href="#插件安装：" class="headerlink" title="插件安装："></a>插件安装：</h3><ol>
 <li>打开上面插件的链接地址,转跳到浏览器</li>
 <li>复制插件的安装命令,类似<code>ext install llvm-vs-code-extensions.vscode-clangd</code> (仅Linux，其它平台有安装按键，点击即可)</li>
 <li>在VSCode按<code>Ctrl+P</code>,然后粘贴上面内容，回车即可</li>
 </ol>
-<h3 id="clangd-c-c-插件"><a href="#clangd-c-c-插件" class="headerlink" title="clangd:c/c++插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9sbHZtLXZzLWNvZGUtZXh0ZW5zaW9ucy52c2NvZGUtY2xhbmdk">clangd<i class="fa fa-external-link-alt"></i></span>:c/c++插件</h3><p>文档:<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcv">https://clangd.llvm.org/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>功能</strong>:</p>
+<h3 id="clangd：c-c-插件"><a href="#clangd：c-c-插件" class="headerlink" title="clangd：c/c++插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9sbHZtLXZzLWNvZGUtZXh0ZW5zaW9ucy52c2NvZGUtY2xhbmdk">clangd<i class="fa fa-external-link-alt"></i></span>：c/c++插件</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcv">https://clangd.llvm.org/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>功能</strong>：</p>
 <ul>
 <li>代码补全</li>
 <li>自动导入头文件</li>
@@ -1649,75 +1676,75 @@
 <li>代码格式化</li>
 <li>简单重构(经量少用)<code>F2</code></li>
 </ul>
-<p><strong>配置</strong>:</p>
+<p><strong>配置</strong>：</p>
 <blockquote>
 <p>clangd的提示依赖于<code>compile_commands.json</code>文件</p>
 </blockquote>
-<p><strong>生成compile_commands.json文件</strong>:</p>
+<p><strong>生成compile_commands.json文件</strong>：</p>
 <ul>
-<li>CMake项目:编译时开户<code>CMAKE_EXPORT_COMPILE_COMMANDS</code><ul>
-<li>命令行添加:<code>-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code></li>
+<li>CMake项目：编译时开户<code>CMAKE_EXPORT_COMPILE_COMMANDS</code><ul>
+<li>命令行添加：<code>-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code></li>
 <li>CMakeLists.txt中添加<code>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</code></li>
 </ul>
 </li>
-<li>Makefile项目:执行<code>make clean; bear -- make</code></li>
+<li>Makefile项目：执行<code>make clean; bear -- make</code></li>
 </ul>
 <p>clangd整合了代码<strong>格式化工具clang-format</strong>,代码<strong>静态检查工具clang-tidy</strong></p>
-<p><strong>clang-format配置:</strong></p>
+<p><strong>clang-format配置：</strong></p>
 <p>在项目根目录下添加<code>.clang-format</code>文件</p>
-<p><strong>clang-tidy配置</strong>:</p>
+<p><strong>clang-tidy配置</strong>：</p>
 <p>在项目根目录下添加<code>.clangd</code>文件</p>
-<h3 id="CodeLLDB-debug插件"><a href="#CodeLLDB-debug插件" class="headerlink" title="CodeLLDB:debug插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92YWRpbWNuLnZzY29kZS1sbGRi">CodeLLDB<i class="fa fa-external-link-alt"></i></span>:debug插件</h3><p>配置文件<code>.vscode/launch.json</code>,将<code>&lt;my program&gt;</code>替换成你的debug版本程序</p>
+<h3 id="CodeLLDB：debug插件"><a href="#CodeLLDB：debug插件" class="headerlink" title="CodeLLDB：debug插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92YWRpbWNuLnZzY29kZS1sbGRi">CodeLLDB<i class="fa fa-external-link-alt"></i></span>：debug插件</h3><p>配置文件<code>.vscode/launch.json</code>,将<code>&lt;my program&gt;</code>替换成你的debug版本程序</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Use IntelliSense to learn about possible attributes.</span></span><br><span class="line">    <span class="comment">// Hover to view descriptions of existing attributes.</span></span><br><span class="line">    <span class="comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;lldb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/&lt;my program&gt;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="CMake-CMake语法插件"><a href="#CMake-CMake语法插件" class="headerlink" title="CMake:CMake语法插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi90d3hzLmNtYWtl">CMake<i class="fa fa-external-link-alt"></i></span>:CMake语法插件</h3><p>提供CMake语法高亮,简单提示</p>
-<h3 id="CMake-Tools-CMake工具插件"><a href="#CMake-Tools-CMake工具插件" class="headerlink" title="CMake Tools:CMake工具插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9tcy12c2NvZGUuY21ha2UtdG9vbHM=">CMake Tools<i class="fa fa-external-link-alt"></i></span>:CMake工具插件</h3><p>简单项目演示:</p>
+<h3 id="CMake：CMake语法插件"><a href="#CMake：CMake语法插件" class="headerlink" title="CMake：CMake语法插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi90d3hzLmNtYWtl">CMake<i class="fa fa-external-link-alt"></i></span>：CMake语法插件</h3><p>提供CMake语法高亮,简单提示</p>
+<h3 id="CMake-Tools：CMake工具插件"><a href="#CMake-Tools：CMake工具插件" class="headerlink" title="CMake Tools：CMake工具插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9tcy12c2NvZGUuY21ha2UtdG9vbHM=">CMake Tools<i class="fa fa-external-link-alt"></i></span>：CMake工具插件</h3><p>简单项目演示：</p>
 <ol>
-<li>CMake: Quick Start 新建项目<ul>
+<li>CMake：Quick Start 新建项目<ul>
 <li>选择编译器(可以先不选)</li>
 <li>项目名字</li>
 <li>选择生成<strong>库</strong>还是<strong>可执行程序</strong></li>
 </ul>
 </li>
-<li>CMake: Select Variant 选择编译版本</li>
-<li>CMake: Configure 配置(生成其它编译系统的配置文件)</li>
-<li>CMake: Build 编译</li>
+<li>CMake：Select Variant 选择编译版本</li>
+<li>CMake：Configure 配置(生成其它编译系统的配置文件)</li>
+<li>CMake：Build 编译</li>
 </ol>
-<h3 id="Code-Runner-一键运行插件-c-c-单个源文件"><a href="#Code-Runner-一键运行插件-c-c-单个源文件" class="headerlink" title="Code Runner:一键运行插件(c/c++:单个源文件)"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9mb3JtdWxhaGVuZHJ5LmNvZGUtcnVubmVy">Code Runner<i class="fa fa-external-link-alt"></i></span>:一键运行插件(c/c++:单个源文件)</h3><p>原理:提供了一种触发机制</p>
+<h3 id="Code-Runner：一键运行插件-c-c-：单个源文件"><a href="#Code-Runner：一键运行插件-c-c-：单个源文件" class="headerlink" title="Code Runner：一键运行插件(c/c++：单个源文件)"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9mb3JtdWxhaGVuZHJ5LmNvZGUtcnVubmVy">Code Runner<i class="fa fa-external-link-alt"></i></span>：一键运行插件(c/c++：单个源文件)</h3><p>原理：提供了一种触发机制</p>
 <p>c语言会触发下面<code>cd $dir &amp;&amp; gcc $fileName -o $fileNameWithoutExt &amp;&amp; $dir$fileNameWithoutExt</code>的shell命令</p>
-<p>Code Runner中的一段配置:</p>
+<p>Code Runner中的一段配置：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code-runner.executorMap&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;javascript&quot;</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;php&quot;</span>: <span class="string">&quot;C:\\php\\php.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;python&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;perl&quot;</span>: <span class="string">&quot;perl&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ruby&quot;</span>: <span class="string">&quot;C:\\Ruby23-x64\\bin\\ruby.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;go&quot;</span>: <span class="string">&quot;go run&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;html&quot;</span>: <span class="string">&quot;\&quot;C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\&quot;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;java&quot;</span>: <span class="string">&quot;cd $dir &amp;&amp; javac $fileName &amp;&amp; java $fileNameWithoutExt&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;c&quot;</span>: <span class="string">&quot;cd $dir &amp;&amp; gcc $fileName -o $fileNameWithoutExt &amp;&amp; $dir$fileNameWithoutExt&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="GitLens-Git增强插件"><a href="#GitLens-Git增强插件" class="headerlink" title="GitLens:Git增强插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9lYW1vZGlvLmdpdGxlbnM=">GitLens<i class="fa fa-external-link-alt"></i></span>:Git增强插件</h3><p>文档:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VhbW9kaW8vdnNjb2RlLWdpdGxlbnM=">https://github.com/eamodio/vscode-gitlens<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="gitignore-Git-ignore插件"><a href="#gitignore-Git-ignore插件" class="headerlink" title="gitignore:Git ignore插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9jb2Rlem9tYmllY2guZ2l0aWdub3Jl">gitignore<i class="fa fa-external-link-alt"></i></span>:Git ignore插件</h3><p>简化<code>.gitignore</code>文件编写,提供了不同语言,不同项目的<code>.gitignore</code>模板</p>
+<h3 id="GitLens：Git增强插件"><a href="#GitLens：Git增强插件" class="headerlink" title="GitLens：Git增强插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9lYW1vZGlvLmdpdGxlbnM=">GitLens<i class="fa fa-external-link-alt"></i></span>：Git增强插件</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VhbW9kaW8vdnNjb2RlLWdpdGxlbnM=">https://github.com/eamodio/vscode-gitlens<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="gitignore：Git-ignore插件"><a href="#gitignore：Git-ignore插件" class="headerlink" title="gitignore：Git ignore插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9jb2Rlem9tYmllY2guZ2l0aWdub3Jl">gitignore<i class="fa fa-external-link-alt"></i></span>：Git ignore插件</h3><p>简化<code>.gitignore</code>文件编写,提供了不同语言,不同项目的<code>.gitignore</code>模板</p>
 <ul>
 <li>命令<code>Add gitignore</code>,没有<code>.gitignore</code>会创建,有可以选择追加或覆盖</li>
 </ul>
-<h3 id="Doxygen-Documentation-Generator-生成注释模板插件"><a href="#Doxygen-Documentation-Generator-生成注释模板插件" class="headerlink" title="Doxygen Documentation Generator:生成注释模板插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9jc2NobG9zc2VyLmRveGRvY2dlbg==">Doxygen Documentation Generator<i class="fa fa-external-link-alt"></i></span>:生成注释模板插件</h3><p>输入<code>/**</code>,然后按<code>Tab</code>键生成注释模板</p>
+<h3 id="Doxygen-Documentation-Generator：生成注释模板插件"><a href="#Doxygen-Documentation-Generator：生成注释模板插件" class="headerlink" title="Doxygen Documentation Generator：生成注释模板插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi9jc2NobG9zc2VyLmRveGRvY2dlbg==">Doxygen Documentation Generator<i class="fa fa-external-link-alt"></i></span>：生成注释模板插件</h3><p>输入<code>/**</code>,然后按<code>Tab</code>键生成注释模板</p>
 <p><img src="/images/vscode/VSCode_attributes.gif" alt="Attribute"></p>
 <blockquote>
 <p>如果tab无法生成模板,注意在上面空行</p>
 </blockquote>
-<h3 id="Error-Lens-把错误和警告显示在编辑区"><a href="#Error-Lens-把错误和警告显示在编辑区" class="headerlink" title="Error Lens:把错误和警告显示在编辑区"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi91c2VybmFtZWh3LmVycm9ybGVucw==">Error Lens<i class="fa fa-external-link-alt"></i></span>:把错误和警告显示在编辑区</h3><p>默认错误和警告在panel面板里面,查看不方便</p>
+<h3 id="Error-Lens：把错误和警告显示在编辑区"><a href="#Error-Lens：把错误和警告显示在编辑区" class="headerlink" title="Error Lens：把错误和警告显示在编辑区"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi91c2VybmFtZWh3LmVycm9ybGVucw==">Error Lens<i class="fa fa-external-link-alt"></i></span>：把错误和警告显示在编辑区</h3><p>默认错误和警告在panel面板里面,查看不方便</p>
 <p><img src="/images/vscode/VSCode_demo.png" alt="Error Lens Demo"></p>
-<h3 id="vscode-icons-文件图标增强插件"><a href="#vscode-icons-文件图标增强插件" class="headerlink" title="vscode-icons:文件图标增强插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92c2NvZGUtaWNvbnMtdGVhbS52c2NvZGUtaWNvbnM=">vscode-icons<i class="fa fa-external-link-alt"></i></span>:文件图标增强插件</h3><p>配置演示图:</p>
+<h3 id="vscode-icons：文件图标增强插件"><a href="#vscode-icons：文件图标增强插件" class="headerlink" title="vscode-icons：文件图标增强插件"></a><span class="exturl" data-url="dnNjb2RlOmV4dGVuc2lvbi92c2NvZGUtaWNvbnMtdGVhbS52c2NvZGUtaWNvbnM=">vscode-icons<i class="fa fa-external-link-alt"></i></span>：文件图标增强插件</h3><p>配置演示图：</p>
 <p><img src="/images/vscode/VSCode_screenshot.gif" alt="vscode-icons demo"></p>
-<h3 id="Todo-Tree-显示项目中的todo列表-高亮todo"><a href="#Todo-Tree-显示项目中的todo列表-高亮todo" class="headerlink" title="Todo Tree:显示项目中的todo列表,高亮todo"></a><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPUdydW50ZnVnZ2x5LnRvZG8tdHJlZQ==">Todo Tree<i class="fa fa-external-link-alt"></i></span>:显示项目中的todo列表,高亮todo</h3><img src="/images/vscode/VSCode_screenshot.png" style="zoom: 43%;" />
+<h3 id="Todo-Tree：显示项目中的todo列表-高亮todo"><a href="#Todo-Tree：显示项目中的todo列表-高亮todo" class="headerlink" title="Todo Tree：显示项目中的todo列表,高亮todo"></a><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPUdydW50ZnVnZ2x5LnRvZG8tdHJlZQ==">Todo Tree<i class="fa fa-external-link-alt"></i></span>：显示项目中的todo列表,高亮todo</h3><img src="/images/vscode/VSCode_screenshot.png" style="zoom: 43%;" />
 
 
 
-<h3 id="Color-Highlight-颜色值高亮"><a href="#Color-Highlight-颜色值高亮" class="headerlink" title="Color Highlight:颜色值高亮"></a><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5hdW1vdnMuY29sb3ItaGlnaGxpZ2h0">Color Highlight<i class="fa fa-external-link-alt"></i></span>:颜色值高亮</h3><p>‘#FFFF00’<br>‘#FF00FF’<br>‘#FF0000’<br>‘#0000FF’</p>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>VSCode设置文件:<code>settings.json</code></p>
-<p>Snippets配置文件:<code>c.json</code>,<code>cpp.json</code></p>
-<p>代码格式化文件:<code>.clang-format</code></p>
-<p>代码静态分析文件:<code>.clangd</code></p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题:"></a>常见问题:</h2><h3 id="1-VSCode遇到了Bug"><a href="#1-VSCode遇到了Bug" class="headerlink" title="1.VSCode遇到了Bug:"></a>1.VSCode遇到了Bug:</h3><p>重新加载VSCode</p>
-<h3 id="2-插件遇到了Bug"><a href="#2-插件遇到了Bug" class="headerlink" title="2.插件遇到了Bug:"></a>2.插件遇到了Bug:</h3><p>安装老版本,或者用过的相对稳定的版本的插件</p>
+<h3 id="Color-Highlight：颜色值高亮"><a href="#Color-Highlight：颜色值高亮" class="headerlink" title="Color Highlight：颜色值高亮"></a><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5hdW1vdnMuY29sb3ItaGlnaGxpZ2h0">Color Highlight<i class="fa fa-external-link-alt"></i></span>：颜色值高亮</h3><p>‘#FFFF00’<br>‘#FF00FF’<br>‘#FF0000’<br>‘#0000FF’</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>VSCode设置文件：<code>settings.json</code></p>
+<p>Snippets配置文件：<code>c.json</code>,<code>cpp.json</code></p>
+<p>代码格式化文件：<code>.clang-format</code></p>
+<p>代码静态分析文件：<code>.clangd</code></p>
+<h2 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h2><h3 id="1-VSCode遇到了Bug："><a href="#1-VSCode遇到了Bug：" class="headerlink" title="1.VSCode遇到了Bug："></a>1.VSCode遇到了Bug：</h3><p>重新加载VSCode</p>
+<h3 id="2-插件遇到了Bug："><a href="#2-插件遇到了Bug：" class="headerlink" title="2.插件遇到了Bug："></a>2.插件遇到了Bug：</h3><p>安装老版本,或者用过的相对稳定的版本的插件</p>
 <img src="/images/vscode/image-20210709005511695.png" alt="Install anothor version" style="zoom:50%;" />
 
-<h3 id="3-大项目全局搜索失效"><a href="#3-大项目全局搜索失效" class="headerlink" title="3.大项目全局搜索失效:"></a>3.大项目全局搜索失效:</h3><p>解决方式:</p>
+<h3 id="3-大项目全局搜索失效："><a href="#3-大项目全局搜索失效：" class="headerlink" title="3.大项目全局搜索失效："></a>3.大项目全局搜索失效：</h3><p>解决方式：</p>
 <ol>
 <li>配置只搜索哪些文件,和配置不搜索哪些文件</li>
 </ol>
@@ -1726,8 +1753,8 @@
 <ol start="2">
 <li>使用grep做为替代</li>
 </ol>
-<h3 id="4-大项目文件更新或者创建了VSCode不显示"><a href="#4-大项目文件更新或者创建了VSCode不显示" class="headerlink" title="4.大项目文件更新或者创建了VSCode不显示:"></a>4.大项目文件更新或者创建了VSCode不显示:</h3><p>项目文件过多,vscode无法跟踪目录下所有文件变化</p>
-<p>解决方式:</p>
+<h3 id="4-大项目文件更新或者创建了VSCode不显示："><a href="#4-大项目文件更新或者创建了VSCode不显示：" class="headerlink" title="4.大项目文件更新或者创建了VSCode不显示："></a>4.大项目文件更新或者创建了VSCode不显示：</h3><p>项目文件过多,vscode无法跟踪目录下所有文件变化</p>
+<p>解决方式：</p>
 <ol>
 <li>配置VSCode不去跟踪哪些目录或文件的变化,来减少VSCode跟踪文件的数目</li>
 </ol>
@@ -1746,6 +1773,23 @@
         <tag>VSCode</tag>
         <tag>Editor</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>【Personal】编程漫谈</title>
+    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
+    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
+<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
+<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
+<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
   </entry>
   <entry>
     <title>【Work】编程中如何跟人描述Bug</title>
@@ -1779,23 +1823,6 @@
       <tags>
         <tag>Personal</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>【Personal】编程漫谈</title>
-    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
-    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
-<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
-<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
-<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
   </entry>
   <entry>
     <title>【Personal】记一次生病经历复盘</title>
@@ -2794,7 +2821,7 @@
 <p>参考：<br><span class="exturl" data-url="aHR0cHM6Ly9ob2tlaW4uZ2l0aHViLmlvL2NsYW5nLXRvb2xzLXR1dG9yaWFsL2NsYW5nLXRpZHkuaHRtbA==">https://hokein.github.io/clang-tools-tutorial/clang-tidy.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3lwc2hvd20vMTAwMDQwNzI5">https://www.cxyzjd.com/article/ypshowm/100040729<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMxODcwNTcvYXJ0aWNsZS9kZXRhaWxzLzEwMzA1MjI3NQ==">https://blog.csdn.net/u013187057/article/details/103052275<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3dhZHMyMzQ1Ni8xMDgwMDk2MTc=">https://www.cxyzjd.com/article/wads23456/108009617<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9jb2RleWFybnMuY29tLzIwMTkvMDEvMjgvaG93LXRvLXVzZS1jbGFuZy10aWR5Lw==">https://codeyarns.com/2019/01/28/how-to-use-clang-tidy/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwNzAxNTk4MQ==">https://segmentfault.com/a/1190000007015981<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTEtbW9kZXJuaXplLXNvdXJjZS1jb2RlLXVzaW5nLWMxMWMxNC8=">https://www.kdab.com/clang-tidy-part-1-modernize-source-code-using-c11c14/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTItaW50ZWdyYXRlLXFtYWtlLWFuZC1vdGhlci1idWlsZC1zeXN0ZW1zLXVzaW5nLWJlYXIv">https://www.kdab.com/clang-tidy-part-2-integrate-qmake-and-other-build-systems-using-bear/<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
-        <category>Tool</category>
+        <category>Tools</category>
       </categories>
       <tags>
         <tag>Clang-tidy</tag>
@@ -2926,66 +2953,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【C】cJSON源码 使用建议及吐嘈</title>
-    <url>/2021/12/27/cJSON/</url>
-    <content><![CDATA[<p><strong>cJSON repo：</strong><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04=">https://github.com/DaveGamble/cJSON<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
-</blockquote>
-<h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
-<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" alt="Native JSON Benchmark" style="zoom:50%;" />
-
-<h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
-<ul>
-<li>简单，容易上手</li>
-<li>方便移植</li>
-<li>代码量少</li>
-<li>开发人员已经很熟悉</li>
-<li>是否经过大项目的检验（比如github上有些库会写，哪些产品引用了我这个库）</li>
-</ul>
-<h2 id="作者写cJSON的初衷："><a href="#作者写cJSON的初衷：" class="headerlink" title="作者写cJSON的初衷："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04jd2VsY29tZS10by1janNvbg==">作者写cJSON的初衷<i class="fa fa-external-link-alt"></i></span>：</h2><blockquote>
-<p>I lifted some JSON from this page: <span class="exturl" data-url="aHR0cDovL3d3dy5qc29uLm9yZy9mYXRmcmVlLmh0bWw=">http://www.json.org/fatfree.html<i class="fa fa-external-link-alt"></i></span> That page inspired me to write cJSON, which is a parser that tries to share the same philosophy as JSON itself. <strong>Simple, dumb, out of the way</strong>.</p>
-</blockquote>
-<h1 id="如何去实现一个JSON解析库？"><a href="#如何去实现一个JSON解析库？" class="headerlink" title="如何去实现一个JSON解析库？"></a>如何去实现一个JSON解析库？</h1><p>cjson的答案是：用一个数据结构去描述json的结构，用结构体cJSON去描述json中键值对（key：value）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* The cJSON structure: */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">child</span>;</span></span><br><span class="line">    <span class="keyword">int</span> type;</span><br><span class="line">    <span class="keyword">char</span> *valuestring;</span><br><span class="line">    <span class="keyword">int</span> valueint;</span><br><span class="line">    <span class="keyword">double</span> valuedouble;</span><br><span class="line">    <span class="keyword">char</span> *<span class="built_in">string</span>;</span><br><span class="line">&#125; cJSON;</span><br></pre></td></tr></table></figure>
-
-<p>字段string用来存储key，valuestring是来存放类型是String的值，valueint和valuedouble用来存放类型是Number的值；那json其它类型Boolean和Null数据存放在哪里呢？答案是放在type里面（<code>cJSON_False</code>，<code>cJSON_True</code>，<code>cJSON_NULL</code>），估计是为了省内存，没必要为这些json数据类型去增加字段去表示</p>
-<p>json结构图解：</p>
-<p><img src="/images/cjson/Xnip2021-12-29_00-14-15.png"></p>
-<h1 id="cJSON源码："><a href="#cJSON源码：" class="headerlink" title="cJSON源码："></a>cJSON源码：</h1><p>一个框架库里面有一些是核心的函数，其它的是些辅助或是拓展函数；</p>
-<h2 id="核心函数围绕三个主题："><a href="#核心函数围绕三个主题：" class="headerlink" title="核心函数围绕三个主题："></a>核心函数围绕三个主题：</h2><ul>
-<li><p>解析：<code>cJSON_Parse</code>内部递归调用<code>parse_value</code>去解析</p>
-</li>
-<li><p>CRUD节点：这部分没有必要多讲<code>cJSON_CreateXXX</code> <code>cJSON_AddXXX</code> <code>cJSON_DetachXXX</code> <code>cJSON_DeleteXXX</code> <code>cJSON_ReplaceXXX</code></p>
-</li>
-<li><p>转成字符串：<code>cJSON_Print</code>内部递归调用<code>print_value</code>去转成字符串；转成字符串中，需要有个buffer来存放字符串，当buffer不够的时候就会增长策略的问题，大约是<code>*2</code>，（函数<code>ensure</code>中<code>newsize = needed * 2;</code>)</p>
-</li>
-</ul>
-<h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><ul>
-<li>上面提到了使用递归，库会对嵌套的层级会有限制<code>#define CJSON_NESTING_LIMIT 1000</code></li>
-<li>对外暴露内存申请了释放的函数：通过<code>cJSON_InitHooks</code>函数</li>
-</ul>
-<h1 id="cJSON使用建议："><a href="#cJSON使用建议：" class="headerlink" title="cJSON使用建议："></a>cJSON使用建议：</h1><ul>
-<li>删除cJSON结构体中的valueint字段（历史原因保留），int和double数据已经存放在valuedouble上面了</li>
-<li>复用json中的key字符串，避免为key字符串malloc空间。使用cJSON_AddItemToObjectCS</li>
-<li>复用json中的value字符串，使用cJSON_CreateStringReference</li>
-<li>对于比较长的比较大的json，在转换成json字符串时，建议使用cJSON_PrintBuffered（指定长度）替代cJSON_Print和cJSON_PrintUnformatted，cJSON_Print和cJSON_PrintUnformatted会先分配一个256的buffer，如果不够会从新malloc和拷贝，字符串buffer增长策略基本等于<code>*2</code></li>
-</ul>
-<h1 id="cJSON吐嘈："><a href="#cJSON吐嘈：" class="headerlink" title="cJSON吐嘈："></a>cJSON吐嘈：</h1><p><strong>有几个API接口名字不太喜欢</strong></p>
-<ul>
-<li>cJSON_GetArraySize：看上去是获取json数组的大小，其实还能获取json对象的大小</li>
-<li>cJSON_Print：如果有print之类的，可能会想到的是printf，打印到标准输出；cJSON_ToString之类的是否更加合适</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>cJSON</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【JS】JavaScript基础</title>
     <url>/2021/11/04/JavaScript-getting-started/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9jaGFubmVsOS5tc2RuLmNvbS9TZXJpZXMvQmVnaW5uZXJzLVNlcmllcy10by1KYXZhU2NyaXB0P1dULm1jX2lkPWJlZ2lubmVyLWM5LW5pbmVy">https://channel9.msdn.com/Series/Beginners-Series-to-JavaScript?WT.mc_id=beginner-c9-niner<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9iZWdpbm5lcnMtaW50cm8tamF2YXNjcmlwdC1ub2Rl">https://github.com/microsoft/beginners-intro-javascript-node<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9MZWFybi9KYXZhU2NyaXB0">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript<i class="fa fa-external-link-alt"></i></span></p>
@@ -3058,6 +3025,63 @@
       </tags>
   </entry>
   <entry>
+    <title>【C】cJSON源码 使用建议及吐嘈</title>
+    <url>/2021/12/27/cJSON/</url>
+    <content><![CDATA[<p><strong>cJSON repo：</strong><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04=">https://github.com/DaveGamble/cJSON<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
+</blockquote>
+<h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
+<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" alt="Native JSON Benchmark" style="zoom:50%;" />
+
+<h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
+<ul>
+<li>简单，容易上手</li>
+<li>方便移植</li>
+<li>代码量少</li>
+<li>开发人员已经很熟悉</li>
+<li>是否经过大项目的检验（比如github上有些库会写，哪些产品引用了我这个库）</li>
+</ul>
+<h2 id="作者写cJSON的初衷："><a href="#作者写cJSON的初衷：" class="headerlink" title="作者写cJSON的初衷："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04jd2VsY29tZS10by1janNvbg==">作者写cJSON的初衷<i class="fa fa-external-link-alt"></i></span>：</h2><blockquote>
+<p>I lifted some JSON from this page: <span class="exturl" data-url="aHR0cDovL3d3dy5qc29uLm9yZy9mYXRmcmVlLmh0bWw=">http://www.json.org/fatfree.html<i class="fa fa-external-link-alt"></i></span> That page inspired me to write cJSON, which is a parser that tries to share the same philosophy as JSON itself. <strong>Simple, dumb, out of the way</strong>.</p>
+</blockquote>
+<h1 id="如何去实现一个JSON解析库？"><a href="#如何去实现一个JSON解析库？" class="headerlink" title="如何去实现一个JSON解析库？"></a>如何去实现一个JSON解析库？</h1><p>cjson的答案是：用一个数据结构去描述json的结构，用结构体cJSON去描述json中键值对（key：value）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* The cJSON structure: */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">child</span>;</span></span><br><span class="line">    <span class="keyword">int</span> type;</span><br><span class="line">    <span class="keyword">char</span> *valuestring;</span><br><span class="line">    <span class="keyword">int</span> valueint;</span><br><span class="line">    <span class="keyword">double</span> valuedouble;</span><br><span class="line">    <span class="keyword">char</span> *<span class="built_in">string</span>;</span><br><span class="line">&#125; cJSON;</span><br></pre></td></tr></table></figure>
+
+<p>字段string用来存储key，valuestring是来存放类型是String的值，valueint和valuedouble用来存放类型是Number的值；那json其它类型Boolean和Null数据存放在哪里呢？答案是放在type里面（<code>cJSON_False</code>，<code>cJSON_True</code>，<code>cJSON_NULL</code>），估计是为了省内存，没必要为这些json数据类型去增加字段去表示</p>
+<p>json结构图解：</p>
+<p><img src="/images/cjson/Xnip2021-12-29_00-14-15.png"></p>
+<h1 id="cJSON源码："><a href="#cJSON源码：" class="headerlink" title="cJSON源码："></a>cJSON源码：</h1><p>一个框架库里面有一些是核心的函数，其它的是些辅助或是拓展函数；</p>
+<h2 id="核心函数围绕三个主题："><a href="#核心函数围绕三个主题：" class="headerlink" title="核心函数围绕三个主题："></a>核心函数围绕三个主题：</h2><ul>
+<li>解析：<code>cJSON_Parse</code>内部递归调用<code>parse_value</code>去解析</li>
+<li>CRUD节点：这部分没有必要多讲<code>cJSON_CreateXXX</code> <code>cJSON_AddXXX</code> <code>cJSON_DetachXXX</code> <code>cJSON_DeleteXXX</code> <code>cJSON_ReplaceXXX</code></li>
+<li>转成字符串：<code>cJSON_Print</code>内部递归调用<code>print_value</code>去转成字符串；转成字符串中，需要有个buffer来存放字符串，当buffer不够的时候就会增长策略的问题，大约是<code>*2</code>，（函数<code>ensure</code>中<code>newsize = needed * 2;</code>)</li>
+</ul>
+<h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><ul>
+<li>上面提到了使用递归，库会对嵌套的层级会有限制<code>#define CJSON_NESTING_LIMIT 1000</code></li>
+<li>对外暴露内存申请了释放的函数：通过<code>cJSON_InitHooks</code>函数</li>
+</ul>
+<h1 id="cJSON使用建议："><a href="#cJSON使用建议：" class="headerlink" title="cJSON使用建议："></a>cJSON使用建议：</h1><ul>
+<li>删除cJSON结构体中的valueint字段（历史原因保留），int和double数据已经存放在valuedouble上面了</li>
+<li>复用json中的key字符串，避免为key字符串malloc空间。使用cJSON_AddItemToObjectCS</li>
+<li>复用json中的value字符串，使用cJSON_CreateStringReference</li>
+<li>对于比较长的比较大的json，在转换成json字符串时，建议使用cJSON_PrintBuffered（指定长度）替代cJSON_Print和cJSON_PrintUnformatted，cJSON_Print和cJSON_PrintUnformatted会先分配一个256的buffer，如果不够会从新malloc和拷贝，字符串buffer增长策略基本等于<code>*2</code></li>
+</ul>
+<h1 id="cJSON吐嘈："><a href="#cJSON吐嘈：" class="headerlink" title="cJSON吐嘈："></a>cJSON吐嘈：</h1><p><strong>有几个API接口名字不太喜欢</strong></p>
+<ul>
+<li>cJSON_GetArraySize：看上去是获取json数组的大小，其实还能获取json对象的大小</li>
+<li>cJSON_Print：如果有print之类的，可能会想到的是printf，打印到标准输出；cJSON_ToString之类的是否更加合适</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>cJSON</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Protocol】协议设计小记</title>
     <url>/2022/01/06/Protocol/</url>
     <content><![CDATA[<blockquote>
@@ -3103,6 +3127,184 @@
       </categories>
       <tags>
         <tag>Protocol</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2021】回顾</title>
+    <url>/2022/01/17/2021Summarize/</url>
+    <content><![CDATA[<blockquote>
+<p>前些天看公众号、YouTube 上都是总结，然后跑去问几个好友写年度总结了没有；上周在公司给组员一人建了个任务，写总结；对于年轻人来说：思考自己远比思考别人重要的多。在回头翻翻去年的总结，发现有些还有没写完，anyway，毕竟赢在写了</p>
+</blockquote>
+<h1 id="2021-回顾"><a href="#2021-回顾" class="headerlink" title="2021 回顾"></a>2021 回顾</h1><ul>
+<li>  关于带人</li>
+<li>  关于组员离职</li>
+<li>  关于膝盖伤</li>
+<li>  公司内部培训</li>
+<li>  书单</li>
+<li>  关于 Rust</li>
+<li>  关于英语</li>
+<li>  关于源码</li>
+<li>  公司吐嘈</li>
+<li>  关于性格</li>
+<li>  程序员的焦虑</li>
+<li>  Linux 桌面系统</li>
+</ul>
+<h2 id="关于带人"><a href="#关于带人" class="headerlink" title="关于带人"></a>关于带人</h2><p><strong>犯下的错</strong>：当着上司批评下面的一位员工，也直接导致了他的离职，虽然表面上没有什么关系，但我觉得是有直接关系。<br>后面调整：有啥问题会拉到会议室先私聊，因为每个人接受能力不一样；</p>
+<p><strong>你不能希望他们每一个人都和你一样</strong>：多年前一个前辈对我说这句话，至今受益匪浅；你带的人水平参差不齐，好些还是应届生。刚毕业，还要去哄，照顾他的情绪。后面调整：不同人根据当前能力有不同要求，有些会有最低要求</p>
+<h2 id="组员离职"><a href="#组员离职" class="headerlink" title="组员离职"></a>组员离职</h2><p>这个怎么说呢？离职原因基本上就是钱给的少了，这个不用质疑；好在基本上出去的都比我工资高。那我为啥还在这里？我只能说：这个问题问的好！这个主题我想讨论的是另外一个点：</p>
+<p><strong>老员工离职带来的隐性成本成本远比想象的要高：</strong></p>
+<ul>
+<li>  要去熟悉新人的技术水平，哪些方面好，哪些方面缺失</li>
+<li>  要去熟悉新人的对待工作的态度，处理问题矛盾方式</li>
+<li>  要去熟悉新人的代码风格，遵守公司的规范，这个得一次次，一点点</li>
+</ul>
+<p>毕竟公司又不是头部大厂，优秀的人都往这里跑；小公司去招人，人才已经被人筛选过一次又一次了；能招几个合适的能做事的，难；这种刚做了一年多了，东西套路都熟悉起来了，可以产出能干活了，啪，走了</p>
+<h2 id="关于膝盖伤"><a href="#关于膝盖伤" class="headerlink" title="关于膝盖伤"></a>关于膝盖伤</h2><p>之前写了一篇文章来<a href="https://wshibin.github.io/2021/07/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/">复盘</a>；看病的过程也出现过自己的误判，终究结果是好的；但其中的过程会很难熬，有一阵子都快有点抑郁了，看病的医生都说不是个小病，但一直没好，还一次给一次重；时间拉的过长了，有点搞心态；我想说的是另外一个点：</p>
+<p>人一般在遇到问题、挫折后，会有几种反应：</p>
+<ul>
+<li>  质疑自己 –&gt; 怎么去解决问题</li>
+<li>  看待问题的角度会发生改变</li>
+<li>  会重新去思考做某些事的意义</li>
+</ul>
+<p>前者可以找个实例，比如程序员：有的新人在遇到 bug 的时候，或者又恰好有个同事轻松的解决了，这时候这个人可能就会诞生一个想法：我到底适不适合干这个。别问我为啥会知道</p>
+<p>生病之后回老家休息了一个月，平时都是过年才回去，这次是正好赶上国庆，在家趟了一个月，有了新的角度重新认识了农村，回头另写一篇文章，先给自己挖个坑。</p>
+<p>元旦的时候：和黄师傅他们一起聚会，当时黄师傅的观点是：坚决不去加班的公司，到点下班，选择躺平；我当时问他，你应该不是一开始就选择躺平的，这里应该有一个过程，然后有了最后的选择是躺平；最后他谈论到是因为生了一次病，导致他去重新思考意义在哪里，然后选择了躺平</p>
+<h2 id="公司内部培训"><a href="#公司内部培训" class="headerlink" title="公司内部培训"></a>公司内部培训</h2><p>今年做了不少技术培训分享：</p>
+<ul>
+<li>  Linux 基础及常用命令</li>
+<li>  C 语言、标准库及源码</li>
+<li>  GCC 编译器</li>
+<li>  LVGL 使用及源码</li>
+<li>  VSCode 使用</li>
+<li>  Markdown 使用</li>
+<li>  GoogleTest 使用</li>
+<li>  Docker 上手</li>
+<li>  DBus 使用</li>
+<li>  内部框架及代码规范</li>
+<li>  带读英文书：<span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8xNzg3ODU0Lw==">An Introduction to GCC<i class="fa fa-external-link-alt"></i></span></li>
+<li>  Vim 培训</li>
+<li>  …</li>
+</ul>
+<p>有个学习方法叫<span class="exturl" data-url="aHR0cHM6Ly93aWtpLm1iYWxpYi5jb20vd2lraS8lRTglQjQlQjklRTYlOUIlQkMlRTUlQUQlQTYlRTQlQjklQTAlRTYlQjMlOTU=">费曼学习法<i class="fa fa-external-link-alt"></i></span>，核心是把你学的内容用你的语言表达出来；每次分享都会逼得我把知识梳理一遍，其实培训收益最大的是我；其次是他们；培训中间也会有其他的问题：</p>
+<ul>
+<li>  有些人听完之后，没有去练习；布置点作业？</li>
+<li>  培训文档，有些人都不会看完一遍，就跑来问问题，感觉像个智障</li>
+</ul>
+<p>后面多点互动，多用他们常用的东西关联上，培训质量上提升，关注培训人员吸收效果</p>
+<h2 id="书单"><a href="#书单" class="headerlink" title="书单"></a>书单</h2><ul>
+<li>  聊聊架构</li>
+<li>  SCAPP</li>
+<li>  Linux 环境编程</li>
+<li>  Ffmpeg 从入门到精通</li>
+<li>  An Introduction to GCC 英文版</li>
+<li>  Unix 传奇</li>
+<li>  创业维艰</li>
+<li>  权力的转移</li>
+<li>  原则</li>
+</ul>
+<p>有些只看了部分，还有公司发的书。</p>
+<h2 id="关于-Rust"><a href="#关于-Rust" class="headerlink" title="关于 Rust"></a>关于 Rust</h2><p>Rust 吸引我的地方：</p>
+<ul>
+<li>  生产力强：能很快的构建一个产品原型来验证，有 Python 一样的生产力</li>
+<li>  安全：编译过了基本不会有内存问题，还有媲美 C/C++一样的性能</li>
+<li>  难：有句话叫“因为山在那里”，换种方式是：知识点多，其实是集合了编程语言的最佳实践，是语言发展到一定程度的产物</li>
+<li>  生态也在蓬勃发展：动不动重写个操作系统，重写个数据库，重写个 web 框架，重写个引擎之类的。会看到一些产品的原型，一点点发展起来，遇到什么问题，用什么方案</li>
+</ul>
+<p>在公司尝试用 rust 写了个小工具，实现原型很快；对 Rust 的掌握程度，稳中有升，明年继续</p>
+<h2 id="关于英语"><a href="#关于英语" class="headerlink" title="关于英语"></a>关于英语</h2><p>今年没有怎么刻意去学习，积累：</p>
+<ul>
+<li>  刷刷感兴趣的 YouTube</li>
+<li>  每天逛逛 Reddit，刷刷 github 点赞排行榜项目</li>
+<li>  看文档尽量看英文文档</li>
+<li>  遇到问题尽量用英文去 Google 搜索；</li>
+</ul>
+<p>遇到不认识的还是不认识，需要去查；今年的英文文档阅读量上到了一个新的台阶，也刷了几本英文技术书，明年明继续努力，预定要刷的几本英文书</p>
+<h2 id="关于源码"><a href="#关于源码" class="headerlink" title="关于源码"></a>关于源码</h2><p>代码看多了，你会发现，好的代码大多都差不多，坏的代码千奇百怪，</p>
+<p>人也是个输入、输出系统，如果你输入的都是些简单的示例 demo 代码，那你输出的大致也就是这些，也会有浮动的空间。所以给自己输入些优秀的代码很有必要。然后写了个总结：<a href="https://wshibin.github.io/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/">阅读源码的技巧 </a></p>
+<h2 id="关于性格"><a href="#关于性格" class="headerlink" title="关于性格"></a>关于性格</h2><p>多年前我也经常健身，跑步，骑车，后来我看到了一个莽夫（身上有些肌肉，和别人杠起来就会动手的那种，做事也很暴力）；我突然在他身上看到了我的影子：性格被这些粗暴了运动影响了，后来运动就越来越少了。</p>
+<p>当我跳出一个坑的时候，又会跳到另一个坑。由于长期受到 Bug 的影响，有问题都是直奔主题的，所以性格也被强化了。就成了直男，这点不太好</p>
+<h2 id="程序员的焦虑"><a href="#程序员的焦虑" class="headerlink" title="程序员的焦虑"></a>程序员的焦虑</h2><p>突然就 30 了</p>
+<p>新人适合做业务，有经验的适合做架构，做基础设施</p>
+<h2 id="Linux-桌面系统"><a href="#Linux-桌面系统" class="headerlink" title="Linux 桌面系统"></a>Linux 桌面系统</h2><p>切换到 Linux 桌面系统失败</p>
+<h1 id="2022-继续"><a href="#2022-继续" class="headerlink" title="2022 继续"></a>2022 继续</h1><ul>
+<li>  专利</li>
+<li>  培训、分享、输出</li>
+<li>  Rust</li>
+<li>  源码</li>
+<li>  书单</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Summarize</category>
+      </categories>
+      <tags>
+        <tag>Summarize</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Work】当电脑的时间被手动修改了会发生什么？</title>
+    <url>/2022/02/13/%E5%BD%93%E7%94%B5%E8%84%91%E7%9A%84%E6%97%B6%E9%97%B4%E8%A2%AB%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9%E4%BA%86%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<blockquote>
+<p>上周同事遇到了一个bug，程序中使用了一个线程等待函数<code>int pthread_cond_timedwait(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, const struct timespec *restrict abstime);</code>，而其中最后一个参数<code>struct timespec</code>是个时间点。引发bug的原因是另一个程序把系统的时间改了，使得这个线程卡在那里一直等待。</p>
+</blockquote>
+<p><strong>那如果我把电脑上的时间手动改成了一年前，会发生什么？测试记录下</strong></p>
+<h2 id="Mail邮箱中的账号需要我重新去登录"><a href="#Mail邮箱中的账号需要我重新去登录" class="headerlink" title="Mail邮箱中的账号需要我重新去登录"></a>Mail邮箱中的账号需要我重新去登录</h2><img src="/images/work/image-20210102080433136.png" alt="image-20210102080433136" style="zoom:50%;" />
+
+<h2 id="Calendar日历应用提示"><a href="#Calendar日历应用提示" class="headerlink" title="Calendar日历应用提示"></a>Calendar日历应用提示</h2><img src="/images/work/image-20210102080901798.png" alt="image-20210102080901798" style="zoom:50%;" />
+
+<h2 id="Safari和Google-Chrome浏览器禁止我打开网页，并提示我电脑的时间错了"><a href="#Safari和Google-Chrome浏览器禁止我打开网页，并提示我电脑的时间错了" class="headerlink" title="Safari和Google Chrome浏览器禁止我打开网页，并提示我电脑的时间错了"></a>Safari和Google Chrome浏览器禁止我打开网页，并提示我电脑的时间错了</h2><p>也能访问，它的提示是让我明白有风险。</p>
+<img src="/images/work/image-20210102080215885.png" alt="image-20210102080215885" style="zoom:50%;" />
+
+<h2 id="某些付费软件，试用过期现在又能用了"><a href="#某些付费软件，试用过期现在又能用了" class="headerlink" title="某些付费软件，试用过期现在又能用了"></a>某些付费软件，试用过期现在又能用了</h2><p>🙀🙀🙀惊喜呀</p>
+<img src="/images/work/image-20210102081542447.png" alt="image-20210102081542447" style="zoom:50%;" />
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面有些是应该访问网络，同步数据证书的问题；软件试用过期的应该也是记录了时间点，到时间点才过期。<br>核心问题是：如何去解决这些问题？同事遇到的bug，以及软件试用过期还能用的问题。首先能不能不依赖这个时间点；然后，如果必需依赖的话还可能需要做额外的校验，或者用其它的机制去保证</p>
+]]></content>
+      <categories>
+        <category>Work</category>
+      </categories>
+      <tags>
+        <tag>Work</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Work】SQLite: Database is locked</title>
+    <url>/2022/02/13/SQLite-Database-is-locked/</url>
+    <content><![CDATA[<blockquote>
+<p>SQLite 数据库无法写入数据，报错：Database is locked</p>
+</blockquote>
+<p>一般有被锁住，大概率是和并发之类的相关，同时操作数据库出的问题；想想不应该呀，我那个是单线程操作一个SQLite数据库；就去Google找了下资料。找到 <code>fuser</code>命令，可以用来查看那些进程open了这个数据库文件；显示有两个同名的进程，程序被启动了两次，好家伙。然后排查，一个是自己脚本启动的，一个是被dbus唤起的；原因是数据库的进程有初始化的耗时操作，其它进程没有找到脚本启动的那个数据库进程，唤起了一个进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ fuser xxx.db</span><br></pre></td></tr></table></figure>
+
+<p>后续有时间在深入研究</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTUxMDI2L2hvdy1kby1pLXVubG9jay1hLXNxbGl0ZS1kYXRhYmFzZQ==">https://stackoverflow.com/questions/151026/how-do-i-unlock-a-sqlite-database<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc3FsaXRlLm9yZy9sb2NraW5ndjMuaHRtbA==">https://www.sqlite.org/lockingv3.html<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Work</category>
+      </categories>
+      <tags>
+        <tag>Work</tag>
+        <tag>datebase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】我以前不太信命</title>
+    <url>/2022/02/14/%E6%88%91%E4%BB%A5%E5%89%8D%E4%B8%8D%E5%A4%AA%E4%BF%A1%E5%91%BD/</url>
+    <content><![CDATA[<blockquote>
+<p>过年回家，免不了聚会，有次和儿时的小伙伴吃宵夜，说了一句话：你在我们这批人里面混的算还可以的了。我说：好些人30多个W、50多个W，我算比较惨的，隔壁邻居谁谁谁去了字节，多少多少钱；我哪个亲戚的外甥去了华为。他说：你不能和他们比。我这时把范围放大些想想，他说的是对的。记录下</p>
+</blockquote>
+<p>todo…</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
       </tags>
   </entry>
 </search>

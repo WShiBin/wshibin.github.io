@@ -185,8 +185,8 @@ body {
   box-sizing: border-box;
   color: var(--text-color);
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1em;
-  line-height: 2;
+  font-size: 16px;
+  line-height: 1.6;
   min-height: 100%;
   position: relative;
   transition: padding 0.2s ease-in-out;
@@ -273,7 +273,7 @@ dd {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  font-size: 0.875em;
+  font-size: 14px;
   margin: 0 0 20px;
   width: 100%;
 }
@@ -491,7 +491,7 @@ pre {
 }
 figure.highlight,
 pre {
-  line-height: 1.6;
+  line-height: 1.4;
   margin: 0 auto 20px;
 }
 figure.highlight figcaption,
@@ -500,7 +500,7 @@ pre figcaption {
   background: var(--highlight-gutter-background);
   color: var(--highlight-foreground);
   display: flow-root;
-  font-size: 0.875em;
+  font-size: 14px;
   line-height: 1.2;
   padding: 0.5em;
 }
@@ -521,7 +521,7 @@ code {
 }
 code {
   border-radius: 3px;
-  font-size: 0.875em;
+  font-size: 14px;
   padding: 2px 4px;
   overflow-wrap: break-word;
 }

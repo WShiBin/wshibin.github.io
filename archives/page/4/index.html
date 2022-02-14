@@ -119,7 +119,6 @@
 
       
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -499,15 +498,41 @@
           <blockquote>
 <p>写这篇文章是为了自己在修改本站时，方便查找相关文档</p>
 </blockquote>
-<p>本站基于：Hexo(Next主题) + Github Pages</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/01/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<p>本站基于：Hexo(NexT 主题) + Github Pages</p>
+<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><ul>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo<i class="fa fa-external-link-alt"></i></span>：Blog 框架</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">NexT-theme<i class="fa fa-external-link-alt"></i></span>：Hexo 博客主题</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">Github Pages<i class="fa fa-external-link-alt"></i></span>：Github 提供的免费网站服务器</li>
+</ul>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">https://hexo.io/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>相关常用命令：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo version                                <span class="comment"># version</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo --<span class="built_in">help</span>                                 <span class="comment"># help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo sub_cmd                                <span class="comment"># 子命令help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo init [folder]                          <span class="comment"># 新建网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;                   <span class="comment"># 新建页面 layout:post(Default)/page/draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page --path about/me <span class="string">&quot;About me&quot;</span>    <span class="comment"># Customize the path of the post</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo publish [layout] &lt;filename&gt;            <span class="comment"># publish draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo render file_name                       <span class="comment"># 把md文件渲染成html文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo list &lt;<span class="built_in">type</span>&gt;                            <span class="comment"># 显示网站相关信息types: page, post, route, tag, category</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server/s                               <span class="comment"># 本地运行</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate/g                             <span class="comment"># 生成网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy/d                               <span class="comment"># 部署</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean                                  <span class="comment"># 清理生成的网站和cache</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="NexT-主题"><a href="#NexT-主题" class="headerlink" title="NexT 主题"></a>NexT 主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p>
+<p>选这个主题是因为简洁，所以在配置的时候把一些花里胡哨的都屏蔽了</p>
+<p><strong>安装：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>更新主题：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm update hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>主页修改为文章归档：</strong></p>
+<p>当用户一进入到主页应该显示所有文章大概全貌，所以把默认的主页换成了<strong>文章归档</strong>页</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml文件：</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">/</span> <span class="comment"># 改成/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">archives</span> <span class="comment"># 改成archives</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>文章间距调整</strong>：</p>
+<h2 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h2><p><span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">https://pages.github.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>网站仓库地址：</strong></p>
+<p><code>https://github.com/$&#123;user_name&#125;/$&#123;user_name&#125;.github.io</code></p>
+<p><strong>Blog 地址：</strong></p>
+<p><code>https://$&#123;user_name&#125;.github.io/</code></p>
+<p><strong>限制：</strong></p>
+<ul>
+<li>  网站限制大小为 1GB</li>
+<li>  网站内单个文件限制大小为 50MB</li>
+<li>  一个月流量限制为 100GB，可以开 CDN</li>
+</ul>
+
       
     </div>
 
@@ -585,7 +610,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>Note:以前写的文章，搬迁过来 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f40f984c1212">我为什么喜欢用键盘/快捷键,而不是鼠标?</a></p>
+<p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9mNDBmOTg0YzEyMTI=">我为什么喜欢用键盘/快捷键,而不是鼠标?<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <blockquote>
 <p>首先, 这有个前提,我是一名Android程序员,然后,基本不打游戏,也很少做画图这种设计师该做的事,所以,不可能去强迫一个人用键盘/触摸板去打LOL, 也不可能去强迫一个名设计师用触摸板去画图, 结果可想而知. 当然, 一般设计师也会使用大量的快捷键.</p>

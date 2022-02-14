@@ -362,36 +362,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>【Hexo】本站搭建相关文档</title>
-    <url>/2020/05/01/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<blockquote>
-<p>写这篇文章是为了自己在修改本站时，方便查找相关文档</p>
-</blockquote>
-<p>本站基于：Hexo(Next主题) + Github Pages</p>
-<span id="more"></span>
-
-<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><ul>
-<li>Hexo：<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">doc<i class="fa fa-external-link-alt"></i></span></li>
-<li>Next-theme：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">repo<i class="fa fa-external-link-alt"></i></span></li>
-<li>Github：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4vd3NoaWJpbi5naXRodWIuaW8=">repo<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>相关常用命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo version                                <span class="comment"># version</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo --<span class="built_in">help</span>                                 <span class="comment"># help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo sub_cmd                                <span class="comment"># 子命令help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo init [folder]                          <span class="comment"># 新建网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;                   <span class="comment"># 新建页面 layout:post(Default)/page/draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page --path about/me <span class="string">&quot;About me&quot;</span>    <span class="comment"># Customize the path of the post</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo publish [layout] &lt;filename&gt;            <span class="comment"># publish draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo render file_name                       <span class="comment"># 把md文件渲染成html文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo list &lt;<span class="built_in">type</span>&gt;                            <span class="comment"># 显示网站相关信息types: page, post, route, tag, category</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server/s                               <span class="comment"># 本地运行</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate/g                             <span class="comment"># 生成网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy/d                               <span class="comment"># 部署</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean                                  <span class="comment"># 清理生成的网站和cache</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Next主题"><a href="#Next主题" class="headerlink" title="Next主题"></a>Next主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p>
-<p>安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
-
-<p>update</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm update hexo-theme-next</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next theme</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Mac】Homebrew上手教程</title>
     <url>/2020/05/11/Homebrew/</url>
     <content><![CDATA[<h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><blockquote>
@@ -647,6 +617,52 @@
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Hexo】本站搭建相关文档</title>
+    <url>/2020/05/01/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<blockquote>
+<p>写这篇文章是为了自己在修改本站时，方便查找相关文档</p>
+</blockquote>
+<p>本站基于：Hexo(NexT 主题) + Github Pages</p>
+<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><ul>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo<i class="fa fa-external-link-alt"></i></span>：Blog 框架</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">NexT-theme<i class="fa fa-external-link-alt"></i></span>：Hexo 博客主题</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">Github Pages<i class="fa fa-external-link-alt"></i></span>：Github 提供的免费网站服务器</li>
+</ul>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">https://hexo.io/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>相关常用命令：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo version                                <span class="comment"># version</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo --<span class="built_in">help</span>                                 <span class="comment"># help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo sub_cmd                                <span class="comment"># 子命令help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo init [folder]                          <span class="comment"># 新建网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;                   <span class="comment"># 新建页面 layout:post(Default)/page/draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page --path about/me <span class="string">&quot;About me&quot;</span>    <span class="comment"># Customize the path of the post</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo publish [layout] &lt;filename&gt;            <span class="comment"># publish draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo render file_name                       <span class="comment"># 把md文件渲染成html文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo list &lt;<span class="built_in">type</span>&gt;                            <span class="comment"># 显示网站相关信息types: page, post, route, tag, category</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server/s                               <span class="comment"># 本地运行</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate/g                             <span class="comment"># 生成网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy/d                               <span class="comment"># 部署</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean                                  <span class="comment"># 清理生成的网站和cache</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="NexT-主题"><a href="#NexT-主题" class="headerlink" title="NexT 主题"></a>NexT 主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p>
+<p>选这个主题是因为简洁，所以在配置的时候把一些花里胡哨的都屏蔽了</p>
+<p><strong>安装：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>更新主题：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm update hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>主页修改为文章归档：</strong></p>
+<p>当用户一进入到主页应该显示所有文章大概全貌，所以把默认的主页换成了<strong>文章归档</strong>页</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml文件：</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">/</span> <span class="comment"># 改成/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">archives</span> <span class="comment"># 改成archives</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>文章间距调整</strong>：</p>
+<h2 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h2><p><span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">https://pages.github.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>网站仓库地址：</strong></p>
+<p><code>https://github.com/$&#123;user_name&#125;/$&#123;user_name&#125;.github.io</code></p>
+<p><strong>Blog 地址：</strong></p>
+<p><code>https://$&#123;user_name&#125;.github.io/</code></p>
+<p><strong>限制：</strong></p>
+<ul>
+<li>  网站限制大小为 1GB</li>
+<li>  网站内单个文件限制大小为 50MB</li>
+<li>  一个月流量限制为 100GB，可以开 CDN</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next theme</tag>
       </tags>
   </entry>
   <entry>
@@ -945,46 +961,46 @@
     <url>/2021/01/16/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<!-- # libdbus Overview -->
 
-<p>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
+<p>网站：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="What-is-D-Bus"><a href="#What-is-D-Bus" class="headerlink" title="What is D-Bus?"></a>What is D-Bus?</h2><blockquote>
 <p>D-Bus is <strong>a message bus system</strong>, a simple way for <strong>applications to talk to one another</strong>. In addition to interprocess communication, D-Bus helps <strong>coordinate process lifecycle</strong>; it makes it simple and reliable to code a “<strong>single instance</strong>“ application or daemon, and to <strong>launch applications</strong> and daemons on demand when their services are needed.</p>
 </blockquote>
 <h3 id="概括："><a href="#概括：" class="headerlink" title="概括："></a>概括：</h3><ul>
 <li>一个消息总线系统<ul>
-<li>一对多(signal)：类似于广播/订阅，可以携带消息数据，没有应答确认</li>
-<li>一对一(method call)：有应答确认</li>
+<li>  一对多(signal)：类似于广播/订阅，可以携带消息数据，没有应答确认</li>
+<li>  一对一(method call)：有应答确认</li>
 </ul>
 </li>
 <li>其他功能<ul>
-<li>启动其它进程</li>
-<li>支持单个实例进程</li>
-<li>在app退出的时候,通知程序</li>
+<li>  启动其它进程</li>
+<li>  支持单个实例进程</li>
+<li>  在 app 退出的时候,通知程序</li>
 </ul>
 </li>
 </ul>
-<h2 id="系统bus和会话bus"><a href="#系统bus和会话bus" class="headerlink" title="系统bus和会话bus"></a>系统bus和会话bus</h2><p><strong>system bus</strong>：在引导时就会启动，应用场景（待定）<br><strong>session bus</strong>：在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
+<h2 id="系统-bus-和会话-bus"><a href="#系统-bus-和会话-bus" class="headerlink" title="系统 bus 和会话 bus"></a>系统 bus 和会话 bus</h2><p><strong>system bus</strong>：在引导时就会启动，应用场景（待定）<br><strong>session bus</strong>：在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
 <h2 id="Low-level-API-vs-high-level-binding-APIs"><a href="#Low-level-API-vs-high-level-binding-APIs" class="headerlink" title="Low-level API vs high-level binding APIs"></a>Low-level API vs high-level binding APIs</h2><p>low-level API：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">libdbus<i class="fa fa-external-link-alt"></i></span><br>high-level binding APIs：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1nbGliLw==">GLib<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kb2MucXQuaW8vcXQtNS9xdGRidXMtaW5kZXguaHRtbA==">Qt<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1weXRob24v">Python<i class="fa fa-external-link-alt"></i></span>, Mono, Java, or whatever.</p>
-<p><strong>区别:</strong></p>
+<p><strong>区别：</strong></p>
 <ul>
-<li>low-level：依赖少，用起来更加麻烦/复杂,定制程度可以更高,更加适合自己封装,改造</li>
-<li>high-level：用起来更加方便</li>
+<li>  low-level：依赖少，用起来更加麻烦/复杂,定制程度可以更高,更加适合自己封装,改造</li>
+<li>  high-level：用起来更加方便</li>
 </ul>
 <h2 id="Version-numbers"><a href="#Version-numbers" class="headerlink" title="Version numbers"></a>Version numbers</h2><blockquote>
-<p>软件版本格式:major.<strong>minor</strong>.patch</p>
+<p>软件版本格式：major.<strong>minor</strong>.patch</p>
 </blockquote>
-<p>minor version 是偶数的是stable版本,奇数的是dev版本<br>比如, development snapshots: 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions: 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
-<h2 id="D-Bus中的概念"><a href="#D-Bus中的概念" class="headerlink" title="D-Bus中的概念"></a>D-Bus中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>:</p>
+<p>minor version 是偶数的是 stable 版本,奇数的是 dev 版本<br>比如, development snapshots： 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions： 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
+<h2 id="D-Bus-中的概念"><a href="#D-Bus-中的概念" class="headerlink" title="D-Bus 中的概念"></a>D-Bus 中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>：</p>
 <ul>
-<li>启动bus daemon, 生成bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
-<li>获取bus daemon的connect连接, 注册bus name(com.mycompany.TextEditor)</li>
-<li>创建msg, 发给哪个bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
-<li>发送msg到bus daemon</li>
-<li>bus daemon发送到相应的bus name进程</li>
-<li>接收到消息后返回数据</li>
-<li>…</li>
+<li>  启动 bus daemon, 生成 bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
+<li>  获取 bus daemon 的 connect 连接, 注册 bus name(com.mycompany.TextEditor)</li>
+<li>  创建 msg, 发给哪个 bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
+<li>  发送 msg 到 bus daemon</li>
+<li>  bus daemon 发送到相应的 bus name 进程</li>
+<li>  接收到消息后返回数据</li>
+<li>  …</li>
 </ul>
 <p><img src="/images/dbus/Xnip2021-01-15_23-03-16.jpg"></p>
-<p><strong>相应概念:</strong></p>
+<p><strong>相应概念：</strong></p>
 <p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
 <table>
 <thead>
@@ -1029,55 +1045,53 @@
 <blockquote>
 <h3 id="D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface"><a href="#D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface" class="headerlink" title="D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?"></a><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbCNpZG0zOQ==">D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?<i class="fa fa-external-link-alt"></i></span></h3><p>If you imagine a C++ program that implements a network service, then the bus name is the hostname of the computer running this C++ program, the object path is a C++ object instance pointer, and an interface is a C++ class (a pure virtual or abstract class, to be exact).<br>In Java terms, the object path is an object reference, and an interface is a Java interface.<br>People get confused because if they write an application with a single object instance and a single interface, then the bus name, object path, and interface look redundant. For example, you might have a text editor that uses the bus name org.freedesktop.TextEditor, has a global singleton object called /org/freedesktop/TextEditor, and that singleton object could implement the interface org.freedesktop.TextEditor.<br>However, a text editor application could as easily own multiple bus names (for example, org.kde.KWrite in addition to generic TextEditor), have multiple objects (maybe /org/kde/documents/4352 where the number changes according to the document), and each object could implement multiple interfaces, such as org.freedesktop.DBus.Introspectable, org.freedesktop.BasicTextField, org.kde.RichTextDocument.</p>
 </blockquote>
-<h2 id="D-Bus消息类型"><a href="#D-Bus消息类型" class="headerlink" title="D-Bus消息类型"></a>D-Bus消息类型</h2><p>消息通过D-Bus在进程间传递。有四类消息：</p>
+<h2 id="D-Bus-消息类型"><a href="#D-Bus-消息类型" class="headerlink" title="D-Bus 消息类型"></a>D-Bus 消息类型</h2><p>消息通过 D-Bus 在进程间传递。有四类消息：</p>
 <ul>
-<li>Method call消息：将触发对象的一个method</li>
-<li>Method return消息：触发的方法返回的结果</li>
-<li>Signal消息：通知，可以看作为事件消息。</li>
-<li>Error消息：触发的方法返回一个异常</li>
+<li>  Method call 消息：将触发对象的一个 method</li>
+<li>  Method return 消息：触发的方法返回的结果</li>
+<li>  Signal 消息：通知，可以看作为事件消息。</li>
+<li>  Error 消息：触发的方法返回一个异常</li>
 </ul>
-<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h3 id="Command-line命令行工具"><a href="#Command-line命令行工具" class="headerlink" title="Command-line命令行工具"></a>Command-line命令行工具</h3><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>：Message bus daemon</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>：从shell脚本来启动message bus工具</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>：发送消息到message bus</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>：debug probe to print message bus messages</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>：生成UUIDs工具</li>
+<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h3 id="Command-line-命令行工具"><a href="#Command-line-命令行工具" class="headerlink" title="Command-line 命令行工具"></a>Command-line 命令行工具</h3><ul>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>：Message bus daemon</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>：从 shell 脚本来启动 message bus 工具</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>：发送消息到 message bus</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>：debug probe to print message bus messages</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>：生成 UUIDs 工具</li>
 </ul>
 <p>使用示例：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## launch message bus</span></span><br><span class="line">$ dbus-launch --sh-syntax</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-send</span></span><br><span class="line"><span class="comment"># send signal</span></span><br><span class="line">$ dbus-send --<span class="built_in">type</span>=signal /  org.signal.poweroff.test_signal string:<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># send message_call</span></span><br><span class="line">$ dbus-send --dest=org.freedesktop.ExampleName               \</span><br><span class="line">            /org/freedesktop/sample/object/name              \</span><br><span class="line">            org.freedesktop.ExampleInterface.ExampleMethod   \</span><br><span class="line">            int32:47 string:<span class="string">&#x27;hello world&#x27;</span> double:65.32       \</span><br><span class="line">            array:string:<span class="string">&quot;1st item&quot;</span>,<span class="string">&quot;next item&quot;</span>,<span class="string">&quot;last item&quot;</span>  \</span><br><span class="line">            dict:string:int32:<span class="string">&quot;one&quot;</span>,1,<span class="string">&quot;two&quot;</span>,2,<span class="string">&quot;three&quot;</span>,3      \</span><br><span class="line">            variant:int32:-8                                 \</span><br><span class="line">            objpath:/org/freedesktop/sample/object/name</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-uuidgen</span></span><br><span class="line"><span class="comment"># it just prints a new uuid</span></span><br><span class="line">$ dbus-uuidgen</span><br><span class="line">ebb40ad49f9d4d8f44faa3bc5fffdc27</span><br><span class="line"></span><br><span class="line"><span class="comment"># prints the machine UUID by default</span></span><br><span class="line">$ dbus-uuidgen --get</span><br><span class="line">5b86dc18cce752c5404d2f0a5ffd1885</span><br><span class="line"></span><br><span class="line">$ dbus-uuidgen --ensure=/usr/<span class="built_in">local</span>/var/lib/dbus/machine-id</span><br></pre></td></tr></table></figure>
 
-<p>dbus-daemon启动脚本:</p>
+<p>dbus-daemon 启动脚本：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">## test for an existing bus daemon, just to be safe</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="comment">## if not found, launch a new one</span></span><br><span class="line">    <span class="built_in">eval</span> $(dbus-launch --sh-syntax --exit-with-session)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;D-Bus per-session daemon address is: <span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="Graphical图形调试工具"><a href="#Graphical图形调试工具" class="headerlink" title="Graphical图形调试工具"></a>Graphical图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Graphical-图形调试工具"><a href="#Graphical-图形调试工具" class="headerlink" title="Graphical 图形调试工具"></a>Graphical 图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
 <p><img src="/images/dbus/d-feet-overview.png" alt="d-feet-overview.png"></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2J1c3RsZQ==">Bustle<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="libdbus使用实例："><a href="#libdbus使用实例：" class="headerlink" title="libdbus使用实例："></a>libdbus使用实例：</h2><h3 id="Method-Call消息例子："><a href="#Method-Call消息例子：" class="headerlink" title="Method Call消息例子："></a>Method Call消息例子：</h3><p>场景：launcher访问db_server获取设备信息，比如：获取cpu_id。launcher作为客户端，db_server做为服务端</p>
+<h2 id="libdbus-使用实例："><a href="#libdbus-使用实例：" class="headerlink" title="libdbus 使用实例："></a>libdbus 使用实例：</h2><h3 id="Method-Call-消息例子："><a href="#Method-Call-消息例子：" class="headerlink" title="Method Call 消息例子："></a>Method Call 消息例子：</h3><p>场景：launcher 访问 db_server 获取设备信息，比如：获取 cpu_id。launcher 作为客户端，db_server 做为服务端</p>
 <p><img src="/images/dbus/image-20210823144204174.png" alt="image-20210823144204174"></p>
-<p>launcher.c代码：</p>
+<p>launcher.c 代码：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_LAUNCHER <span class="meta-string">&quot;com.vdiscovery.launcher&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bus_name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="comment">// iface</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="number">0</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_LAUNCHER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.创建消息</span></span><br><span class="line">    DBusMessage* req = dbus_message_new_method_call(</span><br><span class="line">        DBUS_BUS_NAME_DB_SERVER,</span><br><span class="line">        DBUS_OJBECT_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_IFACE_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.1.添加携带信息</span></span><br><span class="line">    <span class="keyword">char</span>* cpu_id = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    dbus_message_append_args(req, DBUS_TYPE_STRING, &amp;cpu_id, DBUS_TYPE_INVALID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取回应消息</span></span><br><span class="line">    DBusMessage* reply     = dbus_connection_send_with_reply_and_block(conn, req, <span class="number">1000</span> * <span class="number">4</span>, &amp;err);</span><br><span class="line">    <span class="keyword">char</span>*        reply_str = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_message_get_args(reply, &amp;err, DBUS_TYPE_STRING, &amp;reply_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;set_cpu_id:%s, reply:reply_str = %s\n&quot;</span>, cpu_id, reply_str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>db_server.c代码：</p>
+<p>db_server.c 代码：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用唯一表示：name</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="meta-string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// device_info</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="meta-string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="meta-string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="meta-string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="meta-string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="meta-string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// kv store</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_KV_STORE <span class="meta-string">&quot;/com/vdiscovery/db_server/kv_store&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_IFACE_DB_SERVER_KV_STORE <span class="meta-string">&quot;com.vdiscovery.db_server.kv_store&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_PUT <span class="meta-string">&quot;put&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_GET <span class="meta-string">&quot;get&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_DELETE <span class="meta-string">&quot;delete&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// content</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DBUS_OJBECT_DB_SERVER_CONTENT <span class="meta-string">&quot;/com/vdiscovery/db_server/content&quot;</span></span></span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        imei_str = <span class="string">&quot;imei:fasdfasdflfasdk&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;imei_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply      = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        cpu_id_str = <span class="string">&quot;cpu_id:231412341&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;cpu_id_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_imei(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="keyword">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="keyword">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">device_info_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125;  <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">kv_store_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DBusHandlerResult <span class="title">content_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="keyword">void</span>* user_data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusObjectPathVTable g_device_info_table = &#123;.message_function = device_info_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_kv_table          = &#123;.message_function = kv_store_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_content_table     = &#123;.message_function = content_handler&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dbus_bool_t</span>     ret = <span class="literal">false</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_DB_SERVER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.注册自己的Object</span></span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_DEVICE_INFO, &amp;g_device_info_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_KV_STORE, &amp;g_kv_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_CONTENT, &amp;g_content_table, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to register a object path for &#x27;TestObject&#x27;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.read/write/despatch消息</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        dbus_connection_read_write_dispatch(conn, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Signal消息例子："><a href="#Signal消息例子：" class="headerlink" title="Signal消息例子："></a>Signal消息例子：</h3><p>todo：</p>
-<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><h2 id="启动其它服务："><a href="#启动其它服务：" class="headerlink" title="启动其它服务："></a>启动其它服务：</h2><h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="我当时是怎么学习dbus的？"><a href="#我当时是怎么学习dbus的？" class="headerlink" title="我当时是怎么学习dbus的？"></a>我当时是怎么学习dbus的？</h3><p>核心结构体<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvZ3JvdXBfX0RCdXNDb25uZWN0aW9uLmh0bWw=">DBusConnection<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvc3RydWN0REJ1c01lc3NhZ2UuaHRtbA==">DBusMessage<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Signal-消息例子："><a href="#Signal-消息例子：" class="headerlink" title="Signal 消息例子："></a>Signal 消息例子：</h3><p>todo：</p>
+<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><h2 id="启动其它服务："><a href="#启动其它服务：" class="headerlink" title="启动其它服务："></a>启动其它服务：</h2><h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="我当时是怎么学习-dbus-的？"><a href="#我当时是怎么学习-dbus-的？" class="headerlink" title="我当时是怎么学习 dbus 的？"></a>我当时是怎么学习 dbus 的？</h3><p>核心结构体<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvZ3JvdXBfX0RCdXNDb25uZWN0aW9uLmh0bWw=">DBusConnection<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvc3RydWN0REJ1c01lc3NhZ2UuaHRtbA==">DBusMessage<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">D-Bus FAQ<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？"><a href="#Dbus是如果连接上dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就get到了？" class="headerlink" title="Dbus是如果连接上dbus-daemon，调用dbus_bus_get(DBUS_BUS_SESSION, &amp;err);就get到了？"></a>Dbus是如果连接上dbus-daemon，调用<code>dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</code>就get到了？</h3><p>换一种方式：如果把参数传给程序</p>
+<h3 id="Dbus-是如果连接上-dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就-get-到了？"><a href="#Dbus-是如果连接上-dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就-get-到了？" class="headerlink" title="Dbus 是如果连接上 dbus-daemon，调用dbus_bus_get(DBUS_BUS_SESSION, &amp;err);就 get 到了？"></a>Dbus 是如果连接上 dbus-daemon，调用<code>dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</code>就 get 到了？</h3><p>换一种方式：如果把参数传给程序</p>
 <ul>
-<li>参数写死</li>
-<li>main参数<code>argv</code></li>
-<li>特定环境变量（程序自定义）</li>
-<li>配置文件（配置非常多）</li>
+<li>  参数写死</li>
+<li>  main 参数<code>argv</code></li>
+<li>  特定环境变量（程序自定义）</li>
+<li>  配置文件（配置非常多）</li>
 </ul>
-<h3 id="DbusMessage："><a href="#DbusMessage：" class="headerlink" title="DbusMessage："></a>DbusMessage：</h3><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
-<li>网站:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
-<li>dbus-specification规范: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>D-Bus FAQ: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>README: <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
-<li>相关中文介绍文章:<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
+<h3 id="DbusMessage："><a href="#DbusMessage：" class="headerlink" title="DbusMessage："></a>DbusMessage：</h3><h2 id="References："><a href="#References：" class="headerlink" title="References："></a>References：</h2><ul>
+<li>  网站：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
+<li>  dbus-specification 规范：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>  D-Bus FAQ：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>  README：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
+<li>  相关中文介绍文章：<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 ]]></content>
       <categories>
@@ -1115,6 +1129,61 @@
       <tags>
         <tag>C</tag>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】2020总结，2021展望</title>
+    <url>/2021/02/22/2020%E6%80%BB%E7%BB%93-2021%E5%B1%95%E6%9C%9B/</url>
+    <content><![CDATA[<h1 id="2020-总结"><a href="#2020-总结" class="headerlink" title="2020 总结"></a>2020 总结</h1><ul>
+<li>  疫情</li>
+<li>  新装备</li>
+<li>  用 qt 写了个桌面项目</li>
+<li>  组织公司内部培训</li>
+<li>  当导师带新人</li>
+<li>  学习 Rust，后来写了个 1000 多行的小玩具</li>
+<li>  参加 Rust China Conf 2020</li>
+<li>  公司改革，架构调整</li>
+<li>  成为 UP 主，在 B 站发视频</li>
+<li>  健身房弄伤膝盖</li>
+<li>  关于技术</li>
+</ul>
+<h2 id="疫情："><a href="#疫情：" class="headerlink" title="疫情："></a>疫情：</h2><h2 id="用-qt-写了个桌面项目"><a href="#用-qt-写了个桌面项目" class="headerlink" title="用 qt 写了个桌面项目"></a>用 qt 写了个桌面项目</h2><p>这个项目基本从零开始，不过做的还算比较顺利，做完之后收获比较多:<br>最开始预言这个项目的时候叫上了我，我很纳闷，叫我干啥? 杜工来了句:看看，到时候分个模块写下</p>
+<p>比较顺利的原因在于:</p>
+<ul>
+<li>  参考了别人的软件界面，逻辑</li>
+<li>  跑去一线，实地参观考察</li>
+<li>  qt 开源，示例代码和文档完善(不会就通篇读下文档，在跑跑示例代码，在不去就去翻一下源码)</li>
+<li>  把 qt 中 UI 的部分分给了另外一个同事(ui 的部分对于新手来说，是个大问题，对 UI 控件没有个全面认知，看到复杂的控件都不知道用什么去实现)</li>
+</ul>
+<p>qt 强大的地方在于:一个是 <code>signal &amp; slot</code>；还有一个是它写了大量的库，并且质量很高.cpp 标准库都会来参考 qt 的代码</p>
+<p>收获:</p>
+<p><strong>MVP(英语:minimum viable product)最小可行产品</strong><br>对于预言的项目，最迫切的问题可能是把方案定下来，用什么方式去实现，不是去讨论细节问题，这时候就需要<strong>最小可行性验证</strong>，一种方式性不通，立马去换一个新的方案来做验证</p>
+<h2 id="组织公司内部培训"><a href="#组织公司内部培训" class="headerlink" title="组织公司内部培训"></a>组织公司内部培训</h2><h2 id="当导师带新人"><a href="#当导师带新人" class="headerlink" title="当导师带新人"></a>当导师带新人</h2><h2 id="学习-Rust，后来写了个-1000-多行的小玩具"><a href="#学习-Rust，后来写了个-1000-多行的小玩具" class="headerlink" title="学习 Rust，后来写了个 1000 多行的小玩具"></a>学习 Rust，后来写了个 1000 多行的小玩具</h2><p>偶然看到一条新闻:Rust 是<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS8=">Stack Overflow<i class="fa fa-external-link-alt"></i></span>调查中最收欢迎的语言，就去研究了下:</p>
+<ul>
+<li>  Rust 定位:高性能，安全，并发的系统级别语言</li>
+<li>  编程范式:</li>
+<li>  工具链很好用</li>
+<li>  上手成本相对偏高</li>
+<li>  不会成为 C/Java/JavaScript/Python 一类大众语言</li>
+<li>  生态还差了点</li>
+</ul>
+<h2 id="参加-Rust-China-Conf-2020"><a href="#参加-Rust-China-Conf-2020" class="headerlink" title="参加 Rust China Conf 2020"></a>参加 Rust China Conf 2020</h2><ul>
+<li>  张汉东:回忆 rust5 年的发展(现在有提升多少，你就知道以前的多烂)</li>
+<li>  Jit：即时编译</li>
+<li>  算法优化，存储优化:对整个的处理过程(原理)有足够的认识</li>
+<li>  Wasm 性能爆炸，访问系统级别 api，”未来只需要一台计算机”</li>
+</ul>
+<p>技术之外</p>
+<ul>
+<li>  博士也需要查英文字典翻译</li>
+<li>  PPT tips:文字中夹着粗体字，可以观众提高注意力</li>
+</ul>
+<h1 id="2021-展望"><a href="#2021-展望" class="headerlink" title="2021 展望"></a>2021 展望</h1>]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
       </tags>
   </entry>
   <entry>
@@ -1279,61 +1348,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Personal】2020总结，2021展望</title>
-    <url>/2021/02/22/2020%E6%80%BB%E7%BB%93-2021%E5%B1%95%E6%9C%9B/</url>
-    <content><![CDATA[<h1 id="2020-总结"><a href="#2020-总结" class="headerlink" title="2020 总结"></a>2020 总结</h1><ul>
-<li>  疫情</li>
-<li>  新装备</li>
-<li>  用 qt 写了个桌面项目</li>
-<li>  组织公司内部培训</li>
-<li>  当导师带新人</li>
-<li>  学习 Rust，后来写了个 1000 多行的小玩具</li>
-<li>  参加 Rust China Conf 2020</li>
-<li>  公司改革，架构调整</li>
-<li>  成为 UP 主，在 B 站发视频</li>
-<li>  健身房弄伤膝盖</li>
-<li>  关于技术</li>
-</ul>
-<h2 id="疫情："><a href="#疫情：" class="headerlink" title="疫情："></a>疫情：</h2><h2 id="用-qt-写了个桌面项目"><a href="#用-qt-写了个桌面项目" class="headerlink" title="用 qt 写了个桌面项目"></a>用 qt 写了个桌面项目</h2><p>这个项目基本从零开始，不过做的还算比较顺利，做完之后收获比较多:<br>最开始预言这个项目的时候叫上了我，我很纳闷，叫我干啥? 杜工来了句:看看，到时候分个模块写下</p>
-<p>比较顺利的原因在于:</p>
-<ul>
-<li>  参考了别人的软件界面，逻辑</li>
-<li>  跑去一线，实地参观考察</li>
-<li>  qt 开源，示例代码和文档完善(不会就通篇读下文档，在跑跑示例代码，在不去就去翻一下源码)</li>
-<li>  把 qt 中 UI 的部分分给了另外一个同事(ui 的部分对于新手来说，是个大问题，对 UI 控件没有个全面认知，看到复杂的控件都不知道用什么去实现)</li>
-</ul>
-<p>qt 强大的地方在于:一个是 <code>signal &amp; slot</code>；还有一个是它写了大量的库，并且质量很高.cpp 标准库都会来参考 qt 的代码</p>
-<p>收获:</p>
-<p><strong>MVP(英语:minimum viable product)最小可行产品</strong><br>对于预言的项目，最迫切的问题可能是把方案定下来，用什么方式去实现，不是去讨论细节问题，这时候就需要<strong>最小可行性验证</strong>，一种方式性不通，立马去换一个新的方案来做验证</p>
-<h2 id="组织公司内部培训"><a href="#组织公司内部培训" class="headerlink" title="组织公司内部培训"></a>组织公司内部培训</h2><h2 id="当导师带新人"><a href="#当导师带新人" class="headerlink" title="当导师带新人"></a>当导师带新人</h2><h2 id="学习-Rust，后来写了个-1000-多行的小玩具"><a href="#学习-Rust，后来写了个-1000-多行的小玩具" class="headerlink" title="学习 Rust，后来写了个 1000 多行的小玩具"></a>学习 Rust，后来写了个 1000 多行的小玩具</h2><p>偶然看到一条新闻:Rust 是<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS8=">Stack Overflow<i class="fa fa-external-link-alt"></i></span>调查中最收欢迎的语言，就去研究了下:</p>
-<ul>
-<li>  Rust 定位:高性能，安全，并发的系统级别语言</li>
-<li>  编程范式:</li>
-<li>  工具链很好用</li>
-<li>  上手成本相对偏高</li>
-<li>  不会成为 C/Java/JavaScript/Python 一类大众语言</li>
-<li>  生态还差了点</li>
-</ul>
-<h2 id="参加-Rust-China-Conf-2020"><a href="#参加-Rust-China-Conf-2020" class="headerlink" title="参加 Rust China Conf 2020"></a>参加 Rust China Conf 2020</h2><ul>
-<li>  张汉东:回忆 rust5 年的发展(现在有提升多少，你就知道以前的多烂)</li>
-<li>  Jit：即时编译</li>
-<li>  算法优化，存储优化:对整个的处理过程(原理)有足够的认识</li>
-<li>  Wasm 性能爆炸，访问系统级别 api，”未来只需要一台计算机”</li>
-</ul>
-<p>技术之外</p>
-<ul>
-<li>  博士也需要查英文字典翻译</li>
-<li>  PPT tips:文字中夹着粗体字，可以观众提高注意力</li>
-</ul>
-<h1 id="2021-展望"><a href="#2021-展望" class="headerlink" title="2021 展望"></a>2021 展望</h1>]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Debug】GDB上手</title>
     <url>/2021/04/18/GDB-get-start/</url>
     <content><![CDATA[<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9nZGIv">https://www.gnu.org/software/gdb/<i class="fa fa-external-link-alt"></i></span><br>Debugging with GDB:<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2V3YXJlLm9yZy9nZGIvY3VycmVudC9vbmxpbmVkb2NzL2dkYi8=">https://sourceware.org/gdb/current/onlinedocs/gdb/<i class="fa fa-external-link-alt"></i></span></p>
@@ -1463,6 +1477,56 @@
       <tags>
         <tag>Markdown</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>【Work】编程中如何跟人描述Bug</title>
+    <url>/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/</url>
+    <content><![CDATA[<blockquote>
+<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了.</p>
+<p>听别人讲故事和自己去经历这事件区别很大, 本文用来记录</p>
+</blockquote>
+<p>圈子里有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
+<h2 id="如果你遇到了Bug-这时会怎么做"><a href="#如果你遇到了Bug-这时会怎么做" class="headerlink" title="如果你遇到了Bug,这时会怎么做:"></a>如果你遇到了Bug,这时会怎么做:</h2><ol>
+<li>看现象:推测哪里/哪一阶段出了问题</li>
+<li>Google:搜索什么关键词</li>
+<li>看文档:(不熟悉的东西就会去看文档,弄清底下干了什么)</li>
+<li><strong>提问:问有经验的人</strong></li>
+</ol>
+<p>这里主要讨论<strong>提问</strong>:如何跟人去描述问题</p>
+<h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
+<p><strong>正确的流程</strong>:</p>
+<ol>
+<li>表明意图: 在做一个什么功能? 调试什么东西? </li>
+<li>你是如何做的,用到哪些技术,模块,整个流程是怎么样的?</li>
+<li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
+<li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
+</ol>
+<h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
+<p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】编程漫谈</title>
+    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
+    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
+<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
+<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
+<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
   </entry>
   <entry>
     <title>【VSCode】VSCode C/C++环境</title>
@@ -1745,56 +1809,6 @@
       <tags>
         <tag>VSCode</tag>
         <tag>Editor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Personal】编程漫谈</title>
-    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
-    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
-<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
-<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
-<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>【Work】编程中如何跟人描述Bug</title>
-    <url>/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/</url>
-    <content><![CDATA[<blockquote>
-<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了.</p>
-<p>听别人讲故事和自己去经历这事件区别很大, 本文用来记录</p>
-</blockquote>
-<p>圈子里有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
-<h2 id="如果你遇到了Bug-这时会怎么做"><a href="#如果你遇到了Bug-这时会怎么做" class="headerlink" title="如果你遇到了Bug,这时会怎么做:"></a>如果你遇到了Bug,这时会怎么做:</h2><ol>
-<li>看现象:推测哪里/哪一阶段出了问题</li>
-<li>Google:搜索什么关键词</li>
-<li>看文档:(不熟悉的东西就会去看文档,弄清底下干了什么)</li>
-<li><strong>提问:问有经验的人</strong></li>
-</ol>
-<p>这里主要讨论<strong>提问</strong>:如何跟人去描述问题</p>
-<h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
-<p><strong>正确的流程</strong>:</p>
-<ol>
-<li>表明意图: 在做一个什么功能? 调试什么东西? </li>
-<li>你是如何做的,用到哪些技术,模块,整个流程是怎么样的?</li>
-<li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
-<li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
-</ol>
-<h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
-<p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
       </tags>
   </entry>
   <entry>
@@ -2182,6 +2196,53 @@
       </tags>
   </entry>
   <entry>
+    <title>【CMake】如果提高CMake编译速度</title>
+    <url>/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</url>
+    <content><![CDATA[<blockquote>
+<p>上个月在写rust的时候，有几个依赖有点大，编译速度感人，其实rust的编译速度一直就被人诟病，当然，有些是rust自身的问题，比如编译期的检查，泛型，RAII，宏；然后去网上找了些资料，搜索到一篇很有价值的文章：<span class="exturl" data-url="aHR0cHM6Ly9lbmRsZXIuZGV2LzIwMjAvcnVzdC1jb21waWxlLXRpbWVzLw==">Tips for Faster Rust Compile Times<i class="fa fa-external-link-alt"></i></span>，里面提到了些很有意思的点：泛型会影响到编译速度，因为在编译的时候，使用泛型的代码会去生成新的代码，包括你写的代码，以及源代码；还有使用编译缓存工具Sccache；更换更快的链接器。</p>
+</blockquote>
+<p>公司有套CMake项目的代码，往后项目也会越来越大，节省编译的时候将会变得很有意义。有时候如何去优化一个问题，需要你对整个流程有足够的了解，知道他有哪些阶段，不同的阶段会干什么。才能对不同的环节进行优化</p>
+<h2 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h2><ol>
+<li>并行编译</li>
+<li>更换更快的构建系统，比如Ninja</li>
+<li>预编译头文件：target_precompile_headers （CMake3.16）</li>
+<li>使用编译缓存ccache、sccache（CMake 3.4）</li>
+<li>更新新版本的CMake、编译器和链接器</li>
+<li>删除没有使用的代码和依赖</li>
+</ol>
+<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><p>开多线程，废话</p>
+<h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><p>Android源码也是使用这个来编译</p>
+<p>Ninja Design goals：<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcvbWFudWFsLmh0bWwjX2Rlc2lnbl9nb2Fscw==">https://ninja-build.org/manual.html#_design_goals<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p>文章：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="使用编译缓存ccache、sccache"><a href="#使用编译缓存ccache、sccache" class="headerlink" title="使用编译缓存ccache、sccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span></h2><h3 id="ccache："><a href="#ccache：" class="headerlink" title="ccache："></a><span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>：</h3><p>使用cmake配置：<span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_program</span>(CCACHE_PROGRAM ccache)</span><br><span class="line"><span class="keyword">if</span>(CCACHE_PROGRAM)</span><br><span class="line">    <span class="keyword">set_property</span>(GLOBAL PROPERTY RULE_LAUNCH_COMPILE <span class="string">&quot;$&#123;CCACHE_PROGRAM&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(SomeProject)</span><br></pre></td></tr></table></figure>
+
+<h3 id="sccache："><a href="#sccache：" class="headerlink" title="sccache："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span>：</h3><p><strong>cmake配置：</strong></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">-DCMAKE_C_COMPILER_LAUNCHER=sccache</span><br><span class="line">-DCMAKE_CXX_COMPILER_LAUNCHER=sccache</span><br></pre></td></tr></table></figure>
+
+<p><strong>rust配置：</strong></p>
+<p>自己写rust是用的这个，编译速度会快上不少</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $HOME/.cargo/config</span></span><br><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">rustc-wrapper</span> = <span class="string">&quot;/path/to/sccache&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p>新版本cmake编译速度提升：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
+<p>速度更快的链接器mold：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J1aTMxNC9tb2xk">https://github.com/rui314/mold<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mold -run make &lt;make-options-if-any&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="删除没有使用的代码和依赖"><a href="#删除没有使用的代码和依赖" class="headerlink" title="删除没有使用的代码和依赖"></a>删除没有使用的代码和依赖</h2><p>todo</p>
+]]></content>
+      <categories>
+        <category>Complie</category>
+      </categories>
+      <tags>
+        <tag>CMake</tag>
+        <tag>Complie</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Vim】Vim笔记</title>
     <url>/2021/08/09/Vim-notes/</url>
     <content><![CDATA[<h2 id="Vim介绍"><a href="#Vim介绍" class="headerlink" title="Vim介绍"></a>Vim介绍</h2><p><strong>Vim 编辑器之神, Emacs 神的编辑器</strong></p>
@@ -2487,59 +2548,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Personal】阅读源码的技巧</title>
-    <url>/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
-<li>前提：熟悉它的作用和功能</li>
-<li>有目的的看代码</li>
-<li>从代码的流程看</li>
-<li>从代码的架构看</li>
-<li>从代码的分类看</li>
-<li>调试Debug分析</li>
-<li>找核心代码（<strong>删代码</strong>）</li>
-<li>辅助工具：画图</li>
-</ul>
-<p>todo：</p>
-<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
-<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
-<li>架构是如何设计的</li>
-<li>某个功能是如何实现的</li>
-<li>…</li>
-</ul>
-<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
-<ol>
-<li>初始化</li>
-<li>正常运行（工作中）</li>
-<li>关闭（正常关闭）</li>
-</ol>
-<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
-<li>流程型</li>
-<li>处理型</li>
-</ul>
-<p>这两个名字是我自己起的：</p>
-<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
-<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
-<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
-<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
-<p>从单个函数看，一般代码分为三部分：</p>
-<ol>
-<li>条件不满足</li>
-<li>数据准备阶段</li>
-<li>核心处理函数调用</li>
-</ol>
-<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
-<li>脑子不够用了才发明了文字，图画</li>
-<li>画图本身也是在理思路的一个过程，内化的过程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【C】LVGL源码分析</title>
     <url>/2021/08/15/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<blockquote>
@@ -2739,50 +2747,56 @@
       </tags>
   </entry>
   <entry>
-    <title>【CMake】如果提高CMake编译速度</title>
-    <url>/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</url>
-    <content><![CDATA[<blockquote>
-<p>上个月在写rust的时候，有几个依赖有点大，编译速度感人，其实rust的编译速度一直就被人诟病，当然，有些是rust自身的问题，比如编译期的检查，泛型，RAII，宏；然后去网上找了些资料，搜索到一篇很有价值的文章：<span class="exturl" data-url="aHR0cHM6Ly9lbmRsZXIuZGV2LzIwMjAvcnVzdC1jb21waWxlLXRpbWVzLw==">Tips for Faster Rust Compile Times<i class="fa fa-external-link-alt"></i></span>，里面提到了些很有意思的点：泛型会影响到编译速度，因为在编译的时候，使用泛型的代码会去生成新的代码，包括你写的代码，以及源代码；还有使用编译缓存工具Sccache；更换更快的链接器。</p>
-</blockquote>
-<p>公司有套CMake项目的代码，往后项目也会越来越大，节省编译的时候将会变得很有意义。有时候如何去优化一个问题，需要你对整个流程有足够的了解，知道他有哪些阶段，不同的阶段会干什么。才能对不同的环节进行优化</p>
-<h2 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h2><ol>
-<li>并行编译</li>
-<li>更换更快的构建系统，比如Ninja</li>
-<li>预编译头文件：target_precompile_headers （CMake3.16）</li>
-<li>使用编译缓存ccache、sccache（CMake 3.4）</li>
-<li>更新新版本的CMake、编译器和链接器</li>
-<li>删除没有使用的代码和依赖</li>
+    <title>【Personal】阅读源码的技巧</title>
+    <url>/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
+<li>前提：熟悉它的作用和功能</li>
+<li>有目的的看代码</li>
+<li>从代码的流程看</li>
+<li>从代码的架构看</li>
+<li>从代码的分类看</li>
+<li>调试Debug分析</li>
+<li>找核心代码（<strong>删代码</strong>）</li>
+<li>辅助工具：画图</li>
+</ul>
+<p>todo：</p>
+<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
+<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
+<li>架构是如何设计的</li>
+<li>某个功能是如何实现的</li>
+<li>…</li>
+</ul>
+<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
+<ol>
+<li>初始化</li>
+<li>正常运行（工作中）</li>
+<li>关闭（正常关闭）</li>
 </ol>
-<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><p>开多线程，废话</p>
-<h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><p>Android源码也是使用这个来编译</p>
-<p>Ninja Design goals：<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcvbWFudWFsLmh0bWwjX2Rlc2lnbl9nb2Fscw==">https://ninja-build.org/manual.html#_design_goals<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p>文章：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="使用编译缓存ccache、sccache"><a href="#使用编译缓存ccache、sccache" class="headerlink" title="使用编译缓存ccache、sccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span></h2><h3 id="ccache："><a href="#ccache：" class="headerlink" title="ccache："></a><span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>：</h3><p>使用cmake配置：<span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_program</span>(CCACHE_PROGRAM ccache)</span><br><span class="line"><span class="keyword">if</span>(CCACHE_PROGRAM)</span><br><span class="line">    <span class="keyword">set_property</span>(GLOBAL PROPERTY RULE_LAUNCH_COMPILE <span class="string">&quot;$&#123;CCACHE_PROGRAM&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(SomeProject)</span><br></pre></td></tr></table></figure>
-
-<h3 id="sccache："><a href="#sccache：" class="headerlink" title="sccache："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span>：</h3><p><strong>cmake配置：</strong></p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">-DCMAKE_C_COMPILER_LAUNCHER=sccache</span><br><span class="line">-DCMAKE_CXX_COMPILER_LAUNCHER=sccache</span><br></pre></td></tr></table></figure>
-
-<p><strong>rust配置：</strong></p>
-<p>自己写rust是用的这个，编译速度会快上不少</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $HOME/.cargo/config</span></span><br><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">rustc-wrapper</span> = <span class="string">&quot;/path/to/sccache&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p>新版本cmake编译速度提升：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
-<p>速度更快的链接器mold：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J1aTMxNC9tb2xk">https://github.com/rui314/mold<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mold -run make &lt;make-options-if-any&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="删除没有使用的代码和依赖"><a href="#删除没有使用的代码和依赖" class="headerlink" title="删除没有使用的代码和依赖"></a>删除没有使用的代码和依赖</h2><p>todo</p>
+<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
+<li>流程型</li>
+<li>处理型</li>
+</ul>
+<p>这两个名字是我自己起的：</p>
+<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
+<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
+<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
+<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
+<p>从单个函数看，一般代码分为三部分：</p>
+<ol>
+<li>条件不满足</li>
+<li>数据准备阶段</li>
+<li>核心处理函数调用</li>
+</ol>
+<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
+<li>脑子不够用了才发明了文字，图画</li>
+<li>画图本身也是在理思路的一个过程，内化的过程</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Complie</category>
+        <category>Personal</category>
       </categories>
       <tags>
-        <tag>CMake</tag>
-        <tag>Complie</tag>
+        <tag>Personal</tag>
       </tags>
   </entry>
   <entry>
@@ -3264,6 +3278,7 @@
     <content><![CDATA[<blockquote>
 <p>过年回家，免不了聚会，有次和儿时的小伙伴吃宵夜，说了一句话：你在我们这批人里面混的算还可以的了。我说：好些人30多个W、50多个W，我算比较惨的，隔壁邻居谁谁谁去了字节，多少多少钱；我哪个亲戚的外甥去了华为。他说：你不能和他们比。我这时把范围放大些想想，他说的是对的。记录下</p>
 </blockquote>
+<p>相对于整个世界，一般人能左右的东西基本等于无。<br>共产党建党100周年刚刚过去，那时候的主题是救国、抗日、统一，然后是抗美援朝，在那时，可能需要你上战场，生死不好说。<br>统一了之后搞文化大革命、改革开放；现在搞中华民族复兴，其实我想说这个复兴，上个世纪外国的发展靠的是侵略，中国的发展靠土地财政，说的不好听点叫”收割老百姓“，一块地可以卖两块钱，也可以拍出十亿，让你每月”交“些，交二三十年吧。我这里的意思不是要怪政府，毕竟中国的发展”落后就要挨打“，</p>
 <p>todo…</p>
 ]]></content>
       <categories>

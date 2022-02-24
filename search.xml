@@ -362,6 +362,52 @@
 ]]></content>
   </entry>
   <entry>
+    <title>【Hexo】本站搭建相关文档</title>
+    <url>/2020/05/01/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<blockquote>
+<p>写这篇文章是为了自己在修改本站时，方便查找相关文档</p>
+</blockquote>
+<p>本站基于：Hexo(NexT 主题) + Github Pages</p>
+<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><ul>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo<i class="fa fa-external-link-alt"></i></span>：Blog 框架</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">NexT-theme<i class="fa fa-external-link-alt"></i></span>：Hexo 博客主题</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">Github Pages<i class="fa fa-external-link-alt"></i></span>：Github 提供的免费网站服务器</li>
+</ul>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">https://hexo.io/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>相关常用命令：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo version                                <span class="comment"># version</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo --<span class="built_in">help</span>                                 <span class="comment"># help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo sub_cmd                                <span class="comment"># 子命令help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo init [folder]                          <span class="comment"># 新建网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;                   <span class="comment"># 新建页面 layout:post(Default)/page/draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page --path about/me <span class="string">&quot;About me&quot;</span>    <span class="comment"># Customize the path of the post</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo publish [layout] &lt;filename&gt;            <span class="comment"># publish draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo render file_name                       <span class="comment"># 把md文件渲染成html文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo list &lt;<span class="built_in">type</span>&gt;                            <span class="comment"># 显示网站相关信息types: page, post, route, tag, category</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server/s                               <span class="comment"># 本地运行</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate/g                             <span class="comment"># 生成网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy/d                               <span class="comment"># 部署</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean                                  <span class="comment"># 清理生成的网站和cache</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="NexT-主题"><a href="#NexT-主题" class="headerlink" title="NexT 主题"></a>NexT 主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p>
+<p>选这个主题是因为简洁，所以在配置的时候把一些花里胡哨的都屏蔽了</p>
+<p><strong>安装：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>更新主题：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm update hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>主页修改为文章归档：</strong></p>
+<p>当用户一进入到主页应该显示所有文章大概全貌，所以把默认的主页换成了<strong>文章归档</strong>页</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml文件：</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">/</span> <span class="comment"># 改成/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">archives</span> <span class="comment"># 改成archives</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>文章间距调整</strong>：</p>
+<h2 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h2><p><span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">https://pages.github.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>网站仓库地址：</strong></p>
+<p><code>https://github.com/$&#123;user_name&#125;/$&#123;user_name&#125;.github.io</code></p>
+<p><strong>Blog 地址：</strong></p>
+<p><code>https://$&#123;user_name&#125;.github.io/</code></p>
+<p><strong>限制：</strong></p>
+<ul>
+<li>  网站限制大小为 1GB</li>
+<li>  网站内单个文件限制大小为 50MB</li>
+<li>  一个月流量限制为 100GB，可以开 CDN</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next theme</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Mac】Homebrew上手教程</title>
     <url>/2020/05/11/Homebrew/</url>
     <content><![CDATA[<h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><blockquote>
@@ -617,52 +663,6 @@
       </categories>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Hexo】本站搭建相关文档</title>
-    <url>/2020/05/01/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<blockquote>
-<p>写这篇文章是为了自己在修改本站时，方便查找相关文档</p>
-</blockquote>
-<p>本站基于：Hexo(NexT 主题) + Github Pages</p>
-<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><ul>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo<i class="fa fa-external-link-alt"></i></span>：Blog 框架</li>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">NexT-theme<i class="fa fa-external-link-alt"></i></span>：Hexo 博客主题</li>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">Github Pages<i class="fa fa-external-link-alt"></i></span>：Github 提供的免费网站服务器</li>
-</ul>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">https://hexo.io/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>相关常用命令：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo version                                <span class="comment"># version</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo --<span class="built_in">help</span>                                 <span class="comment"># help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo sub_cmd                                <span class="comment"># 子命令help信息</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo init [folder]                          <span class="comment"># 新建网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;                   <span class="comment"># 新建页面 layout:post(Default)/page/draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page --path about/me <span class="string">&quot;About me&quot;</span>    <span class="comment"># Customize the path of the post</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo publish [layout] &lt;filename&gt;            <span class="comment"># publish draft</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo render file_name                       <span class="comment"># 把md文件渲染成html文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo list &lt;<span class="built_in">type</span>&gt;                            <span class="comment"># 显示网站相关信息types: page, post, route, tag, category</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server/s                               <span class="comment"># 本地运行</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate/g                             <span class="comment"># 生成网站</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy/d                               <span class="comment"># 部署</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean                                  <span class="comment"># 清理生成的网站和cache</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="NexT-主题"><a href="#NexT-主题" class="headerlink" title="NexT 主题"></a>NexT 主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p>
-<p>选这个主题是因为简洁，所以在配置的时候把一些花里胡哨的都屏蔽了</p>
-<p><strong>安装：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>更新主题：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm update hexo-theme-next</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>主页修改为文章归档：</strong></p>
-<p>当用户一进入到主页应该显示所有文章大概全貌，所以把默认的主页换成了<strong>文章归档</strong>页</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml文件：</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">/</span> <span class="comment"># 改成/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">archives</span> <span class="comment"># 改成archives</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>文章间距调整</strong>：</p>
-<h2 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h2><p><span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">https://pages.github.com/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>网站仓库地址：</strong></p>
-<p><code>https://github.com/$&#123;user_name&#125;/$&#123;user_name&#125;.github.io</code></p>
-<p><strong>Blog 地址：</strong></p>
-<p><code>https://$&#123;user_name&#125;.github.io/</code></p>
-<p><strong>限制：</strong></p>
-<ul>
-<li>  网站限制大小为 1GB</li>
-<li>  网站内单个文件限制大小为 50MB</li>
-<li>  一个月流量限制为 100GB，可以开 CDN</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next theme</tag>
       </tags>
   </entry>
   <entry>
@@ -1479,56 +1479,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Work】编程中如何跟人描述Bug</title>
-    <url>/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/</url>
-    <content><![CDATA[<blockquote>
-<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了.</p>
-<p>听别人讲故事和自己去经历这事件区别很大, 本文用来记录</p>
-</blockquote>
-<p>圈子里有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
-<h2 id="如果你遇到了Bug-这时会怎么做"><a href="#如果你遇到了Bug-这时会怎么做" class="headerlink" title="如果你遇到了Bug,这时会怎么做:"></a>如果你遇到了Bug,这时会怎么做:</h2><ol>
-<li>看现象:推测哪里/哪一阶段出了问题</li>
-<li>Google:搜索什么关键词</li>
-<li>看文档:(不熟悉的东西就会去看文档,弄清底下干了什么)</li>
-<li><strong>提问:问有经验的人</strong></li>
-</ol>
-<p>这里主要讨论<strong>提问</strong>:如何跟人去描述问题</p>
-<h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
-<p><strong>正确的流程</strong>:</p>
-<ol>
-<li>表明意图: 在做一个什么功能? 调试什么东西? </li>
-<li>你是如何做的,用到哪些技术,模块,整个流程是怎么样的?</li>
-<li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
-<li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
-</ol>
-<h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
-<p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Personal】编程漫谈</title>
-    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
-    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
-<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
-<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
-<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-  </entry>
-  <entry>
     <title>【VSCode】VSCode C/C++环境</title>
     <url>/2021/05/05/VSCode-C-CPP-Environment/</url>
     <content><![CDATA[<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
@@ -1809,6 +1759,56 @@
       <tags>
         <tag>VSCode</tag>
         <tag>Editor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】编程漫谈</title>
+    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
+    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
+<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
+<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
+<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>【Work】编程中如何跟人描述Bug</title>
+    <url>/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/</url>
+    <content><![CDATA[<blockquote>
+<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了.</p>
+<p>听别人讲故事和自己去经历这事件区别很大, 本文用来记录</p>
+</blockquote>
+<p>圈子里有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
+<h2 id="如果你遇到了Bug-这时会怎么做"><a href="#如果你遇到了Bug-这时会怎么做" class="headerlink" title="如果你遇到了Bug,这时会怎么做:"></a>如果你遇到了Bug,这时会怎么做:</h2><ol>
+<li>看现象:推测哪里/哪一阶段出了问题</li>
+<li>Google:搜索什么关键词</li>
+<li>看文档:(不熟悉的东西就会去看文档,弄清底下干了什么)</li>
+<li><strong>提问:问有经验的人</strong></li>
+</ol>
+<p>这里主要讨论<strong>提问</strong>:如何跟人去描述问题</p>
+<h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
+<p><strong>正确的流程</strong>:</p>
+<ol>
+<li>表明意图: 在做一个什么功能? 调试什么东西? </li>
+<li>你是如何做的,用到哪些技术,模块,整个流程是怎么样的?</li>
+<li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
+<li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
+</ol>
+<h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
+<p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
       </tags>
   </entry>
   <entry>
@@ -2196,53 +2196,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【CMake】如果提高CMake编译速度</title>
-    <url>/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</url>
-    <content><![CDATA[<blockquote>
-<p>上个月在写rust的时候，有几个依赖有点大，编译速度感人，其实rust的编译速度一直就被人诟病，当然，有些是rust自身的问题，比如编译期的检查，泛型，RAII，宏；然后去网上找了些资料，搜索到一篇很有价值的文章：<span class="exturl" data-url="aHR0cHM6Ly9lbmRsZXIuZGV2LzIwMjAvcnVzdC1jb21waWxlLXRpbWVzLw==">Tips for Faster Rust Compile Times<i class="fa fa-external-link-alt"></i></span>，里面提到了些很有意思的点：泛型会影响到编译速度，因为在编译的时候，使用泛型的代码会去生成新的代码，包括你写的代码，以及源代码；还有使用编译缓存工具Sccache；更换更快的链接器。</p>
-</blockquote>
-<p>公司有套CMake项目的代码，往后项目也会越来越大，节省编译的时候将会变得很有意义。有时候如何去优化一个问题，需要你对整个流程有足够的了解，知道他有哪些阶段，不同的阶段会干什么。才能对不同的环节进行优化</p>
-<h2 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h2><ol>
-<li>并行编译</li>
-<li>更换更快的构建系统，比如Ninja</li>
-<li>预编译头文件：target_precompile_headers （CMake3.16）</li>
-<li>使用编译缓存ccache、sccache（CMake 3.4）</li>
-<li>更新新版本的CMake、编译器和链接器</li>
-<li>删除没有使用的代码和依赖</li>
-</ol>
-<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><p>开多线程，废话</p>
-<h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><p>Android源码也是使用这个来编译</p>
-<p>Ninja Design goals：<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcvbWFudWFsLmh0bWwjX2Rlc2lnbl9nb2Fscw==">https://ninja-build.org/manual.html#_design_goals<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p>文章：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="使用编译缓存ccache、sccache"><a href="#使用编译缓存ccache、sccache" class="headerlink" title="使用编译缓存ccache、sccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span></h2><h3 id="ccache："><a href="#ccache：" class="headerlink" title="ccache："></a><span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>：</h3><p>使用cmake配置：<span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_program</span>(CCACHE_PROGRAM ccache)</span><br><span class="line"><span class="keyword">if</span>(CCACHE_PROGRAM)</span><br><span class="line">    <span class="keyword">set_property</span>(GLOBAL PROPERTY RULE_LAUNCH_COMPILE <span class="string">&quot;$&#123;CCACHE_PROGRAM&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(SomeProject)</span><br></pre></td></tr></table></figure>
-
-<h3 id="sccache："><a href="#sccache：" class="headerlink" title="sccache："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span>：</h3><p><strong>cmake配置：</strong></p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">-DCMAKE_C_COMPILER_LAUNCHER=sccache</span><br><span class="line">-DCMAKE_CXX_COMPILER_LAUNCHER=sccache</span><br></pre></td></tr></table></figure>
-
-<p><strong>rust配置：</strong></p>
-<p>自己写rust是用的这个，编译速度会快上不少</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $HOME/.cargo/config</span></span><br><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">rustc-wrapper</span> = <span class="string">&quot;/path/to/sccache&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p>新版本cmake编译速度提升：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
-<p>速度更快的链接器mold：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J1aTMxNC9tb2xk">https://github.com/rui314/mold<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mold -run make &lt;make-options-if-any&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="删除没有使用的代码和依赖"><a href="#删除没有使用的代码和依赖" class="headerlink" title="删除没有使用的代码和依赖"></a>删除没有使用的代码和依赖</h2><p>todo</p>
-]]></content>
-      <categories>
-        <category>Complie</category>
-      </categories>
-      <tags>
-        <tag>CMake</tag>
-        <tag>Complie</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Vim】Vim笔记</title>
     <url>/2021/08/09/Vim-notes/</url>
     <content><![CDATA[<h2 id="Vim介绍"><a href="#Vim介绍" class="headerlink" title="Vim介绍"></a>Vim介绍</h2><p><strong>Vim 编辑器之神, Emacs 神的编辑器</strong></p>
@@ -2548,6 +2501,59 @@
       </tags>
   </entry>
   <entry>
+    <title>【Personal】阅读源码的技巧</title>
+    <url>/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
+<li>前提：熟悉它的作用和功能</li>
+<li>有目的的看代码</li>
+<li>从代码的流程看</li>
+<li>从代码的架构看</li>
+<li>从代码的分类看</li>
+<li>调试Debug分析</li>
+<li>找核心代码（<strong>删代码</strong>）</li>
+<li>辅助工具：画图</li>
+</ul>
+<p>todo：</p>
+<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
+<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
+<li>架构是如何设计的</li>
+<li>某个功能是如何实现的</li>
+<li>…</li>
+</ul>
+<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
+<ol>
+<li>初始化</li>
+<li>正常运行（工作中）</li>
+<li>关闭（正常关闭）</li>
+</ol>
+<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
+<li>流程型</li>
+<li>处理型</li>
+</ul>
+<p>这两个名字是我自己起的：</p>
+<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
+<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
+<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
+<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
+<p>从单个函数看，一般代码分为三部分：</p>
+<ol>
+<li>条件不满足</li>
+<li>数据准备阶段</li>
+<li>核心处理函数调用</li>
+</ol>
+<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
+<li>脑子不够用了才发明了文字，图画</li>
+<li>画图本身也是在理思路的一个过程，内化的过程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【C】LVGL源码分析</title>
     <url>/2021/08/15/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<blockquote>
@@ -2747,56 +2753,50 @@
       </tags>
   </entry>
   <entry>
-    <title>【Personal】阅读源码的技巧</title>
-    <url>/2021/08/22/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
-<li>前提：熟悉它的作用和功能</li>
-<li>有目的的看代码</li>
-<li>从代码的流程看</li>
-<li>从代码的架构看</li>
-<li>从代码的分类看</li>
-<li>调试Debug分析</li>
-<li>找核心代码（<strong>删代码</strong>）</li>
-<li>辅助工具：画图</li>
-</ul>
-<p>todo：</p>
-<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
-<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
-<li>架构是如何设计的</li>
-<li>某个功能是如何实现的</li>
-<li>…</li>
-</ul>
-<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
-<ol>
-<li>初始化</li>
-<li>正常运行（工作中）</li>
-<li>关闭（正常关闭）</li>
+    <title>【CMake】如果提高CMake编译速度</title>
+    <url>/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</url>
+    <content><![CDATA[<blockquote>
+<p>上个月在写rust的时候，有几个依赖有点大，编译速度感人，其实rust的编译速度一直就被人诟病，当然，有些是rust自身的问题，比如编译期的检查，泛型，RAII，宏；然后去网上找了些资料，搜索到一篇很有价值的文章：<span class="exturl" data-url="aHR0cHM6Ly9lbmRsZXIuZGV2LzIwMjAvcnVzdC1jb21waWxlLXRpbWVzLw==">Tips for Faster Rust Compile Times<i class="fa fa-external-link-alt"></i></span>，里面提到了些很有意思的点：泛型会影响到编译速度，因为在编译的时候，使用泛型的代码会去生成新的代码，包括你写的代码，以及源代码；还有使用编译缓存工具Sccache；更换更快的链接器。</p>
+</blockquote>
+<p>公司有套CMake项目的代码，往后项目也会越来越大，节省编译的时候将会变得很有意义。有时候如何去优化一个问题，需要你对整个流程有足够的了解，知道他有哪些阶段，不同的阶段会干什么。才能对不同的环节进行优化</p>
+<h2 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h2><ol>
+<li>并行编译</li>
+<li>更换更快的构建系统，比如Ninja</li>
+<li>预编译头文件：target_precompile_headers （CMake3.16）</li>
+<li>使用编译缓存ccache、sccache（CMake 3.4）</li>
+<li>更新新版本的CMake、编译器和链接器</li>
+<li>删除没有使用的代码和依赖</li>
 </ol>
-<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
-<li>流程型</li>
-<li>处理型</li>
-</ul>
-<p>这两个名字是我自己起的：</p>
-<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
-<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
-<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
-<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
-<p>从单个函数看，一般代码分为三部分：</p>
-<ol>
-<li>条件不满足</li>
-<li>数据准备阶段</li>
-<li>核心处理函数调用</li>
-</ol>
-<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
-<li>脑子不够用了才发明了文字，图画</li>
-<li>画图本身也是在理思路的一个过程，内化的过程</li>
-</ul>
+<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><p>开多线程，废话</p>
+<h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><p>Android源码也是使用这个来编译</p>
+<p>Ninja Design goals：<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcvbWFudWFsLmh0bWwjX2Rlc2lnbl9nb2Fscw==">https://ninja-build.org/manual.html#_design_goals<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p>文章：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="使用编译缓存ccache、sccache"><a href="#使用编译缓存ccache、sccache" class="headerlink" title="使用编译缓存ccache、sccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span></h2><h3 id="ccache："><a href="#ccache：" class="headerlink" title="ccache："></a><span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>：</h3><p>使用cmake配置：<span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_program</span>(CCACHE_PROGRAM ccache)</span><br><span class="line"><span class="keyword">if</span>(CCACHE_PROGRAM)</span><br><span class="line">    <span class="keyword">set_property</span>(GLOBAL PROPERTY RULE_LAUNCH_COMPILE <span class="string">&quot;$&#123;CCACHE_PROGRAM&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(SomeProject)</span><br></pre></td></tr></table></figure>
+
+<h3 id="sccache："><a href="#sccache：" class="headerlink" title="sccache："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span>：</h3><p><strong>cmake配置：</strong></p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">-DCMAKE_C_COMPILER_LAUNCHER=sccache</span><br><span class="line">-DCMAKE_CXX_COMPILER_LAUNCHER=sccache</span><br></pre></td></tr></table></figure>
+
+<p><strong>rust配置：</strong></p>
+<p>自己写rust是用的这个，编译速度会快上不少</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $HOME/.cargo/config</span></span><br><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">rustc-wrapper</span> = <span class="string">&quot;/path/to/sccache&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p>新版本cmake编译速度提升：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
+<p>速度更快的链接器mold：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J1aTMxNC9tb2xk">https://github.com/rui314/mold<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mold -run make &lt;make-options-if-any&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="删除没有使用的代码和依赖"><a href="#删除没有使用的代码和依赖" class="headerlink" title="删除没有使用的代码和依赖"></a>删除没有使用的代码和依赖</h2><p>todo</p>
 ]]></content>
       <categories>
-        <category>Personal</category>
+        <category>Complie</category>
       </categories>
       <tags>
-        <tag>Personal</tag>
+        <tag>CMake</tag>
+        <tag>Complie</tag>
       </tags>
   </entry>
   <entry>
@@ -3286,6 +3286,46 @@
       </categories>
       <tags>
         <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Work】函数回调栈跟踪</title>
+    <url>/2022/02/25/%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%E6%A0%88%E8%B7%9F%E8%B8%AA/</url>
+    <content><![CDATA[<blockquote>
+<p>上周在移植dbus，在设备上运行不起来，当然问题后面被我领导解决了；有处地方报错，在源代码里面找到了，当时我在想代码是怎么调到这里来的？怎么去跟踪函数栈的调用？类似，Java在抛出异常之后回打印出，是怎么一步步调到这里来的。写C的时候在其它地方也遇到过：GDB的backtrace命令；Valgrind跟踪内存问题的时候也会打印函数调用栈；还有<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">AddressSanitizer<i class="fa fa-external-link-alt"></i></span>检测内存问题也能打印出来。当时去Google搜索了下，记录下</p>
+</blockquote>
+<p><strong>两种方式：</strong></p>
+<ul>
+<li>GUN拓展函数：<code>backtrace</code>，<code>backtrace_symbols</code>，<code>backtrace_symbols_fd</code></li>
+<li>GCC编译选项：<code>-finstrument-functions</code></li>
+</ul>
+<h2 id="GUN拓展函数"><a href="#GUN拓展函数" class="headerlink" title="GUN拓展函数"></a>GUN拓展函数</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9tYW43Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuMy9iYWNrdHJhY2UuMy5odG1s">https://man7.org/linux/man-pages/man3/backtrace.3.html<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="API："><a href="#API：" class="headerlink" title="API："></a>API：</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">backtrace</span><span class="params">(<span class="keyword">void</span> **buffer, <span class="keyword">int</span> size)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> **<span class="title">backtrace_symbols</span><span class="params">(<span class="keyword">void</span> *<span class="keyword">const</span> *buffer, <span class="keyword">int</span> size)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">backtrace_symbols_fd</span><span class="params">(<span class="keyword">void</span> *<span class="keyword">const</span> *buffer, <span class="keyword">int</span> size, <span class="keyword">int</span> fd)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>backtrace_symbols_fd</code>和<code>backtrace_symbols</code>的区别是，<code>backtrace_symbols_fd</code>把信息输出对应的fd，而<code>backtrace_symbols</code>把信息返回给返回值</p>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><blockquote>
+<p>代码就不自己写了，用的文档中的示例</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BT_BUF_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc3</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>    nptrs;</span><br><span class="line">    <span class="keyword">void</span>*  buffer[BT_BUF_SIZE];</span><br><span class="line">    <span class="keyword">char</span>** strings;</span><br><span class="line"></span><br><span class="line">    nptrs = backtrace(buffer, BT_BUF_SIZE);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;backtrace() returned %d addresses\n&quot;</span>, nptrs);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)</span></span><br><span class="line"><span class="comment">       would produce similar output to the following: */</span></span><br><span class="line"></span><br><span class="line">    strings = backtrace_symbols(buffer, nptrs);</span><br><span class="line">    <span class="keyword">if</span> (strings == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;backtrace_symbols&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; nptrs; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strings[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(strings);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &quot;static&quot; means don&#x27;t export the symbol... */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myfunc2</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    myfunc3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc</span><span class="params">(<span class="keyword">int</span> ncalls)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ncalls &gt; <span class="number">1</span>)</span><br><span class="line">        myfunc(ncalls - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        myfunc2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s num-calls\n&quot;</span>, argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myfunc(atoi(argv[<span class="number">1</span>]));</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>有几个值的注意的地方：</strong></p>
+<ul>
+<li><code>Inline</code>函数没有栈帧信息，无法打印</li>
+<li><code>static</code>修饰的函数不会导出symbol，无法打印</li>
+<li>另外一个是如果程序开启了优化级别，也会受到一定程度的影响</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[I] ➜ cc -rdynamic main.c &amp;&amp; ./a.out 10</span><br><span class="line">backtrace() returned 14 addresses</span><br><span class="line">0   a.out                               0x0000000100436d3a myfunc3 + 42</span><br><span class="line">1   a.out                               0x0000000100436e59 myfunc2 + 9</span><br><span class="line">2   a.out                               0x0000000100436e4a myfunc + 42</span><br><span class="line">3   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">4   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">5   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">6   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">7   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">8   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">9   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">10  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">11  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">12  a.out                               0x0000000100436ebd main + 93</span><br><span class="line">13  dyld                                0x0000000100a354fe start + 462</span><br></pre></td></tr></table></figure>
+
+<p>用的clang前端编译器，LLVM牛批，输出格式都比GCC的好看多了</p>
+<p>然后我就一顿操作，打印，就解决了前面提到的问题；然后看了一下午dbus的代码，然后，然后，发现dbus里面已经写好了工具函数<span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RidXMvZGJ1cy8tL2Jsb2IvZGJ1cy0xLjEyL2RidXMvZGJ1cy1zeXNkZXBzLXVuaXguYw==">_dbus_print_backtrace()[dbus-sysdeps-unix.c:3417]<i class="fa fa-external-link-alt"></i></span>，直接调用就可以了，我tm。然后，然后默默的copy、paste到自己项目里面来。像这种十的多的年的老项目，里面还是有很多值得学习的地方，后面有时间在讲讲dbus源码</p>
+<h2 id="GCC编译选项"><a href="#GCC编译选项" class="headerlink" title="GCC编译选项"></a>GCC编译选项</h2><p>todo</p>
+]]></content>
+      <categories>
+        <category>Backtrace</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>Backtrace</tag>
       </tags>
   </entry>
 </search>

@@ -490,7 +490,67 @@
 </ul>
 </li>
 </ul>
-<h3 id="Panics"><a href="#Panics" class="headerlink" title="Panics"></a>Panics</h3><p>Todo</p>
+<h3 id="Panics"><a href="#Panics" class="headerlink" title="Panics"></a>Panics</h3><ul>
+<li>什么样的错误，我们不希望去传递或处理？<ul>
+<li>严重的、无法恢复的错误</li>
+<li>们预计不会发生的错误，并且不想将精力投入到处理中</li>
+</ul>
+</li>
+<li><code>panic</code>宏会使程序立马崩溃，同时携带一些信息</li>
+<li>当返回成功时，<code>Result::unwrap()</code> 和 <code>Result::expect()</code> 允许我们去提取Ok中的值，如果返回Err，则会panic</li>
+</ul>
+<h3 id="unwrap-and-expect"><a href="#unwrap-and-expect" class="headerlink" title="unwrap() and expect()"></a><code>unwrap()</code> and <code>expect()</code></h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File::open returns Result: Ok(file) or Err(error)</span></span><br><span class="line"><span class="comment">// Unwrap means:</span></span><br><span class="line"><span class="comment">// - “if result is Ok: store value inside enum in `file`</span></span><br><span class="line"><span class="comment">// - “if result is Err (opening file failed): panic (crash program)” // Panic if opening a file fails:</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> file = File::open(filename).unwrap();</span><br><span class="line"><span class="comment">// `expect` is the same as `unwrap`, but allows you to print a</span></span><br><span class="line"><span class="comment">// more descriptive error message when panicking.</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> file = File::open(filename).expect(<span class="string">&quot;Failed to open file&quot;</span>);</span><br><span class="line"><span class="comment">// One more example with `expect` — panic with a helpful error message</span></span><br><span class="line"><span class="comment">// if reading from standard input fails. (Nothing to return here.)</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> input = <span class="built_in">String</span>::new();</span><br><span class="line">io::stdin().read_to_string(&amp;<span class="keyword">mut</span> input).expect(<span class="string">&quot;Failed to read from stdin”);</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Handling-nulls"><a href="#Handling-nulls" class="headerlink" title="Handling nulls"></a>Handling nulls</h3><p>NULL：十亿美元的错误</p>
+<blockquote>
+<p><strong>I call it my billion-dollar mistake.</strong> <em>It was</em> <strong>the invention of the null reference</strong> in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.</p>
+<p>- Tony Hoare</p>
+</blockquote>
+<h2 id="Custom-Types"><a href="#Custom-Types" class="headerlink" title="Custom Types"></a>Custom Types</h2><h3 id="Box-in-Rust"><a href="#Box-in-Rust" class="headerlink" title="Box in Rust"></a>Box in Rust</h3><ul>
+<li>Create a Box</li>
+<li>Box goes on the heap</li>
+<li>Anything can go in the box</li>
+<li>Box <em>owns</em> whatever is in the box. When box goes out of scope -&gt; value in box destroyed</li>
+<li><em>Same thing as</em> <em><span class="exturl" data-url="aHR0cHM6Ly9lbi5jcHByZWZlcmVuY2UuY29tL3cvY3BwL21lbW9yeS91bmlxdWVfcHRy">unique_ptr<i class="fa fa-external-link-alt"></i></span></em> <em>in C++:</em></li>
+</ul>
+<h3 id="Throwback-to-Options"><a href="#Throwback-to-Options" class="headerlink" title="Throwback to Options"></a>Throwback to Options</h3><h3 id="Chain-of-ownership"><a href="#Chain-of-ownership" class="headerlink" title="Chain of ownership"></a>Chain of ownership</h3><h3 id="Introducing-as-ref"><a href="#Introducing-as-ref" class="headerlink" title="Introducing as_ref()"></a>Introducing <code>as_ref()</code></h3><ul>
+<li>转换 <code>&amp;Option&lt;T&gt;</code> 成 <code>Option&lt;&amp;T&gt;</code></li>
+<li>如果<code>Option</code>内部是<code>None</code>，则返回<code>None</code></li>
+</ul>
+<h3 id="Notes-on-writing-Rust-Code"><a href="#Notes-on-writing-Rust-Code" class="headerlink" title="Notes on writing Rust Code"></a>Notes on writing Rust Code</h3><ul>
+<li>阅读编译器错误信息，它们通常非常有用</li>
+<li><code>rustc --explain</code>能获取到更多详细信息</li>
+<li>推荐使用<code>rust-analyzer</code>插件</li>
+</ul>
+<h3 id="Box"><a href="#Box" class="headerlink" title="Box"></a>Box</h3><ul>
+<li>Box类型存储一个指向heap内存的指针</li>
+<li>能放任何东西在Box里面</li>
+<li><code>Box::new(...)</code>分配内存并初始化</li>
+<li>Box <strong>drop</strong>函数释放heap上的内存<ul>
+<li>这个drop函数是自动的被编译器插入</li>
+</ul>
+</li>
+</ul>
+<h3 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h3><ul>
+<li>Create a new struct</li>
+<li>Creating methods for a struct</li>
+<li>Let’s make a constructor</li>
+<li>Let’s make a function</li>
+</ul>
+<h2 id="Garbage-collection"><a href="#Garbage-collection" class="headerlink" title="Garbage collection"></a>Garbage collection</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><ul>
+<li>C/C++有个问题：什么时候释放内存</li>
+<li>Rust: 使用类型系统来表示谁来释放内存，并让编译器检查一切是否正确</li>
+<li>更古老的方法：Garbage collection<ul>
+<li>写程序时，不用但心内存释放的问题</li>
+<li>程序运行时，runtime将观察内存何时不再使用，并为您释放内存</li>
+<li>不用手动的去管理内存</li>
+</ul>
+</li>
+</ul>
+<h3 id="Tracing-garbage-collection"><a href="#Tracing-garbage-collection" class="headerlink" title="Tracing garbage collection"></a>Tracing garbage collection</h3><h3 id="Downsides-of-garbage-collection"><a href="#Downsides-of-garbage-collection" class="headerlink" title="Downsides of garbage collection"></a>Downsides of garbage collection</h3><ul>
+<li>Expensive</li>
+<li></li>
+</ul>
 
       
     </div>

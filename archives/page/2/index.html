@@ -20,12 +20,12 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-  <meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/archives/page/2/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
@@ -190,7 +190,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -247,16 +247,223 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/10/22/googletest-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/22/googletest-guide/" class="post-title-link" itemprop="url">【GTest】googletest上手</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-21 23:15:41" itemprop="dateCreated datePublished" datetime="2021-10-21T23:15:41Z">2021-10-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Test/" itemprop="url" rel="index"><span itemprop="name">Test</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/10/22/googletest-guide/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/10/22/googletest-guide/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="大纲："><a href="#大纲：" class="headerlink" title="大纲："></a>大纲：</h2><ul>
+<li>为什么需要写单元测试</li>
+<li>googletest简介</li>
+<li>googletest中的概念</li>
+<li>hello world程序</li>
+<li>主要断言宏</li>
+<li>测试夹具</li>
+<li>googletest整合到项目</li>
+<li>googletest和CMake整合</li>
+<li>googletest和VSCode整合</li>
+</ul>
+<h2 id="为什么需要写单元测试"><a href="#为什么需要写单元测试" class="headerlink" title="为什么需要写单元测试"></a>为什么需要写单元测试</h2><p>SQLite数据库是个很好的例子：数据库代码是14W行，测试代码和测试脚本9191.1W行。<span class="exturl" data-url="aHR0cHM6Ly93d3cuc3FsaXRlLm9yZy90ZXN0aW5nLmh0bWw=">https://www.sqlite.org/testing.html<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>让问题bug更早的显现</li>
+<li>让你对你的代码更有信心</li>
+</ul>
+<h2 id="googletest简介"><a href="#googletest简介" class="headerlink" title="googletest简介"></a>googletest简介</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9nb29nbGV0ZXN0">https://github.com/google/googletest<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="什么是一个好的测试？"><a href="#什么是一个好的测试？" class="headerlink" title="什么是一个好的测试？"></a>什么是一个好的测试？</h3><ul>
+<li>测试应该是独立的和可重复的</li>
+<li>测试应该很好地“组织”，并反映出测试代码的结构</li>
+<li>测试应该是“可移植的”和“可重用的”</li>
+<li>测试框架应该将测试编写者从日常琐事中解放出来，让他们专注于测试“内容”</li>
+<li>测试应该是“快速的”</li>
+</ul>
+<h2 id="googletest中的概念"><a href="#googletest中的概念" class="headerlink" title="googletest中的概念"></a>googletest中的概念</h2><h3 id="测试程序-–-gt-测试suite-–-gt-测试case"><a href="#测试程序-–-gt-测试suite-–-gt-测试case" class="headerlink" title="测试程序 –&gt; 测试suite –&gt; 测试case"></a><strong>测试程序</strong> –&gt; <strong>测试suite</strong> –&gt; <strong>测试case</strong></h3><p>上面之间是1：N的关系，一个测试程序可以有一个或多个测试suite，一个测试suite可以有一个或多个测试case。类比的可以理解为，<strong>测试suite</strong>是你要测试的一个函数（功能），<strong>测试case</strong>对应这个函数的不同</p>
+<h3 id="googletest代码编译产生四个库："><a href="#googletest代码编译产生四个库：" class="headerlink" title="googletest代码编译产生四个库："></a>googletest代码编译产生四个库：</h3><ul>
+<li>libgtest.a</li>
+<li>libgtest_main.a</li>
+<li>libgmock.a</li>
+<li>libgmock_main.a</li>
+</ul>
+<p><code>libgtest_main.a</code>里面包含<code>libgtest.a</code>，如果代码链接了<code>libgtest_main.a</code>就不用去链接<code>libgtest.a</code>，其中<code>main</code>的意思是这个静态库包含了main函数，在写测试代码时不需要自己去写main函数了，专注去去写测试case；gmock库包含了gtest的内容；使用时只需要链接其中一个库即可；</p>
+<h3 id="断言Assertions"><a href="#断言Assertions" class="headerlink" title="断言Assertions"></a>断言Assertions</h3><ul>
+<li><code>ASSERT_*</code>系列：失败时会生成fatal错误，同时会<strong>终止当前的函数</strong></li>
+<li><code>EXPECT_*</code>系列：失败时会生成nonfatal错误，不会终止当前的函数</li>
+</ul>
+<h2 id="hello-world程序"><a href="#hello-world程序" class="headerlink" title="hello world程序"></a>hello world程序</h2><p><strong>步骤：</strong></p>
+<ul>
+<li>编写代码（后续需要测试的代码）</li>
+<li>引入gtest头文件</li>
+<li>在main函数中初始化gtest</li>
+<li>链接libgtest.a库</li>
+<li>运行程序</li>
+</ul>
+<p>示例基于<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9nb29nbGV0ZXN0L2Jsb2IvbWFzdGVyL2dvb2dsZXRlc3Qvc2FtcGxlcy9zYW1wbGUxX3VuaXR0ZXN0LmNj">https://github.com/google/googletest/blob/master/googletest/samples/sample1_unittest.cc<i class="fa fa-external-link-alt"></i></span> 改</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;gtest/gtest.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否是质数：被1和自己本身整除的数</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsPrime</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> n == <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>;; i += <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; n / i) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Tests negative input.</span></span><br><span class="line"><span class="built_in">TEST</span>(IsPrimeTest, Negative) &#123;</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(<span class="built_in">IsPrime</span>(<span class="number">-1</span>));</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(<span class="built_in">IsPrime</span>(<span class="number">-2</span>));</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(<span class="built_in">IsPrime</span>(INT_MIN));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Tests some trivial cases.</span></span><br><span class="line"><span class="built_in">TEST</span>(IsPrimeTest, Trivial) &#123;</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(<span class="built_in">IsPrime</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(<span class="built_in">IsPrime</span>(<span class="number">1</span>));</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(<span class="built_in">IsPrime</span>(<span class="number">2</span>));</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(<span class="built_in">IsPrime</span>(<span class="number">3</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Tests positive input.</span></span><br><span class="line"><span class="built_in">TEST</span>(IsPrimeTest, Positive) &#123;</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(<span class="built_in">IsPrime</span>(<span class="number">4</span>));</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(<span class="built_in">IsPrime</span>(<span class="number">5</span>));</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(<span class="built_in">IsPrime</span>(<span class="number">6</span>));</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(<span class="built_in">IsPrime</span>(<span class="number">23</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// init</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    testing::<span class="built_in">InitGoogleTest</span>(&amp;argc, argv);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">RUN_ALL_TESTS</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>libgtestmain.a</code>与<code>libgtest.a</code>区别：</strong></p>
+<p>如果写多个测试程序，会发现main函数中的初始化和运行是重复的，<code>libgtestmain.a</code>比<code>libgtest.a</code>也是多的这一部分；如果不同写main函数这部分代码，程序链接<code>libgtestmain.a</code>即可</p>
+<h2 id="主要断言宏"><a href="#主要断言宏" class="headerlink" title="主要断言宏"></a>主要断言宏</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 显示指定成功或失败</span></span><br><span class="line"><span class="built_in">SUCCEED</span>()</span><br><span class="line"><span class="built_in">FAIL</span>()</span><br><span class="line"></span><br><span class="line"><span class="built_in"><span class="keyword">switch</span></span>(expression) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    ... some checks ...</span><br><span class="line">  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    ... some other checks ...</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">FAIL</span>() &lt;&lt; <span class="string">&quot;We shouldn&#x27;t get here.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// boolean条件</span></span><br><span class="line"><span class="comment">// EXPECT_TRUE</span></span><br><span class="line"><span class="built_in">EXPECT_TRUE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_TRUE</span>(condition)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_FALSE</span></span><br><span class="line"><span class="built_in">EXPECT_FALSE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_FALSE</span>(condition)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 二元比较</span></span><br><span class="line"><span class="comment">// EXPECT_EQ 相等 equal</span></span><br><span class="line"><span class="built_in">EXPECT_EQ</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_EQ</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_NE 不等于 not equal</span></span><br><span class="line"><span class="built_in">EXPECT_NE</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_NE</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_LT 小于 less than</span></span><br><span class="line"><span class="built_in">EXPECT_LT</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_LT</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_LE 小于等于less equal</span></span><br><span class="line"><span class="built_in">EXPECT_LE</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_LE</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_GT 大于 greater than</span></span><br><span class="line"><span class="built_in">EXPECT_GT</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_GT</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_GE 大于等于 greater than</span></span><br><span class="line"><span class="built_in">EXPECT_GE</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_GE</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串比较</span></span><br><span class="line"><span class="comment">// EXPECT_STREQ 相等</span></span><br><span class="line"><span class="built_in">EXPECT_STREQ</span>(str1,str2)</span><br><span class="line"><span class="built_in">ASSERT_STREQ</span>(str1,str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_STRNE 不相等</span></span><br><span class="line"><span class="built_in">EXPECT_STRNE</span>(str1,str2)</span><br><span class="line"><span class="built_in">ASSERT_STRNE</span>(str1,str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_STRCASEEQ</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASEEQ</span>(str1,str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASEEQ</span>(str1,str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_STRCASENE</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASENE</span>(str1,str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASENE</span>(str1,str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 浮点数比较</span></span><br><span class="line"><span class="comment">// EXPECT_FLOAT_EQ 单精度相等</span></span><br><span class="line"><span class="built_in">EXPECT_FLOAT_EQ</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_FLOAT_EQ</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_DOUBLE_EQ 双精度相等</span></span><br><span class="line"><span class="built_in">EXPECT_DOUBLE_EQ</span>(val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_DOUBLE_EQ</span>(val1,val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// EXPECT_NEAR</span></span><br><span class="line"><span class="built_in">EXPECT_NEAR</span>(val1,val2,abs_error)</span><br><span class="line"><span class="built_in">ASSERT_NEAR</span>(val1,val2,abs_error)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 谓词断言Predicate Assertions：失败里打印更复杂的清晰错误信息</span></span><br><span class="line"><span class="comment">// EXPECT_PRED*</span></span><br><span class="line"><span class="built_in">EXPECT_PRED1</span>(pred,val1) <span class="comment">// pred是函数名（地址），后面的val*是函数参数</span></span><br><span class="line"><span class="built_in">EXPECT_PRED2</span>(pred,val1,val2)</span><br><span class="line"><span class="built_in">EXPECT_PRED3</span>(pred,val1,val2,val3)</span><br><span class="line"><span class="built_in">EXPECT_PRED4</span>(pred,val1,val2,val3,val4)</span><br><span class="line"><span class="built_in">EXPECT_PRED5</span>(pred,val1,val2,val3,val4,val5)</span><br><span class="line"></span><br><span class="line"><span class="built_in">ASSERT_PRED1</span>(pred,val1)</span><br><span class="line"><span class="built_in">ASSERT_PRED2</span>(pred,val1,val2)</span><br><span class="line"><span class="built_in">ASSERT_PRED3</span>(pred,val1,val2,val3)</span><br><span class="line"><span class="built_in">ASSERT_PRED4</span>(pred,val1,val2,val3,val4)</span><br><span class="line"><span class="built_in">ASSERT_PRED5</span>(pred,val1,val2,val3,val4,val5)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">MutuallyPrime</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123; ... &#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> b = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> c = <span class="number">10</span>;</span><br><span class="line">...</span><br><span class="line"><span class="built_in">EXPECT_PRED2</span>(MutuallyPrime, a, b);  <span class="comment">// Succeeds</span></span><br><span class="line"><span class="built_in">EXPECT_PRED2</span>(MutuallyPrime, b, c);  <span class="comment">// Fails</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="支持流操作符"><a href="#支持流操作符" class="headerlink" title="支持流操作符"></a>支持流操作符</h3><p>当失败时，可以打印更多信息</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ASSERT_EQ</span>(x.<span class="built_in">size</span>(), y.<span class="built_in">size</span>()) &lt;&lt; <span class="string">&quot;Vectors x and y are of unequal length&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; x.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">  <span class="built_in">EXPECT_EQ</span>(x[i], y[i]) &lt;&lt; <span class="string">&quot;Vectors x and y differ at index &quot;</span> &lt;&lt; i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用nullptr而非NULL"><a href="#使用nullptr而非NULL" class="headerlink" title="使用nullptr而非NULL"></a>使用nullptr而非NULL</h3><p>与NULL的本质有关，避免出错；NULL的定义<code>#define NULL 0</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ASSERT_NE</span>(n, <span class="literal">nullptr</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试夹具"><a href="#测试夹具" class="headerlink" title="测试夹具"></a>测试夹具</h2><p>上面只是一些简单的测试用途，对于有些复杂的情况：比如在断言前我需要去初始化数据xxx，然后测试，测试完了需要释放资源；并且这样的数据我希望在多个测试case中共享；如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">TEST</span>(IsPrimeTest, Positive) &#123;</span><br><span class="line">		<span class="comment">// 1. init data</span></span><br><span class="line">		<span class="comment">// do something</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 2. test data</span></span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(xxx);</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(xxx);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. release data</span></span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题：给不能然我只专注于中间的第二步，测试断言，数据的初始化和释放抽离出去放在别的地方，同时这个数据可以提供给多个测试case共享。答案是<strong>测试夹具</strong></p>
+<p><strong>使用步骤：</strong></p>
+<ol>
+<li>写一个类继承自 <code>::testing::Test</code></li>
+<li>重写protected修饰的 <code>SetUp()</code> 和<code>TearDown()</code>函数</li>
+<li>如果需要可以定义一些子程序，用于共享</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;gtest/gtest.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;queue.h&quot;</span> <span class="comment">// https://github.com/google/googletest/blob/master/googletest/samples/sample3-inl.h</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueueTest</span> :</span> <span class="keyword">public</span> ::testing::Test &#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">SetUp</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;SetUp &quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        q1_.<span class="built_in">Enqueue</span>(<span class="number">1</span>);</span><br><span class="line">        q2_.<span class="built_in">Enqueue</span>(<span class="number">2</span>);</span><br><span class="line">        q2_.<span class="built_in">Enqueue</span>(<span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">TearDown</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;TearDown &quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Queue&lt;<span class="keyword">int</span>&gt; q0_;</span><br><span class="line">    Queue&lt;<span class="keyword">int</span>&gt; q1_;</span><br><span class="line">    Queue&lt;<span class="keyword">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST_F</span>(QueueTest, IsEmptyInitially) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;IsEmptyInitially&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q0_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST_F</span>(QueueTest, DequeueWorks) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;DequeueWorks&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">int</span>* n = q0_.<span class="built_in">Dequeue</span>();</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(n, <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    n = q1_.<span class="built_in">Dequeue</span>();</span><br><span class="line">    <span class="built_in">ASSERT_NE</span>(n, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(*n, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q1_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">delete</span> n;</span><br><span class="line"></span><br><span class="line">    n = q2_.<span class="built_in">Dequeue</span>();</span><br><span class="line">    <span class="built_in">ASSERT_NE</span>(n, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(*n, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q2_.<span class="built_in">Size</span>(), <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">delete</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    ::testing::<span class="built_in">InitGoogleTest</span>(&amp;argc, argv);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">RUN_ALL_TESTS</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用TEST_F编写测试case</li>
+<li>测试suite名需要和类名相同（QueueTest）</li>
+<li>重写SetUp和TearDown函数，SetUp在测试case前调用，TearDown在测试case后调用</li>
+<li>可以在测试case中直接使用QueueTest类中的成员变量</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./gtest_demo1</span><br><span class="line">[==========] Running 2 tests from 1 test suite.</span><br><span class="line">[----------] Global test environment set-up.</span><br><span class="line">[----------] 2 tests from QueueTest</span><br><span class="line">[ RUN      ] QueueTest.IsEmptyInitially</span><br><span class="line">SetUp</span><br><span class="line">IsEmptyInitially</span><br><span class="line">TearDown</span><br><span class="line">[       OK ] QueueTest.IsEmptyInitially (0 ms)</span><br><span class="line">[ RUN      ] QueueTest.DequeueWorks</span><br><span class="line">SetUp</span><br><span class="line">DequeueWorks</span><br><span class="line">TearDown</span><br><span class="line">[       OK ] QueueTest.DequeueWorks (0 ms)</span><br><span class="line">[----------] 2 tests from QueueTest (0 ms total)</span><br><span class="line"></span><br><span class="line">[----------] Global test environment tear-down</span><br><span class="line">[==========] 2 tests from 1 test suite ran. (0 ms total)</span><br><span class="line">[  PASSED  ] 2 tests.</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="googletest整合到项目"><a href="#googletest整合到项目" class="headerlink" title="googletest整合到项目"></a>googletest整合到项目</h2><p><strong>方式：</strong></p>
+<ul>
+<li>利用CMake的模块下载</li>
+<li>拷贝googletest源码到项目中编译</li>
+</ul>
+<h3 id="利用CMake的模块下载："><a href="#利用CMake的模块下载：" class="headerlink" title="利用CMake的模块下载："></a>利用CMake的模块下载：</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.14</span>)</span><br><span class="line"><span class="keyword">project</span>(my_project)</span><br><span class="line"></span><br><span class="line"><span class="comment"># GoogleTest requires at least C++11</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(FetchContent)</span><br><span class="line">FetchContent_Declare(</span><br><span class="line">  googletest</span><br><span class="line">  URL https://github.com/google/googletest/archive/<span class="number">609281088</span>cfefc76f9d0ce82e1ff6c30cc3591e5.zip</span><br><span class="line">)</span><br><span class="line"><span class="comment"># For Windows: Prevent overriding the parent project&#x27;s compiler/linker settings</span></span><br><span class="line"><span class="keyword">set</span>(gtest_force_shared_crt <span class="keyword">ON</span> CACHE BOOL <span class="string">&quot;&quot;</span> FORCE)</span><br><span class="line">FetchContent_MakeAvailable(googletest)</span><br></pre></td></tr></table></figure>
+
+<h3 id="拷贝googletest源码到项目中编译："><a href="#拷贝googletest源码到项目中编译：" class="headerlink" title="拷贝googletest源码到项目中编译："></a>拷贝googletest源码到项目中编译：</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.0</span>.<span class="number">0</span>)</span><br><span class="line"><span class="keyword">project</span>(gtest_demo VERSION <span class="number">0.1</span>.<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译googletest</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(<span class="string">&quot;third-parts/googletest&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(gtest_demo main.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(gtest_demo</span><br><span class="line">    PUBLIC gtest</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="googletest和CMake整合"><a href="#googletest和CMake整合" class="headerlink" title="googletest和CMake整合"></a>googletest和CMake整合</h2><p>步骤：</p>
+<ul>
+<li>开启ctest</li>
+<li>程序链接gtest</li>
+<li>使用GoogleTest模块</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.0</span>.<span class="number">0</span>)</span><br><span class="line"><span class="keyword">project</span>(gtest_demo VERSION <span class="number">0.1</span>.<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_subdirectory</span>(<span class="string">&quot;third-parts/googletest&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启ctest</span></span><br><span class="line"><span class="keyword">include</span>(CTest)</span><br><span class="line"><span class="keyword">enable_testing</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(gtest_demo main.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 程序链接gtest</span></span><br><span class="line"><span class="keyword">target_link_libraries</span>(gtest_demo</span><br><span class="line">    PUBLIC gtest</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用GoogleTest模块</span></span><br><span class="line"><span class="keyword">include</span>(GoogleTest)</span><br><span class="line">gtest_discover_tests(gtest_demo)</span><br></pre></td></tr></table></figure>
+
+<p><strong>命令：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cmake -S . -B build</span><br><span class="line">$ cmake --build build</span><br><span class="line">$ <span class="built_in">cd</span> build</span><br><span class="line">$ ctest</span><br><span class="line">Test project /Users/shibin/code/gtest_demo/build</span><br><span class="line">    Start 1: IsPrimeTest.Negative</span><br><span class="line">1/3 Test <span class="comment">#1: IsPrimeTest.Negative .............   Passed    0.01 sec</span></span><br><span class="line">    Start 2: IsPrimeTest.Trivial</span><br><span class="line">2/3 Test <span class="comment">#2: IsPrimeTest.Trivial ..............   Passed    0.01 sec</span></span><br><span class="line">    Start 3: IsPrimeTest.Positive</span><br><span class="line">3/3 Test <span class="comment">#3: IsPrimeTest.Positive .............   Passed    0.01 sec</span></span><br><span class="line"></span><br><span class="line">100% tests passed, 0 tests failed out of 3</span><br><span class="line"></span><br><span class="line">Total Test time (real) =   0.03 sec</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="googletest和VSCode整合"><a href="#googletest和VSCode整合" class="headerlink" title="googletest和VSCode整合"></a>googletest和VSCode整合</h2><p><strong>VSCode插件：</strong></p>
+<ul>
+<li>Test Explorer UI：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWhiZW5sLnZzY29kZS10ZXN0LWV4cGxvcmVy">https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer<i class="fa fa-external-link-alt"></i></span></li>
+<li>C++ TestMate：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1hdGVwZWsudnNjb2RlLWNhdGNoMi10ZXN0LWFkYXB0ZXI=">https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter<i class="fa fa-external-link-alt"></i></span></li>
+<li>Debug插件：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span>或<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jcHB0b29scw==">C/C++<i class="fa fa-external-link-alt"></i></span>，用于调试测试</li>
+</ul>
+<p>可用鼠标点击运行，可以调试，可以查看log</p>
+<p><img src="/images/googletest/Xnip2021-10-22_00-55-32.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/29/Clang-tidy%E2%80%94%E2%80%94%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -342,11 +549,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -463,11 +675,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -591,11 +808,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -862,11 +1084,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1241,11 +1468,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1606,11 +1838,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1725,11 +1962,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1849,11 +2091,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1926,101 +2173,6 @@
 </ol>
 <h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
 <p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/" class="post-title-link" itemprop="url">【Personal】编程漫谈</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-12 22:12:10" itemprop="dateCreated datePublished" datetime="2021-05-12T22:12:10Z">2021-05-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Personal/" itemprop="url" rel="index"><span itemprop="name">Personal</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/05/13/编程漫谈/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
-<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
-<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
-<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
 
       
     </div>

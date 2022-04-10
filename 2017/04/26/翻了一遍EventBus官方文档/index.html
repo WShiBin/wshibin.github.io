@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -20,10 +20,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Note:以前写的文章，搬迁过来 翻了一遍EventBus官方文档   EventBus事件总线.以观察者模式实现,消息推送&#x2F;订阅.用于Android组件之间相互通信  Note:文章基于EventBus3.0  项目地址:https:&#x2F;&#x2F;github.com&#x2F;greenrobot&#x2F;EventBusDocments:http:&#x2F;&#x2F;greenrobot.org&#x2F;eventbus&#x2F;documenta">
 <meta property="og:type" content="article">
@@ -61,7 +61,13 @@
 
 
 
-  <script async src="https://www.clarity.ms/tag/albpra1b9p"></script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
 
 
 
@@ -106,29 +112,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li>
-        
-            
-  <li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li>
-
-
-      
-        
-            
-  <li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li>
-
-
-      
-        
-            
-  <li class="menu-item menu-item-linux系统编程"><a href="/linux" rel="section"><i class="fa fa-book fa-fw"></i>Linux系统编程</a></li>
-
-
-      
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-linux系统编程"><a href="/linux" rel="section"><i class="fa fa-book fa-fw"></i>Linux系统编程</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -199,12 +183,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -268,7 +252,7 @@
       <meta itemprop="name" content="WShiBin's blogs">
       <meta itemprop="description" content="">
     </span>
-    
+
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="【Android】翻了一遍EventBus官方文档 | WShiBin's blogs">
       <meta itemprop="description" content="">
@@ -350,7 +334,7 @@
 
 <p>###使用三步曲:</p>
 <p>####1,定义事件类<br>事件类是通信过程中的数据的载体,用来传递数据,这里写一个最简单的事件类,后面说如何传递数据</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MessageEvent</span> &#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>####2.注册事件<br>上面提到数据的发送者和接收者, 注册事件是针对接收者的, 哪个组件需要接收消息,就在哪个组件中去注册</p>
 <ul>
@@ -360,16 +344,16 @@
 <li>注销:EventBus:EventBus.getDefault().unregister(this);</li>
 </ul>
 <p><strong>Note:一个事件是可以有多个接收者(订阅者)</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessageEvent</span><span class="params">(MessageEvent event)</span> &#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <p>####3.发送事件<br>最后,消息的发送者发送事件, 这时候上面添加@Subscribe注解的函数会被调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> <span class="title class_">MessageEvent</span>());</span><br></pre></td></tr></table></figure>
 
 <p>**这时候在回来看这张大图,So easy,**点击查看大图<br><img src="/images/eventbus/Xnip2021-01-16_23-22-08.jpg"></p>
 <p>这里顺便吐槽下官方示例代码:<br><img src="/images/eventbus/Xnip2021-01-16_23-22-29.jpg"></p>
 <p>如果你打算把注册写在onStart中,请在前面加上判断</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="built_in">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="built_in">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>###上面是EventBus的基本使用流程,其实这才开始:</p>
 <ul>
@@ -382,16 +366,16 @@
 </ul>
 <p>###传递数据<br>不过,上面只是发了一个空的消息,没有传递任何的数据,比如:我修改了用户的头像,上传到服务器,服务器返回一个Url,这时候我需要修改其它界面的头像,这时候我要把这个url数据传到其它界面:怎么做呢?</p>
 <p>####1.只需要去修改定义事件类中的构造函数,增加一个参数,在加上set和get方法,如下:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateHeadPicEvent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">UpdateHeadPicEvent</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UpdateHeadPicEvent</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">UpdateHeadPicEvent</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">getUrl</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>####2.在发送事件的地方,使用这个带参的构造去创建对象:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> UpdateHeadImgEvent(url));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> <span class="title class_">UpdateHeadImgEvent</span>(url));</span><br></pre></td></tr></table></figure>
 
 <p>####3.在接收消息的回调中用get方法去获取</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>**Note:**这里只是用了一个String的Url做参考,可以传递的数据还有很多,List集合,Bean对象…</p>
 <p>###指定事件接收的线程<br>前面说了加上@Subscribe注解,这个函数在消息推送之后会被回调,其实这个注解还有几个属性,其中threadMode能为该函数指定线程,如果不写,也会有个默认值:ThreadMode.POSTING,意思是和发送事件所在线程一样</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.POSTING)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.POSTING)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>####ThreadMode列表</p>
 <ul>
 <li>ThreadMode.POSTING:和发送事件在同一个线程</li>
@@ -403,19 +387,19 @@
 <ol>
 <li>首先,发送的是黏性事件,代码将post改为postSticky</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> MessageEvent());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> <span class="title class_">MessageEvent</span>());</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>然后,订阅者要声明自己能够接收到黏性事件的消息:代码中@Subscribe注解中的sticky值为true,满足了这两点,就能愉快的玩耍了.</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="keyword">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="built_in">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="built_in">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessageEvent</span><span class="params">(MessageEvent event)</span> &#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>测试Log日志<br><img src="/images/eventbus/Xnip2021-01-16_23-22-51.jpg"></p>
 <p>###接收事件的优先级别<br>EventBus可以定义接收事件方的优先级别,在@Subscribe注解中有一个priority的参数,默认值是0,可以自行配置1.2.3.4…数值越大优先级越低,会越晚收到消息</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  String url = event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>###中止事件传递<br>类似于有序广播,优先级高的订阅者,可以终止事件向下传递,EventBus也提供了此功能</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> </span>&#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>###订阅者索引<br>这个新特性是在EventBus 3.0推出,简单的说:利用annotationProcessor去生成一个关于订阅者的索引类,保存订阅者的相关信息.<br>有什么用?提高效率,注册从运行时的反射,转移到了编译时<br>怎么用?两种方式:</p>
 <ul>
@@ -424,13 +408,13 @@
 </ul>
 <p>这里说annotationProcessor的方式,现在新建项目一般都在2.2.0以上:<br>添加好Gradle设置之后,重新build项目,就会为你生成这样的类:MyEventBusIndex<br>![](/assets/EventBus Annotation Processor.png)</p>
 <p>用法:将它配置应用于默认的EventBus,调用下面代码:可放在Application的onCreate中调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.builder().addIndex(<span class="keyword">new</span> MyEventBusIndex()).installDefaultEventBus();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.builder().addIndex(<span class="keyword">new</span> <span class="title class_">MyEventBusIndex</span>()).installDefaultEventBus();</span><br></pre></td></tr></table></figure>
 <p>未添加前和添加后我分别做了三次测试,注册完成的时间对比,速度快了不止一倍,这还是只有两个订阅者的时候,如果订阅订阅者更多呢,</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//未添加前</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892487664</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892487666</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892568177</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892568180</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892715342</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892715344</span><br><span class="line"></span><br><span class="line">//添加后</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892648185</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892648186</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892814517</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892814518</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892868879</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892868880</span><br></pre></td></tr></table></figure>
 <p>#####在Lib的model中使用:<br>build.gradle也要添加上图中同样的参数,在上图中,这个参数是自定义的,不同的model可以为他生成不同的索引类:</p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">arguments = [<span class="attr">eventBusIndex:</span> <span class="string">&#x27;com.example.myapp.MyEventBusIndex&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p>更改默认配置也需要多添加一行代码:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus eventBus = EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusAppIndex())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> MyEventBusLibIndex())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">EventBus</span> <span class="variable">eventBus</span> <span class="operator">=</span> EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> <span class="title class_">MyEventBusAppIndex</span>())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> <span class="title class_">MyEventBusLibIndex</span>())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
 
 <p>最后代码地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9FdmVudGJ1c2RlbW8=">https://github.com/Shib90/Eventbusdemo<i class="fa fa-external-link-alt"></i></span></p>
 

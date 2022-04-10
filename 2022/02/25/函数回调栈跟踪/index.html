@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -20,10 +20,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="上周在移植dbus，在设备上运行不起来，当然问题后面被我领导解决了；有处地方报错，在源代码里面找到了，当时我在想代码是怎么调到这里来的？怎么去跟踪函数栈的调用？类似，Java在抛出异常之后回打印出，是怎么一步步调到这里来的。写C的时候在其它地方也遇到过：GDB的backtrace命令；Valgrind跟踪内存问题的时候也会打印函数调用栈；还有AddressSanitizer检测内存问题也能打印出">
 <meta property="og:type" content="article">
@@ -57,7 +57,13 @@
 
 
 
-  <script async src="https://www.clarity.ms/tag/albpra1b9p"></script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
 
 
 
@@ -102,29 +108,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li>
-        
-            
-  <li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li>
-
-
-      
-        
-            
-  <li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li>
-
-
-      
-        
-            
-  <li class="menu-item menu-item-linux系统编程"><a href="/linux" rel="section"><i class="fa fa-book fa-fw"></i>Linux系统编程</a></li>
-
-
-      
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-linux系统编程"><a href="/linux" rel="section"><i class="fa fa-book fa-fw"></i>Linux系统编程</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,12 +180,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -265,7 +249,7 @@
       <meta itemprop="name" content="WShiBin's blogs">
       <meta itemprop="description" content="">
     </span>
-    
+
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="【C】函数回调栈跟踪 | WShiBin's blogs">
       <meta itemprop="description" content="">
@@ -335,13 +319,13 @@
 <li>GCC编译选项：<code>-finstrument-functions</code></li>
 </ul>
 <h2 id="GUN拓展函数"><a href="#GUN拓展函数" class="headerlink" title="GUN拓展函数"></a>GUN拓展函数</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9tYW43Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuMy9iYWNrdHJhY2UuMy5odG1s">https://man7.org/linux/man-pages/man3/backtrace.3.html<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="API："><a href="#API：" class="headerlink" title="API："></a>API：</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">backtrace</span><span class="params">(<span class="keyword">void</span> **buffer, <span class="keyword">int</span> size)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> **<span class="title">backtrace_symbols</span><span class="params">(<span class="keyword">void</span> *<span class="keyword">const</span> *buffer, <span class="keyword">int</span> size)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">backtrace_symbols_fd</span><span class="params">(<span class="keyword">void</span> *<span class="keyword">const</span> *buffer, <span class="keyword">int</span> size, <span class="keyword">int</span> fd)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="API："><a href="#API：" class="headerlink" title="API："></a>API：</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">backtrace</span><span class="params">(<span class="type">void</span> **buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> **<span class="title function_">backtrace_symbols</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">backtrace_symbols_fd</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size, <span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure>
 
 <p><code>backtrace_symbols_fd</code>和<code>backtrace_symbols</code>的区别是，<code>backtrace_symbols_fd</code>把信息输出对应的fd，而<code>backtrace_symbols</code>把信息返回给返回值</p>
 <h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><blockquote>
 <p>代码就不自己写了，用的文档中的示例</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BT_BUF_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc3</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>    nptrs;</span><br><span class="line">    <span class="keyword">void</span>*  buffer[BT_BUF_SIZE];</span><br><span class="line">    <span class="keyword">char</span>** strings;</span><br><span class="line"></span><br><span class="line">    nptrs = backtrace(buffer, BT_BUF_SIZE);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;backtrace() returned %d addresses\n&quot;</span>, nptrs);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)</span></span><br><span class="line"><span class="comment">       would produce similar output to the following: */</span></span><br><span class="line"></span><br><span class="line">    strings = backtrace_symbols(buffer, nptrs);</span><br><span class="line">    <span class="keyword">if</span> (strings == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;backtrace_symbols&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; nptrs; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strings[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(strings);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &quot;static&quot; means don&#x27;t export the symbol... */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myfunc2</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    myfunc3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc</span><span class="params">(<span class="keyword">int</span> ncalls)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ncalls &gt; <span class="number">1</span>)</span><br><span class="line">        myfunc(ncalls - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        myfunc2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s num-calls\n&quot;</span>, argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myfunc(atoi(argv[<span class="number">1</span>]));</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_BUF_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc3</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span>    nptrs;</span><br><span class="line">    <span class="type">void</span>*  buffer[BT_BUF_SIZE];</span><br><span class="line">    <span class="type">char</span>** strings;</span><br><span class="line"></span><br><span class="line">    nptrs = backtrace(buffer, BT_BUF_SIZE);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;backtrace() returned %d addresses\n&quot;</span>, nptrs);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)</span></span><br><span class="line"><span class="comment">       would produce similar output to the following: */</span></span><br><span class="line"></span><br><span class="line">    strings = backtrace_symbols(buffer, nptrs);</span><br><span class="line">    <span class="keyword">if</span> (strings == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;backtrace_symbols&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; nptrs; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strings[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(strings);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &quot;static&quot; means don&#x27;t export the symbol... */</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">myfunc2</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    myfunc3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc</span><span class="params">(<span class="type">int</span> ncalls)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (ncalls &gt; <span class="number">1</span>)</span><br><span class="line">        myfunc(ncalls - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        myfunc2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s num-calls\n&quot;</span>, argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myfunc(atoi(argv[<span class="number">1</span>]));</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>有几个值的注意的地方：</strong></p>
 <ul>

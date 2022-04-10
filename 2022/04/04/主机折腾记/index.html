@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="去年想把主力的系统换成Linux，买了个拯救者 2021 Y9000x i7-10875H；工作用Ubuntu，就在这笔记本上尝试了其他几个主要的Linux发行版：Fedora，PopOS，Debian；发现桌面生态分裂严重，各玩个的；国内的应用厂商大部分软件都是支持debian系，还没有到能到工作用的程度（个人观点）。后面还是选择回macOS，虽然之前买了个苹果垃圾桶，但也有点老，毕竟2013">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【电脑】主机折腾记">
+<meta property="og:url" content="https://wshibin.github.io/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="去年想把主力的系统换成Linux，买了个拯救者 2021 Y9000x i7-10875H；工作用Ubuntu，就在这笔记本上尝试了其他几个主要的Linux发行版：Fedora，PopOS，Debian；发现桌面生态分裂严重，各玩个的；国内的应用厂商大部分软件都是支持debian系，还没有到能到工作用的程度（个人观点）。后面还是选择回macOS，虽然之前买了个苹果垃圾桶，但也有点老，毕竟2013">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wshibin.github.io/images/hackintosh/image-20220409153844999.png">
+<meta property="og:image" content="https://wshibin.github.io/images/hackintosh/image-20220409160027294.png">
+<meta property="og:image" content="https://wshibin.github.io/images/hackintosh/image-20220409145526422.png">
+<meta property="og:image" content="https://wshibin.github.io/images/hackintosh/image-20220409145554895.png">
+<meta property="og:image" content="https://wshibin.github.io/images/hackintosh/image-20220410083327828.png">
+<meta property="article:published_time" content="2022-04-03T22:49:35.000Z">
+<meta property="article:modified_time" content="2022-04-10T07:11:19.759Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="Computer">
+<meta property="article:tag" content="Hackintosh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/images/hackintosh/image-20220409153844999.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/","path":"2022/04/04/主机折腾记/","title":"【电脑】主机折腾记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【电脑】主机折腾记 | WShiBin's blogs</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">但行好事，莫问前程!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-linux系统编程"><a href="/linux" rel="section"><i class="fa fa-book fa-fw"></i>Linux系统编程</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">主机要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%85%E6%9C%BA%E6%B8%85%E5%8D%95"><span class="nav-number">2.</span> <span class="nav-text">装机清单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%85%E9%BB%91%E8%8B%B9%E6%9E%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.</span> <span class="nav-text">装黑苹果系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E7%A1%AC%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">选硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.2.</span> <span class="nav-text">装系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU%E9%99%8D%E9%A2%91"><span class="nav-number">4.</span> <span class="nav-text">CPU降频</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【电脑】主机折腾记 | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【电脑】主机折腾记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-03 22:49:35" itemprop="dateCreated datePublished" datetime="2022-04-03T22:49:35Z">2022-04-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Computer/" itemprop="url" rel="index"><span itemprop="name">Computer</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/04/04/主机折腾记/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>去年想把主力的系统换成Linux，买了个拯救者 2021 Y9000x i7-10875H；工作用Ubuntu，就在这笔记本上尝试了其他几个主要的Linux发行版：Fedora，PopOS，Debian；发现桌面生态分裂严重，各玩个的；国内的应用厂商大部分软件都是支持debian系，还没有到能到工作用的程度（个人观点）。后面还是选择回macOS，虽然之前买了个苹果垃圾桶，但也有点老，毕竟2013年的东东，加上苹果主机越来越贵，就动了黑苹果的念头；然后去咸鱼花2900块套了了i5 10400的主机，180买了个无线网卡，在去淘宝花70块装了苹果系统。别说，真香，还老便宜。后面对比i5 10400和i7 10700，发现多核性能有30%多的差异，于是就有了这次的折腾</p>
+</blockquote>
+<h2 id="主机要求"><a href="#主机要求" class="headerlink" title="主机要求"></a>主机要求</h2><ul>
+<li>机箱尽量小</li>
+<li>没有RGB之类的光污染</li>
+</ul>
+<h2 id="装机清单"><a href="#装机清单" class="headerlink" title="装机清单"></a>装机清单</h2><table>
+<thead>
+<tr>
+<th>配件</th>
+<th>清单</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>机箱：</td>
+<td>肖邦PRO 200W</td>
+<td>550</td>
+</tr>
+<tr>
+<td>散热：</td>
+<td>利民AXP90 全铜</td>
+<td>260</td>
+</tr>
+<tr>
+<td>CPU：</td>
+<td>Intel i7 10700</td>
+<td>1680</td>
+</tr>
+<tr>
+<td>主板：</td>
+<td>华硕ROG STRIX B460-I GAMING</td>
+<td>730</td>
+</tr>
+<tr>
+<td>内存：</td>
+<td>刚威DDR4 3200 16G*2</td>
+<td>628</td>
+</tr>
+<tr>
+<td>硬盘：</td>
+<td>西数 SN850 500G</td>
+<td>550</td>
+</tr>
+<tr>
+<td>网卡：</td>
+<td>WD1560</td>
+<td>140</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>总记：4538元</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>有些配件买不到新的，在咸鱼上淘的二手的；不打游戏，集显够用了；为啥不用新的Intel 12代U？要装苹果系统，苹果自己家机器后面也没有出11代和12代U的电脑，10代后面的Intel CPU集显都用不了</p>
+</blockquote>
+<p>装机和装系统过程中也遇到了一些问题，多亏有小伙伴帮忙：</p>
+<ul>
+<li>装机不太明白和个CPU的供电插头，把机器抱去了熊家，给解决了</li>
+<li>后面装系统找不到引导盘，江同学电话指导了一个多小时，用Ventoy做系统启动盘，处理了下硬盘，算是搞定了</li>
+</ul>
+<p>放一张别人的<span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2FkMnowbjh4L3BpY184LyNiaWdJbWc=">装机图<i class="fa fa-external-link-alt"></i></span>，大概就长这样：</p>
+<img src="/images/hackintosh/image-20220409153844999.png" style="zoom:50%;" />
+
+<h2 id="装黑苹果系统"><a href="#装黑苹果系统" class="headerlink" title="装黑苹果系统"></a>装黑苹果系统</h2><h3 id="选硬件"><a href="#选硬件" class="headerlink" title="选硬件"></a>选硬件</h3><p>黑苹果系统最大的找系统兼容的硬件，最好找免驱动的硬件，会省不少蛮烦；比如，苹果之前一段时间出的硬件大多是Intel的U + AMD的显卡；比如，苹果没有；</p>
+<ul>
+<li>CPU：苹果近些年一直使用的是Intel的CPU；但后面没有出Intel 11代、12代U的硬件了，用这两代U可以，但没法使用他们的集显</li>
+<li>显卡：同样苹果近些年用的AMD家的显卡；AMD的显示有也分支持、不支持，还有免驱的</li>
+<li>硬盘和内存：这两个没有太大要求，不过有些硬盘没</li>
+<li>网卡：一般主板上带的Intel网卡没办法使用，或是需要加驱动比较麻烦，这种直接免驱的网卡更换即可</li>
+</ul>
+<blockquote>
+<p>选硬件多参考别人的装机经验：踩坑或建议；如果觉得别人的配置还行，直接按着他的配置买即可</p>
+</blockquote>
+<h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>上面的硬件选对了，大概就成功了八成；装系统大部分工作：<strong>配置上面硬件的驱动</strong>；彭总经常说：可以花钱的都是小事儿。如果不想自己折腾和研究，淘宝花个80、100块，就能找到人远程知道安装了；如果想自己折腾下，就去多看文档和教程：</p>
+<ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb3J0YW5pYS5naXRodWIuaW8vT3BlbkNvcmUtSW5zdGFsbC1HdWlkZS8=">Dortania’s OpenCore Install Guide<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.daliansky.net/"><strong>黑果小兵的部落阁</strong></a></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9hcHBsZS5zcWxzZWMuY29tLw==">国光的黑苹果安装教程：手把手教你配置 OpenCore<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<p>我就不一样了，先自己折腾一下，玩了两天，发现不是很稳定；然后去Github找了个类似配置的装来用</p>
+<img src="/images/hackintosh/image-20220409160027294.png" style="zoom:50%;" />
+
+<h2 id="CPU降频"><a href="#CPU降频" class="headerlink" title="CPU降频"></a>CPU降频</h2><p>装完系统之后跑了下<code>Cinebench R23</code>，然后看了看<code>Intel Power Gadgeta</code>，CPU当了3秒真男人过后就降调到了3.5GHz，这TM怕是买了个i7回来当i5用，和初衷背离，花了更多的钱，缺得到同样的效果；然后就是去排查，看看哪里是瓶颈：电源？主板供电？散热倒置撞墙？200W的电源，CPU使用才到120W不到；当初有想过是散热的问题，所以买了个稍好的散热器利民AXP90 x47 全铜版本；</p>
+<img src="/images/hackintosh/image-20220409145526422.png" style="zoom:50%;" />
+
+<p>折腾研究一番之后还真有发现：<strong>给CPU降压</strong>；最惊喜的是，这个操作不需要花费任何额外的成本，能提高CPU能耗比，还能降温；</p>
+<p>网卡查了资料后，大意是：为了避免工厂生产波动造成个别CPU不稳定， CPU默认设定的电压都会高于所需的最小值。还能在网上查到对于CPU的另一些观点：大厂生产的波动会造成CPU的差异性，体质好的会加<code>K</code>做超频，体质不好的会去掉<code>K</code>；这好像就能解释，为啥苹果的m1芯片为啥还会分8核和10核的，难道是同一流水线下来的残次品，屏蔽其中的2个核，然后拿出来卖</p>
+<p>后面一点点调试，降了0.1之后，CPU能稳定跑4.6了：之前有降到0.125，跑<code>Cinebench R23</code>，之后电脑卡死，这时候需要回调些</p>
+<img src="/images/hackintosh/image-20220409145554895.png" style="zoom:50%;" />
+
+<p><span class="exturl" data-url="aHR0cHM6Ly9icm93c2VyLmdlZWtiZW5jaC5jb20v">Geekbench<i class="fa fa-external-link-alt"></i></span>也由之前的6000分提高到了8414</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9icm93c2VyLmdlZWtiZW5jaC5jb20vdjUvY3B1LzE0MjE2NDYy">https://browser.geekbench.com/v5/cpu/14216462<i class="fa fa-external-link-alt"></i></span></p>
+<img src="/images/hackintosh/image-20220410083327828.png" style="zoom:50%;" />
+
+<p>结束</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Computer/" rel="tag"># Computer</a>
+              <a href="/tags/Hackintosh/" rel="tag"># Hackintosh</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/22/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" rel="prev" title="【Design Principles】LVGL中的一些设计原则">
+                  <i class="fa fa-chevron-left"></i> 【Design Principles】LVGL中的一些设计原则
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/05/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="next" title="【VSCode】VSCode搭建C/C++开发环境">
+                  【VSCode】VSCode搭建C/C++开发环境 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

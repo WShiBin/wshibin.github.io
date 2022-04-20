@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="File文件IO文件描述符在 Linux 的世界里，一切设备皆文件。我们可以系统调用中 I&#x2F;O 的函数（I：input，输入；O：output，输出），对文件进行相应的操作（ open()、close()、write() 、read() 等）。 打开现存文件或新建文件时，系统（内核）会返回一个文件描述符，文件描述符用来指定已打开的文件。这个文件描述符相当于这个已打开文件的标号，文件描述符是非负整数">
+<meta property="og:type" content="website">
+<meta property="og:title" content="【APUE】03. File I&#x2F;O">
+<meta property="og:url" content="https://wshibin.github.io/linux/03_File_I_O.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="File文件IO文件描述符在 Linux 的世界里，一切设备皆文件。我们可以系统调用中 I&#x2F;O 的函数（I：input，输入；O：output，输出），对文件进行相应的操作（ open()、close()、write() 、read() 等）。 打开现存文件或新建文件时，系统（内核）会返回一个文件描述符，文件描述符用来指定已打开的文件。这个文件描述符相当于这个已打开文件的标号，文件描述符是非负整数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wshibin.github.io/linux/03_File_I_O.assets/image-20201205142540655.png">
+<meta property="article:published_time" content="2022-04-11T23:42:35.000Z">
+<meta property="article:modified_time" content="2022-04-15T13:14:44.575Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="APUE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/linux/03_File_I_O.assets/image-20201205142540655.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/linux/03_File_I_O">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/linux/03_File_I_O.html","path":"linux/03_File_I_O.html","title":"【APUE】03. File I/O"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【APUE】03. File I/O | WShiBin's blogs
+</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">但行好事，莫问前程!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/linux" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#File%E6%96%87%E4%BB%B6IO"><span class="nav-number">1.</span> <span class="nav-text">File文件IO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-number">1.1.</span> <span class="nav-text">文件描述符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%AA%E6%95%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">最大打开的文件个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">错误处理函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8IO%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">常用IO函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%E7%9A%84%E5%A4%8D%E5%88%B6"><span class="nav-number">1.3.</span> <span class="nav-text">文件描述符的复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.3.1.</span> <span class="nav-text">操作文件的特性</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-unix-system-overview"><a href="/linux/01_UNIX_System_Overview.html" rel="section">UNIX System Overview</a></li>
+
+
+      
+  <li class="menu-item menu-item-unix-standardization-and-implementations"><a href="/linux/02_UNIX_Standardization_and_Implementations.html" rel="section">UNIX Standardization and Implementations</a></li>
+
+
+      
+  <li class="menu-item menu-item-file-i/o"><a href="/linux/03_File_I_O.html" rel="section">File I/O</a></li>
+
+
+      
+  <li class="menu-item menu-item-files-and-directories"><a href="/linux/04_Files_and_Directories.html" rel="section">Files and Directories</a></li>
+
+
+      
+  <li class="menu-item menu-item-standard-i/o-library"><a href="/linux/05_Standard_I_O_Library.html" rel="section">Standard I/O Library</a></li>
+
+
+      
+  <li class="menu-item menu-item-system-data-files-and-information"><a href="/linux/06_System_Data_Files_and_Information.html" rel="section">System Data Files and Information</a></li>
+
+
+      
+  <li class="menu-item menu-item-process-environment"><a href="/linux/07_Process_Environment.html" rel="section">Process Environment</a></li>
+
+
+      
+  <li class="menu-item menu-item-process-control"><a href="/linux/08_Process_Control.html" rel="section">Process Control</a></li>
+
+
+      
+  <li class="menu-item menu-item-process-relationships"><a href="/linux/09_Process_Relationships.html" rel="section">Process Relationships</a></li>
+
+
+      
+  <li class="menu-item menu-item-signals"><a href="/linux/10_Signals.html" rel="section">Signals</a></li>
+
+
+      
+  <li class="menu-item menu-item-threads"><a href="/linux/11_Threads.html" rel="section">Threads</a></li>
+
+
+      
+  <li class="menu-item menu-item-thread-control"><a href="/linux/12_Thread_Control.html" rel="section">Thread Control</a></li>
+
+
+      
+  <li class="menu-item menu-item-daemon-processes"><a href="/linux/13_Daemon_Processes.html" rel="section">Daemon Processes</a></li>
+
+
+      
+  <li class="menu-item menu-item-advanced-i/o"><a href="/linux/14_Advanced_I_O.html" rel="section">Advanced I/O</a></li>
+
+
+      
+  <li class="menu-item menu-item-interprocess-communication"><a href="/linux/15_Interprocess_Communication.html" rel="section">Interprocess Communication</a></li>
+
+
+      
+  <li class="menu-item menu-item-network-ipc-sockets"><a href="/linux/16_Network_IPC:_Sockets.html" rel="section">Network IPC Sockets</a></li>
+
+
+      
+  <li class="menu-item menu-item-advanced-ipc"><a href="/linux/17_Advanced_IPC.html" rel="section">Advanced IPC</a></li>
+
+
+      
+  <li class="menu-item menu-item-terminal-i/o"><a href="/linux/18_Terminal_I_O.html" rel="section">Terminal I/O</a></li>
+
+
+      
+  <li class="menu-item menu-item-pseudo-terminals"><a href="/linux/19_Pseudo_Terminals.html" rel="section">Pseudo Terminals</a></li>
+
+
+      
+  <li class="menu-item menu-item-a-database-library"><a href="/linux/20_A_Database_Library.html" rel="section">A Database Library</a></li>
+
+
+      
+  <li class="menu-item menu-item-communicating-with-a-network-printer"><a href="/linux/21_Communicating_with_a_Network_Printer.html" rel="section">Communicating with a Network Printer</a></li>
+
+
+    </ul>
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">【APUE】03. File I/O
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h1 id="File文件IO"><a href="#File文件IO" class="headerlink" title="File文件IO"></a>File文件IO</h1><h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><p>在 Linux 的世界里，一切设备皆文件。我们可以系统调用中 I/O 的函数（I：input，输入；O：output，输出），对文件进行相应的操作（ open()、close()、write() 、read() 等）。</p>
+<p>打开现存文件或新建文件时，系统（内核）会返回一个文件描述符，文件描述符用来指定已打开的文件。这个文件描述符相当于这个已打开文件的标号，文件描述符是非负整数，是文件的标识，操作这个文件描述符相当于操作这个描述符所指定的文件。</p>
+<p>程序运行起来后（每个进程）都有一张文件描述符的表，标准输入、标准输出、标准错误输出设备文件被打开，对应的文件描述符 0、1、2 记录在表中。程序运行起来后这三个文件描述符是默认打开的。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> STDIN_FILENO  0 <span class="comment">//标准输入的文件描述符</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STDOUT_FILENO 1 <span class="comment">//标准输出的文件描述符</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STDERR_FILENO 2 <span class="comment">//标准错误的文件描述符</span></span></span><br></pre></td></tr></table></figure>
+
+<p>在程序运行起来后打开其他文件时，系统会返回文件描述符表中最小可用的文件描述符，并将此文件描述符记录在表中。</p>
+<p><img src="03_File_I_O.assets/image-20201205142540655.png" alt="image-20201205142540655"></p>
+<h3 id="最大打开的文件个数"><a href="#最大打开的文件个数" class="headerlink" title="最大打开的文件个数"></a>最大打开的文件个数</h3><p>Linux 中一个进程最多只能打开 NR_OPEN_DEFAULT （即1024）个文件，故当文件不再使用时应及时调用 close() 函数关闭文件。</p>
+<ul>
+<li><p><code>cat /proc/sys/fs/file-max</code>:查看当前系统允许打开最大文件个数</p>
+</li>
+<li><p><code>ulimit -a</code>: 当前默认设置最大打开文件个数1024</p>
+</li>
+<li><p><code>ulimit -n 4096</code>:修改默认设置最大打开文件个数为4096</p>
+</li>
+</ul>
+<h3 id="错误处理函数"><a href="#错误处理函数" class="headerlink" title="错误处理函数"></a>错误处理函数</h3><p>errno 是记录系统的最后一次错误代码。代码是一个int型的值，在errno.h中定义。查看错误代码errno是调试程序的一个重要方法。</p>
+<p>当Linux C api函数发生异常时，一般会将errno全局变量赋一个整数值，不同的值表示不同的含义，可以通过查看该值推测出错的原因。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    FILE* fp = fopen(&quot;xixi.txt&quot;, &quot;r&quot;);</span><br><span class="line">    if (NULL == fp) &#123;</span><br><span class="line">        printf(&quot;%d\n&quot;, errno);            // 打印错误码</span><br><span class="line">        printf(&quot;%s\n&quot;, strerror(errno));  // 把errno的数字转换成相应的文字</span><br><span class="line">        perror(&quot;fopen err:&quot;);             // 打印错误原因的字符串</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>errno.h</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Error codes</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPERM           1               <span class="comment">/* Operation not permitted */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOENT          2               <span class="comment">/* No such file or directory */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ESRCH           3               <span class="comment">/* No such process */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EINTR           4               <span class="comment">/* Interrupted system call */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EIO             5               <span class="comment">/* Input/output error */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENXIO           6               <span class="comment">/* Device not configured */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> E2BIG           7               <span class="comment">/* Argument list too long */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOEXEC         8               <span class="comment">/* Exec format error */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EBADF           9               <span class="comment">/* Bad file descriptor */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ECHILD          10              <span class="comment">/* No child processes */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EDEADLK         11              <span class="comment">/* Resource deadlock avoided */</span></span></span><br><span class="line">                                        <span class="comment">/* 11 was EAGAIN */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOMEM          12              <span class="comment">/* Cannot allocate memory */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EACCES          13              <span class="comment">/* Permission denied */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EFAULT          14              <span class="comment">/* Bad address */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTBLK         15              <span class="comment">/* Block device required */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EBUSY           16              <span class="comment">/* Device / Resource busy */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EEXIST          17              <span class="comment">/* File exists */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EXDEV           18              <span class="comment">/* Cross-device link */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENODEV          19              <span class="comment">/* Operation not supported by device */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTDIR         20              <span class="comment">/* Not a directory */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EISDIR          21              <span class="comment">/* Is a directory */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EINVAL          22              <span class="comment">/* Invalid argument */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENFILE          23              <span class="comment">/* Too many open files in system */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EMFILE          24              <span class="comment">/* Too many open files */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTTY          25              <span class="comment">/* Inappropriate ioctl for device */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ETXTBSY         26              <span class="comment">/* Text file busy */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EFBIG           27              <span class="comment">/* File too large */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOSPC          28              <span class="comment">/* No space left on device */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ESPIPE          29              <span class="comment">/* Illegal seek */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EROFS           30              <span class="comment">/* Read-only file system */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EMLINK          31              <span class="comment">/* Too many links */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPIPE           32              <span class="comment">/* Broken pipe */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* math software */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EDOM            33              <span class="comment">/* Numerical argument out of domain */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERANGE          34              <span class="comment">/* Result too large */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* non-blocking and interrupt i/o */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EAGAIN          35              <span class="comment">/* Resource temporarily unavailable */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EWOULDBLOCK     EAGAIN          <span class="comment">/* Operation would block */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EINPROGRESS     36              <span class="comment">/* Operation now in progress */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EALREADY        37              <span class="comment">/* Operation already in progress */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* ipc/network software -- argument errors */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTSOCK        38              <span class="comment">/* Socket operation on non-socket */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EDESTADDRREQ    39              <span class="comment">/* Destination address required */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EMSGSIZE        40              <span class="comment">/* Message too long */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPROTOTYPE      41              <span class="comment">/* Protocol wrong type for socket */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOPROTOOPT     42              <span class="comment">/* Protocol not available */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPROTONOSUPPORT 43              <span class="comment">/* Protocol not supported */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ESOCKTNOSUPPORT 44              <span class="comment">/* Socket type not supported */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTSUP         45              <span class="comment">/* Operation not supported */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> !__DARWIN_UNIX03 &amp;&amp; !defined(KERNEL)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EOPNOTSUPP       ENOTSUP        <span class="comment">/* Operation not supported on socket */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* !__DARWIN_UNIX03 &amp;&amp; !KERNEL */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPFNOSUPPORT    46              <span class="comment">/* Protocol family not supported */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EAFNOSUPPORT    47              <span class="comment">/* Address family not supported by protocol family */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EADDRINUSE      48              <span class="comment">/* Address already in use */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EADDRNOTAVAIL   49              <span class="comment">/* Can&#x27;t assign requested address */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* ipc/network software -- operational errors */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENETDOWN        50              <span class="comment">/* Network is down */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENETUNREACH     51              <span class="comment">/* Network is unreachable */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENETRESET       52              <span class="comment">/* Network dropped connection on reset */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ECONNABORTED    53              <span class="comment">/* Software caused connection abort */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ECONNRESET      54              <span class="comment">/* Connection reset by peer */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOBUFS         55              <span class="comment">/* No buffer space available */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EISCONN         56              <span class="comment">/* Socket is already connected */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTCONN        57              <span class="comment">/* Socket is not connected */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ESHUTDOWN       58              <span class="comment">/* Can&#x27;t send after socket shutdown */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ETOOMANYREFS    59              <span class="comment">/* Too many references: can&#x27;t splice */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ETIMEDOUT       60              <span class="comment">/* Operation timed out */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ECONNREFUSED    61              <span class="comment">/* Connection refused */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ELOOP           62              <span class="comment">/* Too many levels of symbolic links */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENAMETOOLONG    63              <span class="comment">/* File name too long */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* should be rearranged */</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EHOSTDOWN       64              <span class="comment">/* Host is down */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EHOSTUNREACH    65              <span class="comment">/* No route to host */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTEMPTY       66              <span class="comment">/* Directory not empty */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* quotas &amp; mush */</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPROCLIM        67              <span class="comment">/* Too many processes */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EUSERS          68              <span class="comment">/* Too many users */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EDQUOT          69              <span class="comment">/* Disc quota exceeded */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Network File System */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ESTALE          70              <span class="comment">/* Stale NFS file handle */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EREMOTE         71              <span class="comment">/* Too many levels of remote in path */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EBADRPC         72              <span class="comment">/* RPC struct is bad */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERPCMISMATCH    73              <span class="comment">/* RPC version wrong */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPROGUNAVAIL    74              <span class="comment">/* RPC prog. not avail */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPROGMISMATCH   75              <span class="comment">/* Program version wrong */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPROCUNAVAIL    76              <span class="comment">/* Bad procedure for program */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOLCK          77              <span class="comment">/* No locks available */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOSYS          78              <span class="comment">/* Function not implemented */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EFTYPE          79              <span class="comment">/* Inappropriate file type or format */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EAUTH           80              <span class="comment">/* Authentication error */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENEEDAUTH       81              <span class="comment">/* Need authenticator */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Intelligent device errors */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPWROFF         82      <span class="comment">/* Device power is off */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EDEVERR         83      <span class="comment">/* Device error, e.g. paper out */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EOVERFLOW       84              <span class="comment">/* Value too large to be stored in data type */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Program loading errors */</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EBADEXEC        85      <span class="comment">/* Bad executable */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EBADARCH        86      <span class="comment">/* Bad CPU type in executable */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ESHLIBVERS      87      <span class="comment">/* Shared library version mismatch */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EBADMACHO       88      <span class="comment">/* Malformed Macho file */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ECANCELED       89              <span class="comment">/* Operation canceled */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EIDRM           90              <span class="comment">/* Identifier removed */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOMSG          91              <span class="comment">/* No message of desired type */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EILSEQ          92              <span class="comment">/* Illegal byte sequence */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOATTR         93              <span class="comment">/* Attribute not found */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EBADMSG         94              <span class="comment">/* Bad message */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EMULTIHOP       95              <span class="comment">/* Reserved */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENODATA         96              <span class="comment">/* No message available on STREAM */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOLINK         97              <span class="comment">/* Reserved */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOSR           98              <span class="comment">/* No STREAM resources */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOSTR          99              <span class="comment">/* Not a STREAM */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPROTO          100             <span class="comment">/* Protocol error */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ETIME           101             <span class="comment">/* STREAM ioctl timeout */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_UNIX03 || defined(KERNEL)</span></span><br><span class="line"><span class="comment">/* This value is only discrete when compiling __DARWIN_UNIX03, or KERNEL */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EOPNOTSUPP      102             <span class="comment">/* Operation not supported on socket */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* __DARWIN_UNIX03 || KERNEL */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOPOLICY       103             <span class="comment">/* No such policy registered */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= 200809L</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTRECOVERABLE 104             <span class="comment">/* State not recoverable */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EOWNERDEAD      105             <span class="comment">/* Previous owner died */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> __DARWIN_C_LEVEL &gt;= __DARWIN_C_FULL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EQFULL          106             <span class="comment">/* Interface output queue is full */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ELAST           106             <span class="comment">/* Must be equal largest errno */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="常用IO函数"><a href="#常用IO函数" class="headerlink" title="常用IO函数"></a>常用IO函数</h2><ul>
+<li>int open(const char *pathname, int flags);</li>
+<li>int open(const char *pathname, int flags, mode_t mode);</li>
+<li>ssize_t read(int fd, void *buf, size_t count);</li>
+<li>ssize_t write(int fd, const void *buf, size_t count);</li>
+<li>off_t lseek(int fd, off_t offset, int whence);</li>
+<li>int close(int fd);</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param fd 文件描述符</span></span><br><span class="line"><span class="comment"> * @param offset 偏移</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param whence 起始(从哪里开始)SEEK_SET SEEK_CUR SEEK_END</span></span><br><span class="line"><span class="comment"> * @return off_t</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// off_t lseek(int fd, off_t offset, int whence);</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int open(const char *pathname, int flags);</span></span><br><span class="line">    <span class="type">int</span> fd = open(<span class="string">&quot;xixi.txt&quot;</span>, O_RDWR);</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> buf[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ssize_t read(int fd, void *buf, size_t count);</span></span><br><span class="line">    <span class="type">int</span> len = read(fd, buf, <span class="number">1024</span>);</span><br><span class="line">    <span class="keyword">if</span> (len &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to read:&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ssize_t write(int fd, const void *buf, size_t count);</span></span><br><span class="line">    <span class="type">int</span> ret = write(fd, <span class="string">&quot;xixi&quot;</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to write:&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// hehe xixi</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;buf = %s\n&quot;</span>, buf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int close(int fd);</span></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>lseek_demo.c</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param fd 文件描述符</span></span><br><span class="line"><span class="comment"> * @param offset 偏移</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param whence 起始(从哪里开始)SEEK_SET SEEK_CUR SEEK_END</span></span><br><span class="line"><span class="comment"> * @return off_t</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// off_t lseek(int fd, off_t offset, int whence);</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int open(const char *pathname, int flags);</span></span><br><span class="line">    <span class="type">int</span> fd = open(<span class="string">&quot;xixi.txt&quot;</span>, O_RDWR);  <span class="comment">// hehexixi</span></span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> buf[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ssize_t read(int fd, void *buf, size_t count);</span></span><br><span class="line">    <span class="type">int</span> len = read(fd, buf, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (len &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to read:&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;first read: %s\n&quot;</span>, buf);  <span class="comment">// hehe</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// off_t lseek(int fd, off_t offset, int whence);</span></span><br><span class="line">    <span class="type">int</span> ret = lseek(fd, <span class="number">0</span>, SEEK_SET);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to lseek:&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;current position: %d\n&quot;</span>, ret);</span><br><span class="line">    len = read(fd, buf, <span class="number">1024</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// hehexixi</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;second read = %s\n&quot;</span>, buf);  <span class="comment">// hehexixi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// int close(int fd);</span></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="文件描述符的复制"><a href="#文件描述符的复制" class="headerlink" title="文件描述符的复制"></a>文件描述符的复制</h2><p>dup() 和 dup2() 是两个非常有用的系统调用，都是用来复制一个文件的描述符，使新的文件描述符也标识旧的文件描述符所标识的文件。</p>
+<p>这个过程类似于现实生活中的配钥匙，钥匙相当于文件描述符，锁相当于文件，本来一个钥匙开一把锁，相当于，一个文件描述符对应一个文件，现在，我们去配钥匙，通过旧的钥匙复制了一把新的钥匙，这样的话，旧的钥匙和新的钥匙都能开启这把锁。</p>
+<p>对比于 dup(), dup2() 也一样，通过原来的文件描述符复制出一个新的文件描述符，这样的话，原来的文件描述符和新的文件描述符都指向同一个文件，我们操作这两个文件描述符的任何一个，都能操作它所对应的文件。</p>
+<p><strong>函数:</strong></p>
+<ul>
+<li>int dup(int oldfd);</li>
+<li>int dup2(int oldfd, int newfd);</li>
+</ul>
+<p>dup和dup2区别:dup是内核分配一个最小可用的文件描述符;dup2是自己指定newfd,如果newfd被占用了,会先close这个newfd,然后在复用这个newfd</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">dup</span><span class="params">(<span class="type">int</span> oldfd)</span>;</span><br><span class="line">    <span class="type">int</span> newfd = dup(STDOUT_FILENO);</span><br><span class="line">    write(newfd, <span class="string">&quot;xixi&quot;</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int dup2(int oldfd, int newfd);</span></span><br><span class="line">    <span class="type">int</span> fd = open(<span class="string">&quot;xixi.txt&quot;</span>, O_RDWR);</span><br><span class="line">    <span class="type">int</span> ret = dup2(fd, STDOUT_FILENO);</span><br><span class="line">    <span class="type">int</span> len = write(fd, <span class="string">&quot;from fd\n&quot;</span>, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    len = write(STDOUT_FILENO, <span class="string">&quot;from stdout&quot;</span>, <span class="number">11</span>);</span><br><span class="line">    <span class="keyword">if</span> (len == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to read:&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    close(fd);</span><br><span class="line">    close(STDOUT_FILENO);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="操作文件的特性"><a href="#操作文件的特性" class="headerlink" title="操作文件的特性"></a>操作文件的特性</h3><p>操作文件描述符:</p>
+<ul>
+<li>int fcntl(int fd, int cmd, … /* arg */);</li>
+</ul>
+<p><strong>操作命令cmd:</strong></p>
+<ul>
+<li><strong>复制一个现有的描述符（cmd=F_DUPFD）</strong>==&gt; 相当于dup</li>
+<li>获得/设置文件描述符标记(cmd=F_GETFD或F_SETFD)</li>
+<li><strong>获得/设置文件状态标记(cmd=F_GETFL或F_SETFL)</strong></li>
+<li>获得/设置异步I/O所有权(cmd=F_GETOWN或F_SETOWN)</li>
+<li>获得/设置记录锁(cmd=F_GETLK, F_SETLK或F_SETLKW)</li>
+</ul>
+<p>fcntl_demo.c</p>
+<p>把stdin改成nonblocking</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改stdin成非阻塞</span></span><br><span class="line"><span class="comment">// read stdin --&gt; 阻塞(等待键盘输入) (网络...)</span></span><br><span class="line"><span class="comment">// read 文件 --&gt; 非阻塞()</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.block(default)</span></span><br><span class="line">    <span class="type">int</span> len = read(STDIN_FILENO, buf, <span class="number">1024</span>);</span><br><span class="line">    <span class="keyword">if</span> (len &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to read\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;buf = %s\n&quot;</span>, buf);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. fcntl</span></span><br><span class="line">    <span class="comment">// int fcntl(int fd, int cmd, ... /* arg */ );</span></span><br><span class="line">    <span class="type">int</span> flag = fcntl(STDIN_FILENO, F_GETFL);</span><br><span class="line">    flag |= O_NONBLOCK;  <span class="comment">// 追加flag:O_NONBLOCK</span></span><br><span class="line">    <span class="type">int</span> ret = fcntl(STDIN_FILENO, F_SETFL, flag);</span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to set fd flag&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="type">int</span> len = read(STDIN_FILENO, buf, <span class="number">1024</span>);  <span class="comment">// non-blocking</span></span><br><span class="line">        <span class="keyword">if</span> (len &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (errno == EAGAIN) &#123;  <span class="comment">// 或EWOULDBLOCK</span></span><br><span class="line">                sleep(<span class="number">2</span>);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;try again\n&quot;</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            perror(<span class="string">&quot;Failed to read\n&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> len;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;buf = %s\n&quot;</span>, buf);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/linux/03_File_I_O.html"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

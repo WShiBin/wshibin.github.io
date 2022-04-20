@@ -1111,35 +1111,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【C】libuuid上手教程</title>
-    <url>/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
-<p>  用于生成UUID(Universally Unique Identifier，通用唯一标识符)的库，一个UUID是一个16字节(128位)的数字，一般通过32个十六进制表示，一个UUID被连字符分成5段，标准的UUID格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，即形式为8-4-4-4-12的32个字符，其中字母是16进制表示，大小写无关。</p>
-</blockquote>
-<p>repo :<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NlcnRpay91dWlk">https://github.com/certik/uuid<i class="fa fa-external-link-alt"></i></span> (copy from <span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9VdGlsLWxpbnV4">util-linux<i class="fa fa-external-link-alt"></i></span>)</p>
-<p><strong>两种生成uuid的方式</strong></p>
-<ul>
-<li>基于随机数生成UUID(优先)</li>
-<li>基于时间生成UUID</li>
-</ul>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>头文件：uuid.h</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// uuid结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">char</span> <span class="type">uuid_t</span>[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Variant definitions */</span> <span class="comment">// uuid variant</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_NCS	0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_DCE	1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_MICROSOFT	2</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_OTHER	3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Type definitions */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_TYPE_DCE_TIME   1 <span class="comment">// uuid类型(基于事件生成)</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_TYPE_DCE_RANDOM 4 <span class="comment">// uuid类型(基于随机数生成)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* clear.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_clear</span><span class="params">(<span class="type">uuid_t</span> uu)</span>; <span class="comment">// 清理uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* compare.c */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_compare</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu1, <span class="type">const</span> <span class="type">uuid_t</span> uu2)</span>; <span class="comment">// 比较uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* copy.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_copy</span><span class="params">(<span class="type">uuid_t</span> dst, <span class="type">const</span> <span class="type">uuid_t</span> src)</span>; <span class="comment">// copy uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* gen_uuid.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_generate</span><span class="params">(<span class="type">uuid_t</span> out)</span>; <span class="comment">// 基于随机数或时间生成uuid,优先随机数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_generate_random</span><span class="params">(<span class="type">uuid_t</span> out)</span>;　<span class="comment">// 基于随机数生成uuid</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_generate_time</span><span class="params">(<span class="type">uuid_t</span> out)</span>; <span class="comment">// 基于事件生成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* isnull.c */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_is_null</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 判断是否为空</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* parse.c */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_parse</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *in, <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 把一个字符串(理论上是36个长度)解析成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* unparse.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_unparse</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="type">char</span> *out)</span>; <span class="comment">// uuid转成16进制字符(xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_unparse_lower</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="type">char</span> *out)</span>; <span class="comment">// uuid转成16进制小写字符</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_unparse_upper</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="type">char</span> *out)</span>; <span class="comment">// uuid转成16进制大写字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* uuid_time.c */</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">uuid_time</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="keyword">struct</span> timeval *ret_tv)</span>; <span class="comment">// 根据uuid获取其中时间</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_type</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 判断uuid的类型</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_variant</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 获取uuid variant(用来标识uuid的格式和编码: wiki:https://en.wikipedia.org/wiki/Universally_unique_identifier#Variants)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;uuid.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">uuid_t</span> uuid;</span><br><span class="line">    <span class="type">char</span>   uuid_str[<span class="number">37</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.uuid_generate</span></span><br><span class="line">    uuid_generate(uuid);           <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.uuid_generate_random</span></span><br><span class="line">    uuid_generate_random(uuid);    <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on random uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.uuid_generate_time</span></span><br><span class="line">    uuid_generate_time(uuid);      <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on time uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. uuid_time, uuid_type, uuid_variant</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">    <span class="type">time_t</span>         time = uuid_time(uuid, &amp;tv);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;tv = (%ld, %ld); time = %s&quot;</span>, tv.tv_sec, tv.tv_usec, ctime(&amp;time));</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> type = uuid_type(uuid);</span><br><span class="line">    <span class="keyword">if</span> (type == UUID_TYPE_DCE_TIME) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_TIME\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == UUID_TYPE_DCE_RANDOM) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_RANDOM\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> variant = uuid_variant(uuid);</span><br><span class="line">    <span class="keyword">if</span> (variant == UUID_VARIANT_NCS) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_NCS\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_DCE) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_DCE\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_MICROSOFT) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_MICROSOFT\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_OTHER) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_OTHER\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5.other: uuid_is_null, uuid_unparse_lower, uuid_unparse_upper, uuid_clear</span></span><br><span class="line">    <span class="type">int</span> ret = uuid_is_null(uuid);</span><br><span class="line">    <span class="keyword">if</span> (ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is null\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is not null\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uuid_unparse_lower(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;lower uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line">    uuid_unparse_upper(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;upper uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    uuid_clear(uuid);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uuid = dd18aa44-9594-41a2-b80c-d894851508a8</span><br><span class="line">base on random uuid = 71e08c50-47f5-45ef-adad-b1af80e40e98</span><br><span class="line">base on time uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line"></span><br><span class="line">tv = (1604563623, 547984); time = Thu Nov  5 16:07:03 2020</span><br><span class="line">uuid type is : UUID_TYPE_DCE_TIME</span><br><span class="line">uuid variant is : UUID_VARIANT_DCE</span><br><span class="line"></span><br><span class="line">uuid is not null</span><br><span class="line">lower uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line">upper uuid = E3840B20-1F3D-11EB-B204-6378FB95E6AE</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>C</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>UUID</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Personal】2020总结，2021展望</title>
     <url>/2021/02/22/2020%E6%80%BB%E7%BB%93-2021%E5%B1%95%E6%9C%9B/</url>
     <content><![CDATA[<h1 id="2020-总结"><a href="#2020-总结" class="headerlink" title="2020 总结"></a>2020 总结</h1><ul>
@@ -1192,6 +1163,166 @@
       </categories>
       <tags>
         <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【C】libuuid上手教程</title>
+    <url>/2021/01/17/libuuid%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
+<p>  用于生成UUID(Universally Unique Identifier，通用唯一标识符)的库，一个UUID是一个16字节(128位)的数字，一般通过32个十六进制表示，一个UUID被连字符分成5段，标准的UUID格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，即形式为8-4-4-4-12的32个字符，其中字母是16进制表示，大小写无关。</p>
+</blockquote>
+<p>repo :<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NlcnRpay91dWlk">https://github.com/certik/uuid<i class="fa fa-external-link-alt"></i></span> (copy from <span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9VdGlsLWxpbnV4">util-linux<i class="fa fa-external-link-alt"></i></span>)</p>
+<p><strong>两种生成uuid的方式</strong></p>
+<ul>
+<li>基于随机数生成UUID(优先)</li>
+<li>基于时间生成UUID</li>
+</ul>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>头文件：uuid.h</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// uuid结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">char</span> <span class="type">uuid_t</span>[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Variant definitions */</span> <span class="comment">// uuid variant</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_NCS	0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_DCE	1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_MICROSOFT	2</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_VARIANT_OTHER	3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* UUID Type definitions */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_TYPE_DCE_TIME   1 <span class="comment">// uuid类型(基于事件生成)</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UUID_TYPE_DCE_RANDOM 4 <span class="comment">// uuid类型(基于随机数生成)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* clear.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_clear</span><span class="params">(<span class="type">uuid_t</span> uu)</span>; <span class="comment">// 清理uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* compare.c */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_compare</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu1, <span class="type">const</span> <span class="type">uuid_t</span> uu2)</span>; <span class="comment">// 比较uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* copy.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_copy</span><span class="params">(<span class="type">uuid_t</span> dst, <span class="type">const</span> <span class="type">uuid_t</span> src)</span>; <span class="comment">// copy uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* gen_uuid.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_generate</span><span class="params">(<span class="type">uuid_t</span> out)</span>; <span class="comment">// 基于随机数或时间生成uuid,优先随机数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_generate_random</span><span class="params">(<span class="type">uuid_t</span> out)</span>;　<span class="comment">// 基于随机数生成uuid</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_generate_time</span><span class="params">(<span class="type">uuid_t</span> out)</span>; <span class="comment">// 基于事件生成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* isnull.c */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_is_null</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 判断是否为空</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* parse.c */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_parse</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *in, <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 把一个字符串(理论上是36个长度)解析成uuid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* unparse.c */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_unparse</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="type">char</span> *out)</span>; <span class="comment">// uuid转成16进制字符(xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_unparse_lower</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="type">char</span> *out)</span>; <span class="comment">// uuid转成16进制小写字符</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uuid_unparse_upper</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="type">char</span> *out)</span>; <span class="comment">// uuid转成16进制大写字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* uuid_time.c */</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">uuid_time</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu, <span class="keyword">struct</span> timeval *ret_tv)</span>; <span class="comment">// 根据uuid获取其中时间</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_type</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 判断uuid的类型</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">uuid_variant</span><span class="params">(<span class="type">const</span> <span class="type">uuid_t</span> uu)</span>; <span class="comment">// 获取uuid variant(用来标识uuid的格式和编码: wiki:https://en.wikipedia.org/wiki/Universally_unique_identifier#Variants)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;uuid.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">uuid_t</span> uuid;</span><br><span class="line">    <span class="type">char</span>   uuid_str[<span class="number">37</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.uuid_generate</span></span><br><span class="line">    uuid_generate(uuid);           <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.uuid_generate_random</span></span><br><span class="line">    uuid_generate_random(uuid);    <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on random uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.uuid_generate_time</span></span><br><span class="line">    uuid_generate_time(uuid);      <span class="comment">// 生成uuid</span></span><br><span class="line">    uuid_unparse(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串(36长度)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;base on time uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. uuid_time, uuid_type, uuid_variant</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">    <span class="type">time_t</span>         time = uuid_time(uuid, &amp;tv);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;tv = (%ld, %ld); time = %s&quot;</span>, tv.tv_sec, tv.tv_usec, ctime(&amp;time));</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> type = uuid_type(uuid);</span><br><span class="line">    <span class="keyword">if</span> (type == UUID_TYPE_DCE_TIME) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_TIME\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == UUID_TYPE_DCE_RANDOM) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid type is : UUID_TYPE_DCE_RANDOM\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> variant = uuid_variant(uuid);</span><br><span class="line">    <span class="keyword">if</span> (variant == UUID_VARIANT_NCS) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_NCS\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_DCE) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_DCE\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_MICROSOFT) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_MICROSOFT\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (variant == UUID_VARIANT_OTHER) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid variant is : UUID_VARIANT_OTHER\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5.other: uuid_is_null, uuid_unparse_lower, uuid_unparse_upper, uuid_clear</span></span><br><span class="line">    <span class="type">int</span> ret = uuid_is_null(uuid);</span><br><span class="line">    <span class="keyword">if</span> (ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is null\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;uuid is not null\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uuid_unparse_lower(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;lower uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line">    uuid_unparse_upper(uuid, uuid_str);  <span class="comment">// uuid转成十六进制字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;upper uuid = %s\n&quot;</span>, uuid_str);</span><br><span class="line"></span><br><span class="line">    uuid_clear(uuid);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uuid = dd18aa44-9594-41a2-b80c-d894851508a8</span><br><span class="line">base on random uuid = 71e08c50-47f5-45ef-adad-b1af80e40e98</span><br><span class="line">base on time uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line"></span><br><span class="line">tv = (1604563623, 547984); time = Thu Nov  5 16:07:03 2020</span><br><span class="line">uuid type is : UUID_TYPE_DCE_TIME</span><br><span class="line">uuid variant is : UUID_VARIANT_DCE</span><br><span class="line"></span><br><span class="line">uuid is not null</span><br><span class="line">lower uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line">upper uuid = E3840B20-1F3D-11EB-B204-6378FB95E6AE</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Markdown】Markdown问题汇总</title>
+    <url>/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h2 id="在Makrdown中显示-backtick"><a href="#在Makrdown中显示-backtick" class="headerlink" title="在Makrdown中显示`(backtick)"></a>在Makrdown中显示<code>`</code>(backtick)</h2><p><span class="exturl" data-url="aHR0cHM6Ly9tZXRhLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy84MjcxOC9ob3ctZG8taS1lc2NhcGUtYS1iYWNrdGljay13aXRoaW4taW4tbGluZS1jb2RlLWluLW1hcmtkb3du">https://meta.stackexchange.com/questions/82718/how-do-i-escape-a-backtick-within-in-line-code-in-markdown<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXJpbmdmaXJlYmFsbC5uZXQvcHJvamVjdHMvbWFya2Rvd24vc3ludGF4I2NvZGU=">https://daringfireball.net/projects/markdown/syntax#code<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Debug】GDB上手</title>
+    <url>/2021/04/18/GDB-get-start/</url>
+    <content><![CDATA[<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9nZGIv">https://www.gnu.org/software/gdb/<i class="fa fa-external-link-alt"></i></span><br>Debugging with GDB:<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2V3YXJlLm9yZy9nZGIvY3VycmVudC9vbmxpbmVkb2NzL2dkYi8=">https://sourceware.org/gdb/current/onlinedocs/gdb/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GDB, the GNU Project debugger, allows you to see what is going on `inside’ another program while it executes – or what another program was doing at the moment it crashed.</p>
+<p>GDB的功能:</p>
+<ul>
+<li>Start your program, specifying anything that might affect its behavior.</li>
+<li>Make your program stop on specified conditions.</li>
+<li>Examine what has happened, when your program has stopped.</li>
+<li>Change things in your program, so you can experiment with correcting the effects of one bug and go on to learn about another.</li>
+</ul>
+<h2 id="启动gdb"><a href="#启动gdb" class="headerlink" title="启动gdb"></a>启动gdb</h2><p>启动gdb之前,需要编译出debug版本的程序,编译时加<code>-g</code>选项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -g main.c</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动方法</strong>:</p>
+<ul>
+<li>调试直接启动程序</li>
+<li>调试一个正在运行的程序,attach</li>
+<li>调试core文件</li>
+</ul>
+<p><strong>调试直接启动程序</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt;</span></span><br><span class="line">$ gdb a.out</span><br></pre></td></tr></table></figure>
+
+<p><strong>调试一个正在运行的程序,attach</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt; &lt;PID&gt;</span></span><br><span class="line">$ gdb a.out 11127</span><br></pre></td></tr></table></figure>
+
+<p><strong>调试core文件</strong>:</p>
+<p>可以通过core文件调试程序来找到错误原因.比如跟踪常见的断错误</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt; &lt;core dump file&gt;</span></span><br><span class="line">$ gdb program core</span><br></pre></td></tr></table></figure>
+
+<h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><ul>
+<li><code>help</code></li>
+<li><code>help &lt;keyword&gt;</code></li>
+<li>tab键补全</li>
+<li>Enter回车:执行上一条命令</li>
+<li>大多命令都有简写</li>
+</ul>
+<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><ul>
+<li>设置断点:break/b</li>
+<li>查看断点:info breakpoints</li>
+<li>删除断点:delete</li>
+<li>关闭或开启断点:disable/enable<ul>
+<li>disable &lt;断点序列号&gt;:关闭指定序列号的断点</li>
+<li>enable &lt;断点序列号&gt;:开启指定序列号的断点</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置断点:break语法</span></span><br><span class="line"><span class="comment"># * break &lt;行号&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;文件名&gt;:&lt;行号&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;函数名&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;文件名&gt;:&lt;函数名&gt;</span></span><br><span class="line">(gdb) <span class="built_in">break</span> 30          <span class="comment"># 设置30行为断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main.c:30   <span class="comment"># 设置main.c的30行断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main        <span class="comment"># 设置main函数为断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main.c:main <span class="comment"># 设置main.c文件的main函数为断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看断点</span></span><br><span class="line">(gdb) info breakpoints</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除断点:delete语法</span></span><br><span class="line"><span class="comment"># * delete &lt;断点序列号&gt;</span></span><br><span class="line"><span class="comment"># * delete breakpoints</span></span><br><span class="line">(gdb) delete 3              <span class="comment"># 删除序列号为3的断点</span></span><br><span class="line">(gdb) delete breakpoints    <span class="comment"># 删除所有断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它操作:disable/enable</span></span><br><span class="line"><span class="comment">#   * disable &lt;断点序列号&gt;:关闭指定序列号的断点</span></span><br><span class="line"><span class="comment">#   * enable &lt;断点序列号&gt;:开启指定序列号的断点</span></span><br><span class="line">(gdb) <span class="built_in">disable</span> 3</span><br><span class="line">(gdb) <span class="built_in">enable</span> 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
+<li>run/r:运行程序,当遇到断点后,程序会在断点处停止运行,等待用户输入下一步的命令</li>
+<li>next/n:单步跟踪程序,不会跳进去函数</li>
+<li>nexti:单步跟踪程序(汇编)</li>
+<li>continue/c:继续执行,到下一个断点处（或运行结束）</li>
+<li>step/s:单步调试如果有函数调用,则进入函数</li>
+<li>finish:运行程序,直到当前函数完成返回</li>
+<li>call:调用程序中可见的函数</li>
+<li>quit/q:退出</li>
+</ul>
+<h2 id="查看源代码"><a href="#查看源代码" class="headerlink" title="查看源代码"></a>查看源代码</h2><p>两种方式</p>
+<ul>
+<li>list/l<ul>
+<li>list &lt;行号&gt;:默认显示10行代码信息</li>
+<li>list &lt;函数名&gt;:以函数为中心,显示10行代码信息</li>
+<li>list &lt;文件名&gt;:&lt;函数名&gt;:</li>
+<li>show listsize:查看list命令显示的大小</li>
+<li>set listsize:设置list命令显示的大小</li>
+</ul>
+</li>
+<li>layout(src源代码/asm汇编/regs寄存器/分屏)<ul>
+<li>layout src:源代码</li>
+<li>layout asm:汇编</li>
+<li>layout regs:寄存器</li>
+<li>layout prev:上一种布局</li>
+<li>layout next:下一种布局</li>
+<li>refresh/Ctrl+L:刷新(屏幕出现花屏时使用)</li>
+</ul>
+</li>
+</ul>
+<h2 id="信息查看显示"><a href="#信息查看显示" class="headerlink" title="信息查看显示"></a>信息查看显示</h2><ul>
+<li>print/p:打印一个变量,取地址,表达式,函数</li>
+<li>backtrace full:打印栈里的所有局部变量</li>
+<li>display:类似print,每次单步调试都会输出</li>
+<li>undisplay:取消display的设置</li>
+<li>watch:监控变量,当变量变化时输出(删除watch使用delete命令)</li>
+<li>whatis:查询变量或函数信息</li>
+<li>info:查看相关信息<ul>
+<li>info breakpoints:查看断点设置</li>
+<li>info display:查看display设置</li>
+<li>info watchpoints:查看watch设置</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># print语法: print &lt;expression&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;变量&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;变量取地址&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;表达式&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;函数调用&gt;</span></span><br><span class="line">(gdb) <span class="built_in">print</span> a                       <span class="comment"># 变量值</span></span><br><span class="line">(gdb) <span class="built_in">print</span> &amp;a                      <span class="comment"># 取地址</span></span><br><span class="line">(gdb) <span class="built_in">print</span> a++                     <span class="comment"># 表达式</span></span><br><span class="line">(gdb) <span class="built_in">print</span> random_range(10, 20)    <span class="comment"># 函数调用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print 数组</span></span><br><span class="line"><span class="comment"># * print &lt;数据变量名&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;数据变量名[index]@lenght&gt;</span></span><br><span class="line">(gdb) <span class="built_in">print</span> array       <span class="comment"># 打印数组</span></span><br><span class="line">(gdb) <span class="built_in">print</span> array[5]@10 <span class="comment"># 从第五个元素开始,打印10个元素</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="调试core文件"><a href="#调试core文件" class="headerlink" title="调试core文件"></a>调试core文件</h2><blockquote>
+<p>core文件:核心文件通常在系统收到特定的信号时由操作系统生成. 信号可以由程序执行过程中的异常触发,也可以由外部程序发送. 动作的结果一般是生成一个某个进程的内存转储的文件,文件包含了此进程当前的运行堆栈信息.</p>
+</blockquote>
+<p>系统默认不会产生core文件,默认core文件大小为0,需要设置<code>ulimit -c unlimited</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -a             <span class="comment"># 查看一个进程启动时的资源限制参数</span></span><br><span class="line">$ <span class="built_in">ulimit</span> -c unlimited   <span class="comment"># 设置core文件大小不设限制</span></span><br><span class="line">$ gdb a.out core</span><br><span class="line">(gdb) backtrace full</span><br></pre></td></tr></table></figure>
+<h2 id="多线程调试"><a href="#多线程调试" class="headerlink" title="多线程调试"></a>多线程调试</h2><p>todo…</p>
+<h2 id="远程调试"><a href="#远程调试" class="headerlink" title="远程调试"></a>远程调试</h2><blockquote>
+<p>如果远程和本地两台机架构相同:远程使用gdbserver,本地使用gdb<br>如果远程和本地两台机架构不同:远程使用gdbserver,本地使用gdb-multiarch</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 远程</span></span><br><span class="line">$ gdbserver :12345 a.out</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地</span></span><br><span class="line">$ gdb</span><br><span class="line">(gdb) target remote 127.0.0.1:port  <span class="comment"># 连接远程gdbserver</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main                    <span class="comment"># 设置main函数断点</span></span><br><span class="line">(gdb) <span class="built_in">continue</span>                      <span class="comment"># 开始调试</span></span><br><span class="line">(gdb) next                          <span class="comment"># 单步调试</span></span><br><span class="line">(gdb) monitor <span class="built_in">exit</span>                  <span class="comment"># 关闭远程gdbserver</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">-100</span>, <span class="number">100</span>);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Refrences</strong>:<br><span class="exturl" data-url="aHR0cHM6Ly93aXphcmRmb3JjZWwuZ2l0Ym9va3MuaW8vMTAwLWdkYi10aXBzL2NvbnRlbnQvaW5kZXguaHRtbA==">https://wizardforcel.gitbooks.io/100-gdb-tips/content/index.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saW51eHRvb2xzLXJzdC5yZWFkdGhlZG9jcy5pby96aF9DTi9sYXRlc3QvdG9vbC9nZGIuaHRtbA==">https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Debug</tag>
+        <tag>GDB</tag>
       </tags>
   </entry>
   <entry>
@@ -1353,137 +1484,6 @@
       <tags>
         <tag>Docker</tag>
         <tag>Tools</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Debug】GDB上手</title>
-    <url>/2021/04/18/GDB-get-start/</url>
-    <content><![CDATA[<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9nZGIv">https://www.gnu.org/software/gdb/<i class="fa fa-external-link-alt"></i></span><br>Debugging with GDB:<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2V3YXJlLm9yZy9nZGIvY3VycmVudC9vbmxpbmVkb2NzL2dkYi8=">https://sourceware.org/gdb/current/onlinedocs/gdb/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GDB, the GNU Project debugger, allows you to see what is going on `inside’ another program while it executes – or what another program was doing at the moment it crashed.</p>
-<p>GDB的功能:</p>
-<ul>
-<li>Start your program, specifying anything that might affect its behavior.</li>
-<li>Make your program stop on specified conditions.</li>
-<li>Examine what has happened, when your program has stopped.</li>
-<li>Change things in your program, so you can experiment with correcting the effects of one bug and go on to learn about another.</li>
-</ul>
-<h2 id="启动gdb"><a href="#启动gdb" class="headerlink" title="启动gdb"></a>启动gdb</h2><p>启动gdb之前,需要编译出debug版本的程序,编译时加<code>-g</code>选项</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -g main.c</span><br></pre></td></tr></table></figure>
-
-<p><strong>启动方法</strong>:</p>
-<ul>
-<li>调试直接启动程序</li>
-<li>调试一个正在运行的程序,attach</li>
-<li>调试core文件</li>
-</ul>
-<p><strong>调试直接启动程序</strong>:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt;</span></span><br><span class="line">$ gdb a.out</span><br></pre></td></tr></table></figure>
-
-<p><strong>调试一个正在运行的程序,attach</strong>:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt; &lt;PID&gt;</span></span><br><span class="line">$ gdb a.out 11127</span><br></pre></td></tr></table></figure>
-
-<p><strong>调试core文件</strong>:</p>
-<p>可以通过core文件调试程序来找到错误原因.比如跟踪常见的断错误</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt; &lt;core dump file&gt;</span></span><br><span class="line">$ gdb program core</span><br></pre></td></tr></table></figure>
-
-<h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><ul>
-<li><code>help</code></li>
-<li><code>help &lt;keyword&gt;</code></li>
-<li>tab键补全</li>
-<li>Enter回车:执行上一条命令</li>
-<li>大多命令都有简写</li>
-</ul>
-<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><ul>
-<li>设置断点:break/b</li>
-<li>查看断点:info breakpoints</li>
-<li>删除断点:delete</li>
-<li>关闭或开启断点:disable/enable<ul>
-<li>disable &lt;断点序列号&gt;:关闭指定序列号的断点</li>
-<li>enable &lt;断点序列号&gt;:开启指定序列号的断点</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置断点:break语法</span></span><br><span class="line"><span class="comment"># * break &lt;行号&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;文件名&gt;:&lt;行号&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;函数名&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;文件名&gt;:&lt;函数名&gt;</span></span><br><span class="line">(gdb) <span class="built_in">break</span> 30          <span class="comment"># 设置30行为断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main.c:30   <span class="comment"># 设置main.c的30行断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main        <span class="comment"># 设置main函数为断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main.c:main <span class="comment"># 设置main.c文件的main函数为断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看断点</span></span><br><span class="line">(gdb) info breakpoints</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除断点:delete语法</span></span><br><span class="line"><span class="comment"># * delete &lt;断点序列号&gt;</span></span><br><span class="line"><span class="comment"># * delete breakpoints</span></span><br><span class="line">(gdb) delete 3              <span class="comment"># 删除序列号为3的断点</span></span><br><span class="line">(gdb) delete breakpoints    <span class="comment"># 删除所有断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它操作:disable/enable</span></span><br><span class="line"><span class="comment">#   * disable &lt;断点序列号&gt;:关闭指定序列号的断点</span></span><br><span class="line"><span class="comment">#   * enable &lt;断点序列号&gt;:开启指定序列号的断点</span></span><br><span class="line">(gdb) <span class="built_in">disable</span> 3</span><br><span class="line">(gdb) <span class="built_in">enable</span> 3</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
-<li>run/r:运行程序,当遇到断点后,程序会在断点处停止运行,等待用户输入下一步的命令</li>
-<li>next/n:单步跟踪程序,不会跳进去函数</li>
-<li>nexti:单步跟踪程序(汇编)</li>
-<li>continue/c:继续执行,到下一个断点处（或运行结束）</li>
-<li>step/s:单步调试如果有函数调用,则进入函数</li>
-<li>finish:运行程序,直到当前函数完成返回</li>
-<li>call:调用程序中可见的函数</li>
-<li>quit/q:退出</li>
-</ul>
-<h2 id="查看源代码"><a href="#查看源代码" class="headerlink" title="查看源代码"></a>查看源代码</h2><p>两种方式</p>
-<ul>
-<li>list/l<ul>
-<li>list &lt;行号&gt;:默认显示10行代码信息</li>
-<li>list &lt;函数名&gt;:以函数为中心,显示10行代码信息</li>
-<li>list &lt;文件名&gt;:&lt;函数名&gt;:</li>
-<li>show listsize:查看list命令显示的大小</li>
-<li>set listsize:设置list命令显示的大小</li>
-</ul>
-</li>
-<li>layout(src源代码/asm汇编/regs寄存器/分屏)<ul>
-<li>layout src:源代码</li>
-<li>layout asm:汇编</li>
-<li>layout regs:寄存器</li>
-<li>layout prev:上一种布局</li>
-<li>layout next:下一种布局</li>
-<li>refresh/Ctrl+L:刷新(屏幕出现花屏时使用)</li>
-</ul>
-</li>
-</ul>
-<h2 id="信息查看显示"><a href="#信息查看显示" class="headerlink" title="信息查看显示"></a>信息查看显示</h2><ul>
-<li>print/p:打印一个变量,取地址,表达式,函数</li>
-<li>backtrace full:打印栈里的所有局部变量</li>
-<li>display:类似print,每次单步调试都会输出</li>
-<li>undisplay:取消display的设置</li>
-<li>watch:监控变量,当变量变化时输出(删除watch使用delete命令)</li>
-<li>whatis:查询变量或函数信息</li>
-<li>info:查看相关信息<ul>
-<li>info breakpoints:查看断点设置</li>
-<li>info display:查看display设置</li>
-<li>info watchpoints:查看watch设置</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># print语法: print &lt;expression&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;变量&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;变量取地址&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;表达式&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;函数调用&gt;</span></span><br><span class="line">(gdb) <span class="built_in">print</span> a                       <span class="comment"># 变量值</span></span><br><span class="line">(gdb) <span class="built_in">print</span> &amp;a                      <span class="comment"># 取地址</span></span><br><span class="line">(gdb) <span class="built_in">print</span> a++                     <span class="comment"># 表达式</span></span><br><span class="line">(gdb) <span class="built_in">print</span> random_range(10, 20)    <span class="comment"># 函数调用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print 数组</span></span><br><span class="line"><span class="comment"># * print &lt;数据变量名&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;数据变量名[index]@lenght&gt;</span></span><br><span class="line">(gdb) <span class="built_in">print</span> array       <span class="comment"># 打印数组</span></span><br><span class="line">(gdb) <span class="built_in">print</span> array[5]@10 <span class="comment"># 从第五个元素开始,打印10个元素</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="调试core文件"><a href="#调试core文件" class="headerlink" title="调试core文件"></a>调试core文件</h2><blockquote>
-<p>core文件:核心文件通常在系统收到特定的信号时由操作系统生成. 信号可以由程序执行过程中的异常触发,也可以由外部程序发送. 动作的结果一般是生成一个某个进程的内存转储的文件,文件包含了此进程当前的运行堆栈信息.</p>
-</blockquote>
-<p>系统默认不会产生core文件,默认core文件大小为0,需要设置<code>ulimit -c unlimited</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -a             <span class="comment"># 查看一个进程启动时的资源限制参数</span></span><br><span class="line">$ <span class="built_in">ulimit</span> -c unlimited   <span class="comment"># 设置core文件大小不设限制</span></span><br><span class="line">$ gdb a.out core</span><br><span class="line">(gdb) backtrace full</span><br></pre></td></tr></table></figure>
-<h2 id="多线程调试"><a href="#多线程调试" class="headerlink" title="多线程调试"></a>多线程调试</h2><p>todo…</p>
-<h2 id="远程调试"><a href="#远程调试" class="headerlink" title="远程调试"></a>远程调试</h2><blockquote>
-<p>如果远程和本地两台机架构相同:远程使用gdbserver,本地使用gdb<br>如果远程和本地两台机架构不同:远程使用gdbserver,本地使用gdb-multiarch</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 远程</span></span><br><span class="line">$ gdbserver :12345 a.out</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地</span></span><br><span class="line">$ gdb</span><br><span class="line">(gdb) target remote 127.0.0.1:port  <span class="comment"># 连接远程gdbserver</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main                    <span class="comment"># 设置main函数断点</span></span><br><span class="line">(gdb) <span class="built_in">continue</span>                      <span class="comment"># 开始调试</span></span><br><span class="line">(gdb) next                          <span class="comment"># 单步调试</span></span><br><span class="line">(gdb) monitor <span class="built_in">exit</span>                  <span class="comment"># 关闭远程gdbserver</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">-100</span>, <span class="number">100</span>);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Refrences</strong>:<br><span class="exturl" data-url="aHR0cHM6Ly93aXphcmRmb3JjZWwuZ2l0Ym9va3MuaW8vMTAwLWdkYi10aXBzL2NvbnRlbnQvaW5kZXguaHRtbA==">https://wizardforcel.gitbooks.io/100-gdb-tips/content/index.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saW51eHRvb2xzLXJzdC5yZWFkdGhlZG9jcy5pby96aF9DTi9sYXRlc3QvdG9vbC9nZGIuaHRtbA==">https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Debug</tag>
-        <tag>GDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Markdown】Markdown问题汇总</title>
-    <url>/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<h2 id="在Makrdown中显示-backtick"><a href="#在Makrdown中显示-backtick" class="headerlink" title="在Makrdown中显示`(backtick)"></a>在Makrdown中显示<code>`</code>(backtick)</h2><p><span class="exturl" data-url="aHR0cHM6Ly9tZXRhLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy84MjcxOC9ob3ctZG8taS1lc2NhcGUtYS1iYWNrdGljay13aXRoaW4taW4tbGluZS1jb2RlLWluLW1hcmtkb3du">https://meta.stackexchange.com/questions/82718/how-do-i-escape-a-backtick-within-in-line-code-in-markdown<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXJpbmdmaXJlYmFsbC5uZXQvcHJvamVjdHMvbWFya2Rvd24vc3ludGF4I2NvZGU=">https://daringfireball.net/projects/markdown/syntax#code<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -4274,12 +4274,9 @@
 </blockquote>
 <h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>上面的硬件选对了，大概就成功了八成；装系统大部分工作：<strong>配置上面硬件的驱动</strong>；彭总经常说：可以花钱的都是小事儿。如果不想自己折腾和研究，淘宝花个80、100块，就能找到人远程知道安装了；如果想自己折腾下，就去多看文档和教程：</p>
 <ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb3J0YW5pYS5naXRodWIuaW8vT3BlbkNvcmUtSW5zdGFsbC1HdWlkZS8=">Dortania’s OpenCore Install Guide<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><a href="https://blog.daliansky.net/"><strong>黑果小兵的部落阁</strong></a></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9hcHBsZS5zcWxzZWMuY29tLw==">国光的黑苹果安装教程：手把手教你配置 OpenCore<i class="fa fa-external-link-alt"></i></span></p>
-</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb3J0YW5pYS5naXRodWIuaW8vT3BlbkNvcmUtSW5zdGFsbC1HdWlkZS8=">Dortania’s OpenCore Install Guide<i class="fa fa-external-link-alt"></i></span></li>
+<li><a href="https://blog.daliansky.net/"><strong>黑果小兵的部落阁</strong></a></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9hcHBsZS5zcWxzZWMuY29tLw==">国光的黑苹果安装教程：手把手教你配置 OpenCore<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <p>我就不一样了，先自己折腾一下，玩了两天，发现不是很稳定；然后去Github找了个类似配置的装来用</p>
 <img src="/images/hackintosh/image-20220409160027294.png" style="zoom:50%;" />
@@ -4801,319 +4798,319 @@
 </tr>
 <tr>
 <td>29</td>
-<td>or</td>
+<td>she</td>
 </tr>
 <tr>
 <td>30</td>
-<td></td>
+<td>or</td>
 </tr>
 <tr>
 <td>31</td>
-<td></td>
+<td>as</td>
 </tr>
 <tr>
 <td>32</td>
-<td></td>
+<td>what</td>
 </tr>
 <tr>
 <td>33</td>
-<td></td>
+<td>go</td>
 </tr>
 <tr>
 <td>34</td>
-<td></td>
+<td>their</td>
 </tr>
 <tr>
 <td>35</td>
-<td></td>
+<td>can</td>
 </tr>
 <tr>
 <td>36</td>
-<td></td>
+<td>who</td>
 </tr>
 <tr>
 <td>37</td>
-<td></td>
+<td>get</td>
 </tr>
 <tr>
 <td>38</td>
-<td></td>
+<td>if</td>
 </tr>
 <tr>
 <td>39</td>
-<td></td>
+<td>would</td>
 </tr>
 <tr>
 <td>40</td>
-<td></td>
+<td>her</td>
 </tr>
 <tr>
 <td>41</td>
-<td></td>
+<td>all</td>
 </tr>
 <tr>
 <td>42</td>
-<td></td>
+<td>my</td>
 </tr>
 <tr>
 <td>43</td>
-<td></td>
+<td>make</td>
 </tr>
 <tr>
 <td>44</td>
-<td></td>
+<td>about</td>
 </tr>
 <tr>
 <td>45</td>
-<td></td>
+<td>know</td>
 </tr>
 <tr>
 <td>46</td>
-<td></td>
+<td>will</td>
 </tr>
 <tr>
 <td>47</td>
-<td></td>
+<td>as</td>
 </tr>
 <tr>
 <td>48</td>
-<td></td>
+<td>up</td>
 </tr>
 <tr>
 <td>49</td>
-<td></td>
+<td>one</td>
 </tr>
 <tr>
 <td>50</td>
-<td></td>
+<td>time</td>
 </tr>
 <tr>
 <td>51</td>
-<td></td>
+<td>there</td>
 </tr>
 <tr>
 <td>52</td>
-<td></td>
+<td>year</td>
 </tr>
 <tr>
 <td>53</td>
-<td></td>
+<td>so</td>
 </tr>
 <tr>
 <td>54</td>
-<td></td>
+<td>think</td>
 </tr>
 <tr>
 <td>55</td>
-<td></td>
+<td>when</td>
 </tr>
 <tr>
 <td>56</td>
-<td></td>
+<td>which</td>
 </tr>
 <tr>
 <td>57</td>
-<td></td>
+<td>them</td>
 </tr>
 <tr>
 <td>58</td>
-<td></td>
+<td>some</td>
 </tr>
 <tr>
 <td>59</td>
-<td></td>
+<td>me</td>
 </tr>
 <tr>
 <td>60</td>
-<td></td>
+<td>people</td>
 </tr>
 <tr>
 <td>61</td>
-<td></td>
+<td>take</td>
 </tr>
 <tr>
 <td>62</td>
-<td></td>
+<td>out</td>
 </tr>
 <tr>
 <td>63</td>
-<td></td>
+<td>into</td>
 </tr>
 <tr>
 <td>64</td>
-<td></td>
+<td>just</td>
 </tr>
 <tr>
 <td>65</td>
-<td></td>
+<td>see</td>
 </tr>
 <tr>
 <td>66</td>
-<td></td>
+<td>him</td>
 </tr>
 <tr>
 <td>67</td>
-<td></td>
+<td>your</td>
 </tr>
 <tr>
 <td>68</td>
-<td></td>
+<td>come</td>
 </tr>
 <tr>
 <td>69</td>
-<td></td>
+<td>could</td>
 </tr>
 <tr>
 <td>70</td>
-<td></td>
+<td>now</td>
 </tr>
 <tr>
 <td>71</td>
-<td></td>
+<td>than</td>
 </tr>
 <tr>
 <td>72</td>
-<td></td>
+<td>like</td>
 </tr>
 <tr>
 <td>73</td>
-<td></td>
+<td>other</td>
 </tr>
 <tr>
 <td>74</td>
-<td></td>
+<td>how</td>
 </tr>
 <tr>
 <td>75</td>
-<td></td>
+<td>then</td>
 </tr>
 <tr>
 <td>76</td>
-<td></td>
+<td>its</td>
 </tr>
 <tr>
 <td>77</td>
-<td></td>
+<td>our</td>
 </tr>
 <tr>
 <td>78</td>
-<td></td>
+<td>two</td>
 </tr>
 <tr>
 <td>79</td>
-<td></td>
+<td>more</td>
 </tr>
 <tr>
 <td>80</td>
-<td></td>
+<td>these</td>
 </tr>
 <tr>
 <td>81</td>
-<td></td>
+<td>want</td>
 </tr>
 <tr>
 <td>82</td>
-<td></td>
+<td>way</td>
 </tr>
 <tr>
 <td>83</td>
-<td></td>
+<td>look</td>
 </tr>
 <tr>
 <td>84</td>
-<td></td>
+<td>first</td>
 </tr>
 <tr>
 <td>85</td>
-<td></td>
+<td>also</td>
 </tr>
 <tr>
 <td>86</td>
-<td></td>
+<td>new</td>
 </tr>
 <tr>
 <td>87</td>
-<td></td>
+<td>because</td>
 </tr>
 <tr>
 <td>88</td>
-<td></td>
+<td>day</td>
 </tr>
 <tr>
 <td>89</td>
-<td></td>
+<td>more</td>
 </tr>
 <tr>
 <td>90</td>
-<td></td>
+<td>use</td>
 </tr>
 <tr>
 <td>91</td>
-<td></td>
+<td>no</td>
 </tr>
 <tr>
 <td>92</td>
-<td></td>
+<td>man</td>
 </tr>
 <tr>
 <td>93</td>
-<td></td>
+<td>find</td>
 </tr>
 <tr>
 <td>94</td>
-<td></td>
+<td>here</td>
 </tr>
 <tr>
 <td>95</td>
-<td></td>
+<td>thing</td>
 </tr>
 <tr>
 <td>96</td>
-<td></td>
+<td>give</td>
 </tr>
 <tr>
 <td>97</td>
-<td></td>
+<td>many</td>
 </tr>
 <tr>
 <td>98</td>
-<td></td>
+<td>well</td>
 </tr>
 <tr>
 <td>99</td>
-<td></td>
+<td>only</td>
 </tr>
 <tr>
 <td>100</td>
-<td></td>
+<td>those</td>
 </tr>
 <tr>
 <td>101</td>
-<td></td>
+<td>tell</td>
 </tr>
 <tr>
 <td>102</td>
-<td></td>
+<td>one</td>
 </tr>
 <tr>
 <td>103</td>
-<td></td>
+<td>very</td>
 </tr>
 <tr>
 <td>104</td>
-<td></td>
+<td>her</td>
 </tr>
 <tr>
 <td>105</td>
-<td></td>
+<td>even</td>
 </tr>
 <tr>
 <td>106</td>
-<td></td>
+<td>back</td>
 </tr>
 <tr>
 <td>107</td>
-<td></td>
+<td>any</td>
 </tr>
 <tr>
 <td>108</td>

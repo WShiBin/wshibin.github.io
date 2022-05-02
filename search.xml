@@ -9,7 +9,7 @@
 <blockquote>
 <p>实现这种效果的方式有很多,在不使用第三方包的前提下,这里用V4包原生DrawerLayout+FragmentTabHost控件实现, 先来张效果图:</p>
 </blockquote>
-<p><img src="/images/qq_navigation/QQNavigation.gif"></p>
+<p><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/QQNavigation.gif"></p>
 <p>##实现这种效果的技术点:</p>
 <ul>
 <li>DrawerLayout拖动菜单时主内容布局不会跟着移动</li>
@@ -18,21 +18,23 @@
 <li>解决FragmentTabHost切换时,主布局Fragment会重走生命周期的问题</li>
 </ul>
 <p>好吧,你可能不知道我在说什么, 一个一个来:<br>###1. DrawerLayout拖动菜单时主内容布局不会跟着移动<br>你可能见到的DrawerLayout的使用效果是这样的,这是Google Play上的DrawerLayout,当手指侧滑时,左侧抽屉菜单会覆盖中间布局,中间布局不会随手指拖动而移动</p>
-<p><img src="/images/qq_navigation/Google_Play.gif"></p>
+<p><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/Google_Play.gif"></p>
 <p>解决这个问题很简单, 在DrawerLayout的监听事件onDrawerSlide回调中对其进行操作,slideOffset是滑动的偏移值:会在0~1之间变化:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-19-42.jpg"></p>
+<p><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/Xnip2021-01-16_22-19-42.jpg"></p>
 <p>###2. DrawerLayout拖动时很生硬,是直接拖出来的<br>DrawerLayout菜单拖出来时,默认最先展示到屏幕上的是菜单布局的边缘位置,而QQ的侧滑菜单最先展示在屏幕上的是菜单布局中间偏右的位置,目测大概是黄金分割点,如图:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-20-21.jpg"></p>
+<img src="2017-04-10_高仿Android_QQ菜单.assets/Xnip2021-01-16_22-20-21.jpg" style="zoom:50%;" />
+
 <p>解决这个问题也不难, 动态修改菜单布局的PadingLeft,在菜单滑出的过程中,PadingLeft从菜单宽度的(1-0.618)倍,动态减少到0方可实现这种效果:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-21-08.jpg"></p>
+<img src="2017-04-10_高仿Android_QQ菜单.assets/Xnip2021-01-16_22-21-08.jpg" style="zoom:50%;" />
+
 <p>###3. FragmentTabHost自定义底部Tab布局<br>第一次听说FragmentTabHost可以用来做导航之后,就去找资料,官方文档还给了示例代码<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5nb29nbGUuY24vcmVmZXJlbmNlL2FuZHJvaWQvc3VwcG9ydC92NC9hcHAvRnJhZ21lbnRUYWJIb3N0Lmh0bWw=">https://developer.android.google.cn/reference/android/support/v4/app/FragmentTabHost.html<i class="fa fa-external-link-alt"></i></span><br>当我跑上这段代码之后完全高兴不起来,太TM难看了,底部Tab就几个文字,然后就去查API,果然有了新的发现:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-25-09.jpg"></p>
+<p><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/Xnip2021-01-16_22-25-09.jpg"></p>
 <p>###4. 解决FragmentTabHost切换时,主布局Fragment会重走生命周期的问题<br>当切换底部的Tab时,主布局中的三个Fragment会重走生命周期,也就意味着页面的数据又得重新加载,这对用户体验都不是个好消息,解决的办法就是重写FragmentTabHost,其实就是改了原控件的几个方法:</p>
-<p>重写前是这样的:<br><img src="/images/qq_navigation/Xnip2021-01-16_22-25-37.jpg"></p>
-<p>重写后是这样的:<br><img src="/images/qq_navigation/Xnip2021-01-16_22-26-00.jpg"></p>
+<p>重写前是这样的:<br><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/Xnip2021-01-16_22-25-37.jpg"></p>
+<p>重写后是这样的:<br><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/Xnip2021-01-16_22-26-00.jpg"></p>
 <p>代码就是在原有控件的基础上改了三行:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-26-25.jpg"></p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-27-01.jpg"></p>
+<p><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/Xnip2021-01-16_22-26-25.jpg"></p>
+<p><img src="2017-04-10_%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95.assets/Xnip2021-01-16_22-27-01.jpg"></p>
 <p>好了,原本不那么看好的控件经过改造,已经丑小鸭变成天鹅了.<br>**代码链接:**<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9RUU5hdmlnYXRpb25EZW1vLW1hc3Rlcg==">https://github.com/Shib90/QQNavigationDemo-master<i class="fa fa-external-link-alt"></i></span></p>
 <p>当然这个只是模仿拿来练手,还存在很多问题:</p>
 <ul>
@@ -3733,164 +3735,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Design Principles】LVGL中的一些设计原则</title>
-    <url>/2022/03/22/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<blockquote>
-<p>上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。</p>
-</blockquote>
-<h2 id="软件设计七大原则"><a href="#软件设计七大原则" class="headerlink" title="软件设计七大原则"></a>软件设计七大原则</h2><table>
-<thead>
-<tr>
-<th>设计原则</th>
-<th>定义</th>
-<th>目的</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>开闭原则</strong></td>
-<td>对扩展开放，对修改关闭</td>
-<td>降低维护带来的新风险</td>
-</tr>
-<tr>
-<td><strong>依赖倒置原则</strong></td>
-<td>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</td>
-<td>更利于代码结构的升级扩展</td>
-</tr>
-<tr>
-<td><strong>单一职责原则</strong></td>
-<td>一个类只干一件事，实现类要单一</td>
-<td>便于理解，提高代码的可读性</td>
-</tr>
-<tr>
-<td><strong>接口隔离原则</strong></td>
-<td>一个接口只干一件事，接口要精简单一</td>
-<td>功能解耦，高聚合、低耦合</td>
-</tr>
-<tr>
-<td><strong>迪米特法则</strong></td>
-<td>最少知识原则，不该知道的不要知道，一个类应该保持对其它对象最少的了解，降低耦合度</td>
-<td>只和朋友交流，不和陌生人说话，减少代码臃肿</td>
-</tr>
-<tr>
-<td><strong>里氏替换原则</strong></td>
-<td>不要破坏继承体系，子类重写方法功能发生改变，不应该影响父类方法的含义</td>
-<td>防止继承泛滥</td>
-</tr>
-<tr>
-<td><strong>合成复用原则</strong></td>
-<td>尽量使用组合或者聚合关系实现代码复用，少使用继承</td>
-<td>降低代码耦合</td>
-</tr>
-</tbody></table>
-<h2 id="设计原则和设计模式的关系"><a href="#设计原则和设计模式的关系" class="headerlink" title="设计原则和设计模式的关系"></a>设计原则和设计模式的关系</h2><h3 id="设计模式分类："><a href="#设计模式分类：" class="headerlink" title="设计模式分类："></a>设计模式分类：</h3><ul>
-<li><strong>创建型模式</strong>：工厂模式、抽象工厂模式、单例模式、建造者模式、原型模式</li>
-<li><strong>结构型模式</strong>：适配器模式、桥接模式、过滤器模式、组合模式、装饰器模式、外观模式、享元模式、代理模式</li>
-<li><strong>行为型模式</strong>：责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、空对象模式、策略模式、模板模式、访问者模式</li>
-</ul>
-<h3 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h3><p>设计模式是设计原则的应用、实现。设计原则是底层原则、是根本；设计模式里面的套路用了设计原则。简单的讲，你写的代码可以没有使用设计模式，但一定不能没有设计原则</p>
-<h2 id="C语言和面向对象"><a href="#C语言和面向对象" class="headerlink" title="C语言和面向对象"></a>C语言和面向对象</h2><h3 id="先讨论下C"><a href="#先讨论下C" class="headerlink" title="先讨论下C++"></a>先讨论下C++</h3><p>C++作者：Bjarne Stroustrup</p>
-<img src="/images/design_principles/image-20220321164258684.png" style="zoom: 20%;" />
-
-<p>C++是一个多范式的语言；包括支持面向对象，也被有人称为“C with Classes”；</p>
-<p><strong>CFront</strong>：C++原始的编译器，作用把C++代码转成C代码；为啥叫CFront？在C的编译器前面加了一个编译器，把C++代码通过CFront转成C代码，然后用C编译器去编译生成程序</p>
-<img src="/images/design_principles/image-20220321165435232.png" style="zoom: 40%;" />
-
-<h3 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h3><h3 id="问题：C-中的高级特性如何在C中表示？"><a href="#问题：C-中的高级特性如何在C中表示？" class="headerlink" title="问题：C++中的高级特性如何在C中表示？"></a>问题：C++中的高级特性如何在C中表示？</h3><ul>
-<li>类里面的函数真的属于这个Class吗？<code>sizeof()</code></li>
-<li>类中的<code>this</code>怎么来的？语法糖而已；有些语言会显示写<code>self</code>（Python、Rust）</li>
-<li>类调用成员函数是怎么回事？语法糖，和调用普通全局函数并没有什么区别</li>
-</ul>
-<img src="/images/design_principles/image-20220322004626246.png" style="zoom:540%;" />
-
-<h3 id="C-的虚函数、Java的Interface，Rust的Trait"><a href="#C-的虚函数、Java的Interface，Rust的Trait" class="headerlink" title="C++的虚函数、Java的Interface，Rust的Trait"></a>C++的虚函数、Java的Interface，Rust的Trait</h3><p>父类定义接口，然后子类有不同的实现，在实际运行的时候会调用不同的子类实现，<br>下图中的接口函数本质上是一个函数指针变量，在使用时指定了不同的子类的实现的函数</p>
-<img src="/images/design_principles/image-20220323232530466.png" style="zoom:50%;" />
-
-<h2 id="设计原则和LVGL"><a href="#设计原则和LVGL" class="headerlink" title="设计原则和LVGL"></a>设计原则和LVGL</h2><h3 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h3><p><strong>一个类只负责完成一个职责或者功能</strong></p>
-<ul>
-<li>目录的命名</li>
-<li>源代码文件的命名</li>
-</ul>
-<h3 id="依赖倒置原则："><a href="#依赖倒置原则：" class="headerlink" title="依赖倒置原则："></a><strong>依赖倒置原则</strong>：</h3><p><strong>定义</strong>：高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
-<p><strong>目的</strong>：更利于代码结构的<strong>升级扩展</strong></p>
-<blockquote>
-<p>问题：依赖于<strong>抽象</strong>？这里的<strong>抽象</strong>指的是什么？</p>
-</blockquote>
-<h4 id="LVGL中扩展使用："><a href="#LVGL中扩展使用：" class="headerlink" title="LVGL中扩展使用："></a>LVGL中扩展使用：</h4><ul>
-<li>lvgl如何显示到不同的屏幕？</li>
-<li>lvgl如何获取不同屏幕的点击坐标？</li>
-<li>lvgl如何显示不同格式的图片？</li>
-</ul>
-<h4 id="lvgl如何显示到不同的屏幕"><a href="#lvgl如何显示到不同的屏幕" class="headerlink" title="lvgl如何显示到不同的屏幕?"></a>lvgl如何显示到不同的屏幕?</h4><h5 id="框架怎么写？"><a href="#框架怎么写？" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>显示到屏幕（估计就会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？"><a href="#改完后？" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>void (*flush_cb)(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>把对应的数据给你：哪块区域的屏幕要刷新<code>area</code>，以及这块区域对应的数据值<code>color_p</code></li>
-</ul>
-</li>
-<li>对应的拓展自己去处理数据：通过SDL刷到屏幕；通过Framebuffer刷到屏幕：和不同平台，实现相关</li>
-</ol>
-<h4 id="lvgl如何获取不同屏幕的点击坐标？"><a href="#lvgl如何获取不同屏幕的点击坐标？" class="headerlink" title="lvgl如何获取不同屏幕的点击坐标？"></a>lvgl如何获取不同屏幕的点击坐标？</h4><h5 id="框架怎么写？-1"><a href="#框架怎么写？-1" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>获取屏幕点击的坐标（估计就又会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？-1"><a href="#改完后？-1" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>bool (*read_cb)(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>我框架把这个结构体指针<code>data</code>给你：你负责把对应点击的坐标填进去，然后我框架内部要用（传递到对应控件的点击回调函数）</li>
-</ul>
-</li>
-<li>具体的实现如何去填充数据</li>
-</ol>
-<p>上面两者的区别：</p>
-<ul>
-<li>显示：一个是把数据给你，实现负责去使用这些数据</li>
-<li>点击：我把结构休指针给你，实现负责把数据填充进去</li>
-</ul>
-<h4 id="lvgl如何显示不同格式的图片？"><a href="#lvgl如何显示不同格式的图片？" class="headerlink" title="lvgl如何显示不同格式的图片？"></a>lvgl如何显示不同格式的图片？</h4><p>通过实现图片解码器，实现对应函数回调。步骤同上……</p>
-<h4 id="现实生活：公司做项目的例子"><a href="#现实生活：公司做项目的例子" class="headerlink" title="现实生活：公司做项目的例子"></a>现实生活：公司做项目的例子</h4><ul>
-<li>依赖反转前：我领导依赖于我，我的任务完成了，他的项目才能算完成</li>
-<li>依赖反转后：我领导提出标准，提供对应的资源；我拿到标准和资源，然后去实现</li>
-</ul>
-<img src="/images/design_principles/image-20220324000531092.png" style="zoom:40%;" />
-
-<p>一开始领导依赖于我的工作，他的任务就算完成；我依赖于我领导给的标准和资源去完成这个任务；另外的一个变化是：对于前者，你的领导可能会控制你的细节（不能用这个，得用那个；不能这样搞，要那样搞）；对于后者，我领导就成了标准的制定者</p>
-<h4 id="抽象的定义："><a href="#抽象的定义：" class="headerlink" title="抽象的定义："></a>抽象的定义：</h4><ul>
-<li>需要对业务有足够的了解，对问题抽象<ul>
-<li>回调中的参数：能够实现拓展；不要出现冗余的参数</li>
-</ul>
-</li>
-<li>抽象标准的要求<ul>
-<li>Android的UI线程：死循环不停的去调回调，用户写的ui代码，用户写的事件代码；这些代码得满足一定的要求，比如说：不能卡太久；你卡住了，我内部的死循环就被这个卡死</li>
-</ul>
-</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
-<li>SOLID：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU09MSUQ=">https://en.wikipedia.org/wiki/SOLID<i class="fa fa-external-link-alt"></i></span></li>
-<li>SOLID 设计原则文章：<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMzExNDMwMA==">https://segmentfault.com/a/1190000023114300<i class="fa fa-external-link-alt"></i></span></li>
-<li>CFront：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2Zyb250">https://en.wikipedia.org/wiki/Cfront<i class="fa fa-external-link-alt"></i></span></li>
-<li>Modern C：<span class="exturl" data-url="aHR0cHM6Ly93d3cubWFubmluZy5jb20vYm9va3MvbW9kZXJuLWM=">https://www.manning.com/books/modern-c<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAzOTAxMzc5NA==">https://segmentfault.com/a/1190000039013794<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>Design Principles</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Linux】Linux 性能优化实战</title>
     <url>/2022/03/15/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/</url>
     <content><![CDATA[<h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><h2 id="如何学习Linux性能优化？"><a href="#如何学习Linux性能优化？" class="headerlink" title="如何学习Linux性能优化？"></a>如何学习Linux性能优化？</h2><p>理解组件之间的工作原理和协作方式</p>
@@ -4193,10 +4037,168 @@
       </tags>
   </entry>
   <entry>
+    <title>【Design Principles】LVGL中的一些设计原则</title>
+    <url>/2022/03/22/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<blockquote>
+<p>上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。</p>
+</blockquote>
+<h2 id="软件设计七大原则"><a href="#软件设计七大原则" class="headerlink" title="软件设计七大原则"></a>软件设计七大原则</h2><table>
+<thead>
+<tr>
+<th>设计原则</th>
+<th>定义</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>开闭原则</strong></td>
+<td>对扩展开放，对修改关闭</td>
+<td>降低维护带来的新风险</td>
+</tr>
+<tr>
+<td><strong>依赖倒置原则</strong></td>
+<td>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</td>
+<td>更利于代码结构的升级扩展</td>
+</tr>
+<tr>
+<td><strong>单一职责原则</strong></td>
+<td>一个类只干一件事，实现类要单一</td>
+<td>便于理解，提高代码的可读性</td>
+</tr>
+<tr>
+<td><strong>接口隔离原则</strong></td>
+<td>一个接口只干一件事，接口要精简单一</td>
+<td>功能解耦，高聚合、低耦合</td>
+</tr>
+<tr>
+<td><strong>迪米特法则</strong></td>
+<td>最少知识原则，不该知道的不要知道，一个类应该保持对其它对象最少的了解，降低耦合度</td>
+<td>只和朋友交流，不和陌生人说话，减少代码臃肿</td>
+</tr>
+<tr>
+<td><strong>里氏替换原则</strong></td>
+<td>不要破坏继承体系，子类重写方法功能发生改变，不应该影响父类方法的含义</td>
+<td>防止继承泛滥</td>
+</tr>
+<tr>
+<td><strong>合成复用原则</strong></td>
+<td>尽量使用组合或者聚合关系实现代码复用，少使用继承</td>
+<td>降低代码耦合</td>
+</tr>
+</tbody></table>
+<h2 id="设计原则和设计模式的关系"><a href="#设计原则和设计模式的关系" class="headerlink" title="设计原则和设计模式的关系"></a>设计原则和设计模式的关系</h2><h3 id="设计模式分类："><a href="#设计模式分类：" class="headerlink" title="设计模式分类："></a>设计模式分类：</h3><ul>
+<li><strong>创建型模式</strong>：工厂模式、抽象工厂模式、单例模式、建造者模式、原型模式</li>
+<li><strong>结构型模式</strong>：适配器模式、桥接模式、过滤器模式、组合模式、装饰器模式、外观模式、享元模式、代理模式</li>
+<li><strong>行为型模式</strong>：责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、空对象模式、策略模式、模板模式、访问者模式</li>
+</ul>
+<h3 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h3><p>设计模式是设计原则的应用、实现。设计原则是底层原则、是根本；设计模式里面的套路用了设计原则。简单的讲，你写的代码可以没有使用设计模式，但一定不能没有设计原则</p>
+<h2 id="C语言和面向对象"><a href="#C语言和面向对象" class="headerlink" title="C语言和面向对象"></a>C语言和面向对象</h2><h3 id="先讨论下C"><a href="#先讨论下C" class="headerlink" title="先讨论下C++"></a>先讨论下C++</h3><p>C++作者：Bjarne Stroustrup</p>
+<img src="/images/design_principles/image-20220321164258684.png" style="zoom: 20%;" />
+
+<p>C++是一个多范式的语言；包括支持面向对象，也被有人称为“C with Classes”；</p>
+<p><strong>CFront</strong>：C++原始的编译器，作用把C++代码转成C代码；为啥叫CFront？在C的编译器前面加了一个编译器，把C++代码通过CFront转成C代码，然后用C编译器去编译生成程序</p>
+<img src="/images/design_principles/image-20220321165435232.png" style="zoom: 40%;" />
+
+<h3 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h3><h3 id="问题：C-中的高级特性如何在C中表示？"><a href="#问题：C-中的高级特性如何在C中表示？" class="headerlink" title="问题：C++中的高级特性如何在C中表示？"></a>问题：C++中的高级特性如何在C中表示？</h3><ul>
+<li>类里面的函数真的属于这个Class吗？<code>sizeof()</code></li>
+<li>类中的<code>this</code>怎么来的？语法糖而已；有些语言会显示写<code>self</code>（Python、Rust）</li>
+<li>类调用成员函数是怎么回事？语法糖，和调用普通全局函数并没有什么区别</li>
+</ul>
+<img src="/images/design_principles/image-20220322004626246.png" style="zoom:540%;" />
+
+<h3 id="C-的虚函数、Java的Interface，Rust的Trait"><a href="#C-的虚函数、Java的Interface，Rust的Trait" class="headerlink" title="C++的虚函数、Java的Interface，Rust的Trait"></a>C++的虚函数、Java的Interface，Rust的Trait</h3><p>父类定义接口，然后子类有不同的实现，在实际运行的时候会调用不同的子类实现，<br>下图中的接口函数本质上是一个函数指针变量，在使用时指定了不同的子类的实现的函数</p>
+<img src="/images/design_principles/image-20220323232530466.png" style="zoom:50%;" />
+
+<h2 id="设计原则和LVGL"><a href="#设计原则和LVGL" class="headerlink" title="设计原则和LVGL"></a>设计原则和LVGL</h2><h3 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h3><p><strong>一个类只负责完成一个职责或者功能</strong></p>
+<ul>
+<li>目录的命名</li>
+<li>源代码文件的命名</li>
+</ul>
+<h3 id="依赖倒置原则："><a href="#依赖倒置原则：" class="headerlink" title="依赖倒置原则："></a><strong>依赖倒置原则</strong>：</h3><p><strong>定义</strong>：高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
+<p><strong>目的</strong>：更利于代码结构的<strong>升级扩展</strong></p>
+<blockquote>
+<p>问题：依赖于<strong>抽象</strong>？这里的<strong>抽象</strong>指的是什么？</p>
+</blockquote>
+<h4 id="LVGL中扩展使用："><a href="#LVGL中扩展使用：" class="headerlink" title="LVGL中扩展使用："></a>LVGL中扩展使用：</h4><ul>
+<li>lvgl如何显示到不同的屏幕？</li>
+<li>lvgl如何获取不同屏幕的点击坐标？</li>
+<li>lvgl如何显示不同格式的图片？</li>
+</ul>
+<h4 id="lvgl如何显示到不同的屏幕"><a href="#lvgl如何显示到不同的屏幕" class="headerlink" title="lvgl如何显示到不同的屏幕?"></a>lvgl如何显示到不同的屏幕?</h4><h5 id="框架怎么写？"><a href="#框架怎么写？" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
+<li>xxx</li>
+<li>xxx</li>
+<li>显示到屏幕（估计就会写死）</li>
+<li>xxx</li>
+</ol>
+<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
+
+<h5 id="改完后？"><a href="#改完后？" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
+<li>LVGL框架定义接口：<code>void (*flush_cb)(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);</code><ul>
+<li>我框架内部会在需要的时候去调这个函数</li>
+<li>把对应的数据给你：哪块区域的屏幕要刷新<code>area</code>，以及这块区域对应的数据值<code>color_p</code></li>
+</ul>
+</li>
+<li>对应的拓展自己去处理数据：通过SDL刷到屏幕；通过Framebuffer刷到屏幕：和不同平台，实现相关</li>
+</ol>
+<h4 id="lvgl如何获取不同屏幕的点击坐标？"><a href="#lvgl如何获取不同屏幕的点击坐标？" class="headerlink" title="lvgl如何获取不同屏幕的点击坐标？"></a>lvgl如何获取不同屏幕的点击坐标？</h4><h5 id="框架怎么写？-1"><a href="#框架怎么写？-1" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
+<li>xxx</li>
+<li>xxx</li>
+<li>获取屏幕点击的坐标（估计就又会写死）</li>
+<li>xxx</li>
+</ol>
+<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
+
+<h5 id="改完后？-1"><a href="#改完后？-1" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
+<li>LVGL框架定义接口：<code>bool (*read_cb)(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);</code><ul>
+<li>我框架内部会在需要的时候去调这个函数</li>
+<li>我框架把这个结构体指针<code>data</code>给你：你负责把对应点击的坐标填进去，然后我框架内部要用（传递到对应控件的点击回调函数）</li>
+</ul>
+</li>
+<li>具体的实现如何去填充数据</li>
+</ol>
+<p>上面两者的区别：</p>
+<ul>
+<li>显示：一个是把数据给你，实现负责去使用这些数据</li>
+<li>点击：我把结构休指针给你，实现负责把数据填充进去</li>
+</ul>
+<h4 id="lvgl如何显示不同格式的图片？"><a href="#lvgl如何显示不同格式的图片？" class="headerlink" title="lvgl如何显示不同格式的图片？"></a>lvgl如何显示不同格式的图片？</h4><p>通过实现图片解码器，实现对应函数回调。步骤同上……</p>
+<h4 id="现实生活：公司做项目的例子"><a href="#现实生活：公司做项目的例子" class="headerlink" title="现实生活：公司做项目的例子"></a>现实生活：公司做项目的例子</h4><ul>
+<li>依赖反转前：我领导依赖于我，我的任务完成了，他的项目才能算完成</li>
+<li>依赖反转后：我领导提出标准，提供对应的资源；我拿到标准和资源，然后去实现</li>
+</ul>
+<img src="/images/design_principles/image-20220324000531092.png" style="zoom:40%;" />
+
+<p>一开始领导依赖于我的工作，他的任务就算完成；我依赖于我领导给的标准和资源去完成这个任务；另外的一个变化是：对于前者，你的领导可能会控制你的细节（不能用这个，得用那个；不能这样搞，要那样搞）；对于后者，我领导就成了标准的制定者</p>
+<h4 id="抽象的定义："><a href="#抽象的定义：" class="headerlink" title="抽象的定义："></a>抽象的定义：</h4><ul>
+<li>需要对业务有足够的了解，对问题抽象<ul>
+<li>回调中的参数：能够实现拓展；不要出现冗余的参数</li>
+</ul>
+</li>
+<li>抽象标准的要求<ul>
+<li>Android的UI线程：死循环不停的去调回调，用户写的ui代码，用户写的事件代码；这些代码得满足一定的要求，比如说：不能卡太久；你卡住了，我内部的死循环就被这个卡死</li>
+</ul>
+</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
+<li>SOLID：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU09MSUQ=">https://en.wikipedia.org/wiki/SOLID<i class="fa fa-external-link-alt"></i></span></li>
+<li>SOLID 设计原则文章：<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMzExNDMwMA==">https://segmentfault.com/a/1190000023114300<i class="fa fa-external-link-alt"></i></span></li>
+<li>CFront：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2Zyb250">https://en.wikipedia.org/wiki/Cfront<i class="fa fa-external-link-alt"></i></span></li>
+<li>Modern C：<span class="exturl" data-url="aHR0cHM6Ly93d3cubWFubmluZy5jb20vYm9va3MvbW9kZXJuLWM=">https://www.manning.com/books/modern-c<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAzOTAxMzc5NA==">https://segmentfault.com/a/1190000039013794<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Design Principles</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【电脑】主机折腾记</title>
     <url>/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/</url>
     <content><![CDATA[<blockquote>
-<p>去年想把主力的系统换成Linux，买了个拯救者 2021 Y9000x i7-10875H；工作用Ubuntu，就在这笔记本上尝试了其他几个主要的Linux发行版：Fedora，PopOS，Debian；发现桌面生态分裂严重，各玩个的；国内的应用厂商大部分软件都是支持debian系，还没有到能到工作用的程度（个人观点）。后面还是选择回macOS，虽然之前买了个苹果垃圾桶，但也有点老，毕竟2013年的东东，加上苹果主机越来越贵，就动了黑苹果的念头；然后去咸鱼花2900块套了了i5 10400的主机，180买了个无线网卡，在去淘宝花70块装了苹果系统。别说，真香，还老便宜。后面对比i5 10400和i7 10700，发现多核性能有30%多的差异，于是就有了这次的折腾</p>
+<p>去年想把主力的系统换成Linux，淘了个拯救者 2021 Y9000x i7-10875H，工作电脑用Ubuntu系统，就在这笔记本上尝试了几个主要的Linux发行版：Fedora，PopOS，Debian；发现桌面生态分裂严重，各玩个的；国内的应用厂商大部分软件都是支持Debian系，还没有到能到工作用的程度（个人观点）。后面还是选择回macOS，虽然之前买了个苹果垃圾桶，但也有点老，毕竟2013年发布的东东，加上苹果主机越来越贵，就动了黑苹果的念头；然后去咸鱼花2900块淘了个i5 10400的主机，在去淘宝花70块装了黑苹果系统。别说，真香。后面对比i5 10400和i7 10700，Cinebench R23 (Multi-Core)跑分 i7 10700多核性能有33%的提升，于是就有了这次的折腾</p>
 </blockquote>
 <h2 id="主机要求"><a href="#主机要求" class="headerlink" title="主机要求"></a>主机要求</h2><ul>
 <li>机箱尽量小</li>
@@ -4252,46 +4254,48 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p>有些配件买不到新的，在咸鱼上淘的二手的；不打游戏，集显够用了；为啥不用新的Intel 12代U？要装苹果系统，苹果自己家机器后面也没有出11代和12代U的电脑，10代后面的Intel CPU集显都用不了</p>
+<p>有些配件买不到新的，在咸鱼上淘的二手的；不打游戏，集显够用了；为啥不用新的Intel 12代U？要装苹果系统，苹果自己家机器后面也没有出11代和12代U的电脑，10代后面的Intel CPU集显都驱动不了</p>
 </blockquote>
 <p>装机和装系统过程中也遇到了一些问题，多亏有小伙伴帮忙：</p>
 <ul>
-<li>装机不太明白和个CPU的供电插头，把机器抱去了熊家，给解决了</li>
-<li>后面装系统找不到引导盘，江同学电话指导了一个多小时，用Ventoy做系统启动盘，处理了下硬盘，算是搞定了</li>
+<li>装机不太明白有个CPU的供电插头，把机器抱去了大熊家，给解决了</li>
+<li>后面装系统找不到引导盘，江同学电话指导了一个多小时，用Ventoy + WinPE做系统启动盘，处理了下硬盘，算是搞定了</li>
 </ul>
 <p>放一张别人的<span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2FkMnowbjh4L3BpY184LyNiaWdJbWc=">装机图<i class="fa fa-external-link-alt"></i></span>，大概就长这样：</p>
-<img src="/images/hackintosh/image-20220409153844999.png" style="zoom:50%;" />
+<img src="2022-04-03_主机折腾记.assets/image-20220409153844999.png" style="zoom:50%;" />
 
 <h2 id="装黑苹果系统"><a href="#装黑苹果系统" class="headerlink" title="装黑苹果系统"></a>装黑苹果系统</h2><h3 id="选硬件"><a href="#选硬件" class="headerlink" title="选硬件"></a>选硬件</h3><p>黑苹果系统最大的找系统兼容的硬件，最好找免驱动的硬件，会省不少蛮烦；比如，苹果之前一段时间出的硬件大多是Intel的U + AMD的显卡；比如，苹果没有；</p>
 <ul>
-<li>CPU：苹果近些年一直使用的是Intel的CPU；但后面没有出Intel 11代、12代U的硬件了，用这两代U可以，但没法使用他们的集显</li>
+<li>CPU：苹果近些年一直使用的是Intel的CPU；后面没有出Intel 11代、12代U的硬件了，用这两代U可以，但没法使用他们的集显</li>
 <li>显卡：同样苹果近些年用的AMD家的显卡；AMD的显示有也分支持、不支持，还有免驱的</li>
-<li>硬盘和内存：这两个没有太大要求，不过有些硬盘没</li>
-<li>网卡：一般主板上带的Intel网卡没办法使用，或是需要加驱动比较麻烦，这种直接免驱的网卡更换即可</li>
+<li>硬盘和内存：这两个没有太大要求，不过有些硬盘有坑，买的时候先在网卡查下</li>
+<li>网卡：一般主板上带的Intel网卡没办法使用，或是需要加驱动比较麻烦，这种直接买免驱的网卡更换即可，淘宝搜索能找到很多</li>
 </ul>
 <blockquote>
 <p>选硬件多参考别人的装机经验：踩坑或建议；如果觉得别人的配置还行，直接按着他的配置买即可</p>
 </blockquote>
-<h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>上面的硬件选对了，大概就成功了八成；装系统大部分工作：<strong>配置上面硬件的驱动</strong>；彭总经常说：可以花钱的都是小事儿。如果不想自己折腾和研究，淘宝花个80、100块，就能找到人远程知道安装了；如果想自己折腾下，就去多看文档和教程：</p>
+<h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>上面的硬件选对了，大概就成功了九成；装系统大部分工作：<strong>配置上面硬件的驱动</strong>；彭总经常说：可以花钱的都是小事儿。如果不想自己折腾和研究，淘宝花个80、100块，就能找到人远程知道安装了；如果想自己折腾下，就去多看文档和教程：</p>
 <ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9kb3J0YW5pYS5naXRodWIuaW8vT3BlbkNvcmUtSW5zdGFsbC1HdWlkZS8=">Dortania’s OpenCore Install Guide<i class="fa fa-external-link-alt"></i></span></li>
 <li><a href="https://blog.daliansky.net/"><strong>黑果小兵的部落阁</strong></a></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9hcHBsZS5zcWxzZWMuY29tLw==">国光的黑苹果安装教程：手把手教你配置 OpenCore<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
+<blockquote>
 <p>我就不一样了，先自己折腾一下，玩了两天，发现不是很稳定；然后去Github找了个类似配置的装来用</p>
-<img src="/images/hackintosh/image-20220409160027294.png" style="zoom:50%;" />
+</blockquote>
+<img src="2022-04-03_主机折腾记.assets/image-20220409160027294.png" style="zoom:50%;" />
 
 <h2 id="CPU降频"><a href="#CPU降频" class="headerlink" title="CPU降频"></a>CPU降频</h2><p>装完系统之后跑了下<code>Cinebench R23</code>，然后看了看<code>Intel Power Gadgeta</code>，CPU当了3秒真男人过后就降调到了3.5GHz，这TM怕是买了个i7回来当i5用，和初衷背离，花了更多的钱，缺得到同样的效果；然后就是去排查，看看哪里是瓶颈：电源？主板供电？散热倒置撞墙？200W的电源，CPU使用才到120W不到；当初有想过是散热的问题，所以买了个稍好的散热器利民AXP90 x47 全铜版本；</p>
-<img src="/images/hackintosh/image-20220409145526422.png" style="zoom:50%;" />
+<img src="2022-04-03_主机折腾记.assets/image-20220409145526422.png" style="zoom:50%;" />
 
 <p>折腾研究一番之后还真有发现：<strong>给CPU降压</strong>；最惊喜的是，这个操作不需要花费任何额外的成本，能提高CPU能耗比，还能降温；</p>
 <p>网卡查了资料后，大意是：为了避免工厂生产波动造成个别CPU不稳定， CPU默认设定的电压都会高于所需的最小值。还能在网上查到对于CPU的另一些观点：大厂生产的波动会造成CPU的差异性，体质好的会加<code>K</code>做超频，体质不好的会去掉<code>K</code>；这好像就能解释，为啥苹果的m1芯片为啥还会分8核和10核的，难道是同一流水线下来的残次品，屏蔽其中的2个核，然后拿出来卖</p>
 <p>后面一点点调试，降了0.1之后，CPU能稳定跑4.6了：之前有降到0.125，跑<code>Cinebench R23</code>，之后电脑卡死，这时候需要回调些</p>
-<img src="/images/hackintosh/image-20220409145554895.png" style="zoom:50%;" />
+<img src="2022-04-03_主机折腾记.assets/image-20220409145554895.png" style="zoom:50%;" />
 
 <p><span class="exturl" data-url="aHR0cHM6Ly9icm93c2VyLmdlZWtiZW5jaC5jb20v">Geekbench<i class="fa fa-external-link-alt"></i></span>也由之前的6000分提高到了8414</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9icm93c2VyLmdlZWtiZW5jaC5jb20vdjUvY3B1LzE0MjE2NDYy">https://browser.geekbench.com/v5/cpu/14216462<i class="fa fa-external-link-alt"></i></span></p>
-<img src="/images/hackintosh/image-20220410083327828.png" style="zoom:50%;" />
+<img src="2022-04-03_主机折腾记.assets/image-20220410083327828.png" style="zoom:50%;" />
 
 <p>结束</p>
 ]]></content>
@@ -6213,7 +6217,7 @@
 </tr>
 <tr>
 <td>345</td>
-<td>ruch as</td>
+<td>such as</td>
 </tr>
 <tr>
 <td>346</td>

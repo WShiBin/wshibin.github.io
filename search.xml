@@ -1356,6 +1356,18 @@
       </tags>
   </entry>
   <entry>
+    <title>【Markdown】Markdown问题汇总</title>
+    <url>/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h2 id="在Makrdown中显示-backtick"><a href="#在Makrdown中显示-backtick" class="headerlink" title="在Makrdown中显示`(backtick)"></a>在Makrdown中显示<code>`</code>(backtick)</h2><p><span class="exturl" data-url="aHR0cHM6Ly9tZXRhLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy84MjcxOC9ob3ctZG8taS1lc2NhcGUtYS1iYWNrdGljay13aXRoaW4taW4tbGluZS1jb2RlLWluLW1hcmtkb3du">https://meta.stackexchange.com/questions/82718/how-do-i-escape-a-backtick-within-in-line-code-in-markdown<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXJpbmdmaXJlYmFsbC5uZXQvcHJvamVjdHMvbWFya2Rvd24vc3ludGF4I2NvZGU=">https://daringfireball.net/projects/markdown/syntax#code<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Debug】GDB上手</title>
     <url>/2021/04/18/GDB-get-start/</url>
     <content><![CDATA[<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9nZGIv">https://www.gnu.org/software/gdb/<i class="fa fa-external-link-alt"></i></span><br>Debugging with GDB:<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2V3YXJlLm9yZy9nZGIvY3VycmVudC9vbmxpbmVkb2NzL2dkYi8=">https://sourceware.org/gdb/current/onlinedocs/gdb/<i class="fa fa-external-link-alt"></i></span></p>
@@ -1472,18 +1484,6 @@
       <tags>
         <tag>Debug</tag>
         <tag>GDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Markdown】Markdown问题汇总</title>
-    <url>/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<h2 id="在Makrdown中显示-backtick"><a href="#在Makrdown中显示-backtick" class="headerlink" title="在Makrdown中显示`(backtick)"></a>在Makrdown中显示<code>`</code>(backtick)</h2><p><span class="exturl" data-url="aHR0cHM6Ly9tZXRhLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy84MjcxOC9ob3ctZG8taS1lc2NhcGUtYS1iYWNrdGljay13aXRoaW4taW4tbGluZS1jb2RlLWluLW1hcmtkb3du">https://meta.stackexchange.com/questions/82718/how-do-i-escape-a-backtick-within-in-line-code-in-markdown<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXJpbmdmaXJlYmFsbC5uZXQvcHJvamVjdHMvbWFya2Rvd24vc3ludGF4I2NvZGU=">https://daringfireball.net/projects/markdown/syntax#code<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -2824,78 +2824,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【JS】JavaScript基础</title>
-    <url>/2021/11/04/JavaScript-getting-started/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9jaGFubmVsOS5tc2RuLmNvbS9TZXJpZXMvQmVnaW5uZXJzLVNlcmllcy10by1KYXZhU2NyaXB0P1dULm1jX2lkPWJlZ2lubmVyLWM5LW5pbmVy">https://channel9.msdn.com/Series/Beginners-Series-to-JavaScript?WT.mc_id=beginner-c9-niner<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9iZWdpbm5lcnMtaW50cm8tamF2YXNjcmlwdC1ub2Rl">https://github.com/microsoft/beginners-intro-javascript-node<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9MZWFybi9KYXZhU2NyaXB0">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
-<li>var：没有作用域（可以在定义前使用）</li>
-<li>let：有作用域</li>
-<li>const：类似let，但不能改变</li>
-</ul>
-<h2 id="类型："><a href="#类型：" class="headerlink" title="类型："></a>类型：</h2><h3 id="简单类型："><a href="#简单类型：" class="headerlink" title="简单类型："></a>简单类型：</h3><ul>
-<li>Number（float）</li>
-<li>String</li>
-<li>Boolean</li>
-<li>Date</li>
-<li>Function</li>
-<li>Array</li>
-<li>Object</li>
-</ul>
-<h3 id="特别类型："><a href="#特别类型：" class="headerlink" title="特别类型："></a>特别类型：</h3><ul>
-<li>NaN：Not a number</li>
-<li>null：空</li>
-<li>undefined：未定义</li>
-</ul>
-<h3 id="类型检查："><a href="#类型检查：" class="headerlink" title="类型检查："></a>类型检查：</h3><ul>
-<li>typeof：返回字符串</li>
-<li>instanceof：返回boolean是否匹配类型</li>
-</ul>
-<h3 id="类型能改变："><a href="#类型能改变：" class="headerlink" title="类型能改变："></a>类型能改变：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="string">&#x27;something&#x27;</span>;</span><br><span class="line">x = <span class="number">1</span>;</span><br><span class="line">x = <span class="number">1</span> + <span class="string">&#x27;hello&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="相等"><a href="#相等" class="headerlink" title="相等:"></a>相等:</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">0</span> == <span class="string">&quot;&quot;</span>; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">let</span> y = <span class="number">0</span> === <span class="string">&quot;&quot;</span>; <span class="comment">// false, 关心类型</span></span><br></pre></td></tr></table></figure>
-
-<p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> people = [<span class="string">&quot;Valentina&quot;</span>, <span class="string">&quot;Niko&quot;</span>, <span class="string">&quot;Eriberto&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> one = <span class="number">0</span>; <span class="comment">// 没有调用构造：new Number(1);</span></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;hello world&quot;</span>; <span class="comment">// 没有调用构造：new String(&quot;hello world&quot;)</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Valentina&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHello</span>(<span class="params">person</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello &quot;</span> + person.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- typeof --&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> people); <span class="comment">// object(array也是object)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> one);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> str);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> person);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> sayHello);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- instanceof --&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(people <span class="keyword">instanceof</span> <span class="title class_">Array</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(one <span class="keyword">instanceof</span> <span class="title class_">Number</span>); <span class="comment">// false  因为没有调用构造</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str <span class="keyword">instanceof</span> <span class="title class_">String</span>); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b <span class="keyword">instanceof</span> <span class="title class_">Boolean</span>); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person <span class="keyword">instanceof</span> <span class="title class_">Object</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sayHello <span class="keyword">instanceof</span> <span class="title class_">Function</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="Math："><a href="#Math：" class="headerlink" title="Math："></a>Math：</h2><p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num + <span class="number">25</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num - <span class="number">100</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num * <span class="number">100</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num / <span class="number">1500</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num % <span class="number">1500</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(++ num);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(--num);</span><br><span class="line"></span><br><span class="line">num = <span class="number">100</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="property">PI</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(num));</span><br></pre></td></tr></table></figure>
-
-<h2 id="Converting数字和字符"><a href="#Converting数字和字符" class="headerlink" title="Converting数字和字符"></a>Converting数字和字符</h2><p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- parseInt() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> num = <span class="string">&quot;150&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;100&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(num));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;ABC&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;0xf&quot;</span>)); <span class="comment">// 15</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- parseFloat() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> flo1 = <span class="string">&quot;1.50&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseFloat</span>(<span class="string">&quot;1.5&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseFloat</span>(<span class="string">&quot;1 + 1&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseFloat</span>(<span class="string">&quot;ABC&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- parseInt() --&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;1.5&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;1 + 1&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + <span class="number">1</span>&#125;</span>`</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- toString() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> number = <span class="number">150</span>;</span><br><span class="line"><span class="keyword">let</span> float = <span class="number">1.5</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(number.<span class="title function_">toString</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(float.<span class="title function_">toString</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="number">100</span>).<span class="title function_">toString</span>());</span><br></pre></td></tr></table></figure>
-
-<h2 id="无意识的行为"><a href="#无意识的行为" class="headerlink" title="无意识的行为"></a>无意识的行为</h2><ul>
-<li>Exception</li>
-<li>Error</li>
-<li>Throwing an Exception</li>
-</ul>
-<h3 id="异常try…catch…finally"><a href="#异常try…catch…finally" class="headerlink" title="异常try…catch…finally"></a>异常try…catch…finally</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">criticalCode</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&quot;throwing an exception&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logError</span>(<span class="params">theException</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(theException);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- throwing exception --&quot;</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="string">&quot;myExcption&quot;</span>;</span><br><span class="line"><span class="keyword">throw</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- try catch --&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">criticalCode</span>();</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    <span class="title function_">logError</span>(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- throwing try catch --&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&quot;An Exception that is thrown every time&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    <span class="title function_">logError</span>(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- try catch finally--&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">criticalCode</span>();</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    <span class="title function_">logError</span>(error);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Code that always will run&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Date日期"><a href="#Date日期" class="headerlink" title="Date日期"></a>Date日期</h2><p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- creating a date object --&quot;</span>);</span><br><span class="line"><span class="comment">// get right now</span></span><br><span class="line"><span class="keyword">const</span> now = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="keyword">const</span> randomDate = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">2015</span>, <span class="number">3</span>, <span class="number">12</span>, <span class="number">6</span>, <span class="number">25</span>, <span class="number">58</span>);</span><br><span class="line"><span class="keyword">const</span> win95Launch = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">1995</span>, <span class="number">7</span>, <span class="number">24</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(randomDate);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(win95Launch);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- setting values --&quot;</span>);</span><br><span class="line"><span class="comment">// get right now</span></span><br><span class="line"><span class="keyword">const</span> now1 = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">now1.<span class="title function_">setFullYear</span>(<span class="number">2014</span>);</span><br><span class="line">now1.<span class="title function_">setMonth</span>(<span class="number">3</span>); <span class="comment">// April (counting starts at zero)</span></span><br><span class="line">now1.<span class="title function_">setDate</span>(<span class="number">4</span>); <span class="comment">// set</span></span><br><span class="line">now1.<span class="title function_">setHours</span>(<span class="number">4</span>); <span class="comment">// 24 hour clock</span></span><br><span class="line">now1.<span class="title function_">setMinutes</span>(<span class="number">24</span>);</span><br><span class="line">now1.<span class="title function_">setSeconds</span>(<span class="number">46</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now1);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- getting values --&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> now2 = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now2.<span class="title function_">getMonth</span>()); <span class="comment">// Month of the year</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now2.<span class="title function_">getTime</span>()); <span class="comment">// milliseconds since 1 Jan 1970</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now2.<span class="title function_">getDay</span>()); <span class="comment">// day of the week</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="IF语句"><a href="#IF语句" class="headerlink" title="IF语句"></a>IF语句</h2><p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &lt;    小于</span></span><br><span class="line"><span class="comment">// &lt;=   小于等于</span></span><br><span class="line"><span class="comment">// &gt;    大于</span></span><br><span class="line"><span class="comment">// &gt;=   大于等于</span></span><br><span class="line"><span class="comment">// ==   等等：检查值</span></span><br><span class="line"><span class="comment">//          &#x27;42&#x27; == 42 tests as true</span></span><br><span class="line"><span class="comment">// ===  等等：检查值和类型</span></span><br><span class="line"><span class="comment">//          &#x27;42&#x27; === 42 tests as false</span></span><br><span class="line"><span class="comment">// !=   不等于：检查值</span></span><br><span class="line"><span class="comment">// !==  不等于：检查值和类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> status = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">if</span> (status === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;OK!&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (status === <span class="number">400</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Error!&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Unknown status&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> message = status === <span class="number">200</span> ? <span class="string">&quot;OK!&quot;</span> : <span class="string">&quot;Error!&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(message);</span><br></pre></td></tr></table></figure>
-
-<h3 id="隐式的boolean值："><a href="#隐式的boolean值：" class="headerlink" title="隐式的boolean值："></a>隐式的boolean值：</h3><ul>
-<li>String：空的String是false</li>
-<li>Object：Null或undefined对象是false</li>
-<li>Numbers：0是false</li>
-</ul>
-<h3 id="比较组合："><a href="#比较组合：" class="headerlink" title="比较组合："></a>比较组合：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// And (both sides must be true)</span></span><br><span class="line">(x &amp; y)</span><br><span class="line">(x &amp;&amp; y)</span><br><span class="line"><span class="comment">// or (either side can be true)</span></span><br><span class="line">(x | y)</span><br><span class="line">(x || y)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Shortcut operators &amp;&amp; and ||</span></span><br><span class="line"><span class="comment">// stops evaluation if the answer is already known</span></span><br><span class="line">(x &amp;&amp; y) <span class="comment">// y not evaluated if x is false</span></span><br><span class="line">(y || y) <span class="comment">// y not evaluated if x is true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Switch-case-语句："><a href="#Switch-case-语句：" class="headerlink" title="Switch(case)语句："></a>Switch(case)语句：</h2><p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> status = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">switch</span> (status) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">200</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;OK!&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">400</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Error!&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Unknown value&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>todo：</p>
-]]></content>
-      <categories>
-        <category>Languages</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【GTest】googletest上手</title>
     <url>/2021/10/22/googletest-guide/</url>
     <content><![CDATA[<h2 id="大纲："><a href="#大纲：" class="headerlink" title="大纲："></a>大纲：</h2><ul>
@@ -3017,6 +2945,78 @@
         <tag>googletest</tag>
         <tag>C</tag>
         <tag>GTest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【JS】JavaScript基础</title>
+    <url>/2021/11/04/JavaScript-getting-started/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9jaGFubmVsOS5tc2RuLmNvbS9TZXJpZXMvQmVnaW5uZXJzLVNlcmllcy10by1KYXZhU2NyaXB0P1dULm1jX2lkPWJlZ2lubmVyLWM5LW5pbmVy">https://channel9.msdn.com/Series/Beginners-Series-to-JavaScript?WT.mc_id=beginner-c9-niner<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9iZWdpbm5lcnMtaW50cm8tamF2YXNjcmlwdC1ub2Rl">https://github.com/microsoft/beginners-intro-javascript-node<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9MZWFybi9KYXZhU2NyaXB0">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li>var：没有作用域（可以在定义前使用）</li>
+<li>let：有作用域</li>
+<li>const：类似let，但不能改变</li>
+</ul>
+<h2 id="类型："><a href="#类型：" class="headerlink" title="类型："></a>类型：</h2><h3 id="简单类型："><a href="#简单类型：" class="headerlink" title="简单类型："></a>简单类型：</h3><ul>
+<li>Number（float）</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Date</li>
+<li>Function</li>
+<li>Array</li>
+<li>Object</li>
+</ul>
+<h3 id="特别类型："><a href="#特别类型：" class="headerlink" title="特别类型："></a>特别类型：</h3><ul>
+<li>NaN：Not a number</li>
+<li>null：空</li>
+<li>undefined：未定义</li>
+</ul>
+<h3 id="类型检查："><a href="#类型检查：" class="headerlink" title="类型检查："></a>类型检查：</h3><ul>
+<li>typeof：返回字符串</li>
+<li>instanceof：返回boolean是否匹配类型</li>
+</ul>
+<h3 id="类型能改变："><a href="#类型能改变：" class="headerlink" title="类型能改变："></a>类型能改变：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="string">&#x27;something&#x27;</span>;</span><br><span class="line">x = <span class="number">1</span>;</span><br><span class="line">x = <span class="number">1</span> + <span class="string">&#x27;hello&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="相等"><a href="#相等" class="headerlink" title="相等:"></a>相等:</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">0</span> == <span class="string">&quot;&quot;</span>; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">let</span> y = <span class="number">0</span> === <span class="string">&quot;&quot;</span>; <span class="comment">// false, 关心类型</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> people = [<span class="string">&quot;Valentina&quot;</span>, <span class="string">&quot;Niko&quot;</span>, <span class="string">&quot;Eriberto&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> one = <span class="number">0</span>; <span class="comment">// 没有调用构造：new Number(1);</span></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;hello world&quot;</span>; <span class="comment">// 没有调用构造：new String(&quot;hello world&quot;)</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Valentina&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHello</span>(<span class="params">person</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello &quot;</span> + person.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- typeof --&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> people); <span class="comment">// object(array也是object)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> one);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> str);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> person);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> sayHello);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- instanceof --&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(people <span class="keyword">instanceof</span> <span class="title class_">Array</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(one <span class="keyword">instanceof</span> <span class="title class_">Number</span>); <span class="comment">// false  因为没有调用构造</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str <span class="keyword">instanceof</span> <span class="title class_">String</span>); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b <span class="keyword">instanceof</span> <span class="title class_">Boolean</span>); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person <span class="keyword">instanceof</span> <span class="title class_">Object</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sayHello <span class="keyword">instanceof</span> <span class="title class_">Function</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Math："><a href="#Math：" class="headerlink" title="Math："></a>Math：</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num + <span class="number">25</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num - <span class="number">100</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num * <span class="number">100</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num / <span class="number">1500</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num % <span class="number">1500</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(++ num);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(--num);</span><br><span class="line"></span><br><span class="line">num = <span class="number">100</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="property">PI</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(num));</span><br></pre></td></tr></table></figure>
+
+<h2 id="Converting数字和字符"><a href="#Converting数字和字符" class="headerlink" title="Converting数字和字符"></a>Converting数字和字符</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- parseInt() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> num = <span class="string">&quot;150&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;100&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(num));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;ABC&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;0xf&quot;</span>)); <span class="comment">// 15</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- parseFloat() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> flo1 = <span class="string">&quot;1.50&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseFloat</span>(<span class="string">&quot;1.5&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseFloat</span>(<span class="string">&quot;1 + 1&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseFloat</span>(<span class="string">&quot;ABC&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- parseInt() --&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;1.5&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">&quot;1 + 1&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + <span class="number">1</span>&#125;</span>`</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- toString() --&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> number = <span class="number">150</span>;</span><br><span class="line"><span class="keyword">let</span> float = <span class="number">1.5</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(number.<span class="title function_">toString</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(float.<span class="title function_">toString</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="number">100</span>).<span class="title function_">toString</span>());</span><br></pre></td></tr></table></figure>
+
+<h2 id="无意识的行为"><a href="#无意识的行为" class="headerlink" title="无意识的行为"></a>无意识的行为</h2><ul>
+<li>Exception</li>
+<li>Error</li>
+<li>Throwing an Exception</li>
+</ul>
+<h3 id="异常try…catch…finally"><a href="#异常try…catch…finally" class="headerlink" title="异常try…catch…finally"></a>异常try…catch…finally</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">criticalCode</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&quot;throwing an exception&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logError</span>(<span class="params">theException</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(theException);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- throwing exception --&quot;</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="string">&quot;myExcption&quot;</span>;</span><br><span class="line"><span class="keyword">throw</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- try catch --&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">criticalCode</span>();</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    <span class="title function_">logError</span>(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- throwing try catch --&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&quot;An Exception that is thrown every time&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    <span class="title function_">logError</span>(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- try catch finally--&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">criticalCode</span>();</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Got an error&quot;</span>);</span><br><span class="line">    <span class="title function_">logError</span>(error);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Code that always will run&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Date日期"><a href="#Date日期" class="headerlink" title="Date日期"></a>Date日期</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- creating a date object --&quot;</span>);</span><br><span class="line"><span class="comment">// get right now</span></span><br><span class="line"><span class="keyword">const</span> now = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="keyword">const</span> randomDate = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">2015</span>, <span class="number">3</span>, <span class="number">12</span>, <span class="number">6</span>, <span class="number">25</span>, <span class="number">58</span>);</span><br><span class="line"><span class="keyword">const</span> win95Launch = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">1995</span>, <span class="number">7</span>, <span class="number">24</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(randomDate);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(win95Launch);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- setting values --&quot;</span>);</span><br><span class="line"><span class="comment">// get right now</span></span><br><span class="line"><span class="keyword">const</span> now1 = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">now1.<span class="title function_">setFullYear</span>(<span class="number">2014</span>);</span><br><span class="line">now1.<span class="title function_">setMonth</span>(<span class="number">3</span>); <span class="comment">// April (counting starts at zero)</span></span><br><span class="line">now1.<span class="title function_">setDate</span>(<span class="number">4</span>); <span class="comment">// set</span></span><br><span class="line">now1.<span class="title function_">setHours</span>(<span class="number">4</span>); <span class="comment">// 24 hour clock</span></span><br><span class="line">now1.<span class="title function_">setMinutes</span>(<span class="number">24</span>);</span><br><span class="line">now1.<span class="title function_">setSeconds</span>(<span class="number">46</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now1);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;-- getting values --&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> now2 = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now2.<span class="title function_">getMonth</span>()); <span class="comment">// Month of the year</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now2.<span class="title function_">getTime</span>()); <span class="comment">// milliseconds since 1 Jan 1970</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(now2.<span class="title function_">getDay</span>()); <span class="comment">// day of the week</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="IF语句"><a href="#IF语句" class="headerlink" title="IF语句"></a>IF语句</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &lt;    小于</span></span><br><span class="line"><span class="comment">// &lt;=   小于等于</span></span><br><span class="line"><span class="comment">// &gt;    大于</span></span><br><span class="line"><span class="comment">// &gt;=   大于等于</span></span><br><span class="line"><span class="comment">// ==   等等：检查值</span></span><br><span class="line"><span class="comment">//          &#x27;42&#x27; == 42 tests as true</span></span><br><span class="line"><span class="comment">// ===  等等：检查值和类型</span></span><br><span class="line"><span class="comment">//          &#x27;42&#x27; === 42 tests as false</span></span><br><span class="line"><span class="comment">// !=   不等于：检查值</span></span><br><span class="line"><span class="comment">// !==  不等于：检查值和类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> status = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">if</span> (status === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;OK!&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (status === <span class="number">400</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Error!&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Unknown status&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> message = status === <span class="number">200</span> ? <span class="string">&quot;OK!&quot;</span> : <span class="string">&quot;Error!&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(message);</span><br></pre></td></tr></table></figure>
+
+<h3 id="隐式的boolean值："><a href="#隐式的boolean值：" class="headerlink" title="隐式的boolean值："></a>隐式的boolean值：</h3><ul>
+<li>String：空的String是false</li>
+<li>Object：Null或undefined对象是false</li>
+<li>Numbers：0是false</li>
+</ul>
+<h3 id="比较组合："><a href="#比较组合：" class="headerlink" title="比较组合："></a>比较组合：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// And (both sides must be true)</span></span><br><span class="line">(x &amp; y)</span><br><span class="line">(x &amp;&amp; y)</span><br><span class="line"><span class="comment">// or (either side can be true)</span></span><br><span class="line">(x | y)</span><br><span class="line">(x || y)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Shortcut operators &amp;&amp; and ||</span></span><br><span class="line"><span class="comment">// stops evaluation if the answer is already known</span></span><br><span class="line">(x &amp;&amp; y) <span class="comment">// y not evaluated if x is false</span></span><br><span class="line">(y || y) <span class="comment">// y not evaluated if x is true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Switch-case-语句："><a href="#Switch-case-语句：" class="headerlink" title="Switch(case)语句："></a>Switch(case)语句：</h2><p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> status = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">switch</span> (status) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">200</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;OK!&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">400</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Error!&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Unknown value&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>todo：</p>
+]]></content>
+      <categories>
+        <category>Languages</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -3294,6 +3294,47 @@
       </categories>
       <tags>
         <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【C】函数回调栈跟踪</title>
+    <url>/2022/02/25/%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%E6%A0%88%E8%B7%9F%E8%B8%AA/</url>
+    <content><![CDATA[<blockquote>
+<p>上周在移植dbus，在设备上运行不起来，当然问题后面被我领导解决了；有处地方报错，在源代码里面找到了，当时我在想代码是怎么调到这里来的？怎么去跟踪函数栈的调用？类似，Java在抛出异常之后回打印出，是怎么一步步调到这里来的。写C的时候在其它地方也遇到过：GDB的backtrace命令；Valgrind跟踪内存问题的时候也会打印函数调用栈；还有<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">AddressSanitizer<i class="fa fa-external-link-alt"></i></span>检测内存问题也能打印出来。当时去Google搜索了下，记录下</p>
+</blockquote>
+<p><strong>两种方式：</strong></p>
+<ul>
+<li>GUN拓展函数：<code>backtrace</code>，<code>backtrace_symbols</code>，<code>backtrace_symbols_fd</code></li>
+<li>GCC编译选项：<code>-finstrument-functions</code></li>
+</ul>
+<h2 id="GUN拓展函数"><a href="#GUN拓展函数" class="headerlink" title="GUN拓展函数"></a>GUN拓展函数</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9tYW43Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuMy9iYWNrdHJhY2UuMy5odG1s">https://man7.org/linux/man-pages/man3/backtrace.3.html<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="API："><a href="#API：" class="headerlink" title="API："></a>API：</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">backtrace</span><span class="params">(<span class="type">void</span> **buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> **<span class="title function_">backtrace_symbols</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">backtrace_symbols_fd</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size, <span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>backtrace_symbols_fd</code>和<code>backtrace_symbols</code>的区别是，<code>backtrace_symbols_fd</code>把信息输出对应的fd，而<code>backtrace_symbols</code>把信息返回给返回值</p>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><blockquote>
+<p>代码就不自己写了，用的文档中的示例</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_BUF_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc3</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span>    nptrs;</span><br><span class="line">    <span class="type">void</span>*  buffer[BT_BUF_SIZE];</span><br><span class="line">    <span class="type">char</span>** strings;</span><br><span class="line"></span><br><span class="line">    nptrs = backtrace(buffer, BT_BUF_SIZE);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;backtrace() returned %d addresses\n&quot;</span>, nptrs);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)</span></span><br><span class="line"><span class="comment">       would produce similar output to the following: */</span></span><br><span class="line"></span><br><span class="line">    strings = backtrace_symbols(buffer, nptrs);</span><br><span class="line">    <span class="keyword">if</span> (strings == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;backtrace_symbols&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; nptrs; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strings[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(strings);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &quot;static&quot; means don&#x27;t export the symbol... */</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">myfunc2</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    myfunc3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc</span><span class="params">(<span class="type">int</span> ncalls)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (ncalls &gt; <span class="number">1</span>)</span><br><span class="line">        myfunc(ncalls - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        myfunc2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s num-calls\n&quot;</span>, argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myfunc(atoi(argv[<span class="number">1</span>]));</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>有几个值的注意的地方：</strong></p>
+<ul>
+<li><code>Inline</code>函数没有栈帧信息，无法打印</li>
+<li><code>static</code>修饰的函数不会导出symbol，无法打印</li>
+<li>另外一个是如果程序开启了优化级别，也会受到一定程度的影响</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[I] ➜ cc -rdynamic main.c &amp;&amp; ./a.out 10</span><br><span class="line">backtrace() returned 14 addresses</span><br><span class="line">0   a.out                               0x0000000100436d3a myfunc3 + 42</span><br><span class="line">1   a.out                               0x0000000100436e59 myfunc2 + 9</span><br><span class="line">2   a.out                               0x0000000100436e4a myfunc + 42</span><br><span class="line">3   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">4   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">5   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">6   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">7   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">8   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">9   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">10  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">11  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">12  a.out                               0x0000000100436ebd main + 93</span><br><span class="line">13  dyld                                0x0000000100a354fe start + 462</span><br></pre></td></tr></table></figure>
+
+<p>用的clang前端编译器，LLVM牛批，输出格式都比GCC的好看多了</p>
+<p>然后我就一顿操作，打印，就解决了前面提到的问题；然后看了一下午dbus的代码，然后，然后，发现dbus里面已经写好了工具函数<span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RidXMvZGJ1cy8tL2Jsb2IvZGJ1cy0xLjEyL2RidXMvZGJ1cy1zeXNkZXBzLXVuaXguYw==">_dbus_print_backtrace()[dbus-sysdeps-unix.c:3417]<i class="fa fa-external-link-alt"></i></span>，直接调用就可以了，我tm。然后，然后默默的copy、paste到自己项目里面来。像这种十的多的年的老项目，里面还是有很多值得学习的地方，后面有时间在讲讲dbus源码</p>
+<h2 id="GCC编译选项"><a href="#GCC编译选项" class="headerlink" title="GCC编译选项"></a>GCC编译选项</h2><p>todo</p>
+<p><span class="exturl" data-url="aHR0cDovL2djYy5nbnUub3JnL29ubGluZWRvY3MvZ2NjLTQuNC43L2djYy9Db2RlLUdlbi1PcHRpb25zLmh0bWw=">http://gcc.gnu.org/onlinedocs/gcc-4.4.7/gcc/Code-Gen-Options.html<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Backtrace</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>Backtrace</tag>
       </tags>
   </entry>
   <entry>
@@ -3689,47 +3730,6 @@
       <tags>
         <tag>C</tag>
         <tag>Work</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【C】函数回调栈跟踪</title>
-    <url>/2022/02/25/%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%E6%A0%88%E8%B7%9F%E8%B8%AA/</url>
-    <content><![CDATA[<blockquote>
-<p>上周在移植dbus，在设备上运行不起来，当然问题后面被我领导解决了；有处地方报错，在源代码里面找到了，当时我在想代码是怎么调到这里来的？怎么去跟踪函数栈的调用？类似，Java在抛出异常之后回打印出，是怎么一步步调到这里来的。写C的时候在其它地方也遇到过：GDB的backtrace命令；Valgrind跟踪内存问题的时候也会打印函数调用栈；还有<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">AddressSanitizer<i class="fa fa-external-link-alt"></i></span>检测内存问题也能打印出来。当时去Google搜索了下，记录下</p>
-</blockquote>
-<p><strong>两种方式：</strong></p>
-<ul>
-<li>GUN拓展函数：<code>backtrace</code>，<code>backtrace_symbols</code>，<code>backtrace_symbols_fd</code></li>
-<li>GCC编译选项：<code>-finstrument-functions</code></li>
-</ul>
-<h2 id="GUN拓展函数"><a href="#GUN拓展函数" class="headerlink" title="GUN拓展函数"></a>GUN拓展函数</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9tYW43Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuMy9iYWNrdHJhY2UuMy5odG1s">https://man7.org/linux/man-pages/man3/backtrace.3.html<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="API："><a href="#API：" class="headerlink" title="API："></a>API：</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">backtrace</span><span class="params">(<span class="type">void</span> **buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> **<span class="title function_">backtrace_symbols</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">backtrace_symbols_fd</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size, <span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure>
-
-<p><code>backtrace_symbols_fd</code>和<code>backtrace_symbols</code>的区别是，<code>backtrace_symbols_fd</code>把信息输出对应的fd，而<code>backtrace_symbols</code>把信息返回给返回值</p>
-<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><blockquote>
-<p>代码就不自己写了，用的文档中的示例</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_BUF_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc3</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span>    nptrs;</span><br><span class="line">    <span class="type">void</span>*  buffer[BT_BUF_SIZE];</span><br><span class="line">    <span class="type">char</span>** strings;</span><br><span class="line"></span><br><span class="line">    nptrs = backtrace(buffer, BT_BUF_SIZE);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;backtrace() returned %d addresses\n&quot;</span>, nptrs);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)</span></span><br><span class="line"><span class="comment">       would produce similar output to the following: */</span></span><br><span class="line"></span><br><span class="line">    strings = backtrace_symbols(buffer, nptrs);</span><br><span class="line">    <span class="keyword">if</span> (strings == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;backtrace_symbols&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; nptrs; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strings[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(strings);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &quot;static&quot; means don&#x27;t export the symbol... */</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">myfunc2</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    myfunc3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc</span><span class="params">(<span class="type">int</span> ncalls)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (ncalls &gt; <span class="number">1</span>)</span><br><span class="line">        myfunc(ncalls - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        myfunc2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s num-calls\n&quot;</span>, argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myfunc(atoi(argv[<span class="number">1</span>]));</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>有几个值的注意的地方：</strong></p>
-<ul>
-<li><code>Inline</code>函数没有栈帧信息，无法打印</li>
-<li><code>static</code>修饰的函数不会导出symbol，无法打印</li>
-<li>另外一个是如果程序开启了优化级别，也会受到一定程度的影响</li>
-</ul>
-<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[I] ➜ cc -rdynamic main.c &amp;&amp; ./a.out 10</span><br><span class="line">backtrace() returned 14 addresses</span><br><span class="line">0   a.out                               0x0000000100436d3a myfunc3 + 42</span><br><span class="line">1   a.out                               0x0000000100436e59 myfunc2 + 9</span><br><span class="line">2   a.out                               0x0000000100436e4a myfunc + 42</span><br><span class="line">3   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">4   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">5   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">6   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">7   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">8   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">9   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">10  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">11  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">12  a.out                               0x0000000100436ebd main + 93</span><br><span class="line">13  dyld                                0x0000000100a354fe start + 462</span><br></pre></td></tr></table></figure>
-
-<p>用的clang前端编译器，LLVM牛批，输出格式都比GCC的好看多了</p>
-<p>然后我就一顿操作，打印，就解决了前面提到的问题；然后看了一下午dbus的代码，然后，然后，发现dbus里面已经写好了工具函数<span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RidXMvZGJ1cy8tL2Jsb2IvZGJ1cy0xLjEyL2RidXMvZGJ1cy1zeXNkZXBzLXVuaXguYw==">_dbus_print_backtrace()[dbus-sysdeps-unix.c:3417]<i class="fa fa-external-link-alt"></i></span>，直接调用就可以了，我tm。然后，然后默默的copy、paste到自己项目里面来。像这种十的多的年的老项目，里面还是有很多值得学习的地方，后面有时间在讲讲dbus源码</p>
-<h2 id="GCC编译选项"><a href="#GCC编译选项" class="headerlink" title="GCC编译选项"></a>GCC编译选项</h2><p>todo</p>
-<p><span class="exturl" data-url="aHR0cDovL2djYy5nbnUub3JnL29ubGluZWRvY3MvZ2NjLTQuNC43L2djYy9Db2RlLUdlbi1PcHRpb25zLmh0bWw=">http://gcc.gnu.org/onlinedocs/gcc-4.4.7/gcc/Code-Gen-Options.html<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Backtrace</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>Backtrace</tag>
       </tags>
   </entry>
   <entry>
@@ -4306,6 +4306,362 @@
       </tags>
   </entry>
   <entry>
+    <title>【VSCode】VSCode搭建C/C++开发环境</title>
+    <url>/2022/04/05/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h2 id="VSCode简介"><a href="#VSCode简介" class="headerlink" title="VSCode简介"></a>VSCode简介</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>Code editing.Redefined</strong>；Free. Built on open source. Runs everywhere.</p>
+<h3 id="VSCode的曲线救国"><a href="#VSCode的曲线救国" class="headerlink" title="VSCode的曲线救国"></a>VSCode的曲线救国</h3><ol>
+<li>前身 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9tb25hY28tZWRpdG9y">Monaco Editor<i class="fa fa-external-link-alt"></i></span>（web 编辑器）2011</li>
+<li>把Monaco Editor套在Electron（<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvQ2hyb21pdW0=">Chromium<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTm9kZS5qcw==">Node.js<i class="fa fa-external-link-alt"></i></span>）里面，就有了跨平台的桌面VSCode 2015</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvcmVtb3RlLW92ZXJ2aWV3">远程开发<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZlYXR1cmVzL2NvZGVzcGFjZXM=">Github Codespaces<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly92c2NvZGUuZGV2Lw==">vscode.dev<i class="fa fa-external-link-alt"></i></span> 2017~</li>
+</ol>
+<p>视频：<span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1oaWx6bktRaWo3QSZsaXN0PVBMajZZZU1odnAyUzZ1QjIzYmVRYWZmc3psYXZMcTNsTnEmYWJfY2hhbm5lbD1WaXN1YWxTdHVkaW9Db2Rl">Keynote by Erich Gamma: VS Code an Overnight Success… 10 years in the making<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="VSCode定位"><a href="#VSCode定位" class="headerlink" title="VSCode定位"></a>VSCode定位</h3><p><img src="/images/vscode/VSCode_image-20210421004416114.png"></p>
+<p><strong>特性：</strong></p>
+<ul>
+<li>VSCode只是个前端</li>
+<li>定标准协议<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">Language Server Protocol<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2RlYnVnLWFkYXB0ZXItcHJvdG9jb2wv">Debug Adapter Protocol<i class="fa fa-external-link-alt"></i></span></li>
+<li>把功能实现插件化</li>
+</ul>
+<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9sYW5ndWFnZXMvY3BwI190dXRvcmlhbHM=">https://code.visualstudio.com/docs/languages/cpp#_tutorials<i class="fa fa-external-link-alt"></i></span></p>
+<p>VSCode不带编译器，不同的平台安装自己的编译器</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1pbmd3">GCC on Windows via MinGW<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1zdmM=">Microsoft C++ on Windows<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWxpbnV4">GCC on Linux<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLXdzbA==">GCC on Windows Subsystem For Linux<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWNsYW5nLW1hYw==">Clang/LLVM on macOS<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="语言服务LSP"><a href="#语言服务LSP" class="headerlink" title="语言服务LSP"></a>语言服务LSP</h2><p><strong>Language Server Protocol</strong>：<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">https://microsoft.github.io/language-server-protocol/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>IDE的特性：</strong></p>
+<ul>
+<li>autocomplete自动补全</li>
+<li>goto definition转跳</li>
+<li>documentation on hover光标放在代码上，显示文档</li>
+<li>find all references查找引用</li>
+<li>etc</li>
+</ul>
+<p>如何工作的：</p>
+<p><img src="/images/vscode/image-20220405164606671.png"></p>
+<p><strong>软件设计原则-依赖倒置原则</strong></p>
+<blockquote>
+<p>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
+</blockquote>
+<p><img src="/images/vscode/image-20220405165341735.png"></p>
+<h3 id="C、CPP语言服务列表："><a href="#C、CPP语言服务列表：" class="headerlink" title="C、CPP语言服务列表："></a>C、CPP语言服务列表：</h3><p><span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC9pbXBsZW1lbnRvcnMvc2VydmVycy8=">https://microsoft.github.io/language-server-protocol/implementors/servers/<i class="fa fa-external-link-alt"></i></span></p>
+<table>
+<thead>
+<tr>
+<th><strong>Language</strong></th>
+<th><strong>Maintainer</strong></th>
+<th><a href="https://github.com/razzmatazz/csharp-language-server"><strong>Repository</strong></a></th>
+<th><strong>Implementation Language</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C++</td>
+<td>MS</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jcHB0b29scw==">VS Code C++ extension<i class="fa fa-external-link-alt"></i></span></td>
+<td>C++</td>
+</tr>
+<tr>
+<td><span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcv">C++/clang<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9sbHZtLm9yZy8=">LLVM Project<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xsdm0vbGx2bS1wcm9qZWN0L3RyZWUvbWFpbi9jbGFuZy10b29scy1leHRyYS9jbGFuZ2Q=">clangd<i class="fa fa-external-link-alt"></i></span></td>
+<td>C++</td>
+</tr>
+<tr>
+<td>C/C++/Objective-C</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdA==">Jacob Dufault<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RvcGlzYW5p">topisani<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdC9jcXVlcnk=">cquery<i class="fa fa-external-link-alt"></i></span>（Archived）</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>C/C++/Objective-C</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscw==">ccls<i class="fa fa-external-link-alt"></i></span>（originates from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NxdWVyeS1wcm9qZWN0L2NxdWVyeQ==">cquery<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscy9yZWxlYXNlcy90YWcvMC4yMDIxMDMzMA==">on Apr 7, 2021<i class="fa fa-external-link-alt"></i></span>）</td>
+<td>C++</td>
+</tr>
+</tbody></table>
+<p><strong>参考其它C、C++的IDE：</strong></p>
+<ul>
+<li><strong>Qt Creator 7</strong>：将默认的后端切换到Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cucXQuaW8vYmxvZy9xdC1jcmVhdG9yLTctcmVsZWFzZWQ=">https://www.qt.io/blog/qt-creator-7-released<i class="fa fa-external-link-alt"></i></span></li>
+<li><strong>Clion</strong>（Jetbrain）：默认用Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9oZWxwL2NsaW9uL2Mtc3VwcG9ydC5odG1s">https://www.jetbrains.com/help/clion/c-support.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="实现C、CPP语言服务面临的问题"><a href="#实现C、CPP语言服务面临的问题" class="headerlink" title="实现C、CPP语言服务面临的问题"></a>实现C、CPP语言服务面临的问题</h3><ul>
+<li>没有统一的包管理器：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92Y3BrZw==">vcpkg<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9jb25hbi5pby8=">conan<i class="fa fa-external-link-alt"></i></span></li>
+<li>构建系统build system碎片化：VS（xml配置），QT（qmake–&gt;CMake），Clion（CMake）<ul>
+<li>要去处理不同的构建系统：<strong>项目有哪些源代码？包含了哪些头文件？依赖于哪些三方库？有哪些编译Flags？</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Note：后面内容基于CMake来讲</p>
+</blockquote>
+<h3 id="Clangd语言服务"><a href="#Clangd语言服务" class="headerlink" title="Clangd语言服务"></a>Clangd语言服务</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI3Byb2plY3Qtc2V0dXA=">https://clangd.llvm.org/installation#project-setup<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>Note：VSCode的clangd插件和clangd是两个东西，虽然clangd插件才<code>v0.1.15</code>版本；clangd已经到13、14版本了</p>
+</blockquote>
+<p><strong>下载clangd：</strong></p>
+<ul>
+<li>通过VSCode的clangd插件命令：<code>&gt;clangd: Download language server</code></li>
+<li>自行下载<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI2luc3RhbGxpbmctY2xhbmdk">clangd<i class="fa fa-external-link-alt"></i></span>，然后配置到<code>path</code>目录下</li>
+</ul>
+<p><strong>配置：</strong></p>
+<blockquote>
+<p>clangd如何知道我编译了哪些代码？include了哪些头文件，依赖于哪些库？有些哪些编译flags？</p>
+</blockquote>
+<p><code>compile_commands.json</code>配置文件：该文件为项目中的每个源文件提供编译命令</p>
+<p><strong>如何生成：</strong></p>
+<ul>
+<li>命令：<code>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code></li>
+<li>CMakeLists.txt文件：<code>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</code></li>
+</ul>
+<p>一般把这个文件生成到build目录，clangd就能找到</p>
+<blockquote>
+<p>Note：切换分支或是大量代码变更会导致clangd提示出问题，需要重新编译生成<code>compile_commands.json</code>配置文件；重启下clangd：<code>&gt;clangd: Restart language server</code></p>
+</blockquote>
+<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92c2NvZGUtY21ha2UtdG9vbHMvYmxvYi9tYWluL2RvY3MvUkVBRE1FLm1k">https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/README.md<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>CMake Tools插件</strong>：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jbWFrZS10b29scw==">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>常用命令：</strong></p>
+<ul>
+<li>初始化项目：<code>&gt;CMake: quick Start</code></li>
+<li>Kit编译器命令：设置编译器<ul>
+<li>编辑本地的编译器配置：<code>&gt;CMake: Edit User-Local CMake Kits</code></li>
+<li>搜索电脑的编译器：<code>&gt;CMake: Scan for Kits</code></li>
+<li>选择哪个编译器：<code>&gt;CMake: Select a Kit</code></li>
+</ul>
+</li>
+<li>设置编译的类型：<code>&gt;CMake: Select Variant</code>，设置CMake的<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvdmFyaWFibGUvQ01BS0VfQlVJTERfVFlQRS5odG1s">CMAKE_BUILD_TYPE<i class="fa fa-external-link-alt"></i></span>变量</li>
+<li>配置：<code>&gt;CMake: Configure</code>；执行<code>cmake -S . -B build</code>命令</li>
+<li>编译：<code>&gt;CMake: Build</code>；执行<code>cmake --build build</code>命令</li>
+<li>清理缓存重新配置：<code>&gt;CMake: Delete Cache and Reconfigure</code></li>
+<li>编辑CMake缓存文件：<code>$&#123;project_root&#125;/build/CMakeCache.txt</code><ul>
+<li><code>&gt;CMake: Edit CMake Cache</code></li>
+<li><code>&gt;CMake: Edit CMake Cache (UI)</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Debug调试DAP"><a href="#Debug调试DAP" class="headerlink" title="Debug调试DAP"></a>Debug调试DAP</h2><h3 id="命令行调试程序："><a href="#命令行调试程序：" class="headerlink" title="命令行调试程序："></a>命令行调试程序：</h3><p><strong>步骤：</strong></p>
+<ol>
+<li>编译出带有Debug信息的程序；</li>
+<li>用GDB或LLDB去调试程序</li>
+</ol>
+<p>LLDB教程：<span class="exturl" data-url="aHR0cHM6Ly9sbGRiLmxsdm0ub3JnL3VzZS90dXRvcmlhbC5odG1s">https://lldb.llvm.org/use/tutorial.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>todo</p>
+<p><img src="/images/vscode/image-20220409162446409.png"></p>
+<p>本质上是GDB和LLDB程序去调试代码，VSCode只是个前端</p>
+<ul>
+<li>MS的C++插件：已经包含了GDB功能</li>
+<li>LLVM的<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span> <strong>推荐</strong></li>
+</ul>
+<h3 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h3><p>文件：<code>.vscode/launch.json</code></p>
+<p>调试程序的前提：编译出来的程序带有debug信息；比如加<code>-g</code>选项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gdb a.out</span><br><span class="line">$ lldb a.out</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/vscode/image-20220409162303109.png"></p>
+<h3 id="调试操作："><a href="#调试操作：" class="headerlink" title="调试操作："></a>调试操作：</h3><ul>
+<li>Continue / Pause 继续/暂停（F5）</li>
+<li>Step Over单步执行（F10）</li>
+<li>Step Into进入函数（F11）</li>
+<li>Step Out退出函数（⇧F11）</li>
+<li>Restart重新调试（⇧⌘F5）</li>
+<li>Stop停止调试（⇧F5）</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><ul>
+<li>Watch：监控</li>
+<li>Call stack：函数调用栈</li>
+<li>Debug console：用来输入命令</li>
+</ul>
+<h3 id="条件断点：Conditional-breakpoints"><a href="#条件断点：Conditional-breakpoints" class="headerlink" title="条件断点：Conditional breakpoints"></a>条件断点：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9lZGl0b3IvZGVidWdnaW5nI19jb25kaXRpb25hbC1icmVha3BvaW50cw==">Conditional breakpoints<i class="fa fa-external-link-alt"></i></span></h3><ul>
+<li><strong>条件表达式Expression condition</strong>：表达式成立的时候会断点</li>
+<li><strong>执行次数Hit count</strong>：执行了多少次才会断点</li>
+</ul>
+<p><img src="/images/vscode/hitCount.gif"></p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><h3 id="如何实现格式化？"><a href="#如何实现格式化？" class="headerlink" title="如何实现格式化？"></a>如何实现格式化？</h3><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY3BwLWlkZSNfY29kZS1mb3JtYXR0aW5n">https://code.visualstudio.com/docs/cpp/cpp-ide#_code-formatting<i class="fa fa-external-link-alt"></i></span></p>
+<p>Clang-format：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0Lmh0bWw=">https://clang.llvm.org/docs/ClangFormat.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>MS和LLVM的格式化都是使用的clang-format</p>
+<ul>
+<li>MS的C/C++插件：是把clang-format程序下载到本地电脑</li>
+<li>LLVM的clangd插件：集成到了语言服务程序clangd里面</li>
+<li>本质上都是调用了类似于<code>clang-format -i $&#123;file_name&#125;</code>这样的命令：写个脚本格式代整个项目</li>
+</ul>
+<h3 id="clang-format配置文件"><a href="#clang-format配置文件" class="headerlink" title=".clang-format配置文件"></a><code>.clang-format</code>配置文件</h3><p><strong>Clangd找配置文件的顺序：</strong></p>
+<ol>
+<li>先去同级目录找：<code>./.clang-format</code> （使用三方库，有的库会自带）</li>
+<li>去父级目录找 –&gt; 项目根目录找：<code>$&#123;project_root&#125;/.clang-format</code>（自己项目开发需要）</li>
+<li>去用户根目录下找：<code>~/.clang-format</code>（自己写代码方便，不用每次去copy一份到项目里面来）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ clang-format -style=llvm -dump-config &gt; .clang-format</span><br></pre></td></tr></table></figure>
+
+<p>选项详细文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0U3R5bGVPcHRpb25zLmh0bWw=">https://clang.llvm.org/docs/ClangFormatStyleOptions.html<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>Note：配置在使用的时候可能会遇到选项兼容性的问题；clang-format新版本会更新增加选项，如果新版本的.clang-format给到老版本的qt creator使用可能会遇到兼容性的问题；需要升级clang-format，qt creator使用新版本的clang-format</p>
+</blockquote>
+<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>Clang-tidy：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Addresssanitizer"><a href="#Addresssanitizer" class="headerlink" title="Addresssanitizer"></a>Addresssanitizer</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">https://github.com/google/sanitizers/wiki/AddressSanitizer<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlckZyZWU=">Use after free<i class="fa fa-external-link-alt"></i></span> (dangling pointer dereference)</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVIZWFwT3V0T2ZCb3VuZHM=">Heap buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVTdGFja091dE9mQm91bmRz">Stack buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVHbG9iYWxPdXRPZkJvdW5kcw==">Global buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclJldHVybg==">Use after return<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclNjb3Bl">Use after scope<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckluaXRpYWxpemF0aW9uT3JkZXJGaWFzY28=">Initialization order bugs<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckxlYWtTYW5pdGl6ZXI=">Memory leaks<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><h3 id="相关插件安装"><a href="#相关插件安装" class="headerlink" title="相关插件安装"></a>相关插件安装</h3><blockquote>
+<p>Note: 下面格式<code>C/C++ / ms-vscode.cpptools</code>，用<code>/</code>分隔，左边是插件名，右边是插件ID；用插件ID在VSCode搜索更加准确</p>
+</blockquote>
+<p>推荐插件安装列表：</p>
+<ul>
+<li>c/c++语言服务插件: <strong>（新手【不懂lsp的】不要乱装其他相关的c/c++插件，下面二者开启一个即可；如果同时开启，LLVM会把Macrosoft的禁用掉）</strong><ul>
+<li>LLVM：clangd/llvm-vs-code-extensions.vscode-clangd （<strong>LInux平台推荐</strong>）</li>
+<li>Macrosoft：C/C++ / ms-vscode.cpptools （<strong>Windows平台推荐</strong>）</li>
+</ul>
+</li>
+<li>Debug插件:CodeLLDB/vadimcn.vscode-lldb</li>
+<li>cmake语法插件:CMake/twxs.cmake</li>
+<li>cmake tools插件:CMake Tools/ms-vscode.cmake-tools</li>
+<li>一键运行单个文件插件:Code Runner/formulahendry.code-runner</li>
+<li>自动生成注释结构:Doxygen Documentation Generator/cschlosser.doxdocgen</li>
+<li>git增强插件:GitLens — Git supercharged/eamodio.gitlens</li>
+<li>git ignore插件:gitignore/codezombiech.gitignore</li>
+<li>错误增强显示插件:Error Lens/usernamehw.errorlens</li>
+<li>图标增强:vscode-icons/vscode-icons-team.vscode-icons</li>
+</ul>
+<p>命令一次性安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ code --install-extension</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>VSCode</category>
+      </categories>
+      <tags>
+        <tag>VSCode</tag>
+        <tag>C</tag>
+        <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Tools】来玩一玩件值一个亿的终端软件-Warp</title>
+    <url>/2022/04/10/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<blockquote>
+<p>一个叫Warp的终端软件<strong>融资 2300 w 美元</strong>，<span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="一个好的故事："><a href="#一个好的故事：" class="headerlink" title="一个好的故事："></a>一个好的故事：</h2><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span><br>Walk by any developer’s desk and you are likely to see two apps open: their <strong>code editor</strong> and their <strong>terminal</strong> (sometimes the code editor is the terminal!). ‍</p>
+<p>Both are crucial to developer productivity. The code editor is where developers write code; the terminal is where they do pretty much everything else, from building code to running and deploying it, interacting with source control, configuring their cloud systems, and more.</p>
+<p>And yet only one of these two apps – the code editor – has experienced meaningful product improvement over the past 40 years. Compared to using VS Code, using the terminal is like stepping back in time to the 1970s. Only <span class="exturl" data-url="aHR0cHM6Ly9pbnNpZ2h0cy5zdGFja292ZXJmbG93LmNvbS9zdXJ2ZXkvMjAyMSNzZWN0aW9uLW1vc3QtcG9wdWxhci10ZWNobm9sb2dpZXMtaW50ZWdyYXRlZC1kZXZlbG9wbWVudC1lbnZpcm9ubWVudA==">70% of developers use VSCode<i class="fa fa-external-link-alt"></i></span>, while 100% use the terminal. So why is the terminal experience still so lackluster?</p>
+</blockquote>
+<p><strong>程序员最重要的两个工具：</strong></p>
+<ul>
+<li>Coder editor</li>
+<li>Terminal：编译，运行，部署，代码版本管理，配置云服务器……</li>
+<li>Browser浏览器</li>
+</ul>
+<p>Coder editor在过去40年一直在改善，而Terminal用起来还是最开始的那个样子。<br>个人觉得：后半句只是对了一半，提示、补全、搜索、主题都在发展，没有被整合起来</p>
+<p><strong>现今Terminal面临的问题：</strong></p>
+<ul>
+<li>Terminals are hard to use难用</li>
+<li>They don’t work for teams不是为团队协作设计的</li>
+</ul>
+<h2 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h2><ul>
+<li>Command Palette</li>
+<li>The Input / Text Editor</li>
+<li>Blocks</li>
+<li>Find</li>
+<li>Command History</li>
+<li>Autosuggestions</li>
+<li>Completions</li>
+<li>Themes</li>
+<li>Prompt</li>
+<li>Split Panes</li>
+<li>Session Management and Restoration</li>
+<li>Workflows</li>
+<li>Global Hotkey Window</li>
+<li>A.I. Command Search</li>
+</ul>
+<h2 id="Command-Palette"><a href="#Command-Palette" class="headerlink" title="Command Palette"></a>Command Palette</h2><p>快捷键：<code>CMD + P</code></p>
+<p>Terminal上所有的功能，几本上都这个通过这个搜索框去执行，还能模糊匹配；如果忘记某些功能的快捷键了，可以通过这个来搜索</p>
+<img src="/images/warp/warp_command_palette.gif" style="zoom: 43%;" />
+
+<p>这个功能应该是借鉴Sublime Text 、VSCode</p>
+<h2 id="The-Input-Text-Editor"><a href="#The-Input-Text-Editor" class="headerlink" title="The Input / Text Editor"></a>The Input / Text Editor</h2><img src="/images/warp/warp_input_editor.gif"/>
+
+<h2 id="Blocks块"><a href="#Blocks块" class="headerlink" title="Blocks块"></a>Blocks块</h2><p>概念：一次命令的执行称为一个块。</p>
+<ul>
+<li>copy命令</li>
+<li>copy命令的输出</li>
+<li>直接划到命令输出开始的地方</li>
+<li>重新输入这个命令</li>
+<li>共享这个命令和输出</li>
+</ul>
+<img src="/images/warp/warp_annotated_blocks_v2.png" style="zoom:50%;" />
+
+<p>在Blocks之间转跳：<code>CMD-UP</code>和<code>CMD-DOWN</code>，之后按上和下就可以了</p>
+<h2 id="Find查找"><a href="#Find查找" class="headerlink" title="Find查找"></a>Find查找</h2><ul>
+<li>支持大小写匹配</li>
+<li>支持锁定Blocks</li>
+</ul>
+<blockquote>
+<p>可以考虑下支持正则表达式</p>
+</blockquote>
+<h2 id="Command-History命令历史记录"><a href="#Command-History命令历史记录" class="headerlink" title="Command History命令历史记录"></a>Command History命令历史记录</h2><p>快捷键：<code>Ctrl + R</code></p>
+<ul>
+<li>支持模糊匹配</li>
+</ul>
+<p>fzf的<code>Ctrl + R</code>搜索历史记录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p1bmVndW5uL2Z6ZiNrZXktYmluZGluZ3MtZm9yLWNvbW1hbmQtbGluZQ==">https://github.com/junegunn/fzf#key-bindings-for-command-line<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Autosuggestions自动提示"><a href="#Autosuggestions自动提示" class="headerlink" title="Autosuggestions自动提示"></a>Autosuggestions自动提示</h2><p>快捷键：<code>方向右键</code> 或 <code>CTRL-F</code>. （F：forward）</p>
+<h2 id="Completions补全"><a href="#Completions补全" class="headerlink" title="Completions补全"></a>Completions补全</h2><p>快捷键：<code>TAB</code>，之后按上和下选择</p>
+<h2 id="Themes主题"><a href="#Themes主题" class="headerlink" title="Themes主题"></a>Themes主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvdGhlbWVzL3RyZWUvMTk0MzZkOTlmNzFkNmQ1NTEzN2JjZjhmNTQ3NWVhMTMwNTZlN2FkZCNvcGVuLXNvdXJjZS1kZXBlbmRlbmNpZXM=">https://github.com/warpdotdev/themes/tree/19436d99f71d6d55137bcf8f5475ea13056e7add#open-source-dependencies<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>We’d like to call out a few of the open source themes and repositories that helped bootstrap the set of themes for Warp:</p>
+<ul>
+<li>iTerm colors pencil</li>
+<li>Alacritty-theme</li>
+<li>base16-Alacritty</li>
+<li>base16</li>
+<li>Solarized</li>
+<li>Dracula</li>
+<li>Gruvbox</li>
+</ul>
+</blockquote>
+<h2 id="Prompt"><a href="#Prompt" class="headerlink" title="Prompt"></a>Prompt</h2><p>分Warp和用户自定义的</p>
+<ul>
+<li>开启自定义：<code>Settings &gt; Features</code> 打开<code>Honor user&#39;s custom prompt (PS1) setting.</code></li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29obXl6c2gvb2hteXpzaA==">ohmyzsh<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NwYWNlc2hpcC1wcm9tcHQvc3BhY2VzaGlwLXByb21wdA==">spaceship prompt<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Split-Panes分屏"><a href="#Split-Panes分屏" class="headerlink" title="Split Panes分屏"></a>Split Panes分屏</h2><h2 id="Session-Management-and-Restoration"><a href="#Session-Management-and-Restoration" class="headerlink" title="Session Management and Restoration"></a>Session Management and Restoration</h2><p>When Warp opens, it restores your session history, specifically windows, tabs, panes, and also the last few Blocks in each pane.</p>
+<p>当打开Warp，它会恢复历史会话，窗口，Tabs，面板，以及之前的Blocks；保存到sqlite里面</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sqlite3 <span class="variable">$HOME</span>/Library/Application Support/dev.warp.Warp-Stable/warp.sqlite</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用起来很方便；反过来，就会有隐私及安全的顾虑</p>
+</blockquote>
+<h2 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h2><h2 id="Global-Hotkey-Window"><a href="#Global-Hotkey-Window" class="headerlink" title="Global Hotkey Window"></a>Global Hotkey Window</h2><h2 id="A-I-Command-Search"><a href="#A-I-Command-Search" class="headerlink" title="A.I. Command Search"></a>A.I. Command Search</h2><h2 id="安装遇到的登录校验问题："><a href="#安装遇到的登录校验问题：" class="headerlink" title="安装遇到的登录校验问题："></a>安装遇到的登录校验问题：</h2><p>情况：用github账号登录，转跳到Warp之后卡顿，无法登录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvV2FycC9pc3N1ZXMvOTA2">https://github.com/warpdotdev/Warp/issues/906<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>需要开代理，在命令行中配置</li>
+<li>用命令行去启动Warp</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在命令行里面配置代理</span></span><br><span class="line">$ <span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:1077</span><br><span class="line">$ <span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:1077</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动warp</span></span><br><span class="line">$ /Applications/Warp.app/Contents/MacOS/stable</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Tools</tag>
+        <tag>Terminal</tag>
+        <tag>Warp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【RTFC】spdlog源码分析</title>
     <url>/2022/04/25/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<blockquote>
@@ -4454,6 +4810,128 @@
         <tag>spdlog</tag>
         <tag>源码分析</tag>
         <tag>RTFC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【转】KK:103 Bits of Advice I Wish I Had Known</title>
+    <url>/2022/05/08/KK-103-Bits-of-Advice-I-Wish-I-Had-Known/</url>
+    <content><![CDATA[<p>2022年4月28日，凯文·凯利（Kevin Kelly）在他的网站上发布了 70 岁生日的文章：<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vMTAzLWJpdHMtb2YtYWR2aWNlLWktd2lzaC1pLWhhZC1rbm93bi8=">103 Bits of Advice I Wish I Had Known<i class="fa fa-external-link-alt"></i></span>，意为：103条我希望早点知道的人生忠告。他 <span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vOTktYWRkaXRpb25hbC1iaXRzLW9mLXVuc29saWNpdGVkLWFkdmljZS8=">69 岁<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vNjgtYml0cy1vZi11bnNvbGljaXRlZC1hZHZpY2Uv">68 岁<i class="fa fa-external-link-alt"></i></span>生日时也写了这样的文章。</p>
+<center>以下是全文翻译</center>
+
+<p>今天是我的生日。我今年70岁了。活到现在我也算学到了一点可能可以帮助到其他的人东西。过去几年，我每年都会写一点人生建议之类的东西（当然没人请我写这个）。出乎我意料之外的是，今年好像我想讲的话特别多。所以接下来是我给各位读者的一份小小的礼物：我希望我年轻时就知道的103条人生智慧。</p>
+<p>（之前写的东西大家可以看<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vOTktYWRkaXRpb25hbC1iaXRzLW9mLXVuc29saWNpdGVkLWFkdmljZS8=">这里<i class="fa fa-external-link-alt"></i></span>，和<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vNjgtYml0cy1vZi11bnNvbGljaXRlZC1hZHZpY2Uv">这里<i class="fa fa-external-link-alt"></i></span>）。</p>
+<ol>
+<li>99%的时间里，真正关键的时刻就是此刻。</li>
+<li>除了你以外，没有人会真的记得你拥有什么东西。</li>
+<li>一定不要为你不希望成为的人工作。</li>
+<li>好好耕耘12个爱你的人的关系，因为这12个人远比1200万人喜欢你重要得多。</li>
+<li>不要一直重复犯错；试着去犯新的错。</li>
+<li>如果你在街上停下来聆听音乐人或街头艺人的表演一分钟，那么你欠他们一美元。</li>
+<li>“但是”之前的话都是废话。</li>
+<li>当你原谅其他人的时候，他们不一定会知道这件事，但你自己却会被治愈。原谅不是我们给予他人的东西；而是我们给自己的礼物。</li>
+<li>礼貌几乎没有成本。上完厕所之后，把马桶座放下。进电梯之前，让里面人先出来。把购物车推回到商场指定的位置。借了别人的东西，让它以比借到的时候更好的状态（比如把消耗了的材料装满，比如把东西清洁好）还回去。</li>
+<li>无论什么时候，看到争论基于两个对立面进行时，要找到第三个面。</li>
+<li>“效率”被过度高估；“偷懒”被过度贬低。有规律地安排休息日、休假、度假、小憩、漫无目的地散步和暂停时间对任何一种高产出状态都至关重要。最佳职业伦理需要具备一个好的休闲伦理。</li>
+<li>当你在领导时，你真正的任务是创造出更多领导者，而不是更多追随者。</li>
+<li>私下批评，公开赞扬。</li>
+<li>人生的课程将以它们需要的顺序出现在你面前。任何你需要掌握的课程其实都在你身上。当你真正掌握了一节课之后，下一节课就会出现。如果你还活着，这就意味着你还有课程需要学习。</li>
+<li>学生的责任是从老师身上学会一切，老师的责任是从学生身上学会一切。</li>
+<li>如果在一个游戏中，获胜变得过于重要，那么我们可以修改游戏规则以便从中获得更多乐趣。而修改规则本身就可以成为一个新的游戏。</li>
+<li>当你跟投资人要钱的时候，他会给你建议；而如果你跟他要建议，他会给你钱。</li>
+<li>生产力反而经常分散我们的注意力。不要试图寻找更快完成任务的方法，而是把精力放在你根本不想停下来的任务上。</li>
+<li>及时支付你的欠款给卖主，员工，承包商。下一次你他们会第一时间跑来跟你合作。</li>
+<li>我们对自己说的最大的谎言就是：“我不需要把这些写下来，我会记得的。”</li>
+<li>你作为一个意识生物的成长，将以你愿意接受的令人不舒服的对话的次数来衡量。</li>
+<li>自信地发言就像你是对的一样，仔细的聆听就像你是错的一样。</li>
+<li>方便的测量方法：双手展开与肩膀平齐，此时从左手指尖到右手指尖的长度就是你的身高。</li>
+<li>你的努力（锻炼、陪伴、工作）的一致性远比数量重要。没有什么可以击败每天坚持做的小事，这比偶然做的事情重要得多。</li>
+<li>艺术创造并不自私；它是为我们其他人而作的。如果你不好好创作，你就是在欺骗我们。</li>
+<li>永远不要问一位女士她是否怀孕了。等她自己告诉你。</li>
+<li>你必须具备的三种能力: 在确认一件事情能运作之前永不言弃的能力，在确认一件事情无法工作下去时放弃他的能力，以及信任能帮助你区分二者的人。</li>
+<li>公开演讲的时候，常作暂停。开始讲新内容的之前暂停一下，讲完你觉得重要的内容之后暂停一下，把暂停作为让听众吸收内容的缓冲。</li>
+<li>“准时”从不存在。你要嘛迟到要嘛早到。这是你的选择。</li>
+<li>请教一位你崇拜的人: 他们的幸运转折往往来自于跟主要目标无关的弯路。所以拥抱这种弯路。对任何人来说，人生都不是一条直线。</li>
+<li>在互联网上寻找正确答案的最佳实践是发布一个明显错误的答案，然后等待其他人纠正你。</li>
+<li>奖励好行为比惩罚坏行为带来的结果要好上十倍，尤其对象是小孩和动物时。</li>
+<li>要花跟写邮件正文一样的时间来雕琢邮件标题，因为很多时候邮件标题是人们唯一会读的东西。</li>
+<li>不要等着暴风雨自己过去；要在雨中跳舞。</li>
+<li>老板/雇主在查看求职者的推荐信时，一般不太愿意或者被禁止说出负面评价。这时候你可以留言说：“如果你觉得这位求职者很不错的话请通知我哦。”如果他们没有回复的话那就是负评价。</li>
+<li>使用密码管理器: 更安全，更易用，更好。</li>
+<li>教育的一半作用是学习哪些东西可以被忽略。</li>
+<li>设定一个野心得荒谬的目标的好处是，上限足够高，这样即使最后失败了，以通常的标准来衡量也可以算某种程度上的成功。</li>
+<li>了解自己的一个好办法是，仔细地分析自己做的会惹怒其他人的每一件事情。</li>
+<li>住酒店的时候记得把所有的东西都放在可以看得到的地方，不要放进抽屉里，都堆在一个地方。这样你在离店的时候永远不会忘记任何东西。如果有些东西需要放在一边的，比如充电器，那你可以放多两件大的东西在它隔壁，因为相比起一件东西，你更不可能同时忘记拿三件。</li>
+<li>拒绝或转移别人的赞美是不礼貌的。可以用感谢接受它，即使你相信你根本不值得这个赞美。</li>
+<li>纪念碑旁的那块说明，必读。</li>
+<li>当你获得某种成功的时候，你可能会有种自己的能力不配这个位置，自己是个骗子感觉。我在骗人吗？但如果你创造了某种只有你独特的天赋与经验才做得到的东西，那你就绝对不是一个骗子。你是注定要做这件事情的。做好只有你才能做的事情，这是你的责任所在。</li>
+<li>你在低谷时做的事情比在好日子时做的更重要。</li>
+<li>做对人有益的东西。</li>
+<li>当你打开一罐油漆时，无论你有多么小心，你的衣服一定会沾上一点，即便只是很小一点。所以记得穿合适的衣服。</li>
+<li>在汽车旅行的路上让小孩子乖乖听话的办法：捎一袋他们最喜欢的糖果，每次只要不乖就扔一把出去。</li>
+<li>你无法让聪明的人只为了钱而特别努力地工作。</li>
+<li>当你不知道应该为了某件工作给人支付多少费用的时候，你可以问他“你觉得给多少是合适的”，他们通常会给出合适的报价。</li>
+<li>所有东西的90%都是垃圾。如果你觉得自己不喜欢歌剧，浪漫小说，抖音，乡村音乐，素食，NFTs，那你可以试试看自己能否找出不是垃圾的10%。</li>
+<li>你如何对待那些对你无能为力的人，将成为评价你的标准。</li>
+<li>我们向来高估了一天能做的事情，也低估了十年能达成的事情。只要给十年时间，奇迹也能达成。长期坚持能累计大量小成就，攻克大问题。</li>
+<li>感谢改变了你人生的那位老师。</li>
+<li>你无法说服一个人接受一个他自己也无法说服他自己的理念。</li>
+<li>最好的工作是你需要努力跳起来都不一定够得着工作。其实最好只申请你的能力尚不匹配的工作。</li>
+<li>购买二手书。它们和新书有一样的文字。图书馆的书也是。</li>
+<li>你可以成为任何你想成为的人，所以让自己成为那个早点结束会议的人吧。</li>
+<li>一个智者曾经说过，“在你开口之前，先让你的语言经过三道门的检验。第一道门是问你自己，‘这是真话吗？’第二道门是‘这是必要的吗？’第三道门是‘这是善的吗？’”</li>
+<li>走楼梯。</li>
+<li>你支付给某样东西的钱事实上是它标价的两倍，因为你还需要付出额外的能源，时间，和金钱来安装它，学习使用它，维护它，修复它，以及最后丢掉它。不是所有的价格都打在标签上。真正的付出是标价的两倍。</li>
+<li>当你到达你酒店房间时，记得看一眼紧急出口在哪里。只需要一分钟。</li>
+<li>“我现在该做什么？”的唯一有效回答是，先找出“我想成为什么人？”的答案。</li>
+<li>在一段超过平均水平的时间里，一直保持平均水平的回报，也会产生超凡的结果。买入并一直持有。</li>
+<li>对粗鲁的陌生人表现得特别礼貌是一件令人毛骨悚然的事情。</li>
+<li>一个不太聪明但能很好沟通的人，是可以做得比很聪明但不善沟通的人更好的。这是一个好消息，因为提高你的沟通技巧要比提高智力容易得多。</li>
+<li>偶尔被骗是信任所有人的一个很小的代价，因为当你以最大诚意信任其他人的时候，他们通常会给你最好的对待。</li>
+<li>艺术是你无论如何都能超然避世的东西。</li>
+<li>为了让你的孩子获得最好的成长，你应该只花你认为应该花的一半的钱给他们，但花两倍的时间陪他们。</li>
+<li>购买你的家乡或所在区域的最新的旅游指南。你会在每年的旅游中学会很多。</li>
+<li>不要排长队等着吃某样很有名的东西。因为几乎没有哪样出名的食物值得这份等待。</li>
+<li>想要快速了解一个刚认识的人的真实性格，让他们使用一个超级慢的网络，然后观察他们。</li>
+<li>达成世俗成功的良方：做点奇怪的事情。培养自己独特的奇怪的习惯。</li>
+<li>要成为一个专家。记得备份你的备份。至少有一份物理备份与一份云端备份。每个备份不要少于一份。当你丢失了你的数据，照片，与笔记时，你愿意花多少钱把他们找回来呢？相比于后悔，备份一定是更便宜的选项。</li>
+<li>不要相信你认为你相信的一切。</li>
+<li>发出紧急信号请使用“三次法则”: 三次大喊，三次喇叭，或三次口哨。</li>
+<li>你在一家餐馆里会点吃过的好吃的菜，还是尝试新的？你会做你知道有销路的东西，还是会尝试新的？你会一直跟新的人约会还是会尝试跟已经认识的人确立关系？最理想的探索新事物与找到了之后在其中深耕的平衡是: 1/3。用 1/3 的时间去探索，用 2/3 的时间去深耕。随着年龄的增长，花时间去探索新事物会越来越难，因为那看起来并不高效，但试着做到 1/3 吧。</li>
+<li>真正的好机会不会在额头上大书“好机会”三个字。</li>
+<li>在你被介绍给别人的时候，看着对方的眼睛，数到四。这样你们都会很好地记住对方。</li>
+<li>在你思考“我的好刀在哪里？或者我的好笔在哪里？”时，记下来。这意味着你还有坏的刀或笔。把它们都丢掉吧。</li>
+<li>当你在某件事情卡住了时候，试着给其他人描述你的问题。经常你只需要简单地把问题描述出来，答案就会自然呈现。把“描述这个问题”作为你解决问题的的一部分。</li>
+<li>在购买一根花园水管，一根延长线，或者一把梯子的时候，选那个比你认为需要长度更长的。通常那个就是正确的尺寸。</li>
+<li>不要和旧事物作斗争；直接建设新的。</li>
+<li>你只需要向大家赞扬你的团队做得很好，他们就会做出远超预期的成就。</li>
+<li>当一个人跟你提起人类历史的巅峰一年，那段时间所有的事情都极其美好，然后就开始走下坡路。这一年永远是他们10岁的时候──这也是人类个体的巅峰。</li>
+<li>你跟那些惹怒你的事物一样大。</li>
+<li>当你对着听众们演讲时，眼神注视某几个人比扫描全场更好。你的眼神会告诉在场的人，你是不是真的相信你所说的东西。</li>
+<li>习惯远比灵感来得可靠。要为培养习惯而努力。不要关注身材变好的样子，要专注成为那个永不缺席训练的人。</li>
+<li>当你跟别人谈判的时候，不要把目光瞄准蛋糕中最大的一片；要瞄准如何把蛋糕做大。</li>
+<li>如果你重复今天你做的事情365天，那一年后你会成为你想成为的人吗？</li>
+<li>你只能看到其他人的 2%，别人也只能看到你的 2%。所以调整好自己的 98%。</li>
+<li>你的时间和空间都是有限的。移除，送人，或者直接丢掉那些在你的人生中不再带来幸福的东西，把时间与空间留给那些能带来幸福的。</li>
+<li>我们的后代将创造令我们惊叹的成就，但其实只要我们有足够的想象力，他们会创造的部分东西，用今天的材料和工具就已经能实现了。所以，要想得更大一点。</li>
+<li>为了丰厚的回报，请对你完全不感兴趣的事物保持好奇。</li>
+<li>专注于方向而不是目的地。毕竟有谁能知道他的命运终点呢？但只要保持一个正确的方向，你终会到达你想到的地方。</li>
+<li>所有的突破在一开始都是看起来很可笑和荒谬的。事实上如果它在一开始看起来不够可笑和荒谬的话，它也称不上是一种突破。</li>
+<li>如果你借给别人 20 美元并且你再也见不到这个人了，因为他不想还钱，那么这 20 美元花得值。</li>
+<li>重复别人是一个很好的开始。重复你自己则是一个令人失望的终点。</li>
+<li>找工作跟别人商量薪酬的最佳时机是在他们说要请你了<strong>之后，</strong>而不是之前。从这时开始就变成了一场胆小鬼博弈，双方都等着对方先开口报价，但这时你的优势就是可以让对方先开出价码。</li>
+<li>与其让你的人生规避“出人意料”，还不如直接瞄着它们而去。</li>
+<li>如果你是用信用卡租的车，不要购买额外的保险。</li>
+<li>如果你关于一个主题的意见可以根据你另一个主题的意见预测得出，那你可能陷入了某种意识形态的掌控。如果你认真审视你自己的意识，你的结论其实是无法预测的。</li>
+<li>争取在死前破产。在你死掉之前，把你所有的财产交给你的受益人；这很有趣而且很有用。把所有的财产花光。你的最后一张支票应该支付给殡仪馆，它应该会被退回。</li>
+<li>防止变老的最佳实践是保持惊讶。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>KK</category>
+      </categories>
+      <tags>
+        <tag>KK</tag>
+        <tag>Advice</tag>
       </tags>
   </entry>
   <entry>
@@ -28488,484 +28966,6 @@
       </categories>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【VSCode】VSCode搭建C/C++开发环境</title>
-    <url>/2022/04/05/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h2 id="VSCode简介"><a href="#VSCode简介" class="headerlink" title="VSCode简介"></a>VSCode简介</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>Code editing.Redefined</strong>；Free. Built on open source. Runs everywhere.</p>
-<h3 id="VSCode的曲线救国"><a href="#VSCode的曲线救国" class="headerlink" title="VSCode的曲线救国"></a>VSCode的曲线救国</h3><ol>
-<li>前身 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9tb25hY28tZWRpdG9y">Monaco Editor<i class="fa fa-external-link-alt"></i></span>（web 编辑器）2011</li>
-<li>把Monaco Editor套在Electron（<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvQ2hyb21pdW0=">Chromium<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTm9kZS5qcw==">Node.js<i class="fa fa-external-link-alt"></i></span>）里面，就有了跨平台的桌面VSCode 2015</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvcmVtb3RlLW92ZXJ2aWV3">远程开发<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZlYXR1cmVzL2NvZGVzcGFjZXM=">Github Codespaces<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly92c2NvZGUuZGV2Lw==">vscode.dev<i class="fa fa-external-link-alt"></i></span> 2017~</li>
-</ol>
-<p>视频：<span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1oaWx6bktRaWo3QSZsaXN0PVBMajZZZU1odnAyUzZ1QjIzYmVRYWZmc3psYXZMcTNsTnEmYWJfY2hhbm5lbD1WaXN1YWxTdHVkaW9Db2Rl">Keynote by Erich Gamma: VS Code an Overnight Success… 10 years in the making<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="VSCode定位"><a href="#VSCode定位" class="headerlink" title="VSCode定位"></a>VSCode定位</h3><p><img src="/images/vscode/VSCode_image-20210421004416114.png"></p>
-<p><strong>特性：</strong></p>
-<ul>
-<li>VSCode只是个前端</li>
-<li>定标准协议<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">Language Server Protocol<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2RlYnVnLWFkYXB0ZXItcHJvdG9jb2wv">Debug Adapter Protocol<i class="fa fa-external-link-alt"></i></span></li>
-<li>把功能实现插件化</li>
-</ul>
-<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9sYW5ndWFnZXMvY3BwI190dXRvcmlhbHM=">https://code.visualstudio.com/docs/languages/cpp#_tutorials<i class="fa fa-external-link-alt"></i></span></p>
-<p>VSCode不带编译器，不同的平台安装自己的编译器</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1pbmd3">GCC on Windows via MinGW<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1zdmM=">Microsoft C++ on Windows<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWxpbnV4">GCC on Linux<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLXdzbA==">GCC on Windows Subsystem For Linux<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWNsYW5nLW1hYw==">Clang/LLVM on macOS<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="语言服务LSP"><a href="#语言服务LSP" class="headerlink" title="语言服务LSP"></a>语言服务LSP</h2><p><strong>Language Server Protocol</strong>：<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">https://microsoft.github.io/language-server-protocol/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>IDE的特性：</strong></p>
-<ul>
-<li>autocomplete自动补全</li>
-<li>goto definition转跳</li>
-<li>documentation on hover光标放在代码上，显示文档</li>
-<li>find all references查找引用</li>
-<li>etc</li>
-</ul>
-<p>如何工作的：</p>
-<p><img src="/images/vscode/image-20220405164606671.png"></p>
-<p><strong>软件设计原则-依赖倒置原则</strong></p>
-<blockquote>
-<p>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
-</blockquote>
-<p><img src="/images/vscode/image-20220405165341735.png"></p>
-<h3 id="C、CPP语言服务列表："><a href="#C、CPP语言服务列表：" class="headerlink" title="C、CPP语言服务列表："></a>C、CPP语言服务列表：</h3><p><span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC9pbXBsZW1lbnRvcnMvc2VydmVycy8=">https://microsoft.github.io/language-server-protocol/implementors/servers/<i class="fa fa-external-link-alt"></i></span></p>
-<table>
-<thead>
-<tr>
-<th><strong>Language</strong></th>
-<th><strong>Maintainer</strong></th>
-<th><a href="https://github.com/razzmatazz/csharp-language-server"><strong>Repository</strong></a></th>
-<th><strong>Implementation Language</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>C++</td>
-<td>MS</td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jcHB0b29scw==">VS Code C++ extension<i class="fa fa-external-link-alt"></i></span></td>
-<td>C++</td>
-</tr>
-<tr>
-<td><span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcv">C++/clang<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9sbHZtLm9yZy8=">LLVM Project<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xsdm0vbGx2bS1wcm9qZWN0L3RyZWUvbWFpbi9jbGFuZy10b29scy1leHRyYS9jbGFuZ2Q=">clangd<i class="fa fa-external-link-alt"></i></span></td>
-<td>C++</td>
-</tr>
-<tr>
-<td>C/C++/Objective-C</td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdA==">Jacob Dufault<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RvcGlzYW5p">topisani<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdC9jcXVlcnk=">cquery<i class="fa fa-external-link-alt"></i></span>（Archived）</td>
-<td>C++</td>
-</tr>
-<tr>
-<td>C/C++/Objective-C</td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscw==">ccls<i class="fa fa-external-link-alt"></i></span>（originates from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NxdWVyeS1wcm9qZWN0L2NxdWVyeQ==">cquery<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscy9yZWxlYXNlcy90YWcvMC4yMDIxMDMzMA==">on Apr 7, 2021<i class="fa fa-external-link-alt"></i></span>）</td>
-<td>C++</td>
-</tr>
-</tbody></table>
-<p><strong>参考其它C、C++的IDE：</strong></p>
-<ul>
-<li><strong>Qt Creator 7</strong>：将默认的后端切换到Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cucXQuaW8vYmxvZy9xdC1jcmVhdG9yLTctcmVsZWFzZWQ=">https://www.qt.io/blog/qt-creator-7-released<i class="fa fa-external-link-alt"></i></span></li>
-<li><strong>Clion</strong>（Jetbrain）：默认用Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9oZWxwL2NsaW9uL2Mtc3VwcG9ydC5odG1s">https://www.jetbrains.com/help/clion/c-support.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h3 id="实现C、CPP语言服务面临的问题"><a href="#实现C、CPP语言服务面临的问题" class="headerlink" title="实现C、CPP语言服务面临的问题"></a>实现C、CPP语言服务面临的问题</h3><ul>
-<li>没有统一的包管理器：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92Y3BrZw==">vcpkg<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9jb25hbi5pby8=">conan<i class="fa fa-external-link-alt"></i></span></li>
-<li>构建系统build system碎片化：VS（xml配置），QT（qmake–&gt;CMake），Clion（CMake）<ul>
-<li>要去处理不同的构建系统：<strong>项目有哪些源代码？包含了哪些头文件？依赖于哪些三方库？有哪些编译Flags？</strong></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Note：后面内容基于CMake来讲</p>
-</blockquote>
-<h3 id="Clangd语言服务"><a href="#Clangd语言服务" class="headerlink" title="Clangd语言服务"></a>Clangd语言服务</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI3Byb2plY3Qtc2V0dXA=">https://clangd.llvm.org/installation#project-setup<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>Note：VSCode的clangd插件和clangd是两个东西，虽然clangd插件才<code>v0.1.15</code>版本；clangd已经到13、14版本了</p>
-</blockquote>
-<p><strong>下载clangd：</strong></p>
-<ul>
-<li>通过VSCode的clangd插件命令：<code>&gt;clangd: Download language server</code></li>
-<li>自行下载<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI2luc3RhbGxpbmctY2xhbmdk">clangd<i class="fa fa-external-link-alt"></i></span>，然后配置到<code>path</code>目录下</li>
-</ul>
-<p><strong>配置：</strong></p>
-<blockquote>
-<p>clangd如何知道我编译了哪些代码？include了哪些头文件，依赖于哪些库？有些哪些编译flags？</p>
-</blockquote>
-<p><code>compile_commands.json</code>配置文件：该文件为项目中的每个源文件提供编译命令</p>
-<p><strong>如何生成：</strong></p>
-<ul>
-<li>命令：<code>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code></li>
-<li>CMakeLists.txt文件：<code>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</code></li>
-</ul>
-<p>一般把这个文件生成到build目录，clangd就能找到</p>
-<blockquote>
-<p>Note：切换分支或是大量代码变更会导致clangd提示出问题，需要重新编译生成<code>compile_commands.json</code>配置文件；重启下clangd：<code>&gt;clangd: Restart language server</code></p>
-</blockquote>
-<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92c2NvZGUtY21ha2UtdG9vbHMvYmxvYi9tYWluL2RvY3MvUkVBRE1FLm1k">https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/README.md<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>CMake Tools插件</strong>：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jbWFrZS10b29scw==">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>常用命令：</strong></p>
-<ul>
-<li>初始化项目：<code>&gt;CMake: quick Start</code></li>
-<li>Kit编译器命令：设置编译器<ul>
-<li>编辑本地的编译器配置：<code>&gt;CMake: Edit User-Local CMake Kits</code></li>
-<li>搜索电脑的编译器：<code>&gt;CMake: Scan for Kits</code></li>
-<li>选择哪个编译器：<code>&gt;CMake: Select a Kit</code></li>
-</ul>
-</li>
-<li>设置编译的类型：<code>&gt;CMake: Select Variant</code>，设置CMake的<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvdmFyaWFibGUvQ01BS0VfQlVJTERfVFlQRS5odG1s">CMAKE_BUILD_TYPE<i class="fa fa-external-link-alt"></i></span>变量</li>
-<li>配置：<code>&gt;CMake: Configure</code>；执行<code>cmake -S . -B build</code>命令</li>
-<li>编译：<code>&gt;CMake: Build</code>；执行<code>cmake --build build</code>命令</li>
-<li>清理缓存重新配置：<code>&gt;CMake: Delete Cache and Reconfigure</code></li>
-<li>编辑CMake缓存文件：<code>$&#123;project_root&#125;/build/CMakeCache.txt</code><ul>
-<li><code>&gt;CMake: Edit CMake Cache</code></li>
-<li><code>&gt;CMake: Edit CMake Cache (UI)</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="Debug调试DAP"><a href="#Debug调试DAP" class="headerlink" title="Debug调试DAP"></a>Debug调试DAP</h2><h3 id="命令行调试程序："><a href="#命令行调试程序：" class="headerlink" title="命令行调试程序："></a>命令行调试程序：</h3><p><strong>步骤：</strong></p>
-<ol>
-<li>编译出带有Debug信息的程序；</li>
-<li>用GDB或LLDB去调试程序</li>
-</ol>
-<p>LLDB教程：<span class="exturl" data-url="aHR0cHM6Ly9sbGRiLmxsdm0ub3JnL3VzZS90dXRvcmlhbC5odG1s">https://lldb.llvm.org/use/tutorial.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>todo</p>
-<p><img src="/images/vscode/image-20220409162446409.png"></p>
-<p>本质上是GDB和LLDB程序去调试代码，VSCode只是个前端</p>
-<ul>
-<li>MS的C++插件：已经包含了GDB功能</li>
-<li>LLVM的<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span> <strong>推荐</strong></li>
-</ul>
-<h3 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h3><p>文件：<code>.vscode/launch.json</code></p>
-<p>调试程序的前提：编译出来的程序带有debug信息；比如加<code>-g</code>选项</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gdb a.out</span><br><span class="line">$ lldb a.out</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/vscode/image-20220409162303109.png"></p>
-<h3 id="调试操作："><a href="#调试操作：" class="headerlink" title="调试操作："></a>调试操作：</h3><ul>
-<li>Continue / Pause 继续/暂停（F5）</li>
-<li>Step Over单步执行（F10）</li>
-<li>Step Into进入函数（F11）</li>
-<li>Step Out退出函数（⇧F11）</li>
-<li>Restart重新调试（⇧⌘F5）</li>
-<li>Stop停止调试（⇧F5）</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><ul>
-<li>Watch：监控</li>
-<li>Call stack：函数调用栈</li>
-<li>Debug console：用来输入命令</li>
-</ul>
-<h3 id="条件断点：Conditional-breakpoints"><a href="#条件断点：Conditional-breakpoints" class="headerlink" title="条件断点：Conditional breakpoints"></a>条件断点：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9lZGl0b3IvZGVidWdnaW5nI19jb25kaXRpb25hbC1icmVha3BvaW50cw==">Conditional breakpoints<i class="fa fa-external-link-alt"></i></span></h3><ul>
-<li><strong>条件表达式Expression condition</strong>：表达式成立的时候会断点</li>
-<li><strong>执行次数Hit count</strong>：执行了多少次才会断点</li>
-</ul>
-<p><img src="/images/vscode/hitCount.gif"></p>
-<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><h3 id="如何实现格式化？"><a href="#如何实现格式化？" class="headerlink" title="如何实现格式化？"></a>如何实现格式化？</h3><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY3BwLWlkZSNfY29kZS1mb3JtYXR0aW5n">https://code.visualstudio.com/docs/cpp/cpp-ide#_code-formatting<i class="fa fa-external-link-alt"></i></span></p>
-<p>Clang-format：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0Lmh0bWw=">https://clang.llvm.org/docs/ClangFormat.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>MS和LLVM的格式化都是使用的clang-format</p>
-<ul>
-<li>MS的C/C++插件：是把clang-format程序下载到本地电脑</li>
-<li>LLVM的clangd插件：集成到了语言服务程序clangd里面</li>
-<li>本质上都是调用了类似于<code>clang-format -i $&#123;file_name&#125;</code>这样的命令：写个脚本格式代整个项目</li>
-</ul>
-<h3 id="clang-format配置文件"><a href="#clang-format配置文件" class="headerlink" title=".clang-format配置文件"></a><code>.clang-format</code>配置文件</h3><p><strong>Clangd找配置文件的顺序：</strong></p>
-<ol>
-<li>先去同级目录找：<code>./.clang-format</code> （使用三方库，有的库会自带）</li>
-<li>去父级目录找 –&gt; 项目根目录找：<code>$&#123;project_root&#125;/.clang-format</code>（自己项目开发需要）</li>
-<li>去用户根目录下找：<code>~/.clang-format</code>（自己写代码方便，不用每次去copy一份到项目里面来）</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ clang-format -style=llvm -dump-config &gt; .clang-format</span><br></pre></td></tr></table></figure>
-
-<p>选项详细文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0U3R5bGVPcHRpb25zLmh0bWw=">https://clang.llvm.org/docs/ClangFormatStyleOptions.html<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>Note：配置在使用的时候可能会遇到选项兼容性的问题；clang-format新版本会更新增加选项，如果新版本的.clang-format给到老版本的qt creator使用可能会遇到兼容性的问题；需要升级clang-format，qt creator使用新版本的clang-format</p>
-</blockquote>
-<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>Clang-tidy：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Addresssanitizer"><a href="#Addresssanitizer" class="headerlink" title="Addresssanitizer"></a>Addresssanitizer</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">https://github.com/google/sanitizers/wiki/AddressSanitizer<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlckZyZWU=">Use after free<i class="fa fa-external-link-alt"></i></span> (dangling pointer dereference)</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVIZWFwT3V0T2ZCb3VuZHM=">Heap buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVTdGFja091dE9mQm91bmRz">Stack buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVHbG9iYWxPdXRPZkJvdW5kcw==">Global buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclJldHVybg==">Use after return<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclNjb3Bl">Use after scope<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckluaXRpYWxpemF0aW9uT3JkZXJGaWFzY28=">Initialization order bugs<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckxlYWtTYW5pdGl6ZXI=">Memory leaks<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><h3 id="相关插件安装"><a href="#相关插件安装" class="headerlink" title="相关插件安装"></a>相关插件安装</h3><blockquote>
-<p>Note: 下面格式<code>C/C++ / ms-vscode.cpptools</code>，用<code>/</code>分隔，左边是插件名，右边是插件ID；用插件ID在VSCode搜索更加准确</p>
-</blockquote>
-<p>推荐插件安装列表：</p>
-<ul>
-<li>c/c++语言服务插件: <strong>（新手【不懂lsp的】不要乱装其他相关的c/c++插件，下面二者开启一个即可；如果同时开启，LLVM会把Macrosoft的禁用掉）</strong><ul>
-<li>LLVM：clangd/llvm-vs-code-extensions.vscode-clangd （<strong>LInux平台推荐</strong>）</li>
-<li>Macrosoft：C/C++ / ms-vscode.cpptools （<strong>Windows平台推荐</strong>）</li>
-</ul>
-</li>
-<li>Debug插件:CodeLLDB/vadimcn.vscode-lldb</li>
-<li>cmake语法插件:CMake/twxs.cmake</li>
-<li>cmake tools插件:CMake Tools/ms-vscode.cmake-tools</li>
-<li>一键运行单个文件插件:Code Runner/formulahendry.code-runner</li>
-<li>自动生成注释结构:Doxygen Documentation Generator/cschlosser.doxdocgen</li>
-<li>git增强插件:GitLens — Git supercharged/eamodio.gitlens</li>
-<li>git ignore插件:gitignore/codezombiech.gitignore</li>
-<li>错误增强显示插件:Error Lens/usernamehw.errorlens</li>
-<li>图标增强:vscode-icons/vscode-icons-team.vscode-icons</li>
-</ul>
-<p>命令一次性安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ code --install-extension</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>VSCode</category>
-      </categories>
-      <tags>
-        <tag>VSCode</tag>
-        <tag>C</tag>
-        <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【转】KK:103 Bits of Advice I Wish I Had Known</title>
-    <url>/2022/05/08/KK-103-Bits-of-Advice-I-Wish-I-Had-Known/</url>
-    <content><![CDATA[<p>2022年4月28日，凯文·凯利（Kevin Kelly）在他的网站上发布了 70 岁生日的文章：<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vMTAzLWJpdHMtb2YtYWR2aWNlLWktd2lzaC1pLWhhZC1rbm93bi8=">103 Bits of Advice I Wish I Had Known<i class="fa fa-external-link-alt"></i></span>，意为：103条我希望早点知道的人生忠告。他 <span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vOTktYWRkaXRpb25hbC1iaXRzLW9mLXVuc29saWNpdGVkLWFkdmljZS8=">69 岁<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vNjgtYml0cy1vZi11bnNvbGljaXRlZC1hZHZpY2Uv">68 岁<i class="fa fa-external-link-alt"></i></span>生日时也写了这样的文章。</p>
-<center>以下是全文翻译</center>
-
-<p>今天是我的生日。我今年70岁了。活到现在我也算学到了一点可能可以帮助到其他的人东西。过去几年，我每年都会写一点人生建议之类的东西（当然没人请我写这个）。出乎我意料之外的是，今年好像我想讲的话特别多。所以接下来是我给各位读者的一份小小的礼物：我希望我年轻时就知道的103条人生智慧。</p>
-<p>（之前写的东西大家可以看<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vOTktYWRkaXRpb25hbC1iaXRzLW9mLXVuc29saWNpdGVkLWFkdmljZS8=">这里<i class="fa fa-external-link-alt"></i></span>，和<span class="exturl" data-url="aHR0cHM6Ly9ray5vcmcvdGhldGVjaG5pdW0vNjgtYml0cy1vZi11bnNvbGljaXRlZC1hZHZpY2Uv">这里<i class="fa fa-external-link-alt"></i></span>）。</p>
-<ol>
-<li>99%的时间里，真正关键的时刻就是此刻。</li>
-<li>除了你以外，没有人会真的记得你拥有什么东西。</li>
-<li>一定不要为你不希望成为的人工作。</li>
-<li>好好耕耘12个爱你的人的关系，因为这12个人远比1200万人喜欢你重要得多。</li>
-<li>不要一直重复犯错；试着去犯新的错。</li>
-<li>如果你在街上停下来聆听音乐人或街头艺人的表演一分钟，那么你欠他们一美元。</li>
-<li>“但是”之前的话都是废话。</li>
-<li>当你原谅其他人的时候，他们不一定会知道这件事，但你自己却会被治愈。原谅不是我们给予他人的东西；而是我们给自己的礼物。</li>
-<li>礼貌几乎没有成本。上完厕所之后，把马桶座放下。进电梯之前，让里面人先出来。把购物车推回到商场指定的位置。借了别人的东西，让它以比借到的时候更好的状态（比如把消耗了的材料装满，比如把东西清洁好）还回去。</li>
-<li>无论什么时候，看到争论基于两个对立面进行时，要找到第三个面。</li>
-<li>“效率”被过度高估；“偷懒”被过度贬低。有规律地安排休息日、休假、度假、小憩、漫无目的地散步和暂停时间对任何一种高产出状态都至关重要。最佳职业伦理需要具备一个好的休闲伦理。</li>
-<li>当你在领导时，你真正的任务是创造出更多领导者，而不是更多追随者。</li>
-<li>私下批评，公开赞扬。</li>
-<li>人生的课程将以它们需要的顺序出现在你面前。任何你需要掌握的课程其实都在你身上。当你真正掌握了一节课之后，下一节课就会出现。如果你还活着，这就意味着你还有课程需要学习。</li>
-<li>学生的责任是从老师身上学会一切，老师的责任是从学生身上学会一切。</li>
-<li>如果在一个游戏中，获胜变得过于重要，那么我们可以修改游戏规则以便从中获得更多乐趣。而修改规则本身就可以成为一个新的游戏。</li>
-<li>当你跟投资人要钱的时候，他会给你建议；而如果你跟他要建议，他会给你钱。</li>
-<li>生产力反而经常分散我们的注意力。不要试图寻找更快完成任务的方法，而是把精力放在你根本不想停下来的任务上。</li>
-<li>及时支付你的欠款给卖主，员工，承包商。下一次你他们会第一时间跑来跟你合作。</li>
-<li>我们对自己说的最大的谎言就是：“我不需要把这些写下来，我会记得的。”</li>
-<li>你作为一个意识生物的成长，将以你愿意接受的令人不舒服的对话的次数来衡量。</li>
-<li>自信地发言就像你是对的一样，仔细的聆听就像你是错的一样。</li>
-<li>方便的测量方法：双手展开与肩膀平齐，此时从左手指尖到右手指尖的长度就是你的身高。</li>
-<li>你的努力（锻炼、陪伴、工作）的一致性远比数量重要。没有什么可以击败每天坚持做的小事，这比偶然做的事情重要得多。</li>
-<li>艺术创造并不自私；它是为我们其他人而作的。如果你不好好创作，你就是在欺骗我们。</li>
-<li>永远不要问一位女士她是否怀孕了。等她自己告诉你。</li>
-<li>你必须具备的三种能力: 在确认一件事情能运作之前永不言弃的能力，在确认一件事情无法工作下去时放弃他的能力，以及信任能帮助你区分二者的人。</li>
-<li>公开演讲的时候，常作暂停。开始讲新内容的之前暂停一下，讲完你觉得重要的内容之后暂停一下，把暂停作为让听众吸收内容的缓冲。</li>
-<li>“准时”从不存在。你要嘛迟到要嘛早到。这是你的选择。</li>
-<li>请教一位你崇拜的人: 他们的幸运转折往往来自于跟主要目标无关的弯路。所以拥抱这种弯路。对任何人来说，人生都不是一条直线。</li>
-<li>在互联网上寻找正确答案的最佳实践是发布一个明显错误的答案，然后等待其他人纠正你。</li>
-<li>奖励好行为比惩罚坏行为带来的结果要好上十倍，尤其对象是小孩和动物时。</li>
-<li>要花跟写邮件正文一样的时间来雕琢邮件标题，因为很多时候邮件标题是人们唯一会读的东西。</li>
-<li>不要等着暴风雨自己过去；要在雨中跳舞。</li>
-<li>老板/雇主在查看求职者的推荐信时，一般不太愿意或者被禁止说出负面评价。这时候你可以留言说：“如果你觉得这位求职者很不错的话请通知我哦。”如果他们没有回复的话那就是负评价。</li>
-<li>使用密码管理器: 更安全，更易用，更好。</li>
-<li>教育的一半作用是学习哪些东西可以被忽略。</li>
-<li>设定一个野心得荒谬的目标的好处是，上限足够高，这样即使最后失败了，以通常的标准来衡量也可以算某种程度上的成功。</li>
-<li>了解自己的一个好办法是，仔细地分析自己做的会惹怒其他人的每一件事情。</li>
-<li>住酒店的时候记得把所有的东西都放在可以看得到的地方，不要放进抽屉里，都堆在一个地方。这样你在离店的时候永远不会忘记任何东西。如果有些东西需要放在一边的，比如充电器，那你可以放多两件大的东西在它隔壁，因为相比起一件东西，你更不可能同时忘记拿三件。</li>
-<li>拒绝或转移别人的赞美是不礼貌的。可以用感谢接受它，即使你相信你根本不值得这个赞美。</li>
-<li>纪念碑旁的那块说明，必读。</li>
-<li>当你获得某种成功的时候，你可能会有种自己的能力不配这个位置，自己是个骗子感觉。我在骗人吗？但如果你创造了某种只有你独特的天赋与经验才做得到的东西，那你就绝对不是一个骗子。你是注定要做这件事情的。做好只有你才能做的事情，这是你的责任所在。</li>
-<li>你在低谷时做的事情比在好日子时做的更重要。</li>
-<li>做对人有益的东西。</li>
-<li>当你打开一罐油漆时，无论你有多么小心，你的衣服一定会沾上一点，即便只是很小一点。所以记得穿合适的衣服。</li>
-<li>在汽车旅行的路上让小孩子乖乖听话的办法：捎一袋他们最喜欢的糖果，每次只要不乖就扔一把出去。</li>
-<li>你无法让聪明的人只为了钱而特别努力地工作。</li>
-<li>当你不知道应该为了某件工作给人支付多少费用的时候，你可以问他“你觉得给多少是合适的”，他们通常会给出合适的报价。</li>
-<li>所有东西的90%都是垃圾。如果你觉得自己不喜欢歌剧，浪漫小说，抖音，乡村音乐，素食，NFTs，那你可以试试看自己能否找出不是垃圾的10%。</li>
-<li>你如何对待那些对你无能为力的人，将成为评价你的标准。</li>
-<li>我们向来高估了一天能做的事情，也低估了十年能达成的事情。只要给十年时间，奇迹也能达成。长期坚持能累计大量小成就，攻克大问题。</li>
-<li>感谢改变了你人生的那位老师。</li>
-<li>你无法说服一个人接受一个他自己也无法说服他自己的理念。</li>
-<li>最好的工作是你需要努力跳起来都不一定够得着工作。其实最好只申请你的能力尚不匹配的工作。</li>
-<li>购买二手书。它们和新书有一样的文字。图书馆的书也是。</li>
-<li>你可以成为任何你想成为的人，所以让自己成为那个早点结束会议的人吧。</li>
-<li>一个智者曾经说过，“在你开口之前，先让你的语言经过三道门的检验。第一道门是问你自己，‘这是真话吗？’第二道门是‘这是必要的吗？’第三道门是‘这是善的吗？’”</li>
-<li>走楼梯。</li>
-<li>你支付给某样东西的钱事实上是它标价的两倍，因为你还需要付出额外的能源，时间，和金钱来安装它，学习使用它，维护它，修复它，以及最后丢掉它。不是所有的价格都打在标签上。真正的付出是标价的两倍。</li>
-<li>当你到达你酒店房间时，记得看一眼紧急出口在哪里。只需要一分钟。</li>
-<li>”我现在该做什么？”的唯一有效回答是，先找出“我想成为什么人？”的答案。</li>
-<li>在一段超过平均水平的时间里，一直保持平均水平的回报，也会产生超凡的结果。买入并一直持有。</li>
-<li>对粗鲁的陌生人表现得特别礼貌是一件令人毛骨悚然的事情。</li>
-<li>一个不太聪明但能很好沟通的人，是可以做得比很聪明但不善沟通的人更好的。这是一个好消息，因为提高你的沟通技巧要比提高智力容易得多。</li>
-<li>偶尔被骗是信任所有人的一个很小的代价，因为当你以最大诚意信任其他人的时候，他们通常会给你最好的对待。</li>
-<li>艺术是你无论如何都能超然避世的东西。</li>
-<li>为了让你的孩子获得最好的成长，你应该只花你认为应该花的一半的钱给他们，但花两倍的时间陪他们。</li>
-<li>购买你的家乡或所在区域的最新的旅游指南。你会在每年的旅游中学会很多。</li>
-<li>不要排长队等着吃某样很有名的东西。因为几乎没有哪样出名的食物值得这份等待。</li>
-<li>想要快速了解一个刚认识的人的真实性格，让他们使用一个超级慢的网络，然后观察他们。</li>
-<li>达成世俗成功的良方：做点奇怪的事情。培养自己独特的奇怪的习惯。</li>
-<li>要成为一个专家。记得备份你的备份。至少有一份物理备份与一份云端备份。每个备份不要少于一份。当你丢失了你的数据，照片，与笔记时，你愿意花多少钱把他们找回来呢？相比于后悔，备份一定是更便宜的选项。</li>
-<li>不要相信你认为你相信的一切。</li>
-<li>发出紧急信号请使用“三次法则”: 三次大喊，三次喇叭，或三次口哨。</li>
-<li>你在一家餐馆里会点吃过的好吃的菜，还是尝试新的？你会做你知道有销路的东西，还是会尝试新的？你会一直跟新的人约会还是会尝试跟已经认识的人确立关系？最理想的探索新事物与找到了之后在其中深耕的平衡是: 1/3。用 1/3 的时间去探索，用 2/3 的时间去深耕。随着年龄的增长，花时间去探索新事物会越来越难，因为那看起来并不高效，但试着做到 1/3 吧。</li>
-<li>真正的好机会不会在额头上大书“好机会”三个字。</li>
-<li>在你被介绍给别人的时候，看着对方的眼睛，数到四。这样你们都会很好地记住对方。</li>
-<li>在你思考“我的好刀在哪里？或者我的好笔在哪里？”时，记下来。这意味着你还有坏的刀或笔。把它们都丢掉吧。</li>
-<li>当你在某件事情卡住了时候，试着给其他人描述你的问题。经常你只需要简单地把问题描述出来，答案就会自然呈现。把“描述这个问题”作为你解决问题的的一部分。</li>
-<li>在购买一根花园水管，一根延长线，或者一把梯子的时候，选那个比你认为需要长度更长的。通常那个就是正确的尺寸。</li>
-<li>不要和旧事物作斗争；直接建设新的。</li>
-<li>你只需要向大家赞扬你的团队做得很好，他们就会做出远超预期的成就。</li>
-<li>当一个人跟你提起人类历史的巅峰一年，那段时间所有的事情都极其美好，然后就开始走下坡路。这一年永远是他们10岁的时候──这也是人类个体的巅峰。</li>
-<li>你跟那些惹怒你的事物一样大。</li>
-<li>当你对着听众们演讲时，眼神注视某几个人比扫描全场更好。你的眼神会告诉在场的人，你是不是真的相信你所说的东西。</li>
-<li>习惯远比灵感来得可靠。要为培养习惯而努力。不要关注身材变好的样子，要专注成为那个永不缺席训练的人。</li>
-<li>当你跟别人谈判的时候，不要把目光瞄准蛋糕中最大的一片；要瞄准如何把蛋糕做大。</li>
-<li>如果你重复今天你做的事情365天，那一年后你会成为你想成为的人吗？</li>
-<li>你只能看到其他人的 2%，别人也只能看到你的 2%。所以调整好自己的 98%。</li>
-<li>你的时间和空间都是有限的。移除，送人，或者直接丢掉那些在你的人生中不再带来幸福的东西，把时间与空间留给那些能带来幸福的。</li>
-<li>我们的后代将创造令我们惊叹的成就，但其实只要我们有足够的想象力，他们会创造的部分东西，用今天的材料和工具就已经能实现了。所以，要想得更大一点。</li>
-<li>为了丰厚的回报，请对你完全不感兴趣的事物保持好奇。</li>
-<li>专注于方向而不是目的地。毕竟有谁能知道他的命运终点呢？但只要保持一个正确的方向，你终会到达你想到的地方。</li>
-<li>所有的突破在一开始都是看起来很可笑和荒谬的。事实上如果它在一开始看起来不够可笑和荒谬的话，它也称不上是一种突破。</li>
-<li>如果你借给别人 20 美元并且你再也见不到这个人了，因为他不想还钱，那么这 20 美元花得值。</li>
-<li>重复别人是一个很好的开始。重复你自己则是一个令人失望的终点。</li>
-<li>找工作跟别人商量薪酬的最佳时机是在他们说要请你了<strong>之后，</strong>而不是之前。从这时开始就变成了一场胆小鬼博弈，双方都等着对方先开口报价，但这时你的优势就是可以让对方先开出价码。</li>
-<li>与其让你的人生规避“出人意料”，还不如直接瞄着它们而去。</li>
-<li>如果你是用信用卡租的车，不要购买额外的保险。</li>
-<li>如果你关于一个主题的意见可以根据你另一个主题的意见预测得出，那你可能陷入了某种意识形态的掌控。如果你认真审视你自己的意识，你的结论其实是无法预测的。</li>
-<li>争取在死前破产。在你死掉之前，把你所有的财产交给你的受益人；这很有趣而且很有用。把所有的财产花光。你的最后一张支票应该支付给殡仪馆，它应该会被退回。</li>
-<li>防止变老的最佳实践是保持惊讶。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>KK</category>
-      </categories>
-      <tags>
-        <tag>KK</tag>
-        <tag>Advice</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Tools】来玩一玩件值一个亿的终端软件-Warp</title>
-    <url>/2022/04/10/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<blockquote>
-<p>一个叫Warp的终端软件<strong>融资 2300 w 美元</strong>，<span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h2 id="一个好的故事："><a href="#一个好的故事：" class="headerlink" title="一个好的故事："></a>一个好的故事：</h2><blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span><br>Walk by any developer’s desk and you are likely to see two apps open: their <strong>code editor</strong> and their <strong>terminal</strong> (sometimes the code editor is the terminal!). ‍</p>
-<p>Both are crucial to developer productivity. The code editor is where developers write code; the terminal is where they do pretty much everything else, from building code to running and deploying it, interacting with source control, configuring their cloud systems, and more.</p>
-<p>And yet only one of these two apps – the code editor – has experienced meaningful product improvement over the past 40 years. Compared to using VS Code, using the terminal is like stepping back in time to the 1970s. Only <span class="exturl" data-url="aHR0cHM6Ly9pbnNpZ2h0cy5zdGFja292ZXJmbG93LmNvbS9zdXJ2ZXkvMjAyMSNzZWN0aW9uLW1vc3QtcG9wdWxhci10ZWNobm9sb2dpZXMtaW50ZWdyYXRlZC1kZXZlbG9wbWVudC1lbnZpcm9ubWVudA==">70% of developers use VSCode<i class="fa fa-external-link-alt"></i></span>, while 100% use the terminal. So why is the terminal experience still so lackluster?</p>
-</blockquote>
-<p><strong>程序员最重要的两个工具：</strong></p>
-<ul>
-<li>Coder editor</li>
-<li>Terminal：编译，运行，部署，代码版本管理，配置云服务器……</li>
-<li>Browser浏览器</li>
-</ul>
-<p>Coder editor在过去40年一直在改善，而Terminal用起来还是最开始的那个样子。<br>个人觉得：后半句只是对了一半，提示、补全、搜索、主题都在发展，没有被整合起来</p>
-<p><strong>现今Terminal面临的问题：</strong></p>
-<ul>
-<li>Terminals are hard to use难用</li>
-<li>They don’t work for teams不是为团队协作设计的</li>
-</ul>
-<h2 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h2><ul>
-<li>Command Palette</li>
-<li>The Input / Text Editor</li>
-<li>Blocks</li>
-<li>Find</li>
-<li>Command History</li>
-<li>Autosuggestions</li>
-<li>Completions</li>
-<li>Themes</li>
-<li>Prompt</li>
-<li>Split Panes</li>
-<li>Session Management and Restoration</li>
-<li>Workflows</li>
-<li>Global Hotkey Window</li>
-<li>A.I. Command Search</li>
-</ul>
-<h2 id="Command-Palette"><a href="#Command-Palette" class="headerlink" title="Command Palette"></a>Command Palette</h2><p>快捷键：<code>CMD + P</code></p>
-<p>Terminal上所有的功能，几本上都这个通过这个搜索框去执行，还能模糊匹配；如果忘记某些功能的快捷键了，可以通过这个来搜索</p>
-<img src="/images/warp/warp_command_palette.gif" style="zoom: 43%;" />
-
-<p>这个功能应该是借鉴Sublime Text 、VSCode</p>
-<h2 id="The-Input-Text-Editor"><a href="#The-Input-Text-Editor" class="headerlink" title="The Input / Text Editor"></a>The Input / Text Editor</h2><img src="/images/warp/warp_input_editor.gif"/>
-
-<h2 id="Blocks块"><a href="#Blocks块" class="headerlink" title="Blocks块"></a>Blocks块</h2><p>概念：一次命令的执行称为一个块。</p>
-<ul>
-<li>copy命令</li>
-<li>copy命令的输出</li>
-<li>直接划到命令输出开始的地方</li>
-<li>重新输入这个命令</li>
-<li>共享这个命令和输出</li>
-</ul>
-<img src="/images/warp/warp_annotated_blocks_v2.png" style="zoom:50%;" />
-
-<p>在Blocks之间转跳：<code>CMD-UP</code>和<code>CMD-DOWN</code>，之后按上和下就可以了</p>
-<h2 id="Find查找"><a href="#Find查找" class="headerlink" title="Find查找"></a>Find查找</h2><ul>
-<li>支持大小写匹配</li>
-<li>支持锁定Blocks</li>
-</ul>
-<blockquote>
-<p>可以考虑下支持正则表达式</p>
-</blockquote>
-<h2 id="Command-History命令历史记录"><a href="#Command-History命令历史记录" class="headerlink" title="Command History命令历史记录"></a>Command History命令历史记录</h2><p>快捷键：<code>Ctrl + R</code></p>
-<ul>
-<li>支持模糊匹配</li>
-</ul>
-<p>fzf的<code>Ctrl + R</code>搜索历史记录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p1bmVndW5uL2Z6ZiNrZXktYmluZGluZ3MtZm9yLWNvbW1hbmQtbGluZQ==">https://github.com/junegunn/fzf#key-bindings-for-command-line<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Autosuggestions自动提示"><a href="#Autosuggestions自动提示" class="headerlink" title="Autosuggestions自动提示"></a>Autosuggestions自动提示</h2><p>快捷键：<code>方向右键</code> 或 <code>CTRL-F</code>. （F：forward）</p>
-<h2 id="Completions补全"><a href="#Completions补全" class="headerlink" title="Completions补全"></a>Completions补全</h2><p>快捷键：<code>TAB</code>，之后按上和下选择</p>
-<h2 id="Themes主题"><a href="#Themes主题" class="headerlink" title="Themes主题"></a>Themes主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvdGhlbWVzL3RyZWUvMTk0MzZkOTlmNzFkNmQ1NTEzN2JjZjhmNTQ3NWVhMTMwNTZlN2FkZCNvcGVuLXNvdXJjZS1kZXBlbmRlbmNpZXM=">https://github.com/warpdotdev/themes/tree/19436d99f71d6d55137bcf8f5475ea13056e7add#open-source-dependencies<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>We’d like to call out a few of the open source themes and repositories that helped bootstrap the set of themes for Warp:</p>
-<ul>
-<li>iTerm colors pencil</li>
-<li>Alacritty-theme</li>
-<li>base16-Alacritty</li>
-<li>base16</li>
-<li>Solarized</li>
-<li>Dracula</li>
-<li>Gruvbox</li>
-</ul>
-</blockquote>
-<h2 id="Prompt"><a href="#Prompt" class="headerlink" title="Prompt"></a>Prompt</h2><p>分Warp和用户自定义的</p>
-<ul>
-<li>开启自定义：<code>Settings &gt; Features</code> 打开<code>Honor user&#39;s custom prompt (PS1) setting.</code></li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29obXl6c2gvb2hteXpzaA==">ohmyzsh<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NwYWNlc2hpcC1wcm9tcHQvc3BhY2VzaGlwLXByb21wdA==">spaceship prompt<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Split-Panes分屏"><a href="#Split-Panes分屏" class="headerlink" title="Split Panes分屏"></a>Split Panes分屏</h2><h2 id="Session-Management-and-Restoration"><a href="#Session-Management-and-Restoration" class="headerlink" title="Session Management and Restoration"></a>Session Management and Restoration</h2><p>When Warp opens, it restores your session history, specifically windows, tabs, panes, and also the last few Blocks in each pane.</p>
-<p>当打开Warp，它会恢复历史会话，窗口，Tabs，面板，以及之前的Blocks；保存到sqlite里面</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sqlite3 <span class="variable">$HOME</span>/Library/Application Support/dev.warp.Warp-Stable/warp.sqlite</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>用起来很方便；反过来，就会有隐私及安全的顾虑</p>
-</blockquote>
-<h2 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h2><h2 id="Global-Hotkey-Window"><a href="#Global-Hotkey-Window" class="headerlink" title="Global Hotkey Window"></a>Global Hotkey Window</h2><h2 id="A-I-Command-Search"><a href="#A-I-Command-Search" class="headerlink" title="A.I. Command Search"></a>A.I. Command Search</h2><h2 id="安装遇到的登录校验问题："><a href="#安装遇到的登录校验问题：" class="headerlink" title="安装遇到的登录校验问题："></a>安装遇到的登录校验问题：</h2><p>情况：用github账号登录，转跳到Warp之后卡顿，无法登录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvV2FycC9pc3N1ZXMvOTA2">https://github.com/warpdotdev/Warp/issues/906<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li>需要开代理，在命令行中配置</li>
-<li>用命令行去启动Warp</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在命令行里面配置代理</span></span><br><span class="line">$ <span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:1077</span><br><span class="line">$ <span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:1077</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动warp</span></span><br><span class="line">$ /Applications/Warp.app/Contents/MacOS/stable</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Tools</tag>
-        <tag>Terminal</tag>
-        <tag>Warp</tag>
       </tags>
   </entry>
 </search>

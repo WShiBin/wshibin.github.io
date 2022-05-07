@@ -175,12 +175,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -223,6 +223,126 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/02/25/%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%E6%A0%88%E8%B7%9F%E8%B8%AA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/02/25/%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%E6%A0%88%E8%B7%9F%E8%B8%AA/" class="post-title-link" itemprop="url">【C】函数回调栈跟踪</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-24 23:11:49" itemprop="dateCreated datePublished" datetime="2022-02-24T23:11:49Z">2022-02-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Backtrace/" itemprop="url" rel="index"><span itemprop="name">Backtrace</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/02/25/%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%E6%A0%88%E8%B7%9F%E8%B8%AA/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/02/25/函数回调栈跟踪/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>上周在移植dbus，在设备上运行不起来，当然问题后面被我领导解决了；有处地方报错，在源代码里面找到了，当时我在想代码是怎么调到这里来的？怎么去跟踪函数栈的调用？类似，Java在抛出异常之后回打印出，是怎么一步步调到这里来的。写C的时候在其它地方也遇到过：GDB的backtrace命令；Valgrind跟踪内存问题的时候也会打印函数调用栈；还有<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">AddressSanitizer<i class="fa fa-external-link-alt"></i></span>检测内存问题也能打印出来。当时去Google搜索了下，记录下</p>
+</blockquote>
+<p><strong>两种方式：</strong></p>
+<ul>
+<li>GUN拓展函数：<code>backtrace</code>，<code>backtrace_symbols</code>，<code>backtrace_symbols_fd</code></li>
+<li>GCC编译选项：<code>-finstrument-functions</code></li>
+</ul>
+<h2 id="GUN拓展函数"><a href="#GUN拓展函数" class="headerlink" title="GUN拓展函数"></a>GUN拓展函数</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9tYW43Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuMy9iYWNrdHJhY2UuMy5odG1s">https://man7.org/linux/man-pages/man3/backtrace.3.html<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="API："><a href="#API：" class="headerlink" title="API："></a>API：</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">backtrace</span><span class="params">(<span class="type">void</span> **buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> **<span class="title function_">backtrace_symbols</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">backtrace_symbols_fd</span><span class="params">(<span class="type">void</span> *<span class="type">const</span> *buffer, <span class="type">int</span> size, <span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>backtrace_symbols_fd</code>和<code>backtrace_symbols</code>的区别是，<code>backtrace_symbols_fd</code>把信息输出对应的fd，而<code>backtrace_symbols</code>把信息返回给返回值</p>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><blockquote>
+<p>代码就不自己写了，用的文档中的示例</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;execinfo.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_BUF_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc3</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span>    nptrs;</span><br><span class="line">    <span class="type">void</span>*  buffer[BT_BUF_SIZE];</span><br><span class="line">    <span class="type">char</span>** strings;</span><br><span class="line"></span><br><span class="line">    nptrs = backtrace(buffer, BT_BUF_SIZE);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;backtrace() returned %d addresses\n&quot;</span>, nptrs);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The call backtrace_symbols_fd(buffer, nptrs, STDOUT_FILENO)</span></span><br><span class="line"><span class="comment">       would produce similar output to the following: */</span></span><br><span class="line"></span><br><span class="line">    strings = backtrace_symbols(buffer, nptrs);</span><br><span class="line">    <span class="keyword">if</span> (strings == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;backtrace_symbols&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; nptrs; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strings[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(strings);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &quot;static&quot; means don&#x27;t export the symbol... */</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">myfunc2</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    myfunc3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">myfunc</span><span class="params">(<span class="type">int</span> ncalls)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (ncalls &gt; <span class="number">1</span>)</span><br><span class="line">        myfunc(ncalls - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        myfunc2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s num-calls\n&quot;</span>, argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myfunc(atoi(argv[<span class="number">1</span>]));</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>有几个值的注意的地方：</strong></p>
+<ul>
+<li><code>Inline</code>函数没有栈帧信息，无法打印</li>
+<li><code>static</code>修饰的函数不会导出symbol，无法打印</li>
+<li>另外一个是如果程序开启了优化级别，也会受到一定程度的影响</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[I] ➜ cc -rdynamic main.c &amp;&amp; ./a.out 10</span><br><span class="line">backtrace() returned 14 addresses</span><br><span class="line">0   a.out                               0x0000000100436d3a myfunc3 + 42</span><br><span class="line">1   a.out                               0x0000000100436e59 myfunc2 + 9</span><br><span class="line">2   a.out                               0x0000000100436e4a myfunc + 42</span><br><span class="line">3   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">4   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">5   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">6   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">7   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">8   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">9   a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">10  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">11  a.out                               0x0000000100436e40 myfunc + 32</span><br><span class="line">12  a.out                               0x0000000100436ebd main + 93</span><br><span class="line">13  dyld                                0x0000000100a354fe start + 462</span><br></pre></td></tr></table></figure>
+
+<p>用的clang前端编译器，LLVM牛批，输出格式都比GCC的好看多了</p>
+<p>然后我就一顿操作，打印，就解决了前面提到的问题；然后看了一下午dbus的代码，然后，然后，发现dbus里面已经写好了工具函数<span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RidXMvZGJ1cy8tL2Jsb2IvZGJ1cy0xLjEyL2RidXMvZGJ1cy1zeXNkZXBzLXVuaXguYw==">_dbus_print_backtrace()[dbus-sysdeps-unix.c:3417]<i class="fa fa-external-link-alt"></i></span>，直接调用就可以了，我tm。然后，然后默默的copy、paste到自己项目里面来。像这种十的多的年的老项目，里面还是有很多值得学习的地方，后面有时间在讲讲dbus源码</p>
+<h2 id="GCC编译选项"><a href="#GCC编译选项" class="headerlink" title="GCC编译选项"></a>GCC编译选项</h2><p>todo</p>
+<p><span class="exturl" data-url="aHR0cDovL2djYy5nbnUub3JnL29ubGluZWRvY3MvZ2NjLTQuNC43L2djYy9Db2RlLUdlbi1PcHRpb25zLmh0bWw=">http://gcc.gnu.org/onlinedocs/gcc-4.4.7/gcc/Code-Gen-Options.html<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1410,132 +1530,6 @@
 <p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
 <p>实例：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9vcmJpdC9ibG9iL21haW4vLmNsYW5nLXRpZHk=">https://github.com/google/orbit/blob/main/.clang-tidy<i class="fa fa-external-link-alt"></i></span></p>
 <p>参考：<br><span class="exturl" data-url="aHR0cHM6Ly9ob2tlaW4uZ2l0aHViLmlvL2NsYW5nLXRvb2xzLXR1dG9yaWFsL2NsYW5nLXRpZHkuaHRtbA==">https://hokein.github.io/clang-tools-tutorial/clang-tidy.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3lwc2hvd20vMTAwMDQwNzI5">https://www.cxyzjd.com/article/ypshowm/100040729<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMxODcwNTcvYXJ0aWNsZS9kZXRhaWxzLzEwMzA1MjI3NQ==">https://blog.csdn.net/u013187057/article/details/103052275<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3dhZHMyMzQ1Ni8xMDgwMDk2MTc=">https://www.cxyzjd.com/article/wads23456/108009617<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9jb2RleWFybnMuY29tLzIwMTkvMDEvMjgvaG93LXRvLXVzZS1jbGFuZy10aWR5Lw==">https://codeyarns.com/2019/01/28/how-to-use-clang-tidy/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwNzAxNTk4MQ==">https://segmentfault.com/a/1190000007015981<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTEtbW9kZXJuaXplLXNvdXJjZS1jb2RlLXVzaW5nLWMxMWMxNC8=">https://www.kdab.com/clang-tidy-part-1-modernize-source-code-using-c11c14/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTItaW50ZWdyYXRlLXFtYWtlLWFuZC1vdGhlci1idWlsZC1zeXN0ZW1zLXVzaW5nLWJlYXIv">https://www.kdab.com/clang-tidy-part-2-integrate-qmake-and-other-build-systems-using-bear/<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/" class="post-title-link" itemprop="url">【CMake】如果提高CMake编译速度</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-24 23:21:30" itemprop="dateCreated datePublished" datetime="2021-08-24T23:21:30Z">2021-08-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Complie/" itemprop="url" rel="index"><span itemprop="name">Complie</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/08/25/如果提高CMake编译速度/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>上个月在写rust的时候，有几个依赖有点大，编译速度感人，其实rust的编译速度一直就被人诟病，当然，有些是rust自身的问题，比如编译期的检查，泛型，RAII，宏；然后去网上找了些资料，搜索到一篇很有价值的文章：<span class="exturl" data-url="aHR0cHM6Ly9lbmRsZXIuZGV2LzIwMjAvcnVzdC1jb21waWxlLXRpbWVzLw==">Tips for Faster Rust Compile Times<i class="fa fa-external-link-alt"></i></span>，里面提到了些很有意思的点：泛型会影响到编译速度，因为在编译的时候，使用泛型的代码会去生成新的代码，包括你写的代码，以及源代码；还有使用编译缓存工具Sccache；更换更快的链接器。</p>
-</blockquote>
-<p>公司有套CMake项目的代码，往后项目也会越来越大，节省编译的时候将会变得很有意义。有时候如何去优化一个问题，需要你对整个流程有足够的了解，知道他有哪些阶段，不同的阶段会干什么。才能对不同的环节进行优化</p>
-<h2 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h2><ol>
-<li>并行编译</li>
-<li>更换更快的构建系统，比如Ninja</li>
-<li>预编译头文件：target_precompile_headers （CMake3.16）</li>
-<li>使用编译缓存ccache、sccache（CMake 3.4）</li>
-<li>更新新版本的CMake、编译器和链接器</li>
-<li>删除没有使用的代码和依赖</li>
-</ol>
-<h2 id="并行编译"><a href="#并行编译" class="headerlink" title="并行编译"></a>并行编译</h2><p>开多线程，废话</p>
-<h2 id="更换更快的构建系统，比如Ninja"><a href="#更换更快的构建系统，比如Ninja" class="headerlink" title="更换更快的构建系统，比如Ninja"></a>更换更快的构建系统，比如<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcv">Ninja<i class="fa fa-external-link-alt"></i></span></h2><p>Android源码也是使用这个来编译</p>
-<p>Ninja Design goals：<span class="exturl" data-url="aHR0cHM6Ly9uaW5qYS1idWlsZC5vcmcvbWFudWFsLmh0bWwjX2Rlc2lnbl9nb2Fscw==">https://ninja-build.org/manual.html#_design_goals<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="预编译头文件：target-precompile-headers"><a href="#预编译头文件：target-precompile-headers" class="headerlink" title="预编译头文件：target_precompile_headers"></a>预编译头文件：target_precompile_headers</h2><p>文章：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha3JhL2NvdGlyZQ==">https://github.com/sakra/cotire<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="使用编译缓存ccache、sccache"><a href="#使用编译缓存ccache、sccache" class="headerlink" title="使用编译缓存ccache、sccache"></a>使用编译缓存<span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span></h2><h3 id="ccache："><a href="#ccache：" class="headerlink" title="ccache："></a><span class="exturl" data-url="aHR0cHM6Ly9jY2FjaGUuZGV2Lw==">ccache<i class="fa fa-external-link-alt"></i></span>：</h3><p>使用cmake配置：<span class="exturl" data-url="aHR0cHM6Ly9jcmFzY2l0LmNvbS8yMDE2LzA0LzA5L3VzaW5nLWNjYWNoZS13aXRoLWNtYWtlLw==">https://crascit.com/2016/04/09/using-ccache-with-cmake/<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_program</span>(CCACHE_PROGRAM ccache)</span><br><span class="line"><span class="keyword">if</span>(CCACHE_PROGRAM)</span><br><span class="line">    <span class="keyword">set_property</span>(GLOBAL PROPERTY RULE_LAUNCH_COMPILE <span class="string">&quot;$&#123;CCACHE_PROGRAM&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(SomeProject)</span><br></pre></td></tr></table></figure>
-
-<h3 id="sccache："><a href="#sccache：" class="headerlink" title="sccache："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvc2NjYWNoZQ==">sccache<i class="fa fa-external-link-alt"></i></span>：</h3><p><strong>cmake配置：</strong></p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">-DCMAKE_C_COMPILER_LAUNCHER=sccache</span><br><span class="line">-DCMAKE_CXX_COMPILER_LAUNCHER=sccache</span><br></pre></td></tr></table></figure>
-
-<p><strong>rust配置：</strong></p>
-<p>自己写rust是用的这个，编译速度会快上不少</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $HOME/.cargo/config</span></span><br><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">rustc-wrapper</span> = <span class="string">&quot;/path/to/sccache&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="更新新版本的CMake、编译器和链接器"><a href="#更新新版本的CMake、编译器和链接器" class="headerlink" title="更新新版本的CMake、编译器和链接器"></a>更新新版本的CMake、编译器和链接器</h2><p>新版本cmake编译速度提升：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpdHdhcmUuY29tL2ltcHJvdmluZy1jbWFrZXMtcnVudGltZS1wZXJmb3JtYW5jZS8=">https://blog.kitware.com/improving-cmakes-runtime-performance/<i class="fa fa-external-link-alt"></i></span></p>
-<p>速度更快的链接器mold：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J1aTMxNC9tb2xk">https://github.com/rui314/mold<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mold -run make &lt;make-options-if-any&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="删除没有使用的代码和依赖"><a href="#删除没有使用的代码和依赖" class="headerlink" title="删除没有使用的代码和依赖"></a>删除没有使用的代码和依赖</h2><p>todo</p>
 
       
     </div>

@@ -1356,18 +1356,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Markdown】Markdown问题汇总</title>
-    <url>/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<h2 id="在Makrdown中显示-backtick"><a href="#在Makrdown中显示-backtick" class="headerlink" title="在Makrdown中显示`(backtick)"></a>在Makrdown中显示<code>`</code>(backtick)</h2><p><span class="exturl" data-url="aHR0cHM6Ly9tZXRhLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy84MjcxOC9ob3ctZG8taS1lc2NhcGUtYS1iYWNrdGljay13aXRoaW4taW4tbGluZS1jb2RlLWluLW1hcmtkb3du">https://meta.stackexchange.com/questions/82718/how-do-i-escape-a-backtick-within-in-line-code-in-markdown<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXJpbmdmaXJlYmFsbC5uZXQvcHJvamVjdHMvbWFya2Rvd24vc3ludGF4I2NvZGU=">https://daringfireball.net/projects/markdown/syntax#code<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Debug】GDB上手</title>
     <url>/2021/04/18/GDB-get-start/</url>
     <content><![CDATA[<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9nZGIv">https://www.gnu.org/software/gdb/<i class="fa fa-external-link-alt"></i></span><br>Debugging with GDB:<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2V3YXJlLm9yZy9nZGIvY3VycmVudC9vbmxpbmVkb2NzL2dkYi8=">https://sourceware.org/gdb/current/onlinedocs/gdb/<i class="fa fa-external-link-alt"></i></span></p>
@@ -1484,6 +1472,18 @@
       <tags>
         <tag>Debug</tag>
         <tag>GDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Markdown】Markdown问题汇总</title>
+    <url>/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h2 id="在Makrdown中显示-backtick"><a href="#在Makrdown中显示-backtick" class="headerlink" title="在Makrdown中显示`(backtick)"></a>在Makrdown中显示<code>`</code>(backtick)</h2><p><span class="exturl" data-url="aHR0cHM6Ly9tZXRhLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy84MjcxOC9ob3ctZG8taS1lc2NhcGUtYS1iYWNrdGljay13aXRoaW4taW4tbGluZS1jb2RlLWluLW1hcmtkb3du">https://meta.stackexchange.com/questions/82718/how-do-i-escape-a-backtick-within-in-line-code-in-markdown<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXJpbmdmaXJlYmFsbC5uZXQvcHJvamVjdHMvbWFya2Rvd24vc3ludGF4I2NvZGU=">https://daringfireball.net/projects/markdown/syntax#code<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -1770,56 +1770,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Personal】编程漫谈</title>
-    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
-    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
-<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
-<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
-<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>【Work】编程中如何跟人描述Bug</title>
-    <url>/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/</url>
-    <content><![CDATA[<blockquote>
-<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了.</p>
-<p>听别人讲故事和自己去经历这事件区别很大, 本文用来记录</p>
-</blockquote>
-<p>圈子里有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
-<h2 id="如果你遇到了Bug-这时会怎么做"><a href="#如果你遇到了Bug-这时会怎么做" class="headerlink" title="如果你遇到了Bug,这时会怎么做:"></a>如果你遇到了Bug,这时会怎么做:</h2><ol>
-<li>看现象:推测哪里/哪一阶段出了问题</li>
-<li>Google:搜索什么关键词</li>
-<li>看文档:(不熟悉的东西就会去看文档,弄清底下干了什么)</li>
-<li><strong>提问:问有经验的人</strong></li>
-</ol>
-<p>这里主要讨论<strong>提问</strong>:如何跟人去描述问题</p>
-<h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
-<p><strong>正确的流程</strong>:</p>
-<ol>
-<li>表明意图: 在做一个什么功能? 调试什么东西? </li>
-<li>你是如何做的,用到哪些技术,模块,整个流程是怎么样的?</li>
-<li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
-<li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
-</ol>
-<h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
-<p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Personal】记一次生病经历复盘</title>
     <url>/2021/07/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/</url>
     <content><![CDATA[<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>去年, 也就是2020年国庆. 由于太长时间没有运动,然后去健身房玩椭圆机,运动过猛,把膝盖弄伤了</p>
@@ -1867,6 +1817,56 @@
       <tags>
         <tag>Personal</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>【Work】编程中如何跟人描述Bug</title>
+    <url>/2021/06/12/%E7%BC%96%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E8%B7%9F%E4%BA%BA%E6%8F%8F%E8%BF%B0Bug/</url>
+    <content><![CDATA[<blockquote>
+<p>早前有句话很火:”明白很多道理,依然过不好这一生”. 上个月看到一个新闻:一个宣传诈骗的人,被人骗了.</p>
+<p>听别人讲故事和自己去经历这事件区别很大, 本文用来记录</p>
+</blockquote>
+<p>圈子里有篇经典的文章叫<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFzdGVyL1JFQURNRS16aF9DTi5tZA==">提问的智慧<i class="fa fa-external-link-alt"></i></span>,</p>
+<h2 id="如果你遇到了Bug-这时会怎么做"><a href="#如果你遇到了Bug-这时会怎么做" class="headerlink" title="如果你遇到了Bug,这时会怎么做:"></a>如果你遇到了Bug,这时会怎么做:</h2><ol>
+<li>看现象:推测哪里/哪一阶段出了问题</li>
+<li>Google:搜索什么关键词</li>
+<li>看文档:(不熟悉的东西就会去看文档,弄清底下干了什么)</li>
+<li><strong>提问:问有经验的人</strong></li>
+</ol>
+<p>这里主要讨论<strong>提问</strong>:如何跟人去描述问题</p>
+<h2 id="描述问题症状而非你的猜测-结论"><a href="#描述问题症状而非你的猜测-结论" class="headerlink" title="描述问题症状而非你的猜测/结论"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J5YW5oYW53dS9Ib3ctVG8tQXNrLVF1ZXN0aW9ucy1UaGUtU21hcnQtV2F5L2Jsb2IvbWFpbi9SRUFETUUtemhfQ04ubWQjJUU2JThGJThGJUU4JUJGJUIwJUU5JTk3JUFFJUU5JUEyJTk4JUU3JTk3JTg3JUU3JThBJUI2JUU4JTgwJThDJUU5JTlEJTlFJUU0JUJEJUEwJUU3JTlBJTg0JUU3JThDJTlDJUU2JUI1JThC">描述问题症状而非你的猜测/结论<i class="fa fa-external-link-alt"></i></span></h2><p>有次, 同事调用我写的接口,然后跑来告诉我, 是啥啥啥我哪里有问题(<strong>直接告诉我他的结论</strong>), 然后我就沿着他说的结论去追踪, 结果, 被带到坑里去了, 最后导致浪费了些不必要的时间. 在新闻里有一个很熟悉的场景, 即便”犯人”被抓到了,即便是在法官宣判前已经确认事实了.都会称他为<strong>犯罪嫌疑人</strong>. 如果你说的结论是对的还好,如果是错误的就会被坑</p>
+<p><strong>正确的流程</strong>:</p>
+<ol>
+<li>表明意图: 在做一个什么功能? 调试什么东西? </li>
+<li>你是如何做的,用到哪些技术,模块,整个流程是怎么样的?</li>
+<li>哪个地方不符合预期? 正常是什么样子? 现在出问题是什么样子? </li>
+<li>分析数据或是执行流程,可以在哪一阶段出问题了,推测是由什么引起的</li>
+</ol>
+<h2 id="在谈问题Bug"><a href="#在谈问题Bug" class="headerlink" title="在谈问题Bug"></a>在谈问题Bug</h2><p>我想说每一个bug都要去珍惜, 它是你一次探索知识的机会, 是一次加深对技术理解的机会, 是一次去理解它内部是如何工作的机会, 知道了它内部是如何工作的之后, 你对技术的把控度会越来越高; 理解他内部的处理策略之后, 以后有类似的应用场景,可以用上,这叫积累. </p>
+<p>最后,最重要的:你的每一次对待问题的处理方式,塑造了你会成为一个什么样的人</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】编程漫谈</title>
+    <url>/2021/05/13/%E7%BC%96%E7%A8%8B%E6%BC%AB%E8%B0%88/</url>
+    <content><![CDATA[<h2 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h2><p>在接触计算机的时候,使用的都是特定功能的软件,定制化的软件;后来用了Google Chrome / Android studio,可以装很多的插件,使得功能得到了拓展,插件化才tm是软件原本应该有的样子; 后来用使用VSCode,它不提供相应功能(语法检查,智能提示,补全功能,转跳,格式化…)的实现,让插件来实现.把自己做成了一个插件化的平台,把标准和规范写好.回头想想,操作系统也是一个插件化的平台,上面跑着用户各自的程序(插件)</p>
+<h2 id="程序执行流程"><a href="#程序执行流程" class="headerlink" title="程序执行流程"></a>程序执行流程</h2><p>循序/选择/循环,能解决所有程序的流程问题</p>
+<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载在表象上是两个同名的函数,在程序内部,根本不会存在两个同名的函数,编译器会在编译里对相应的函数做处理(转换),转换成两个不同名的函数</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>编程本质上是为了给一个问题建模: 如何去解决问题?</p>
+<p>可能一开始关注的问题是,做那些步骤能解决问题,</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>程序员偷懒的范例:为了减少程序员编写的代码量;实质会去给你生成不同类型对应的代码</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
   </entry>
   <entry>
     <title>【Personal】结构体还是结构体指针?</title>
@@ -3281,22 +3281,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Personal】我以前不太信命</title>
-    <url>/2022/02/14/%E6%88%91%E4%BB%A5%E5%89%8D%E4%B8%8D%E5%A4%AA%E4%BF%A1%E5%91%BD/</url>
-    <content><![CDATA[<blockquote>
-<p>过年回家，免不了聚会，有次和儿时的小伙伴吃宵夜，说了一句话：你在我们这批人里面混的算还可以的了。我说：好些人30多个W、50多个W，我算比较惨的，隔壁邻居谁谁谁去了字节，多少多少钱；我哪个亲戚的外甥去了华为。他说：你不能和他们比。我这时把范围放大些想想，他说的是对的。记录下</p>
-</blockquote>
-<p>相对于整个世界，一般人能左右的东西基本等于无。<br>共产党建党100周年刚刚过去，那时候的主题是救国、抗日、统一，然后是抗美援朝，在那时，可能需要你上战场，生死不好说。<br>统一了之后搞文化大革命、改革开放；现在搞中华民族复兴，其实我想说这个复兴，上个世纪外国的发展靠的是侵略，中国的发展靠土地财政，说的不好听点叫”收割老百姓“，一块地可以卖两块钱，也可以拍出十亿，让你每月”交“些，交二三十年吧。我这里的意思不是要怪政府，毕竟中国的发展”落后就要挨打“，</p>
-<p>todo…</p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Personal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【C】函数回调栈跟踪</title>
     <url>/2022/02/25/%E5%87%BD%E6%95%B0%E5%9B%9E%E8%B0%83%E6%A0%88%E8%B7%9F%E8%B8%AA/</url>
     <content><![CDATA[<blockquote>
@@ -3335,6 +3319,22 @@
       <tags>
         <tag>C</tag>
         <tag>Backtrace</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Personal】我以前不太信命</title>
+    <url>/2022/02/14/%E6%88%91%E4%BB%A5%E5%89%8D%E4%B8%8D%E5%A4%AA%E4%BF%A1%E5%91%BD/</url>
+    <content><![CDATA[<blockquote>
+<p>过年回家，免不了聚会，有次和儿时的小伙伴吃宵夜，说了一句话：你在我们这批人里面混的算还可以的了。我说：好些人30多个W、50多个W，我算比较惨的，隔壁邻居谁谁谁去了字节，多少多少钱；我哪个亲戚的外甥去了华为。他说：你不能和他们比。我这时把范围放大些想想，他说的是对的。记录下</p>
+</blockquote>
+<p>相对于整个世界，一般人能左右的东西基本等于无。<br>共产党建党100周年刚刚过去，那时候的主题是救国、抗日、统一，然后是抗美援朝，在那时，可能需要你上战场，生死不好说。<br>统一了之后搞文化大革命、改革开放；现在搞中华民族复兴，其实我想说这个复兴，上个世纪外国的发展靠的是侵略，中国的发展靠土地财政，说的不好听点叫”收割老百姓“，一块地可以卖两块钱，也可以拍出十亿，让你每月”交“些，交二三十年吧。我这里的意思不是要怪政府，毕竟中国的发展”落后就要挨打“，</p>
+<p>todo…</p>
+]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Personal</tag>
       </tags>
   </entry>
   <entry>
@@ -3733,6 +3733,407 @@
       </tags>
   </entry>
   <entry>
+    <title>【Design Principles】LVGL中的一些设计原则</title>
+    <url>/2022/03/22/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<blockquote>
+<p>上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。</p>
+</blockquote>
+<h2 id="软件设计七大原则"><a href="#软件设计七大原则" class="headerlink" title="软件设计七大原则"></a>软件设计七大原则</h2><table>
+<thead>
+<tr>
+<th>设计原则</th>
+<th>定义</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>开闭原则</strong></td>
+<td>对扩展开放，对修改关闭</td>
+<td>降低维护带来的新风险</td>
+</tr>
+<tr>
+<td><strong>依赖倒置原则</strong></td>
+<td>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</td>
+<td>更利于代码结构的升级扩展</td>
+</tr>
+<tr>
+<td><strong>单一职责原则</strong></td>
+<td>一个类只干一件事，实现类要单一</td>
+<td>便于理解，提高代码的可读性</td>
+</tr>
+<tr>
+<td><strong>接口隔离原则</strong></td>
+<td>一个接口只干一件事，接口要精简单一</td>
+<td>功能解耦，高聚合、低耦合</td>
+</tr>
+<tr>
+<td><strong>迪米特法则</strong></td>
+<td>最少知识原则，不该知道的不要知道，一个类应该保持对其它对象最少的了解，降低耦合度</td>
+<td>只和朋友交流，不和陌生人说话，减少代码臃肿</td>
+</tr>
+<tr>
+<td><strong>里氏替换原则</strong></td>
+<td>不要破坏继承体系，子类重写方法功能发生改变，不应该影响父类方法的含义</td>
+<td>防止继承泛滥</td>
+</tr>
+<tr>
+<td><strong>合成复用原则</strong></td>
+<td>尽量使用组合或者聚合关系实现代码复用，少使用继承</td>
+<td>降低代码耦合</td>
+</tr>
+</tbody></table>
+<h2 id="设计原则和设计模式的关系"><a href="#设计原则和设计模式的关系" class="headerlink" title="设计原则和设计模式的关系"></a>设计原则和设计模式的关系</h2><h3 id="设计模式分类："><a href="#设计模式分类：" class="headerlink" title="设计模式分类："></a>设计模式分类：</h3><ul>
+<li><strong>创建型模式</strong>：工厂模式、抽象工厂模式、单例模式、建造者模式、原型模式</li>
+<li><strong>结构型模式</strong>：适配器模式、桥接模式、过滤器模式、组合模式、装饰器模式、外观模式、享元模式、代理模式</li>
+<li><strong>行为型模式</strong>：责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、空对象模式、策略模式、模板模式、访问者模式</li>
+</ul>
+<h3 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h3><p>设计模式是设计原则的应用、实现。设计原则是底层原则、是根本；设计模式里面的套路用了设计原则。简单的讲，你写的代码可以没有使用设计模式，但一定不能没有设计原则</p>
+<h2 id="C语言和面向对象"><a href="#C语言和面向对象" class="headerlink" title="C语言和面向对象"></a>C语言和面向对象</h2><h3 id="先讨论下C"><a href="#先讨论下C" class="headerlink" title="先讨论下C++"></a>先讨论下C++</h3><p>C++作者：Bjarne Stroustrup</p>
+<img src="/images/design_principles/image-20220321164258684.png" style="zoom: 20%;" />
+
+<p>C++是一个多范式的语言；包括支持面向对象，也被有人称为“C with Classes”；</p>
+<p><strong>CFront</strong>：C++原始的编译器，作用把C++代码转成C代码；为啥叫CFront？在C的编译器前面加了一个编译器，把C++代码通过CFront转成C代码，然后用C编译器去编译生成程序</p>
+<img src="/images/design_principles/image-20220321165435232.png" style="zoom: 40%;" />
+
+<h3 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h3><h3 id="问题：C-中的高级特性如何在C中表示？"><a href="#问题：C-中的高级特性如何在C中表示？" class="headerlink" title="问题：C++中的高级特性如何在C中表示？"></a>问题：C++中的高级特性如何在C中表示？</h3><ul>
+<li>类里面的函数真的属于这个Class吗？<code>sizeof()</code></li>
+<li>类中的<code>this</code>怎么来的？语法糖而已；有些语言会显示写<code>self</code>（Python、Rust）</li>
+<li>类调用成员函数是怎么回事？语法糖，和调用普通全局函数并没有什么区别</li>
+</ul>
+<img src="/images/design_principles/image-20220322004626246.png" style="zoom:540%;" />
+
+<h3 id="C-的虚函数、Java的Interface，Rust的Trait"><a href="#C-的虚函数、Java的Interface，Rust的Trait" class="headerlink" title="C++的虚函数、Java的Interface，Rust的Trait"></a>C++的虚函数、Java的Interface，Rust的Trait</h3><p>父类定义接口，然后子类有不同的实现，在实际运行的时候会调用不同的子类实现，<br>下图中的接口函数本质上是一个函数指针变量，在使用时指定了不同的子类的实现的函数</p>
+<img src="/images/design_principles/image-20220323232530466.png" style="zoom:50%;" />
+
+<h2 id="设计原则和LVGL"><a href="#设计原则和LVGL" class="headerlink" title="设计原则和LVGL"></a>设计原则和LVGL</h2><h3 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h3><p><strong>一个类只负责完成一个职责或者功能</strong></p>
+<ul>
+<li>目录的命名</li>
+<li>源代码文件的命名</li>
+</ul>
+<h3 id="依赖倒置原则："><a href="#依赖倒置原则：" class="headerlink" title="依赖倒置原则："></a><strong>依赖倒置原则</strong>：</h3><p><strong>定义</strong>：高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
+<p><strong>目的</strong>：更利于代码结构的<strong>升级扩展</strong></p>
+<blockquote>
+<p>问题：依赖于<strong>抽象</strong>？这里的<strong>抽象</strong>指的是什么？</p>
+</blockquote>
+<h4 id="LVGL中扩展使用："><a href="#LVGL中扩展使用：" class="headerlink" title="LVGL中扩展使用："></a>LVGL中扩展使用：</h4><ul>
+<li>lvgl如何显示到不同的屏幕？</li>
+<li>lvgl如何获取不同屏幕的点击坐标？</li>
+<li>lvgl如何显示不同格式的图片？</li>
+</ul>
+<h4 id="lvgl如何显示到不同的屏幕"><a href="#lvgl如何显示到不同的屏幕" class="headerlink" title="lvgl如何显示到不同的屏幕?"></a>lvgl如何显示到不同的屏幕?</h4><h5 id="框架怎么写？"><a href="#框架怎么写？" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
+<li>xxx</li>
+<li>xxx</li>
+<li>显示到屏幕（估计就会写死）</li>
+<li>xxx</li>
+</ol>
+<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
+
+<h5 id="改完后？"><a href="#改完后？" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
+<li>LVGL框架定义接口：<code>void (*flush_cb)(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);</code><ul>
+<li>我框架内部会在需要的时候去调这个函数</li>
+<li>把对应的数据给你：哪块区域的屏幕要刷新<code>area</code>，以及这块区域对应的数据值<code>color_p</code></li>
+</ul>
+</li>
+<li>对应的拓展自己去处理数据：通过SDL刷到屏幕；通过Framebuffer刷到屏幕：和不同平台，实现相关</li>
+</ol>
+<h4 id="lvgl如何获取不同屏幕的点击坐标？"><a href="#lvgl如何获取不同屏幕的点击坐标？" class="headerlink" title="lvgl如何获取不同屏幕的点击坐标？"></a>lvgl如何获取不同屏幕的点击坐标？</h4><h5 id="框架怎么写？-1"><a href="#框架怎么写？-1" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
+<li>xxx</li>
+<li>xxx</li>
+<li>获取屏幕点击的坐标（估计就又会写死）</li>
+<li>xxx</li>
+</ol>
+<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
+
+<h5 id="改完后？-1"><a href="#改完后？-1" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
+<li>LVGL框架定义接口：<code>bool (*read_cb)(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);</code><ul>
+<li>我框架内部会在需要的时候去调这个函数</li>
+<li>我框架把这个结构体指针<code>data</code>给你：你负责把对应点击的坐标填进去，然后我框架内部要用（传递到对应控件的点击回调函数）</li>
+</ul>
+</li>
+<li>具体的实现如何去填充数据</li>
+</ol>
+<p>上面两者的区别：</p>
+<ul>
+<li>显示：一个是把数据给你，实现负责去使用这些数据</li>
+<li>点击：我把结构休指针给你，实现负责把数据填充进去</li>
+</ul>
+<h4 id="lvgl如何显示不同格式的图片？"><a href="#lvgl如何显示不同格式的图片？" class="headerlink" title="lvgl如何显示不同格式的图片？"></a>lvgl如何显示不同格式的图片？</h4><p>通过实现图片解码器，实现对应函数回调。步骤同上……</p>
+<h4 id="现实生活：公司做项目的例子"><a href="#现实生活：公司做项目的例子" class="headerlink" title="现实生活：公司做项目的例子"></a>现实生活：公司做项目的例子</h4><ul>
+<li>依赖反转前：我领导依赖于我，我的任务完成了，他的项目才能算完成</li>
+<li>依赖反转后：我领导提出标准，提供对应的资源；我拿到标准和资源，然后去实现</li>
+</ul>
+<img src="/images/design_principles/image-20220324000531092.png" style="zoom:40%;" />
+
+<p>一开始领导依赖于我的工作，他的任务就算完成；我依赖于我领导给的标准和资源去完成这个任务；另外的一个变化是：对于前者，你的领导可能会控制你的细节（不能用这个，得用那个；不能这样搞，要那样搞）；对于后者，我领导就成了标准的制定者</p>
+<h4 id="抽象的定义："><a href="#抽象的定义：" class="headerlink" title="抽象的定义："></a>抽象的定义：</h4><ul>
+<li>需要对业务有足够的了解，对问题抽象<ul>
+<li>回调中的参数：能够实现拓展；不要出现冗余的参数</li>
+</ul>
+</li>
+<li>抽象标准的要求<ul>
+<li>Android的UI线程：死循环不停的去调回调，用户写的ui代码，用户写的事件代码；这些代码得满足一定的要求，比如说：不能卡太久；你卡住了，我内部的死循环就被这个卡死</li>
+</ul>
+</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
+<li>SOLID：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU09MSUQ=">https://en.wikipedia.org/wiki/SOLID<i class="fa fa-external-link-alt"></i></span></li>
+<li>SOLID 设计原则文章：<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMzExNDMwMA==">https://segmentfault.com/a/1190000023114300<i class="fa fa-external-link-alt"></i></span></li>
+<li>CFront：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2Zyb250">https://en.wikipedia.org/wiki/Cfront<i class="fa fa-external-link-alt"></i></span></li>
+<li>Modern C：<span class="exturl" data-url="aHR0cHM6Ly93d3cubWFubmluZy5jb20vYm9va3MvbW9kZXJuLWM=">https://www.manning.com/books/modern-c<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAzOTAxMzc5NA==">https://segmentfault.com/a/1190000039013794<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Design Principles</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【VSCode】VSCode搭建C/C++开发环境</title>
+    <url>/2022/04/05/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h2 id="VSCode简介"><a href="#VSCode简介" class="headerlink" title="VSCode简介"></a>VSCode简介</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>Code editing.Redefined</strong>；Free. Built on open source. Runs everywhere.</p>
+<h3 id="VSCode的曲线救国"><a href="#VSCode的曲线救国" class="headerlink" title="VSCode的曲线救国"></a>VSCode的曲线救国</h3><ol>
+<li>前身 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9tb25hY28tZWRpdG9y">Monaco Editor<i class="fa fa-external-link-alt"></i></span>（web 编辑器）2011</li>
+<li>把Monaco Editor套在Electron（<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvQ2hyb21pdW0=">Chromium<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTm9kZS5qcw==">Node.js<i class="fa fa-external-link-alt"></i></span>）里面，就有了跨平台的桌面VSCode 2015</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvcmVtb3RlLW92ZXJ2aWV3">远程开发<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZlYXR1cmVzL2NvZGVzcGFjZXM=">Github Codespaces<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly92c2NvZGUuZGV2Lw==">vscode.dev<i class="fa fa-external-link-alt"></i></span> 2017~</li>
+</ol>
+<p>视频：<span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1oaWx6bktRaWo3QSZsaXN0PVBMajZZZU1odnAyUzZ1QjIzYmVRYWZmc3psYXZMcTNsTnEmYWJfY2hhbm5lbD1WaXN1YWxTdHVkaW9Db2Rl">Keynote by Erich Gamma: VS Code an Overnight Success… 10 years in the making<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="VSCode定位"><a href="#VSCode定位" class="headerlink" title="VSCode定位"></a>VSCode定位</h3><p><img src="/images/vscode/VSCode_image-20210421004416114.png"></p>
+<p><strong>特性：</strong></p>
+<ul>
+<li>VSCode只是个前端</li>
+<li>定标准协议<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">Language Server Protocol<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2RlYnVnLWFkYXB0ZXItcHJvdG9jb2wv">Debug Adapter Protocol<i class="fa fa-external-link-alt"></i></span></li>
+<li>把功能实现插件化</li>
+</ul>
+<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9sYW5ndWFnZXMvY3BwI190dXRvcmlhbHM=">https://code.visualstudio.com/docs/languages/cpp#_tutorials<i class="fa fa-external-link-alt"></i></span></p>
+<p>VSCode不带编译器，不同的平台安装自己的编译器</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1pbmd3">GCC on Windows via MinGW<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1zdmM=">Microsoft C++ on Windows<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWxpbnV4">GCC on Linux<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLXdzbA==">GCC on Windows Subsystem For Linux<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWNsYW5nLW1hYw==">Clang/LLVM on macOS<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="语言服务LSP"><a href="#语言服务LSP" class="headerlink" title="语言服务LSP"></a>语言服务LSP</h2><p><strong>Language Server Protocol</strong>：<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">https://microsoft.github.io/language-server-protocol/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>IDE的特性：</strong></p>
+<ul>
+<li>autocomplete自动补全</li>
+<li>goto definition转跳</li>
+<li>documentation on hover光标放在代码上，显示文档</li>
+<li>find all references查找引用</li>
+<li>etc</li>
+</ul>
+<p>如何工作的：</p>
+<p><img src="/images/vscode/image-20220405164606671.png"></p>
+<p><strong>软件设计原则-依赖倒置原则</strong></p>
+<blockquote>
+<p>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
+</blockquote>
+<p><img src="/images/vscode/image-20220405165341735.png"></p>
+<h3 id="C、CPP语言服务列表："><a href="#C、CPP语言服务列表：" class="headerlink" title="C、CPP语言服务列表："></a>C、CPP语言服务列表：</h3><p><span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC9pbXBsZW1lbnRvcnMvc2VydmVycy8=">https://microsoft.github.io/language-server-protocol/implementors/servers/<i class="fa fa-external-link-alt"></i></span></p>
+<table>
+<thead>
+<tr>
+<th><strong>Language</strong></th>
+<th><strong>Maintainer</strong></th>
+<th><a href="https://github.com/razzmatazz/csharp-language-server"><strong>Repository</strong></a></th>
+<th><strong>Implementation Language</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C++</td>
+<td>MS</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jcHB0b29scw==">VS Code C++ extension<i class="fa fa-external-link-alt"></i></span></td>
+<td>C++</td>
+</tr>
+<tr>
+<td><span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcv">C++/clang<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9sbHZtLm9yZy8=">LLVM Project<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xsdm0vbGx2bS1wcm9qZWN0L3RyZWUvbWFpbi9jbGFuZy10b29scy1leHRyYS9jbGFuZ2Q=">clangd<i class="fa fa-external-link-alt"></i></span></td>
+<td>C++</td>
+</tr>
+<tr>
+<td>C/C++/Objective-C</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdA==">Jacob Dufault<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RvcGlzYW5p">topisani<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdC9jcXVlcnk=">cquery<i class="fa fa-external-link-alt"></i></span>（Archived）</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>C/C++/Objective-C</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscw==">ccls<i class="fa fa-external-link-alt"></i></span>（originates from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NxdWVyeS1wcm9qZWN0L2NxdWVyeQ==">cquery<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscy9yZWxlYXNlcy90YWcvMC4yMDIxMDMzMA==">on Apr 7, 2021<i class="fa fa-external-link-alt"></i></span>）</td>
+<td>C++</td>
+</tr>
+</tbody></table>
+<p><strong>参考其它C、C++的IDE：</strong></p>
+<ul>
+<li><strong>Qt Creator 7</strong>：将默认的后端切换到Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cucXQuaW8vYmxvZy9xdC1jcmVhdG9yLTctcmVsZWFzZWQ=">https://www.qt.io/blog/qt-creator-7-released<i class="fa fa-external-link-alt"></i></span></li>
+<li><strong>Clion</strong>（Jetbrain）：默认用Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9oZWxwL2NsaW9uL2Mtc3VwcG9ydC5odG1s">https://www.jetbrains.com/help/clion/c-support.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="实现C、CPP语言服务面临的问题"><a href="#实现C、CPP语言服务面临的问题" class="headerlink" title="实现C、CPP语言服务面临的问题"></a>实现C、CPP语言服务面临的问题</h3><ul>
+<li>没有统一的包管理器：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92Y3BrZw==">vcpkg<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9jb25hbi5pby8=">conan<i class="fa fa-external-link-alt"></i></span></li>
+<li>构建系统build system碎片化：VS（xml配置），QT（qmake–&gt;CMake），Clion（CMake）<ul>
+<li>要去处理不同的构建系统：<strong>项目有哪些源代码？包含了哪些头文件？依赖于哪些三方库？有哪些编译Flags？</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Note：后面内容基于CMake来讲</p>
+</blockquote>
+<h3 id="Clangd语言服务"><a href="#Clangd语言服务" class="headerlink" title="Clangd语言服务"></a>Clangd语言服务</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI3Byb2plY3Qtc2V0dXA=">https://clangd.llvm.org/installation#project-setup<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>Note：VSCode的clangd插件和clangd是两个东西，虽然clangd插件才<code>v0.1.15</code>版本；clangd已经到13、14版本了</p>
+</blockquote>
+<p><strong>下载clangd：</strong></p>
+<ul>
+<li>通过VSCode的clangd插件命令：<code>&gt;clangd: Download language server</code></li>
+<li>自行下载<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI2luc3RhbGxpbmctY2xhbmdk">clangd<i class="fa fa-external-link-alt"></i></span>，然后配置到<code>path</code>目录下</li>
+</ul>
+<p><strong>配置：</strong></p>
+<blockquote>
+<p>clangd如何知道我编译了哪些代码？include了哪些头文件，依赖于哪些库？有些哪些编译flags？</p>
+</blockquote>
+<p><code>compile_commands.json</code>配置文件：该文件为项目中的每个源文件提供编译命令</p>
+<p><strong>如何生成：</strong></p>
+<ul>
+<li>命令：<code>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code></li>
+<li>CMakeLists.txt文件：<code>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</code></li>
+</ul>
+<p>一般把这个文件生成到build目录，clangd就能找到</p>
+<blockquote>
+<p>Note：切换分支或是大量代码变更会导致clangd提示出问题，需要重新编译生成<code>compile_commands.json</code>配置文件；重启下clangd：<code>&gt;clangd: Restart language server</code></p>
+</blockquote>
+<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92c2NvZGUtY21ha2UtdG9vbHMvYmxvYi9tYWluL2RvY3MvUkVBRE1FLm1k">https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/README.md<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>CMake Tools插件</strong>：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jbWFrZS10b29scw==">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>常用命令：</strong></p>
+<ul>
+<li>初始化项目：<code>&gt;CMake: quick Start</code></li>
+<li>Kit编译器命令：设置编译器<ul>
+<li>编辑本地的编译器配置：<code>&gt;CMake: Edit User-Local CMake Kits</code></li>
+<li>搜索电脑的编译器：<code>&gt;CMake: Scan for Kits</code></li>
+<li>选择哪个编译器：<code>&gt;CMake: Select a Kit</code></li>
+</ul>
+</li>
+<li>设置编译的类型：<code>&gt;CMake: Select Variant</code>，设置CMake的<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvdmFyaWFibGUvQ01BS0VfQlVJTERfVFlQRS5odG1s">CMAKE_BUILD_TYPE<i class="fa fa-external-link-alt"></i></span>变量</li>
+<li>配置：<code>&gt;CMake: Configure</code>；执行<code>cmake -S . -B build</code>命令</li>
+<li>编译：<code>&gt;CMake: Build</code>；执行<code>cmake --build build</code>命令</li>
+<li>清理缓存重新配置：<code>&gt;CMake: Delete Cache and Reconfigure</code></li>
+<li>编辑CMake缓存文件：<code>$&#123;project_root&#125;/build/CMakeCache.txt</code><ul>
+<li><code>&gt;CMake: Edit CMake Cache</code></li>
+<li><code>&gt;CMake: Edit CMake Cache (UI)</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Debug调试DAP"><a href="#Debug调试DAP" class="headerlink" title="Debug调试DAP"></a>Debug调试DAP</h2><h3 id="命令行调试程序："><a href="#命令行调试程序：" class="headerlink" title="命令行调试程序："></a>命令行调试程序：</h3><p><strong>步骤：</strong></p>
+<ol>
+<li>编译出带有Debug信息的程序；</li>
+<li>用GDB或LLDB去调试程序</li>
+</ol>
+<p>LLDB教程：<span class="exturl" data-url="aHR0cHM6Ly9sbGRiLmxsdm0ub3JnL3VzZS90dXRvcmlhbC5odG1s">https://lldb.llvm.org/use/tutorial.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>todo</p>
+<p><img src="/images/vscode/image-20220409162446409.png"></p>
+<p>本质上是GDB和LLDB程序去调试代码，VSCode只是个前端</p>
+<ul>
+<li>MS的C++插件：已经包含了GDB功能</li>
+<li>LLVM的<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span> <strong>推荐</strong></li>
+</ul>
+<h3 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h3><p>文件：<code>.vscode/launch.json</code></p>
+<p>调试程序的前提：编译出来的程序带有debug信息；比如加<code>-g</code>选项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gdb a.out</span><br><span class="line">$ lldb a.out</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/vscode/image-20220409162303109.png"></p>
+<h3 id="调试操作："><a href="#调试操作：" class="headerlink" title="调试操作："></a>调试操作：</h3><ul>
+<li>Continue / Pause 继续/暂停（F5）</li>
+<li>Step Over单步执行（F10）</li>
+<li>Step Into进入函数（F11）</li>
+<li>Step Out退出函数（⇧F11）</li>
+<li>Restart重新调试（⇧⌘F5）</li>
+<li>Stop停止调试（⇧F5）</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><ul>
+<li>Watch：监控</li>
+<li>Call stack：函数调用栈</li>
+<li>Debug console：用来输入命令</li>
+</ul>
+<h3 id="条件断点：Conditional-breakpoints"><a href="#条件断点：Conditional-breakpoints" class="headerlink" title="条件断点：Conditional breakpoints"></a>条件断点：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9lZGl0b3IvZGVidWdnaW5nI19jb25kaXRpb25hbC1icmVha3BvaW50cw==">Conditional breakpoints<i class="fa fa-external-link-alt"></i></span></h3><ul>
+<li><strong>条件表达式Expression condition</strong>：表达式成立的时候会断点</li>
+<li><strong>执行次数Hit count</strong>：执行了多少次才会断点</li>
+</ul>
+<p><img src="/images/vscode/hitCount.gif"></p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><h3 id="如何实现格式化？"><a href="#如何实现格式化？" class="headerlink" title="如何实现格式化？"></a>如何实现格式化？</h3><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY3BwLWlkZSNfY29kZS1mb3JtYXR0aW5n">https://code.visualstudio.com/docs/cpp/cpp-ide#_code-formatting<i class="fa fa-external-link-alt"></i></span></p>
+<p>Clang-format：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0Lmh0bWw=">https://clang.llvm.org/docs/ClangFormat.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>MS和LLVM的格式化都是使用的clang-format</p>
+<ul>
+<li>MS的C/C++插件：是把clang-format程序下载到本地电脑</li>
+<li>LLVM的clangd插件：集成到了语言服务程序clangd里面</li>
+<li>本质上都是调用了类似于<code>clang-format -i $&#123;file_name&#125;</code>这样的命令：写个脚本格式代整个项目</li>
+</ul>
+<h3 id="clang-format配置文件"><a href="#clang-format配置文件" class="headerlink" title=".clang-format配置文件"></a><code>.clang-format</code>配置文件</h3><p><strong>Clangd找配置文件的顺序：</strong></p>
+<ol>
+<li>先去同级目录找：<code>./.clang-format</code> （使用三方库，有的库会自带）</li>
+<li>去父级目录找 –&gt; 项目根目录找：<code>$&#123;project_root&#125;/.clang-format</code>（自己项目开发需要）</li>
+<li>去用户根目录下找：<code>~/.clang-format</code>（自己写代码方便，不用每次去copy一份到项目里面来）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ clang-format -style=llvm -dump-config &gt; .clang-format</span><br></pre></td></tr></table></figure>
+
+<p>选项详细文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0U3R5bGVPcHRpb25zLmh0bWw=">https://clang.llvm.org/docs/ClangFormatStyleOptions.html<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>Note：配置在使用的时候可能会遇到选项兼容性的问题；clang-format新版本会更新增加选项，如果新版本的.clang-format给到老版本的qt creator使用可能会遇到兼容性的问题；需要升级clang-format，qt creator使用新版本的clang-format</p>
+</blockquote>
+<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>Clang-tidy：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Addresssanitizer"><a href="#Addresssanitizer" class="headerlink" title="Addresssanitizer"></a>Addresssanitizer</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">https://github.com/google/sanitizers/wiki/AddressSanitizer<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlckZyZWU=">Use after free<i class="fa fa-external-link-alt"></i></span> (dangling pointer dereference)</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVIZWFwT3V0T2ZCb3VuZHM=">Heap buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVTdGFja091dE9mQm91bmRz">Stack buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVHbG9iYWxPdXRPZkJvdW5kcw==">Global buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclJldHVybg==">Use after return<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclNjb3Bl">Use after scope<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckluaXRpYWxpemF0aW9uT3JkZXJGaWFzY28=">Initialization order bugs<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckxlYWtTYW5pdGl6ZXI=">Memory leaks<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><h3 id="相关插件安装"><a href="#相关插件安装" class="headerlink" title="相关插件安装"></a>相关插件安装</h3><blockquote>
+<p>Note: 下面格式<code>C/C++ / ms-vscode.cpptools</code>，用<code>/</code>分隔，左边是插件名，右边是插件ID；用插件ID在VSCode搜索更加准确</p>
+</blockquote>
+<p>推荐插件安装列表：</p>
+<ul>
+<li>c/c++语言服务插件: <strong>（新手【不懂lsp的】不要乱装其他相关的c/c++插件，下面二者开启一个即可；如果同时开启，LLVM会把Macrosoft的禁用掉）</strong><ul>
+<li>LLVM：clangd/llvm-vs-code-extensions.vscode-clangd （<strong>LInux平台推荐</strong>）</li>
+<li>Macrosoft：C/C++ / ms-vscode.cpptools （<strong>Windows平台推荐</strong>）</li>
+</ul>
+</li>
+<li>Debug插件:CodeLLDB/vadimcn.vscode-lldb</li>
+<li>cmake语法插件:CMake/twxs.cmake</li>
+<li>cmake tools插件:CMake Tools/ms-vscode.cmake-tools</li>
+<li>一键运行单个文件插件:Code Runner/formulahendry.code-runner</li>
+<li>自动生成注释结构:Doxygen Documentation Generator/cschlosser.doxdocgen</li>
+<li>git增强插件:GitLens — Git supercharged/eamodio.gitlens</li>
+<li>git ignore插件:gitignore/codezombiech.gitignore</li>
+<li>错误增强显示插件:Error Lens/usernamehw.errorlens</li>
+<li>图标增强:vscode-icons/vscode-icons-team.vscode-icons</li>
+</ul>
+<p>命令一次性安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ code --install-extension</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>VSCode</category>
+      </categories>
+      <tags>
+        <tag>VSCode</tag>
+        <tag>C</tag>
+        <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Linux】Linux 性能优化实战</title>
     <url>/2022/03/15/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/</url>
     <content><![CDATA[<h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><h2 id="如何学习Linux性能优化？"><a href="#如何学习Linux性能优化？" class="headerlink" title="如何学习Linux性能优化？"></a>如何学习Linux性能优化？</h2><p>理解组件之间的工作原理和协作方式</p>
@@ -4035,164 +4436,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Design Principles】LVGL中的一些设计原则</title>
-    <url>/2022/03/22/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<blockquote>
-<p>上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。</p>
-</blockquote>
-<h2 id="软件设计七大原则"><a href="#软件设计七大原则" class="headerlink" title="软件设计七大原则"></a>软件设计七大原则</h2><table>
-<thead>
-<tr>
-<th>设计原则</th>
-<th>定义</th>
-<th>目的</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>开闭原则</strong></td>
-<td>对扩展开放，对修改关闭</td>
-<td>降低维护带来的新风险</td>
-</tr>
-<tr>
-<td><strong>依赖倒置原则</strong></td>
-<td>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</td>
-<td>更利于代码结构的升级扩展</td>
-</tr>
-<tr>
-<td><strong>单一职责原则</strong></td>
-<td>一个类只干一件事，实现类要单一</td>
-<td>便于理解，提高代码的可读性</td>
-</tr>
-<tr>
-<td><strong>接口隔离原则</strong></td>
-<td>一个接口只干一件事，接口要精简单一</td>
-<td>功能解耦，高聚合、低耦合</td>
-</tr>
-<tr>
-<td><strong>迪米特法则</strong></td>
-<td>最少知识原则，不该知道的不要知道，一个类应该保持对其它对象最少的了解，降低耦合度</td>
-<td>只和朋友交流，不和陌生人说话，减少代码臃肿</td>
-</tr>
-<tr>
-<td><strong>里氏替换原则</strong></td>
-<td>不要破坏继承体系，子类重写方法功能发生改变，不应该影响父类方法的含义</td>
-<td>防止继承泛滥</td>
-</tr>
-<tr>
-<td><strong>合成复用原则</strong></td>
-<td>尽量使用组合或者聚合关系实现代码复用，少使用继承</td>
-<td>降低代码耦合</td>
-</tr>
-</tbody></table>
-<h2 id="设计原则和设计模式的关系"><a href="#设计原则和设计模式的关系" class="headerlink" title="设计原则和设计模式的关系"></a>设计原则和设计模式的关系</h2><h3 id="设计模式分类："><a href="#设计模式分类：" class="headerlink" title="设计模式分类："></a>设计模式分类：</h3><ul>
-<li><strong>创建型模式</strong>：工厂模式、抽象工厂模式、单例模式、建造者模式、原型模式</li>
-<li><strong>结构型模式</strong>：适配器模式、桥接模式、过滤器模式、组合模式、装饰器模式、外观模式、享元模式、代理模式</li>
-<li><strong>行为型模式</strong>：责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、空对象模式、策略模式、模板模式、访问者模式</li>
-</ul>
-<h3 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h3><p>设计模式是设计原则的应用、实现。设计原则是底层原则、是根本；设计模式里面的套路用了设计原则。简单的讲，你写的代码可以没有使用设计模式，但一定不能没有设计原则</p>
-<h2 id="C语言和面向对象"><a href="#C语言和面向对象" class="headerlink" title="C语言和面向对象"></a>C语言和面向对象</h2><h3 id="先讨论下C"><a href="#先讨论下C" class="headerlink" title="先讨论下C++"></a>先讨论下C++</h3><p>C++作者：Bjarne Stroustrup</p>
-<img src="/images/design_principles/image-20220321164258684.png" style="zoom: 20%;" />
-
-<p>C++是一个多范式的语言；包括支持面向对象，也被有人称为“C with Classes”；</p>
-<p><strong>CFront</strong>：C++原始的编译器，作用把C++代码转成C代码；为啥叫CFront？在C的编译器前面加了一个编译器，把C++代码通过CFront转成C代码，然后用C编译器去编译生成程序</p>
-<img src="/images/design_principles/image-20220321165435232.png" style="zoom: 40%;" />
-
-<h3 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h3><h3 id="问题：C-中的高级特性如何在C中表示？"><a href="#问题：C-中的高级特性如何在C中表示？" class="headerlink" title="问题：C++中的高级特性如何在C中表示？"></a>问题：C++中的高级特性如何在C中表示？</h3><ul>
-<li>类里面的函数真的属于这个Class吗？<code>sizeof()</code></li>
-<li>类中的<code>this</code>怎么来的？语法糖而已；有些语言会显示写<code>self</code>（Python、Rust）</li>
-<li>类调用成员函数是怎么回事？语法糖，和调用普通全局函数并没有什么区别</li>
-</ul>
-<img src="/images/design_principles/image-20220322004626246.png" style="zoom:540%;" />
-
-<h3 id="C-的虚函数、Java的Interface，Rust的Trait"><a href="#C-的虚函数、Java的Interface，Rust的Trait" class="headerlink" title="C++的虚函数、Java的Interface，Rust的Trait"></a>C++的虚函数、Java的Interface，Rust的Trait</h3><p>父类定义接口，然后子类有不同的实现，在实际运行的时候会调用不同的子类实现，<br>下图中的接口函数本质上是一个函数指针变量，在使用时指定了不同的子类的实现的函数</p>
-<img src="/images/design_principles/image-20220323232530466.png" style="zoom:50%;" />
-
-<h2 id="设计原则和LVGL"><a href="#设计原则和LVGL" class="headerlink" title="设计原则和LVGL"></a>设计原则和LVGL</h2><h3 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h3><p><strong>一个类只负责完成一个职责或者功能</strong></p>
-<ul>
-<li>目录的命名</li>
-<li>源代码文件的命名</li>
-</ul>
-<h3 id="依赖倒置原则："><a href="#依赖倒置原则：" class="headerlink" title="依赖倒置原则："></a><strong>依赖倒置原则</strong>：</h3><p><strong>定义</strong>：高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
-<p><strong>目的</strong>：更利于代码结构的<strong>升级扩展</strong></p>
-<blockquote>
-<p>问题：依赖于<strong>抽象</strong>？这里的<strong>抽象</strong>指的是什么？</p>
-</blockquote>
-<h4 id="LVGL中扩展使用："><a href="#LVGL中扩展使用：" class="headerlink" title="LVGL中扩展使用："></a>LVGL中扩展使用：</h4><ul>
-<li>lvgl如何显示到不同的屏幕？</li>
-<li>lvgl如何获取不同屏幕的点击坐标？</li>
-<li>lvgl如何显示不同格式的图片？</li>
-</ul>
-<h4 id="lvgl如何显示到不同的屏幕"><a href="#lvgl如何显示到不同的屏幕" class="headerlink" title="lvgl如何显示到不同的屏幕?"></a>lvgl如何显示到不同的屏幕?</h4><h5 id="框架怎么写？"><a href="#框架怎么写？" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>显示到屏幕（估计就会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？"><a href="#改完后？" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>void (*flush_cb)(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>把对应的数据给你：哪块区域的屏幕要刷新<code>area</code>，以及这块区域对应的数据值<code>color_p</code></li>
-</ul>
-</li>
-<li>对应的拓展自己去处理数据：通过SDL刷到屏幕；通过Framebuffer刷到屏幕：和不同平台，实现相关</li>
-</ol>
-<h4 id="lvgl如何获取不同屏幕的点击坐标？"><a href="#lvgl如何获取不同屏幕的点击坐标？" class="headerlink" title="lvgl如何获取不同屏幕的点击坐标？"></a>lvgl如何获取不同屏幕的点击坐标？</h4><h5 id="框架怎么写？-1"><a href="#框架怎么写？-1" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>获取屏幕点击的坐标（估计就又会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？-1"><a href="#改完后？-1" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>bool (*read_cb)(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>我框架把这个结构体指针<code>data</code>给你：你负责把对应点击的坐标填进去，然后我框架内部要用（传递到对应控件的点击回调函数）</li>
-</ul>
-</li>
-<li>具体的实现如何去填充数据</li>
-</ol>
-<p>上面两者的区别：</p>
-<ul>
-<li>显示：一个是把数据给你，实现负责去使用这些数据</li>
-<li>点击：我把结构休指针给你，实现负责把数据填充进去</li>
-</ul>
-<h4 id="lvgl如何显示不同格式的图片？"><a href="#lvgl如何显示不同格式的图片？" class="headerlink" title="lvgl如何显示不同格式的图片？"></a>lvgl如何显示不同格式的图片？</h4><p>通过实现图片解码器，实现对应函数回调。步骤同上……</p>
-<h4 id="现实生活：公司做项目的例子"><a href="#现实生活：公司做项目的例子" class="headerlink" title="现实生活：公司做项目的例子"></a>现实生活：公司做项目的例子</h4><ul>
-<li>依赖反转前：我领导依赖于我，我的任务完成了，他的项目才能算完成</li>
-<li>依赖反转后：我领导提出标准，提供对应的资源；我拿到标准和资源，然后去实现</li>
-</ul>
-<img src="/images/design_principles/image-20220324000531092.png" style="zoom:40%;" />
-
-<p>一开始领导依赖于我的工作，他的任务就算完成；我依赖于我领导给的标准和资源去完成这个任务；另外的一个变化是：对于前者，你的领导可能会控制你的细节（不能用这个，得用那个；不能这样搞，要那样搞）；对于后者，我领导就成了标准的制定者</p>
-<h4 id="抽象的定义："><a href="#抽象的定义：" class="headerlink" title="抽象的定义："></a>抽象的定义：</h4><ul>
-<li>需要对业务有足够的了解，对问题抽象<ul>
-<li>回调中的参数：能够实现拓展；不要出现冗余的参数</li>
-</ul>
-</li>
-<li>抽象标准的要求<ul>
-<li>Android的UI线程：死循环不停的去调回调，用户写的ui代码，用户写的事件代码；这些代码得满足一定的要求，比如说：不能卡太久；你卡住了，我内部的死循环就被这个卡死</li>
-</ul>
-</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
-<li>SOLID：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU09MSUQ=">https://en.wikipedia.org/wiki/SOLID<i class="fa fa-external-link-alt"></i></span></li>
-<li>SOLID 设计原则文章：<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMzExNDMwMA==">https://segmentfault.com/a/1190000023114300<i class="fa fa-external-link-alt"></i></span></li>
-<li>CFront：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2Zyb250">https://en.wikipedia.org/wiki/Cfront<i class="fa fa-external-link-alt"></i></span></li>
-<li>Modern C：<span class="exturl" data-url="aHR0cHM6Ly93d3cubWFubmluZy5jb20vYm9va3MvbW9kZXJuLWM=">https://www.manning.com/books/modern-c<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAzOTAxMzc5NA==">https://segmentfault.com/a/1190000039013794<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>Design Principles</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【电脑】主机折腾记</title>
     <url>/2022/04/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/</url>
     <content><![CDATA[<blockquote>
@@ -4303,249 +4546,6 @@
       <tags>
         <tag>Computer</tag>
         <tag>Hackintosh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【VSCode】VSCode搭建C/C++开发环境</title>
-    <url>/2022/04/05/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h2 id="VSCode简介"><a href="#VSCode简介" class="headerlink" title="VSCode简介"></a>VSCode简介</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>Code editing.Redefined</strong>；Free. Built on open source. Runs everywhere.</p>
-<h3 id="VSCode的曲线救国"><a href="#VSCode的曲线救国" class="headerlink" title="VSCode的曲线救国"></a>VSCode的曲线救国</h3><ol>
-<li>前身 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9tb25hY28tZWRpdG9y">Monaco Editor<i class="fa fa-external-link-alt"></i></span>（web 编辑器）2011</li>
-<li>把Monaco Editor套在Electron（<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvQ2hyb21pdW0=">Chromium<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTm9kZS5qcw==">Node.js<i class="fa fa-external-link-alt"></i></span>）里面，就有了跨平台的桌面VSCode 2015</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvcmVtb3RlLW92ZXJ2aWV3">远程开发<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZlYXR1cmVzL2NvZGVzcGFjZXM=">Github Codespaces<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly92c2NvZGUuZGV2Lw==">vscode.dev<i class="fa fa-external-link-alt"></i></span> 2017~</li>
-</ol>
-<p>视频：<span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1oaWx6bktRaWo3QSZsaXN0PVBMajZZZU1odnAyUzZ1QjIzYmVRYWZmc3psYXZMcTNsTnEmYWJfY2hhbm5lbD1WaXN1YWxTdHVkaW9Db2Rl">Keynote by Erich Gamma: VS Code an Overnight Success… 10 years in the making<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="VSCode定位"><a href="#VSCode定位" class="headerlink" title="VSCode定位"></a>VSCode定位</h3><p><img src="/images/vscode/VSCode_image-20210421004416114.png"></p>
-<p><strong>特性：</strong></p>
-<ul>
-<li>VSCode只是个前端</li>
-<li>定标准协议<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">Language Server Protocol<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2RlYnVnLWFkYXB0ZXItcHJvdG9jb2wv">Debug Adapter Protocol<i class="fa fa-external-link-alt"></i></span></li>
-<li>把功能实现插件化</li>
-</ul>
-<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9sYW5ndWFnZXMvY3BwI190dXRvcmlhbHM=">https://code.visualstudio.com/docs/languages/cpp#_tutorials<i class="fa fa-external-link-alt"></i></span></p>
-<p>VSCode不带编译器，不同的平台安装自己的编译器</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1pbmd3">GCC on Windows via MinGW<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1zdmM=">Microsoft C++ on Windows<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWxpbnV4">GCC on Linux<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLXdzbA==">GCC on Windows Subsystem For Linux<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWNsYW5nLW1hYw==">Clang/LLVM on macOS<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="语言服务LSP"><a href="#语言服务LSP" class="headerlink" title="语言服务LSP"></a>语言服务LSP</h2><p><strong>Language Server Protocol</strong>：<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">https://microsoft.github.io/language-server-protocol/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>IDE的特性：</strong></p>
-<ul>
-<li>autocomplete自动补全</li>
-<li>goto definition转跳</li>
-<li>documentation on hover光标放在代码上，显示文档</li>
-<li>find all references查找引用</li>
-<li>etc</li>
-</ul>
-<p>如何工作的：</p>
-<p><img src="/images/vscode/image-20220405164606671.png"></p>
-<p><strong>软件设计原则-依赖倒置原则</strong></p>
-<blockquote>
-<p>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
-</blockquote>
-<p><img src="/images/vscode/image-20220405165341735.png"></p>
-<h3 id="C、CPP语言服务列表："><a href="#C、CPP语言服务列表：" class="headerlink" title="C、CPP语言服务列表："></a>C、CPP语言服务列表：</h3><p><span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC9pbXBsZW1lbnRvcnMvc2VydmVycy8=">https://microsoft.github.io/language-server-protocol/implementors/servers/<i class="fa fa-external-link-alt"></i></span></p>
-<table>
-<thead>
-<tr>
-<th><strong>Language</strong></th>
-<th><strong>Maintainer</strong></th>
-<th><a href="https://github.com/razzmatazz/csharp-language-server"><strong>Repository</strong></a></th>
-<th><strong>Implementation Language</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>C++</td>
-<td>MS</td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jcHB0b29scw==">VS Code C++ extension<i class="fa fa-external-link-alt"></i></span></td>
-<td>C++</td>
-</tr>
-<tr>
-<td><span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcv">C++/clang<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9sbHZtLm9yZy8=">LLVM Project<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xsdm0vbGx2bS1wcm9qZWN0L3RyZWUvbWFpbi9jbGFuZy10b29scy1leHRyYS9jbGFuZ2Q=">clangd<i class="fa fa-external-link-alt"></i></span></td>
-<td>C++</td>
-</tr>
-<tr>
-<td>C/C++/Objective-C</td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdA==">Jacob Dufault<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RvcGlzYW5p">topisani<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdC9jcXVlcnk=">cquery<i class="fa fa-external-link-alt"></i></span>（Archived）</td>
-<td>C++</td>
-</tr>
-<tr>
-<td>C/C++/Objective-C</td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span></td>
-<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscw==">ccls<i class="fa fa-external-link-alt"></i></span>（originates from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NxdWVyeS1wcm9qZWN0L2NxdWVyeQ==">cquery<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscy9yZWxlYXNlcy90YWcvMC4yMDIxMDMzMA==">on Apr 7, 2021<i class="fa fa-external-link-alt"></i></span>）</td>
-<td>C++</td>
-</tr>
-</tbody></table>
-<p><strong>参考其它C、C++的IDE：</strong></p>
-<ul>
-<li><strong>Qt Creator 7</strong>：将默认的后端切换到Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cucXQuaW8vYmxvZy9xdC1jcmVhdG9yLTctcmVsZWFzZWQ=">https://www.qt.io/blog/qt-creator-7-released<i class="fa fa-external-link-alt"></i></span></li>
-<li><strong>Clion</strong>（Jetbrain）：默认用Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9oZWxwL2NsaW9uL2Mtc3VwcG9ydC5odG1s">https://www.jetbrains.com/help/clion/c-support.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h3 id="实现C、CPP语言服务面临的问题"><a href="#实现C、CPP语言服务面临的问题" class="headerlink" title="实现C、CPP语言服务面临的问题"></a>实现C、CPP语言服务面临的问题</h3><ul>
-<li>没有统一的包管理器：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92Y3BrZw==">vcpkg<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9jb25hbi5pby8=">conan<i class="fa fa-external-link-alt"></i></span></li>
-<li>构建系统build system碎片化：VS（xml配置），QT（qmake–&gt;CMake），Clion（CMake）<ul>
-<li>要去处理不同的构建系统：<strong>项目有哪些源代码？包含了哪些头文件？依赖于哪些三方库？有哪些编译Flags？</strong></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Note：后面内容基于CMake来讲</p>
-</blockquote>
-<h3 id="Clangd语言服务"><a href="#Clangd语言服务" class="headerlink" title="Clangd语言服务"></a>Clangd语言服务</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI3Byb2plY3Qtc2V0dXA=">https://clangd.llvm.org/installation#project-setup<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>Note：VSCode的clangd插件和clangd是两个东西，虽然clangd插件才<code>v0.1.15</code>版本；clangd已经到13、14版本了</p>
-</blockquote>
-<p><strong>下载clangd：</strong></p>
-<ul>
-<li>通过VSCode的clangd插件命令：<code>&gt;clangd: Download language server</code></li>
-<li>自行下载<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI2luc3RhbGxpbmctY2xhbmdk">clangd<i class="fa fa-external-link-alt"></i></span>，然后配置到<code>path</code>目录下</li>
-</ul>
-<p><strong>配置：</strong></p>
-<blockquote>
-<p>clangd如何知道我编译了哪些代码？include了哪些头文件，依赖于哪些库？有些哪些编译flags？</p>
-</blockquote>
-<p><code>compile_commands.json</code>配置文件：该文件为项目中的每个源文件提供编译命令</p>
-<p><strong>如何生成：</strong></p>
-<ul>
-<li>命令：<code>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code></li>
-<li>CMakeLists.txt文件：<code>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</code></li>
-</ul>
-<p>一般把这个文件生成到build目录，clangd就能找到</p>
-<blockquote>
-<p>Note：切换分支或是大量代码变更会导致clangd提示出问题，需要重新编译生成<code>compile_commands.json</code>配置文件；重启下clangd：<code>&gt;clangd: Restart language server</code></p>
-</blockquote>
-<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92c2NvZGUtY21ha2UtdG9vbHMvYmxvYi9tYWluL2RvY3MvUkVBRE1FLm1k">https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/README.md<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>CMake Tools插件</strong>：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jbWFrZS10b29scw==">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>常用命令：</strong></p>
-<ul>
-<li>初始化项目：<code>&gt;CMake: quick Start</code></li>
-<li>Kit编译器命令：设置编译器<ul>
-<li>编辑本地的编译器配置：<code>&gt;CMake: Edit User-Local CMake Kits</code></li>
-<li>搜索电脑的编译器：<code>&gt;CMake: Scan for Kits</code></li>
-<li>选择哪个编译器：<code>&gt;CMake: Select a Kit</code></li>
-</ul>
-</li>
-<li>设置编译的类型：<code>&gt;CMake: Select Variant</code>，设置CMake的<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvdmFyaWFibGUvQ01BS0VfQlVJTERfVFlQRS5odG1s">CMAKE_BUILD_TYPE<i class="fa fa-external-link-alt"></i></span>变量</li>
-<li>配置：<code>&gt;CMake: Configure</code>；执行<code>cmake -S . -B build</code>命令</li>
-<li>编译：<code>&gt;CMake: Build</code>；执行<code>cmake --build build</code>命令</li>
-<li>清理缓存重新配置：<code>&gt;CMake: Delete Cache and Reconfigure</code></li>
-<li>编辑CMake缓存文件：<code>$&#123;project_root&#125;/build/CMakeCache.txt</code><ul>
-<li><code>&gt;CMake: Edit CMake Cache</code></li>
-<li><code>&gt;CMake: Edit CMake Cache (UI)</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="Debug调试DAP"><a href="#Debug调试DAP" class="headerlink" title="Debug调试DAP"></a>Debug调试DAP</h2><h3 id="命令行调试程序："><a href="#命令行调试程序：" class="headerlink" title="命令行调试程序："></a>命令行调试程序：</h3><p><strong>步骤：</strong></p>
-<ol>
-<li>编译出带有Debug信息的程序；</li>
-<li>用GDB或LLDB去调试程序</li>
-</ol>
-<p>LLDB教程：<span class="exturl" data-url="aHR0cHM6Ly9sbGRiLmxsdm0ub3JnL3VzZS90dXRvcmlhbC5odG1s">https://lldb.llvm.org/use/tutorial.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>todo</p>
-<p><img src="/images/vscode/image-20220409162446409.png"></p>
-<p>本质上是GDB和LLDB程序去调试代码，VSCode只是个前端</p>
-<ul>
-<li>MS的C++插件：已经包含了GDB功能</li>
-<li>LLVM的<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span> <strong>推荐</strong></li>
-</ul>
-<h3 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h3><p>文件：<code>.vscode/launch.json</code></p>
-<p>调试程序的前提：编译出来的程序带有debug信息；比如加<code>-g</code>选项</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gdb a.out</span><br><span class="line">$ lldb a.out</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/vscode/image-20220409162303109.png"></p>
-<h3 id="调试操作："><a href="#调试操作：" class="headerlink" title="调试操作："></a>调试操作：</h3><ul>
-<li>Continue / Pause 继续/暂停（F5）</li>
-<li>Step Over单步执行（F10）</li>
-<li>Step Into进入函数（F11）</li>
-<li>Step Out退出函数（⇧F11）</li>
-<li>Restart重新调试（⇧⌘F5）</li>
-<li>Stop停止调试（⇧F5）</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><ul>
-<li>Watch：监控</li>
-<li>Call stack：函数调用栈</li>
-<li>Debug console：用来输入命令</li>
-</ul>
-<h3 id="条件断点：Conditional-breakpoints"><a href="#条件断点：Conditional-breakpoints" class="headerlink" title="条件断点：Conditional breakpoints"></a>条件断点：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9lZGl0b3IvZGVidWdnaW5nI19jb25kaXRpb25hbC1icmVha3BvaW50cw==">Conditional breakpoints<i class="fa fa-external-link-alt"></i></span></h3><ul>
-<li><strong>条件表达式Expression condition</strong>：表达式成立的时候会断点</li>
-<li><strong>执行次数Hit count</strong>：执行了多少次才会断点</li>
-</ul>
-<p><img src="/images/vscode/hitCount.gif"></p>
-<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><h3 id="如何实现格式化？"><a href="#如何实现格式化？" class="headerlink" title="如何实现格式化？"></a>如何实现格式化？</h3><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY3BwLWlkZSNfY29kZS1mb3JtYXR0aW5n">https://code.visualstudio.com/docs/cpp/cpp-ide#_code-formatting<i class="fa fa-external-link-alt"></i></span></p>
-<p>Clang-format：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0Lmh0bWw=">https://clang.llvm.org/docs/ClangFormat.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>MS和LLVM的格式化都是使用的clang-format</p>
-<ul>
-<li>MS的C/C++插件：是把clang-format程序下载到本地电脑</li>
-<li>LLVM的clangd插件：集成到了语言服务程序clangd里面</li>
-<li>本质上都是调用了类似于<code>clang-format -i $&#123;file_name&#125;</code>这样的命令：写个脚本格式代整个项目</li>
-</ul>
-<h3 id="clang-format配置文件"><a href="#clang-format配置文件" class="headerlink" title=".clang-format配置文件"></a><code>.clang-format</code>配置文件</h3><p><strong>Clangd找配置文件的顺序：</strong></p>
-<ol>
-<li>先去同级目录找：<code>./.clang-format</code> （使用三方库，有的库会自带）</li>
-<li>去父级目录找 –&gt; 项目根目录找：<code>$&#123;project_root&#125;/.clang-format</code>（自己项目开发需要）</li>
-<li>去用户根目录下找：<code>~/.clang-format</code>（自己写代码方便，不用每次去copy一份到项目里面来）</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ clang-format -style=llvm -dump-config &gt; .clang-format</span><br></pre></td></tr></table></figure>
-
-<p>选项详细文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0U3R5bGVPcHRpb25zLmh0bWw=">https://clang.llvm.org/docs/ClangFormatStyleOptions.html<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>Note：配置在使用的时候可能会遇到选项兼容性的问题；clang-format新版本会更新增加选项，如果新版本的.clang-format给到老版本的qt creator使用可能会遇到兼容性的问题；需要升级clang-format，qt creator使用新版本的clang-format</p>
-</blockquote>
-<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>Clang-tidy：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Addresssanitizer"><a href="#Addresssanitizer" class="headerlink" title="Addresssanitizer"></a>Addresssanitizer</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">https://github.com/google/sanitizers/wiki/AddressSanitizer<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlckZyZWU=">Use after free<i class="fa fa-external-link-alt"></i></span> (dangling pointer dereference)</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVIZWFwT3V0T2ZCb3VuZHM=">Heap buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVTdGFja091dE9mQm91bmRz">Stack buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVHbG9iYWxPdXRPZkJvdW5kcw==">Global buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclJldHVybg==">Use after return<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclNjb3Bl">Use after scope<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckluaXRpYWxpemF0aW9uT3JkZXJGaWFzY28=">Initialization order bugs<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckxlYWtTYW5pdGl6ZXI=">Memory leaks<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><h3 id="相关插件安装"><a href="#相关插件安装" class="headerlink" title="相关插件安装"></a>相关插件安装</h3><blockquote>
-<p>Note: 下面格式<code>C/C++ / ms-vscode.cpptools</code>，用<code>/</code>分隔，左边是插件名，右边是插件ID；用插件ID在VSCode搜索更加准确</p>
-</blockquote>
-<p>推荐插件安装列表：</p>
-<ul>
-<li>c/c++语言服务插件: <strong>（新手【不懂lsp的】不要乱装其他相关的c/c++插件，下面二者开启一个即可；如果同时开启，LLVM会把Macrosoft的禁用掉）</strong><ul>
-<li>LLVM：clangd/llvm-vs-code-extensions.vscode-clangd （<strong>LInux平台推荐</strong>）</li>
-<li>Macrosoft：C/C++ / ms-vscode.cpptools （<strong>Windows平台推荐</strong>）</li>
-</ul>
-</li>
-<li>Debug插件:CodeLLDB/vadimcn.vscode-lldb</li>
-<li>cmake语法插件:CMake/twxs.cmake</li>
-<li>cmake tools插件:CMake Tools/ms-vscode.cmake-tools</li>
-<li>一键运行单个文件插件:Code Runner/formulahendry.code-runner</li>
-<li>自动生成注释结构:Doxygen Documentation Generator/cschlosser.doxdocgen</li>
-<li>git增强插件:GitLens — Git supercharged/eamodio.gitlens</li>
-<li>git ignore插件:gitignore/codezombiech.gitignore</li>
-<li>错误增强显示插件:Error Lens/usernamehw.errorlens</li>
-<li>图标增强:vscode-icons/vscode-icons-team.vscode-icons</li>
-</ul>
-<p>命令一次性安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ code --install-extension</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>VSCode</category>
-      </categories>
-      <tags>
-        <tag>VSCode</tag>
-        <tag>C</tag>
-        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>

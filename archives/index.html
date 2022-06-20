@@ -231,6 +231,166 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/06/17/Git-internal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/17/Git-internal/" class="post-title-link" itemprop="url">【Git】Git内部原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-16 22:46:26" itemprop="dateCreated datePublished" datetime="2022-06-16T22:46:26Z">2022-06-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/06/17/Git-internal/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/06/17/Git-internal/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Git官网：<span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">https://git-scm.com/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Git：How-it-works"><a href="#Git：How-it-works" class="headerlink" title="Git：How it works?"></a>Git：How it works?</h2><h3 id="版本控制系统VCS"><a href="#版本控制系统VCS" class="headerlink" title="版本控制系统VCS"></a>版本控制系统VCS</h3><blockquote>
+<p>Git is a <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9hYm91dC9mcmVlLWFuZC1vcGVuLXNvdXJjZQ==">free and open source<i class="fa fa-external-link-alt"></i></span> distributed <strong>version control system</strong> designed to handle everything from small to very large projects with speed and efficiency.</p>
+</blockquote>
+<p><strong>版本控制系统</strong>：是一种<strong>记录一个或若干文件内容变化</strong>，以便将来查阅特定版本修订情况的系统</p>
+<img src="/images/git/image-20220619223106119.png" style="zoom:50%;" />
+
+<h3 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h3><p><strong>项目里的文件/目录怎么存？存在哪里？怎么去检索？</strong></p>
+<p>以Git对象（文件内容对象、目录对象、提交对象）方式存储；本地存放在.<code>git</code>目录；通过<code>Hash Code</code>去检索</p>
+<p>根本上来讲：Git 是一个内容寻址 (content-addressable)<strong>文件系统</strong>。可以理解成：Git一个<code>Key-Value</code>数据库</p>
+<ul>
+<li>Key：Hash Code，就是查看git日志里面的一串码（hash算法基于<code>内容</code>计算出来）</li>
+<li>Value：Git对象（文件对象blob，目录对象tree，提交对象commit）</li>
+</ul>
+<h3 id="Git项目目录"><a href="#Git项目目录" class="headerlink" title="Git项目目录"></a>Git项目目录</h3><img src="/images/git/image-20220619231000986.png" style="zoom:40%;" />
+
+<h4 id="仓库-git目录介绍"><a href="#仓库-git目录介绍" class="headerlink" title="仓库.git目录介绍"></a>仓库<code>.git</code>目录介绍</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tree .git         <span class="comment"># 输出:有省略部分内容</span></span><br><span class="line">.git</span><br><span class="line">├── HEAD            <span class="comment"># 记录工作区的代码版本</span></span><br><span class="line">├── config          <span class="comment"># 项目配置</span></span><br><span class="line">├── objects         <span class="comment"># Git对象存储目录(核心目录)</span></span><br><span class="line">└── refs            <span class="comment"># 引用：存放分支、远程分析、Tags</span></span><br><span class="line">    ├── heads       <span class="comment"># 本地分支存放的目录</span></span><br><span class="line">    │   └── master</span><br><span class="line">    ├── remotes</span><br><span class="line">    │   └── origin</span><br><span class="line">    └── tags</span><br></pre></td></tr></table></figure>
+
+<h2 id="底层命令和高层命令"><a href="#底层命令和高层命令" class="headerlink" title="底层命令和高层命令"></a>底层命令和高层命令</h2><p>Git最开始工具集（多个命令工具），后面整合改成了git的子命令</p>
+<ul>
+<li><strong>高层命令</strong>：简单的理解成，工作常用的这些命令：<code>init</code>、<code>clone</code>、<code>add</code>、<code>commit</code>、<code>push</code>、<code>pull</code>、<code>checkout</code>……</li>
+<li><strong>底层命令</strong>：可以去操作Git的KV数据库，完成底层工作的命令：<code>cat-file</code>、<code>hash-object</code>、<code>write-tree</code>、<code>commit-tree</code></li>
+</ul>
+<h3 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h3><p>高层命令会去调用条底层命令；底层命令可以窥探 Git 内部的工作机制，通过底层命令帮助理解Git是如何运作的</p>
+<blockquote>
+<p>Note：后面会通过使用底层命令完成高层命令的工作流（<code>init</code>、<code>add</code>、<code>commit</code>、<code>log</code>），来理解Git内容原理</p>
+</blockquote>
+<h2 id="Git-对象"><a href="#Git-对象" class="headerlink" title="Git 对象"></a>Git 对象</h2><p>核心Git对象类型：</p>
+<ul>
+<li>文件内容对象<code>blob</code>：文件内容</li>
+<li>目录对象<code>tree</code>：可包含文件或目录</li>
+<li>提交对象<code>commit</code>：包含目录和其它信息（<code>git log</code>内容)</li>
+</ul>
+<h3 id="底层命令cat-file"><a href="#底层命令cat-file" class="headerlink" title="底层命令cat-file"></a>底层命令<code>cat-file</code></h3><p>用于查看Git对象：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git cat-file -t <span class="variable">$&#123;hash_code&#125;</span>  <span class="comment"># 查看Git对象的类型</span></span><br><span class="line">$ git cat-file -p <span class="variable">$&#123;hash_code&#125;</span>  <span class="comment"># 查看Git对象的内容</span></span><br><span class="line">$ git cat-file -s <span class="variable">$&#123;hash_code&#125;</span>  <span class="comment"># 查看Git对象的大小</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="项目准备git-init"><a href="#项目准备git-init" class="headerlink" title="项目准备git init"></a>项目准备<code>git init</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> git_demo &amp;&amp; <span class="built_in">cd</span> git_demo                 <span class="comment"># 创建项目目录</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">mkdir</span> .git                                    <span class="comment"># 创建.git目录</span></span><br><span class="line">$ <span class="built_in">mkdir</span> .git/objects                            <span class="comment"># 创建Git数据库目录</span></span><br><span class="line">$ <span class="built_in">mkdir</span> -p .git/refs/heads                      <span class="comment"># 创建本地分支目录</span></span><br><span class="line">$ <span class="built_in">touch</span> .git/HEAD                               <span class="comment"># 创建Git工作区文件</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;ref: refs/heads/master&quot;</span> &gt; .git/HEAD     <span class="comment"># 指定当前工作区是指向master分支</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Git文件内容对象Blob："><a href="#Git文件内容对象Blob：" class="headerlink" title="Git文件内容对象Blob："></a>Git文件内容对象Blob：</h3><p>文件内容，在项目代码里面指代码内容；不包含文件名，文件名保存在Tree对象中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git hash-object <span class="variable">$&#123;file_name&#125;</span>                  <span class="comment"># 计算文件内容的Hash Code</span></span><br><span class="line">$ git hash-object -w <span class="variable">$&#123;file_name&#125;</span>               <span class="comment"># 计算文件内容的Hash Code，并写入Git对象存储目录</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;hello git&quot;</span> | git hash-object --stdin    <span class="comment"># 从标准输入 计算内容的Hash Code</span></span><br><span class="line"></span><br><span class="line">$ git cat-file -t <span class="variable">$&#123;hash_code&#125;</span>                  <span class="comment"># 查看Git对象的类型</span></span><br><span class="line">$ git cat-file -p <span class="variable">$&#123;hash_code&#125;</span>                  <span class="comment"># 查看Git对象的内容</span></span><br><span class="line">$ git cat-file -s <span class="variable">$&#123;hash_code&#125;</span>                  <span class="comment"># 查看Git对象的大小</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Git树对象Tree："><a href="#Git树对象Tree：" class="headerlink" title="Git树对象Tree："></a>Git树对象Tree：</h3><p>目录：包含Blob对象，以及Tree对象</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git update-index --add <span class="variable">$&#123;file_name&#125;</span>           <span class="comment"># 将文件添加到暂存区</span></span><br><span class="line">$ git write-tree                                <span class="comment"># 从暂存区创建树对象（root跟目录树对象）</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>read-tree</code> ：可以把树对象读入暂存区</li>
+</ul>
+<h3 id="Git提交对象Commit："><a href="#Git提交对象Commit：" class="headerlink" title="Git提交对象Commit："></a>Git提交对象Commit：</h3><p>基本就是用<code>git log</code>可以看到的内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit-tree <span class="variable">$&#123;tree_hash&#125;</span> -m <span class="variable">$&#123;commit_message&#125;</span>                             <span class="comment"># 创建提交对象；第一次提交</span></span><br><span class="line">$ git commit-tree <span class="variable">$&#123;tree_hash&#125;</span> -m <span class="variable">$&#123;commit_message&#125;</span> -p <span class="variable">$&#123;parent_commit_hash&#125;</span>    <span class="comment"># 创建提交对象；第二次提交</span></span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">log</span> --<span class="built_in">stat</span> <span class="variable">$&#123;commit_hash&#125;</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;commit_hash&#125;</span>&quot;</span> &gt; .git/heads/master                                     <span class="comment"># 指定master分支指向的提交对象</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Git存储结构图"><a href="#Git存储结构图" class="headerlink" title="Git存储结构图"></a>Git存储结构图</h2><img src="/images/git/image-20220621000919872.png" style="zoom:50%;" />
+
+<h3 id="对象存储"><a href="#对象存储" class="headerlink" title="对象存储"></a>对象存储</h3><p> Git 是如何存储其对象（blob对象、tree对象、commit对象）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># store = header + content</span></span><br><span class="line">blob 16\u0000what is up, doc?</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>存储格式：<code>header + content</code>，比如：”blob 16\u0000what is up, doc?”<ul>
+<li><code>header</code>格式：比如文件<code>blob #&#123;content.length&#125;\0</code></li>
+</ul>
+</li>
+<li>对内容计算SHA1</li>
+<li>用zlib压缩内容</li>
+<li>用前面计算出来的SHA1，创建目录和文件</li>
+<li>把内容写到文件中去</li>
+</ul>
+<h2 id="理解分支、Tag是如何实现的？"><a href="#理解分支、Tag是如何实现的？" class="headerlink" title="理解分支、Tag是如何实现的？"></a>理解分支、Tag是如何实现的？</h2><p>就是<code>.git</code>目录下的一个文件，文件名就是分支名，文件内容就是该分支的最后一个<code>Commit</code>对象；比如：<code>dev</code>分支文件<code>.git/heads/dev</code></p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref:"></a>Ref:</h2><ul>
+<li>Git Internals：<span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL0dpdC1JbnRlcm5hbHMtR2l0LU9iamVjdHM=">https://git-scm.com/book/en/v2/Git-Internals-Git-Objects<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/05/08/KK-103-Bits-of-Advice-I-Wish-I-Had-Known/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -25886,30 +26046,21 @@
 </ul>
 <p>proc 文件系统。它是一种内核空间和用户空间进行通信的机制，可以用来查看内核的数据结构，或者用来动态修改内核的配置</p>
 <h2 id="套路篇：如何迅速分析出系统CPU的瓶颈在哪里？"><a href="#套路篇：如何迅速分析出系统CPU的瓶颈在哪里？" class="headerlink" title="套路篇：如何迅速分析出系统CPU的瓶颈在哪里？"></a>套路篇：如何迅速分析出系统CPU的瓶颈在哪里？</h2><h3 id="CPU-性能指标"><a href="#CPU-性能指标" class="headerlink" title="CPU 性能指标"></a>CPU 性能指标</h3><ul>
-<li><p>CPU 使用率</p>
-<ul>
-<li><p>用户 CPU 使用率，包括用户态 CPU 使用率（user）和低优先级用户态 CPU 使用率（nice），表示 CPU 在用户态运行的时间百分比。用户 CPU 使用率高，通常说明有应用程序比较繁忙。</p>
-</li>
-<li><p>系统 CPU 使用率，表示 CPU 在内核态运行的时间百分比（不包括中断）。系统 CPU 使用率高，说明内核比较繁忙。</p>
-</li>
-<li><p>等待 I/O 的 CPU 使用率，通常也称为 iowait，表示等待 I/O 的时间百分比。iowait 高，通常说明系统与硬件设备的 I/O 交互时间比较长。</p>
-</li>
-<li><p>软中断和硬中断的 CPU 使用率，分别表示内核调用软中断处理程序、硬中断处理程序的时间百分比。它们的使用率高，通常说明系统发生了大量的中断。</p>
-</li>
-<li><p>除了上面这些，还有在虚拟化环境中会用到的窃取 CPU 使用率（steal）和客户 CPU 使用率（guest），分别表示被其他虚拟机占用的 CPU 时间百分比，和运行客户虚拟机的 CPU 时间百分比。</p>
-</li>
+<li>CPU 使用率<ul>
+<li>用户 CPU 使用率，包括用户态 CPU 使用率（user）和低优先级用户态 CPU 使用率（nice），表示 CPU 在用户态运行的时间百分比。用户 CPU 使用率高，通常说明有应用程序比较繁忙。</li>
+<li>系统 CPU 使用率，表示 CPU 在内核态运行的时间百分比（不包括中断）。系统 CPU 使用率高，说明内核比较繁忙。</li>
+<li>等待 I/O 的 CPU 使用率，通常也称为 iowait，表示等待 I/O 的时间百分比。iowait 高，通常说明系统与硬件设备的 I/O 交互时间比较长。</li>
+<li>软中断和硬中断的 CPU 使用率，分别表示内核调用软中断处理程序、硬中断处理程序的时间百分比。它们的使用率高，通常说明系统发生了大量的中断。</li>
+<li>除了上面这些，还有在虚拟化环境中会用到的窃取 CPU 使用率（steal）和客户 CPU 使用率（guest），分别表示被其他虚拟机占用的 CPU 时间百分比，和运行客户虚拟机的 CPU 时间百分比。</li>
 </ul>
 </li>
-<li><p>应该是平均负载（Load Average），也就是系统的平均活跃进程数</p>
-</li>
-<li><p>进程上下文切换</p>
-<ul>
+<li>应该是平均负载（Load Average），也就是系统的平均活跃进程数</li>
+<li>进程上下文切换<ul>
 <li>无法获取资源而导致的自愿上下文切换；</li>
 <li>被系统强制调度导致的非自愿上下文切换。</li>
 </ul>
 </li>
-<li><p>CPU 缓存的命中率</p>
-</li>
+<li>CPU 缓存的命中率</li>
 </ul>
 <h3 id="性能工具"><a href="#性能工具" class="headerlink" title="性能工具"></a>性能工具</h3><img src="/images/linux_systems_performance/image-20220410152155659.png" style="zoom:50%;" />
 
@@ -25923,12 +26074,9 @@
 <img src="/images/linux_systems_performance/image-20220410152319477.png" style="zoom:50%;" />
 
 <h3 id="性能优化方法论"><a href="#性能优化方法论" class="headerlink" title="性能优化方法论"></a>性能优化方法论</h3><ul>
-<li><p>首先，既然要做性能优化，那要怎么判断它是不是有效呢？特别是优化后，到底能提升多少性能呢？</p>
-</li>
-<li><p>第二，性能问题通常不是独立的，如果有多个性能问题同时发生，你应该先优化哪一个呢？</p>
-</li>
-<li><p>第三，提升性能的方法并不是唯一的，当有多种方法可以选择时，你会选用哪一种呢？是不是总选那个最大程度提升性能的方法就行了呢？</p>
-</li>
+<li>首先，既然要做性能优化，那要怎么判断它是不是有效呢？特别是优化后，到底能提升多少性能呢？</li>
+<li>第二，性能问题通常不是独立的，如果有多个性能问题同时发生，你应该先优化哪一个呢？</li>
+<li>第三，提升性能的方法并不是唯一的，当有多种方法可以选择时，你会选用哪一种呢？是不是总选那个最大程度提升性能的方法就行了呢？</li>
 </ul>
 <h3 id="怎么评估性能优化的效果？"><a href="#怎么评估性能优化的效果？" class="headerlink" title="怎么评估性能优化的效果？"></a>怎么评估性能优化的效果？</h3><ul>
 <li>确定性能的量化指标。</li>
@@ -26228,404 +26376,6 @@
 </blockquote>
 <h2 id="CS模式，暴露接口"><a href="#CS模式，暴露接口" class="headerlink" title="CS模式，暴露接口"></a>CS模式，暴露接口</h2><p>这种很常见，一般本机就用的Domain socket，跨主机就走Net Socket，及其它应用层协议Http、WebSocket、MQTT、RPC<br>比如本地的docker就同时暴露了Domain Socket：<code>unix:///var/run/docker.sock</code>和Net Socket：<code>tcp://0.0.0.0:2375</code>，来去和它通讯，发指定过去</p>
 <img src="/images/program/image-20220311000253751.png" alt="image-20220311000253751.png" style="zoom:50%;" />
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/03/01/CS-110L-Safety-in-Systems-Programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/01/CS-110L-Safety-in-Systems-Programming/" class="post-title-link" itemprop="url">【Rust】CS 110L: Safety in Systems Programming记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-02-28 23:01:59" itemprop="dateCreated datePublished" datetime="2022-02-28T23:01:59Z">2022-02-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/03/01/CS-110L-Safety-in-Systems-Programming/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/03/01/CS-110L-Safety-in-Systems-Programming/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>前两周刷了下斯坦福公开课：CS 110L: Safety in Systems Programming，笔记记录下</p>
-</blockquote>
-<p><strong>课程地址：</strong></p>
-<ul>
-<li>2020 B站搬运：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVJhNDExQTdrTg==">https://www.bilibili.com/video/BV1Ra411A7kN<i class="fa fa-external-link-alt"></i></span></li>
-<li>2020：<span class="exturl" data-url="aHR0cHM6Ly9yZWJlcmhhcmR0LmNvbS9jczExMGwvc3ByaW5nLTIwMjAv">https://reberhardt.com/cs110l/spring-2020/<i class="fa fa-external-link-alt"></i></span></li>
-<li>2021：<span class="exturl" data-url="aHR0cHM6Ly9yZWJlcmhhcmR0LmNvbS9jczExMGwvc3ByaW5nLTIwMjEv">https://reberhardt.com/cs110l/spring-2021/<i class="fa fa-external-link-alt"></i></span></li>
-<li>2022：<span class="exturl" data-url="aHR0cHM6Ly93ZWIuc3RhbmZvcmQuZWR1L2NsYXNzL2NzMTEwbC8=">https://web.stanford.edu/class/cs110l/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="Program-Analysis程序分析"><a href="#Program-Analysis程序分析" class="headerlink" title="Program Analysis程序分析"></a>Program Analysis程序分析</h2><p>How can we find bugs in a program?</p>
-<ul>
-<li>Dynamic Analysis</li>
-<li>Fuzzing test</li>
-<li>Static Analysis</li>
-</ul>
-<h3 id="Dynamic-Analysis动态分析"><a href="#Dynamic-Analysis动态分析" class="headerlink" title="Dynamic Analysis动态分析"></a>Dynamic Analysis动态分析</h3><ul>
-<li>Valgrind</li>
-<li>LLVM Sanitizers<ul>
-<li>AddressSanitizer：out of bounds memory accesses, double free, use after free</li>
-<li>LeakSanitizer：memory leaks</li>
-<li>MemorySanitizer：use of uninitialized memory</li>
-<li>UndefinedBehaviorSanitizer：usage of null pointers, integer/float overflow, etc</li>
-<li>ThreadSanitizer：improper usage of threads</li>
-</ul>
-</li>
-</ul>
-<h3 id="Fuzzing-test模糊测试"><a href="#Fuzzing-test模糊测试" class="headerlink" title="Fuzzing test模糊测试"></a>Fuzzing test模糊测试</h3><ul>
-<li>Most common fuzzers: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9BRkw=">AFL<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly9sbHZtLm9yZy9kb2NzL0xpYkZ1enplci5odG1s">libfuzzer<i class="fa fa-external-link-alt"></i></span></li>
-<li>Google <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9vc3MtZnV6eg==">OSS-Fuzz<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h3 id="Static-Analysis静态分析"><a href="#Static-Analysis静态分析" class="headerlink" title="Static Analysis静态分析"></a>Static Analysis静态分析</h3><ul>
-<li>Common C/C++ linter: <span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">clang-tidy<i class="fa fa-external-link-alt"></i></span></li>
-<li>Dataflow analysis</li>
-</ul>
-<h2 id="Memory-Safety-in-Rust"><a href="#Memory-Safety-in-Rust" class="headerlink" title="Memory Safety in Rust"></a>Memory Safety in Rust</h2><h3 id="题外话：语言和编译器"><a href="#题外话：语言和编译器" class="headerlink" title="题外话：语言和编译器"></a>题外话：语言和编译器</h3><ul>
-<li>在C和C++中，我们通过推理和测试来知道内存错误</li>
-<li>语言和编译器没有帮助我们太多</li>
-<li>为了更容易地推理程序，Rust 对您可以编写的程序进行了一些限制<ul>
-<li>这可能很烦。。。</li>
-<li>但它也给了我们一些很好的保证！</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Note：这个“很烦”，是对于那边不理解内部（内存）发生了什么的人而言的。会让不知道自己在干什么的程序员不出能运行的代码</p>
-</blockquote>
-<h3 id="常见内存问题："><a href="#常见内存问题：" class="headerlink" title="常见内存问题："></a>常见内存问题：</h3><ul>
-<li>Memory Leaks</li>
-<li>Double Frees</li>
-<li>Dangling Pointers</li>
-<li>Iterator Invalidation</li>
-</ul>
-<h3 id="什么是良好的代码？"><a href="#什么是良好的代码？" class="headerlink" title="什么是良好的代码？"></a>什么是良好的代码？</h3><ul>
-<li>前置/后置条件对于将代码分解为具有明确定义的接口的小块至关重要</li>
-<li>开发者的职责则是维护好这些前置/后置条件</li>
-</ul>
-<h3 id="良好的内存管理"><a href="#良好的内存管理" class="headerlink" title="良好的内存管理"></a>良好的内存管理</h3><ul>
-<li>在任何复杂的程序中，内存应该释放在哪里？<ul>
-<li>释放得太早，代码的其他部分可能仍在使用指向该内存的指针，会有Dangling Pointers</li>
-<li>如果没有在任何地方释放，会有Memory Leaks</li>
-</ul>
-</li>
-<li>良好的C/C++代码将清楚地定义内存是如何传递的，以及”谁”负责清理内存</li>
-<li>如果您阅读C/C++代码，您将在注释中看到“所有权”的概念，其中“所有者”负责内存</li>
-</ul>
-<h3 id="Type-systems类型系统"><a href="#Type-systems类型系统" class="headerlink" title="Type systems类型系统"></a>Type systems类型系统</h3><h3 id="Ownership所有权"><a href="#Ownership所有权" class="headerlink" title="Ownership所有权"></a>Ownership所有权</h3><h3 id="Borrowing借用"><a href="#Borrowing借用" class="headerlink" title="Borrowing借用"></a>Borrowing借用</h3><h3 id="Ownership-Rules所有权规则"><a href="#Ownership-Rules所有权规则" class="headerlink" title="Ownership Rules所有权规则"></a><span class="exturl" data-url="aHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9ib29rL2NoMDQtMDEtd2hhdC1pcy1vd25lcnNoaXAuaHRtbCNvd25lcnNoaXAtcnVsZXM=">Ownership Rules<i class="fa fa-external-link-alt"></i></span>所有权规则</h3><p>First, let’s take a look at the ownership rules. Keep these rules in mind as we work through the examples that illustrate them:</p>
-<ul>
-<li>Each value in Rust has a variable that’s called its <em>owner</em>.</li>
-<li>There can only be one owner at a time.</li>
-<li>When the owner goes out of scope, the value will be dropped.</li>
-</ul>
-<blockquote>
-<p>The ownership and borrowing rules are enforced at compile time!</p>
-</blockquote>
-<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h3><ul>
-<li>在rust里面，每一块内存都由一个变量/函数”拥有”<ul>
-<li>所有权在代码中都是“显示的”（对比C/C++，“所有权”的描述在函数描述中）</li>
-<li>当所有者出了scope范围，编译器会插入代码去释放内存</li>
-</ul>
-</li>
-<li>因为有了所有权模型，你就不会犯如下错误：<ul>
-<li>Memory leaks</li>
-<li>Double frees</li>
-<li>Use-after-frees</li>
-<li>Other memory errors — next class!</li>
-</ul>
-</li>
-</ul>
-<h2 id="Ownership-Continued"><a href="#Ownership-Continued" class="headerlink" title="Ownership Continued"></a>Ownership Continued</h2><h3 id="Ownership"><a href="#Ownership" class="headerlink" title="Ownership"></a>Ownership</h3><h3 id="Ownership-in-Memory"><a href="#Ownership-in-Memory" class="headerlink" title="Ownership in Memory"></a>Ownership in Memory</h3><ul>
-<li>当我们到达范围的末尾（由大括号指定）时，将调用<code>Drop</code>函数。</li>
-<li>可以认为这是一个特殊函数，可以正确释放整个对象</li>
-<li>类似于C++中的析构函数</li>
-<li>具有 Rust Drop 特征的类型，有要调用的 Drop 函数</li>
-</ul>
-<h3 id="Clone-function"><a href="#Clone-function" class="headerlink" title="Clone function"></a>Clone function</h3><ul>
-<li><p>在rust中，有些值不会使用堆上的内存，他们直接存放在栈上（整型，布尔型，其他…）</p>
-<ul>
-<li> 对于这些类型，赋值拷贝是全拷贝</li>
-</ul>
-</li>
-<li><p>当赋值时，那些只需要栈上存储的对象，默认一般会被拷贝</p>
-<ul>
-<li> Types with this property have the <strong>Copy</strong> trait.</li>
-<li> Instead of transferring ownership, ‘=‘ operator for assignment (e.g., <code>let ryan = julio</code>) will create a copy</li>
-</ul>
-</li>
-<li><p> 如果类型实现了 <strong>Copy</strong> trait, Rust不会让它实现 <strong>Drop</strong> trait</p>
-</li>
-</ul>
-<h3 id="Borrowing"><a href="#Borrowing" class="headerlink" title="Borrowing"></a>Borrowing</h3><h3 id="Variables-Rules-in-Rust"><a href="#Variables-Rules-in-Rust" class="headerlink" title="Variables Rules in Rust"></a>Variables Rules in Rust</h3><ul>
-<li>在Rust，所有数据片段（变量）默认都是不可变的</li>
-<li>相当于每个变量都隐式的加了<code>cosnt</code>（只给数据所需要的权限）</li>
-<li>这<code>mut</code> 关键字用来指定这个数据的变量能改变，和<code>const</code>相反</li>
-<li>如果变量没有<code>mut</code>关键字，并且你修改了这个数据，Rust的编译器不会让你编译通过</li>
-</ul>
-<h3 id="“Borrowing-Type”-References"><a href="#“Borrowing-Type”-References" class="headerlink" title="“Borrowing Type” == References"></a>“Borrowing Type” == References</h3><h3 id="Code-Immutable-Mutable-References"><a href="#Code-Immutable-Mutable-References" class="headerlink" title="Code: Immutable + Mutable References"></a>Code: Immutable + Mutable References</h3><h3 id="References-Rules"><a href="#References-Rules" class="headerlink" title="References Rules"></a>References Rules</h3><ul>
-<li>对于不可变引用：在scope内，可以同时有多个不可变引用</li>
-<li>对于可变引用：在scope内，同时只能有一个可变引用</li>
-</ul>
-<blockquote>
-<p>Note: 如果你创建了一个reference, 这个原始的变量是：</p>
-<ul>
-<li>如果这个引用是可变的：原始变量会暂时不可用</li>
-<li>如果这个引用是不可变的：原始变量会暂时不可变？？？怎么理解，不是本来就不能变吗？也还有其它情况：内部可变</li>
-</ul>
-</blockquote>
-<h3 id="回顾："><a href="#回顾：" class="headerlink" title="回顾："></a>回顾：</h3><ul>
-<li>使用所有权和借用规则，可以避免很多内存错误</li>
-<li>编译器对代码会有很多限制，对程序员的要求高，写程序时会与编译器做斗争</li>
-</ul>
-<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><h3 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h3><ul>
-<li>缺乏适当的错误处理</li>
-<li>使用 NULL 代替实际值</li>
-</ul>
-<h3 id="Error-handling-in-C"><a href="#Error-handling-in-C" class="headerlink" title="Error handling in C"></a>Error handling in C</h3><ul>
-<li>如果函数可能遇到错误，则其返回类型为 int（有时为 void*）</li>
-<li>如果函数成功，则返回 0。否则，如果遇到错误，则返回 -1</li>
-<li>遇到错误的函数将全局变量 errno 设置为指示出错之处的整数。如果调用方看到函数返回 -1 或 NULL，它可以检查 errno 以查看遇到什么错误</li>
-</ul>
-<h3 id="关键点："><a href="#关键点：" class="headerlink" title="关键点："></a>关键点：</h3><ul>
-<li>不同的返回值可能性表示成功+不同类型的错误</li>
-<li>错误都记录在文档页面和/或标题注释中</li>
-<li>所有这些都只是整数</li>
-<li>调用者必须记得处理所有情况</li>
-</ul>
-<h3 id="Error-handling-in-C-and-many-other-languages"><a href="#Error-handling-in-C-and-many-other-languages" class="headerlink" title="Error-handling in C++(and many other languages)"></a>Error-handling in C++(and many other languages)</h3><h4 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h4><p><strong>对 C 样式错误处理的重大改进：</strong></p>
-<ul>
-<li>不必在调用可能产生错误的函数时每次编写错误传播代码</li>
-<li>错误不会被忽视或遗漏</li>
-</ul>
-<h3 id="Error-handling-in-Rust-Enums"><a href="#Error-handling-in-Rust-Enums" class="headerlink" title="Error handling in Rust: Enums"></a>Error handling in Rust: Enums</h3><p>更好的错误处理: Enums</p>
-<ul>
-<li>枚举(enumeration) 是一种可以包含多个<em>变体</em>之一的类型</li>
-<li>Rust：<em>match</em> 表达式就像 C/C++/Java 中的 switch 语句，除了必须涵盖所有可能的变体</li>
-<li>如果您只对少数几种错误情况感兴趣，可以使用默认绑定来捕获所有其他情况</li>
-<li>与大多数常见语言中的枚举不同，Rust 枚举可以存储任意数据!</li>
-<li>You can extract data from variants using a <strong>match</strong> expression:</li>
-</ul>
-<h3 id="Error-handling-in-Rust：Result"><a href="#Error-handling-in-Rust：Result" class="headerlink" title="Error handling in Rust：Result"></a>Error handling in Rust：Result</h3><ul>
-<li>如果我们使用枚举来清楚地表示成功的返回/错误会怎样？<ul>
-<li>如果这个函数运行成功，返回OK(value)</li>
-<li>如果有错误发生，返回Err(some error object)</li>
-</ul>
-</li>
-</ul>
-<h3 id="Comparison-to-C-errors"><a href="#Comparison-to-C-errors" class="headerlink" title="Comparison to C errors"></a>Comparison to C errors</h3><ul>
-<li>在C错误处理方面遇到了两个主要问题:<ul>
-<li>太容易遗漏错误</li>
-<li>正确的错误处理过于冗长</li>
-</ul>
-</li>
-<li>这解决了第一个问题：现在从函数签名中可以明显看出哪些函数可以返回错误，并且（由于枚举规则）编译器将验证您是否对返回的错误执行了某些操作</li>
-<li>第二个问题仍然是一个问题</li>
-</ul>
-<h3 id="Meet-the-operator"><a href="#Meet-the-operator" class="headerlink" title="Meet the ? operator"></a>Meet the ? operator</h3><ul>
-<li>假设我们有个函数：<code>helper_function() -&gt; Result&lt;T, E&gt;</code></li>
-<li><code>let val: T = helper_function()?</code>是什么意思:<ul>
-<li>如果<code>helper_function</code> 返回成功Ok(some value)，提取这个值设置给<code>val</code></li>
-<li>如果<code>helper_function</code> 返回失败Err(some error), 停止并返回/传播该错误</li>
-</ul>
-</li>
-</ul>
-<h3 id="Panics"><a href="#Panics" class="headerlink" title="Panics"></a>Panics</h3><ul>
-<li>什么样的错误，我们不希望去传递或处理？<ul>
-<li>严重的、无法恢复的错误</li>
-<li>们预计不会发生的错误，并且不想将精力投入到处理中</li>
-</ul>
-</li>
-<li><code>panic</code>宏会使程序立马崩溃，同时携带一些信息</li>
-<li>当返回成功时，<code>Result::unwrap()</code> 和 <code>Result::expect()</code> 允许我们去提取Ok中的值，如果返回Err，则会panic</li>
-</ul>
-<h3 id="unwrap-and-expect"><a href="#unwrap-and-expect" class="headerlink" title="unwrap() and expect()"></a><code>unwrap()</code> and <code>expect()</code></h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File::open returns Result: Ok(file) or Err(error)</span></span><br><span class="line"><span class="comment">// Unwrap means:</span></span><br><span class="line"><span class="comment">// - “if result is Ok: store value inside enum in `file`</span></span><br><span class="line"><span class="comment">// - “if result is Err (opening file failed): panic (crash program)” // Panic if opening a file fails:</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(filename).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"><span class="comment">// `expect` is the same as `unwrap`, but allows you to print a</span></span><br><span class="line"><span class="comment">// more descriptive error message when panicking.</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(filename).<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to open file&quot;</span>);</span><br><span class="line"><span class="comment">// One more example with `expect` — panic with a helpful error message</span></span><br><span class="line"><span class="comment">// if reading from standard input fails. (Nothing to return here.)</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">input</span> = String::<span class="title function_ invoke__">new</span>();</span><br><span class="line">io::<span class="title function_ invoke__">stdin</span>().<span class="title function_ invoke__">read_to_string</span>(&amp;<span class="keyword">mut</span> input).<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read from stdin”);</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Handling-nulls"><a href="#Handling-nulls" class="headerlink" title="Handling nulls"></a>Handling nulls</h3><p>NULL：十亿美元的错误</p>
-<blockquote>
-<p><strong>I call it my billion-dollar mistake.</strong> <em>It was</em> <strong>the invention of the null reference</strong> in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.</p>
-<p>- Tony Hoare</p>
-</blockquote>
-<h2 id="Custom-Types"><a href="#Custom-Types" class="headerlink" title="Custom Types"></a>Custom Types</h2><h3 id="Box-in-Rust"><a href="#Box-in-Rust" class="headerlink" title="Box in Rust"></a>Box in Rust</h3><ul>
-<li>Create a Box</li>
-<li>Box goes on the heap</li>
-<li>Anything can go in the box</li>
-<li>Box <em>owns</em> whatever is in the box. When box goes out of scope -&gt; value in box destroyed</li>
-<li><em>Same thing as</em> <em><span class="exturl" data-url="aHR0cHM6Ly9lbi5jcHByZWZlcmVuY2UuY29tL3cvY3BwL21lbW9yeS91bmlxdWVfcHRy">unique_ptr<i class="fa fa-external-link-alt"></i></span></em> <em>in C++:</em></li>
-</ul>
-<h3 id="Throwback-to-Options"><a href="#Throwback-to-Options" class="headerlink" title="Throwback to Options"></a>Throwback to Options</h3><h3 id="Chain-of-ownership"><a href="#Chain-of-ownership" class="headerlink" title="Chain of ownership"></a>Chain of ownership</h3><h3 id="Introducing-as-ref"><a href="#Introducing-as-ref" class="headerlink" title="Introducing as_ref()"></a>Introducing <code>as_ref()</code></h3><ul>
-<li>转换 <code>&amp;Option&lt;T&gt;</code> 成 <code>Option&lt;&amp;T&gt;</code></li>
-<li>如果<code>Option</code>内部是<code>None</code>，则返回<code>None</code></li>
-</ul>
-<h3 id="Notes-on-writing-Rust-Code"><a href="#Notes-on-writing-Rust-Code" class="headerlink" title="Notes on writing Rust Code"></a>Notes on writing Rust Code</h3><ul>
-<li>阅读编译器错误信息，它们通常非常有用</li>
-<li><code>rustc --explain</code>能获取到更多详细信息</li>
-<li>推荐使用<code>rust-analyzer</code>插件</li>
-</ul>
-<h3 id="Box"><a href="#Box" class="headerlink" title="Box"></a>Box</h3><ul>
-<li>Box类型存储一个指向heap内存的指针</li>
-<li>能放任何东西在Box里面</li>
-<li><code>Box::new(...)</code>分配内存并初始化</li>
-<li>Box <strong>drop</strong>函数释放heap上的内存<ul>
-<li>这个drop函数是自动的被编译器插入</li>
-</ul>
-</li>
-</ul>
-<h3 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h3><ul>
-<li>Create a new struct</li>
-<li>Creating methods for a struct</li>
-<li>Let’s make a constructor</li>
-<li>Let’s make a function</li>
-</ul>
-<h2 id="Garbage-collection"><a href="#Garbage-collection" class="headerlink" title="Garbage collection"></a>Garbage collection</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><ul>
-<li>C/C++有个问题：什么时候释放内存</li>
-<li>Rust: 使用类型系统来表示谁来释放内存，并让编译器检查一切是否正确</li>
-<li>更古老的方法：Garbage collection<ul>
-<li>写程序时，不用但心内存释放的问题</li>
-<li>程序运行时，runtime将观察内存何时不再使用，并为您释放内存</li>
-<li>不用手动的去管理内存</li>
-</ul>
-</li>
-</ul>
-<h3 id="Tracing-garbage-collection"><a href="#Tracing-garbage-collection" class="headerlink" title="Tracing garbage collection"></a>Tracing garbage collection</h3><h3 id="Downsides-of-garbage-collection垃圾收集的缺点"><a href="#Downsides-of-garbage-collection垃圾收集的缺点" class="headerlink" title="Downsides of garbage collection垃圾收集的缺点"></a>Downsides of garbage collection垃圾收集的缺点</h3><ul>
-<li>Expensive</li>
-<li>Disruptive：会打断正在做的事情，去做GC</li>
-<li>Non-deterministic：什么时候发生GC？不确定，取决于使用了多少内存</li>
-<li>Precludes manual optimization</li>
-</ul>
-<h3 id="Latency-matters延迟问题"><a href="#Latency-matters延迟问题" class="headerlink" title="Latency matters延迟问题"></a>Latency matters延迟问题</h3><ul>
-<li>User interfaces界面开发</li>
-<li>Games游戏</li>
-<li>Self-driving cars自动驾驶汽车</li>
-<li>Payment processing支付处理</li>
-<li>High frequency trading高频交易</li>
-</ul>
-<h3 id="Takeaways-1"><a href="#Takeaways-1" class="headerlink" title="Takeaways"></a>Takeaways</h3><ul>
-<li>当有意义的时候使用GC语言，但要知道它们的限制<ul>
-<li>如果花了很长时间来开发应用程序而没有人使用它，那么您节省了多少内存并不重要</li>
-<li>如果效率成为问题，您可以随时用其他语言重写某些组件</li>
-<li>GC 语言仍可能导致资源泄漏 — 文件描述符、数据库句柄、多线程代码中的争用条件等。</li>
-</ul>
-</li>
-<li>在资源受限或延迟敏感的环境中，GC可能不是一个可行的选择</li>
-</ul>
-<h3 id="Where-is-Rust-used"><a href="#Where-is-Rust-used" class="headerlink" title="Where is Rust used?"></a>Where is Rust used?</h3><ul>
-<li><p>内存安全：在手动管理内存方面，C和C++通常很烂</p>
-</li>
-<li><p>GC通常会消耗很多资源，还有延迟问题</p>
-</li>
-<li><p>Rust 仍在进行手动内存管理</p>
-<ul>
-<li><p>编译器为你做了很多工作</p>
-</li>
-<li><p>Rust 的类型系统旨在帮助我们传达我们期望的，以便编译器可以验证它们</p>
-</li>
-</ul>
-</li>
-<li><p>对于同时需要内存安全和资源效率/低延迟的应用程序，会注意到人们转向 Rust</p>
-</li>
-</ul>
-<h2 id="Object-Oriented-Programming-in-Rust-Traits"><a href="#Object-Oriented-Programming-in-Rust-Traits" class="headerlink" title="Object Oriented Programming in Rust: Traits"></a>Object Oriented Programming in Rust: Traits</h2><h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><h3 id="Advantages-to-Class-Design类设计的优势"><a href="#Advantages-to-Class-Design类设计的优势" class="headerlink" title="Advantages to Class Design类设计的优势"></a>Advantages to Class Design类设计的优势</h3><ul>
-<li>模块化：我们可以将大型系统分解为可管理的组件，这些组件提供清晰的接口，并且可以单独进行测试。</li>
-<li>封装：将相关数据和方法组合成一个”对象”。</li>
-<li>代码隐藏：不需要公开用户与类交互不需要的部分。</li>
-<li>代码重用：希望对象根据它所接收的文件而有所不同？将一个参数添加到其构造函数中，突然之间，就有了两个不同的实现，但只有一个类！</li>
-<li><em>Other things? What do you think?</em></li>
-</ul>
-<h3 id="Reusing-code-with-“inheritance”使用继承复用代码"><a href="#Reusing-code-with-“inheritance”使用继承复用代码" class="headerlink" title="Reusing code with “inheritance”使用继承复用代码"></a>Reusing code with “inheritance”使用继承复用代码</h3><h3 id="Inheritance继承"><a href="#Inheritance继承" class="headerlink" title="Inheritance继承"></a>Inheritance继承</h3><ul>
-<li>通过继承，我们能够在许多不同类型的对象上使用一种方法的相同实现，这些对象通过父子关系组合在一起</li>
-<li>子类继承所有方法和属性，它们能选择去覆写父类的函数</li>
-<li>Big concept in languages like Java</li>
-</ul>
-<h3 id="What-might-be-the-weaknesses-of-Inheritance-继承的缺点"><a href="#What-might-be-the-weaknesses-of-Inheritance-继承的缺点" class="headerlink" title="What might be the weaknesses of Inheritance?继承的缺点"></a>What might be the weaknesses of Inheritance?继承的缺点</h3><ul>
-<li>Inheritance Trees</li>
-</ul>
-<h3 id="Traits"><a href="#Traits" class="headerlink" title="Traits"></a>Traits</h3><p>How else can we decompose?</p>
-<h3 id="Traits-Overview"><a href="#Traits-Overview" class="headerlink" title="Traits Overview"></a>Traits Overview</h3><h3 id="Big-Standard-Rust-Traits"><a href="#Big-Standard-Rust-Traits" class="headerlink" title="Big Standard Rust Traits"></a>Big Standard Rust Traits</h3><ul>
-<li><strong>Copy</strong>: 当使用<code>=</code>时，会创建一个新的拷贝的实例，而不是转移所有权</li>
-<li><strong>Clone</strong>: 当调用<code>.clone()</code>函数时，会返回一个新的copy实例</li>
-<li><strong>Drop</strong>: 当变量超出了它的作用域，会定义一种释放实例内存的方法</li>
-<li><strong>Display</strong>: 当要显示它（比如使用println时），定义一种格式化的方法</li>
-<li><strong>Debug</strong>: 类似于Display</li>
-<li><strong>Eq</strong>: 确定一个类型的两个实例是否相等</li>
-<li><strong>PartialOrd</strong>: 定义实例比较的方法</li>
-</ul>
-<h3 id="Milestone-derive-Debug"><a href="#Milestone-derive-Debug" class="headerlink" title="Milestone: derive Debug"></a>Milestone: derive Debug</h3><h3 id="Milestone-functions-gt-traits"><a href="#Milestone-functions-gt-traits" class="headerlink" title="Milestone: functions -&gt; traits"></a>Milestone: functions -&gt; traits</h3><h2 id="Generics-in-Rust泛型"><a href="#Generics-in-Rust泛型" class="headerlink" title="Generics in Rust泛型"></a>Generics in Rust泛型</h2><h3 id="Consolidating-repetitive-code合并重用代码"><a href="#Consolidating-repetitive-code合并重用代码" class="headerlink" title="Consolidating repetitive code合并重用代码"></a>Consolidating repetitive code合并重用代码</h3><h3 id="Rust-generics-have-no-runtime-overhead没有运行时开销"><a href="#Rust-generics-have-no-runtime-overhead没有运行时开销" class="headerlink" title="Rust generics have no runtime overhead没有运行时开销"></a>Rust generics have no runtime overhead没有运行时开销</h3><p>编译时生成代码</p>
-<h3 id="Trait-bounds"><a href="#Trait-bounds" class="headerlink" title="Trait bounds"></a>Trait bounds</h3><p>限制类型</p>
-<h3 id="Generics-and-Data-Structures"><a href="#Generics-and-Data-Structures" class="headerlink" title="Generics and Data Structures"></a>Generics and Data Structures</h3><h3 id="Storing-different-types-together"><a href="#Storing-different-types-together" class="headerlink" title="Storing different types together"></a>Storing different types together</h3><p><code>Vec&lt;Box&lt;dyn Roar&gt;&gt;</code>：dynamic dispatch</p>
-<h3 id="Reflecting-on-Traits-vs-Inheritance"><a href="#Reflecting-on-Traits-vs-Inheritance" class="headerlink" title="Reflecting on Traits vs. Inheritance"></a>Reflecting on Traits vs. Inheritance</h3><h3 id="Traits-vs-Inheritance-thinking-about-tradeoffs权衡"><a href="#Traits-vs-Inheritance-thinking-about-tradeoffs权衡" class="headerlink" title="Traits vs. Inheritance: thinking about tradeoffs权衡"></a>Traits vs. Inheritance: thinking about tradeoffs权衡</h3><p>todo</p>
 
       
     </div>

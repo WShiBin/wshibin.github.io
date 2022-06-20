@@ -231,6 +231,101 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/29/Clang-tidy%E2%80%94%E2%80%94%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/29/Clang-tidy%E2%80%94%E2%80%94%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">【Tool】Clang-tidy——静态代码分析框架</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-29 10:42:22" itemprop="dateCreated datePublished" datetime="2021-08-29T10:42:22Z">2021-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/08/29/Clang-tidy%E2%80%94%E2%80%94%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/08/29/Clang-tidy——静态代码分析框架/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>clang-tidy具体可以检测以下几个部分：<br>（1）boost 检测boost库API使用问题<br>（2）cert 检测CERT的代码规范<br>（3）cpp-core-guidelines 检测是否违反cpp-core-guidelines<br>（4）google 检测是否违反google code style<br>（5）llvm 检测是否违反llvm code style<br>（6）readability 检测代码上相关问题，但又不明确属于任何代码规范的<br>（7）misc 其它一些零碎的check<br>（8）mpi 检测MPI API问题<br>（9）modernize 把C++03代码转换成C++11代码，使用C++11新特性<br>（10）performance 检测performance相关问题</p>
+<p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
+<p>实例：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9vcmJpdC9ibG9iL21haW4vLmNsYW5nLXRpZHk=">https://github.com/google/orbit/blob/main/.clang-tidy<i class="fa fa-external-link-alt"></i></span></p>
+<p>参考：<br><span class="exturl" data-url="aHR0cHM6Ly9ob2tlaW4uZ2l0aHViLmlvL2NsYW5nLXRvb2xzLXR1dG9yaWFsL2NsYW5nLXRpZHkuaHRtbA==">https://hokein.github.io/clang-tools-tutorial/clang-tidy.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3lwc2hvd20vMTAwMDQwNzI5">https://www.cxyzjd.com/article/ypshowm/100040729<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMxODcwNTcvYXJ0aWNsZS9kZXRhaWxzLzEwMzA1MjI3NQ==">https://blog.csdn.net/u013187057/article/details/103052275<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3h5empkLmNvbS9hcnRpY2xlL3dhZHMyMzQ1Ni8xMDgwMDk2MTc=">https://www.cxyzjd.com/article/wads23456/108009617<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9jb2RleWFybnMuY29tLzIwMTkvMDEvMjgvaG93LXRvLXVzZS1jbGFuZy10aWR5Lw==">https://codeyarns.com/2019/01/28/how-to-use-clang-tidy/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwNzAxNTk4MQ==">https://segmentfault.com/a/1190000007015981<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTEtbW9kZXJuaXplLXNvdXJjZS1jb2RlLXVzaW5nLWMxMWMxNC8=">https://www.kdab.com/clang-tidy-part-1-modernize-source-code-using-c11c14/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cua2RhYi5jb20vY2xhbmctdGlkeS1wYXJ0LTItaW50ZWdyYXRlLXFtYWtlLWFuZC1vdGhlci1idWlsZC1zeXN0ZW1zLXVzaW5nLWJlYXIv">https://www.kdab.com/clang-tidy-part-2-integrate-qmake-and-other-build-systems-using-bear/<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/25/%E5%A6%82%E6%9E%9C%E6%8F%90%E9%AB%98CMake%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1960,98 +2055,6 @@
 <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>对函数指针的一个包装,屏蔽了直接去使用函数指针的弊端</p>
 <h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>如果不太理解这东西,可以尝试用匿名对象去理解,匿名对象包含一个函数,而捕获的这些变量会有对应的 匿名类成员,捕获后会将这些值赋值给类成员</p>
 <h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>现在很多新的语言里面都有了channel; 这是需求推动语言改进的一个体现,生产者-消费者模型的大量使用</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">【Markdown】Markdown问题汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-05 11:14:19" itemprop="dateCreated datePublished" datetime="2021-05-05T11:14:19Z">2021-05-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/05/05/Markdown%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/05/05/Markdown问题汇总/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="在Makrdown中显示-backtick"><a href="#在Makrdown中显示-backtick" class="headerlink" title="在Makrdown中显示`(backtick)"></a>在Makrdown中显示<code>`</code>(backtick)</h2><p><span class="exturl" data-url="aHR0cHM6Ly9tZXRhLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy84MjcxOC9ob3ctZG8taS1lc2NhcGUtYS1iYWNrdGljay13aXRoaW4taW4tbGluZS1jb2RlLWluLW1hcmtkb3du">https://meta.stackexchange.com/questions/82718/how-do-i-escape-a-backtick-within-in-line-code-in-markdown<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXJpbmdmaXJlYmFsbC5uZXQvcHJvamVjdHMvbWFya2Rvd24vc3ludGF4I2NvZGU=">https://daringfireball.net/projects/markdown/syntax#code<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

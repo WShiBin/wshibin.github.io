@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://wshibin.github.io/images/linux_performance/fcfbe2f8eb7c6090d82bf93ecdc1f0b6-8553278.png">
 <meta property="og:image" content="https://wshibin.github.io/images/linux_performance/71a754523386cc75f4456a5eabc93c5d.png">
 <meta property="article:published_time" content="2022-03-15T15:05:34.000Z">
-<meta property="article:modified_time" content="2022-04-10T14:32:01.488Z">
+<meta property="article:modified_time" content="2022-06-12T16:19:08.002Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Performance optimization">
@@ -424,30 +424,21 @@
 </ul>
 <p>proc 文件系统。它是一种内核空间和用户空间进行通信的机制，可以用来查看内核的数据结构，或者用来动态修改内核的配置</p>
 <h2 id="套路篇：如何迅速分析出系统CPU的瓶颈在哪里？"><a href="#套路篇：如何迅速分析出系统CPU的瓶颈在哪里？" class="headerlink" title="套路篇：如何迅速分析出系统CPU的瓶颈在哪里？"></a>套路篇：如何迅速分析出系统CPU的瓶颈在哪里？</h2><h3 id="CPU-性能指标"><a href="#CPU-性能指标" class="headerlink" title="CPU 性能指标"></a>CPU 性能指标</h3><ul>
-<li><p>CPU 使用率</p>
-<ul>
-<li><p>用户 CPU 使用率，包括用户态 CPU 使用率（user）和低优先级用户态 CPU 使用率（nice），表示 CPU 在用户态运行的时间百分比。用户 CPU 使用率高，通常说明有应用程序比较繁忙。</p>
-</li>
-<li><p>系统 CPU 使用率，表示 CPU 在内核态运行的时间百分比（不包括中断）。系统 CPU 使用率高，说明内核比较繁忙。</p>
-</li>
-<li><p>等待 I/O 的 CPU 使用率，通常也称为 iowait，表示等待 I/O 的时间百分比。iowait 高，通常说明系统与硬件设备的 I/O 交互时间比较长。</p>
-</li>
-<li><p>软中断和硬中断的 CPU 使用率，分别表示内核调用软中断处理程序、硬中断处理程序的时间百分比。它们的使用率高，通常说明系统发生了大量的中断。</p>
-</li>
-<li><p>除了上面这些，还有在虚拟化环境中会用到的窃取 CPU 使用率（steal）和客户 CPU 使用率（guest），分别表示被其他虚拟机占用的 CPU 时间百分比，和运行客户虚拟机的 CPU 时间百分比。</p>
-</li>
+<li>CPU 使用率<ul>
+<li>用户 CPU 使用率，包括用户态 CPU 使用率（user）和低优先级用户态 CPU 使用率（nice），表示 CPU 在用户态运行的时间百分比。用户 CPU 使用率高，通常说明有应用程序比较繁忙。</li>
+<li>系统 CPU 使用率，表示 CPU 在内核态运行的时间百分比（不包括中断）。系统 CPU 使用率高，说明内核比较繁忙。</li>
+<li>等待 I/O 的 CPU 使用率，通常也称为 iowait，表示等待 I/O 的时间百分比。iowait 高，通常说明系统与硬件设备的 I/O 交互时间比较长。</li>
+<li>软中断和硬中断的 CPU 使用率，分别表示内核调用软中断处理程序、硬中断处理程序的时间百分比。它们的使用率高，通常说明系统发生了大量的中断。</li>
+<li>除了上面这些，还有在虚拟化环境中会用到的窃取 CPU 使用率（steal）和客户 CPU 使用率（guest），分别表示被其他虚拟机占用的 CPU 时间百分比，和运行客户虚拟机的 CPU 时间百分比。</li>
 </ul>
 </li>
-<li><p>应该是平均负载（Load Average），也就是系统的平均活跃进程数</p>
-</li>
-<li><p>进程上下文切换</p>
-<ul>
+<li>应该是平均负载（Load Average），也就是系统的平均活跃进程数</li>
+<li>进程上下文切换<ul>
 <li>无法获取资源而导致的自愿上下文切换；</li>
 <li>被系统强制调度导致的非自愿上下文切换。</li>
 </ul>
 </li>
-<li><p>CPU 缓存的命中率</p>
-</li>
+<li>CPU 缓存的命中率</li>
 </ul>
 <h3 id="性能工具"><a href="#性能工具" class="headerlink" title="性能工具"></a>性能工具</h3><img src="/images/linux_systems_performance/image-20220410152155659.png" style="zoom:50%;" />
 
@@ -461,12 +452,9 @@
 <img src="/images/linux_systems_performance/image-20220410152319477.png" style="zoom:50%;" />
 
 <h3 id="性能优化方法论"><a href="#性能优化方法论" class="headerlink" title="性能优化方法论"></a>性能优化方法论</h3><ul>
-<li><p>首先，既然要做性能优化，那要怎么判断它是不是有效呢？特别是优化后，到底能提升多少性能呢？</p>
-</li>
-<li><p>第二，性能问题通常不是独立的，如果有多个性能问题同时发生，你应该先优化哪一个呢？</p>
-</li>
-<li><p>第三，提升性能的方法并不是唯一的，当有多种方法可以选择时，你会选用哪一种呢？是不是总选那个最大程度提升性能的方法就行了呢？</p>
-</li>
+<li>首先，既然要做性能优化，那要怎么判断它是不是有效呢？特别是优化后，到底能提升多少性能呢？</li>
+<li>第二，性能问题通常不是独立的，如果有多个性能问题同时发生，你应该先优化哪一个呢？</li>
+<li>第三，提升性能的方法并不是唯一的，当有多种方法可以选择时，你会选用哪一种呢？是不是总选那个最大程度提升性能的方法就行了呢？</li>
 </ul>
 <h3 id="怎么评估性能优化的效果？"><a href="#怎么评估性能优化的效果？" class="headerlink" title="怎么评估性能优化的效果？"></a>怎么评估性能优化的效果？</h3><ul>
 <li>确定性能的量化指标。</li>

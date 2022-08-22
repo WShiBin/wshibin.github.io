@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="VSCode简介官网：https:&#x2F;&#x2F;code.visualstudio.com&#x2F; Code editing.Redefined；Free. Built on open source. Runs everywhere. VSCode的曲线救国 前身 Monaco Editor（web 编辑器）2011 把Monaco Editor套在Electron（Chromium + Node.js）里面，就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【VSCode】VSCode搭建C&#x2F;C++开发环境">
+<meta property="og:url" content="https://wshibin.github.io/2022/04/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="VSCode简介官网：https:&#x2F;&#x2F;code.visualstudio.com&#x2F; Code editing.Redefined；Free. Built on open source. Runs everywhere. VSCode的曲线救国 前身 Monaco Editor（web 编辑器）2011 把Monaco Editor套在Electron（Chromium + Node.js）里面，就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wshibin.github.io/images/vscode/VSCode_image-20210421004416114.png">
+<meta property="og:image" content="https://wshibin.github.io/images/vscode/image-20220405164606671.png">
+<meta property="og:image" content="https://wshibin.github.io/images/vscode/image-20220405165341735.png">
+<meta property="og:image" content="https://wshibin.github.io/images/vscode/image-20220409162446409.png">
+<meta property="og:image" content="https://wshibin.github.io/images/vscode/image-20220409162303109.png">
+<meta property="og:image" content="https://wshibin.github.io/images/vscode/hitCount.gif">
+<meta property="article:published_time" content="2022-04-04T15:43:32.000Z">
+<meta property="article:modified_time" content="2022-04-09T08:37:55.923Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="VSCode">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="Cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/images/vscode/VSCode_image-20210421004416114.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2022/04/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/04/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/","path":"/2022/04/VSCode搭建C-C-开发环境/","title":"【VSCode】VSCode搭建C/C++开发环境"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【VSCode】VSCode搭建C/C++开发环境 | WShiBin's blogs</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VSCode%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">VSCode简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%95%91%E5%9B%BD"><span class="nav-number">1.1.</span> <span class="nav-text">VSCode的曲线救国</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.2.</span> <span class="nav-text">VSCode定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">编译器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1LSP"><span class="nav-number">3.</span> <span class="nav-text">语言服务LSP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C%E3%80%81CPP%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">C、CPP语言服务列表：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0C%E3%80%81CPP%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1%E9%9D%A2%E4%B8%B4%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.2.</span> <span class="nav-text">实现C、CPP语言服务面临的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clangd%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.3.</span> <span class="nav-text">Clangd语言服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMake"><span class="nav-number">4.</span> <span class="nav-text">CMake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug%E8%B0%83%E8%AF%95DAP"><span class="nav-number">5.</span> <span class="nav-text">Debug调试DAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">命令行调试程序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="nav-number">5.2.</span> <span class="nav-text">配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="nav-number">5.3.</span> <span class="nav-text">调试操作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">5.4.</span> <span class="nav-text">其他功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%96%AD%E7%82%B9%EF%BC%9AConditional-breakpoints"><span class="nav-number">5.5.</span> <span class="nav-text">条件断点：Conditional breakpoints</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">代码格式化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%A0%BC%E5%BC%8F%E5%8C%96%EF%BC%9F"><span class="nav-number">6.1.</span> <span class="nav-text">如何实现格式化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clang-format%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">6.2.</span> <span class="nav-text">.clang-format配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90"><span class="nav-number">7.</span> <span class="nav-text">静态分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Addresssanitizer"><span class="nav-number">8.</span> <span class="nav-text">Addresssanitizer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="nav-number">9.</span> <span class="nav-text">常用插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">9.1.</span> <span class="nav-text">相关插件安装</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/04/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【VSCode】VSCode搭建C/C++开发环境 | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【VSCode】VSCode搭建C/C++开发环境
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-04 23:43:32" itemprop="dateCreated datePublished" datetime="2022-04-04T23:43:32+08:00">2022-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VSCode/" itemprop="url" rel="index"><span itemprop="name">VSCode</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/04/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/04/VSCode搭建C-C-开发环境/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="VSCode简介"><a href="#VSCode简介" class="headerlink" title="VSCode简介"></a>VSCode简介</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">https://code.visualstudio.com/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>Code editing.Redefined</strong>；Free. Built on open source. Runs everywhere.</p>
+<h3 id="VSCode的曲线救国"><a href="#VSCode的曲线救国" class="headerlink" title="VSCode的曲线救国"></a>VSCode的曲线救国</h3><ol>
+<li>前身 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC9tb25hY28tZWRpdG9y">Monaco Editor<i class="fa fa-external-link-alt"></i></span>（web 编辑器）2011</li>
+<li>把Monaco Editor套在Electron（<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvQ2hyb21pdW0=">Chromium<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTm9kZS5qcw==">Node.js<i class="fa fa-external-link-alt"></i></span>）里面，就有了跨平台的桌面VSCode 2015</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvcmVtb3RlLW92ZXJ2aWV3">远程开发<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZlYXR1cmVzL2NvZGVzcGFjZXM=">Github Codespaces<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly92c2NvZGUuZGV2Lw==">vscode.dev<i class="fa fa-external-link-alt"></i></span> 2017~</li>
+</ol>
+<p>视频：<span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1oaWx6bktRaWo3QSZsaXN0PVBMajZZZU1odnAyUzZ1QjIzYmVRYWZmc3psYXZMcTNsTnEmYWJfY2hhbm5lbD1WaXN1YWxTdHVkaW9Db2Rl">Keynote by Erich Gamma: VS Code an Overnight Success… 10 years in the making<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="VSCode定位"><a href="#VSCode定位" class="headerlink" title="VSCode定位"></a>VSCode定位</h3><p><img src="/images/vscode/VSCode_image-20210421004416114.png"></p>
+<p><strong>特性：</strong></p>
+<ul>
+<li>VSCode只是个前端</li>
+<li>定标准协议<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">Language Server Protocol<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2RlYnVnLWFkYXB0ZXItcHJvdG9jb2wv">Debug Adapter Protocol<i class="fa fa-external-link-alt"></i></span></li>
+<li>把功能实现插件化</li>
+</ul>
+<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9sYW5ndWFnZXMvY3BwI190dXRvcmlhbHM=">https://code.visualstudio.com/docs/languages/cpp#_tutorials<i class="fa fa-external-link-alt"></i></span></p>
+<p>VSCode不带编译器，不同的平台安装自己的编译器</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1pbmd3">GCC on Windows via MinGW<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1zdmM=">Microsoft C++ on Windows<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWxpbnV4">GCC on Linux<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLXdzbA==">GCC on Windows Subsystem For Linux<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLWNsYW5nLW1hYw==">Clang/LLVM on macOS<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="语言服务LSP"><a href="#语言服务LSP" class="headerlink" title="语言服务LSP"></a>语言服务LSP</h2><p><strong>Language Server Protocol</strong>：<span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC8=">https://microsoft.github.io/language-server-protocol/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>IDE的特性：</strong></p>
+<ul>
+<li>autocomplete自动补全</li>
+<li>goto definition转跳</li>
+<li>documentation on hover光标放在代码上，显示文档</li>
+<li>find all references查找引用</li>
+<li>etc</li>
+</ul>
+<p>如何工作的：</p>
+<p><img src="/images/vscode/image-20220405164606671.png"></p>
+<p><strong>软件设计原则-依赖倒置原则</strong></p>
+<blockquote>
+<p>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
+</blockquote>
+<p><img src="/images/vscode/image-20220405165341735.png"></p>
+<h3 id="C、CPP语言服务列表："><a href="#C、CPP语言服务列表：" class="headerlink" title="C、CPP语言服务列表："></a>C、CPP语言服务列表：</h3><p><span class="exturl" data-url="aHR0cHM6Ly9taWNyb3NvZnQuZ2l0aHViLmlvL2xhbmd1YWdlLXNlcnZlci1wcm90b2NvbC9pbXBsZW1lbnRvcnMvc2VydmVycy8=">https://microsoft.github.io/language-server-protocol/implementors/servers/<i class="fa fa-external-link-alt"></i></span></p>
+<table>
+<thead>
+<tr>
+<th><strong>Language</strong></th>
+<th><strong>Maintainer</strong></th>
+<th><a target="_blank" rel="noopener" href="https://github.com/razzmatazz/csharp-language-server"><strong>Repository</strong></a></th>
+<th><strong>Implementation Language</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C++</td>
+<td>MS</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jcHB0b29scw==">VS Code C++ extension<i class="fa fa-external-link-alt"></i></span></td>
+<td>C++</td>
+</tr>
+<tr>
+<td><span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcv">C++/clang<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9sbHZtLm9yZy8=">LLVM Project<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xsdm0vbGx2bS1wcm9qZWN0L3RyZWUvbWFpbi9jbGFuZy10b29scy1leHRyYS9jbGFuZ2Q=">clangd<i class="fa fa-external-link-alt"></i></span></td>
+<td>C++</td>
+</tr>
+<tr>
+<td>C/C++/Objective-C</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdA==">Jacob Dufault<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RvcGlzYW5p">topisani<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2phY29iZHVmYXVsdC9jcXVlcnk=">cquery<i class="fa fa-external-link-alt"></i></span>（Archived）</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>C/C++/Objective-C</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXk=">MaskRay<i class="fa fa-external-link-alt"></i></span></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscw==">ccls<i class="fa fa-external-link-alt"></i></span>（originates from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NxdWVyeS1wcm9qZWN0L2NxdWVyeQ==">cquery<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01hc2tSYXkvY2Nscy9yZWxlYXNlcy90YWcvMC4yMDIxMDMzMA==">on Apr 7, 2021<i class="fa fa-external-link-alt"></i></span>）</td>
+<td>C++</td>
+</tr>
+</tbody></table>
+<p><strong>参考其它C、C++的IDE：</strong></p>
+<ul>
+<li><strong>Qt Creator 7</strong>：将默认的后端切换到Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cucXQuaW8vYmxvZy9xdC1jcmVhdG9yLTctcmVsZWFzZWQ=">https://www.qt.io/blog/qt-creator-7-released<i class="fa fa-external-link-alt"></i></span></li>
+<li><strong>Clion</strong>（Jetbrain）：默认用Clangd。<span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9oZWxwL2NsaW9uL2Mtc3VwcG9ydC5odG1s">https://www.jetbrains.com/help/clion/c-support.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="实现C、CPP语言服务面临的问题"><a href="#实现C、CPP语言服务面临的问题" class="headerlink" title="实现C、CPP语言服务面临的问题"></a>实现C、CPP语言服务面临的问题</h3><ul>
+<li>没有统一的包管理器：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92Y3BrZw==">vcpkg<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9jb25hbi5pby8=">conan<i class="fa fa-external-link-alt"></i></span></li>
+<li>构建系统build system碎片化：VS（xml配置），QT（qmake–&gt;CMake），Clion（CMake）<ul>
+<li>要去处理不同的构建系统：<strong>项目有哪些源代码？包含了哪些头文件？依赖于哪些三方库？有哪些编译Flags？</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Note：后面内容基于CMake来讲</p>
+</blockquote>
+<h3 id="Clangd语言服务"><a href="#Clangd语言服务" class="headerlink" title="Clangd语言服务"></a>Clangd语言服务</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI3Byb2plY3Qtc2V0dXA=">https://clangd.llvm.org/installation#project-setup<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>Note：VSCode的clangd插件和clangd是两个东西，虽然clangd插件才<code>v0.1.15</code>版本；clangd已经到13、14版本了</p>
+</blockquote>
+<p><strong>下载clangd：</strong></p>
+<ul>
+<li>通过VSCode的clangd插件命令：<code>&gt;clangd: Download language server</code></li>
+<li>自行下载<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZ2QubGx2bS5vcmcvaW5zdGFsbGF0aW9uI2luc3RhbGxpbmctY2xhbmdk">clangd<i class="fa fa-external-link-alt"></i></span>，然后配置到<code>path</code>目录下</li>
+</ul>
+<p><strong>配置：</strong></p>
+<blockquote>
+<p>clangd如何知道我编译了哪些代码？include了哪些头文件，依赖于哪些库？有些哪些编译flags？</p>
+</blockquote>
+<p><code>compile_commands.json</code>配置文件：该文件为项目中的每个源文件提供编译命令</p>
+<p><strong>如何生成：</strong></p>
+<ul>
+<li>命令：<code>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code></li>
+<li>CMakeLists.txt文件：<code>set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</code></li>
+</ul>
+<p>一般把这个文件生成到build目录，clangd就能找到</p>
+<blockquote>
+<p>Note：切换分支或是大量代码变更会导致clangd提示出问题，需要重新编译生成<code>compile_commands.json</code>配置文件；重启下clangd：<code>&gt;clangd: Restart language server</code></p>
+</blockquote>
+<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdC92c2NvZGUtY21ha2UtdG9vbHMvYmxvYi9tYWluL2RvY3MvUkVBRE1FLm1k">https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/README.md<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>CMake Tools插件</strong>：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW1zLXZzY29kZS5jbWFrZS10b29scw==">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>常用命令：</strong></p>
+<ul>
+<li>初始化项目：<code>&gt;CMake: quick Start</code></li>
+<li>Kit编译器命令：设置编译器<ul>
+<li>编辑本地的编译器配置：<code>&gt;CMake: Edit User-Local CMake Kits</code></li>
+<li>搜索电脑的编译器：<code>&gt;CMake: Scan for Kits</code></li>
+<li>选择哪个编译器：<code>&gt;CMake: Select a Kit</code></li>
+</ul>
+</li>
+<li>设置编译的类型：<code>&gt;CMake: Select Variant</code>，设置CMake的<span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvY21ha2UvaGVscC9sYXRlc3QvdmFyaWFibGUvQ01BS0VfQlVJTERfVFlQRS5odG1s">CMAKE_BUILD_TYPE<i class="fa fa-external-link-alt"></i></span>变量</li>
+<li>配置：<code>&gt;CMake: Configure</code>；执行<code>cmake -S . -B build</code>命令</li>
+<li>编译：<code>&gt;CMake: Build</code>；执行<code>cmake --build build</code>命令</li>
+<li>清理缓存重新配置：<code>&gt;CMake: Delete Cache and Reconfigure</code></li>
+<li>编辑CMake缓存文件：<code>$&#123;project_root&#125;/build/CMakeCache.txt</code><ul>
+<li><code>&gt;CMake: Edit CMake Cache</code></li>
+<li><code>&gt;CMake: Edit CMake Cache (UI)</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Debug调试DAP"><a href="#Debug调试DAP" class="headerlink" title="Debug调试DAP"></a>Debug调试DAP</h2><h3 id="命令行调试程序："><a href="#命令行调试程序：" class="headerlink" title="命令行调试程序："></a>命令行调试程序：</h3><p><strong>步骤：</strong></p>
+<ol>
+<li>编译出带有Debug信息的程序；</li>
+<li>用GDB或LLDB去调试程序</li>
+</ol>
+<p>LLDB教程：<span class="exturl" data-url="aHR0cHM6Ly9sbGRiLmxsdm0ub3JnL3VzZS90dXRvcmlhbC5odG1s">https://lldb.llvm.org/use/tutorial.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>todo</p>
+<p><img src="/images/vscode/image-20220409162446409.png"></p>
+<p>本质上是GDB和LLDB程序去调试代码，VSCode只是个前端</p>
+<ul>
+<li>MS的C++插件：已经包含了GDB功能</li>
+<li>LLVM的<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPXZhZGltY24udnNjb2RlLWxsZGI=">CodeLLDB<i class="fa fa-external-link-alt"></i></span> <strong>推荐</strong></li>
+</ul>
+<h3 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h3><p>文件：<code>.vscode/launch.json</code></p>
+<p>调试程序的前提：编译出来的程序带有debug信息；比如加<code>-g</code>选项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gdb a.out</span><br><span class="line">$ lldb a.out</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/vscode/image-20220409162303109.png"></p>
+<h3 id="调试操作："><a href="#调试操作：" class="headerlink" title="调试操作："></a>调试操作：</h3><ul>
+<li>Continue / Pause 继续/暂停（F5）</li>
+<li>Step Over单步执行（F10）</li>
+<li>Step Into进入函数（F11）</li>
+<li>Step Out退出函数（⇧F11）</li>
+<li>Restart重新调试（⇧⌘F5）</li>
+<li>Stop停止调试（⇧F5）</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a>其他功能：</h3><ul>
+<li>Watch：监控</li>
+<li>Call stack：函数调用栈</li>
+<li>Debug console：用来输入命令</li>
+</ul>
+<h3 id="条件断点：Conditional-breakpoints"><a href="#条件断点：Conditional-breakpoints" class="headerlink" title="条件断点：Conditional breakpoints"></a>条件断点：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9lZGl0b3IvZGVidWdnaW5nI19jb25kaXRpb25hbC1icmVha3BvaW50cw==">Conditional breakpoints<i class="fa fa-external-link-alt"></i></span></h3><ul>
+<li><strong>条件表达式Expression condition</strong>：表达式成立的时候会断点</li>
+<li><strong>执行次数Hit count</strong>：执行了多少次才会断点</li>
+</ul>
+<p><img src="/images/vscode/hitCount.gif"></p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><h3 id="如何实现格式化？"><a href="#如何实现格式化？" class="headerlink" title="如何实现格式化？"></a>如何实现格式化？</h3><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY3BwLWlkZSNfY29kZS1mb3JtYXR0aW5n">https://code.visualstudio.com/docs/cpp/cpp-ide#_code-formatting<i class="fa fa-external-link-alt"></i></span></p>
+<p>Clang-format：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0Lmh0bWw=">https://clang.llvm.org/docs/ClangFormat.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>MS和LLVM的格式化都是使用的clang-format</p>
+<ul>
+<li>MS的C/C++插件：是把clang-format程序下载到本地电脑</li>
+<li>LLVM的clangd插件：集成到了语言服务程序clangd里面</li>
+<li>本质上都是调用了类似于<code>clang-format -i $&#123;file_name&#125;</code>这样的命令：写个脚本格式代整个项目</li>
+</ul>
+<h3 id="clang-format配置文件"><a href="#clang-format配置文件" class="headerlink" title=".clang-format配置文件"></a><code>.clang-format</code>配置文件</h3><p><strong>Clangd找配置文件的顺序：</strong></p>
+<ol>
+<li>先去同级目录找：<code>./.clang-format</code> （使用三方库，有的库会自带）</li>
+<li>去父级目录找 –&gt; 项目根目录找：<code>$&#123;project_root&#125;/.clang-format</code>（自己项目开发需要）</li>
+<li>去用户根目录下找：<code>~/.clang-format</code>（自己写代码方便，不用每次去copy一份到项目里面来）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ clang-format -style=llvm -dump-config &gt; .clang-format</span><br></pre></td></tr></table></figure>
+
+<p>选项详细文档：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9kb2NzL0NsYW5nRm9ybWF0U3R5bGVPcHRpb25zLmh0bWw=">https://clang.llvm.org/docs/ClangFormatStyleOptions.html<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>Note：配置在使用的时候可能会遇到选项兼容性的问题；clang-format新版本会更新增加选项，如果新版本的.clang-format给到老版本的qt creator使用可能会遇到兼容性的问题；需要升级clang-format，qt creator使用新版本的clang-format</p>
+</blockquote>
+<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>Clang-tidy：<span class="exturl" data-url="aHR0cHM6Ly9jbGFuZy5sbHZtLm9yZy9leHRyYS9jbGFuZy10aWR5Lw==">https://clang.llvm.org/extra/clang-tidy/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Addresssanitizer"><a href="#Addresssanitizer" class="headerlink" title="Addresssanitizer"></a>Addresssanitizer</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplcg==">https://github.com/google/sanitizers/wiki/AddressSanitizer<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlckZyZWU=">Use after free<i class="fa fa-external-link-alt"></i></span> (dangling pointer dereference)</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVIZWFwT3V0T2ZCb3VuZHM=">Heap buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVTdGFja091dE9mQm91bmRz">Stack buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVHbG9iYWxPdXRPZkJvdW5kcw==">Global buffer overflow<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclJldHVybg==">Use after return<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckV4YW1wbGVVc2VBZnRlclNjb3Bl">Use after scope<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckluaXRpYWxpemF0aW9uT3JkZXJGaWFzY28=">Initialization order bugs<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9zYW5pdGl6ZXJzL3dpa2kvQWRkcmVzc1Nhbml0aXplckxlYWtTYW5pdGl6ZXI=">Memory leaks<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><h3 id="相关插件安装"><a href="#相关插件安装" class="headerlink" title="相关插件安装"></a>相关插件安装</h3><blockquote>
+<p>Note: 下面格式<code>C/C++ / ms-vscode.cpptools</code>，用<code>/</code>分隔，左边是插件名，右边是插件ID；用插件ID在VSCode搜索更加准确</p>
+</blockquote>
+<p>推荐插件安装列表：</p>
+<ul>
+<li>c/c++语言服务插件: <strong>（新手【不懂lsp的】不要乱装其他相关的c/c++插件，下面二者开启一个即可；如果同时开启，LLVM会把Macrosoft的禁用掉）</strong><ul>
+<li>LLVM：clangd/llvm-vs-code-extensions.vscode-clangd （<strong>LInux平台推荐</strong>）</li>
+<li>Macrosoft：C/C++ / ms-vscode.cpptools （<strong>Windows平台推荐</strong>）</li>
+</ul>
+</li>
+<li>Debug插件:CodeLLDB/vadimcn.vscode-lldb</li>
+<li>cmake语法插件:CMake/twxs.cmake</li>
+<li>cmake tools插件:CMake Tools/ms-vscode.cmake-tools</li>
+<li>一键运行单个文件插件:Code Runner/formulahendry.code-runner</li>
+<li>自动生成注释结构:Doxygen Documentation Generator/cschlosser.doxdocgen</li>
+<li>git增强插件:GitLens — Git supercharged/eamodio.gitlens</li>
+<li>git ignore插件:gitignore/codezombiech.gitignore</li>
+<li>错误增强显示插件:Error Lens/usernamehw.errorlens</li>
+<li>图标增强:vscode-icons/vscode-icons-team.vscode-icons</li>
+</ul>
+<p>命令一次性安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ code --install-extension</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VSCode/" rel="tag"># VSCode</a>
+              <a href="/tags/C/" rel="tag"># C</a>
+              <a href="/tags/Cpp/" rel="tag"># Cpp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/" rel="prev" title="【电脑】主机折腾记">
+                  <i class="fa fa-chevron-left"></i> 【电脑】主机折腾记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/" rel="next" title="【Tools】来玩一玩件值一个亿的终端软件-Warp">
+                  【Tools】来玩一玩件值一个亿的终端软件-Warp <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/04/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

@@ -20,20 +20,20 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="panic! 与不可恢复的错误Result 与可恢复的错误匹配不同的错误失败时 panic 的简写: unwrap 和 expectunwrap:如果 Result 值是成员 Ok ， unwrap 会返回 Ok 中的值。如果Result 是成员 Err ， unwrap 会为我们调用 panic! expect 与 unwrap 的使用方式一样:返回Ok或调用 panic! 宏。 expect">
+    <meta name="description" content="错误处理分类：  可恢复的错误recoverable，对应Result&lt;T, E&gt;类型 不可恢复的错误unrecoverable，对应panic!宏  panic! 与不可恢复的错误Result 与可恢复的错误匹配不同的错误失败时 panic 的简写: unwrap 和 expectunwrap:如果 Result 值是成员 Ok ， unwrap 会返回 Ok 中的值。如果Resul">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/rust/9.%20Error%20Handling.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
-<meta property="og:description" content="panic! 与不可恢复的错误Result 与可恢复的错误匹配不同的错误失败时 panic 的简写: unwrap 和 expectunwrap:如果 Result 值是成员 Ok ， unwrap 会返回 Ok 中的值。如果Result 是成员 Err ， unwrap 会为我们调用 panic! expect 与 unwrap 的使用方式一样:返回Ok或调用 panic! 宏。 expect">
+<meta property="og:description" content="错误处理分类：  可恢复的错误recoverable，对应Result&lt;T, E&gt;类型 不可恢复的错误unrecoverable，对应panic!宏  panic! 与不可恢复的错误Result 与可恢复的错误匹配不同的错误失败时 panic 的简写: unwrap 和 expectunwrap:如果 Result 值是成员 Ok ， unwrap 会返回 Ok 中的值。如果Resul">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-31T02:46:47.060Z">
-<meta property="article:modified_time" content="2022-01-16T16:23:31.974Z">
+<meta property="article:published_time" content="2022-07-24T02:36:36.428Z">
+<meta property="article:modified_time" content="2022-07-17T16:01:59.680Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
@@ -165,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#panic-%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%81%A2%E5%A4%8D%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-number">1.</span> <span class="nav-text">panic! 与不可恢复的错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Result-%E4%B8%8E%E5%8F%AF%E6%81%A2%E5%A4%8D%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-number">2.</span> <span class="nav-text">Result 与可恢复的错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E4%B8%8D%E5%90%8C%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-number">2.1.</span> <span class="nav-text">匹配不同的错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5%E6%97%B6-panic-%E7%9A%84%E7%AE%80%E5%86%99-unwrap-%E5%92%8C-expect"><span class="nav-number">2.2.</span> <span class="nav-text">失败时 panic 的简写: unwrap 和 expect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E9%94%99%E8%AF%AF"><span class="nav-number">2.3.</span> <span class="nav-text">传播错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E9%94%99%E8%AF%AF%E7%9A%84%E7%AE%80%E5%86%99-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.4.</span> <span class="nav-text">传播错误的简写: ? 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%AF%E8%A2%AB%E7%94%A8%E4%BA%8E%E8%BF%94%E5%9B%9E-Result-%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">2.5.</span> <span class="nav-text">? 运算符可被用于返回 Result 的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#panic-%E8%BF%98%E6%98%AF%E4%B8%8D-panic"><span class="nav-number">2.6.</span> <span class="nav-text">panic! 还是不 panic!</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#panic-%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%81%A2%E5%A4%8D%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-number">1.1.</span> <span class="nav-text">panic! 与不可恢复的错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Result-%E4%B8%8E%E5%8F%AF%E6%81%A2%E5%A4%8D%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-number">1.2.</span> <span class="nav-text">Result 与可恢复的错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E4%B8%8D%E5%90%8C%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">匹配不同的错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5%E6%97%B6-panic-%E7%9A%84%E7%AE%80%E5%86%99-unwrap-%E5%92%8C-expect"><span class="nav-number">1.2.2.</span> <span class="nav-text">失败时 panic 的简写: unwrap 和 expect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E9%94%99%E8%AF%AF"><span class="nav-number">1.2.3.</span> <span class="nav-text">传播错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E9%94%99%E8%AF%AF%E7%9A%84%E7%AE%80%E5%86%99-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.2.4.</span> <span class="nav-text">传播错误的简写: ? 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%AF%E8%A2%AB%E7%94%A8%E4%BA%8E%E8%BF%94%E5%9B%9E-Result-%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.5.</span> <span class="nav-text">? 运算符可被用于返回 Result 的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#panic-%E8%BF%98%E6%98%AF%E4%B8%8D-panic"><span class="nav-number">1.2.6.</span> <span class="nav-text">panic! 还是不 panic!</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -180,12 +180,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -246,12 +246,21 @@
       
       
       <div class="post-body">
-          <h2 id="panic-与不可恢复的错误"><a href="#panic-与不可恢复的错误" class="headerlink" title="panic! 与不可恢复的错误"></a><strong>panic!</strong> 与不可恢复的错误</h2><h2 id="Result-与可恢复的错误"><a href="#Result-与可恢复的错误" class="headerlink" title="Result 与可恢复的错误"></a><strong>Result</strong> 与可恢复的错误</h2><h3 id="匹配不同的错误"><a href="#匹配不同的错误" class="headerlink" title="匹配不同的错误"></a>匹配不同的错误</h3><h3 id="失败时-panic-的简写-unwrap-和-expect"><a href="#失败时-panic-的简写-unwrap-和-expect" class="headerlink" title="失败时 panic 的简写: unwrap 和 expect"></a>失败时 <strong>panic</strong> 的简写: <strong>unwrap</strong> 和 <strong>expect</strong></h3><p>unwrap:如果 Result 值是成员 Ok ， unwrap 会返回 Ok 中的值。如果Result 是成员 Err ， unwrap 会为我们调用 panic!</p>
+          <h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><p>分类：</p>
+<ul>
+<li>可恢复的错误<code>recoverable</code>，对应<code>Result&lt;T, E&gt;</code>类型</li>
+<li>不可恢复的错误<code>unrecoverable</code>，对应<code>panic!</code>宏</li>
+</ul>
+<h2 id="panic-与不可恢复的错误"><a href="#panic-与不可恢复的错误" class="headerlink" title="panic! 与不可恢复的错误"></a><strong>panic!</strong> 与不可恢复的错误</h2><h2 id="Result-与可恢复的错误"><a href="#Result-与可恢复的错误" class="headerlink" title="Result 与可恢复的错误"></a><strong>Result</strong> 与可恢复的错误</h2><h3 id="匹配不同的错误"><a href="#匹配不同的错误" class="headerlink" title="匹配不同的错误"></a>匹配不同的错误</h3><h3 id="失败时-panic-的简写-unwrap-和-expect"><a href="#失败时-panic-的简写-unwrap-和-expect" class="headerlink" title="失败时 panic 的简写: unwrap 和 expect"></a>失败时 <strong>panic</strong> 的简写: <strong>unwrap</strong> 和 <strong>expect</strong></h3><p>unwrap:如果 Result 值是成员 Ok ， unwrap 会返回 Ok 中的值。如果Result 是成员 Err ， unwrap 会为我们调用 panic!</p>
 <p>expect 与 unwrap 的使用方式一样:返回Ok或调用 panic! 宏。 expect 用来调用panic! 的错误信息将会作为参数传递给 expect </p>
 <h3 id="传播错误"><a href="#传播错误" class="headerlink" title="传播错误"></a>传播错误</h3><p>谁来处理错误的问题:调用都来处理还是在调用中去处理</p>
-<h3 id="传播错误的简写-运算符"><a href="#传播错误的简写-运算符" class="headerlink" title="传播错误的简写: ? 运算符"></a>传播错误的简写: <strong>?</strong> 运算符</h3><p>如果 Result 的值是 Ok ，这个表达式将会返回 Ok 中的值而程序将继续执行。如果值是 Err ， Err 中的值将作为整个函数的返回值，就好像使用了 return 关 键字一样，这样错误值就被传播给了调用者。</p>
-<p>问号运算符:? 运算符所使用的错误值被 传递给了 from 函数，它定义于标准库的 From trait 中，其用来将错误从一种类型转换为另 一种类型。当 ? 运算符调用 from 函数时，收到的错误类型被转换为定义为当前函数返回 的错误类型。</p>
-<p>这在当一个函数返回一个错误类型来代表所有可能失败的方式时很有用，即使 其可能会因很多种原因失败。只要每一个错误类型都实现了 from 函数来定义如将其转换为 返回的错误类型， ? 运算符会自动处理这些转换</p>
+<h3 id="传播错误的简写-运算符"><a href="#传播错误的简写-运算符" class="headerlink" title="传播错误的简写: ? 运算符"></a>传播错误的简写: <code>?</code> 运算符</h3><ul>
+<li>如果Result的值是Ok，这个表达式将会返回Ok中的值而程序将继续执行。</li>
+<li>如果值是 Err，Err中的值将作为整个函数的返回值，就好像使用了<code>return</code>关键字一样，这样错误值就被传播给了调用者。</li>
+</ul>
+<p>一个函数中可能有多个不同的错误，如何转换？</p>
+<p>问号运算符：<code>?</code> 运算符所使用的错误值被传递给了from函数，它定义于标准库的<code>From</code> trait 中，其用来将错误从一种类型转换为另 一种类型。当 ? 运算符调用from函数时，收到的错误类型被转换为定义为当前函数返回的错误类型。</p>
+<p>这在当一个函数返回一个错误类型来代表所有可能失败的方式时很有用，即使其可能会因很多种原因失败。只要每一个错误类型都实现了 from 函数来定义如将其转换为返回的错误类型， ? 运算符会自动处理这些转换</p>
 <h3 id="运算符可被用于返回-Result-的函数"><a href="#运算符可被用于返回-Result-的函数" class="headerlink" title="? 运算符可被用于返回 Result 的函数"></a><strong>?</strong> 运算符可被用于返回 <strong>Result</strong> 的函数</h3><p>main特殊性,有两种返回值类型:</p>
 <ul>
 <li>()</li>
@@ -337,7 +346,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="公司QT项目有用到，就看了下它的源码；文章会介绍库的使用特点，核心的类和字段，然后讲同步日志，同步日志会把里面的概念基本过一遍；然后是异步日志，这个相对复杂点，理解起来其实也不复杂，就是一个mpmc，多生产者和多消费者模型，及线程池；异步才需要线程池，同步不需要  项目地址：https:&#x2F;&#x2F;github.com&#x2F;gabime&#x2F;spdlog Log框架主要面临的问题是什么？答案是：IO性能，Log">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RTFC】spdlog源码分析">
+<meta property="og:url" content="https://wshibin.github.io/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="公司QT项目有用到，就看了下它的源码；文章会介绍库的使用特点，核心的类和字段，然后讲同步日志，同步日志会把里面的概念基本过一遍；然后是异步日志，这个相对复杂点，理解起来其实也不复杂，就是一个mpmc，多生产者和多消费者模型，及线程池；异步才需要线程池，同步不需要  项目地址：https:&#x2F;&#x2F;github.com&#x2F;gabime&#x2F;spdlog Log框架主要面临的问题是什么？答案是：IO性能，Log">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wshibin.github.io/images/spdlog/image-2022082190245410%20AM.png">
+<meta property="og:image" content="https://wshibin.github.io/images/spdlog/image-2022082194624801%20AM.png">
+<meta property="article:published_time" content="2022-04-24T15:40:36.000Z">
+<meta property="article:modified_time" content="2022-08-21T01:51:37.414Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="源码分析">
+<meta property="article:tag" content="spdlog">
+<meta property="article:tag" content="RTFC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/images/spdlog/image-2022082190245410%20AM.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/","path":"/2022/04/spdlog源码分析/","title":"【RTFC】spdlog源码分析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【RTFC】spdlog源码分析 | WShiBin's blogs</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Log%E6%A1%86%E6%9E%B6%E4%B8%BB%E8%A6%81%E9%9D%A2%E4%B8%B4%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">Log框架主要面临的问题是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spdlog%E7%89%B9%E7%82%B9%E5%8F%8A%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">Spdlog特点及核心数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6xxx-h-%E5%AE%9E%E7%8E%B0xxx-inl-h%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">头文件xxx.h + 实现xxx-inl.h方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%B1%BBregistry%E5%8F%8A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">核心类registry及单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logger%E7%B1%BB"><span class="nav-number">2.3.</span> <span class="nav-text">Logger类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log-msg%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">2.4.</span> <span class="nav-text">Log_msg结构体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">同步日志：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E6%97%A5%E5%BF%97"><span class="nav-number">4.</span> <span class="nav-text">异步日志:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E6%97%A5%E5%BF%97%E6%B6%88%E6%81%AF%E7%9A%84%E9%98%9F%E5%88%97"><span class="nav-number">4.1.</span> <span class="nav-text">缓存日志消息的队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E6%97%A5%E5%BF%97%E6%B6%88%E6%81%AF%E7%9A%84%E5%89%8D%E7%AB%AF"><span class="nav-number">4.2.</span> <span class="nav-text">发送日志消息的前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%97%A5%E5%BF%97%E6%B6%88%E6%81%AF%E7%9A%84%E5%90%8E%E7%AB%AF%E5%8F%8A%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">4.3.</span> <span class="nav-text">处理日志消息的后端及线程池</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%A8%E6%9C%9F%E6%80%A7flush%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-number">5.</span> <span class="nav-text">周期性flush缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other"><span class="nav-number">6.</span> <span class="nav-text">other</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【RTFC】spdlog源码分析 | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【RTFC】spdlog源码分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-24 23:40:36" itemprop="dateCreated datePublished" datetime="2022-04-24T23:40:36+08:00">2022-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">源码分析</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/04/spdlog源码分析/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>公司QT项目有用到，就看了下它的源码；文章会介绍库的使用特点，核心的类和字段，然后讲同步日志，同步日志会把里面的概念基本过一遍；然后是异步日志，这个相对复杂点，理解起来其实也不复杂，就是一个mpmc，多生产者和多消费者模型，及线程池；异步才需要线程池，同步不需要</p>
+</blockquote>
+<p>项目地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dhYmltZS9zcGRsb2c=">https://github.com/gabime/spdlog<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Log框架主要面临的问题是什么？"><a href="#Log框架主要面临的问题是什么？" class="headerlink" title="Log框架主要面临的问题是什么？"></a>Log框架主要面临的问题是什么？</h2><p>答案是：IO性能，Log框架的核心在于把IO操作从当前的工作线程中移出去；下图是不同存储器访问需要的时钟周期差异：</p>
+<img src="/images/spdlog/image-2022082190245410 AM.png" style="zoom:50%;" />
+
+<p>而且，在近几十年的改进并不是特别大（SSD的出现改进了不少）：</p>
+<img src="/images/spdlog/image-2022082194624801 AM.png" style="zoom:50%;" />
+
+<p>IO操作会去调用<code>syscall</code>系统调用的<code>write</code>函数，对于<code>syscall</code>的优化，有两种常见的方式：一种是不用，怎么可能不用呢？简单的说就是：把以前需要调用内核态的函数，自己去在用户态自己实现下，Go语言里面有不少东西是这样做的，这样做的好处体现在，可以屏蔽不同系统内核版本的差异，还有个好处是内核的东西更新慢，它的实现方式效率不一定是最化的；另一种方式尽量少用，最常见的就是IO操作里面加Buffer缓冲区</p>
+<h2 id="Spdlog特点及核心数据结构"><a href="#Spdlog特点及核心数据结构" class="headerlink" title="Spdlog特点及核心数据结构"></a>Spdlog特点及核心数据结构</h2><h3 id="头文件xxx-h-实现xxx-inl-h方式"><a href="#头文件xxx-h-实现xxx-inl-h方式" class="headerlink" title="头文件xxx.h + 实现xxx-inl.h方式"></a>头文件<code>xxx.h</code> + 实现<code>xxx-inl.h</code>方式</h3><p>与一般<code>.h</code>头文件+<code>.cpp</code>实现文件不同，spdlog使用<code>xxx.h</code> + 实现<code>xxx-inl.h</code>方式，也一般只有开源的库喜欢把实现写在<code>.h</code>或是<code>.hpp</code>文件里面，反正代码开源，不需要隐藏什么；另一个喜欢把实现写在头文件里面的好处是，只需要<code>#include</code> 头文件即可以使用该库，不需要去链接库文件</p>
+<h3 id="核心类registry及单例模式"><a href="#核心类registry及单例模式" class="headerlink" title="核心类registry及单例模式"></a>核心类registry及单例模式</h3><p>这个registry就是spdlog里面最最最核心的类，下面是核心字段：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">registry</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::mutex logger_map_mutex_, flusher_mutex_;</span><br><span class="line">    std::recursive_mutex tp_mutex_;</span><br><span class="line">    std::unordered_map&lt;std::string, std::shared_ptr&lt;logger&gt;&gt; loggers_; <span class="comment">// 多个logger</span></span><br><span class="line">    log_levels log_levels_; <span class="comment">// 级别</span></span><br><span class="line">    std::unique_ptr&lt;formatter&gt; formatter_; <span class="comment">// 用来处理格式化</span></span><br><span class="line">    spdlog::level::level_enum global_log_level_ = level::info; <span class="comment">// 全局级别</span></span><br><span class="line">    level::level_enum flush_level_ = level::off; <span class="comment">// flush级别</span></span><br><span class="line">    err_handler err_handler_;</span><br><span class="line">    std::shared_ptr&lt;thread_pool&gt; tp_; <span class="comment">// 线程池</span></span><br><span class="line">    std::unique_ptr&lt;periodic_worker&gt; periodic_flusher_; <span class="comment">// 周期性的flush（开线程）</span></span><br><span class="line">    std::shared_ptr&lt;logger&gt; default_logger_; <span class="comment">// 默认logger --&gt; 支持多线程的stdout日志</span></span><br><span class="line">    <span class="type">bool</span> automatic_registration_ = <span class="literal">true</span>;</span><br><span class="line">    <span class="type">size_t</span> backtrace_n_messages_ = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:库里面经常有mt和st的后缀，mt表示multiple thread多线程；st是single thread单线程</p>
+</blockquote>
+<h3 id="Logger类"><a href="#Logger类" class="headerlink" title="Logger类"></a>Logger类</h3><p>Logger中最核心的字段是<code>std::vector&lt;sink_ptr&gt; sinks_;</code>，<code>using sink_ptr = std::shared_ptr&lt;sinks::sink&gt;;</code>，sink是一个抽象类，sink的意思表示日志最终要下沉到哪里去，它会有很多实现；比如：日志要输出到stdout，file，tcp，udp，Android，syslog。另外一点是，logger和sink是一对多的关系；这里的logger是指的同步的log，后面还有继承Logger的异步async_logger</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">logger</span> &#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    std::string name_; <span class="comment">// name</span></span><br><span class="line">    std::vector&lt;sink_ptr&gt; sinks_; <span class="comment">//</span></span><br><span class="line">    spdlog::<span class="type">level_t</span> level_&#123;level::info&#125;; <span class="comment">// 级别</span></span><br><span class="line">    spdlog::<span class="type">level_t</span> flush_level_&#123;level::off&#125;;</span><br><span class="line">    err_handler custom_err_handler_&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    details::backtracer tracer_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>logger里面主要的作用是，</p>
+<ul>
+<li>日志类details::log_msg的对象的创建，用来描述每一条日志</li>
+<li>调用sink的下沉，由sink决定最终输出到哪里去</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// include/spdlog/logger.h</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(source_loc loc, level::level_enum lvl, <span class="type">string_view_t</span> msg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">    <span class="function">details::log_msg <span class="title">log_msg</span><span class="params">(loc, name_, lvl, msg)</span></span>; <span class="comment">// 创建日志</span></span><br><span class="line">    <span class="built_in">log_it_</span>(log_msg, log_enabled, traceback_enabled); <span class="comment">// log_it_内部调用sink</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面来讲下details::log_msg</p>
+<h3 id="Log-msg结构体"><a href="#Log-msg结构体" class="headerlink" title="Log_msg结构体"></a>Log_msg结构体</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">log_msg</span> &#123;</span><br><span class="line">    <span class="type">string_view_t</span> logger_name; <span class="comment">// name</span></span><br><span class="line">    level::level_enum level&#123;level::off&#125;; <span class="comment">// 级别</span></span><br><span class="line">    log_clock::time_point time; <span class="comment">// 时间</span></span><br><span class="line">    <span class="type">size_t</span> thread_id&#123;<span class="number">0</span>&#125;; <span class="comment">// 线程id</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">    source_loc source; <span class="comment">// 文件名 + 行号 + 函数名</span></span><br><span class="line">    <span class="type">string_view_t</span> payload; <span class="comment">// 日志主要内容</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>source_loc结构体：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">source_loc</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *filename&#123;<span class="literal">nullptr</span>&#125;; <span class="comment">// 文件名</span></span><br><span class="line">    <span class="type">int</span> line&#123;<span class="number">0</span>&#125;; <span class="comment">// 行号</span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *funcname&#123;<span class="literal">nullptr</span>&#125;; <span class="comment">// 函数名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步日志："><a href="#同步日志：" class="headerlink" title="同步日志："></a>同步日志：</h2><p>同步日志的代码跟踪起来相对简单，就是一条同步的执行流，然后就没有了，讲同步日志的目的是为了给后面讲异步日志做铺垫；<br>registry中<code>default_logger_</code>的初始化，sink是输出到stdout，并且是带color输出；同时这还初始化了<code>formatter_</code>，用来处理输出的日志格式</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">registry::<span class="built_in">registry</span>() : formatter_(<span class="keyword">new</span> <span class="built_in">pattern_formatter</span>()) &#123;</span><br><span class="line">    <span class="comment">// create default logger</span></span><br><span class="line">    <span class="keyword">auto</span> color_sink = std::<span class="built_in">make_shared</span>&lt;sinks::ansicolor_stdout_sink_mt&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *default_logger_name = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    default_logger_ = std::<span class="built_in">make_shared</span>&lt;spdlog::logger&gt;(default_logger_name, std::<span class="built_in">move</span>(color_sink));</span><br><span class="line">    loggers_[default_logger_name] = default_logger_;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结合上面的些核心类和结构体，可以看到<code>default_logger_</code>处理逻辑：</p>
+<ul>
+<li>registry单例创建输出到<code>default_logger_</code>，输出到stdout，带color，并且sink是mt结束，表示是支持多线程；同时创建了日志格式化<code>formatter_</code>实例</li>
+<li>当调用<code>spdlog::info();</code>函数时，就会使用上面的<code>default_logger_</code>去创建一个log_msg日志消息，包括时间、文件、行号、函数名、日志消息主体</li>
+<li>sinks::ansicolor_stdout_sink_mt内部会有formatter来格式化日志消息，然后输出到stdout</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ConsoleMutex&gt;</span><br><span class="line">SPDLOG_INLINE <span class="type">void</span> ansicolor_sink&lt;ConsoleMutex&gt;::<span class="built_in">log</span>(<span class="type">const</span> details::log_msg &amp;msg)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Wrap the originally formatted message in color codes.</span></span><br><span class="line">    <span class="comment">// If color is not supported in the terminal, log as is instead.</span></span><br><span class="line">    <span class="function">std::lock_guard&lt;<span class="type">mutex_t</span>&gt; <span class="title">lock</span><span class="params">(mutex_)</span></span>;</span><br><span class="line">    msg.color_range_start = <span class="number">0</span>;</span><br><span class="line">    msg.color_range_end = <span class="number">0</span>;</span><br><span class="line">    <span class="type">memory_buf_t</span> formatted;</span><br><span class="line">    formatter_-&gt;format(msg, formatted);</span><br><span class="line">    <span class="keyword">if</span> (should_do_colors_ &amp;&amp; msg.color_range_end &gt; msg.color_range_start)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// before color range</span></span><br><span class="line">        <span class="built_in">print_range_</span>(formatted, <span class="number">0</span>, msg.color_range_start);</span><br><span class="line">        <span class="comment">// in color range</span></span><br><span class="line">        <span class="built_in">print_ccode_</span>(colors_[<span class="built_in">static_cast</span>&lt;<span class="type">size_t</span>&gt;(msg.level)]);</span><br><span class="line">        <span class="built_in">print_range_</span>(formatted, msg.color_range_start, msg.color_range_end);</span><br><span class="line">        <span class="built_in">print_ccode_</span>(reset);</span><br><span class="line">        <span class="comment">// after color range</span></span><br><span class="line">        <span class="built_in">print_range_</span>(formatted, msg.color_range_end, formatted.<span class="built_in">size</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">// no color</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">print_range_</span>(formatted, <span class="number">0</span>, formatted.<span class="built_in">size</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fflush</span>(target_file_);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="异步日志"><a href="#异步日志" class="headerlink" title="异步日志:"></a>异步日志:</h2><p>前面提到异步日志是mpmc多生产者、多消费者模型；这里就会有以下几部分</p>
+<ul>
+<li>发送日志消息的前端</li>
+<li>缓存日志消息的队列</li>
+<li>处理日志消息的后端及线程池</li>
+</ul>
+<h3 id="缓存日志消息的队列"><a href="#缓存日志消息的队列" class="headerlink" title="缓存日志消息的队列"></a>缓存日志消息的队列</h3><p><code>mpmc_blocking_q.h</code>文件：从名字上可以看出是多生产者、多消费者的blocking队列</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mpmc_blocking_queue</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::mutex queue_mutex_;</span><br><span class="line">    std::condition_variable push_cv_;</span><br><span class="line">    std::condition_variable pop_cv_;</span><br><span class="line">    spdlog::details::circular_q&lt;T&gt; q_; <span class="comment">// 环形队列 --&gt; 内部是个vector</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><code>circular_q.h</code>文件，本质上就是一个vector</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">circular_q</span> &#123;</span><br><span class="line">    <span class="type">size_t</span> max_items_ = <span class="number">0</span>;</span><br><span class="line">    <span class="type">size_t</span> overrun_counter_ = <span class="number">0</span>;</span><br><span class="line">    std::vector&lt;T&gt; v_; <span class="comment">// 缓存日志消息的vector；默认大小8192</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>日志消息缓存满了之后的处理策略：</p>
+<ol>
+<li><code>async_overflow_policy::block</code>：阻塞，一直到日志消息可以入队；默认的方式</li>
+<li><code>async_overflow_policy::overrun_oldest</code>：丢弃掉队列里面最老的消息，然后把新的日志消息入队</li>
+</ol>
+<h3 id="发送日志消息的前端"><a href="#发送日志消息的前端" class="headerlink" title="发送日志消息的前端"></a>发送日志消息的前端</h3><p>日志消息入队:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// async_logger-inl.h</span></span><br><span class="line"><span class="comment">// 发送消息到线程波</span></span><br><span class="line"><span class="type">void</span> spdlog::async_logger::<span class="built_in">sink_it_</span>(<span class="type">const</span> details::log_msg&amp; msg) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">auto</span> pool_ptr = thread_pool_.<span class="built_in">lock</span>()) &#123;</span><br><span class="line">        pool_ptr-&gt;<span class="built_in">post_log</span>(<span class="built_in">shared_from_this</span>(), msg, overflow_policy_);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">throw_spdlog_ex</span>(<span class="string">&quot;async log: thread pool doesn&#x27;t exist anymore&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建异步消息, 然后添加到队列</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">thread_pool::post_log</span><span class="params">(async_logger_ptr&amp;&amp; worker_ptr, <span class="type">const</span> details::log_msg&amp; msg, async_overflow_policy overflow_policy)</span> </span>&#123;</span><br><span class="line">    <span class="function">async_msg <span class="title">async_m</span><span class="params">(std::move(worker_ptr), async_msg_type::log, msg)</span></span>; <span class="comment">// 创建异步消息</span></span><br><span class="line">    <span class="built_in">post_async_msg_</span>(std::<span class="built_in">move</span>(async_m), overflow_policy);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">thread_pool::post_async_msg_</span><span class="params">(async_msg&amp;&amp; new_msg, async_overflow_policy overflow_policy)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (overflow_policy == async_overflow_policy::block) &#123;</span><br><span class="line">        q_.<span class="built_in">enqueue</span>(std::<span class="built_in">move</span>(new_msg));  <span class="comment">// 日志消息入队</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        q_.<span class="built_in">enqueue_nowait</span>(std::<span class="built_in">move</span>(new_msg));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="处理日志消息的后端及线程池"><a href="#处理日志消息的后端及线程池" class="headerlink" title="处理日志消息的后端及线程池"></a>处理日志消息的后端及线程池</h3><p>出队处理消息:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// thread_pool-inl.h</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">thread_pool::worker_loop_</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">process_next_msg_</span>()) &#123; <span class="comment">// 死循的方式来环处理下一条消息</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">thread_pool::process_next_msg_</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    async_msg incoming_async_msg; <span class="comment">// 收到的log日志消息</span></span><br><span class="line">    <span class="type">bool</span>      dequeued = q_.<span class="built_in">dequeue_for</span>(incoming_async_msg, std::chrono::<span class="built_in">seconds</span>(<span class="number">10</span>)); <span class="comment">// 出队</span></span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (incoming_async_msg.msg_type) &#123;</span><br><span class="line">        <span class="keyword">case</span> async_msg_type::log: &#123;</span><br><span class="line">            <span class="comment">// incoming_async_msg.worker_ptr就是async_logger</span></span><br><span class="line">            incoming_async_msg.worker_ptr-&gt;<span class="built_in">backend_sink_it_</span>(incoming_async_msg);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// ......</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="周期性flush缓冲区"><a href="#周期性flush缓冲区" class="headerlink" title="周期性flush缓冲区"></a>周期性flush缓冲区</h2><p>防止在缓冲区的数据丢失</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// registry-inl.h</span></span><br><span class="line"><span class="comment">// periodic_flusher_ 创建</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">registry::flush_every</span><span class="params">(std::chrono::seconds interval)</span> </span>&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(flusher_mutex_)</span></span>;</span><br><span class="line">    <span class="keyword">auto</span>                        clbk = [<span class="keyword">this</span>]() &#123; <span class="keyword">this</span>-&gt;<span class="built_in">flush_all</span>(); &#125;;</span><br><span class="line">    periodic_flusher_                = details::<span class="built_in">make_unique</span>&lt;periodic_worker&gt;(clbk, interval);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">registry::flush_all</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(logger_map_mutex_)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; l : loggers_) &#123;</span><br><span class="line">        l.second-&gt;<span class="built_in">flush</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// periodic_worker-inl.h</span></span><br><span class="line">periodic_worker::<span class="built_in">periodic_worker</span>(<span class="type">const</span> std::function&lt;<span class="built_in">void</span>()&gt;&amp; callback_fun, std::chrono::seconds interval) &#123;</span><br><span class="line">    active_ = (interval &gt; std::chrono::seconds::<span class="built_in">zero</span>());</span><br><span class="line">    <span class="keyword">if</span> (!active_) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    worker_thread_ = std::<span class="built_in">thread</span>([<span class="keyword">this</span>, callback_fun, interval]() &#123;</span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            std::unique_lock&lt;std::mutex&gt; <span class="built_in">lock</span>(<span class="keyword">this</span>-&gt;mutex_);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;cv_.<span class="built_in">wait_for</span>(lock, interval, [<span class="keyword">this</span>] &#123; <span class="keyword">return</span> !<span class="keyword">this</span>-&gt;active_; &#125;)) &#123;</span><br><span class="line">                <span class="keyword">return</span>;  <span class="comment">// active_ == false, so exit this thread</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">callback_fun</span>(); <span class="comment">// 上面的registry::flush_all()</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><ol>
+<li>registry单例模式<ol>
+<li>map&lt;name, logger&gt;, 创建的异步日志会被添加到这里</li>
+<li>defalut_logger</li>
+<li>thread_pool线程池, (async_factory_impl) 异步才需要线程池<ol>
+<li>details::mpmc_blocking_queue<async_msg>; 消息队列</li>
+<li>std::vector<span class="exturl" data-url="c3RkOjp0aHJlYWQ=">std::thread<i class="fa fa-external-link-alt"></i></span> threads_; 具体线程</li>
+<li>void worker_loop_() 死循环处理消息</li>
+</ol>
+</li>
+<li>periodic_flusher_; 周期性flush</li>
+<li>formatter_; log格式化</li>
+<li>log_levels: 级别</li>
+</ol>
+</li>
+<li>工厂模式<ol>
+<li>async_factory_impl</li>
+<li>synchronous_factory</li>
+</ol>
+</li>
+<li>logger –&gt; async_logger<ol>
+<li>logger<ol>
+<li>std::string           name_;_</li>
+<li>std::vector<sink_ptr> sinks_;</li>
+<li>spdlog::level_t       level_{level::info};_</li>
+<li>spdlog::level_t       flush_level_{level::off};</li>
+</ol>
+</li>
+<li>async_logger<ol>
+<li>std::weak_ptr<span class="exturl" data-url="ZGV0YWlsczo6dGhyZWFkX3Bvb2w=">details::thread_pool<i class="fa fa-external-link-alt"></i></span> thread_pool_;</li>
+<li>async_overflow_policy               overflow_policy_;</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>多生产者,多消费者模型mpmc_blocking_q.h<ol>
+<li>log 环形队列circular_q –&gt; std::vector 实现<ol>
+<li>async_overflow_policy::block</li>
+<li>async_overflow_policy::overrun_oldest</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>log_msg–&gt; log_msg_buffer –&gt; async_msg<ol>
+<li>log_msg<ol>
+<li>string_view_t logger_name</li>
+<li>level level</li>
+<li>time_point time</li>
+<li>thread_id</li>
+<li>source_loc: 文件名, 行号, 函数名</li>
+<li>string_view_t payload 消息主体</li>
+</ol>
+</li>
+<li>log_msg_buffer<ol>
+<li>memory_buf_t</li>
+</ol>
+</li>
+<li>async_msg<ol>
+<li>async_msg_type</li>
+<li>async_logger_ptr –&gt; async_logger</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>sink基类; 日志输出到哪里去:文件,stdout, android, qt, tcp, upd, mongo, syslog, systemd<ol>
+<li>base_sink, 通用</li>
+</ol>
+</li>
+<li>流程</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" rel="tag"># 源码分析</a>
+              <a href="/tags/spdlog/" rel="tag"># spdlog</a>
+              <a href="/tags/RTFC/" rel="tag"># RTFC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/%E8%8B%B1%E8%AF%AD%E9%AB%98%E9%A2%916000%E8%AF%8D%E7%B2%BE%E6%9E%90/" rel="prev" title="【English】英语高频6000词精析">
+                  <i class="fa fa-chevron-left"></i> 【English】英语高频6000词精析
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/KK-103-Bits-of-Advice-I-Wish-I-Had-Known/" rel="next" title="【转】KK:103 Bits of Advice I Wish I Had Known">
+                  【转】KK:103 Bits of Advice I Wish I Had Known <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

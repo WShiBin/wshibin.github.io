@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一个叫Warp的终端软件融资 2300 w 美元，https:&#x2F;&#x2F;www.warp.dev&#x2F;blog&#x2F;introducing-warp  一个好的故事： https:&#x2F;&#x2F;www.warp.dev&#x2F;blog&#x2F;introducing-warpWalk by any developer’s desk and you are likely to see two apps open: their code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Tools】来玩一玩件值一个亿的终端软件-Warp">
+<meta property="og:url" content="https://wshibin.github.io/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="一个叫Warp的终端软件融资 2300 w 美元，https:&#x2F;&#x2F;www.warp.dev&#x2F;blog&#x2F;introducing-warp  一个好的故事： https:&#x2F;&#x2F;www.warp.dev&#x2F;blog&#x2F;introducing-warpWalk by any developer’s desk and you are likely to see two apps open: their code">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wshibin.github.io/images/warp/warp_command_palette.gif">
+<meta property="og:image" content="https://wshibin.github.io/images/warp/warp_input_editor.gif">
+<meta property="og:image" content="https://wshibin.github.io/images/warp/warp_annotated_blocks_v2.png">
+<meta property="article:published_time" content="2022-04-10T07:38:47.000Z">
+<meta property="article:modified_time" content="2022-04-10T14:25:46.910Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="Tools">
+<meta property="article:tag" content="Terminal">
+<meta property="article:tag" content="Warp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/images/warp/warp_command_palette.gif">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/","path":"/2022/04/来玩一玩件值一个亿的终端软件/","title":"【Tools】来玩一玩件值一个亿的终端软件-Warp"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【Tools】来玩一玩件值一个亿的终端软件-Warp | WShiBin's blogs</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">一个好的故事：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">特性：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Palette"><span class="nav-number">3.</span> <span class="nav-text">Command Palette</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Input-Text-Editor"><span class="nav-number">4.</span> <span class="nav-text">The Input &#x2F; Text Editor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blocks%E5%9D%97"><span class="nav-number">5.</span> <span class="nav-text">Blocks块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Find%E6%9F%A5%E6%89%BE"><span class="nav-number">6.</span> <span class="nav-text">Find查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-History%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="nav-number">7.</span> <span class="nav-text">Command History命令历史记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autosuggestions%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA"><span class="nav-number">8.</span> <span class="nav-text">Autosuggestions自动提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Completions%E8%A1%A5%E5%85%A8"><span class="nav-number">9.</span> <span class="nav-text">Completions补全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Themes%E4%B8%BB%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">Themes主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt"><span class="nav-number">11.</span> <span class="nav-text">Prompt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Split-Panes%E5%88%86%E5%B1%8F"><span class="nav-number">12.</span> <span class="nav-text">Split Panes分屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-Management-and-Restoration"><span class="nav-number">13.</span> <span class="nav-text">Session Management and Restoration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Workflows"><span class="nav-number">14.</span> <span class="nav-text">Workflows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global-Hotkey-Window"><span class="nav-number">15.</span> <span class="nav-text">Global Hotkey Window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-I-Command-Search"><span class="nav-number">16.</span> <span class="nav-text">A.I. Command Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%81%87%E5%88%B0%E7%9A%84%E7%99%BB%E5%BD%95%E6%A0%A1%E9%AA%8C%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">17.</span> <span class="nav-text">安装遇到的登录校验问题：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【Tools】来玩一玩件值一个亿的终端软件-Warp | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Tools】来玩一玩件值一个亿的终端软件-Warp
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-10 15:38:47" itemprop="dateCreated datePublished" datetime="2022-04-10T15:38:47+08:00">2022-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/04/来玩一玩件值一个亿的终端软件/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>一个叫Warp的终端软件<strong>融资 2300 w 美元</strong>，<span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="一个好的故事："><a href="#一个好的故事：" class="headerlink" title="一个好的故事："></a>一个好的故事：</h2><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span><br>Walk by any developer’s desk and you are likely to see two apps open: their <strong>code editor</strong> and their <strong>terminal</strong> (sometimes the code editor is the terminal!). ‍</p>
+<p>Both are crucial to developer productivity. The code editor is where developers write code; the terminal is where they do pretty much everything else, from building code to running and deploying it, interacting with source control, configuring their cloud systems, and more.</p>
+<p>And yet only one of these two apps – the code editor – has experienced meaningful product improvement over the past 40 years. Compared to using VS Code, using the terminal is like stepping back in time to the 1970s. Only <span class="exturl" data-url="aHR0cHM6Ly9pbnNpZ2h0cy5zdGFja292ZXJmbG93LmNvbS9zdXJ2ZXkvMjAyMSNzZWN0aW9uLW1vc3QtcG9wdWxhci10ZWNobm9sb2dpZXMtaW50ZWdyYXRlZC1kZXZlbG9wbWVudC1lbnZpcm9ubWVudA==">70% of developers use VSCode<i class="fa fa-external-link-alt"></i></span>, while 100% use the terminal. So why is the terminal experience still so lackluster?</p>
+</blockquote>
+<p><strong>程序员最重要的两个工具：</strong></p>
+<ul>
+<li>Coder editor</li>
+<li>Terminal：编译，运行，部署，代码版本管理，配置云服务器……</li>
+<li>Browser浏览器</li>
+</ul>
+<p>Coder editor在过去40年一直在改善，而Terminal用起来还是最开始的那个样子。<br>个人觉得：后半句只是对了一半，提示、补全、搜索、主题都在发展，没有被整合起来</p>
+<p><strong>现今Terminal面临的问题：</strong></p>
+<ul>
+<li>Terminals are hard to use难用</li>
+<li>They don’t work for teams不是为团队协作设计的</li>
+</ul>
+<h2 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h2><ul>
+<li>Command Palette</li>
+<li>The Input / Text Editor</li>
+<li>Blocks</li>
+<li>Find</li>
+<li>Command History</li>
+<li>Autosuggestions</li>
+<li>Completions</li>
+<li>Themes</li>
+<li>Prompt</li>
+<li>Split Panes</li>
+<li>Session Management and Restoration</li>
+<li>Workflows</li>
+<li>Global Hotkey Window</li>
+<li>A.I. Command Search</li>
+</ul>
+<h2 id="Command-Palette"><a href="#Command-Palette" class="headerlink" title="Command Palette"></a>Command Palette</h2><p>快捷键：<code>CMD + P</code></p>
+<p>Terminal上所有的功能，几本上都这个通过这个搜索框去执行，还能模糊匹配；如果忘记某些功能的快捷键了，可以通过这个来搜索</p>
+<img src="/images/warp/warp_command_palette.gif" style="zoom: 43%;" />
+
+<p>这个功能应该是借鉴Sublime Text 、VSCode</p>
+<h2 id="The-Input-Text-Editor"><a href="#The-Input-Text-Editor" class="headerlink" title="The Input / Text Editor"></a>The Input / Text Editor</h2><img src="/images/warp/warp_input_editor.gif"/>
+
+<h2 id="Blocks块"><a href="#Blocks块" class="headerlink" title="Blocks块"></a>Blocks块</h2><p>概念：一次命令的执行称为一个块。</p>
+<ul>
+<li>copy命令</li>
+<li>copy命令的输出</li>
+<li>直接划到命令输出开始的地方</li>
+<li>重新输入这个命令</li>
+<li>共享这个命令和输出</li>
+</ul>
+<img src="/images/warp/warp_annotated_blocks_v2.png" style="zoom:50%;" />
+
+<p>在Blocks之间转跳：<code>CMD-UP</code>和<code>CMD-DOWN</code>，之后按上和下就可以了</p>
+<h2 id="Find查找"><a href="#Find查找" class="headerlink" title="Find查找"></a>Find查找</h2><ul>
+<li>支持大小写匹配</li>
+<li>支持锁定Blocks</li>
+</ul>
+<blockquote>
+<p>可以考虑下支持正则表达式</p>
+</blockquote>
+<h2 id="Command-History命令历史记录"><a href="#Command-History命令历史记录" class="headerlink" title="Command History命令历史记录"></a>Command History命令历史记录</h2><p>快捷键：<code>Ctrl + R</code></p>
+<ul>
+<li>支持模糊匹配</li>
+</ul>
+<p>fzf的<code>Ctrl + R</code>搜索历史记录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p1bmVndW5uL2Z6ZiNrZXktYmluZGluZ3MtZm9yLWNvbW1hbmQtbGluZQ==">https://github.com/junegunn/fzf#key-bindings-for-command-line<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Autosuggestions自动提示"><a href="#Autosuggestions自动提示" class="headerlink" title="Autosuggestions自动提示"></a>Autosuggestions自动提示</h2><p>快捷键：<code>方向右键</code> 或 <code>CTRL-F</code>. （F：forward）</p>
+<h2 id="Completions补全"><a href="#Completions补全" class="headerlink" title="Completions补全"></a>Completions补全</h2><p>快捷键：<code>TAB</code>，之后按上和下选择</p>
+<h2 id="Themes主题"><a href="#Themes主题" class="headerlink" title="Themes主题"></a>Themes主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvdGhlbWVzL3RyZWUvMTk0MzZkOTlmNzFkNmQ1NTEzN2JjZjhmNTQ3NWVhMTMwNTZlN2FkZCNvcGVuLXNvdXJjZS1kZXBlbmRlbmNpZXM=">https://github.com/warpdotdev/themes/tree/19436d99f71d6d55137bcf8f5475ea13056e7add#open-source-dependencies<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>We’d like to call out a few of the open source themes and repositories that helped bootstrap the set of themes for Warp:</p>
+<ul>
+<li>iTerm colors pencil</li>
+<li>Alacritty-theme</li>
+<li>base16-Alacritty</li>
+<li>base16</li>
+<li>Solarized</li>
+<li>Dracula</li>
+<li>Gruvbox</li>
+</ul>
+</blockquote>
+<h2 id="Prompt"><a href="#Prompt" class="headerlink" title="Prompt"></a>Prompt</h2><p>分Warp和用户自定义的</p>
+<ul>
+<li>开启自定义：<code>Settings &gt; Features</code> 打开<code>Honor user&#39;s custom prompt (PS1) setting.</code></li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29obXl6c2gvb2hteXpzaA==">ohmyzsh<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NwYWNlc2hpcC1wcm9tcHQvc3BhY2VzaGlwLXByb21wdA==">spaceship prompt<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Split-Panes分屏"><a href="#Split-Panes分屏" class="headerlink" title="Split Panes分屏"></a>Split Panes分屏</h2><h2 id="Session-Management-and-Restoration"><a href="#Session-Management-and-Restoration" class="headerlink" title="Session Management and Restoration"></a>Session Management and Restoration</h2><p>When Warp opens, it restores your session history, specifically windows, tabs, panes, and also the last few Blocks in each pane.</p>
+<p>当打开Warp，它会恢复历史会话，窗口，Tabs，面板，以及之前的Blocks；保存到sqlite里面</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sqlite3 <span class="variable">$HOME</span>/Library/Application Support/dev.warp.Warp-Stable/warp.sqlite</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用起来很方便；反过来，就会有隐私及安全的顾虑</p>
+</blockquote>
+<h2 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h2><h2 id="Global-Hotkey-Window"><a href="#Global-Hotkey-Window" class="headerlink" title="Global Hotkey Window"></a>Global Hotkey Window</h2><h2 id="A-I-Command-Search"><a href="#A-I-Command-Search" class="headerlink" title="A.I. Command Search"></a>A.I. Command Search</h2><h2 id="安装遇到的登录校验问题："><a href="#安装遇到的登录校验问题：" class="headerlink" title="安装遇到的登录校验问题："></a>安装遇到的登录校验问题：</h2><p>情况：用github账号登录，转跳到Warp之后卡顿，无法登录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvV2FycC9pc3N1ZXMvOTA2">https://github.com/warpdotdev/Warp/issues/906<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>需要开代理，在命令行中配置</li>
+<li>用命令行去启动Warp</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在命令行里面配置代理</span></span><br><span class="line">$ <span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:1077</span><br><span class="line">$ <span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:1077</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动warp</span></span><br><span class="line">$ /Applications/Warp.app/Contents/MacOS/stable</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Tools/" rel="tag"># Tools</a>
+              <a href="/tags/Terminal/" rel="tag"># Terminal</a>
+              <a href="/tags/Warp/" rel="tag"># Warp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/VSCode%E6%90%AD%E5%BB%BAC-C-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="prev" title="【VSCode】VSCode搭建C/C++开发环境">
+                  <i class="fa fa-chevron-left"></i> 【VSCode】VSCode搭建C/C++开发环境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/%E8%8B%B1%E8%AF%AD%E9%AB%98%E9%A2%916000%E8%AF%8D%E7%B2%BE%E6%9E%90/" rel="next" title="【English】英语高频6000词精析">
+                  【English】英语高频6000词精析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

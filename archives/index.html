@@ -174,12 +174,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -222,6 +222,347 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/08/Compiler-Attributes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/Compiler-Attributes/" class="post-title-link" itemprop="url">【GCC】Compiler Attributes</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-30 21:35:55" itemprop="dateCreated datePublished" datetime="2022-08-30T21:35:55+08:00">2022-08-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Compiler/" itemprop="url" rel="index"><span itemprop="name">Compiler</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/08/Compiler-Attributes/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/08/Compiler-Attributes/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>看源码时时常会看到一些使用一些编译器提供的属性；这里做个小结：</p>
+</blockquote>
+<p>属性向编译器提供了有关函数或变量用法的详细信息。给这使得编译器可以应用更准确的优化选项，以生成质量更好的代码，或者容许以普通的C语言所无法表达的形式。直白点说就是：这个属性是编译器提供的，写在代码里面的标注，让编译器根据对应的功能去处理代码、GCC支持很多属性，有各种不同的用途，具体可参见GCC文档。</p>
+<h2 id="文档："><a href="#文档：" class="headerlink" title="文档："></a>文档：</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9Db21tb24tRnVuY3Rpb24tQXR0cmlidXRlcy5odG1sI0NvbW1vbi1GdW5jdGlvbi1BdHRyaWJ1dGVz">Common Function Attributes<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9Db21tb24tVmFyaWFibGUtQXR0cmlidXRlcy5odG1sI0NvbW1vbi1WYXJpYWJsZS1BdHRyaWJ1dGVz">Common Variable Attributes<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9Db21tb24tVHlwZS1BdHRyaWJ1dGVzLmh0bWwjQ29tbW9uLVR5cGUtQXR0cmlidXRlcw==">Common Type Attributes<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="常见函数属性列表："><a href="#常见函数属性列表：" class="headerlink" title="常见函数属性列表："></a>常见函数属性列表：</h2><ul>
+<li><code>alias (&quot;target&quot;)</code></li>
+<li><code>constructor</code>、<code>destructor</code></li>
+<li><code>deprecated (msg)</code></li>
+<li><code>format (archetype, string-index, first-to-check)</code></li>
+<li><code>format_arg (string-index)</code></li>
+<li><code>noreturn</code></li>
+<li><code>section (&quot;section-name&quot;)</code></li>
+<li><code>visibility (&quot;visibility_type&quot;)</code></li>
+<li><code>weakref</code></li>
+<li><code>weak</code></li>
+</ul>
+<h3 id="alias-“target”-属性"><a href="#alias-“target”-属性" class="headerlink" title="alias (“target”)属性"></a>alias (“target”)属性</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> __f() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;foo\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">__attribute__((weak, alias(<span class="string">&quot;__f&quot;</span>))) <span class="type">void</span> <span class="title function_">f</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    f();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">foo</span><br></pre></td></tr></table></figure>
+
+<h3 id="constructor、destructor-属性"><a href="#constructor、destructor-属性" class="headerlink" title="constructor、destructor 属性"></a>constructor、destructor 属性</h3><p><code>constructor</code>可以在main函数之前调用，而<code>destructor</code>可以在main函数之后调用；这里的另外一个问题是return并不能结束程序，只能代表函数调用的结束；</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((constructor)) <span class="type">void</span> <span class="title function_">init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;main\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor)) <span class="type">void</span> <span class="title function_">release</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">constructor</span><br><span class="line">main</span><br><span class="line">destructor</span><br></pre></td></tr></table></figure>
+
+<p>另外：<code>constructor (priority)</code>和<code>destructor (priority)</code>可以加优先级去修饰函数，优先级用来控制函数调用的顺序：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((constructor(<span class="number">1</span>))) <span class="type">void</span> <span class="title function_">init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor 1\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">__attribute__((constructor(<span class="number">2</span>))) <span class="type">void</span> <span class="title function_">foo1</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor 2\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;main\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor(<span class="number">1</span>))) <span class="type">void</span> <span class="title function_">release</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor 1\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor(<span class="number">2</span>))) <span class="type">void</span> <span class="title function_">bar1</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor 2\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">constructor 1</span><br><span class="line">constructor 2</span><br><span class="line">main</span><br><span class="line">destructor 2</span><br><span class="line">destructor 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="deprecated-msg-属性"><a href="#deprecated-msg-属性" class="headerlink" title="deprecated (msg)属性"></a>deprecated (msg)属性</h3><p>用来标记函数过时，可携带相应信息：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span> __<span class="title function_">attribute__</span><span class="params">((deprecated(<span class="string">&quot;for some reason&quot;</span>)))</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span>;</span><br><span class="line"><span class="type">int</span> (*fn_ptr)() = old_fn;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    old_fn();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>VSCode + clangd + Error Lens</code> 提示截图：</p>
+<img src="/images/compiler/image-20220830103307039 PM.png" style="zoom:50%;" />
+
+<p>编译输出提示：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">main.c:<span class="number">5</span>:<span class="number">1</span>: warning: ‘old_fn’ is deprecated: <span class="keyword">for</span> some reason [-Wdeprecated-declarations]</span><br><span class="line">    <span class="number">5</span> | <span class="type">int</span> (*fn_ptr)() = old_fn;</span><br><span class="line">      | ^~~</span><br><span class="line">main.c:<span class="number">4</span>:<span class="number">5</span>: note: declared here</span><br><span class="line">    <span class="number">4</span> | <span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span>;</span><br><span class="line">      |     ^~~~~~</span><br><span class="line">main.c: In function ‘main’:</span><br></pre></td></tr></table></figure>
+
+<h3 id="format-archetype-string-index-first-to-check-属性"><a href="#format-archetype-string-index-first-to-check-属性" class="headerlink" title="format (archetype, string-index, first-to-check)属性"></a>format (archetype, string-index, first-to-check)属性</h3><p>format 属性指定函数采用 printf、scanf、strftime 或 strfmon 样式参数，这些参数应根据格式字符串进行类型检查。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((format(<span class="built_in">printf</span>, <span class="number">2</span>, <span class="number">3</span>))) <span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">my_printf</span><span class="params">(<span class="type">void</span>* my_object, <span class="type">const</span> <span class="type">char</span>* my_format, ...)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s: &quot;</span>, (<span class="type">char</span>*)my_object);</span><br><span class="line">    va_list args;</span><br><span class="line">    va_start(args, my_format);</span><br><span class="line">    <span class="built_in">vprintf</span>(my_format, args);</span><br><span class="line">    va_end(args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    my_printf(<span class="string">&quot;some flag&quot;</span>, <span class="string">&quot;hello %s\n&quot;</span>, <span class="string">&quot;format&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">some flag: hello format</span><br></pre></td></tr></table></figure>
+
+<h3 id="noreturn属性"><a href="#noreturn属性" class="headerlink" title="noreturn属性"></a>noreturn属性</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((<span class="keyword">noreturn</span>)) <span class="type">void</span> <span class="title function_">fatal</span><span class="params">(<span class="comment">/* … */</span>)</span> &#123;</span><br><span class="line">    <span class="comment">/* … */</span></span><br><span class="line">    <span class="comment">/* Print error message. */</span></span><br><span class="line">    <span class="comment">/* … */</span></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    fatal();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="section-“section-name”-属性"><a href="#section-“section-name”-属性" class="headerlink" title="section (“section-name”)属性"></a>section (“section-name”)属性</h3><p>把相应的函数放到对应的section段</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((section(<span class="string">&quot;foo&quot;</span>))) <span class="type">void</span> <span class="title function_">foobar</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：程序文件会多一个foo的section</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c</span><br><span class="line">$ readelf -SW a.out</span><br><span class="line">There are 30 section headers, starting at offset 0x3678:</span><br><span class="line"></span><br><span class="line">Section Headers:</span><br><span class="line">  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al</span><br><span class="line">  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0</span><br><span class="line">  [ 1] .interp           PROGBITS        0000000000000318 000318 00001c 00   A  0   0  1</span><br><span class="line">  [ 2] .note.gnu.property NOTE            0000000000000338 000338 000030 00   A  0   0  8</span><br><span class="line">  [ 3] .note.gnu.build-id NOTE            0000000000000368 000368 000024 00   A  0   0  4</span><br><span class="line">  [ 4] .note.ABI-tag     NOTE            000000000000038c 00038c 000020 00   A  0   0  4</span><br><span class="line">  [ 5] .gnu.hash         GNU_HASH        00000000000003b0 0003b0 000024 00   A  6   0  8</span><br><span class="line">  [ 6] .dynsym           DYNSYM          00000000000003d8 0003d8 000090 18   A  7   1  8</span><br><span class="line">  [ 7] .dynstr           STRTAB          0000000000000468 000468 000088 00   A  0   0  1</span><br><span class="line">  [ 8] .gnu.version      VERSYM          00000000000004f0 0004f0 00000c 02   A  6   0  2</span><br><span class="line">  [ 9] .gnu.version_r    VERNEED         0000000000000500 000500 000030 00   A  7   1  8</span><br><span class="line">  [10] .rela.dyn         RELA            0000000000000530 000530 0000c0 18   A  6   0  8</span><br><span class="line">  [11] .init             PROGBITS        0000000000001000 001000 00001b 00  AX  0   0  4</span><br><span class="line">  [12] .plt              PROGBITS        0000000000001020 001020 000010 10  AX  0   0 16</span><br><span class="line">  [13] .plt.got          PROGBITS        0000000000001030 001030 000010 10  AX  0   0 16</span><br><span class="line">  [14] .text             PROGBITS        0000000000001040 001040 0000ff 00  AX  0   0 16</span><br><span class="line">  [15] foo               PROGBITS        000000000000113f 00113f 00000b 00  AX  0   0  1</span><br><span class="line">  [16] .fini             PROGBITS        000000000000114c 00114c 00000d 00  AX  0   0  4</span><br><span class="line">  [17] .rodata           PROGBITS        0000000000002000 002000 000004 04  AM  0   0  4</span><br><span class="line">  [18] .eh_frame_hdr     PROGBITS        0000000000002004 002004 000034 00   A  0   0  4</span><br><span class="line">  [19] .eh_frame         PROGBITS        0000000000002038 002038 0000b4 00   A  0   0  8</span><br><span class="line">  [20] .init_array       INIT_ARRAY      0000000000003df0 002df0 000008 08  WA  0   0  8</span><br><span class="line">  [21] .fini_array       FINI_ARRAY      0000000000003df8 002df8 000008 08  WA  0   0  8</span><br><span class="line">  [22] .dynamic          DYNAMIC         0000000000003e00 002e00 0001c0 10  WA  7   0  8</span><br><span class="line">  [23] .got              PROGBITS        0000000000003fc0 002fc0 000040 08  WA  0   0  8</span><br><span class="line">  [24] .data             PROGBITS        0000000000004000 003000 000010 00  WA  0   0  8</span><br><span class="line">  [25] .bss              NOBITS          0000000000004010 003010 000008 00  WA  0   0  1</span><br><span class="line">  [26] .comment          PROGBITS        0000000000000000 003010 000026 01  MS  0   0  1</span><br><span class="line">  [27] .symtab           SYMTAB          0000000000000000 003038 000360 18     28  18  8</span><br><span class="line">  [28] .strtab           STRTAB          0000000000000000 003398 0001d0 00      0   0  1</span><br><span class="line">  [29] .shstrtab         STRTAB          0000000000000000 003568 000110 00      0   0  1</span><br></pre></td></tr></table></figure>
+
+<h3 id="visibility-“visibility-type”-属性"><a href="#visibility-“visibility-type”-属性" class="headerlink" title="visibility (“visibility_type”)属性"></a>visibility (“visibility_type”)属性</h3><p>可以用来修饰函数、变量和类型。当一个库用来给别人调用的时候，当前库对外暴露的函数、变量和类型就有可见性的问题；比如说这个想对外暴露那些接口，影藏哪些接口；一个好的最佳实践是：尽可能少地输出符号。动态库装载和识别的符号越少，程序启动和运行的速度就越快。导出所有符号会减慢程序速度，并耗用大量内存。</p>
+<p><code>visibility_type</code>取值：</p>
+<ul>
+<li>default：在 ELF 上，默认可见性意味着声明对其他模块可见，并且在共享库中，意味着声明的实体可以被覆盖。</li>
+<li>hidden：隐藏可见性表明声明的实体具有一种新的链接形式，我们称之为“隐藏链接”。如果两个具有隐藏链接的对象声明在同一个共享对象中，则它们引用同一个对象。</li>
+<li>internal：内部可见性类似于隐藏可见性，但具有额外的处理器特定语义。</li>
+<li>protected：受保护的可见性类似于默认可见性，只是它指示定义模块中的引用绑定到该模块中的定义。也就是说，声明的实体不能被另一个模块覆盖。</li>
+</ul>
+<p>cJSON和dbus中的使用示例：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> (defined(__GNUC__) || defined(__SUNPRO_CC) || defined (__SUNPRO_C)) &amp;&amp; defined(CJSON_API_VISIBILITY)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CJSON_PUBLIC(type)   __attribute__((visibility(<span class="string">&quot;default&quot;</span>))) type</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CJSON_PUBLIC(type) type</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(__GNUC__) &amp;&amp; __GNUC__ &gt;= 4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_EXPORT __attribute__ ((__visibility__ (<span class="string">&quot;default&quot;</span>)))</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_EXPORT</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="weak属性"><a href="#weak属性" class="headerlink" title="weak属性"></a>weak属性</h3><p>todo</p>
+<h2 id="常见变量属性列表："><a href="#常见变量属性列表：" class="headerlink" title="常见变量属性列表："></a>常见变量属性列表：</h2><ul>
+<li><code>aligned (alignment)</code></li>
+<li><code>cleanup (cleanup_function)</code></li>
+<li><code>deprecated (msg)</code> 同上</li>
+<li><code>packed</code></li>
+<li><code>section (&quot;section-name&quot;)</code> 同上</li>
+<li><code>visibility (&quot;visibility_type&quot;)</code> 同上</li>
+<li><code>weak</code> 同上</li>
+</ul>
+<h3 id="aligned-alignment-属性"><a href="#aligned-alignment-属性" class="headerlink" title="aligned (alignment)属性"></a>aligned (alignment)属性</h3><p>todo</p>
+<h3 id="cleanup-cleanup-function-属性"><a href="#cleanup-cleanup-function-属性" class="headerlink" title="cleanup (cleanup_function)属性"></a>cleanup (cleanup_function)属性</h3><h3 id="deprecated-msg-属性-同上"><a href="#deprecated-msg-属性-同上" class="headerlink" title="deprecated (msg) 属性(同上)"></a>deprecated (msg) 属性(同上)</h3><h3 id="packed属性"><a href="#packed属性" class="headerlink" title="packed属性"></a>packed属性</h3><h3 id="section-“section-name”-属性-同上"><a href="#section-“section-name”-属性-同上" class="headerlink" title="section (“section-name”) 属性(同上)"></a>section (“section-name”) 属性(同上)</h3><h3 id="visibility-“visibility-type”-属性-同上"><a href="#visibility-“visibility-type”-属性-同上" class="headerlink" title="visibility (“visibility_type”) 属性(同上)"></a>visibility (“visibility_type”) 属性(同上)</h3><h3 id="weak-属性-同上"><a href="#weak-属性-同上" class="headerlink" title="weak 属性(同上)"></a>weak 属性(同上)</h3><h2 id="常见类型属性列表："><a href="#常见类型属性列表：" class="headerlink" title="常见类型属性列表："></a>常见类型属性列表：</h2><ul>
+<li><code>aligned (alignment)</code></li>
+<li><code>deprecated (msg)</code> 同上</li>
+<li><code>packed</code></li>
+<li><code>visibility</code></li>
+</ul>
+<h3 id="aligned-alignment-属性-同上"><a href="#aligned-alignment-属性-同上" class="headerlink" title="aligned (alignment) 属性(同上)"></a>aligned (alignment) 属性(同上)</h3><p>todo</p>
+<h3 id="deprecated-msg-属性-同上-1"><a href="#deprecated-msg-属性-同上-1" class="headerlink" title="deprecated (msg) 属性(同上)"></a>deprecated (msg) 属性(同上)</h3><h3 id="packed-属性-同上"><a href="#packed-属性-同上" class="headerlink" title="packed 属性(同上)"></a>packed 属性(同上)</h3><h3 id="visibility-属性-同上"><a href="#visibility-属性-同上" class="headerlink" title="visibility 属性(同上)"></a>visibility 属性(同上)</h3><h2 id="builtin函数"><a href="#builtin函数" class="headerlink" title="__builtin函数"></a>__builtin函数</h2><p>编译器提供了其他选项，可以执行C语言常规能力范围之外的操作，又不必借 助于内联汇编。</p>
+<ul>
+<li><code>__builtin_return_address</code></li>
+<li><code>__builtin_expect</code></li>
+<li><code>__builtin_unreachable</code></li>
+</ul>
+<h3 id="builtin-return-address-函数"><a href="#builtin-return-address-函数" class="headerlink" title="__builtin_return_address 函数"></a>__builtin_return_address 函数</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9SZXR1cm4tQWRkcmVzcy5odG1s">https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>__builtin_return_address(0)获得函数的返回地址，即函数结束时控制流将定位到的目标 地址。如前所述，该信息也可以从活动记录取得。这实际上是一个特定于体系结构的任务， 但这里的__builtin函数为该功能提供了一个通用的前端。 参数指定了该__builtin函数应该在活动记录中向上多少层。0表示当前运行函数将返回的地 址，1表示调用当前函数的函数将返回的地址，依次类推。</p>
+<h3 id="builtin-expect-函数"><a href="#builtin-expect-函数" class="headerlink" title="__builtin_expect 函数"></a>__builtin_expect 函数</h3><p>允许程序员将最有可能执行的分支告诉编译器，来帮助编译器优化分支预测。比如，有些服务程序代码抽象后，可能是下面这样，一个死循环然后处理数据；下一问题是：如果99%的情况是true，这时候有没有办法去优化它</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">bool</span> cond = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cond) &#123;</span><br><span class="line">            <span class="comment">// true：handle some thing</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>__builtin_expect</code> 改过后：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> likely(x) __builtin_expect(!!(x), 1)    <span class="comment">// x很可能为真</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> unlikely(x) __builtin_expect(!!(x), 0)  <span class="comment">// x很可能为假</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">bool</span> cond = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (likely(cond)) &#123;</span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码解释：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(likely(value))  <span class="comment">//等价于 if(value)</span></span><br><span class="line"><span class="keyword">if</span>(unlikely(value))  <span class="comment">//也等价于 if(value)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>__builtin_expect()</code> 是 GCC (version &gt;= 2.96）提供给程序员使用的，目的是将“分支转移”的信息提供给编译器，这样编译器可以对代码进行优化，以减少指令跳转带来的性能下降。</p>
+<ul>
+<li><code>__builtin_expect((x),1)</code>表示 x 的值为真的可能性更大；</li>
+<li><code>__builtin_expect((x),0)</code>表示 x 的值为假的可能性更大。</li>
+</ul>
+<p>也就是说，使用<code>likely()</code>，执行 if 后面的语句的机会更大，使用 <code>unlikely()</code>，执行 else 后面的语句的机会更大。通过这种方式，编译器在编译过程中，会将可能性更大的代码紧跟着起面的代码，从而减少指令跳转带来的性能上的下降 。</p>
+<p>Linux内核定义了以下两个宏，来标识代码中很可能和不太可能的分支: <code>&lt;compiler.h&gt;</code>文件中</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> likely(x) __builtin_expect(!!(x), 1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> unlikely(x) __builtin_expect(!!(x), 0)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="builtin-unreachable-函数"><a href="#builtin-unreachable-函数" class="headerlink" title="__builtin_unreachable 函数"></a>__builtin_unreachable 函数</h3><p>todo</p>
+<h2 id="Ref："><a href="#Ref：" class="headerlink" title="Ref："></a>Ref：</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC8yNjg0NjEzYTMwMGY=">https://www.jianshu.com/p/2684613a300f<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9pbmRleC5odG1s">https://gcc.gnu.org/onlinedocs/gcc/index.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9SZXR1cm4tQWRkcmVzcy5odG1s">https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/08/Strings-in-C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/Strings-in-C/" class="post-title-link" itemprop="url">【C】C语言中的字符串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-29 21:43:54" itemprop="dateCreated datePublished" datetime="2022-08-29T21:43:54+08:00">2022-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/08/Strings-in-C/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/08/Strings-in-C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>c语言的字符串，本质上是一个以<code>\0</code>字符结尾的字符数组，使用起来操作想去繁琐，不少库都会对其进行封装。下面看一些比较有代表性的</p>
+</blockquote>
+<h2 id="典型库里面的字符串的封装："><a href="#典型库里面的字符串的封装：" class="headerlink" title="典型库里面的字符串的封装："></a>典型库里面的字符串的封装：</h2><ul>
+<li>Git里面的<code>strbuf</code></li>
+<li>Dbus里面的字符串<code>DBusRealString</code></li>
+<li>Glib中的<code>GString</code></li>
+<li>nginx中的<code>ngx_str_t</code></li>
+<li>Redis中的<code>sds</code></li>
+</ul>
+<h3 id="Git里面的strbuf"><a href="#Git里面的strbuf" class="headerlink" title="Git里面的strbuf"></a>Git里面的<code>strbuf</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">strbuf</span> &#123;</span></span><br><span class="line">    <span class="type">size_t</span> alloc;</span><br><span class="line">    <span class="type">size_t</span> len;</span><br><span class="line">    <span class="type">char</span>*  buf;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dbus里面的字符串DBusRealString"><a href="#Dbus里面的字符串DBusRealString" class="headerlink" title="Dbus里面的字符串DBusRealString"></a>Dbus里面的字符串<code>DBusRealString</code></h3><p><code>Dbus</code>是<code>DBusString</code>包装了一层<code>DBusRealString</code>，对外<code>DBusString</code>，对内<code>DBusRealString</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>* str;              <span class="comment">/**&lt; String data, plus nul termination */</span></span><br><span class="line">    <span class="type">int</span>            len;              <span class="comment">/**&lt; Length without nul */</span></span><br><span class="line">    <span class="type">int</span>            allocated;        <span class="comment">/**&lt; Allocated size of data */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   constant : <span class="number">1</span>;     <span class="comment">/**&lt; String data is not owned by DBusString */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   locked : <span class="number">1</span>;       <span class="comment">/**&lt; DBusString has been locked and can&#x27;t be changed */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   valid : <span class="number">1</span>;        <span class="comment">/**&lt; DBusString is valid (initialized and not freed) */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   align_offset : <span class="number">3</span>; <span class="comment">/**&lt; str - align_offset is the actual malloc block */</span></span><br><span class="line">&#125; DBusRealString;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Glib中的GString"><a href="#Glib中的GString" class="headerlink" title="Glib中的GString"></a>Glib中的<code>GString</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">GString</span> &#123;</span></span><br><span class="line">    gchar* str;</span><br><span class="line">    gsize  len;</span><br><span class="line">    gsize  allocated_len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="nginx中的ngx-str-t"><a href="#nginx中的ngx-str-t" class="headerlink" title="nginx中的ngx_str_t"></a>nginx中的<code>ngx_str_t</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">size_t</span>  len;</span><br><span class="line">    u_char* data;</span><br><span class="line">&#125; <span class="type">ngx_str_t</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis中的sds"><a href="#Redis中的sds" class="headerlink" title="Redis中的sds"></a>Redis中的<code>sds</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">char</span>* sds;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Note: sdshdr5 is never used, we just access the flags byte directly.</span></span><br><span class="line"><span class="comment"> * However is here to document the layout of type 5 SDS strings. */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr5</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, and 5 msb of string length */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr8</span> &#123;</span></span><br><span class="line">    <span class="type">uint8_t</span>       len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint8_t</span>       alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr16</span> &#123;</span></span><br><span class="line">    <span class="type">uint16_t</span>      len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint16_t</span>      alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr32</span> &#123;</span></span><br><span class="line">    <span class="type">uint32_t</span>      len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint32_t</span>      alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr64</span> &#123;</span></span><br><span class="line">    <span class="type">uint64_t</span>      len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint64_t</span>      alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="SDS：Simple-Dynamic-Strings"><a href="#SDS：Simple-Dynamic-Strings" class="headerlink" title="SDS：Simple Dynamic Strings"></a>SDS：Simple Dynamic Strings</h2><p>其它几没有太大差别：长度、容量、数据；到是这个SDS</p>
+<p>SDS是在redis中使用的字符串，后面独立成了单独的厂库：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FudGlyZXovc2Rz">https://github.com/antirez/sds<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><code>__attribute__((__packed__))</code> 属性</li>
+<li>柔性数组</li>
+</ul>
+<h3 id="设计："><a href="#设计：" class="headerlink" title="设计："></a>设计：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------+-------------------------------+-----------+</span><br><span class="line">| Header | Binary safe C alike string... | Null term |</span><br><span class="line">+--------+-------------------------------+-----------+</span><br><span class="line">         |</span><br><span class="line">         `-&gt; Pointer returned to the user.</span><br></pre></td></tr></table></figure>
+
+<p>示例：<code>HELLOWORLD</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+------------+------------------------+-----------+---------------\</span><br><span class="line">| Len | Free | H E L L O W O R L D \n | Null term |  Free space   \</span><br><span class="line">+------------+------------------------+-----------+---------------\</span><br><span class="line">             |</span><br><span class="line">             `-&gt; Pointer returned to the user.</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><p>todo</p>
+<h3 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h3><p>LSB： <code>least significant bit</code></p>
+<img src="/images/cstring/byte-and-bit-image-20220829103838200.png" style="zoom:80%;" />
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -449,7 +790,7 @@
 <p>Development Containers：<span class="exturl" data-url="aHR0cHM6Ly9jb250YWluZXJzLmRldi8=">https://containers.dev/<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 目录</span></span><br><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ <span class="built_in">mkdir</span> linux &amp;&amp; <span class="built_in">cd</span> linux</span><br><span class="line">$ <span class="built_in">mkdir</span> .devcontainer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目录中的文件</span></span><br><span class="line">$ tree .devcontainer </span><br><span class="line">.devcontainer</span><br><span class="line">├── Dockerfile</span><br><span class="line">└── devcontainer.json</span><br></pre></td></tr></table></figure>
 
-<h2 id="Dockerfile文件："><a href="#Dockerfile文件：" class="headerlink" title="Dockerfile文件："></a><code>Dockerfile</code>文件：</h2><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># https://hub.docker.com/r/docker/dev-environments-default</span></span><br><span class="line"><span class="keyword">FROM</span> docker/dev-environments-default:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># tools</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt install libdbus-1-dev pkg-config curl tree vim -y</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># C/C++ env</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt install build-essential cmake valgrind -y</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># LLVM</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt install lsb-release wget software-properties-common -y</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> bash -c <span class="string">&quot;<span class="subst">$(wget -O - https://apt.llvm.org/llvm.sh)</span>&quot;</span></span></span><br><span class="line"><span class="keyword">ENV</span> PATH=<span class="string">&quot;/usr/lib/llvm-14/bin/:$&#123;PATH&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for Rust</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> curl https://sh.rustup.rs -sSf | bash -s -- -y</span></span><br><span class="line"><span class="keyword">ENV</span> PATH=<span class="string">&quot;/root/.cargo/bin:$&#123;PATH&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /workspace</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;sleep&quot;</span>, <span class="string">&quot;infinity&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Dockerfile文件："><a href="#Dockerfile文件：" class="headerlink" title="Dockerfile文件："></a><code>Dockerfile</code>文件：</h2><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># https://hub.docker.com/r/docker/dev-environments-default</span></span><br><span class="line"><span class="keyword">FROM</span> docker/dev-environments-default:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># tools</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt install libdbus-1-dev pkg-config curl tree vim -y</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># C/C++ env</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt install build-essential cmake valgrind -y</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># LLVM</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt install lsb-release wget software-properties-common gnupg -y</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> bash -c <span class="string">&quot;<span class="subst">$(wget -O - https://apt.llvm.org/llvm.sh)</span>&quot;</span></span></span><br><span class="line"><span class="keyword">ENV</span> PATH=<span class="string">&quot;/usr/lib/llvm-14/bin/:$&#123;PATH&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for Rust</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> curl https://sh.rustup.rs -sSf | bash -s -- -y</span></span><br><span class="line"><span class="keyword">ENV</span> PATH=<span class="string">&quot;/root/.cargo/bin:$&#123;PATH&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /workspace</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;sleep&quot;</span>, <span class="string">&quot;infinity&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -468,7 +809,8 @@
 <h3 id="方式二：Docker命令构建"><a href="#方式二：Docker命令构建" class="headerlink" title="方式二：Docker命令构建"></a>方式二：Docker命令构建</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker build -t linux:latest .</span><br><span class="line"></span><br><span class="line">$ docker run -d -w /workspace \</span><br><span class="line">    -v $(<span class="built_in">pwd</span>):/workspace \</span><br><span class="line">    linux:latest</span><br></pre></td></tr></table></figure>
 
 <p>VSCode命令：<code>&gt;Remote-Containers: Attach to Running Container</code></p>
-<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install LLVM</span></span><br><span class="line">$ apt install lsb-release wget software-properties-common</span><br><span class="line">$ bash -c <span class="string">&quot;<span class="subst">$(wget -O - https://apt.llvm.org/llvm.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p><span class="exturl" data-url="aHR0cHM6Ly9hcHQubGx2bS5vcmcv">https://apt.llvm.org/<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install LLVM</span></span><br><span class="line">$ apt install lsb-release wget software-properties-common</span><br><span class="line">$ bash -c <span class="string">&quot;<span class="subst">$(wget -O - https://apt.llvm.org/llvm.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -25693,436 +26035,6 @@
 
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/" class="post-title-link" itemprop="url">【电脑】主机折腾记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-03 22:49:35" itemprop="dateCreated datePublished" datetime="2022-04-03T22:49:35+08:00">2022-04-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Computer/" itemprop="url" rel="index"><span itemprop="name">Computer</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/04/%E4%B8%BB%E6%9C%BA%E6%8A%98%E8%85%BE%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/04/主机折腾记/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>去年想把主力的系统换成Linux，淘了个拯救者 2021 Y9000x i7-10875H，工作电脑用Ubuntu系统，就在这笔记本上尝试了几个主要的Linux发行版：Fedora，PopOS，Debian；发现桌面生态分裂严重，各玩个的；国内的应用厂商大部分软件都是支持Debian系，还没有到能到工作用的程度（个人观点）。后面还是选择回macOS，虽然之前买了个苹果垃圾桶，但也有点老，毕竟2013年发布的东东，加上苹果主机越来越贵，就动了黑苹果的念头；然后去咸鱼花2900块淘了个i5 10400的主机，在去淘宝花70块装了黑苹果系统。别说，真香。后面对比i5 10400和i7 10700，Cinebench R23 (Multi-Core)跑分 i7 10700多核性能有33%的提升，于是就有了这次的折腾</p>
-</blockquote>
-<h2 id="主机要求"><a href="#主机要求" class="headerlink" title="主机要求"></a>主机要求</h2><ul>
-<li>机箱尽量小</li>
-<li>没有RGB之类的光污染</li>
-</ul>
-<h2 id="装机清单"><a href="#装机清单" class="headerlink" title="装机清单"></a>装机清单</h2><table>
-<thead>
-<tr>
-<th>配件</th>
-<th>清单</th>
-<th>价格</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>机箱：</td>
-<td>肖邦PRO 200W</td>
-<td>550</td>
-</tr>
-<tr>
-<td>散热：</td>
-<td>利民AXP90 全铜</td>
-<td>260</td>
-</tr>
-<tr>
-<td>CPU：</td>
-<td>Intel i7 10700</td>
-<td>1680</td>
-</tr>
-<tr>
-<td>主板：</td>
-<td>华硕ROG STRIX B460-I GAMING</td>
-<td>730</td>
-</tr>
-<tr>
-<td>内存：</td>
-<td>刚威DDR4 3200 16G*2</td>
-<td>628</td>
-</tr>
-<tr>
-<td>硬盘：</td>
-<td>西数 SN850 500G</td>
-<td>550</td>
-</tr>
-<tr>
-<td>网卡：</td>
-<td>WD1560</td>
-<td>140</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>总记：4538元</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>有些配件买不到新的，在咸鱼上淘的二手的；不打游戏，集显够用了；为啥不用新的Intel 12代U？要装苹果系统，苹果自己家机器后面也没有出11代和12代U的电脑，10代后面的Intel CPU集显都驱动不了</p>
-</blockquote>
-<p>装机和装系统过程中也遇到了一些问题，多亏有小伙伴帮忙：</p>
-<ul>
-<li>装机不太明白某个CPU的供电插头，把机器抱去了大熊家，给解决了</li>
-<li>后面装系统找不到引导盘，江同学电话指导了一个多小时，用Ventoy + WinPE做系统启动盘，处理了下硬盘，算是搞定了</li>
-</ul>
-<p>放一张别人的<span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2FkMnowbjh4L3BpY184LyNiaWdJbWc=">装机图<i class="fa fa-external-link-alt"></i></span>，大概就长这样：</p>
-<img src="/images/hackintosh/image-20220409153844999.png" style="zoom:50%;" />
-
-<h2 id="装黑苹果系统"><a href="#装黑苹果系统" class="headerlink" title="装黑苹果系统"></a>装黑苹果系统</h2><h3 id="选硬件"><a href="#选硬件" class="headerlink" title="选硬件"></a>选硬件</h3><p>黑苹果系统最大的找系统兼容的硬件，最好找免驱动的硬件，会省不少蛮烦；比如，苹果之前一段时间出的硬件大多是Intel的U + AMD的显卡；比如，苹果没有；</p>
-<ul>
-<li>CPU：苹果近些年一直使用的是Intel的CPU；后面没有出Intel 11代、12代U的硬件了，用这两代U可以，但没法使用他们的集显</li>
-<li>显卡：同样苹果近些年用的AMD家的显卡；AMD的显示有也分支持、不支持，还有免驱的</li>
-<li>硬盘和内存：这两个没有太大要求，不过有些硬盘有坑，买的时候先在网卡查下</li>
-<li>网卡：一般主板上带的Intel网卡没办法使用，或是需要加驱动比较麻烦，这种直接买免驱的网卡更换即可，淘宝搜索能找到很多</li>
-</ul>
-<blockquote>
-<p>选硬件多参考别人的装机经验：踩坑或建议；如果觉得别人的配置还行，直接按着他的配置买即可</p>
-</blockquote>
-<h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>上面的硬件选对了，大概就成功了九成；装系统大部分工作：<strong>配置上面硬件的驱动</strong>；彭总经常说：可以花钱的都是小事儿。如果不想自己折腾和研究，淘宝花个80、100块，就能找到人远程知道安装了；如果想自己折腾下，就去多看文档和教程：</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kb3J0YW5pYS5naXRodWIuaW8vT3BlbkNvcmUtSW5zdGFsbC1HdWlkZS8=">Dortania’s OpenCore Install Guide<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmRhbGlhbnNreS5uZXQv">黑果小兵的部落阁<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9hcHBsZS5zcWxzZWMuY29tLw==">国光的黑苹果安装教程：手把手教你配置 OpenCore<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<blockquote>
-<p>我就不一样了，先自己折腾一下，玩了两天，发现不是很稳定；然后去Github找了个类似机器的配置来用</p>
-</blockquote>
-<img src="/images/hackintosh/image-20220409160027294.png" style="zoom:50%;" />
-
-<h2 id="CPU降频"><a href="#CPU降频" class="headerlink" title="CPU降频"></a>CPU降频</h2><p>装完系统之后跑了下<code>Cinebench R23</code>，然后看了看<code>Intel Power Gadgeta</code>，CPU当了3秒真男人过后就降调到了3.5GHz。这TM怕是买了个i7回来当i5用，和初衷严重背离，花了更多的钱，缺得到同样的效果；然后就是去排查，看看哪里是瓶颈：电源？主板供电？散热导致撞墙？200W的电源，CPU使用才到120W不到；当初有想过是散热的问题，所以买了个这个级别稍好的散热器：利民AXP90 x47 全铜版本；</p>
-<img src="/images/hackintosh/image-20220409145526422.png" style="zoom:50%;" />
-
-<p>网卡研究一番之后还真有发现：<strong>给CPU降压</strong>；最惊喜的是，这个操作不需要花费任何额外的成本，能降温，还能提高CPU能耗比；</p>
-<p>网卡查了资料后，大意是：为了避免工厂生产波动造成个别CPU不稳定， CPU默认设定的电压都会高于所需的最小值。还能在网上查到对于CPU的另一些观点：工厂生产的波动会造成CPU的差异性，体质好的会加<code>K</code>做超频，体质不好的会去掉<code>K</code>；这好像就能解释，为啥苹果的m1芯片为啥还会分8核和10核的，难道是同一流水线下来的残次品，屏蔽其中的2个核，然后拿出来卖？</p>
-<p>后面一点点调试测试一番之后：设置CPU降压0.1之后，CPU能稳定跑4.6GHz了；之前有降到0.125，跑<code>Cinebench R23</code>，之后电脑卡死，这时候需要往回调些</p>
-<img src="/images/hackintosh/image-20220409145554895.png" style="zoom:50%;" />
-
-<p><span class="exturl" data-url="aHR0cHM6Ly9icm93c2VyLmdlZWtiZW5jaC5jb20v">Geekbench<i class="fa fa-external-link-alt"></i></span>也由之前的6000分提高到了8414</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9icm93c2VyLmdlZWtiZW5jaC5jb20vdjUvY3B1LzE0MjE2NDYy">https://browser.geekbench.com/v5/cpu/14216462<i class="fa fa-external-link-alt"></i></span></p>
-<img src="/images/hackintosh/image-20220410083327828.png" style="zoom:50%;" />
-
-<p>结束</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" class="post-title-link" itemprop="url">【Design Principles】LVGL中的一些设计原则</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-03-21 20:25:53" itemprop="dateCreated datePublished" datetime="2022-03-21T20:25:53+08:00">2022-03-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/03/LVGL中的一些设计原则/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。</p>
-</blockquote>
-<h2 id="软件设计七大原则"><a href="#软件设计七大原则" class="headerlink" title="软件设计七大原则"></a>软件设计七大原则</h2><table>
-<thead>
-<tr>
-<th>设计原则</th>
-<th>定义</th>
-<th>目的</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>开闭原则</strong></td>
-<td>对扩展开放，对修改关闭</td>
-<td>降低维护带来的新风险</td>
-</tr>
-<tr>
-<td><strong>依赖倒置原则</strong></td>
-<td>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</td>
-<td>更利于代码结构的升级扩展</td>
-</tr>
-<tr>
-<td><strong>单一职责原则</strong></td>
-<td>一个类只干一件事，实现类要单一</td>
-<td>便于理解，提高代码的可读性</td>
-</tr>
-<tr>
-<td><strong>接口隔离原则</strong></td>
-<td>一个接口只干一件事，接口要精简单一</td>
-<td>功能解耦，高聚合、低耦合</td>
-</tr>
-<tr>
-<td><strong>迪米特法则</strong></td>
-<td>最少知识原则，不该知道的不要知道，一个类应该保持对其它对象最少的了解，降低耦合度</td>
-<td>只和朋友交流，不和陌生人说话，减少代码臃肿</td>
-</tr>
-<tr>
-<td><strong>里氏替换原则</strong></td>
-<td>不要破坏继承体系，子类重写方法功能发生改变，不应该影响父类方法的含义</td>
-<td>防止继承泛滥</td>
-</tr>
-<tr>
-<td><strong>合成复用原则</strong></td>
-<td>尽量使用组合或者聚合关系实现代码复用，少使用继承</td>
-<td>降低代码耦合</td>
-</tr>
-</tbody></table>
-<h2 id="设计原则和设计模式的关系"><a href="#设计原则和设计模式的关系" class="headerlink" title="设计原则和设计模式的关系"></a>设计原则和设计模式的关系</h2><h3 id="设计模式分类："><a href="#设计模式分类：" class="headerlink" title="设计模式分类："></a>设计模式分类：</h3><ul>
-<li><strong>创建型模式</strong>：工厂模式、抽象工厂模式、单例模式、建造者模式、原型模式</li>
-<li><strong>结构型模式</strong>：适配器模式、桥接模式、过滤器模式、组合模式、装饰器模式、外观模式、享元模式、代理模式</li>
-<li><strong>行为型模式</strong>：责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、空对象模式、策略模式、模板模式、访问者模式</li>
-</ul>
-<h3 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h3><p>设计模式是设计原则的应用、实现。设计原则是底层原则、是根本；设计模式里面的套路用了设计原则。简单的讲，你写的代码可以没有使用设计模式，但一定不能没有设计原则</p>
-<h2 id="C语言和面向对象"><a href="#C语言和面向对象" class="headerlink" title="C语言和面向对象"></a>C语言和面向对象</h2><h3 id="先讨论下C"><a href="#先讨论下C" class="headerlink" title="先讨论下C++"></a>先讨论下C++</h3><p>C++作者：Bjarne Stroustrup</p>
-<img src="/images/design_principles/image-20220321164258684.png" style="zoom: 20%;" />
-
-<p>C++是一个多范式的语言；包括支持面向对象，也被有人称为“C with Classes”；</p>
-<p><strong>CFront</strong>：C++原始的编译器，作用把C++代码转成C代码；为啥叫CFront？在C的编译器前面加了一个编译器，把C++代码通过CFront转成C代码，然后用C编译器去编译生成程序</p>
-<img src="/images/design_principles/image-20220321165435232.png" style="zoom: 40%;" />
-
-<h3 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h3><h3 id="问题：C-中的高级特性如何在C中表示？"><a href="#问题：C-中的高级特性如何在C中表示？" class="headerlink" title="问题：C++中的高级特性如何在C中表示？"></a>问题：C++中的高级特性如何在C中表示？</h3><ul>
-<li>类里面的函数真的属于这个Class吗？<code>sizeof()</code></li>
-<li>类中的<code>this</code>怎么来的？语法糖而已；有些语言会显示写<code>self</code>（Python、Rust）</li>
-<li>类调用成员函数是怎么回事？语法糖，和调用普通全局函数并没有什么区别</li>
-</ul>
-<img src="/images/design_principles/image-20220322004626246.png" style="zoom:540%;" />
-
-<h3 id="C-的虚函数、Java的Interface，Rust的Trait"><a href="#C-的虚函数、Java的Interface，Rust的Trait" class="headerlink" title="C++的虚函数、Java的Interface，Rust的Trait"></a>C++的虚函数、Java的Interface，Rust的Trait</h3><p>父类定义接口，然后子类有不同的实现，在实际运行的时候会调用不同的子类实现，<br>下图中的接口函数本质上是一个函数指针变量，在使用时指定了不同的子类的实现的函数</p>
-<img src="/images/design_principles/image-20220323232530466.png" style="zoom:50%;" />
-
-<h2 id="设计原则和LVGL"><a href="#设计原则和LVGL" class="headerlink" title="设计原则和LVGL"></a>设计原则和LVGL</h2><h3 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h3><p><strong>一个类只负责完成一个职责或者功能</strong></p>
-<ul>
-<li>目录的命名</li>
-<li>源代码文件的命名</li>
-</ul>
-<h3 id="依赖倒置原则："><a href="#依赖倒置原则：" class="headerlink" title="依赖倒置原则："></a><strong>依赖倒置原则</strong>：</h3><p><strong>定义</strong>：高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
-<p><strong>目的</strong>：更利于代码结构的<strong>升级扩展</strong></p>
-<blockquote>
-<p>问题：依赖于<strong>抽象</strong>？这里的<strong>抽象</strong>指的是什么？</p>
-</blockquote>
-<h4 id="LVGL中扩展使用："><a href="#LVGL中扩展使用：" class="headerlink" title="LVGL中扩展使用："></a>LVGL中扩展使用：</h4><ul>
-<li>lvgl如何显示到不同的屏幕？</li>
-<li>lvgl如何获取不同屏幕的点击坐标？</li>
-<li>lvgl如何显示不同格式的图片？</li>
-</ul>
-<h4 id="lvgl如何显示到不同的屏幕"><a href="#lvgl如何显示到不同的屏幕" class="headerlink" title="lvgl如何显示到不同的屏幕?"></a>lvgl如何显示到不同的屏幕?</h4><h5 id="框架怎么写？"><a href="#框架怎么写？" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>显示到屏幕（估计就会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？"><a href="#改完后？" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>void (*flush_cb)(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>把对应的数据给你：哪块区域的屏幕要刷新<code>area</code>，以及这块区域对应的数据值<code>color_p</code></li>
-</ul>
-</li>
-<li>对应的拓展自己去处理数据：通过SDL刷到屏幕；通过Framebuffer刷到屏幕：和不同平台，实现相关</li>
-</ol>
-<h4 id="lvgl如何获取不同屏幕的点击坐标？"><a href="#lvgl如何获取不同屏幕的点击坐标？" class="headerlink" title="lvgl如何获取不同屏幕的点击坐标？"></a>lvgl如何获取不同屏幕的点击坐标？</h4><h5 id="框架怎么写？-1"><a href="#框架怎么写？-1" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>获取屏幕点击的坐标（估计就又会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？-1"><a href="#改完后？-1" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>bool (*read_cb)(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>我框架把这个结构体指针<code>data</code>给你：你负责把对应点击的坐标填进去，然后我框架内部要用（传递到对应控件的点击回调函数）</li>
-</ul>
-</li>
-<li>具体的实现如何去填充数据</li>
-</ol>
-<p>上面两者的区别：</p>
-<ul>
-<li>显示：一个是把数据给你，实现负责去使用这些数据</li>
-<li>点击：我把结构休指针给你，实现负责把数据填充进去</li>
-</ul>
-<h4 id="lvgl如何显示不同格式的图片？"><a href="#lvgl如何显示不同格式的图片？" class="headerlink" title="lvgl如何显示不同格式的图片？"></a>lvgl如何显示不同格式的图片？</h4><p>通过实现图片解码器，实现对应函数回调。步骤同上……</p>
-<h4 id="现实生活：公司做项目的例子"><a href="#现实生活：公司做项目的例子" class="headerlink" title="现实生活：公司做项目的例子"></a>现实生活：公司做项目的例子</h4><ul>
-<li>依赖反转前：我领导依赖于我，我的任务完成了，他的项目才能算完成</li>
-<li>依赖反转后：我领导提出标准，提供对应的资源；我拿到标准和资源，然后去实现</li>
-</ul>
-<img src="/images/design_principles/image-20220324000531092.png" style="zoom:40%;" />
-
-<p>一开始领导依赖于我的工作，他的任务就算完成；我依赖于我领导给的标准和资源去完成这个任务；另外的一个变化是：对于前者，你的领导可能会控制你的细节（不能用这个，得用那个；不能这样搞，要那样搞）；对于后者，我领导就成了标准的制定者</p>
-<h4 id="抽象的定义："><a href="#抽象的定义：" class="headerlink" title="抽象的定义："></a>抽象的定义：</h4><ul>
-<li>需要对业务有足够的了解，对问题抽象<ul>
-<li>回调中的参数：能够实现拓展；不要出现冗余的参数</li>
-</ul>
-</li>
-<li>抽象标准的要求<ul>
-<li>Android的UI线程：死循环不停的去调回调，用户写的ui代码，用户写的事件代码；这些代码得满足一定的要求，比如说：不能卡太久；你卡住了，我内部的死循环就被这个卡死</li>
-</ul>
-</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
-<li>SOLID：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU09MSUQ=">https://en.wikipedia.org/wiki/SOLID<i class="fa fa-external-link-alt"></i></span></li>
-<li>SOLID 设计原则文章：<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMzExNDMwMA==">https://segmentfault.com/a/1190000023114300<i class="fa fa-external-link-alt"></i></span></li>
-<li>CFront：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2Zyb250">https://en.wikipedia.org/wiki/Cfront<i class="fa fa-external-link-alt"></i></span></li>
-<li>Modern C：<span class="exturl" data-url="aHR0cHM6Ly93d3cubWFubmluZy5jb20vYm9va3MvbW9kZXJuLWM=">https://www.manning.com/books/modern-c<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAzOTAxMzc5NA==">https://segmentfault.com/a/1190000039013794<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
 
       
     </div>

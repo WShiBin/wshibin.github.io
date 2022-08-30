@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="看源码时时常会看到一些使用一些编译器提供的属性；这里做个小结：  属性向编译器提供了有关函数或变量用法的详细信息。给这使得编译器可以应用更准确的优化选项，以生成质量更好的代码，或者容许以普通的C语言所无法表达的形式。直白点说就是：这个属性是编译器提供的，写在代码里面的标注，让编译器根据对应的功能去处理代码、GCC支持很多属性，有各种不同的用途，具体可参见GCC文档。 文档： Common Fun">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【GCC】Compiler Attributes">
+<meta property="og:url" content="https://wshibin.github.io/2022/08/Compiler-Attributes/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="看源码时时常会看到一些使用一些编译器提供的属性；这里做个小结：  属性向编译器提供了有关函数或变量用法的详细信息。给这使得编译器可以应用更准确的优化选项，以生成质量更好的代码，或者容许以普通的C语言所无法表达的形式。直白点说就是：这个属性是编译器提供的，写在代码里面的标注，让编译器根据对应的功能去处理代码、GCC支持很多属性，有各种不同的用途，具体可参见GCC文档。 文档： Common Fun">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wshibin.github.io/images/compiler/image-20220830103307039%20PM.png">
+<meta property="article:published_time" content="2022-08-30T13:35:55.000Z">
+<meta property="article:modified_time" content="2022-08-30T16:17:06.847Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="GCC">
+<meta property="article:tag" content="Compiler">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/images/compiler/image-20220830103307039%20PM.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2022/08/Compiler-Attributes/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/08/Compiler-Attributes/","path":"/2022/08/Compiler-Attributes/","title":"【GCC】Compiler Attributes"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【GCC】Compiler Attributes | WShiBin's blogs</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-moments"><a href="/categories/Moments" rel="section"><i class="fa fa-pencil-alt fa-fw"></i>Moments</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">文档：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">常见函数属性列表：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#alias-%E2%80%9Ctarget%E2%80%9D-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">alias (“target”)属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor%E3%80%81destructor-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">constructor、destructor 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deprecated-msg-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.</span> <span class="nav-text">deprecated (msg)属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-archetype-string-index-first-to-check-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.4.</span> <span class="nav-text">format (archetype, string-index, first-to-check)属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#noreturn%E5%B1%9E%E6%80%A7"><span class="nav-number">2.5.</span> <span class="nav-text">noreturn属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#section-%E2%80%9Csection-name%E2%80%9D-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.6.</span> <span class="nav-text">section (“section-name”)属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visibility-%E2%80%9Cvisibility-type%E2%80%9D-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.7.</span> <span class="nav-text">visibility (“visibility_type”)属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak%E5%B1%9E%E6%80%A7"><span class="nav-number">2.8.</span> <span class="nav-text">weak属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%8F%98%E9%87%8F%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">常见变量属性列表：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#aligned-alignment-%E5%B1%9E%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">aligned (alignment)属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cleanup-cleanup-function-%E5%B1%9E%E6%80%A7"><span class="nav-number">3.2.</span> <span class="nav-text">cleanup (cleanup_function)属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deprecated-msg-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A"><span class="nav-number">3.3.</span> <span class="nav-text">deprecated (msg) 属性(同上)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#packed%E5%B1%9E%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text">packed属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#section-%E2%80%9Csection-name%E2%80%9D-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A"><span class="nav-number">3.5.</span> <span class="nav-text">section (“section-name”) 属性(同上)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visibility-%E2%80%9Cvisibility-type%E2%80%9D-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A"><span class="nav-number">3.6.</span> <span class="nav-text">visibility (“visibility_type”) 属性(同上)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A"><span class="nav-number">3.7.</span> <span class="nav-text">weak 属性(同上)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">常见类型属性列表：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#aligned-alignment-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A"><span class="nav-number">4.1.</span> <span class="nav-text">aligned (alignment) 属性(同上)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deprecated-msg-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A-1"><span class="nav-number">4.2.</span> <span class="nav-text">deprecated (msg) 属性(同上)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#packed-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A"><span class="nav-number">4.3.</span> <span class="nav-text">packed 属性(同上)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visibility-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A"><span class="nav-number">4.4.</span> <span class="nav-text">visibility 属性(同上)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#builtin%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">__builtin函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#builtin-return-address-%E5%87%BD%E6%95%B0"><span class="nav-number">5.1.</span> <span class="nav-text">__builtin_return_address 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#builtin-expect-%E5%87%BD%E6%95%B0"><span class="nav-number">5.2.</span> <span class="nav-text">__builtin_expect 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#builtin-unreachable-%E5%87%BD%E6%95%B0"><span class="nav-number">5.3.</span> <span class="nav-text">__builtin_unreachable 函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">Ref：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/08/Compiler-Attributes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【GCC】Compiler Attributes | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【GCC】Compiler Attributes
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-30 21:35:55" itemprop="dateCreated datePublished" datetime="2022-08-30T21:35:55+08:00">2022-08-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Compiler/" itemprop="url" rel="index"><span itemprop="name">Compiler</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/08/Compiler-Attributes/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/08/Compiler-Attributes/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>看源码时时常会看到一些使用一些编译器提供的属性；这里做个小结：</p>
+</blockquote>
+<p>属性向编译器提供了有关函数或变量用法的详细信息。给这使得编译器可以应用更准确的优化选项，以生成质量更好的代码，或者容许以普通的C语言所无法表达的形式。直白点说就是：这个属性是编译器提供的，写在代码里面的标注，让编译器根据对应的功能去处理代码、GCC支持很多属性，有各种不同的用途，具体可参见GCC文档。</p>
+<h2 id="文档："><a href="#文档：" class="headerlink" title="文档："></a>文档：</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9Db21tb24tRnVuY3Rpb24tQXR0cmlidXRlcy5odG1sI0NvbW1vbi1GdW5jdGlvbi1BdHRyaWJ1dGVz">Common Function Attributes<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9Db21tb24tVmFyaWFibGUtQXR0cmlidXRlcy5odG1sI0NvbW1vbi1WYXJpYWJsZS1BdHRyaWJ1dGVz">Common Variable Attributes<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9Db21tb24tVHlwZS1BdHRyaWJ1dGVzLmh0bWwjQ29tbW9uLVR5cGUtQXR0cmlidXRlcw==">Common Type Attributes<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="常见函数属性列表："><a href="#常见函数属性列表：" class="headerlink" title="常见函数属性列表："></a>常见函数属性列表：</h2><ul>
+<li><code>alias (&quot;target&quot;)</code></li>
+<li><code>constructor</code>、<code>destructor</code></li>
+<li><code>deprecated (msg)</code></li>
+<li><code>format (archetype, string-index, first-to-check)</code></li>
+<li><code>format_arg (string-index)</code></li>
+<li><code>noreturn</code></li>
+<li><code>section (&quot;section-name&quot;)</code></li>
+<li><code>visibility (&quot;visibility_type&quot;)</code></li>
+<li><code>weakref</code></li>
+<li><code>weak</code></li>
+</ul>
+<h3 id="alias-“target”-属性"><a href="#alias-“target”-属性" class="headerlink" title="alias (“target”)属性"></a>alias (“target”)属性</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> __f() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;foo\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">__attribute__((weak, alias(<span class="string">&quot;__f&quot;</span>))) <span class="type">void</span> <span class="title function_">f</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    f();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">foo</span><br></pre></td></tr></table></figure>
+
+<h3 id="constructor、destructor-属性"><a href="#constructor、destructor-属性" class="headerlink" title="constructor、destructor 属性"></a>constructor、destructor 属性</h3><p><code>constructor</code>可以在main函数之前调用，而<code>destructor</code>可以在main函数之后调用；这里的另外一个问题是return并不能结束程序，只能代表函数调用的结束；</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((constructor)) <span class="type">void</span> <span class="title function_">init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;main\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor)) <span class="type">void</span> <span class="title function_">release</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">constructor</span><br><span class="line">main</span><br><span class="line">destructor</span><br></pre></td></tr></table></figure>
+
+<p>另外：<code>constructor (priority)</code>和<code>destructor (priority)</code>可以加优先级去修饰函数，优先级用来控制函数调用的顺序：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((constructor(<span class="number">1</span>))) <span class="type">void</span> <span class="title function_">init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor 1\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">__attribute__((constructor(<span class="number">2</span>))) <span class="type">void</span> <span class="title function_">foo1</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor 2\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;main\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor(<span class="number">1</span>))) <span class="type">void</span> <span class="title function_">release</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor 1\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor(<span class="number">2</span>))) <span class="type">void</span> <span class="title function_">bar1</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor 2\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">constructor 1</span><br><span class="line">constructor 2</span><br><span class="line">main</span><br><span class="line">destructor 2</span><br><span class="line">destructor 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="deprecated-msg-属性"><a href="#deprecated-msg-属性" class="headerlink" title="deprecated (msg)属性"></a>deprecated (msg)属性</h3><p>用来标记函数过时，可携带相应信息：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span> __<span class="title function_">attribute__</span><span class="params">((deprecated(<span class="string">&quot;for some reason&quot;</span>)))</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span>;</span><br><span class="line"><span class="type">int</span> (*fn_ptr)() = old_fn;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    old_fn();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>VSCode + clangd + Error Lens</code> 提示截图：</p>
+<img src="/images/compiler/image-20220830103307039 PM.png" style="zoom:50%;" />
+
+<p>编译输出提示：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">main.c:<span class="number">5</span>:<span class="number">1</span>: warning: ‘old_fn’ is deprecated: <span class="keyword">for</span> some reason [-Wdeprecated-declarations]</span><br><span class="line">    <span class="number">5</span> | <span class="type">int</span> (*fn_ptr)() = old_fn;</span><br><span class="line">      | ^~~</span><br><span class="line">main.c:<span class="number">4</span>:<span class="number">5</span>: note: declared here</span><br><span class="line">    <span class="number">4</span> | <span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span>;</span><br><span class="line">      |     ^~~~~~</span><br><span class="line">main.c: In function ‘main’:</span><br></pre></td></tr></table></figure>
+
+<h3 id="format-archetype-string-index-first-to-check-属性"><a href="#format-archetype-string-index-first-to-check-属性" class="headerlink" title="format (archetype, string-index, first-to-check)属性"></a>format (archetype, string-index, first-to-check)属性</h3><p>format 属性指定函数采用 printf、scanf、strftime 或 strfmon 样式参数，这些参数应根据格式字符串进行类型检查。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((format(<span class="built_in">printf</span>, <span class="number">2</span>, <span class="number">3</span>))) <span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">my_printf</span><span class="params">(<span class="type">void</span>* my_object, <span class="type">const</span> <span class="type">char</span>* my_format, ...)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s: &quot;</span>, (<span class="type">char</span>*)my_object);</span><br><span class="line">    va_list args;</span><br><span class="line">    va_start(args, my_format);</span><br><span class="line">    <span class="built_in">vprintf</span>(my_format, args);</span><br><span class="line">    va_end(args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    my_printf(<span class="string">&quot;some flag&quot;</span>, <span class="string">&quot;hello %s\n&quot;</span>, <span class="string">&quot;format&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">some flag: hello format</span><br></pre></td></tr></table></figure>
+
+<h3 id="noreturn属性"><a href="#noreturn属性" class="headerlink" title="noreturn属性"></a>noreturn属性</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((<span class="keyword">noreturn</span>)) <span class="type">void</span> <span class="title function_">fatal</span><span class="params">(<span class="comment">/* … */</span>)</span> &#123;</span><br><span class="line">    <span class="comment">/* … */</span></span><br><span class="line">    <span class="comment">/* Print error message. */</span></span><br><span class="line">    <span class="comment">/* … */</span></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    fatal();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="section-“section-name”-属性"><a href="#section-“section-name”-属性" class="headerlink" title="section (“section-name”)属性"></a>section (“section-name”)属性</h3><p>把相应的函数放到对应的section段</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((section(<span class="string">&quot;foo&quot;</span>))) <span class="type">void</span> <span class="title function_">foobar</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：程序文件会多一个foo的section</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c</span><br><span class="line">$ readelf -SW a.out</span><br><span class="line">There are 30 section headers, starting at offset 0x3678:</span><br><span class="line"></span><br><span class="line">Section Headers:</span><br><span class="line">  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al</span><br><span class="line">  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0</span><br><span class="line">  [ 1] .interp           PROGBITS        0000000000000318 000318 00001c 00   A  0   0  1</span><br><span class="line">  [ 2] .note.gnu.property NOTE            0000000000000338 000338 000030 00   A  0   0  8</span><br><span class="line">  [ 3] .note.gnu.build-id NOTE            0000000000000368 000368 000024 00   A  0   0  4</span><br><span class="line">  [ 4] .note.ABI-tag     NOTE            000000000000038c 00038c 000020 00   A  0   0  4</span><br><span class="line">  [ 5] .gnu.hash         GNU_HASH        00000000000003b0 0003b0 000024 00   A  6   0  8</span><br><span class="line">  [ 6] .dynsym           DYNSYM          00000000000003d8 0003d8 000090 18   A  7   1  8</span><br><span class="line">  [ 7] .dynstr           STRTAB          0000000000000468 000468 000088 00   A  0   0  1</span><br><span class="line">  [ 8] .gnu.version      VERSYM          00000000000004f0 0004f0 00000c 02   A  6   0  2</span><br><span class="line">  [ 9] .gnu.version_r    VERNEED         0000000000000500 000500 000030 00   A  7   1  8</span><br><span class="line">  [10] .rela.dyn         RELA            0000000000000530 000530 0000c0 18   A  6   0  8</span><br><span class="line">  [11] .init             PROGBITS        0000000000001000 001000 00001b 00  AX  0   0  4</span><br><span class="line">  [12] .plt              PROGBITS        0000000000001020 001020 000010 10  AX  0   0 16</span><br><span class="line">  [13] .plt.got          PROGBITS        0000000000001030 001030 000010 10  AX  0   0 16</span><br><span class="line">  [14] .text             PROGBITS        0000000000001040 001040 0000ff 00  AX  0   0 16</span><br><span class="line">  [15] foo               PROGBITS        000000000000113f 00113f 00000b 00  AX  0   0  1</span><br><span class="line">  [16] .fini             PROGBITS        000000000000114c 00114c 00000d 00  AX  0   0  4</span><br><span class="line">  [17] .rodata           PROGBITS        0000000000002000 002000 000004 04  AM  0   0  4</span><br><span class="line">  [18] .eh_frame_hdr     PROGBITS        0000000000002004 002004 000034 00   A  0   0  4</span><br><span class="line">  [19] .eh_frame         PROGBITS        0000000000002038 002038 0000b4 00   A  0   0  8</span><br><span class="line">  [20] .init_array       INIT_ARRAY      0000000000003df0 002df0 000008 08  WA  0   0  8</span><br><span class="line">  [21] .fini_array       FINI_ARRAY      0000000000003df8 002df8 000008 08  WA  0   0  8</span><br><span class="line">  [22] .dynamic          DYNAMIC         0000000000003e00 002e00 0001c0 10  WA  7   0  8</span><br><span class="line">  [23] .got              PROGBITS        0000000000003fc0 002fc0 000040 08  WA  0   0  8</span><br><span class="line">  [24] .data             PROGBITS        0000000000004000 003000 000010 00  WA  0   0  8</span><br><span class="line">  [25] .bss              NOBITS          0000000000004010 003010 000008 00  WA  0   0  1</span><br><span class="line">  [26] .comment          PROGBITS        0000000000000000 003010 000026 01  MS  0   0  1</span><br><span class="line">  [27] .symtab           SYMTAB          0000000000000000 003038 000360 18     28  18  8</span><br><span class="line">  [28] .strtab           STRTAB          0000000000000000 003398 0001d0 00      0   0  1</span><br><span class="line">  [29] .shstrtab         STRTAB          0000000000000000 003568 000110 00      0   0  1</span><br></pre></td></tr></table></figure>
+
+<h3 id="visibility-“visibility-type”-属性"><a href="#visibility-“visibility-type”-属性" class="headerlink" title="visibility (“visibility_type”)属性"></a>visibility (“visibility_type”)属性</h3><p>可以用来修饰函数、变量和类型。当一个库用来给别人调用的时候，当前库对外暴露的函数、变量和类型就有可见性的问题；比如说这个想对外暴露那些接口，影藏哪些接口；一个好的最佳实践是：尽可能少地输出符号。动态库装载和识别的符号越少，程序启动和运行的速度就越快。导出所有符号会减慢程序速度，并耗用大量内存。</p>
+<p><code>visibility_type</code>取值：</p>
+<ul>
+<li>default：在 ELF 上，默认可见性意味着声明对其他模块可见，并且在共享库中，意味着声明的实体可以被覆盖。</li>
+<li>hidden：隐藏可见性表明声明的实体具有一种新的链接形式，我们称之为“隐藏链接”。如果两个具有隐藏链接的对象声明在同一个共享对象中，则它们引用同一个对象。</li>
+<li>internal：内部可见性类似于隐藏可见性，但具有额外的处理器特定语义。</li>
+<li>protected：受保护的可见性类似于默认可见性，只是它指示定义模块中的引用绑定到该模块中的定义。也就是说，声明的实体不能被另一个模块覆盖。</li>
+</ul>
+<p>cJSON和dbus中的使用示例：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> (defined(__GNUC__) || defined(__SUNPRO_CC) || defined (__SUNPRO_C)) &amp;&amp; defined(CJSON_API_VISIBILITY)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CJSON_PUBLIC(type)   __attribute__((visibility(<span class="string">&quot;default&quot;</span>))) type</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CJSON_PUBLIC(type) type</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(__GNUC__) &amp;&amp; __GNUC__ &gt;= 4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_EXPORT __attribute__ ((__visibility__ (<span class="string">&quot;default&quot;</span>)))</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_EXPORT</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="weak属性"><a href="#weak属性" class="headerlink" title="weak属性"></a>weak属性</h3><p>todo</p>
+<h2 id="常见变量属性列表："><a href="#常见变量属性列表：" class="headerlink" title="常见变量属性列表："></a>常见变量属性列表：</h2><ul>
+<li><code>aligned (alignment)</code></li>
+<li><code>cleanup (cleanup_function)</code></li>
+<li><code>deprecated (msg)</code> 同上</li>
+<li><code>packed</code></li>
+<li><code>section (&quot;section-name&quot;)</code> 同上</li>
+<li><code>visibility (&quot;visibility_type&quot;)</code> 同上</li>
+<li><code>weak</code> 同上</li>
+</ul>
+<h3 id="aligned-alignment-属性"><a href="#aligned-alignment-属性" class="headerlink" title="aligned (alignment)属性"></a>aligned (alignment)属性</h3><p>todo</p>
+<h3 id="cleanup-cleanup-function-属性"><a href="#cleanup-cleanup-function-属性" class="headerlink" title="cleanup (cleanup_function)属性"></a>cleanup (cleanup_function)属性</h3><h3 id="deprecated-msg-属性-同上"><a href="#deprecated-msg-属性-同上" class="headerlink" title="deprecated (msg) 属性(同上)"></a>deprecated (msg) 属性(同上)</h3><h3 id="packed属性"><a href="#packed属性" class="headerlink" title="packed属性"></a>packed属性</h3><h3 id="section-“section-name”-属性-同上"><a href="#section-“section-name”-属性-同上" class="headerlink" title="section (“section-name”) 属性(同上)"></a>section (“section-name”) 属性(同上)</h3><h3 id="visibility-“visibility-type”-属性-同上"><a href="#visibility-“visibility-type”-属性-同上" class="headerlink" title="visibility (“visibility_type”) 属性(同上)"></a>visibility (“visibility_type”) 属性(同上)</h3><h3 id="weak-属性-同上"><a href="#weak-属性-同上" class="headerlink" title="weak 属性(同上)"></a>weak 属性(同上)</h3><h2 id="常见类型属性列表："><a href="#常见类型属性列表：" class="headerlink" title="常见类型属性列表："></a>常见类型属性列表：</h2><ul>
+<li><code>aligned (alignment)</code></li>
+<li><code>deprecated (msg)</code> 同上</li>
+<li><code>packed</code></li>
+<li><code>visibility</code></li>
+</ul>
+<h3 id="aligned-alignment-属性-同上"><a href="#aligned-alignment-属性-同上" class="headerlink" title="aligned (alignment) 属性(同上)"></a>aligned (alignment) 属性(同上)</h3><p>todo</p>
+<h3 id="deprecated-msg-属性-同上-1"><a href="#deprecated-msg-属性-同上-1" class="headerlink" title="deprecated (msg) 属性(同上)"></a>deprecated (msg) 属性(同上)</h3><h3 id="packed-属性-同上"><a href="#packed-属性-同上" class="headerlink" title="packed 属性(同上)"></a>packed 属性(同上)</h3><h3 id="visibility-属性-同上"><a href="#visibility-属性-同上" class="headerlink" title="visibility 属性(同上)"></a>visibility 属性(同上)</h3><h2 id="builtin函数"><a href="#builtin函数" class="headerlink" title="__builtin函数"></a>__builtin函数</h2><p>编译器提供了其他选项，可以执行C语言常规能力范围之外的操作，又不必借 助于内联汇编。</p>
+<ul>
+<li><code>__builtin_return_address</code></li>
+<li><code>__builtin_expect</code></li>
+<li><code>__builtin_unreachable</code></li>
+</ul>
+<h3 id="builtin-return-address-函数"><a href="#builtin-return-address-函数" class="headerlink" title="__builtin_return_address 函数"></a>__builtin_return_address 函数</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9SZXR1cm4tQWRkcmVzcy5odG1s">https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>__builtin_return_address(0)获得函数的返回地址，即函数结束时控制流将定位到的目标 地址。如前所述，该信息也可以从活动记录取得。这实际上是一个特定于体系结构的任务， 但这里的__builtin函数为该功能提供了一个通用的前端。 参数指定了该__builtin函数应该在活动记录中向上多少层。0表示当前运行函数将返回的地 址，1表示调用当前函数的函数将返回的地址，依次类推。</p>
+<h3 id="builtin-expect-函数"><a href="#builtin-expect-函数" class="headerlink" title="__builtin_expect 函数"></a>__builtin_expect 函数</h3><p>允许程序员将最有可能执行的分支告诉编译器，来帮助编译器优化分支预测。比如，有些服务程序代码抽象后，可能是下面这样，一个死循环然后处理数据；下一问题是：如果99%的情况是true，这时候有没有办法去优化它</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">bool</span> cond = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cond) &#123;</span><br><span class="line">            <span class="comment">// true：handle some thing</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>__builtin_expect</code> 改过后：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> likely(x) __builtin_expect(!!(x), 1)    <span class="comment">// x很可能为真</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> unlikely(x) __builtin_expect(!!(x), 0)  <span class="comment">// x很可能为假</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">bool</span> cond = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (likely(cond)) &#123;</span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码解释：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(likely(value))  <span class="comment">//等价于 if(value)</span></span><br><span class="line"><span class="keyword">if</span>(unlikely(value))  <span class="comment">//也等价于 if(value)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>__builtin_expect()</code> 是 GCC (version &gt;= 2.96）提供给程序员使用的，目的是将“分支转移”的信息提供给编译器，这样编译器可以对代码进行优化，以减少指令跳转带来的性能下降。</p>
+<ul>
+<li><code>__builtin_expect((x),1)</code>表示 x 的值为真的可能性更大；</li>
+<li><code>__builtin_expect((x),0)</code>表示 x 的值为假的可能性更大。</li>
+</ul>
+<p>也就是说，使用<code>likely()</code>，执行 if 后面的语句的机会更大，使用 <code>unlikely()</code>，执行 else 后面的语句的机会更大。通过这种方式，编译器在编译过程中，会将可能性更大的代码紧跟着起面的代码，从而减少指令跳转带来的性能上的下降 。</p>
+<p>Linux内核定义了以下两个宏，来标识代码中很可能和不太可能的分支: <code>&lt;compiler.h&gt;</code>文件中</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> likely(x) __builtin_expect(!!(x), 1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> unlikely(x) __builtin_expect(!!(x), 0)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="builtin-unreachable-函数"><a href="#builtin-unreachable-函数" class="headerlink" title="__builtin_unreachable 函数"></a>__builtin_unreachable 函数</h3><p>todo</p>
+<h2 id="Ref："><a href="#Ref：" class="headerlink" title="Ref："></a>Ref：</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC8yNjg0NjEzYTMwMGY=">https://www.jianshu.com/p/2684613a300f<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9pbmRleC5odG1s">https://gcc.gnu.org/onlinedocs/gcc/index.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9SZXR1cm4tQWRkcmVzcy5odG1s">https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GCC/" rel="tag"># GCC</a>
+              <a href="/tags/Compiler/" rel="tag"># Compiler</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/Strings-in-C/" rel="prev" title="【C】C语言中的字符串">
+                  <i class="fa fa-chevron-left"></i> 【C】C语言中的字符串
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/08/Compiler-Attributes/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

@@ -174,12 +174,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -222,6 +222,259 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">【Personal】结构体还是结构体指针?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-01 20:54:18" itemprop="dateCreated datePublished" datetime="2021-08-01T20:54:18+08:00">2021-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/08/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/08/结构体还是结构体指针/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由:"></a>缘由:</h2><blockquote>
+<p>上周某日晚上的一个项目进度跟进会上，项目中有一个涉及到一个比较大的结构体，然后内部嵌套了好些结构体。后来我问了句：“为啥使用的是结构体，而不是结构体指针？” 同事答到：“都一样”。后来，讨论了一些“如果你嵌套的那个结构体非常大的话，而这个结构体在使用过程中没有被初使化用到，这样会很浪费内存，这种情况使用结构体指针会比较合适”。</p>
+</blockquote>
+<p>由于当时会议的重点不在这里，草草过了。后面越想越不对，这应该是一个值得思考的问题，嵌套时：是使用<strong>结构体</strong>还是<strong>结构体指针</strong>，应该是个哲学问题~~~。不过可以从一些角度来分析这个问题</p>
+<h2 id="不同角度分析"><a href="#不同角度分析" class="headerlink" title="不同角度分析:"></a>不同角度分析:</h2><ul>
+<li>从内存使用上</li>
+<li>抽象的关系上</li>
+<li>嵌套和继承/组合的关系</li>
+<li>参考优秀的代码</li>
+</ul>
+<h2 id="从内存使用上"><a href="#从内存使用上" class="headerlink" title="从内存使用上"></a>从内存使用上</h2><p>正如前因提到的：</p>
+<ul>
+<li>如果这个被嵌套的结构体字段很多；比如200个字段</li>
+<li>而这个被嵌套的结构体并不是很个场景都会用的上</li>
+</ul>
+<p>这时候用结构体指针可以省不少的空间，就很有意义；那就为了省内存而全使用结构体指针？</p>
+<h2 id="抽象的关系上"><a href="#抽象的关系上" class="headerlink" title="抽象的关系上"></a>抽象的关系上</h2><p>编程本质上也是给问题建模，抽象问题，代码也用来描述这些抽象之间的关系的，所以就有了下面的区别：</p>
+<ul>
+<li>嵌套的是结构体：有种“包含”或“属于”的关系。内部的结构体“属于”这个外部的在大结构体，内部是外部结构体的组成部分，是它的一员。比如，一个人属于这个部门的人；在比如，协议数据报中，嵌套的关系，一个结构体属于一个结构体</li>
+<li>嵌套的是结构体指针：有种引用的关系。内部的结构体不属于你，但会“用到”你。比如，为了完成一个项目，这时候需要由不同的部门抽调人过来组成一个项目团队（结构体），这个团队会“用到（引用）”其它部门的人，我在某一时期，某个阶段可能会用到你，也可能不会用到你（的功能）</li>
+</ul>
+<h2 id="结构体嵌套和继承-组合的关系"><a href="#结构体嵌套和继承-组合的关系" class="headerlink" title="结构体嵌套和继承/组合的关系"></a>结构体嵌套和继承/组合的关系</h2><p>后来突然冒出一个问题：类的继承如何在C语言中来实现？大概就是用嵌套结构体吧</p>
+<p>业内有名名言：“<strong>组合优于继承</strong>”，这时候：</p>
+<ul>
+<li>继承就是结构体<strong>嵌套结构体</strong>。（子类包含父类中的所有成员）</li>
+<li>而组合就是结构体<strong>嵌套结构体指针</strong>。（因为里面的对象都要new，而new是在heap上，所以是指针、引用）</li>
+</ul>
+<p>所以根据这句名言的结论就是：优先使用<strong>嵌套结构体指针</strong>？</p>
+<h2 id="参考优秀的代码"><a href="#参考优秀的代码" class="headerlink" title="参考优秀的代码"></a>参考优秀的代码</h2><p>有时候不知道怎么做合适，可以去参考下优秀的代码，归纳总结下，看看别人是怎么做的，参考参考（抄一抄）；下面linux源码，<span class="exturl" data-url="aHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvMS4zLjEwMC9zb3VyY2UvaW5jbHVkZS9saW51eC9zY2hlZC5o">进程的结构体<i class="fa fa-external-link-alt"></i></span>表示</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line"><span class="comment">/* these are hardcoded - don&#x27;t touch */</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="type">long</span> state;	<span class="comment">/* -1 unrunnable, 0 runnable, &gt;0 stopped */</span></span><br><span class="line">    <span class="type">long</span> counter;</span><br><span class="line">    <span class="type">long</span> priority;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> signal;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> blocked;	<span class="comment">/* bitmap of masked signals */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> flags;	<span class="comment">/* per process flags, defined below */</span></span><br><span class="line">    <span class="type">int</span> errno;</span><br><span class="line">    <span class="type">long</span> debugreg[<span class="number">8</span>];  <span class="comment">/* Hardware debugging registers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">exec_domain</span> *<span class="title">exec_domain</span>;</span></span><br><span class="line"><span class="comment">/* various fields */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">linux_binfmt</span> *<span class="title">binfmt</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_task</span>, *<span class="title">prev_task</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_run</span>,  *<span class="title">prev_run</span>;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> saved_kernel_stack;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> kernel_stack_page;</span><br><span class="line">    <span class="type">int</span> exit_code, exit_signal;</span><br><span class="line">    <span class="comment">/* ??? */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> personality;</span><br><span class="line">    <span class="type">int</span> dumpable:<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> did_exec:<span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* shouldn&#x27;t this be pid_t? */</span></span><br><span class="line">    <span class="type">int</span> pid;</span><br><span class="line">    <span class="type">int</span> pgrp;</span><br><span class="line">    <span class="type">int</span> tty_old_pgrp;</span><br><span class="line">    <span class="type">int</span> session;</span><br><span class="line">    <span class="comment">/* boolean value for session group leader */</span></span><br><span class="line">    <span class="type">int</span> leader;</span><br><span class="line">    <span class="type">int</span>	groups[NGROUPS];</span><br><span class="line">    <span class="comment">/* </span></span><br><span class="line"><span class="comment">     * pointers to (original) parent process, youngest child, younger sibling,</span></span><br><span class="line"><span class="comment">     * older sibling, respectively.  (p-&gt;father can be replaced with </span></span><br><span class="line"><span class="comment">     * p-&gt;p_pptr-&gt;pid)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">p_opptr</span>, *<span class="title">p_pptr</span>, *<span class="title">p_cptr</span>, *<span class="title">p_ysptr</span>, *<span class="title">p_osptr</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wait_queue</span> *<span class="title">wait_chldexit</span>;</span>	<span class="comment">/* for wait4() */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> uid,euid,suid,fsuid;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> gid,egid,sgid,fsgid;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> timeout, policy, rt_priority;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> it_real_value, it_prof_value, it_virt_value;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> it_real_incr, it_prof_incr, it_virt_incr;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timer_list</span> <span class="title">real_timer</span>;</span></span><br><span class="line">    <span class="type">long</span> utime, stime, cutime, cstime, start_time;</span><br><span class="line"><span class="comment">/* mm fault and swap info: this can arguably be seen as either mm-specific or thread-specific */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> min_flt, maj_flt, nswap, cmin_flt, cmaj_flt, cnswap;</span><br><span class="line">    <span class="type">int</span> swappable:<span class="number">1</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> swap_address;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> old_maj_flt;	<span class="comment">/* old value of maj_flt */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> dec_flt;		<span class="comment">/* page fault count of the last time */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> swap_cnt;		<span class="comment">/* number of pages to swap on next pass */</span></span><br><span class="line"><span class="comment">/* limits */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">rlimit</span> <span class="title">rlim</span>[<span class="title">RLIM_NLIMITS</span>];</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> used_math;</span><br><span class="line">    <span class="type">char</span> comm[<span class="number">16</span>];</span><br><span class="line"><span class="comment">/* file system info */</span></span><br><span class="line">    <span class="type">int</span> link_count;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tty_struct</span> *<span class="title">tty</span>;</span> <span class="comment">/* NULL if no tty */</span></span><br><span class="line"><span class="comment">/* ipc stuff */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_undo</span> *<span class="title">semundo</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_queue</span> *<span class="title">semsleeping</span>;</span></span><br><span class="line"><span class="comment">/* ldt for this task - used by Wine.  If NULL, default_ldt is used */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> *<span class="title">ldt</span>;</span></span><br><span class="line"><span class="comment">/* tss for this task */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_struct</span> <span class="title">tss</span>;</span></span><br><span class="line"><span class="comment">/* filesystem information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">fs_struct</span> *<span class="title">fs</span>;</span></span><br><span class="line"><span class="comment">/* open file information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span> *<span class="title">files</span>;</span></span><br><span class="line"><span class="comment">/* memory management info */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">mm_struct</span> *<span class="title">mm</span>;</span></span><br><span class="line"><span class="comment">/* signal handlers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">signal_struct</span> *<span class="title">sig</span>;</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __SMP__</span></span><br><span class="line">    <span class="type">int</span> processor;</span><br><span class="line">    <span class="type">int</span> last_processor;</span><br><span class="line">    <span class="type">int</span> lock_depth;		<span class="comment">/* Lock depth. We can context switch in and out of holding a syscall kernel lock... */</span>	</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span>	</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中除了<code>struct thread_struct tss</code>和<code>struct rlimit rlim[RLIM_NLIMITS]</code>用的结构体，一个是线程，一个是进程资源大小的限制，更像是在表达这俩就“属于”进程，必不可少。其它的ipc，fs，memory management，signal handlers，更像是为了组合到一起来完成任务，会“用到”你们（的功能），它们各自有独立的功能。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好像结论已经很明显了，更加倾向于从抽象的角度看这个问题，如果是有“包含”或“属于”的关系在里面，就用<strong>嵌套结构体</strong>；而如果是有“组合”到一起完成某种功能，它承担了一些独特的任务功能，这时可以用<strong>嵌套结构体指针</strong>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/" class="post-title-link" itemprop="url">【Personal】记一次生病经历复盘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-06 23:20:06" itemprop="dateCreated datePublished" datetime="2021-07-06T23:20:06+08:00">2021-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Personal/" itemprop="url" rel="index"><span itemprop="name">Personal</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/07/记一次生病经历复盘/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>去年, 也就是2020年国庆. 由于太长时间没有运动,然后去健身房玩椭圆机,运动过猛,把膝盖弄伤了</p>
+<p>复盘记录下:</p>
+<ul>
+<li>运动注意循序渐进;对于不熟悉的器材,切勿<strong>自以为是</strong>的认为这个器材该如何使用</li>
+<li>身体垮的比自己认为的快,恢复的比自己认为的慢</li>
+<li>有些依据,比如说疼痛并不能作为病<strong>好了</strong>的条件</li>
+<li>别把自己<strong>交给</strong>医生,自己多查资料研究</li>
+<li>看医生前,自己先做好准备</li>
+<li>医生看病的局限性</li>
+</ul>
+<h2 id="运动注意循序渐进-对于不熟悉的器材-切勿自以为是的认为这个器材该如何使用"><a href="#运动注意循序渐进-对于不熟悉的器材-切勿自以为是的认为这个器材该如何使用" class="headerlink" title="运动注意循序渐进;对于不熟悉的器材,切勿自以为是的认为这个器材该如何使用"></a>运动注意循序渐进;对于不熟悉的器材,切勿自以为是的认为这个器材该如何使用</h2><p>循序渐进这个就不强调了,由于运动过猛导致第二天酸痛的经历,或者生病的人可能不少.年轻时会恢复的很快,年老了就恢复能力逐渐下降,最简单的例子就是,小孩子天天摔倒没啥事,但一个七老八十摔一下断骨头的事有常见.</p>
+<p>第二点是,对于你不熟悉的运动器材,别乱玩,好比自己第一次玩臂力器,第一次玩扎马步或是静蹲,玩不了几个,也坚持不了多久. 很简单,在此之前都没有这样发力过,相应的发力肌肉群都没有锻炼过. 而玩不熟悉的器材可能导致超负荷的使用以前未使用的关节或者肌肉群,远远超出它们的负荷,导致容易弄伤. 反之,比如跑步机,每天都在走路,有时自己也跑步,去健身房玩个跑步机一般问题不大</p>
+<h2 id="身体垮的比自己认为的快-恢复的比自己认为的慢"><a href="#身体垮的比自己认为的快-恢复的比自己认为的慢" class="headerlink" title="身体垮的比自己认为的快,恢复的比自己认为的慢"></a>身体垮的比自己认为的快,恢复的比自己认为的慢</h2><p>这次出问题的一部分原因是因为自己的自以为是,想想以前骑车去拉萨,能骑上一整天的自行车,这才哪跟哪,终究抵不过时间</p>
+<h2 id="有些依据-比如说疼痛并不能作为病好了的条件"><a href="#有些依据-比如说疼痛并不能作为病好了的条件" class="headerlink" title="有些依据,比如说疼痛并不能作为病好了的条件"></a>有些依据,比如说疼痛并不能作为病<strong>好了</strong>的条件</h2><p>中途有几次,膝盖内感觉不疼了,我错误的认为<strong>好了</strong>,误判之后浪了一波,导致反弹.疼的更严重了. <strong>疼痛</strong>并不能作为好没好的条件,类比其它,以前胃出问题了,后来不疼了,胃病就好了? 然并卵</p>
+<h2 id="别把自己交给医生-自己多查资料研究"><a href="#别把自己交给医生-自己多查资料研究" class="headerlink" title="别把自己交给医生,自己多查资料研究"></a>别把自己<strong>交给</strong>医生,自己多查资料研究</h2><p>试想一下,把自己的命交到一个坏人手上会怎么样? 当然这种假设把问题放大了.也只把问题放大了才能把问题看得更清楚.遇到了有医德的医生还好,遇到了医德不好的医生就坑人. 对于来说,500块也是给人治病,2w块也是给人治病.对你来说可能没有啥区别,对他来说收益可能更高.不幸的事,这次遇到了一个坑比医生.告诉我”吃这个药两周,没有什么改善,可能就需要手术了”.后来我去了第二家医院,医生告诉我,根本不用手术,反倒问了句”手术做什么东西呢?”,弄的我一时不知道怎么回答,但暗自窃喜,毕竟遇到了一个好医生.后来在另一个医生口中得知,给我开的两周的药是中成药,估计要吃一两个月才会有所改善.所以,我吃完这两周的要大致是没有什么改善,大致可能会来手术?</p>
+<h2 id="看医生前-自己先做好准备"><a href="#看医生前-自己先做好准备" class="headerlink" title="看医生前,自己先做好准备"></a>看医生前,自己先做好准备</h2><ul>
+<li>哪个地方伤了,确诊为什么病,确诊的依据是什么?</li>
+<li>在比如这个病情现在到哪一阶段了,意味着什么</li>
+<li>有哪些注意事项</li>
+<li>有哪些治疗方案,这个方案会不会产生什么后遗症</li>
+<li>建议的治疗方式是什么</li>
+</ul>
+<p>为啥要提前想好.医生很忙,每天见的都是同类的病人,你不问,他也懒得说. 他可能想着”赶紧下一个”</p>
+<h2 id="医生看病的局限性"><a href="#医生看病的局限性" class="headerlink" title="医生看病的局限性"></a>医生看病的局限性</h2><p>对于门诊的医生很忙,忙的他不会苦口婆心的跟你讲一套完整的治疗方案,以及注意事项.正如上面提到的,你不问他也懒得说了,给你开药就完事了.所以需要提前准备好问题</p>
+<p>在来.诊断/确诊的依据,依赖于你的描述,检测报告,以及医生的判断.判断有时和经验关系很多.其中有诸多不确定性,如何去提高我们描述的准确性,如何去找有经验,医术高超的医生,这是可以自己去把握的</p>
+<p>最后,是遇到医生的医德.这让我想起了我镇上的一个医生,有人说两天打针能治好的病,他会给你打四五天的医生,后来,这诊所关门了,人也搬家了.我姨夫也是个医生,医德比较好,卖的药也便宜.你去药房买药,人家恨不得多开几盒给你,我姨夫会把一盒药拆了,用剪刀剪开,卖一部分,”你先吃两餐(次),没好在来看看”.</p>
+<blockquote>
+<p>早前看了本书叫&lt;&lt;原则&gt;&gt;, 里面有个小故事,作者生了病. 有的医生告诉他活不了多久了;还有医生告诉他这是良性的,没有太大影响.好在作者比较聪明(有钱),把两个医生叫到了一起,两个医生一起讨论,之前区别非常大的结论就会往同一结论上靠, 最后,作者并没有得什么绝症</p>
+</blockquote>
+<p>因为上面的小故事,我也多跑了几家医院,多问了几个医院,也遇到了坑比,但结论算是好的</p>
+<h2 id="在聊医生"><a href="#在聊医生" class="headerlink" title="在聊医生"></a>在聊医生</h2><p>正直新冠疫情,在电视看到一批一批的医生派往武汉,众志成城.那时候在想,一个地方,有好官和好医生,民之所幸.</p>
+<p>在来思考下医生的环境,医生每天面对的都是病人,而病人有求于他.如果每天有人有求于你,并对你说的话深信不疑,这将是对人性是极大的考验.医生掌握一定的权力,怎么去用这个权力. 电影<span class="exturl" data-url="aHR0cHM6Ly9tb3ZpZS5kb3ViYW4uY29tL3N1YmplY3QvMzgwNTA5MS8=">死亡实验<i class="fa fa-external-link-alt"></i></span>就是一个放大版人性扭曲的例子.</p>
+<h2 id="去的几家医院对比"><a href="#去的几家医院对比" class="headerlink" title="去的几家医院对比"></a>去的几家医院对比</h2><p>自己主要咨询了三个医生,北大深圳医院,深圳二医院,西安交通大学第二附属医院(丁香医生上)</p>
+<p>北大深圳医院的坑比医生就不提了;后面两个两个医生开的药品和治疗方案都类似;丁香医生上的医生给的建议和治疗方案最全,从注意事项,治疗方案从热敷,理疗,药物治疗在到锻炼非常全.</p>
+<p><img src="/images/retrospective/image-20210709003604362.png" alt="注意事项和治疗方案"></p>
+<p>感觉这个平台不错,上面有关于病的科普资料,还有很多公开的医生/病人对话案例,还有按打分排名的医生排行榜,让你找到比较好的医生.墙裂推荐</p>
+<p>前有”百度一下会死”. 在百度搜索一下某个病,我可能想要的是这个病的科普,而百度会推荐给你”方案”/“医院”,而这些”医院”通过通过花钱让你看到我, 这钱可能还得你来出.最怕的是花了钱,耽误了治疗,命还没了. 而不少慢性病,不治之症就成了财富密码.</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>望自己早日康复,锻炼身体</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1554,331 +1807,6 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uuid = dd18aa44-9594-41a2-b80c-d894851508a8</span><br><span class="line">base on random uuid = 71e08c50-47f5-45ef-adad-b1af80e40e98</span><br><span class="line">base on time uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line"></span><br><span class="line">tv = (1604563623, 547984); time = Thu Nov  5 16:07:03 2020</span><br><span class="line">uuid type is : UUID_TYPE_DCE_TIME</span><br><span class="line">uuid variant is : UUID_VARIANT_DCE</span><br><span class="line"></span><br><span class="line">uuid is not null</span><br><span class="line">lower uuid = e3840b20-1f3d-11eb-b204-6378fb95e6ae</span><br><span class="line">upper uuid = E3840B20-1F3D-11EB-B204-6378FB95E6AE</span><br></pre></td></tr></table></figure>
 
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/01/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">【C】libdbus上手教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-01-15 22:54:10" itemprop="dateCreated datePublished" datetime="2021-01-15T22:54:10+08:00">2021-01-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/01/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/01/libdbus上手教程/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <!-- # libdbus Overview -->
-
-<p>网站：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="What-is-D-Bus"><a href="#What-is-D-Bus" class="headerlink" title="What is D-Bus?"></a>What is D-Bus?</h2><blockquote>
-<p>D-Bus is <strong>a message bus system</strong>, a simple way for <strong>applications to talk to one another</strong>. In addition to interprocess communication, D-Bus helps <strong>coordinate process lifecycle</strong>; it makes it simple and reliable to code a “<strong>single instance</strong>“ application or daemon, and to <strong>launch applications</strong> and daemons on demand when their services are needed.</p>
-</blockquote>
-<h3 id="概括："><a href="#概括：" class="headerlink" title="概括："></a>概括：</h3><ul>
-<li>一个消息总线系统<ul>
-<li>  一对多(signal)：类似于广播/订阅，可以携带消息数据，没有应答确认</li>
-<li>  一对一(method call)：有应答确认</li>
-</ul>
-</li>
-<li>其他功能<ul>
-<li>  启动其它进程</li>
-<li>  支持单个实例进程</li>
-<li>  在 app 退出的时候,通知程序</li>
-</ul>
-</li>
-</ul>
-<h2 id="系统-bus-和会话-bus"><a href="#系统-bus-和会话-bus" class="headerlink" title="系统 bus 和会话 bus"></a>系统 bus 和会话 bus</h2><p><strong>system bus</strong>：在引导时就会启动，应用场景（待定）<br><strong>session bus</strong>：在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
-<h2 id="Low-level-API-vs-high-level-binding-APIs"><a href="#Low-level-API-vs-high-level-binding-APIs" class="headerlink" title="Low-level API vs high-level binding APIs"></a>Low-level API vs high-level binding APIs</h2><p>low-level API：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">libdbus<i class="fa fa-external-link-alt"></i></span><br>high-level binding APIs：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1nbGliLw==">GLib<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kb2MucXQuaW8vcXQtNS9xdGRidXMtaW5kZXguaHRtbA==">Qt<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1weXRob24v">Python<i class="fa fa-external-link-alt"></i></span>, Mono, Java, or whatever.</p>
-<p><strong>区别：</strong></p>
-<ul>
-<li>  low-level：依赖少，用起来更加麻烦/复杂,定制程度可以更高,更加适合自己封装,改造</li>
-<li>  high-level：用起来更加方便</li>
-</ul>
-<h2 id="Version-numbers"><a href="#Version-numbers" class="headerlink" title="Version numbers"></a>Version numbers</h2><blockquote>
-<p>软件版本格式：major.<strong>minor</strong>.patch</p>
-</blockquote>
-<p>minor version 是偶数的是 stable 版本,奇数的是 dev 版本<br>比如, development snapshots： 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions： 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
-<h2 id="D-Bus-中的概念"><a href="#D-Bus-中的概念" class="headerlink" title="D-Bus 中的概念"></a>D-Bus 中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>：</p>
-<ul>
-<li>  启动 bus daemon, 生成 bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
-<li>  获取 bus daemon 的 connect 连接, 注册 bus name(com.mycompany.TextEditor)</li>
-<li>  创建 msg, 发给哪个 bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
-<li>  发送 msg 到 bus daemon</li>
-<li>  bus daemon 发送到相应的 bus name 进程</li>
-<li>  接收到消息后返回数据</li>
-<li>  …</li>
-</ul>
-<p><img src="/images/dbus/Xnip2021-01-15_23-03-16.jpg"></p>
-<p><strong>相应概念：</strong></p>
-<p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
-<table>
-<thead>
-<tr>
-<th><strong>A…</strong></th>
-<th><strong>is identified by a(n)…</strong></th>
-<th><strong>which looks like…</strong></th>
-<th><strong>and is chosen by…</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Bus</td>
-<td>address</td>
-<td><code>unix:path=/var/run/dbus/system_bus_socket</code></td>
-<td>system configuration</td>
-</tr>
-<tr>
-<td>Connection</td>
-<td>bus name</td>
-<td><code>:34-907</code> (<em>unique</em>) or <code>com.mycompany.TextEditor</code> (<em>well-known</em>)</td>
-<td>D-Bus (<em>unique</em>) or the owning program (<em>well-known</em>)</td>
-</tr>
-<tr>
-<td>Object</td>
-<td>path</td>
-<td><code>/com/mycompany/TextFileManager</code></td>
-<td>the owning program</td>
-</tr>
-<tr>
-<td><em>Interface</em></td>
-<td><em>interface name</em></td>
-<td><code>org.freedesktop.Hal.Manager</code></td>
-<td><em>the owning program</em></td>
-</tr>
-<tr>
-<td>Member</td>
-<td>member name</td>
-<td><code>ListNames</code></td>
-<td>the owning program</td>
-</tr>
-</tbody></table>
-<blockquote>
-<h3 id="D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface"><a href="#D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface" class="headerlink" title="D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?"></a><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbCNpZG0zOQ==">D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?<i class="fa fa-external-link-alt"></i></span></h3><p>If you imagine a C++ program that implements a network service, then the bus name is the hostname of the computer running this C++ program, the object path is a C++ object instance pointer, and an interface is a C++ class (a pure virtual or abstract class, to be exact).<br>In Java terms, the object path is an object reference, and an interface is a Java interface.<br>People get confused because if they write an application with a single object instance and a single interface, then the bus name, object path, and interface look redundant. For example, you might have a text editor that uses the bus name org.freedesktop.TextEditor, has a global singleton object called /org/freedesktop/TextEditor, and that singleton object could implement the interface org.freedesktop.TextEditor.<br>However, a text editor application could as easily own multiple bus names (for example, org.kde.KWrite in addition to generic TextEditor), have multiple objects (maybe /org/kde/documents/4352 where the number changes according to the document), and each object could implement multiple interfaces, such as org.freedesktop.DBus.Introspectable, org.freedesktop.BasicTextField, org.kde.RichTextDocument.</p>
-</blockquote>
-<h2 id="D-Bus-消息类型"><a href="#D-Bus-消息类型" class="headerlink" title="D-Bus 消息类型"></a>D-Bus 消息类型</h2><p>消息通过 D-Bus 在进程间传递。有四类消息：</p>
-<ul>
-<li>  Method call 消息：将触发对象的一个 method</li>
-<li>  Method return 消息：触发的方法返回的结果</li>
-<li>  Signal 消息：通知，可以看作为事件消息。</li>
-<li>  Error 消息：触发的方法返回一个异常</li>
-</ul>
-<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h3 id="Command-line-命令行工具"><a href="#Command-line-命令行工具" class="headerlink" title="Command-line 命令行工具"></a>Command-line 命令行工具</h3><ul>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>：Message bus daemon</li>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>：从 shell 脚本来启动 message bus 工具</li>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>：发送消息到 message bus</li>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>：debug probe to print message bus messages</li>
-<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>：生成 UUIDs 工具</li>
-</ul>
-<p>使用示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## launch message bus</span></span><br><span class="line">$ dbus-launch --sh-syntax</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-send</span></span><br><span class="line"><span class="comment"># send signal</span></span><br><span class="line">$ dbus-send --<span class="built_in">type</span>=signal /  org.signal.poweroff.test_signal string:<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># send message_call</span></span><br><span class="line">$ dbus-send --dest=org.freedesktop.ExampleName               \</span><br><span class="line">            /org/freedesktop/sample/object/name              \</span><br><span class="line">            org.freedesktop.ExampleInterface.ExampleMethod   \</span><br><span class="line">            int32:47 string:<span class="string">&#x27;hello world&#x27;</span> double:65.32       \</span><br><span class="line">            array:string:<span class="string">&quot;1st item&quot;</span>,<span class="string">&quot;next item&quot;</span>,<span class="string">&quot;last item&quot;</span>  \</span><br><span class="line">            dict:string:int32:<span class="string">&quot;one&quot;</span>,1,<span class="string">&quot;two&quot;</span>,2,<span class="string">&quot;three&quot;</span>,3      \</span><br><span class="line">            variant:int32:-8                                 \</span><br><span class="line">            objpath:/org/freedesktop/sample/object/name</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-uuidgen</span></span><br><span class="line"><span class="comment"># it just prints a new uuid</span></span><br><span class="line">$ dbus-uuidgen</span><br><span class="line">ebb40ad49f9d4d8f44faa3bc5fffdc27</span><br><span class="line"></span><br><span class="line"><span class="comment"># prints the machine UUID by default</span></span><br><span class="line">$ dbus-uuidgen --get</span><br><span class="line">5b86dc18cce752c5404d2f0a5ffd1885</span><br><span class="line"></span><br><span class="line">$ dbus-uuidgen --ensure=/usr/local/var/lib/dbus/machine-id</span><br></pre></td></tr></table></figure>
-
-<p>dbus-daemon 启动脚本：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">## test for an existing bus daemon, just to be safe</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="comment">## if not found, launch a new one</span></span><br><span class="line">    <span class="built_in">eval</span> $(dbus-launch --sh-syntax --exit-with-session)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;D-Bus per-session daemon address is: <span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Graphical-图形调试工具"><a href="#Graphical-图形调试工具" class="headerlink" title="Graphical 图形调试工具"></a>Graphical 图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="/images/dbus/d-feet-overview.png" alt="d-feet-overview.png"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2J1c3RsZQ==">Bustle<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="libdbus-使用实例："><a href="#libdbus-使用实例：" class="headerlink" title="libdbus 使用实例："></a>libdbus 使用实例：</h2><h3 id="Method-Call-消息例子："><a href="#Method-Call-消息例子：" class="headerlink" title="Method Call 消息例子："></a>Method Call 消息例子：</h3><p>场景：launcher 访问 db_server 获取设备信息，比如：获取 cpu_id。launcher 作为客户端，db_server 做为服务端</p>
-<p><img src="/images/dbus/image-20210823144204174.png" alt="image-20210823144204174"></p>
-<p>launcher.c 代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_BUS_NAME_LAUNCHER <span class="string">&quot;com.vdiscovery.launcher&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bus_name</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="comment">// iface</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">dbus_bool_t</span>     ret = <span class="number">0</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_LAUNCHER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.创建消息</span></span><br><span class="line">    DBusMessage* req = dbus_message_new_method_call(</span><br><span class="line">        DBUS_BUS_NAME_DB_SERVER,</span><br><span class="line">        DBUS_OJBECT_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_IFACE_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.1.添加携带信息</span></span><br><span class="line">    <span class="type">char</span>* cpu_id = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    dbus_message_append_args(req, DBUS_TYPE_STRING, &amp;cpu_id, DBUS_TYPE_INVALID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取回应消息</span></span><br><span class="line">    DBusMessage* reply     = dbus_connection_send_with_reply_and_block(conn, req, <span class="number">1000</span> * <span class="number">4</span>, &amp;err);</span><br><span class="line">    <span class="type">char</span>*        reply_str = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_message_get_args(reply, &amp;err, DBUS_TYPE_STRING, &amp;reply_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;set_cpu_id:%s, reply:reply_str = %s\n&quot;</span>, cpu_id, reply_str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>db_server.c 代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用唯一表示：name</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// device_info</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// kv store</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_KV_STORE <span class="string">&quot;/com/vdiscovery/db_server/kv_store&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_IFACE_DB_SERVER_KV_STORE <span class="string">&quot;com.vdiscovery.db_server.kv_store&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_PUT <span class="string">&quot;put&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_GET <span class="string">&quot;get&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_DELETE <span class="string">&quot;delete&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// content</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_CONTENT <span class="string">&quot;/com/vdiscovery/db_server/content&quot;</span></span></span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_imei(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        imei_str = <span class="string">&quot;imei:fasdfasdflfasdk&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;imei_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply      = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        cpu_id_str = <span class="string">&quot;cpu_id:231412341&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;cpu_id_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_imei(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="type">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="type">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult <span class="title function_">device_info_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125;  <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult <span class="title function_">kv_store_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data)</span> &#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult <span class="title function_">content_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data)</span> &#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusObjectPathVTable g_device_info_table = &#123;.message_function = device_info_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_kv_table          = &#123;.message_function = kv_store_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_content_table     = &#123;.message_function = content_handler&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">dbus_bool_t</span>     ret = <span class="literal">false</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_DB_SERVER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.注册自己的Object</span></span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_DEVICE_INFO, &amp;g_device_info_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_KV_STORE, &amp;g_kv_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_CONTENT, &amp;g_content_table, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to register a object path for &#x27;TestObject&#x27;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.read/write/despatch消息</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        dbus_connection_read_write_dispatch(conn, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Signal-消息例子："><a href="#Signal-消息例子：" class="headerlink" title="Signal 消息例子："></a>Signal 消息例子：</h3><p>todo：</p>
-<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><h2 id="启动其它服务："><a href="#启动其它服务：" class="headerlink" title="启动其它服务："></a>启动其它服务：</h2><h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="我当时是怎么学习-dbus-的？"><a href="#我当时是怎么学习-dbus-的？" class="headerlink" title="我当时是怎么学习 dbus 的？"></a>我当时是怎么学习 dbus 的？</h3><p>核心结构体<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvZ3JvdXBfX0RCdXNDb25uZWN0aW9uLmh0bWw=">DBusConnection<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvc3RydWN0REJ1c01lc3NhZ2UuaHRtbA==">DBusMessage<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">D-Bus FAQ<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Dbus-是如果连接上-dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就-get-到了？"><a href="#Dbus-是如果连接上-dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就-get-到了？" class="headerlink" title="Dbus 是如果连接上 dbus-daemon，调用dbus_bus_get(DBUS_BUS_SESSION, &amp;err);就 get 到了？"></a>Dbus 是如果连接上 dbus-daemon，调用<code>dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</code>就 get 到了？</h3><p>换一种方式：如果把参数传给程序</p>
-<ul>
-<li>  参数写死</li>
-<li>  main 参数<code>argv</code></li>
-<li>  特定环境变量（程序自定义）</li>
-<li>  配置文件（配置非常多）</li>
-</ul>
-<h3 id="DbusMessage："><a href="#DbusMessage：" class="headerlink" title="DbusMessage："></a>DbusMessage：</h3><h2 id="References："><a href="#References：" class="headerlink" title="References："></a>References：</h2><ul>
-<li>  网站：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
-<li>  dbus-specification 规范：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>  D-Bus FAQ：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
-<li>  README：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
-<li>  相关中文介绍文章：<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">【C】通过"字符串"调用同名的函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-27 20:30:16" itemprop="dateCreated datePublished" datetime="2020-12-27T20:30:16+08:00">2020-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2020/12/通过-字符串-调用同名的函数/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在GUI编程里面,在写静态xml布局时;比如Android中,可以通过在xml中指定<code>onClick</code>的回调函数名,即可以实现,在事件触发时调用相应的函数</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/login_btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:onClick</span>=<span class="string">&quot;onLoginClick&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;Login&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

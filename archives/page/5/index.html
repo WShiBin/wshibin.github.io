@@ -174,12 +174,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -222,6 +222,331 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/01/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">【C】libdbus上手教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-15 22:54:10" itemprop="dateCreated datePublished" datetime="2021-01-15T22:54:10+08:00">2021-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/01/libdbus%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/01/libdbus上手教程/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <!-- # libdbus Overview -->
+
+<p>网站：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span><br>代码：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2RidXM=">https://github.com/freedesktop/dbus<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="What-is-D-Bus"><a href="#What-is-D-Bus" class="headerlink" title="What is D-Bus?"></a>What is D-Bus?</h2><blockquote>
+<p>D-Bus is <strong>a message bus system</strong>, a simple way for <strong>applications to talk to one another</strong>. In addition to interprocess communication, D-Bus helps <strong>coordinate process lifecycle</strong>; it makes it simple and reliable to code a “<strong>single instance</strong>“ application or daemon, and to <strong>launch applications</strong> and daemons on demand when their services are needed.</p>
+</blockquote>
+<h3 id="概括："><a href="#概括：" class="headerlink" title="概括："></a>概括：</h3><ul>
+<li>一个消息总线系统<ul>
+<li>  一对多(signal)：类似于广播/订阅，可以携带消息数据，没有应答确认</li>
+<li>  一对一(method call)：有应答确认</li>
+</ul>
+</li>
+<li>其他功能<ul>
+<li>  启动其它进程</li>
+<li>  支持单个实例进程</li>
+<li>  在 app 退出的时候,通知程序</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统-bus-和会话-bus"><a href="#系统-bus-和会话-bus" class="headerlink" title="系统 bus 和会话 bus"></a>系统 bus 和会话 bus</h2><p><strong>system bus</strong>：在引导时就会启动，应用场景（待定）<br><strong>session bus</strong>：在用户登录后启动，属于那个用户私有。它是用户的应用程序用来通信的一个会话总线。</p>
+<h2 id="Low-level-API-vs-high-level-binding-APIs"><a href="#Low-level-API-vs-high-level-binding-APIs" class="headerlink" title="Low-level API vs high-level binding APIs"></a>Low-level API vs high-level binding APIs</h2><p>low-level API：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">libdbus<i class="fa fa-external-link-alt"></i></span><br>high-level binding APIs：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1nbGliLw==">GLib<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kb2MucXQuaW8vcXQtNS9xdGRidXMtaW5kZXguaHRtbA==">Qt<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1weXRob24v">Python<i class="fa fa-external-link-alt"></i></span>, Mono, Java, or whatever.</p>
+<p><strong>区别：</strong></p>
+<ul>
+<li>  low-level：依赖少，用起来更加麻烦/复杂,定制程度可以更高,更加适合自己封装,改造</li>
+<li>  high-level：用起来更加方便</li>
+</ul>
+<h2 id="Version-numbers"><a href="#Version-numbers" class="headerlink" title="Version numbers"></a>Version numbers</h2><blockquote>
+<p>软件版本格式：major.<strong>minor</strong>.patch</p>
+</blockquote>
+<p>minor version 是偶数的是 stable 版本,奇数的是 dev 版本<br>比如, development snapshots： 1.1.1, 1.1.2, 1.1.3, 1.3.4. Stable versions： 1.0, 1.0.1, 1.0.2, 1.2.1, 1.2.3</p>
+<h2 id="D-Bus-中的概念"><a href="#D-Bus-中的概念" class="headerlink" title="D-Bus 中的概念"></a>D-Bus 中的概念</h2><p><strong>通过一个一对一通信流程来解释</strong>：</p>
+<ul>
+<li>  启动 bus daemon, 生成 bus address(unix:path=/var/run/dbus/system_bus_socket)</li>
+<li>  获取 bus daemon 的 connect 连接, 注册 bus name(com.mycompany.TextEditor)</li>
+<li>  创建 msg, 发给哪个 bus name(进程)-&gt;obj(实例)-&gt;Interface-&gt;Method</li>
+<li>  发送 msg 到 bus daemon</li>
+<li>  bus daemon 发送到相应的 bus name 进程</li>
+<li>  接收到消息后返回数据</li>
+<li>  …</li>
+</ul>
+<p><img src="/images/dbus/Xnip2021-01-15_23-03-16.jpg"></p>
+<p><strong>相应概念：</strong></p>
+<p>Address(bus) –&gt; Bus Name(进程) –&gt; Object path(实例) –&gt; Interface –&gt; Method</p>
+<table>
+<thead>
+<tr>
+<th><strong>A…</strong></th>
+<th><strong>is identified by a(n)…</strong></th>
+<th><strong>which looks like…</strong></th>
+<th><strong>and is chosen by…</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bus</td>
+<td>address</td>
+<td><code>unix:path=/var/run/dbus/system_bus_socket</code></td>
+<td>system configuration</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>bus name</td>
+<td><code>:34-907</code> (<em>unique</em>) or <code>com.mycompany.TextEditor</code> (<em>well-known</em>)</td>
+<td>D-Bus (<em>unique</em>) or the owning program (<em>well-known</em>)</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>path</td>
+<td><code>/com/mycompany/TextFileManager</code></td>
+<td>the owning program</td>
+</tr>
+<tr>
+<td><em>Interface</em></td>
+<td><em>interface name</em></td>
+<td><code>org.freedesktop.Hal.Manager</code></td>
+<td><em>the owning program</em></td>
+</tr>
+<tr>
+<td>Member</td>
+<td>member name</td>
+<td><code>ListNames</code></td>
+<td>the owning program</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h3 id="D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface"><a href="#D-Bus-FAQ-4-What-is-the-difference-between-a-bus-name-and-object-path-and-an-interface" class="headerlink" title="D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?"></a><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbCNpZG0zOQ==">D-Bus FAQ 4. What is the difference between a bus name, and object path, and an interface?<i class="fa fa-external-link-alt"></i></span></h3><p>If you imagine a C++ program that implements a network service, then the bus name is the hostname of the computer running this C++ program, the object path is a C++ object instance pointer, and an interface is a C++ class (a pure virtual or abstract class, to be exact).<br>In Java terms, the object path is an object reference, and an interface is a Java interface.<br>People get confused because if they write an application with a single object instance and a single interface, then the bus name, object path, and interface look redundant. For example, you might have a text editor that uses the bus name org.freedesktop.TextEditor, has a global singleton object called /org/freedesktop/TextEditor, and that singleton object could implement the interface org.freedesktop.TextEditor.<br>However, a text editor application could as easily own multiple bus names (for example, org.kde.KWrite in addition to generic TextEditor), have multiple objects (maybe /org/kde/documents/4352 where the number changes according to the document), and each object could implement multiple interfaces, such as org.freedesktop.DBus.Introspectable, org.freedesktop.BasicTextField, org.kde.RichTextDocument.</p>
+</blockquote>
+<h2 id="D-Bus-消息类型"><a href="#D-Bus-消息类型" class="headerlink" title="D-Bus 消息类型"></a>D-Bus 消息类型</h2><p>消息通过 D-Bus 在进程间传递。有四类消息：</p>
+<ul>
+<li>  Method call 消息：将触发对象的一个 method</li>
+<li>  Method return 消息：触发的方法返回的结果</li>
+<li>  Signal 消息：通知，可以看作为事件消息。</li>
+<li>  Error 消息：触发的方法返回一个异常</li>
+</ul>
+<h2 id="相应工具"><a href="#相应工具" class="headerlink" title="相应工具"></a>相应工具</h2><h3 id="Command-line-命令行工具"><a href="#Command-line-命令行工具" class="headerlink" title="Command-line 命令行工具"></a>Command-line 命令行工具</h3><ul>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1kYWVtb24uMS5odG1s">dbus-daemon<i class="fa fa-external-link-alt"></i></span>：Message bus daemon</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1sYXVuY2guMS5odG1s">dbus-launch<i class="fa fa-external-link-alt"></i></span>：从 shell 脚本来启动 message bus 工具</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zZW5kLjEuaHRtbA==">dbus-send<i class="fa fa-external-link-alt"></i></span>：发送消息到 message bus</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1tb25pdG9yLjEuaHRtbA==">dbus-monitor<i class="fa fa-external-link-alt"></i></span>：debug probe to print message bus messages</li>
+<li>  <span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy11dWlkZ2VuLjEuaHRtbA==">dbus-uuidgen<i class="fa fa-external-link-alt"></i></span>：生成 UUIDs 工具</li>
+</ul>
+<p>使用示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## launch message bus</span></span><br><span class="line">$ dbus-launch --sh-syntax</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-send</span></span><br><span class="line"><span class="comment"># send signal</span></span><br><span class="line">$ dbus-send --<span class="built_in">type</span>=signal /  org.signal.poweroff.test_signal string:<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># send message_call</span></span><br><span class="line">$ dbus-send --dest=org.freedesktop.ExampleName               \</span><br><span class="line">            /org/freedesktop/sample/object/name              \</span><br><span class="line">            org.freedesktop.ExampleInterface.ExampleMethod   \</span><br><span class="line">            int32:47 string:<span class="string">&#x27;hello world&#x27;</span> double:65.32       \</span><br><span class="line">            array:string:<span class="string">&quot;1st item&quot;</span>,<span class="string">&quot;next item&quot;</span>,<span class="string">&quot;last item&quot;</span>  \</span><br><span class="line">            dict:string:int32:<span class="string">&quot;one&quot;</span>,1,<span class="string">&quot;two&quot;</span>,2,<span class="string">&quot;three&quot;</span>,3      \</span><br><span class="line">            variant:int32:-8                                 \</span><br><span class="line">            objpath:/org/freedesktop/sample/object/name</span><br><span class="line"></span><br><span class="line"><span class="comment">## dbus-uuidgen</span></span><br><span class="line"><span class="comment"># it just prints a new uuid</span></span><br><span class="line">$ dbus-uuidgen</span><br><span class="line">ebb40ad49f9d4d8f44faa3bc5fffdc27</span><br><span class="line"></span><br><span class="line"><span class="comment"># prints the machine UUID by default</span></span><br><span class="line">$ dbus-uuidgen --get</span><br><span class="line">5b86dc18cce752c5404d2f0a5ffd1885</span><br><span class="line"></span><br><span class="line">$ dbus-uuidgen --ensure=/usr/local/var/lib/dbus/machine-id</span><br></pre></td></tr></table></figure>
+
+<p>dbus-daemon 启动脚本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">## test for an existing bus daemon, just to be safe</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="comment">## if not found, launch a new one</span></span><br><span class="line">    <span class="built_in">eval</span> $(dbus-launch --sh-syntax --exit-with-session)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;D-Bus per-session daemon address is: <span class="variable">$DBUS_SESSION_BUS_ADDRESS</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Graphical-图形调试工具"><a href="#Graphical-图形调试工具" class="headerlink" title="Graphical 图形调试工具"></a>Graphical 图形调试工具</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dOT01FL2QtZmVldA==">D-Feet<i class="fa fa-external-link-alt"></i></span></p>
+<p><img src="/images/dbus/d-feet-overview.png" alt="d-feet-overview.png"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVkZXNrdG9wL2J1c3RsZQ==">Bustle<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="libdbus-使用实例："><a href="#libdbus-使用实例：" class="headerlink" title="libdbus 使用实例："></a>libdbus 使用实例：</h2><h3 id="Method-Call-消息例子："><a href="#Method-Call-消息例子：" class="headerlink" title="Method Call 消息例子："></a>Method Call 消息例子：</h3><p>场景：launcher 访问 db_server 获取设备信息，比如：获取 cpu_id。launcher 作为客户端，db_server 做为服务端</p>
+<p><img src="/images/dbus/image-20210823144204174.png" alt="image-20210823144204174"></p>
+<p>launcher.c 代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_BUS_NAME_LAUNCHER <span class="string">&quot;com.vdiscovery.launcher&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bus_name</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="comment">// iface</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">dbus_bool_t</span>     ret = <span class="number">0</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_LAUNCHER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.创建消息</span></span><br><span class="line">    DBusMessage* req = dbus_message_new_method_call(</span><br><span class="line">        DBUS_BUS_NAME_DB_SERVER,</span><br><span class="line">        DBUS_OJBECT_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_IFACE_DB_SERVER_DEVICE_INFO,</span><br><span class="line">        DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.1.添加携带信息</span></span><br><span class="line">    <span class="type">char</span>* cpu_id = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    dbus_message_append_args(req, DBUS_TYPE_STRING, &amp;cpu_id, DBUS_TYPE_INVALID);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取回应消息</span></span><br><span class="line">    DBusMessage* reply     = dbus_connection_send_with_reply_and_block(conn, req, <span class="number">1000</span> * <span class="number">4</span>, &amp;err);</span><br><span class="line">    <span class="type">char</span>*        reply_str = <span class="literal">NULL</span>;</span><br><span class="line">    dbus_message_get_args(reply, &amp;err, DBUS_TYPE_STRING, &amp;reply_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;set_cpu_id:%s, reply:reply_str = %s\n&quot;</span>, cpu_id, reply_str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>db_server.c 代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;dbus/dbus.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用唯一表示：name</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_BUS_NAME_DB_SERVER <span class="string">&quot;com.vdiscovery.db_server&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// device_info</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_DEVICE_INFO <span class="string">&quot;/com/vdiscovery/db_server/device_info&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_IFACE_DB_SERVER_DEVICE_INFO <span class="string">&quot;com.vdiscovery.db_server.device_info&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI <span class="string">&quot;get_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID <span class="string">&quot;get_cpu_id&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI <span class="string">&quot;set_imei&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID <span class="string">&quot;set_cpu_id&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// kv store</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_KV_STORE <span class="string">&quot;/com/vdiscovery/db_server/kv_store&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_IFACE_DB_SERVER_KV_STORE <span class="string">&quot;com.vdiscovery.db_server.kv_store&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_PUT <span class="string">&quot;put&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_GET <span class="string">&quot;get&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_METHOD_CALL_DB_SERVER_KV_DELETE <span class="string">&quot;delete&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// content</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_OJBECT_DB_SERVER_CONTENT <span class="string">&quot;/com/vdiscovery/db_server/content&quot;</span></span></span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_imei(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        imei_str = <span class="string">&quot;imei:fasdfasdflfasdk&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;imei_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _get_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    <span class="comment">// todo: do something: 从数据库取</span></span><br><span class="line">    DBusMessage* reply      = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        cpu_id_str = <span class="string">&quot;cpu_id:231412341&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;cpu_id_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_imei(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="type">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult _set_cpu_id(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data) &#123;</span><br><span class="line">    DBusError error;</span><br><span class="line">    dbus_error_init(&amp;error);</span><br><span class="line">    <span class="type">char</span>* req_str = <span class="literal">NULL</span>;  <span class="comment">// json</span></span><br><span class="line">    dbus_message_get_args(message, &amp;error, DBUS_TYPE_STRING, &amp;req_str, DBUS_TYPE_INVALID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;req_str: %s\n&quot;</span>, req_str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// todo: do something with req_str, 存到数据库</span></span><br><span class="line">    DBusMessage* reply    = dbus_message_new_method_return(message);</span><br><span class="line">    <span class="type">char</span>*        succ_str = <span class="string">&quot;store success&quot;</span>;</span><br><span class="line">    dbus_message_append_args(reply, DBUS_TYPE_STRING, &amp;succ_str, DBUS_TYPE_INVALID);</span><br><span class="line">    dbus_connection_send(connection, reply, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult <span class="title function_">device_info_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_GET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _get_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_IMEI)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_imei(connection, message, user_data);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dbus_message_is_method_call(message, DBUS_IFACE_DB_SERVER_DEVICE_INFO, DBUS_METHOD_CALL_DB_SERVER_DEVICE_INFO_SET_CPU_ID)) &#123;</span><br><span class="line">        <span class="keyword">return</span> _set_cpu_id(connection, message, user_data);</span><br><span class="line">    &#125;  <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult <span class="title function_">kv_store_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data)</span> &#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusHandlerResult <span class="title function_">content_handler</span><span class="params">(DBusConnection* connection, DBusMessage* message, <span class="type">void</span>* user_data)</span> &#123;</span><br><span class="line">    <span class="comment">// todo</span></span><br><span class="line">    <span class="keyword">return</span> DBUS_HANDLER_RESULT_HANDLED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DBusObjectPathVTable g_device_info_table = &#123;.message_function = device_info_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_kv_table          = &#123;.message_function = kv_store_handler&#125;;</span><br><span class="line">DBusObjectPathVTable g_content_table     = &#123;.message_function = content_handler&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">dbus_bool_t</span>     ret = <span class="literal">false</span>;</span><br><span class="line">    DBusError       err;</span><br><span class="line">    DBusConnection* conn = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    dbus_error_init(&amp;err);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取链接</span></span><br><span class="line">    conn = dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus get err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.注册自己的name</span></span><br><span class="line">    dbus_bus_request_name(conn, DBUS_BUS_NAME_DB_SERVER, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;err);</span><br><span class="line">    <span class="keyword">if</span> (dbus_error_is_set(&amp;err)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bus request name err : %s\n&quot;</span>, err.message);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.注册自己的Object</span></span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_DEVICE_INFO, &amp;g_device_info_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_KV_STORE, &amp;g_kv_table, <span class="literal">NULL</span>);</span><br><span class="line">    ret = dbus_connection_register_object_path(conn, DBUS_OJBECT_DB_SERVER_CONTENT, &amp;g_content_table, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (!ret) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to register a object path for &#x27;TestObject&#x27;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.read/write/despatch消息</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        dbus_connection_read_write_dispatch(conn, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Signal-消息例子："><a href="#Signal-消息例子：" class="headerlink" title="Signal 消息例子："></a>Signal 消息例子：</h3><p>todo：</p>
+<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><h2 id="启动其它服务："><a href="#启动其它服务：" class="headerlink" title="启动其它服务："></a>启动其它服务：</h2><h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="我当时是怎么学习-dbus-的？"><a href="#我当时是怎么学习-dbus-的？" class="headerlink" title="我当时是怎么学习 dbus 的？"></a>我当时是怎么学习 dbus 的？</h3><p>核心结构体<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvZ3JvdXBfX0RCdXNDb25uZWN0aW9uLmh0bWw=">DBusConnection<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvYXBpL2h0bWwvc3RydWN0REJ1c01lc3NhZ2UuaHRtbA==">DBusMessage<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">D-Bus FAQ<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Dbus-是如果连接上-dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就-get-到了？"><a href="#Dbus-是如果连接上-dbus-daemon，调用dbus-bus-get-DBUS-BUS-SESSION-amp-err-就-get-到了？" class="headerlink" title="Dbus 是如果连接上 dbus-daemon，调用dbus_bus_get(DBUS_BUS_SESSION, &amp;err);就 get 到了？"></a>Dbus 是如果连接上 dbus-daemon，调用<code>dbus_bus_get(DBUS_BUS_SESSION, &amp;err);</code>就 get 到了？</h3><p>换一种方式：如果把参数传给程序</p>
+<ul>
+<li>  参数写死</li>
+<li>  main 参数<code>argv</code></li>
+<li>  特定环境变量（程序自定义）</li>
+<li>  配置文件（配置非常多）</li>
+</ul>
+<h3 id="DbusMessage："><a href="#DbusMessage：" class="headerlink" title="DbusMessage："></a>DbusMessage：</h3><h2 id="References："><a href="#References：" class="headerlink" title="References："></a>References：</h2><ul>
+<li>  网站：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvZGJ1cy8=">https://www.freedesktop.org/wiki/Software/dbus/<i class="fa fa-external-link-alt"></i></span></li>
+<li>  dbus-specification 规范：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWw=">https://dbus.freedesktop.org/doc/dbus-specification.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>  D-Bus FAQ：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1mYXEuaHRtbA==">https://dbus.freedesktop.org/doc/dbus-faq.html<i class="fa fa-external-link-alt"></i></span></li>
+<li>  README：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvUkVBRE1F">https://dbus.freedesktop.org/doc/README<i class="fa fa-external-link-alt"></i></span></li>
+<li>  相关中文介绍文章：<span class="exturl" data-url="aHR0cHM6Ly90aGViaWdkb2MucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L2RidXMvZGJ1cy5odG1s">https://thebigdoc.readthedocs.io/en/latest/dbus/dbus.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">【C】通过"字符串"调用同名的函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-27 20:30:16" itemprop="dateCreated datePublished" datetime="2020-12-27T20:30:16+08:00">2020-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2020/12/通过-字符串-调用同名的函数/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在GUI编程里面,在写静态xml布局时;比如Android中,可以通过在xml中指定<code>onClick</code>的回调函数名,即可以实现,在事件触发时调用相应的函数</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/login_btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:onClick</span>=<span class="string">&quot;onLoginClick&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;Login&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/%E9%80%9A%E8%BF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E8%B0%83%E7%94%A8%E5%90%8C%E5%90%8D%E7%9A%84%E5%87%BD%E6%95%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1049,399 +1374,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2017/04/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/" class="post-title-link" itemprop="url">【Android】翻了一遍EventBus官方文档</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-04-26 13:21:27" itemprop="dateCreated datePublished" datetime="2017-04-26T13:21:27+08:00">2017-04-26</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/04/%E7%BF%BB%E4%BA%86%E4%B8%80%E9%81%8DEventBus%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2017/04/翻了一遍EventBus官方文档/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>Note:以前写的文章，搬迁过来 <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hNTM2Y2YwMDc3MGI=">翻了一遍EventBus官方文档<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<blockquote>
-<p>EventBus事件总线.以观察者模式实现,消息推送/订阅.用于Android组件之间相互通信</p>
-</blockquote>
-<p>Note:文章基于EventBus3.0</p>
-<p><img src="/images/eventbus/Xnip2021-01-16_23-21-38.jpg"></p>
-<p>项目地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyZWVucm9ib3QvRXZlbnRCdXM=">https://github.com/greenrobot/EventBus<i class="fa fa-external-link-alt"></i></span><br>Docments:<span class="exturl" data-url="aHR0cDovL2dyZWVucm9ib3Qub3JnL2V2ZW50YnVzL2RvY3VtZW50YXRpb24vaG93LXRvLWdldC1zdGFydGVkLw==">http://greenrobot.org/eventbus/documentation/how-to-get-started/<i class="fa fa-external-link-alt"></i></span></p>
-<p>###先来聊聊:什么是通信?</p>
-<blockquote>
-<p>Wiki中国: <strong>通信</strong>是发送者通过某种媒体以某种<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JUEwJUJDJUU1JUJDJThG">格式<i class="fa fa-external-link-alt"></i></span>来传递<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU0JUJGJUExJUU2JTgxJUFG">信息<i class="fa fa-external-link-alt"></i></span>到收信者以达致某个目的。在古代，人们通过<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUE5JTlCJUU3JUFCJTk5">驿站<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JUEzJTlFJUU5JUI4JUJEJUU0JUJDJUEwJUU0JUI5JUE2">飞鸽传书<i class="fa fa-external-link-alt"></i></span>、烽火报警、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUFDJUE2JUU4JTk5JTlG">符号<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUFBJTlFJUU4JUE4JTgw">语言<i class="fa fa-external-link-alt"></i></span>、眼神、触碰等方式进行信息传递。到了今天，随着科技水平的飞速发展，通信基本完全利用有线或无线电完成，相继出现了<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3cvaW5kZXgucGhwP3RpdGxlPSVFNiU5QyU4OSVFNyVCNyU5QSVFOSU5QiVCQiVFOCVBOSVCMSZhY3Rpb249ZWRpdCZyZWRsaW5rPTE=">有线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU1JTlCJUJBJUU1JUFFJTlBJUU3JTk0JUI1JUU4JUFGJTlE">固定电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JTg0JUExJUU3JUI3JTlBJUU5JTlCJUJCJUU4JUE5JUIx">无线电话<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU2JTg5JThCJUU2JUE5JTlG">手机<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU3JUI2JUIyJUU5JTlBJTlCJUU3JUI2JUIyJUU4JUI3JUFG">互联网<i class="fa fa-external-link-alt"></i></span>甚至<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU4JUE2JTk2JUU4JUE4JThBJUU5JTlCJUJCJUU4JUE5JUIx">视频电话<i class="fa fa-external-link-alt"></i></span>等各种通信方式。通信技术拉近了人与人之间的距离，提高了通信的效率，深刻的改变了人类的通信。交流也是一种方法让其他人理解你。</p>
-</blockquote>
-<p>上面是Wiki的解释,通信本身是个很抽象,宽泛的词, 你跟朋友打个电话叫通信, 发个Email也叫通信, 两个App之间传数据也叫通信,也叫为进程间通信, Activity和Activity之间传递数据叫组件间通信, 说到这里,来下个通俗点的定义:一个东西给另一个东西传递东西(数据),就叫通信.</p>
-<p>##EventBus有什么用?解决了什么问题?<br>方便Android组件间相互通信.在Activity,Service,Fragment之间传递数据,例如,你在个人主页编辑头像的界面修改了头像,这时候其它页面的头像也需要去修改,这时候可以试试EventBus.<br>基于观察者模式:这个好理解, 有消息的发送者,也有消息的接收者,当然,也可以是一发送者对应多个接收者, EventBus使用起来非常简单,可以用来提供广播之类</p>
-<p>##怎么用?</p>
-<ul>
-<li>添加依赖</li>
-<li>使用三歩曲:<ul>
-<li>定义事件类</li>
-<li>注册事件</li>
-<li>发送事件</li>
-</ul>
-</li>
-</ul>
-<p>###添加依赖</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">&#x27;org.greenrobot:eventbus:3.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>###使用三步曲:</p>
-<p>####1,定义事件类<br>事件类是通信过程中的数据的载体,用来传递数据,这里写一个最简单的事件类,后面说如何传递数据</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MessageEvent</span> &#123;</span><br><span class="line">  <span class="comment">/* Additional fields if needed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>####2.注册事件<br>上面提到数据的发送者和接收者, 注册事件是针对接收者的, 哪个组件需要接收消息,就在哪个组件中去注册</p>
-<ul>
-<li>注册: EventBus.getDefault().register(this);</li>
-<li>添加函数注解@Subscribe:当数据的发送者发出消息后,添加这个注解的函数会被调用</li>
-<li>添加@Subscribe注解的函数参数,写上接收事件类型,表示这个组件会接收这类事件的消息</li>
-<li>注销:EventBus:EventBus.getDefault().unregister(this);</li>
-</ul>
-<p><strong>Note:一个事件是可以有多个接收者(订阅者)</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  EventBus.getDefault().register(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加上Subscribe注解,这个方法会在事件发出后收到回调,方法名是自定义的</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessageEvent</span><span class="params">(MessageEvent event)</span> &#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>####3.发送事件<br>最后,消息的发送者发送事件, 这时候上面添加@Subscribe注解的函数会被调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> <span class="title class_">MessageEvent</span>());</span><br></pre></td></tr></table></figure>
-
-<p>**这时候在回来看这张大图,So easy,**点击查看大图<br><img src="/images/eventbus/Xnip2021-01-16_23-22-08.jpg"></p>
-<p>这里顺便吐槽下官方示例代码:<br><img src="/images/eventbus/Xnip2021-01-16_23-22-29.jpg"></p>
-<p>如果你打算把注册写在onStart中,请在前面加上判断</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="built_in">this</span>)) &#123;</span><br><span class="line">    EventBus.getDefault().register(<span class="built_in">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###上面是EventBus的基本使用流程,其实这才开始:</p>
-<ul>
-<li>在事件中传递数据</li>
-<li>指定事件接收线程</li>
-<li>发送黏性事件Sticky Events</li>
-<li>接收事件的优先级别</li>
-<li>中止事件传递</li>
-<li>订阅者索引</li>
-</ul>
-<p>###传递数据<br>不过,上面只是发了一个空的消息,没有传递任何的数据,比如:我修改了用户的头像,上传到服务器,服务器返回一个Url,这时候我需要修改其它界面的头像,这时候我要把这个url数据传到其它界面:怎么做呢?</p>
-<p>####1.只需要去修改定义事件类中的构造函数,增加一个参数,在加上set和get方法,如下:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UpdateHeadPicEvent</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> String mUrl;</span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">UpdateHeadPicEvent</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.mUrl = url;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">getUrl</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> mUrl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>####2.在发送事件的地方,使用这个带参的构造去创建对象:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> <span class="title class_">UpdateHeadImgEvent</span>(url));</span><br></pre></td></tr></table></figure>
-
-<p>####3.在接收消息的回调中用get方法去获取</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>**Note:**这里只是用了一个String的Url做参考,可以传递的数据还有很多,List集合,Bean对象…</p>
-<p>###指定事件接收的线程<br>前面说了加上@Subscribe注解,这个函数在消息推送之后会被回调,其实这个注解还有几个属性,其中threadMode能为该函数指定线程,如果不写,也会有个默认值:ThreadMode.POSTING,意思是和发送事件所在线程一样</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.POSTING)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####ThreadMode列表</p>
-<ul>
-<li>ThreadMode.POSTING:和发送事件在同一个线程</li>
-<li>ThreadMode.MAIN:主线程</li>
-<li>ThreadMode.BACKGROUND:子线程</li>
-<li>ThreadMode.ASYNC:异步线程</li>
-</ul>
-<p>####发送黏性事件Sticky Events<br>上面示例代码所说的情况是:当发送消息推送者推送消息的时候,订阅者会立马收到消息,它会把消息推送给它所有的订阅者.注意后面这句话:<strong>如果你希望在消息推送完成之后,让新注册的订阅者也能收到这条消息,这时候你可以试试Sticky Events</strong>,这个事件就像一个常驻广播,只要是有新的订阅者订阅了这个事件,就会收到消息.当然,有两点要求:</p>
-<ol>
-<li>首先,发送的是黏性事件,代码将post改为postSticky</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// EventBus.getDefault().post(new MessageEvent());</span></span><br><span class="line">EventBus.getDefault().postSticky(<span class="keyword">new</span> <span class="title class_">MessageEvent</span>());</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>然后,订阅者要声明自己能够接收到黏性事件的消息:代码中@Subscribe注解中的sticky值为true,满足了这两点,就能愉快的玩耍了.</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onStart();</span><br><span class="line">  <span class="keyword">if</span> (!EventBus.getDefault().isRegistered(<span class="built_in">this</span>)) &#123;</span><br><span class="line">  EventBus.getDefault().register(<span class="built_in">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Subscribe(sticky = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessageEvent</span><span class="params">(MessageEvent event)</span> &#123;</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onMessageEvent: 我是sticky event 收到消息&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onDestroy();</span><br><span class="line">  EventBus.getDefault().unregister(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试Log日志<br><img src="/images/eventbus/Xnip2021-01-16_23-22-51.jpg"></p>
-<p>###接收事件的优先级别<br>EventBus可以定义接收事件方的优先级别,在@Subscribe注解中有一个priority的参数,默认值是0,可以自行配置1.2.3.4…数值越大优先级越低,会越晚收到消息</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> event.getUrl();</span><br><span class="line">  Log.i(TAG, <span class="string">&quot;onUpdateHeadPicEvent: &quot;</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###中止事件传递<br>类似于有序广播,优先级高的订阅者,可以终止事件向下传递,EventBus也提供了此功能</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Subscribe(priority = 0)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpdateHeadPicEvent</span><span class="params">(UpdateHeadPicEvent event)</span> &#123;</span><br><span class="line">  EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###订阅者索引<br>这个新特性是在EventBus 3.0推出,简单的说:利用annotationProcessor去生成一个关于订阅者的索引类,保存订阅者的相关信息.<br>有什么用?提高效率,注册从运行时的反射,转移到了编译时<br>怎么用?两种方式:</p>
-<ul>
-<li>在gradle版本2.2.0以前使用：Android-apt</li>
-<li>在gradle版本2.2.0以上使用：annotationProcessor</li>
-</ul>
-<p>这里说annotationProcessor的方式,现在新建项目一般都在2.2.0以上:<br>添加好Gradle设置之后,重新build项目,就会为你生成这样的类:MyEventBusIndex<br>![](/assets/EventBus Annotation Processor.png)</p>
-<p>用法:将它配置应用于默认的EventBus,调用下面代码:可放在Application的onCreate中调用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventBus.builder().addIndex(<span class="keyword">new</span> <span class="title class_">MyEventBusIndex</span>()).installDefaultEventBus();</span><br></pre></td></tr></table></figure>
-<p>未添加前和添加后我分别做了三次测试,注册完成的时间对比,速度快了不止一倍,这还是只有两个订阅者的时候,如果订阅订阅者更多呢,</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//未添加前</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892487664</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892487666</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892568177</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892568180</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892715342</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892715344</span><br><span class="line"></span><br><span class="line">//添加后</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892648185</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892648186</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892814517</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892814518</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register start 1491892868879</span><br><span class="line">I/Subscriber1Activity: onMessageEvent: register end 1491892868880</span><br></pre></td></tr></table></figure>
-<p>#####在Lib的model中使用:<br>build.gradle也要添加上图中同样的参数,在上图中,这个参数是自定义的,不同的model可以为他生成不同的索引类:</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">arguments = [<span class="attr">eventBusIndex:</span> <span class="string">&#x27;com.example.myapp.MyEventBusIndex&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<p>更改默认配置也需要多添加一行代码:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">EventBus</span> <span class="variable">eventBus</span> <span class="operator">=</span> EventBus.builder()</span><br><span class="line">    .addIndex(<span class="keyword">new</span> <span class="title class_">MyEventBusAppIndex</span>())</span><br><span class="line">    .addIndex(<span class="keyword">new</span> <span class="title class_">MyEventBusLibIndex</span>())</span><br><span class="line">    .installDefaultEventBus();</span><br></pre></td></tr></table></figure>
-
-<p>最后代码地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9FdmVudGJ1c2RlbW8=">https://github.com/Shib90/Eventbusdemo<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2017/04/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">【Android】ButterKnife使用详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-04-24 21:40:41" itemprop="dateCreated datePublished" datetime="2017-04-24T21:40:41+08:00">2017-04-24</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/04/ButterKnife%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2017/04/ButterKnife使用详解/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>注解库, JakeWharton大神的杰作</p>
-</blockquote>
-<p><strong>Note:文章基于8.5.1版本,不同的版本之间用法可能会稍有差异,实际版本使用以官方文档为主</strong></p>
-<p>项目地址:<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0pha2VXaGFydG9uL2J1dHRlcmtuaWZl">https://github.com/JakeWharton/butterknife<i class="fa fa-external-link-alt"></i></span><br>文档地址:<span class="exturl" data-url="aHR0cDovL2pha2V3aGFydG9uLmdpdGh1Yi5pby9idXR0ZXJrbmlmZS8=">http://jakewharton.github.io/butterknife/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用?"></a>有什么用?</h2><p>初始化View,资源,绑定View事件.不用去写<code>findViewById(...)</code>, <code>setOn...Listener(...)</code>,只需要加上一行注解,配合Studio插件:Android ButterKnife Zelezny,自动生成View注解, 大爱</p>
-<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用?"></a>怎么用?</h2><ul>
-<li>引入ButterKnife</li>
-<li>添加/声明对应的注解</li>
-</ul>
-<h3 id="引入ButterKnife"><a href="#引入ButterKnife" class="headerlink" title="引入ButterKnife"></a>引入ButterKnife</h3><blockquote>
-<p>在早期版本引入只需要一行代码,后来库的分拆,增加,优化,使得稍显麻烦.新手上手时,动不动会整出个空指针很正常.只需要注意区分项目的build.gradle,主程序的Module的build.gradle,依赖Module的Build.gradle:</p>
-</blockquote>
-<ul>
-<li>项目的build.gradle:在项目的根目录下</li>
-<li>主程序的build.gradle:通常是一个名为app Module下的build.gradle,文件第一行是:<code>apply plugin: &#39;com.android.application&#39;</code>,这名代码的意思是用来声明这个Module是主程序Module</li>
-<li>依赖Module的build.gradle:一个项目通常只有一个主程序Module,其它的就是依赖Module,当然,是可以建多个主程序Module的,文件第一行代码是:<code>apply plugin: &#39;com.android.library&#39;</code>,用来声明这是一个依赖Module</li>
-</ul>
-<p><strong>在Module的build.gradle中添加</strong></p>
-<p>如果你要在哪个Module中使用,就不需要在哪个Module中添加</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  compile <span class="string">&#x27;com.jakewharton:butterknife:8.5.1&#x27;</span></span><br><span class="line">  annotationProcessor <span class="string">&#x27;com.jakewharton:butterknife-compiler:8.5.1&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在项目的build.gradle中添加</strong></p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">  repositories &#123;</span><br><span class="line">     mavenCentral()</span><br><span class="line">  &#125;</span><br><span class="line">  dependencies &#123;</span><br><span class="line">    classpath <span class="string">&#x27;com.jakewharton:butterknife-gradle-plugin:8.5.1&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在主程序依赖Module的build.gradle中添加</strong></p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.android.library&#x27;</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.jakewharton.butterknife&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:在依赖Module中使用,声明注解时用R2替代R, Like this</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ExampleActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> &#123;</span><br><span class="line">  <span class="meta">@BindView(R2.id.user)</span> EditText username;</span><br><span class="line">  <span class="meta">@BindView(R2.id.pass)</span> EditText password;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-声明对应的注解"><a href="#添加-声明对应的注解" class="headerlink" title="添加/声明对应的注解"></a>添加/声明对应的注解</h3><h4 id="在Activity中绑定View"><a href="#在Activity中绑定View" class="headerlink" title="在Activity中绑定View"></a>在Activity中绑定View</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ExampleActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> &#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.title)</span> TextView title;</span><br><span class="line">  <span class="meta">@BindView(R.id.subtitle)</span> TextView subtitle;</span><br><span class="line">  <span class="meta">@BindView(R.id.footer)</span> TextView footer;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.simple_activity);</span><br><span class="line">    ButterKnife.bind(<span class="built_in">this</span>);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>只要在<code>TextView title</code>;加了<code>@BindView(R.id.title)</code>,这个title就和布局simple_activity.xml中的id为title的TextView控件绑定了,并且帮你实例化了,就可以直接用它的相关方法:<code>itle.setXxx(..)</code>之类.相当于帮你写了,<code>title = (TextView)this.findViewById(R.id.title)</code>;这段代码,实际上在build项目的时候它就去生成了包含这样代码的文件,目录:项目名-&gt;Module名-&gt;build-&gt;generated-&gt;source-&gt;apt-&gt;debug-&gt;对应的包名下一些<code>XXX$$ViewBinder</code>的类,代码大致如下:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">bind</span><span class="params">(ExampleActivity activity)</span> &#123;</span><br><span class="line">  activity.subtitle = (android.widget.TextView) activity.findViewById(<span class="number">2130968578</span>);</span><br><span class="line">  activity.footer = (android.widget.TextView) activity.findViewById(<span class="number">2130968579</span>);</span><br><span class="line">  activity.title = (android.widget.TextView) activity.findViewById(<span class="number">2130968577</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="资源文件绑定"><a href="#资源文件绑定" class="headerlink" title="资源文件绑定"></a>资源文件绑定</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ExampleActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> &#123;</span><br><span class="line">  <span class="meta">@BindString(R.string.title)</span> String title;</span><br><span class="line">  <span class="meta">@BindDrawable(R.drawable.graphic)</span> Drawable graphic;</span><br><span class="line">  <span class="meta">@BindColor(R.color.red)</span> <span class="type">int</span> red; <span class="comment">// int or ColorStateList field</span></span><br><span class="line">  <span class="meta">@BindDimen(R.dimen.spacer)</span> Float spacer; <span class="comment">// int (for pixel size) or float (for exact value) field</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="在非Activity中呢"><a href="#在非Activity中呢" class="headerlink" title="在非Activity中呢"></a>在非Activity中呢</h4><p>在Activity中使用的是:<code>ButterKnife.bind(this)</code>;<br>有非Activity中则是使用:<code>ButterKnife.bind(this, view)</code>;</p>
-<p><strong>Fragment中使用</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FancyFragment</span> <span class="keyword">extends</span> <span class="title class_">Fragment</span> &#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.button1)</span> Button button1;</span><br><span class="line">  <span class="meta">@BindView(R.id.button2)</span> Button button2;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="keyword">public</span> View <span class="title function_">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> &#123;</span><br><span class="line">    <span class="type">View</span> <span class="variable">view</span> <span class="operator">=</span> inflater.inflate(R.layout.fancy_fragment, container, <span class="literal">false</span>);</span><br><span class="line">    ButterKnife.bind(<span class="built_in">this</span>, view);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在Adapter的ViewHolder中使用</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyAdapter</span> <span class="keyword">extends</span> <span class="title class_">BaseAdapter</span> &#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="keyword">public</span> View <span class="title function_">getView</span><span class="params">(<span class="type">int</span> position, View view, ViewGroup parent)</span> &#123;</span><br><span class="line">    ViewHolder holder;</span><br><span class="line">    <span class="keyword">if</span> (view != <span class="literal">null</span>) &#123;</span><br><span class="line">      holder = (ViewHolder) view.getTag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      view = inflater.inflate(R.layout.whatever, parent, <span class="literal">false</span>);</span><br><span class="line">      holder = <span class="keyword">new</span> <span class="title class_">ViewHolder</span>(view);</span><br><span class="line">      view.setTag(holder);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    holder.name.setText(<span class="string">&quot;John Doe&quot;</span>);</span><br><span class="line">    <span class="comment">// etc...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">ViewHolder</span> &#123;</span><br><span class="line">    <span class="meta">@BindView(R.id.title)</span> TextView name;</span><br><span class="line">    <span class="meta">@BindView(R.id.job_title)</span> TextView jobTitle;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ViewHolder</span><span class="params">(View view)</span> &#123;</span><br><span class="line">      ButterKnife.bind(<span class="built_in">this</span>, view);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="View列表"><a href="#View列表" class="headerlink" title="View列表"></a>View列表</h5><p>你可以一次性将多个views绑定到一个List或数组中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@BindViews(&#123; R.id.first_name, R.id.middle_name, R.id.last_name &#125;)</span></span><br><span class="line">List&lt;EditText&gt; nameViews;</span><br></pre></td></tr></table></figure>
-
-<p>apply函数可以让集合中的View执行相同的操作:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ButterKnife.apply(nameViews, DISABLE);</span><br><span class="line">ButterKnife.apply(nameViews, ENABLED, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-
-<p>实现ButterKnife.Action或ButterKnife.Setter接口,如果你在项目中有这样的需求:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ButterKnife.Action&lt;View&gt; DISABLE = <span class="keyword">new</span> <span class="title class_">ButterKnife</span>.Action&lt;View&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">apply</span><span class="params">(View view, <span class="type">int</span> index)</span> &#123;</span><br><span class="line">    view.setEnabled(<span class="literal">false</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ButterKnife.Setter&lt;View, Boolean&gt; ENABLED = <span class="keyword">new</span> <span class="title class_">ButterKnife</span>.Setter&lt;View, Boolean&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(View view, Boolean value, <span class="type">int</span> index)</span> &#123;</span><br><span class="line">    view.setEnabled(value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>apply函数还提供设置View属性的方法:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ButterKnife.apply(nameViews, View.ALPHA, <span class="number">0.0f</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="支持的属性大概如下"><a href="#支持的属性大概如下" class="headerlink" title="支持的属性大概如下:"></a>支持的属性大概如下:</h5><ul>
-<li>ALPHA - 透明度</li>
-<li>TRANSLATION_X - 平移(相对于自身控件)</li>
-<li>TRANSLATION_Y</li>
-<li>TRANSLATION_Z</li>
-<li>X - 平移(相对于父控件)</li>
-<li>Y</li>
-<li>Z</li>
-<li>ROTATION - 角度</li>
-<li>ROTATION_X</li>
-<li>ROTATION_Y</li>
-<li>SCALE_X - 缩放</li>
-<li>SCALE_Y</li>
-</ul>
-<h4 id="上面说的大多是基于View控件-资源的绑定-看下源代码这个版本大概就下面这些"><a href="#上面说的大多是基于View控件-资源的绑定-看下源代码这个版本大概就下面这些" class="headerlink" title="上面说的大多是基于View控件,资源的绑定,看下源代码这个版本大概就下面这些:"></a>上面说的大多是基于View控件,资源的绑定,看下源代码这个版本大概就下面这些:</h4><ul>
-<li>BindArray</li>
-<li>BindBitmap</li>
-<li>BindBool</li>
-<li>BindDimen</li>
-<li>BindDrawable</li>
-<li>BindInt</li>
-<li>BindString</li>
-<li>BindView</li>
-<li>BindViews</li>
-</ul>
-<h4 id="基于事件的绑定"><a href="#基于事件的绑定" class="headerlink" title="基于事件的绑定"></a>基于事件的绑定</h4><p>给一个id设置OnClick事件,不用写<code>xxx.setOnClickListener(...)</code>了:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">submit</span><span class="params">(View view)</span> &#123;</span><br><span class="line">  <span class="comment">// TODO submit data to server...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方法名是自己定义的,没有过多要求,参数中的View也是可选的,可以加,可以不加:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">(Button button)</span> &#123;</span><br><span class="line">  button.setText(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>还可以为回调中的View加上指定的类型,但不要乱来,本来是个Button,非要写个TextView,Like this:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(R.id.submit)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">(Button button)</span> &#123;</span><br><span class="line">  button.setText(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当然,也可以为多个控件id设置为同一个回调方法:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@OnClick(&#123; R.id.door1, R.id.door2, R.id.door3 &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pickDoor</span><span class="params">(DoorView door)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (door.hasPrizeBehind()) &#123;</span><br><span class="line">    Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;You win!&quot;</span>, LENGTH_SHORT).show();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;Try again&quot;</span>, LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在自定义View中使用,不需要指定id:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FancyButton</span> <span class="keyword">extends</span> <span class="title class_">Button</span> &#123;</span><br><span class="line">  <span class="meta">@OnClick</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// TODO do something!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="控件事件的绑定列表大致如下"><a href="#控件事件的绑定列表大致如下" class="headerlink" title="控件事件的绑定列表大致如下:"></a>控件事件的绑定列表大致如下:</h4><ul>
-<li>OnCheckedChanged</li>
-<li>OnClick</li>
-<li>OnEditorAction</li>
-<li>OnFocusChange</li>
-<li>OnItemClick</li>
-<li>OnItemLongClick</li>
-<li>OnItemSelected</li>
-<li>OnLongClick</li>
-<li>OnPageChange</li>
-<li>OnTextChanged</li>
-<li>OnTouch</li>
-</ul>
-<h3 id="解绑"><a href="#解绑" class="headerlink" title="解绑"></a>解绑</h3><p>上面的内容一直在说绑定绑定绑定,<code>ButterKnife.bind(this)</code>;是有返回值的,返回一个Unbinder对象,你需要在合适的生命周期里去解绑,调用它的<code>unbind()</code>函数,比如,Activity中的onDestroy方法,Fragment的onDestroyView方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FancyFragment</span> <span class="keyword">extends</span> <span class="title class_">Fragment</span> &#123;</span><br><span class="line">  <span class="meta">@BindView(R.id.button1)</span> Button button1;</span><br><span class="line">  <span class="meta">@BindView(R.id.button2)</span> Button button2;</span><br><span class="line">  <span class="keyword">private</span> Unbinder unbinder;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="keyword">public</span> View <span class="title function_">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> &#123;</span><br><span class="line">    <span class="type">View</span> <span class="variable">view</span> <span class="operator">=</span> inflater.inflate(R.layout.fancy_fragment, container, <span class="literal">false</span>);</span><br><span class="line">    unbinder = ButterKnife.bind(<span class="built_in">this</span>, view);</span><br><span class="line">    <span class="comment">// TODO Use fields...</span></span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onDestroyView</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onDestroyView();</span><br><span class="line">    unbinder.unbind();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="可选的绑定"><a href="#可选的绑定" class="headerlink" title="可选的绑定"></a>可选的绑定</h3><p>情况是这样的:上面说的绑定View,绑定资源,绑定事件,如果绑定的目标id没有找到,这时候ButterKnife就会抛出异常,为了抑制这种情况的发生,可以使用Android自带注解库中的<code>@Nullable</code>来添加到Field上,和ButterKnife中的<code>@Optional</code>添加到Method上</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Nullable</span> <span class="meta">@BindView(R.id.might_not_be_there)</span> TextView mightNotBeThere;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Optional</span> <span class="meta">@OnClick(R.id.maybe_missing)</span> <span class="keyword">void</span> <span class="title function_">onMaybeMissingClicked</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="comment">// TODO ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>Butter Knife提供了一个findViewById的简化代码:findById,用这个方法可以在View,Activity和Dialog中找到想要View,而且,该方法使用的泛型来对返回值进行转换,也就是说,你可以省去findViewById前面的强制转换了.强迫症的福因:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">View</span> <span class="variable">view</span> <span class="operator">=</span> LayoutInflater.from(context).inflate(R.layout.thing, <span class="literal">null</span>);</span><br><span class="line"><span class="type">TextView</span> <span class="variable">firstName</span> <span class="operator">=</span> ButterKnife.findById(view, R.id.first_name);</span><br><span class="line"><span class="type">TextView</span> <span class="variable">lastName</span> <span class="operator">=</span> ButterKnife.findById(view, R.id.last_name);</span><br><span class="line"><span class="type">ImageView</span> <span class="variable">photo</span> <span class="operator">=</span> ButterKnife.findById(view, R.id.photo);</span><br></pre></td></tr></table></figure>
       
     </div>
 

@@ -174,12 +174,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -222,6 +222,271 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/01/Protocol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/Protocol/" class="post-title-link" itemprop="url">【Protocol】协议设计小记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-05 21:17:37" itemprop="dateCreated datePublished" datetime="2022-01-05T21:17:37+08:00">2022-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Protocol/" itemprop="url" rel="index"><span itemprop="name">Protocol</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/01/Protocol/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/01/Protocol/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>前天周二晚上做代码review时候，代码里面有部分在处理接收协议数据包的代码，对协议的处理代码基本全部揉在一起了；可能是项目在开始的时候没有考虑周全，又或者在项目开发过程中因为需求的变更，改的面目全非。当时就在想这个地方有点不太对，应该要做拆分，但没想好怎么拆；回家之后总结了几个常见的协议，总结下，或者这应该就是和协议设计有关，<strong>协议应该设计得让程序容易去分层，分模块。</strong></p>
+</blockquote>
+<p><strong>那协议的设计是否应该让程序更加的容易去分层，分模块？</strong></p>
+<h1 id="举例常见协议："><a href="#举例常见协议：" class="headerlink" title="举例常见协议："></a>举例常见协议：</h1><ul>
+<li>TCP/IP协议栈</li>
+<li>HTTP协议</li>
+<li>MQTT协议</li>
+<li>DBus协议</li>
+</ul>
+<h1 id="TCP-IP协议栈："><a href="#TCP-IP协议栈：" class="headerlink" title="TCP/IP协议栈："></a>TCP/IP协议栈：</h1><img src="/images/protocol/image-20220105213240854.png" alt="TCP/IP Protocol Stack" style="zoom:70%;" />
+
+<h1 id="HTTP协议："><a href="#HTTP协议：" class="headerlink" title="HTTP协议："></a>HTTP协议：</h1><img src="/images/protocol/image-20220105220038745.png" alt="HTTP Protocol" style="zoom:65%;" />
+
+<h1 id="MQTT协议："><a href="#MQTT协议：" class="headerlink" title="MQTT协议："></a>MQTT协议：</h1><img src="/images/protocol/image-20220105220502627.png" alt="MQTT Protocol" style="zoom:50%;" />
+
+<h1 id="DBus协议"><a href="#DBus协议" class="headerlink" title="DBus协议:"></a>DBus协议:</h1><img src="/images/protocol/image-20220105221750042.png" alt="DBUS Protocol" style="zoom:50%;" />
+
+<p>DBus参考资料：</p>
+<ul>
+<li>Message Protocol：<span class="exturl" data-url="aHR0cHM6Ly9kYnVzLmZyZWVkZXNrdG9wLm9yZy9kb2MvZGJ1cy1zcGVjaWZpY2F0aW9uLmh0bWwjbWVzc2FnZS1wcm90b2NvbA==">https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol<i class="fa fa-external-link-alt"></i></span></li>
+<li>dbus-protocol.h：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JyaWFubWNnaWxsaW9uL0RCdXMvYmxvYi9tYXN0ZXIvZGJ1cy9kYnVzLXByb3RvY29sLmg=">https://github.com/brianmcgillion/DBus/blob/master/dbus/dbus-protocol.h<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h1 id="上面协议特点："><a href="#上面协议特点：" class="headerlink" title="上面协议特点："></a>上面协议特点：</h1><ul>
+<li>TCP/IP协议栈属于<strong>流程处理协议</strong>，自己处理下然后交给下一个流程去处理；其它的属于<strong>终端协议</strong>，接收到的进程就是最终处理的进程。</li>
+<li>前面三个走网络，dbus走unix socket</li>
+<li>从这几个协议上看基本分为两部分：header + body，header属于协议数据包的概要信息，body里面放数据参数</li>
+</ul>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ul>
+<li>对于TCP/IP协议栈：每个模块只需要处理和关心属于自己部分的数据，然后交由下一阶段的去处理</li>
+<li>对于web server来说：可以通过协议里面的method和path去路由转发到对应的模块及函数去处理</li>
+<li>对于MQTT协议：可以通过message type来转发</li>
+<li>对于DBus协议：header里面包含了address；dbus-daemon只需要解析header部分就可以实现转发；信息接收可以通过message type，object path，method一层层的来转发，分给对应的模块及函数处理</li>
+</ul>
+<p>在刚开发看dbus的时候，不是很理解dbus搞了那么概念：bus name, message type, object path, method，类似一个socket链接，有个地址不就行了吗？后来才明白dbus就是复杂应用场景，为模块化设计的，可以通过前面的概念一级一级来转发，直到最后一个确定的处理函数</p>
+<h1 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h1><p>回到最开始的问题，答案似乎已经肯定了很多</p>
+<p>但，我好像又有了另外的疑问，项目中一次性上报所有数据包合理吗？如果上报数据越来越多？越来越大呢？这个问题就会越来越明显</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/12/cJSON/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/12/cJSON/" class="post-title-link" itemprop="url">【C】cJSON源码 使用建议及吐嘈</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-12-26 17:07:17" itemprop="dateCreated datePublished" datetime="2021-12-26T17:07:17+08:00">2021-12-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/12/cJSON/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/12/cJSON/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>cJSON repo：</strong><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04=">https://github.com/DaveGamble/cJSON<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
+</blockquote>
+<h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
+<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" alt="Native JSON Benchmark" style="zoom:50%;" />
+
+<h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
+<ul>
+<li>简单，容易上手</li>
+<li>方便移植</li>
+<li>代码量少</li>
+<li>开发人员已经很熟悉</li>
+<li>是否经过大项目的检验（比如github上有些库会写，哪些产品引用了我这个库）</li>
+</ul>
+<h2 id="作者写cJSON的初衷："><a href="#作者写cJSON的初衷：" class="headerlink" title="作者写cJSON的初衷："></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmVHYW1ibGUvY0pTT04jd2VsY29tZS10by1janNvbg==">作者写cJSON的初衷<i class="fa fa-external-link-alt"></i></span>：</h2><blockquote>
+<p>I lifted some JSON from this page: <span class="exturl" data-url="aHR0cDovL3d3dy5qc29uLm9yZy9mYXRmcmVlLmh0bWw=">http://www.json.org/fatfree.html<i class="fa fa-external-link-alt"></i></span> That page inspired me to write cJSON, which is a parser that tries to share the same philosophy as JSON itself. <strong>Simple, dumb, out of the way</strong>.</p>
+</blockquote>
+<h1 id="如何去实现一个JSON解析库？"><a href="#如何去实现一个JSON解析库？" class="headerlink" title="如何去实现一个JSON解析库？"></a>如何去实现一个JSON解析库？</h1><p>cjson的答案是：用一个数据结构去描述json的结构，用结构体cJSON去描述json中键值对（key：value）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* The cJSON structure: */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cJSON</span> *<span class="title">child</span>;</span></span><br><span class="line">    <span class="type">int</span> type;</span><br><span class="line">    <span class="type">char</span> *valuestring;</span><br><span class="line">    <span class="type">int</span> valueint;</span><br><span class="line">    <span class="type">double</span> valuedouble;</span><br><span class="line">    <span class="type">char</span> *<span class="built_in">string</span>;</span><br><span class="line">&#125; cJSON;</span><br></pre></td></tr></table></figure>
+
+<p>字段string用来存储key，valuestring是来存放类型是String的值，valueint和valuedouble用来存放类型是Number的值；那json其它类型Boolean和Null数据存放在哪里呢？答案是放在type里面（<code>cJSON_False</code>，<code>cJSON_True</code>，<code>cJSON_NULL</code>），估计是为了省内存，没必要为这些json数据类型去增加字段去表示</p>
+<p>json结构图解：</p>
+<p><img src="/images/cjson/Xnip2021-12-29_00-14-15.png"></p>
+<h1 id="cJSON源码："><a href="#cJSON源码：" class="headerlink" title="cJSON源码："></a>cJSON源码：</h1><p>一个框架库里面有一些是核心的函数，其它的是些辅助或是拓展函数；</p>
+<h2 id="核心函数围绕三个主题："><a href="#核心函数围绕三个主题：" class="headerlink" title="核心函数围绕三个主题："></a>核心函数围绕三个主题：</h2><ul>
+<li>解析：<code>cJSON_Parse</code>内部递归调用<code>parse_value</code>去解析</li>
+<li>CRUD节点：这部分没有必要多讲<code>cJSON_CreateXXX</code> <code>cJSON_AddXXX</code> <code>cJSON_DetachXXX</code> <code>cJSON_DeleteXXX</code> <code>cJSON_ReplaceXXX</code></li>
+<li>转成字符串：<code>cJSON_Print</code>内部递归调用<code>print_value</code>去转成字符串；转成字符串中，需要有个buffer来存放字符串，当buffer不够的时候就会增长策略的问题，大约是<code>*2</code>，（函数<code>ensure</code>中<code>newsize = needed * 2;</code>)</li>
+</ul>
+<h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><ul>
+<li>上面提到了使用递归，库会对嵌套的层级会有限制<code>#define CJSON_NESTING_LIMIT 1000</code></li>
+<li>对外暴露内存申请了释放的函数：通过<code>cJSON_InitHooks</code>函数</li>
+</ul>
+<h1 id="cJSON使用建议："><a href="#cJSON使用建议：" class="headerlink" title="cJSON使用建议："></a>cJSON使用建议：</h1><ul>
+<li>删除cJSON结构体中的valueint字段（历史原因保留），int和double数据已经存放在valuedouble上面了</li>
+<li>复用json中的key字符串，避免为key字符串malloc空间。使用cJSON_AddItemToObjectCS</li>
+<li>cJSON_GetObjectItem和cJSON_GetObjectItemCaseSensitive之间，尽可能用cJSON_GetObjectItemCaseSensitive，cJSON_GetObjectItem内部会在查找key时对其进制toupper转换</li>
+<li>复用json中的value字符串，使用cJSON_CreateStringReference</li>
+<li>对于比较长的比较大的json，在转换成json字符串时，建议使用cJSON_PrintBuffered（指定长度）替代cJSON_Print和cJSON_PrintUnformatted，cJSON_Print和cJSON_PrintUnformatted会先分配一个256的buffer，如果不够会从新malloc和拷贝，字符串buffer增长策略基本等于<code>*2</code></li>
+</ul>
+<h1 id="cJSON吐嘈："><a href="#cJSON吐嘈：" class="headerlink" title="cJSON吐嘈："></a>cJSON吐嘈：</h1><p><strong>有几个API接口名字不太喜欢</strong></p>
+<ul>
+<li>cJSON_GetArraySize：看上去是获取json数组的大小，其实还能获取json对象的大小</li>
+<li>cJSON_Print：如果有print之类的，可能会想到的是printf，打印到标准输出；cJSON_ToString之类的是否更加合适</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1954,259 +2219,6 @@
 <p>EABI：嵌入式ABI。嵌入式应用二进制接口指定了文件格式、数据类型、寄存器使用、堆积组织优化和在一个嵌入式软件中的参数的标准约定。开发者使用自己的汇编语言也可以使用 EABI 作为与兼容的编译器生成的汇编语言的接口。</p>
 <p>两者主要区别是，ABI是计算机上的，EABI是嵌入式平台上（如ARM，MIPS等）。</p>
 <h3 id="arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc"><a href="#arm-linux-gnueabi-gcc-和-arm-linux-gnueabihf-gcc" class="headerlink" title="arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc"></a>arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc</h3><p>两个交叉编译器分别适用于 armel 和 armhf 两个不同的架构，armel 和 armhf 这两种架构在对待浮点运算采取了不同的策略（有 fpu 的 arm 才能支持这两种浮点运算策略）</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">【Personal】结构体还是结构体指针?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-01 20:54:18" itemprop="dateCreated datePublished" datetime="2021-08-01T20:54:18+08:00">2021-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/08/%E7%BB%93%E6%9E%84%E4%BD%93%E8%BF%98%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/08/结构体还是结构体指针/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由:"></a>缘由:</h2><blockquote>
-<p>上周某日晚上的一个项目进度跟进会上，项目中有一个涉及到一个比较大的结构体，然后内部嵌套了好些结构体。后来我问了句：“为啥使用的是结构体，而不是结构体指针？” 同事答到：“都一样”。后来，讨论了一些“如果你嵌套的那个结构体非常大的话，而这个结构体在使用过程中没有被初使化用到，这样会很浪费内存，这种情况使用结构体指针会比较合适”。</p>
-</blockquote>
-<p>由于当时会议的重点不在这里，草草过了。后面越想越不对，这应该是一个值得思考的问题，嵌套时：是使用<strong>结构体</strong>还是<strong>结构体指针</strong>，应该是个哲学问题~~~。不过可以从一些角度来分析这个问题</p>
-<h2 id="不同角度分析"><a href="#不同角度分析" class="headerlink" title="不同角度分析:"></a>不同角度分析:</h2><ul>
-<li>从内存使用上</li>
-<li>抽象的关系上</li>
-<li>嵌套和继承/组合的关系</li>
-<li>参考优秀的代码</li>
-</ul>
-<h2 id="从内存使用上"><a href="#从内存使用上" class="headerlink" title="从内存使用上"></a>从内存使用上</h2><p>正如前因提到的：</p>
-<ul>
-<li>如果这个被嵌套的结构体字段很多；比如200个字段</li>
-<li>而这个被嵌套的结构体并不是很个场景都会用的上</li>
-</ul>
-<p>这时候用结构体指针可以省不少的空间，就很有意义；那就为了省内存而全使用结构体指针？</p>
-<h2 id="抽象的关系上"><a href="#抽象的关系上" class="headerlink" title="抽象的关系上"></a>抽象的关系上</h2><p>编程本质上也是给问题建模，抽象问题，代码也用来描述这些抽象之间的关系的，所以就有了下面的区别：</p>
-<ul>
-<li>嵌套的是结构体：有种“包含”或“属于”的关系。内部的结构体“属于”这个外部的在大结构体，内部是外部结构体的组成部分，是它的一员。比如，一个人属于这个部门的人；在比如，协议数据报中，嵌套的关系，一个结构体属于一个结构体</li>
-<li>嵌套的是结构体指针：有种引用的关系。内部的结构体不属于你，但会“用到”你。比如，为了完成一个项目，这时候需要由不同的部门抽调人过来组成一个项目团队（结构体），这个团队会“用到（引用）”其它部门的人，我在某一时期，某个阶段可能会用到你，也可能不会用到你（的功能）</li>
-</ul>
-<h2 id="结构体嵌套和继承-组合的关系"><a href="#结构体嵌套和继承-组合的关系" class="headerlink" title="结构体嵌套和继承/组合的关系"></a>结构体嵌套和继承/组合的关系</h2><p>后来突然冒出一个问题：类的继承如何在C语言中来实现？大概就是用嵌套结构体吧</p>
-<p>业内有名名言：“<strong>组合优于继承</strong>”，这时候：</p>
-<ul>
-<li>继承就是结构体<strong>嵌套结构体</strong>。（子类包含父类中的所有成员）</li>
-<li>而组合就是结构体<strong>嵌套结构体指针</strong>。（因为里面的对象都要new，而new是在heap上，所以是指针、引用）</li>
-</ul>
-<p>所以根据这句名言的结论就是：优先使用<strong>嵌套结构体指针</strong>？</p>
-<h2 id="参考优秀的代码"><a href="#参考优秀的代码" class="headerlink" title="参考优秀的代码"></a>参考优秀的代码</h2><p>有时候不知道怎么做合适，可以去参考下优秀的代码，归纳总结下，看看别人是怎么做的，参考参考（抄一抄）；下面linux源码，<span class="exturl" data-url="aHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvMS4zLjEwMC9zb3VyY2UvaW5jbHVkZS9saW51eC9zY2hlZC5o">进程的结构体<i class="fa fa-external-link-alt"></i></span>表示</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line"><span class="comment">/* these are hardcoded - don&#x27;t touch */</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="type">long</span> state;	<span class="comment">/* -1 unrunnable, 0 runnable, &gt;0 stopped */</span></span><br><span class="line">    <span class="type">long</span> counter;</span><br><span class="line">    <span class="type">long</span> priority;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> signal;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> blocked;	<span class="comment">/* bitmap of masked signals */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> flags;	<span class="comment">/* per process flags, defined below */</span></span><br><span class="line">    <span class="type">int</span> errno;</span><br><span class="line">    <span class="type">long</span> debugreg[<span class="number">8</span>];  <span class="comment">/* Hardware debugging registers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">exec_domain</span> *<span class="title">exec_domain</span>;</span></span><br><span class="line"><span class="comment">/* various fields */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">linux_binfmt</span> *<span class="title">binfmt</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_task</span>, *<span class="title">prev_task</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_run</span>,  *<span class="title">prev_run</span>;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> saved_kernel_stack;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> kernel_stack_page;</span><br><span class="line">    <span class="type">int</span> exit_code, exit_signal;</span><br><span class="line">    <span class="comment">/* ??? */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> personality;</span><br><span class="line">    <span class="type">int</span> dumpable:<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> did_exec:<span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* shouldn&#x27;t this be pid_t? */</span></span><br><span class="line">    <span class="type">int</span> pid;</span><br><span class="line">    <span class="type">int</span> pgrp;</span><br><span class="line">    <span class="type">int</span> tty_old_pgrp;</span><br><span class="line">    <span class="type">int</span> session;</span><br><span class="line">    <span class="comment">/* boolean value for session group leader */</span></span><br><span class="line">    <span class="type">int</span> leader;</span><br><span class="line">    <span class="type">int</span>	groups[NGROUPS];</span><br><span class="line">    <span class="comment">/* </span></span><br><span class="line"><span class="comment">     * pointers to (original) parent process, youngest child, younger sibling,</span></span><br><span class="line"><span class="comment">     * older sibling, respectively.  (p-&gt;father can be replaced with </span></span><br><span class="line"><span class="comment">     * p-&gt;p_pptr-&gt;pid)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">p_opptr</span>, *<span class="title">p_pptr</span>, *<span class="title">p_cptr</span>, *<span class="title">p_ysptr</span>, *<span class="title">p_osptr</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">wait_queue</span> *<span class="title">wait_chldexit</span>;</span>	<span class="comment">/* for wait4() */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> uid,euid,suid,fsuid;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> gid,egid,sgid,fsgid;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> timeout, policy, rt_priority;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> it_real_value, it_prof_value, it_virt_value;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> it_real_incr, it_prof_incr, it_virt_incr;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timer_list</span> <span class="title">real_timer</span>;</span></span><br><span class="line">    <span class="type">long</span> utime, stime, cutime, cstime, start_time;</span><br><span class="line"><span class="comment">/* mm fault and swap info: this can arguably be seen as either mm-specific or thread-specific */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> min_flt, maj_flt, nswap, cmin_flt, cmaj_flt, cnswap;</span><br><span class="line">    <span class="type">int</span> swappable:<span class="number">1</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> swap_address;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> old_maj_flt;	<span class="comment">/* old value of maj_flt */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> dec_flt;		<span class="comment">/* page fault count of the last time */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> swap_cnt;		<span class="comment">/* number of pages to swap on next pass */</span></span><br><span class="line"><span class="comment">/* limits */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">rlimit</span> <span class="title">rlim</span>[<span class="title">RLIM_NLIMITS</span>];</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> used_math;</span><br><span class="line">    <span class="type">char</span> comm[<span class="number">16</span>];</span><br><span class="line"><span class="comment">/* file system info */</span></span><br><span class="line">    <span class="type">int</span> link_count;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tty_struct</span> *<span class="title">tty</span>;</span> <span class="comment">/* NULL if no tty */</span></span><br><span class="line"><span class="comment">/* ipc stuff */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_undo</span> *<span class="title">semundo</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sem_queue</span> *<span class="title">semsleeping</span>;</span></span><br><span class="line"><span class="comment">/* ldt for this task - used by Wine.  If NULL, default_ldt is used */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> *<span class="title">ldt</span>;</span></span><br><span class="line"><span class="comment">/* tss for this task */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_struct</span> <span class="title">tss</span>;</span></span><br><span class="line"><span class="comment">/* filesystem information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">fs_struct</span> *<span class="title">fs</span>;</span></span><br><span class="line"><span class="comment">/* open file information */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span> *<span class="title">files</span>;</span></span><br><span class="line"><span class="comment">/* memory management info */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">mm_struct</span> *<span class="title">mm</span>;</span></span><br><span class="line"><span class="comment">/* signal handlers */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">signal_struct</span> *<span class="title">sig</span>;</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __SMP__</span></span><br><span class="line">    <span class="type">int</span> processor;</span><br><span class="line">    <span class="type">int</span> last_processor;</span><br><span class="line">    <span class="type">int</span> lock_depth;		<span class="comment">/* Lock depth. We can context switch in and out of holding a syscall kernel lock... */</span>	</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span>	</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>其中除了<code>struct thread_struct tss</code>和<code>struct rlimit rlim[RLIM_NLIMITS]</code>用的结构体，一个是线程，一个是进程资源大小的限制，更像是在表达这俩就“属于”进程，必不可少。其它的ipc，fs，memory management，signal handlers，更像是为了组合到一起来完成任务，会“用到”你们（的功能），它们各自有独立的功能。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好像结论已经很明显了，更加倾向于从抽象的角度看这个问题，如果是有“包含”或“属于”的关系在里面，就用<strong>嵌套结构体</strong>；而如果是有“组合”到一起完成某种功能，它承担了一些独特的任务功能，这时可以用<strong>嵌套结构体指针</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/" class="post-title-link" itemprop="url">【Personal】记一次生病经历复盘</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-06 23:20:06" itemprop="dateCreated datePublished" datetime="2021-07-06T23:20:06+08:00">2021-07-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Personal/" itemprop="url" rel="index"><span itemprop="name">Personal</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E7%97%85%E7%BB%8F%E5%8E%86%E5%A4%8D%E7%9B%98/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/07/记一次生病经历复盘/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>去年, 也就是2020年国庆. 由于太长时间没有运动,然后去健身房玩椭圆机,运动过猛,把膝盖弄伤了</p>
-<p>复盘记录下:</p>
-<ul>
-<li>运动注意循序渐进;对于不熟悉的器材,切勿<strong>自以为是</strong>的认为这个器材该如何使用</li>
-<li>身体垮的比自己认为的快,恢复的比自己认为的慢</li>
-<li>有些依据,比如说疼痛并不能作为病<strong>好了</strong>的条件</li>
-<li>别把自己<strong>交给</strong>医生,自己多查资料研究</li>
-<li>看医生前,自己先做好准备</li>
-<li>医生看病的局限性</li>
-</ul>
-<h2 id="运动注意循序渐进-对于不熟悉的器材-切勿自以为是的认为这个器材该如何使用"><a href="#运动注意循序渐进-对于不熟悉的器材-切勿自以为是的认为这个器材该如何使用" class="headerlink" title="运动注意循序渐进;对于不熟悉的器材,切勿自以为是的认为这个器材该如何使用"></a>运动注意循序渐进;对于不熟悉的器材,切勿自以为是的认为这个器材该如何使用</h2><p>循序渐进这个就不强调了,由于运动过猛导致第二天酸痛的经历,或者生病的人可能不少.年轻时会恢复的很快,年老了就恢复能力逐渐下降,最简单的例子就是,小孩子天天摔倒没啥事,但一个七老八十摔一下断骨头的事有常见.</p>
-<p>第二点是,对于你不熟悉的运动器材,别乱玩,好比自己第一次玩臂力器,第一次玩扎马步或是静蹲,玩不了几个,也坚持不了多久. 很简单,在此之前都没有这样发力过,相应的发力肌肉群都没有锻炼过. 而玩不熟悉的器材可能导致超负荷的使用以前未使用的关节或者肌肉群,远远超出它们的负荷,导致容易弄伤. 反之,比如跑步机,每天都在走路,有时自己也跑步,去健身房玩个跑步机一般问题不大</p>
-<h2 id="身体垮的比自己认为的快-恢复的比自己认为的慢"><a href="#身体垮的比自己认为的快-恢复的比自己认为的慢" class="headerlink" title="身体垮的比自己认为的快,恢复的比自己认为的慢"></a>身体垮的比自己认为的快,恢复的比自己认为的慢</h2><p>这次出问题的一部分原因是因为自己的自以为是,想想以前骑车去拉萨,能骑上一整天的自行车,这才哪跟哪,终究抵不过时间</p>
-<h2 id="有些依据-比如说疼痛并不能作为病好了的条件"><a href="#有些依据-比如说疼痛并不能作为病好了的条件" class="headerlink" title="有些依据,比如说疼痛并不能作为病好了的条件"></a>有些依据,比如说疼痛并不能作为病<strong>好了</strong>的条件</h2><p>中途有几次,膝盖内感觉不疼了,我错误的认为<strong>好了</strong>,误判之后浪了一波,导致反弹.疼的更严重了. <strong>疼痛</strong>并不能作为好没好的条件,类比其它,以前胃出问题了,后来不疼了,胃病就好了? 然并卵</p>
-<h2 id="别把自己交给医生-自己多查资料研究"><a href="#别把自己交给医生-自己多查资料研究" class="headerlink" title="别把自己交给医生,自己多查资料研究"></a>别把自己<strong>交给</strong>医生,自己多查资料研究</h2><p>试想一下,把自己的命交到一个坏人手上会怎么样? 当然这种假设把问题放大了.也只把问题放大了才能把问题看得更清楚.遇到了有医德的医生还好,遇到了医德不好的医生就坑人. 对于来说,500块也是给人治病,2w块也是给人治病.对你来说可能没有啥区别,对他来说收益可能更高.不幸的事,这次遇到了一个坑比医生.告诉我”吃这个药两周,没有什么改善,可能就需要手术了”.后来我去了第二家医院,医生告诉我,根本不用手术,反倒问了句”手术做什么东西呢?”,弄的我一时不知道怎么回答,但暗自窃喜,毕竟遇到了一个好医生.后来在另一个医生口中得知,给我开的两周的药是中成药,估计要吃一两个月才会有所改善.所以,我吃完这两周的要大致是没有什么改善,大致可能会来手术?</p>
-<h2 id="看医生前-自己先做好准备"><a href="#看医生前-自己先做好准备" class="headerlink" title="看医生前,自己先做好准备"></a>看医生前,自己先做好准备</h2><ul>
-<li>哪个地方伤了,确诊为什么病,确诊的依据是什么?</li>
-<li>在比如这个病情现在到哪一阶段了,意味着什么</li>
-<li>有哪些注意事项</li>
-<li>有哪些治疗方案,这个方案会不会产生什么后遗症</li>
-<li>建议的治疗方式是什么</li>
-</ul>
-<p>为啥要提前想好.医生很忙,每天见的都是同类的病人,你不问,他也懒得说. 他可能想着”赶紧下一个”</p>
-<h2 id="医生看病的局限性"><a href="#医生看病的局限性" class="headerlink" title="医生看病的局限性"></a>医生看病的局限性</h2><p>对于门诊的医生很忙,忙的他不会苦口婆心的跟你讲一套完整的治疗方案,以及注意事项.正如上面提到的,你不问他也懒得说了,给你开药就完事了.所以需要提前准备好问题</p>
-<p>在来.诊断/确诊的依据,依赖于你的描述,检测报告,以及医生的判断.判断有时和经验关系很多.其中有诸多不确定性,如何去提高我们描述的准确性,如何去找有经验,医术高超的医生,这是可以自己去把握的</p>
-<p>最后,是遇到医生的医德.这让我想起了我镇上的一个医生,有人说两天打针能治好的病,他会给你打四五天的医生,后来,这诊所关门了,人也搬家了.我姨夫也是个医生,医德比较好,卖的药也便宜.你去药房买药,人家恨不得多开几盒给你,我姨夫会把一盒药拆了,用剪刀剪开,卖一部分,”你先吃两餐(次),没好在来看看”.</p>
-<blockquote>
-<p>早前看了本书叫&lt;&lt;原则&gt;&gt;, 里面有个小故事,作者生了病. 有的医生告诉他活不了多久了;还有医生告诉他这是良性的,没有太大影响.好在作者比较聪明(有钱),把两个医生叫到了一起,两个医生一起讨论,之前区别非常大的结论就会往同一结论上靠, 最后,作者并没有得什么绝症</p>
-</blockquote>
-<p>因为上面的小故事,我也多跑了几家医院,多问了几个医院,也遇到了坑比,但结论算是好的</p>
-<h2 id="在聊医生"><a href="#在聊医生" class="headerlink" title="在聊医生"></a>在聊医生</h2><p>正直新冠疫情,在电视看到一批一批的医生派往武汉,众志成城.那时候在想,一个地方,有好官和好医生,民之所幸.</p>
-<p>在来思考下医生的环境,医生每天面对的都是病人,而病人有求于他.如果每天有人有求于你,并对你说的话深信不疑,这将是对人性是极大的考验.医生掌握一定的权力,怎么去用这个权力. 电影<span class="exturl" data-url="aHR0cHM6Ly9tb3ZpZS5kb3ViYW4uY29tL3N1YmplY3QvMzgwNTA5MS8=">死亡实验<i class="fa fa-external-link-alt"></i></span>就是一个放大版人性扭曲的例子.</p>
-<h2 id="去的几家医院对比"><a href="#去的几家医院对比" class="headerlink" title="去的几家医院对比"></a>去的几家医院对比</h2><p>自己主要咨询了三个医生,北大深圳医院,深圳二医院,西安交通大学第二附属医院(丁香医生上)</p>
-<p>北大深圳医院的坑比医生就不提了;后面两个两个医生开的药品和治疗方案都类似;丁香医生上的医生给的建议和治疗方案最全,从注意事项,治疗方案从热敷,理疗,药物治疗在到锻炼非常全.</p>
-<p><img src="/images/retrospective/image-20210709003604362.png" alt="注意事项和治疗方案"></p>
-<p>感觉这个平台不错,上面有关于病的科普资料,还有很多公开的医生/病人对话案例,还有按打分排名的医生排行榜,让你找到比较好的医生.墙裂推荐</p>
-<p>前有”百度一下会死”. 在百度搜索一下某个病,我可能想要的是这个病的科普,而百度会推荐给你”方案”/“医院”,而这些”医院”通过通过花钱让你看到我, 这钱可能还得你来出.最怕的是花了钱,耽误了治疗,命还没了. 而不少慢性病,不治之症就成了财富密码.</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>望自己早日康复,锻炼身体</p>
 
       
     </div>

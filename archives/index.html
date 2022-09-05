@@ -175,12 +175,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -232,7 +232,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/09/Flexible-array-member/">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/09/Bash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -250,7 +250,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/Flexible-array-member/" class="post-title-link" itemprop="url">【C】弹性数组成员</a>
+          <a href="/2022/09/Bash/" class="post-title-link" itemprop="url">【Bash】Bash小结</a>
         </h2>
 
         <div class="post-meta-container">
@@ -261,7 +261,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-09-01 23:57:11" itemprop="dateCreated datePublished" datetime="2022-09-01T23:57:11+08:00">2022-09-01</time>
+      <time title="创建时间：2022-09-05 21:49:23" itemprop="dateCreated datePublished" datetime="2022-09-05T21:49:23+08:00">2022-09-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,7 +269,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+          <a href="/categories/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
         </span>
     </span>
 
@@ -282,8 +282,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2022/09/Flexible-array-member/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/09/Flexible-array-member/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/Bash/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/09/Bash/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -297,19 +297,116 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>C99增加</p>
+          <blockquote>
+<p>最近项目脚本又开始重构，写了不少Bash脚本，索性写小结归纳下；</p>
+</blockquote>
+<h2 id="脚本简单的一批"><a href="#脚本简单的一批" class="headerlink" title="脚本简单的一批"></a>脚本简单的一批</h2><p>我自己写脚本是早前有个项目是用脚本构建的，就把那个几百行的脚本翻了一下，边看边查，看他做了什么？是怎么一步步构建项目的？后面自己写项目就开始写自己项目的脚本了。我说他简单是因为：</p>
 <ul>
-<li>该数组不会立即存在</li>
+<li>我自己命令行用的相对比较熟，自己也写过一些命令；知道敲一条命令大概做了什么（<code>fork</code>、<code>exec</code>、<code>wait</code>）</li>
+<li>脚本没有什么抽象能力：不像其它编程语言，有自定义数据类型、接口、多线程这些。脚本就只有一些简单的表达式：<code>if-else</code>、<code>for</code>、<code>case</code>、<code>function</code>，然后就没有了</li>
+<li>脚本有些不太好理解的地方是：还有些单个字符的选项（命令选项之类）、还有很多特殊的符号；对于前者单个选项字符的很多都是单词缩写；如果命令行用的很熟，会解决一部分（用过了），剩下的边学边查</li>
+<li>很多时候，不是脚本难不难的问题，是你对脚本中使用的命令熟不熟的问题</li>
+<li>最后一个是思维层面的：我们不用把所有的弄懂了在去开始写代码，就像我们不必学完所有的汉字才开始交流和写文章，learning by doing，边学边做</li>
 </ul>
-<!-- todo -->
+<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello bash&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Ref："><a href="#Ref：" class="headerlink" title="Ref："></a>Ref：</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRmxleGlibGVfYXJyYXlfbWVtYmVy">https://en.wikipedia.org/wiki/Flexible_array_member<i class="fa fa-external-link-alt"></i></span></li>
-<li>C primer plus 14.7.9</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucGVuZ3JsLmNvbS9wLzIwMDEzLw==">https://www.pengrl.com/p/20013/<i class="fa fa-external-link-alt"></i></span></li>
+<p>在通常的shell脚本中，井号<code>#</code>用作注释行。但这里的第一行是个例外，<code>#</code>后面的惊叹号会告诉shell用哪个shell来运行脚本，它也有特定的语法和称呼，叫<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU2hlYmFuZ18lMjhVbml4JTI5">Shebang<i class="fa fa-external-link-alt"></i></span>。语法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!interpreter [optional-arg]</span></span><br></pre></td></tr></table></figure>
+
+<p>Shebang工作机制：在类Unix系统上，程序加载器会分析<code>#!</code>后面的内容，并将它做为解释器，在将该文件路径作为该解释器的参数。类似下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ bash hello.sh</span><br></pre></td></tr></table></figure>
+
+<p>解释类语言都是可以这样运行，比如python的：<code>python hello.py</code>，js的：<code>node hello.js</code>。</p>
+<p><strong>运行<code>Hello world</code>：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方式1</span></span><br><span class="line">$ bash hello.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2：加可执行权限，运行</span></span><br><span class="line">$ <span class="built_in">chmod</span> u+x hello.sh</span><br><span class="line">$ ./hello.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义</span></span><br><span class="line">NAME=<span class="string">&quot;John&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 取值</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$NAME</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$NAME</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;NAME&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hi <span class="variable">$NAME</span>!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="命令替换"><a href="#命令替换" class="headerlink" title="命令替换"></a>命令替换</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $()`格式</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;I&#x27;m in <span class="subst">$(pwd)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 反引号字符(`)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;I&#x27;m in `pwd`&quot;</span></span><br><span class="line"></span><br><span class="line">WORKING_DIR=$(<span class="built_in">pwd</span>)</span><br><span class="line">WORKING_DIR=`<span class="built_in">pwd</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;WORKING_DIR: <span class="variable">$&#123;WORKING_DIR&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="if-else分支"><a href="#if-else分支" class="headerlink" title="if-else分支"></a>if-else分支</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [[ -z <span class="string">&quot;<span class="variable">$string</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;String is empty&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [[ -n <span class="string">&quot;<span class="variable">$string</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;String is not empty&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Case选择"><a href="#Case选择" class="headerlink" title="Case选择"></a>Case选择</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">  start | up)</span><br><span class="line">    vagrant up</span><br><span class="line">    ;;</span><br><span class="line"></span><br><span class="line">  *)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Usage: <span class="variable">$0</span> &#123;start|stop|ssh&#125;&quot;</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 遍历目录</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> /etc/rc.*; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历文件行</span></span><br><span class="line"><span class="built_in">cat</span> file.txt | <span class="keyword">while</span> <span class="built_in">read</span> line; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># C-like 循环</span></span><br><span class="line"><span class="keyword">for</span> ((i = 0 ; i &lt; 100 ; i++)); <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 范围循环</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..5&#125;; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Welcome <span class="variable">$i</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 范围循环，带step size（一次循环后增加step size，下面是5）</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;5..50..5&#125;; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Welcome <span class="variable">$i</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># while循环</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">  ···</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 函数定义：直接写函数名</span></span><br><span class="line"><span class="function"><span class="title">myfunc</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;hello <span class="variable">$1</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 函数定义：使用了function关键字</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">myfunc</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;hello <span class="variable">$1</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myfunc <span class="string">&quot;John&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><code>$#</code>：参数个数</li>
+<li><code>$*</code>：所有参数（当成一个整体的字符串）</li>
+<li><code>$@</code>：所有参数（当成多个独立分开的字符串）</li>
+<li><code>$1</code>：第一个参数</li>
+<li><code>$2</code>：第二个参数</li>
+<li><code>$_</code>：上一个命令的最后一个参数</li>
 </ul>
-<p>malloc</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zcGxvaXRmdW4ud29yZHByZXNzLmNvbS8yMDE1LzAyLzExL3N5c2NhbGxzLXVzZWQtYnktbWFsbG9jLw==">https://sploitfun.wordpress.com/2015/02/11/syscalls-used-by-malloc/<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Number of arguments: <span class="variable">$#</span>&quot;</span>                              <span class="comment">#=&gt; 6</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;All positional arguments (as a single word): $*&quot;</span>      <span class="comment">#=&gt; 1 2 3 4 5 6</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;All positional arguments (as separate strings): <span class="variable">$@</span>&quot;</span>   <span class="comment">#=&gt; 1 2 3 4 5 6</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;First argument: <span class="variable">$1</span>&quot;</span>                                   <span class="comment">#=&gt; 1</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Second argument: <span class="variable">$2</span>&quot;</span>                                  <span class="comment">#=&gt; 2</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;last command args&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Last argument of the previous command: <span class="variable">$_</span>&quot;</span>            <span class="comment">#=&gt; last command args</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line">    <span class="keyword">for</span> VAR <span class="keyword">in</span> <span class="string">&quot;$*&quot;</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;A single word <span class="variable">$VAR</span>&quot;</span>                               <span class="comment">#=&gt; &quot;1 2 3 4 5 6&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line">    <span class="keyword">for</span> VAR <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;separate strings <span class="variable">$VAR</span>&quot;</span>                            <span class="comment">#=&gt; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo 1 2 3 4 5 6</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件执行"><a href="#条件执行" class="headerlink" title="条件执行"></a>条件执行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit &amp;&amp; git push              <span class="comment"># 前面的命令执行成功，然后执行后面的命令</span></span><br><span class="line">git commit || <span class="built_in">echo</span> <span class="string">&quot;Commit failed&quot;</span>  <span class="comment"># 前面的命令执行成功，不执行后面的命令</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">STR=<span class="string">&quot;HELLO WORLD!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR,&#125;</span>   <span class="comment">#=&gt; &quot;hELLO WORLD!&quot; (lowercase 1st letter)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR,,&#125;</span>  <span class="comment">#=&gt; &quot;hello world!&quot; (全部转小写)</span></span><br><span class="line"></span><br><span class="line">STR=<span class="string">&quot;hello world!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR^&#125;</span>   <span class="comment">#=&gt; &quot;Hello world!&quot; (uppercase 1st letter)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR^^&#125;</span>  <span class="comment">#=&gt; &quot;HELLO WORLD!&quot; (全部转大写)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数字比较"><a href="#数字比较" class="headerlink" title="数字比较"></a>数字比较</h2><ul>
+<li><code>[[ NUM -eq NUM ]]</code>：是否相等（Equal）</li>
+<li><code>[[ NUM -ne NUM ]]</code>：是否不等（Not equal）</li>
+<li><code>[[ NUM -lt NUM ]]</code>：是否小于（Less than）</li>
+<li><code>[[ NUM -le NUM ]]</code>：是否小于并等于（Less than or equal）</li>
+<li><code>[[ NUM -gt NUM ]]</code>：是否大于（Greater than）</li>
+<li><code>[[ NUM -ge NUM ]]</code>：是否大于并等于（Greater than or equal）</li>
+<li><code>[[ STRING =~ STRING ]]</code>：    （Regexp）</li>
+<li><code>(( NUM &lt; NUM ))</code>：    （Numeric conditions）</li>
+</ul>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><ul>
+<li><code>[[ -z STRING ]]</code>：字符串长度是否为0（表示是空字符串）（Zero)</li>
+<li><code>[[ -n STRING ]]</code>：字符串长度是否不为空（Not)</li>
+<li><code>[[ STRING == STRING ]]</code>：字符串是否相同（Equal)</li>
+<li><code>[[ STRING != STRING ]]</code>：字符串是否不相同（Not Equal)</li>
+</ul>
+<h2 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h2><ul>
+<li><code>[[ -e FILE ]]</code>：检查FILE是否存在（e:Exists）</li>
+<li><code>[[ -r FILE ]]</code>：检查FILE是否可读（Readable)</li>
+<li><code>[[ -h FILE ]]</code>：检查FILE是否存在    Symlink</li>
+<li><code>[[ -d FILE ]]</code>：检查FILE是否存在并是一个目录(Directory)</li>
+<li><code>[[ -w FILE ]]</code>：检查FILE是否可写（Writable）</li>
+<li><code>[[ -s FILE ]]</code>：检查FILE是否存在并非空（Size）</li>
+<li><code>[[ -f FILE ]]</code>：检查FILE是否存在并是一个文件（File）</li>
+<li><code>[[ -x FILE ]]</code>：检查FILE是否存在并可执行（Executable）</li>
+<li><code>[[ FILE1 -nt FILE2 ]]</code>：检查FILE1是不是比FILE2更新（nt：Newer then）</li>
+<li><code>[[ FILE1 -ot FILE2 ]]</code>    检查FILE1是不是比FILE2更老（ot：Older then）</li>
+<li><code>[[ FILE1 -ef FILE2 ]]</code>    检查FILE1和FILE2是否相同（ef：Equal file）</li>
+</ul>
+<h2 id="其它比较"><a href="#其它比较" class="headerlink" title="其它比较"></a>其它比较</h2><ul>
+<li><code>[[ -o noclobber ]]</code>：这个noclobber选项是否开启</li>
+<li><code>[[ ! EXPR ]]</code>：Not</li>
+<li><code>[[ X &amp;&amp; Y ]]</code>：And</li>
+<li><code>[[ X || Y ]]</code>：Or</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># declarations</span></span><br><span class="line">Fruits=(<span class="string">&#x27;Apple&#x27;</span> <span class="string">&#x27;Banana&#x27;</span> <span class="string">&#x27;Orange&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># assignment</span></span><br><span class="line">Fruits[0]=<span class="string">&quot;Apple&quot;</span></span><br><span class="line">Fruits[1]=<span class="string">&quot;Banana&quot;</span></span><br><span class="line">Fruits[2]=<span class="string">&quot;Orange&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Working with arrays</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[0]&#125;</span>           <span class="comment"># 获取第0个元素</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[-1]&#125;</span>          <span class="comment"># 获取最后一个元素</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[@]&#125;</span>           <span class="comment"># 获取所有元素，每个是独立分开的</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Fruits[@]&#125;</span>          <span class="comment"># 获取元素个数，数组长度</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Fruits&#125;</span>             <span class="comment"># 获取每一个元素字符串的长度</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Fruits[3]&#125;</span>          <span class="comment"># 获取第三个元素字符串的长度</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[@]:3:2&#125;</span>       <span class="comment"># 获取数组的一段Range范围 (from position 3, length 2)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;!Fruits[@]&#125;</span>          <span class="comment"># 获取所有元素的Index索引：0、1、2...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Operations</span></span><br><span class="line">Fruits=(<span class="string">&quot;<span class="variable">$&#123;Fruits[@]&#125;</span>&quot;</span> <span class="string">&quot;Watermelon&quot;</span>)    <span class="comment"># 添加元素</span></span><br><span class="line">Fruits+=(<span class="string">&#x27;Watermelon&#x27;</span>)                  <span class="comment"># 也是添加元素</span></span><br><span class="line">Fruits=( <span class="variable">$&#123;Fruits[@]/Ap*/&#125;</span> )            <span class="comment"># 通过正则去删除</span></span><br><span class="line"><span class="built_in">unset</span> Fruits[2]                         <span class="comment"># 删除元素</span></span><br><span class="line">Fruits=(<span class="string">&quot;<span class="variable">$&#123;Fruits[@]&#125;</span>&quot;</span>)                 <span class="comment"># 复制到一个新的数组</span></span><br><span class="line">Fruits=(<span class="string">&quot;<span class="variable">$&#123;Fruits[@]&#125;</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;Veggies[@]&#125;</span>&quot;</span>) <span class="comment"># 追加数组</span></span><br><span class="line">lines=(`<span class="built_in">cat</span> <span class="string">&quot;logfile&quot;</span>`)                 <span class="comment"># 从文件中读，一行是一个元素的数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Iteration</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;arrayName[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9iYXNoL21hbnVhbC9odG1sX25vZGUvVGhlLVNldC1CdWlsdGluLmh0bWw=">https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><code>set -o noclobber</code>：避免重定向覆盖文件</li>
+<li><code>set -o errexit</code>：用于出错时退出，避免级联错误</li>
+<li><code>set -o pipefail</code>：在管道连接的命令中，只要有任何一个命令失败（返回值非0），则整个管道操作被视为失败</li>
+<li><code>set -o nounset</code>：使用了未定义的变量，立马退出</li>
+</ul>
+<h2 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h2><ul>
+<li><code>$?</code>：上一个命令的退出状态</li>
+<li><code>$!</code>：上一个后台任务的PID</li>
+<li><code>$$</code>：执行当前shell的PID</li>
+<li><code>$0</code>：执行当前shell的文件名    Filename of the shell script</li>
+<li><code>$_</code>：上一个命令的最后一个参数</li>
+</ul>
+<h2 id="其它常用命令"><a href="#其它常用命令" class="headerlink" title="其它常用命令"></a>其它常用命令</h2><ul>
+<li>command</li>
+<li>pushd、popd</li>
+<li>basename</li>
+<li>…</li>
+</ul>
+<h2 id="Ref："><a href="#Ref：" class="headerlink" title="Ref："></a>Ref：</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmJhc2gtaGFja2Vycy5vcmcv">https://wiki.bash-hackers.org/<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZoaW50cy5pby9iYXNo">https://devhints.io/bash<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 
       
     </div>

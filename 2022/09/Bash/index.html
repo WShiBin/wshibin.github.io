@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="最近项目脚本又开始重构，写了不少Bash脚本，索性写小结归纳下；  脚本简单的一批我自己写脚本是早前有个项目是用脚本构建的，就把那个几百行的脚本翻了一下，边看边查，看他做了什么？是怎么一步步构建项目的？后面自己写项目就开始写自己项目的脚本了。我说他简单是因为：  我自己命令行用的相对比较熟，自己也写过一些命令；知道敲一条命令大概做了什么（fork、exec、wait） 脚本没有什么抽象能力：不像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Bash】Bash小结">
+<meta property="og:url" content="https://wshibin.github.io/2022/09/Bash/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="最近项目脚本又开始重构，写了不少Bash脚本，索性写小结归纳下；  脚本简单的一批我自己写脚本是早前有个项目是用脚本构建的，就把那个几百行的脚本翻了一下，边看边查，看他做了什么？是怎么一步步构建项目的？后面自己写项目就开始写自己项目的脚本了。我说他简单是因为：  我自己命令行用的相对比较熟，自己也写过一些命令；知道敲一条命令大概做了什么（fork、exec、wait） 脚本没有什么抽象能力：不像">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-05T13:49:23.000Z">
+<meta property="article:modified_time" content="2022-09-05T16:13:32.567Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="Bash">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2022/09/Bash/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/09/Bash/","path":"/2022/09/Bash/","title":"【Bash】Bash小结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【Bash】Bash小结 | WShiBin's blogs</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+  <script data-pjax defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;fdce1369bd7b4881bc693823aa6eaf36&quot;}'></script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%80%E6%89%B9"><span class="nav-number">1.</span> <span class="nav-text">脚本简单的一批</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-world"><span class="nav-number">2.</span> <span class="nav-text">Hello world</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2"><span class="nav-number">4.</span> <span class="nav-text">命令替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if-else%E5%88%86%E6%94%AF"><span class="nav-number">5.</span> <span class="nav-text">if-else分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case%E9%80%89%E6%8B%A9"><span class="nav-number">6.</span> <span class="nav-text">Case选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-number">7.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">8.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">9.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%89%A7%E8%A1%8C"><span class="nav-number">10.</span> <span class="nav-text">条件执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="nav-number">11.</span> <span class="nav-text">大小写转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E6%AF%94%E8%BE%83"><span class="nav-number">12.</span> <span class="nav-text">数字比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="nav-number">13.</span> <span class="nav-text">字符串比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%AF%94%E8%BE%83"><span class="nav-number">14.</span> <span class="nav-text">文件比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E6%AF%94%E8%BE%83"><span class="nav-number">15.</span> <span class="nav-text">其它比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">16.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E9%A1%B9"><span class="nav-number">17.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%8F%98%E9%87%8F"><span class="nav-number">18.</span> <span class="nav-text">特殊变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">19.</span> <span class="nav-text">其它常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref%EF%BC%9A"><span class="nav-number">20.</span> <span class="nav-text">Ref：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/09/Bash/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【Bash】Bash小结 | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Bash】Bash小结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-05 21:49:23" itemprop="dateCreated datePublished" datetime="2022-09-05T21:49:23+08:00">2022-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/09/Bash/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/09/Bash/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>最近项目脚本又开始重构，写了不少Bash脚本，索性写小结归纳下；</p>
+</blockquote>
+<h2 id="脚本简单的一批"><a href="#脚本简单的一批" class="headerlink" title="脚本简单的一批"></a>脚本简单的一批</h2><p>我自己写脚本是早前有个项目是用脚本构建的，就把那个几百行的脚本翻了一下，边看边查，看他做了什么？是怎么一步步构建项目的？后面自己写项目就开始写自己项目的脚本了。我说他简单是因为：</p>
+<ul>
+<li>我自己命令行用的相对比较熟，自己也写过一些命令；知道敲一条命令大概做了什么（<code>fork</code>、<code>exec</code>、<code>wait</code>）</li>
+<li>脚本没有什么抽象能力：不像其它编程语言，有自定义数据类型、接口、多线程这些。脚本就只有一些简单的表达式：<code>if-else</code>、<code>for</code>、<code>case</code>、<code>function</code>，然后就没有了</li>
+<li>脚本有些不太好理解的地方是：还有些单个字符的选项（命令选项之类）、还有很多特殊的符号；对于前者单个选项字符的很多都是单词缩写；如果命令行用的很熟，会解决一部分（用过了），剩下的边学边查</li>
+<li>很多时候，不是脚本难不难的问题，是你对脚本中使用的命令熟不熟的问题</li>
+<li>最后一个是思维层面的：我们不用把所有的弄懂了在去开始写代码，就像我们不必学完所有的汉字才开始交流和写文章，learning by doing，边学边做</li>
+</ul>
+<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello bash&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在通常的shell脚本中，井号<code>#</code>用作注释行。但这里的第一行是个例外，<code>#</code>后面的惊叹号会告诉shell用哪个shell来运行脚本，它也有特定的语法和称呼，叫<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU2hlYmFuZ18lMjhVbml4JTI5">Shebang<i class="fa fa-external-link-alt"></i></span>。语法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!interpreter [optional-arg]</span></span><br></pre></td></tr></table></figure>
+
+<p>Shebang工作机制：在类Unix系统上，程序加载器会分析<code>#!</code>后面的内容，并将它做为解释器，在将该文件路径作为该解释器的参数。类似下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ bash hello.sh</span><br></pre></td></tr></table></figure>
+
+<p>解释类语言都是可以这样运行，比如python的：<code>python hello.py</code>，js的：<code>node hello.js</code>。</p>
+<p><strong>运行<code>Hello world</code>：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方式1</span></span><br><span class="line">$ bash hello.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2：加可执行权限，运行</span></span><br><span class="line">$ <span class="built_in">chmod</span> u+x hello.sh</span><br><span class="line">$ ./hello.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义</span></span><br><span class="line">NAME=<span class="string">&quot;John&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 取值</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$NAME</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$NAME</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;NAME&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hi <span class="variable">$NAME</span>!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="命令替换"><a href="#命令替换" class="headerlink" title="命令替换"></a>命令替换</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $()`格式</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;I&#x27;m in <span class="subst">$(pwd)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 反引号字符(`)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;I&#x27;m in `pwd`&quot;</span></span><br><span class="line"></span><br><span class="line">WORKING_DIR=$(<span class="built_in">pwd</span>)</span><br><span class="line">WORKING_DIR=`<span class="built_in">pwd</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;WORKING_DIR: <span class="variable">$&#123;WORKING_DIR&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="if-else分支"><a href="#if-else分支" class="headerlink" title="if-else分支"></a>if-else分支</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [[ -z <span class="string">&quot;<span class="variable">$string</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;String is empty&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [[ -n <span class="string">&quot;<span class="variable">$string</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;String is not empty&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Case选择"><a href="#Case选择" class="headerlink" title="Case选择"></a>Case选择</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">  start | up)</span><br><span class="line">    vagrant up</span><br><span class="line">    ;;</span><br><span class="line"></span><br><span class="line">  *)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Usage: <span class="variable">$0</span> &#123;start|stop|ssh&#125;&quot;</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 遍历目录</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> /etc/rc.*; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历文件行</span></span><br><span class="line"><span class="built_in">cat</span> file.txt | <span class="keyword">while</span> <span class="built_in">read</span> line; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># C-like 循环</span></span><br><span class="line"><span class="keyword">for</span> ((i = 0 ; i &lt; 100 ; i++)); <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 范围循环</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..5&#125;; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Welcome <span class="variable">$i</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 范围循环，带step size（一次循环后增加step size，下面是5）</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;5..50..5&#125;; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Welcome <span class="variable">$i</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># while循环</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">  ···</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 函数定义：直接写函数名</span></span><br><span class="line"><span class="function"><span class="title">myfunc</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;hello <span class="variable">$1</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 函数定义：使用了function关键字</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">myfunc</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;hello <span class="variable">$1</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myfunc <span class="string">&quot;John&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><code>$#</code>：参数个数</li>
+<li><code>$*</code>：所有参数（当成一个整体的字符串）</li>
+<li><code>$@</code>：所有参数（当成多个独立分开的字符串）</li>
+<li><code>$1</code>：第一个参数</li>
+<li><code>$2</code>：第二个参数</li>
+<li><code>$_</code>：上一个命令的最后一个参数</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Number of arguments: <span class="variable">$#</span>&quot;</span>                              <span class="comment">#=&gt; 6</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;All positional arguments (as a single word): $*&quot;</span>      <span class="comment">#=&gt; 1 2 3 4 5 6</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;All positional arguments (as separate strings): <span class="variable">$@</span>&quot;</span>   <span class="comment">#=&gt; 1 2 3 4 5 6</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;First argument: <span class="variable">$1</span>&quot;</span>                                   <span class="comment">#=&gt; 1</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Second argument: <span class="variable">$2</span>&quot;</span>                                  <span class="comment">#=&gt; 2</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;last command args&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Last argument of the previous command: <span class="variable">$_</span>&quot;</span>            <span class="comment">#=&gt; last command args</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line">    <span class="keyword">for</span> VAR <span class="keyword">in</span> <span class="string">&quot;$*&quot;</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;A single word <span class="variable">$VAR</span>&quot;</span>                               <span class="comment">#=&gt; &quot;1 2 3 4 5 6&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line">    <span class="keyword">for</span> VAR <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;separate strings <span class="variable">$VAR</span>&quot;</span>                            <span class="comment">#=&gt; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo 1 2 3 4 5 6</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件执行"><a href="#条件执行" class="headerlink" title="条件执行"></a>条件执行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit &amp;&amp; git push              <span class="comment"># 前面的命令执行成功，然后执行后面的命令</span></span><br><span class="line">git commit || <span class="built_in">echo</span> <span class="string">&quot;Commit failed&quot;</span>  <span class="comment"># 前面的命令执行成功，不执行后面的命令</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">STR=<span class="string">&quot;HELLO WORLD!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR,&#125;</span>   <span class="comment">#=&gt; &quot;hELLO WORLD!&quot; (lowercase 1st letter)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR,,&#125;</span>  <span class="comment">#=&gt; &quot;hello world!&quot; (全部转小写)</span></span><br><span class="line"></span><br><span class="line">STR=<span class="string">&quot;hello world!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR^&#125;</span>   <span class="comment">#=&gt; &quot;Hello world!&quot; (uppercase 1st letter)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;STR^^&#125;</span>  <span class="comment">#=&gt; &quot;HELLO WORLD!&quot; (全部转大写)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数字比较"><a href="#数字比较" class="headerlink" title="数字比较"></a>数字比较</h2><ul>
+<li><code>[[ NUM -eq NUM ]]</code>：是否相等（Equal）</li>
+<li><code>[[ NUM -ne NUM ]]</code>：是否不等（Not equal）</li>
+<li><code>[[ NUM -lt NUM ]]</code>：是否小于（Less than）</li>
+<li><code>[[ NUM -le NUM ]]</code>：是否小于并等于（Less than or equal）</li>
+<li><code>[[ NUM -gt NUM ]]</code>：是否大于（Greater than）</li>
+<li><code>[[ NUM -ge NUM ]]</code>：是否大于并等于（Greater than or equal）</li>
+<li><code>[[ STRING =~ STRING ]]</code>：    （Regexp）</li>
+<li><code>(( NUM &lt; NUM ))</code>：    （Numeric conditions）</li>
+</ul>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><ul>
+<li><code>[[ -z STRING ]]</code>：字符串长度是否为0（表示是空字符串）（Zero)</li>
+<li><code>[[ -n STRING ]]</code>：字符串长度是否不为空（Not)</li>
+<li><code>[[ STRING == STRING ]]</code>：字符串是否相同（Equal)</li>
+<li><code>[[ STRING != STRING ]]</code>：字符串是否不相同（Not Equal)</li>
+</ul>
+<h2 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h2><ul>
+<li><code>[[ -e FILE ]]</code>：检查FILE是否存在（e:Exists）</li>
+<li><code>[[ -r FILE ]]</code>：检查FILE是否可读（Readable)</li>
+<li><code>[[ -h FILE ]]</code>：检查FILE是否存在    Symlink</li>
+<li><code>[[ -d FILE ]]</code>：检查FILE是否存在并是一个目录(Directory)</li>
+<li><code>[[ -w FILE ]]</code>：检查FILE是否可写（Writable）</li>
+<li><code>[[ -s FILE ]]</code>：检查FILE是否存在并非空（Size）</li>
+<li><code>[[ -f FILE ]]</code>：检查FILE是否存在并是一个文件（File）</li>
+<li><code>[[ -x FILE ]]</code>：检查FILE是否存在并可执行（Executable）</li>
+<li><code>[[ FILE1 -nt FILE2 ]]</code>：检查FILE1是不是比FILE2更新（nt：Newer then）</li>
+<li><code>[[ FILE1 -ot FILE2 ]]</code>    检查FILE1是不是比FILE2更老（ot：Older then）</li>
+<li><code>[[ FILE1 -ef FILE2 ]]</code>    检查FILE1和FILE2是否相同（ef：Equal file）</li>
+</ul>
+<h2 id="其它比较"><a href="#其它比较" class="headerlink" title="其它比较"></a>其它比较</h2><ul>
+<li><code>[[ -o noclobber ]]</code>：这个noclobber选项是否开启</li>
+<li><code>[[ ! EXPR ]]</code>：Not</li>
+<li><code>[[ X &amp;&amp; Y ]]</code>：And</li>
+<li><code>[[ X || Y ]]</code>：Or</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># declarations</span></span><br><span class="line">Fruits=(<span class="string">&#x27;Apple&#x27;</span> <span class="string">&#x27;Banana&#x27;</span> <span class="string">&#x27;Orange&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># assignment</span></span><br><span class="line">Fruits[0]=<span class="string">&quot;Apple&quot;</span></span><br><span class="line">Fruits[1]=<span class="string">&quot;Banana&quot;</span></span><br><span class="line">Fruits[2]=<span class="string">&quot;Orange&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Working with arrays</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[0]&#125;</span>           <span class="comment"># 获取第0个元素</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[-1]&#125;</span>          <span class="comment"># 获取最后一个元素</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[@]&#125;</span>           <span class="comment"># 获取所有元素，每个是独立分开的</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Fruits[@]&#125;</span>          <span class="comment"># 获取元素个数，数组长度</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Fruits&#125;</span>             <span class="comment"># 获取每一个元素字符串的长度</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Fruits[3]&#125;</span>          <span class="comment"># 获取第三个元素字符串的长度</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Fruits[@]:3:2&#125;</span>       <span class="comment"># 获取数组的一段Range范围 (from position 3, length 2)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;!Fruits[@]&#125;</span>          <span class="comment"># 获取所有元素的Index索引：0、1、2...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Operations</span></span><br><span class="line">Fruits=(<span class="string">&quot;<span class="variable">$&#123;Fruits[@]&#125;</span>&quot;</span> <span class="string">&quot;Watermelon&quot;</span>)    <span class="comment"># 添加元素</span></span><br><span class="line">Fruits+=(<span class="string">&#x27;Watermelon&#x27;</span>)                  <span class="comment"># 也是添加元素</span></span><br><span class="line">Fruits=( <span class="variable">$&#123;Fruits[@]/Ap*/&#125;</span> )            <span class="comment"># 通过正则去删除</span></span><br><span class="line"><span class="built_in">unset</span> Fruits[2]                         <span class="comment"># 删除元素</span></span><br><span class="line">Fruits=(<span class="string">&quot;<span class="variable">$&#123;Fruits[@]&#125;</span>&quot;</span>)                 <span class="comment"># 复制到一个新的数组</span></span><br><span class="line">Fruits=(<span class="string">&quot;<span class="variable">$&#123;Fruits[@]&#125;</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;Veggies[@]&#125;</span>&quot;</span>) <span class="comment"># 追加数组</span></span><br><span class="line">lines=(`<span class="built_in">cat</span> <span class="string">&quot;logfile&quot;</span>`)                 <span class="comment"># 从文件中读，一行是一个元素的数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Iteration</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;arrayName[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9iYXNoL21hbnVhbC9odG1sX25vZGUvVGhlLVNldC1CdWlsdGluLmh0bWw=">https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><code>set -o noclobber</code>：避免重定向覆盖文件</li>
+<li><code>set -o errexit</code>：用于出错时退出，避免级联错误</li>
+<li><code>set -o pipefail</code>：在管道连接的命令中，只要有任何一个命令失败（返回值非0），则整个管道操作被视为失败</li>
+<li><code>set -o nounset</code>：使用了未定义的变量，立马退出</li>
+</ul>
+<h2 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h2><ul>
+<li><code>$?</code>：上一个命令的退出状态</li>
+<li><code>$!</code>：上一个后台任务的PID</li>
+<li><code>$$</code>：执行当前shell的PID</li>
+<li><code>$0</code>：执行当前shell的文件名    Filename of the shell script</li>
+<li><code>$_</code>：上一个命令的最后一个参数</li>
+</ul>
+<h2 id="其它常用命令"><a href="#其它常用命令" class="headerlink" title="其它常用命令"></a>其它常用命令</h2><ul>
+<li>command</li>
+<li>pushd、popd</li>
+<li>basename</li>
+<li>…</li>
+</ul>
+<h2 id="Ref："><a href="#Ref：" class="headerlink" title="Ref："></a>Ref：</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmJhc2gtaGFja2Vycy5vcmcv">https://wiki.bash-hackers.org/<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZoaW50cy5pby9iYXNo">https://devhints.io/bash<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Bash/" rel="tag"># Bash</a>
+              <a href="/tags/Shell/" rel="tag"># Shell</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/Compiler-Attributes/" rel="prev" title="【GCC】Compiler Attributes">
+                  <i class="fa fa-chevron-left"></i> 【GCC】Compiler Attributes
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/09/Bash/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

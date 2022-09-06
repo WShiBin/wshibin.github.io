@@ -300,7 +300,7 @@
           <blockquote>
 <p>最近项目脚本又开始重构，写了不少Bash脚本，索性写小结归纳下；</p>
 </blockquote>
-<h2 id="脚本简单的一批"><a href="#脚本简单的一批" class="headerlink" title="脚本简单的一批"></a>脚本简单的一批</h2><p>我自己写脚本是早前有个项目是用脚本构建的，就把那个几百行的脚本翻了一下，边看边查，看他做了什么？是怎么一步步构建项目的？后面自己写项目就开始写自己项目的脚本了。我说他简单是因为：</p>
+<h2 id="脚本并不难"><a href="#脚本并不难" class="headerlink" title="脚本并不难"></a>脚本并不难</h2><p>我自己写脚本是早前有个项目是用脚本构建的，就把那个几百行的脚本翻了一下，边看边查，看他做了什么？是怎么一步步构建项目的？后面自己写项目就开始写自己项目的脚本了。我说脚本不难是因为：</p>
 <ul>
 <li>我自己命令行用的相对比较熟，自己也写过一些命令；知道敲一条命令大概做了什么（<code>fork</code>、<code>exec</code>、<code>wait</code>）</li>
 <li>脚本没有什么抽象能力：不像其它编程语言，有自定义数据类型、接口、多线程这些。脚本就只有一些简单的表达式：<code>if-else</code>、<code>for</code>、<code>case</code>、<code>function</code>，然后就没有了</li>
@@ -406,6 +406,130 @@
 <h2 id="Ref："><a href="#Ref：" class="headerlink" title="Ref："></a>Ref：</h2><ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmJhc2gtaGFja2Vycy5vcmcv">https://wiki.bash-hackers.org/<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9kZXZoaW50cy5pby9iYXNo">https://devhints.io/bash<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/09/Flexible-array-member/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/Flexible-array-member/" class="post-title-link" itemprop="url">【C】弹性数组成员</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-01 23:57:11" itemprop="dateCreated datePublished" datetime="2022-09-01T23:57:11+08:00">2022-09-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/09/Flexible-array-member/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/09/Flexible-array-member/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>弹性数组成员，英文叫<strong>Flexible array member</strong>。这个特性在C99之前，GCC和微软的编译器就已经实现了；在C99时才把它正式的标准化</p>
+<p><strong>定义规则：</strong></p>
+<ul>
+<li>弹性数组成员必须是最后一个成员</li>
+<li>结构中必须至少有一个成员</li>
+<li>弹性数组成员的声明类型类似于普通数据，括号中的长度是空，有时候可能是0</li>
+</ul>
+<p>另一个已知的知识点是：<strong>数组名就是数组的首地址，这点数组名和指针等效</strong>，下面看示例</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>主要对比下面两个结构体的data成员</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 弹性数组成员的结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">foo</span> &#123;</span></span><br><span class="line">    <span class="type">int64_t</span> len;</span><br><span class="line">    <span class="type">char</span>    data[];  <span class="comment">// or char arr[0]</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 普通结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bar</span> &#123;</span></span><br><span class="line">    <span class="type">int64_t</span> len;</span><br><span class="line">    <span class="type">char</span>*   data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// sizeof</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(int32_t):                        %lu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="type">int64_t</span>));       <span class="comment">// =&gt; 8</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(char*):                          %lu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="type">char</span>*));         <span class="comment">// =&gt; 8</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;struct with flexable array member:      %lu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> foo));    <span class="comment">// =&gt; 8</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;struct without flexable array member:   %lu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> bar));    <span class="comment">// =&gt; 16</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// use</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">foo</span>* <span class="title">f</span> =</span> <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> foo) + <span class="number">128</span>);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">bar</span>  <span class="title">b</span> =</span> &#123;</span><br><span class="line">         .len  = <span class="number">128</span>,</span><br><span class="line">         .data = <span class="built_in">malloc</span>(<span class="number">128</span>),</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从程序输出可以看出：弹性数组成员<code>data</code>不占空间。</p>
+<p>对比<strong>弹性数组成员的结构体</strong>和<strong>普通的结构体</strong>，<strong>有弹性数组成员的结构体</strong>有以下特点：</p>
+<ul>
+<li>节省空间：是的，指针本身也需要存储空间，<code>struct bar</code>中的<code>data</code>成员是一个指针，而数组名就是数组的首地址</li>
+<li>成员内存空间上的连续性：弹性数组的内存地址和它之前的数据成员的地址是连续的</li>
+<li>访问高性：因为空间连续，访问时内存的空间局部性也更好些</li>
+</ul>
+<p>另外一个在使用上的区别是：弹性数组成员的整个结构体都要分配在堆上</p>
+<h2 id="如何理解"><a href="#如何理解" class="headerlink" title="如何理解"></a>如何理解</h2><p>那如何理解弹性数组成员（ <code>struct foo</code> 中的 <code>data</code>成员）不占空间呢？正常来讲，这个已经超过了对内存结构的认知了。如果要用一个合理性的解释能解释通的话，就是：编译器的语法糖；与普通结构体相比，提供了访问<code>data</code>数据的方便性：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 弹性数组成员的结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">foo</span> &#123;</span></span><br><span class="line">    <span class="type">int64_t</span> len;</span><br><span class="line">    <span class="type">char</span>    data[];  <span class="comment">// or char arr[0]</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 普通结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bar</span> &#123;</span></span><br><span class="line">    <span class="type">int64_t</span> len;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">char</span>* data = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 弹性数组成员的结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">foo</span>* <span class="title">f</span> =</span> <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> foo) + <span class="number">128</span>);</span><br><span class="line">    data          = f-&gt;data;</span><br><span class="line">    <span class="comment">// do something with data</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 普通结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">bar</span>* <span class="title">b</span> =</span> <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> bar) + <span class="number">128</span>);</span><br><span class="line">    data          = (<span class="type">char</span>*)b + <span class="keyword">sizeof</span>(<span class="keyword">struct</span> bar);</span><br><span class="line">    <span class="comment">// do something with data</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>弹性数组成员在内存空间排布上是连续，内存尾部长度可以很灵活；也就是这个不定长的<code>buffer</code>给使用上带来的灵活性，会诞生一些应用场景，比如：</p>
+<ul>
+<li>日志：前面的格式都是固定的（时间、级别、文件名、行号），日志正文的<code>msg</code>是不定长的</li>
+<li>协议：前面的协议头可能是固定格式的，数据<code>payload</code>段可能是不定长的</li>
+</ul>
+<h2 id="Ref："><a href="#Ref：" class="headerlink" title="Ref："></a>Ref：</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9aZXJvLUxlbmd0aC5odG1s">https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRmxleGlibGVfYXJyYXlfbWVtYmVy">https://en.wikipedia.org/wiki/Flexible_array_member<i class="fa fa-external-link-alt"></i></span></li>
+<li>C primer plus 14.7.9</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucGVuZ3JsLmNvbS9wLzIwMDEzLw==">https://www.pengrl.com/p/20013/<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 
       
@@ -25771,197 +25895,6 @@
 <td></td>
 </tr>
 </tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/" class="post-title-link" itemprop="url">【Tools】来玩一玩件值一个亿的终端软件-Warp</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-10 15:38:47" itemprop="dateCreated datePublished" datetime="2022-04-10T15:38:47+08:00">2022-04-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/04/来玩一玩件值一个亿的终端软件/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>一个叫Warp的终端软件<strong>融资 2300 w 美元</strong>，<span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h2 id="一个好的故事："><a href="#一个好的故事：" class="headerlink" title="一个好的故事："></a>一个好的故事：</h2><blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span><br>Walk by any developer’s desk and you are likely to see two apps open: their <strong>code editor</strong> and their <strong>terminal</strong> (sometimes the code editor is the terminal!). ‍</p>
-<p>Both are crucial to developer productivity. The code editor is where developers write code; the terminal is where they do pretty much everything else, from building code to running and deploying it, interacting with source control, configuring their cloud systems, and more.</p>
-<p>And yet only one of these two apps – the code editor – has experienced meaningful product improvement over the past 40 years. Compared to using VS Code, using the terminal is like stepping back in time to the 1970s. Only <span class="exturl" data-url="aHR0cHM6Ly9pbnNpZ2h0cy5zdGFja292ZXJmbG93LmNvbS9zdXJ2ZXkvMjAyMSNzZWN0aW9uLW1vc3QtcG9wdWxhci10ZWNobm9sb2dpZXMtaW50ZWdyYXRlZC1kZXZlbG9wbWVudC1lbnZpcm9ubWVudA==">70% of developers use VSCode<i class="fa fa-external-link-alt"></i></span>, while 100% use the terminal. So why is the terminal experience still so lackluster?</p>
-</blockquote>
-<p><strong>程序员最重要的两个工具：</strong></p>
-<ul>
-<li>Coder editor</li>
-<li>Terminal：编译，运行，部署，代码版本管理，配置云服务器……</li>
-<li>Browser浏览器</li>
-</ul>
-<p>Coder editor在过去40年一直在改善，而Terminal用起来还是最开始的那个样子。<br>个人觉得：后半句只是对了一半，提示、补全、搜索、主题都在发展，没有被整合起来</p>
-<p><strong>现今Terminal面临的问题：</strong></p>
-<ul>
-<li>Terminals are hard to use难用</li>
-<li>They don’t work for teams不是为团队协作设计的</li>
-</ul>
-<h2 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h2><ul>
-<li>Command Palette</li>
-<li>The Input / Text Editor</li>
-<li>Blocks</li>
-<li>Find</li>
-<li>Command History</li>
-<li>Autosuggestions</li>
-<li>Completions</li>
-<li>Themes</li>
-<li>Prompt</li>
-<li>Split Panes</li>
-<li>Session Management and Restoration</li>
-<li>Workflows</li>
-<li>Global Hotkey Window</li>
-<li>A.I. Command Search</li>
-</ul>
-<h2 id="Command-Palette"><a href="#Command-Palette" class="headerlink" title="Command Palette"></a>Command Palette</h2><p>快捷键：<code>CMD + P</code></p>
-<p>Terminal上所有的功能，几本上都这个通过这个搜索框去执行，还能模糊匹配；如果忘记某些功能的快捷键了，可以通过这个来搜索</p>
-<img src="/images/warp/warp_command_palette.gif" style="zoom: 43%;" />
-
-<p>这个功能应该是借鉴Sublime Text 、VSCode</p>
-<h2 id="The-Input-Text-Editor"><a href="#The-Input-Text-Editor" class="headerlink" title="The Input / Text Editor"></a>The Input / Text Editor</h2><img src="/images/warp/warp_input_editor.gif"/>
-
-<h2 id="Blocks块"><a href="#Blocks块" class="headerlink" title="Blocks块"></a>Blocks块</h2><p>概念：一次命令的执行称为一个块。</p>
-<ul>
-<li>copy命令</li>
-<li>copy命令的输出</li>
-<li>直接划到命令输出开始的地方</li>
-<li>重新输入这个命令</li>
-<li>共享这个命令和输出</li>
-</ul>
-<img src="/images/warp/warp_annotated_blocks_v2.png" style="zoom:50%;" />
-
-<p>在Blocks之间转跳：<code>CMD-UP</code>和<code>CMD-DOWN</code>，之后按上和下就可以了</p>
-<h2 id="Find查找"><a href="#Find查找" class="headerlink" title="Find查找"></a>Find查找</h2><ul>
-<li>支持大小写匹配</li>
-<li>支持锁定Blocks</li>
-</ul>
-<blockquote>
-<p>可以考虑下支持正则表达式</p>
-</blockquote>
-<h2 id="Command-History命令历史记录"><a href="#Command-History命令历史记录" class="headerlink" title="Command History命令历史记录"></a>Command History命令历史记录</h2><p>快捷键：<code>Ctrl + R</code></p>
-<ul>
-<li>支持模糊匹配</li>
-</ul>
-<p>fzf的<code>Ctrl + R</code>搜索历史记录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p1bmVndW5uL2Z6ZiNrZXktYmluZGluZ3MtZm9yLWNvbW1hbmQtbGluZQ==">https://github.com/junegunn/fzf#key-bindings-for-command-line<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Autosuggestions自动提示"><a href="#Autosuggestions自动提示" class="headerlink" title="Autosuggestions自动提示"></a>Autosuggestions自动提示</h2><p>快捷键：<code>方向右键</code> 或 <code>CTRL-F</code>. （F：forward）</p>
-<h2 id="Completions补全"><a href="#Completions补全" class="headerlink" title="Completions补全"></a>Completions补全</h2><p>快捷键：<code>TAB</code>，之后按上和下选择</p>
-<h2 id="Themes主题"><a href="#Themes主题" class="headerlink" title="Themes主题"></a>Themes主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvdGhlbWVzL3RyZWUvMTk0MzZkOTlmNzFkNmQ1NTEzN2JjZjhmNTQ3NWVhMTMwNTZlN2FkZCNvcGVuLXNvdXJjZS1kZXBlbmRlbmNpZXM=">https://github.com/warpdotdev/themes/tree/19436d99f71d6d55137bcf8f5475ea13056e7add#open-source-dependencies<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>We’d like to call out a few of the open source themes and repositories that helped bootstrap the set of themes for Warp:</p>
-<ul>
-<li>iTerm colors pencil</li>
-<li>Alacritty-theme</li>
-<li>base16-Alacritty</li>
-<li>base16</li>
-<li>Solarized</li>
-<li>Dracula</li>
-<li>Gruvbox</li>
-</ul>
-</blockquote>
-<h2 id="Prompt"><a href="#Prompt" class="headerlink" title="Prompt"></a>Prompt</h2><p>分Warp和用户自定义的</p>
-<ul>
-<li>开启自定义：<code>Settings &gt; Features</code> 打开<code>Honor user&#39;s custom prompt (PS1) setting.</code></li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29obXl6c2gvb2hteXpzaA==">ohmyzsh<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NwYWNlc2hpcC1wcm9tcHQvc3BhY2VzaGlwLXByb21wdA==">spaceship prompt<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Split-Panes分屏"><a href="#Split-Panes分屏" class="headerlink" title="Split Panes分屏"></a>Split Panes分屏</h2><h2 id="Session-Management-and-Restoration"><a href="#Session-Management-and-Restoration" class="headerlink" title="Session Management and Restoration"></a>Session Management and Restoration</h2><p>When Warp opens, it restores your session history, specifically windows, tabs, panes, and also the last few Blocks in each pane.</p>
-<p>当打开Warp，它会恢复历史会话，窗口，Tabs，面板，以及之前的Blocks；保存到sqlite里面</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sqlite3 <span class="variable">$HOME</span>/Library/Application Support/dev.warp.Warp-Stable/warp.sqlite</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>用起来很方便；反过来，就会有隐私及安全的顾虑</p>
-</blockquote>
-<h2 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h2><h2 id="Global-Hotkey-Window"><a href="#Global-Hotkey-Window" class="headerlink" title="Global Hotkey Window"></a>Global Hotkey Window</h2><h2 id="A-I-Command-Search"><a href="#A-I-Command-Search" class="headerlink" title="A.I. Command Search"></a>A.I. Command Search</h2><h2 id="安装遇到的登录校验问题："><a href="#安装遇到的登录校验问题：" class="headerlink" title="安装遇到的登录校验问题："></a>安装遇到的登录校验问题：</h2><p>情况：用github账号登录，转跳到Warp之后卡顿，无法登录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvV2FycC9pc3N1ZXMvOTA2">https://github.com/warpdotdev/Warp/issues/906<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li>需要开代理，在命令行中配置</li>
-<li>用命令行去启动Warp</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在命令行里面配置代理</span></span><br><span class="line">$ <span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:1077</span><br><span class="line">$ <span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:1077</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动warp</span></span><br><span class="line">$ /Applications/Warp.app/Contents/MacOS/stable</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

@@ -180,7 +180,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">62</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -223,6 +223,293 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">【C】LVGL源码分析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-15 14:53:29" itemprop="dateCreated datePublished" datetime="2021-08-15T14:53:29+08:00">2021-08-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LVGL/" itemprop="url" rel="index"><span itemprop="name">LVGL</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/08/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/08/LVGL源码分析/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>文章基于LVGL V7.11.0版本<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x2Z2wvbHZnbC90cmVlL3Y3LjExLjA=">https://github.com/lvgl/lvgl/tree/v7.11.0<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="UI框架核心流程："><a href="#UI框架核心流程：" class="headerlink" title="UI框架核心流程："></a>UI框架核心流程：</h2><img src="/images/lvgl/image-20220823121744058 AM.png" style="zoom:50%;" />
+
+<p>对于一个UI系统来说最原始的三个需求：</p>
+<ul>
+<li>控件树维护：在前端叫DOM树（创建控件时，都需要传一个父控件）</li>
+<li>UI显示、刷新：通过迭代控件树，调用每个控件自己的绘制函数</li>
+<li>点击事件传递到控件：TP硬件获取到点击坐标，传给UI系统，在去控件树去找到对应位置的控件，然后调用该控件的点击回调函数</li>
+</ul>
+<h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><ul>
+<li>LVGL启动流程</li>
+<li>Widgets的数据是如何显示到屏幕</li>
+<li>屏幕点击事件，是如何传递到对应空间的事件回调中</li>
+<li>不同控件之间有什么关系？为什么返回的都是lv_obj_t</li>
+<li>图片解码、缓存流程，显示</li>
+</ul>
+<h2 id="提前须知："><a href="#提前须知：" class="headerlink" title="提前须知："></a>提前须知：</h2><h3 id="LVGL中重要的数据结构：双向链表"><a href="#LVGL中重要的数据结构：双向链表" class="headerlink" title="LVGL中重要的数据结构：双向链表"></a>LVGL中重要的数据结构：双向链表</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// lv_ll.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">uint32_t</span> n_size;</span><br><span class="line">    <span class="type">lv_ll_node_t</span> * head;</span><br><span class="line">    <span class="type">lv_ll_node_t</span> * tail;</span><br><span class="line">&#125; <span class="type">lv_ll_t</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="最重要的宏：LV-ROOTS"><a href="#最重要的宏：LV-ROOTS" class="headerlink" title="最重要的宏：LV_ROOTS"></a>最重要的宏：<code>LV_ROOTS</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// lv_gc.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span>(!defined(LV_ENABLE_GC)) || LV_ENABLE_GC == 0</span></span><br><span class="line">    LV_ROOTS</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* LV_ENABLE_GC */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// lv_gc.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LV_ITERATE_ROOTS(f) \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_task_ll)  <span class="comment">/*Linked list to store the lv_tasks*/</span> \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_disp_ll)  <span class="comment">/*Linked list of screens*/</span>            \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_indev_ll) <span class="comment">/*Linked list of screens*/</span>            \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_drv_ll)                                         \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_file_ll)                                        \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_anim_ll)                                        \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_group_ll)                                       \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_img_defoder_ll)                                 \</span></span><br><span class="line"><span class="meta">    f(lv_ll_t, _lv_obj_style_trans_ll)                             \</span></span><br><span class="line"><span class="meta">    f(lv_img_cache_entry_t*, _lv_img_cache_array)                  \</span></span><br><span class="line"><span class="meta">    f(lv_task_t*, _lv_task_act)                                    \</span></span><br><span class="line"><span class="meta">    f(lv_mem_buf_arr_t , _lv_mem_buf)                              \</span></span><br><span class="line"><span class="meta">    f(_lv_draw_mask_saved_arr_t , _lv_draw_mask_list)              \</span></span><br><span class="line"><span class="meta">    f(void * , _lv_theme_material_styles)                          \</span></span><br><span class="line"><span class="meta">    f(void * , _lv_theme_template_styles)                          \</span></span><br><span class="line"><span class="meta">    f(void * , _lv_theme_mono_styles)                              \</span></span><br><span class="line"><span class="meta">    f(void * , _lv_theme_empty_styles)                             \</span></span><br><span class="line"><span class="meta">    f(uint8_t *, _lv_font_decompr_buf)                             \</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LV_DEFINE_ROOT(root_type, root_name) root_type root_name;</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LV_ROOTS LV_ITERATE_ROOTS(LV_DEFINE_ROOT)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LV_GC_ROOT(x) x</span></span><br></pre></td></tr></table></figure>
+
+<p>很懵？那换一种方式：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">lv_ll_t</span>                   _lv_task_ll;  <span class="comment">/*Linked list to store the lv_tasks*/</span></span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_disp_ll;  <span class="comment">/*Linked list of display device*/</span></span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_indev_ll; <span class="comment">/*Linked list of input device*/</span></span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_drv_ll;</span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_file_ll;</span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_anim_ll;</span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_group_ll;</span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_img_decoder_ll;</span><br><span class="line"><span class="type">lv_ll_t</span>                   _lv_obj_style_trans_ll;</span><br><span class="line"><span class="type">lv_img_cache_entry_t</span>*     _lv_img_cache_array;</span><br><span class="line"><span class="type">lv_task_t</span>*                _lv_task_act;</span><br><span class="line"><span class="type">lv_mem_buf_arr_t</span>          _lv_mem_buf;</span><br><span class="line"><span class="type">_lv_draw_mask_saved_arr_t</span> _lv_draw_mask_list;</span><br><span class="line"><span class="type">void</span>*                     _lv_theme_material_styles;</span><br><span class="line"><span class="type">void</span>*                     _lv_theme_template_styles;</span><br><span class="line"><span class="type">void</span>*                     _lv_theme_mono_styles;</span><br><span class="line"><span class="type">void</span>*                     _lv_theme_empty_styles;</span><br><span class="line"><span class="type">uint8_t</span>*                  _lv_font_decompr_buf;</span><br></pre></td></tr></table></figure>
+
+<p>基本上是lvgl的context：task、disp、indev、drv、anim、img_decoder、style、theme、font全定义了；<br>使用时一般会用<code>LV_GC_ROOT()</code>宏去获取使用，比如：<br><code>LV_GC_ROOT(_lv_task_ll)</code>、<code>LV_GC_ROOT(_lv_disp_ll)</code>、<code>&amp;LV_GC_ROOT(_lv_indev_ll)</code>；</p>
+<h3 id="显示时Widget之间的关系：父子关系"><a href="#显示时Widget之间的关系：父子关系" class="headerlink" title="显示时Widget之间的关系：父子关系"></a>显示时Widget之间的关系：父子关系</h3><p>todo：</p>
+<h3 id="Task任务"><a href="#Task任务" class="headerlink" title="Task任务"></a>Task任务</h3><p>todo:</p>
+<h2 id="LVGL启动流程"><a href="#LVGL启动流程" class="headerlink" title="LVGL启动流程"></a>LVGL启动流程</h2><p>基本上程序都会分为两个阶段：一个是正常正常前的初始化阶段，把个各模块做相应的初始化；第二个是正常运行阶段，各个模块相互协作，完成任务，完成事件流阶段</p>
+<ul>
+<li>初始化<ul>
+<li><code>lv_init()</code>核心初始化</li>
+<li><code>hal_init()</code>硬件初始化，及硬件和LVGL UI关联上</li>
+<li><code>lv_demo_widgets()</code>绘制自定义的UI</li>
+</ul>
+</li>
+<li>正常运行、周期性调度Task阶段（死循环）<ul>
+<li>LVGL UI变化（更新）显示到屏幕（硬件）</li>
+<li>触摸事件（TP硬件）响应到LVGL UI系统，找到对应的Widget，调用相应的事件回调</li>
+</ul>
+</li>
+</ul>
+<h2 id="Widgets的数据是如何显示到屏幕"><a href="#Widgets的数据是如何显示到屏幕" class="headerlink" title="Widgets的数据是如何显示到屏幕"></a>Widgets的数据是如何显示到屏幕</h2><p><strong>前提：</strong></p>
+<ol>
+<li>屏幕刷新有对应UI task，周期性的执行：<code>_lv_disp_refr_task</code></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// UI 刷新task启动：</span></span><br><span class="line"><span class="comment">// main.c main() --&gt; hal_init() --&gt; lv_disp_drv_register(&amp;disp_drv);</span></span><br><span class="line"><span class="comment">// lv_hal_disp.c --&gt; lv_disp_drv_register函数中</span></span><br><span class="line">disp-&gt;refr_task = lv_task_create(_lv_disp_refr_task, LV_DISP_DEF_REFR_PERIOD, LV_REFR_TASK_PRIO, disp);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>UI的刷新不是每次全部刷新，而是只刷新更新数据的区域</li>
+</ol>
+<p><strong>流程：</strong></p>
+<ol>
+<li>Widget在设置数据的时候，会告诉<code>lv_disp_t</code>“显示屏”哪块区域需要重新绘制（标记）</li>
+<li>当UI task开始执行时，<code>lv_disp_t</code>“显示屏”会调用driver驱动，去刷新对应的区域</li>
+</ol>
+<p><strong>流程详解：</strong></p>
+<ul>
+<li>无论是lv_lable_t的<code>lv_label_set_text(label, text)</code>，还是lv_img_t的<code>lv_img_set_src(img, src_img);</code>；都会去调用<code>lv_obj_invalidate(obj);</code>，标记需要重新绘制</li>
+<li>“区域”会保存到<code>lv_disp_t</code>的<code>inv_areas</code>数组字段中，<code>inv_p</code>会记录个数，也就是数组长度；</li>
+<li>当UI的task开始执行里，<ul>
+<li>调用<code>_lv_disp_refr_task</code> UI刷新task<ul>
+<li>调用<code>lv_refr_vdb_flush</code> 把内容刷新到UI上<ul>
+<li>调用driver去刷新屏幕：<code>disp-&gt;driver.flush_cb(&amp;disp-&gt;driver, &amp;vdb-&gt;area, vdb-&gt;buf_act);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>下面是结构体<code>lv_disp_t</code>，保留了关键字段：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">disp_t</span> &#123;</span></span><br><span class="line">    <span class="type">lv_disp_drv_t</span> driver; <span class="comment">/**&lt; Driver to the display*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Invalidated (marked to redraw) areas*/</span></span><br><span class="line">    <span class="type">lv_area_t</span> inv_areas[LV_INV_BUF_SIZE];</span><br><span class="line">    <span class="type">uint8_t</span>   inv_area_joined[LV_INV_BUF_SIZE];</span><br><span class="line">    <span class="type">uint32_t</span>  inv_p : <span class="number">10</span>;</span><br><span class="line">&#125; <span class="type">lv_disp_t</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个<code>driver.flush_cb()</code>看着是不是有几分眼熟？对，就是main.c中初始化hal层<code>hal_init()</code>，设置的<code>disp_drv.flush_cb = xxx_flush;</code>。LVGL也不知道内容显示到哪里去，所以暴露了出来</p>
+</blockquote>
+<p>这里只是简单的概括下流程，实际情况会复杂些，包括显示的数据内容，以及多个相交的区域处理。以及有的控件重绘，会导致其它的区域也需要重绘</p>
+<h2 id="屏幕点击事件，是如何传递到对应空间的事件回调中"><a href="#屏幕点击事件，是如何传递到对应空间的事件回调中" class="headerlink" title="屏幕点击事件，是如何传递到对应空间的事件回调中"></a>屏幕点击事件，是如何传递到对应空间的事件回调中</h2><p>我点击了屏幕TP，如何传递并调用我设置的回调函数<code>lv_obj_set_event_cb(obj, event_cb);</code></p>
+<p><strong>前提：</strong></p>
+<ol>
+<li>对应有一个task任务在不停的获取点击屏幕的坐标</li>
+</ol>
+<p><strong>流程：</strong></p>
+<ol>
+<li>读取点击到的坐标x、y，以及状态state(press/release)</li>
+<li>在press按压的时候搜索对应的Widget，递归查找<ul>
+<li>三层上搜索：sys layer &gt; top layer &gt; scr_act layer</li>
+<li>Widgets之间的关系：子父关系。root根是屏幕，一个屏幕可以对应一个或多个子widgets</li>
+</ul>
+</li>
+<li>按不同的情况触发不同的事件：<code>lv_event_send(indev_obj_act, LV_EVENT_XXX, NULL);</code></li>
+<li>内部会调用到创建Widget时设置的回调函数</li>
+</ol>
+<p><strong>代码跟踪流程：</strong></p>
+<ul>
+<li>_lv_indev_read_task<ul>
+<li>_lv_indev_read<ul>
+<li>indev-&gt;driver.read_cb(&amp;indev-&gt;driver, data); // mouse_read 读取点击的x、y，以及是state(press/release)</li>
+</ul>
+</li>
+<li>indev_button_proc<ul>
+<li>indev_proc_press<ul>
+<li>lv_indev_search_obj:lv_disp_get_layer_sys &gt; lv_disp_get_layer_top &gt; lv_disp_get_scr_act<ul>
+<li>递归遍历,找到对应的obj</li>
+</ul>
+</li>
+<li>lv_event_send(indev_obj_act, LV_EVENT_XXX, NULL);<ul>
+<li>lv_event_send_func(obj-&gt;event_cb, obj, event, data);<ul>
+<li>if(event_xcb) event_xcb(obj, event); // 调用你最开始设置的回调</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="不同控件之间有什么关系？为什么返回的都是lv-obj-t"><a href="#不同控件之间有什么关系？为什么返回的都是lv-obj-t" class="headerlink" title="不同控件之间有什么关系？为什么返回的都是lv_obj_t"></a>不同控件之间有什么关系？为什么返回的都是lv_obj_t</h2><p><code>lv_obj_t</code>通过一个<code>void*</code>拓展成不同的Widget，<code>lv_obj_t</code>定义共有/通用的部分，每个特别的Widget定义自己独特的部分，命名为<code>lv_xxx_ext_t</code>，比如<code>lv_label_ext_t</code>，<code>lv_img_ext_t</code>…</p>
+<p><strong>lv_obj_t：</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">lv_obj_t</span> &#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">void</span>* ext_attr; <span class="comment">// 指向</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="type">lv_obj_t</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>lv_label_ext_t：</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> * text;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="type">char</span> * tmp_ptr;</span><br><span class="line">        <span class="type">char</span> tmp[LV_LABEL_DOT_NUM + <span class="number">1</span>];</span><br><span class="line">    &#125; dot;</span><br><span class="line"></span><br><span class="line">    <span class="type">uint32_t</span> dot_end;</span><br><span class="line">    <span class="type">uint16_t</span> anim_speed;</span><br><span class="line">    <span class="type">lv_point_t</span> offset;</span><br><span class="line">    <span class="type">lv_draw_label_hint_t</span> hint;</span><br><span class="line"></span><br><span class="line">    <span class="type">uint32_t</span> sel_start;</span><br><span class="line">    <span class="type">uint32_t</span> sel_end;</span><br><span class="line"></span><br><span class="line">    <span class="type">lv_label_long_mode_t</span> long_mode : <span class="number">3</span>;</span><br><span class="line">    <span class="type">uint8_t</span> static_txt : <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint8_t</span> align : <span class="number">2</span>;</span><br><span class="line">    <span class="type">uint8_t</span> recolor : <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint8_t</span> expand : <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint8_t</span> dot_tmp_alloc : <span class="number">1</span>;</span><br><span class="line">&#125; <span class="type">lv_label_ext_t</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>lv_img_ext_t：</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>* src;</span><br><span class="line">    <span class="type">lv_point_t</span>  offset;</span><br><span class="line">    <span class="type">lv_coord_t</span>  w;</span><br><span class="line">    <span class="type">lv_coord_t</span>  h;</span><br><span class="line">    <span class="type">uint16_t</span>    angle;</span><br><span class="line">    <span class="type">lv_point_t</span>  pivot;</span><br><span class="line">    <span class="type">uint16_t</span>    zoom;</span><br><span class="line">    <span class="type">uint8_t</span>     src_type : <span class="number">2</span>;</span><br><span class="line">    <span class="type">uint8_t</span>     auto_size : <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint8_t</span>     cf : <span class="number">5</span>;</span><br><span class="line">    <span class="type">uint8_t</span>     antialias : <span class="number">1</span>;</span><br><span class="line">&#125; <span class="type">lv_img_ext_t</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>v8.0版本更改：</strong></p>
+<p><code>lv_label_t</code>嵌套<code>lv_obj_t</code>，嵌套结构体更加符合面向对象语言中的<strong>继承关系</strong>，父类有的子类会继承过来；改成嵌套结构体，可能还有一个原因：早前版本的<code>lv_xxx_create</code>至少会有两次malloc申请内存，一次malloc <code>lv_obj_t</code>，一次malloc <code>lv_xxx_ext_t</code>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">lv_obj_t</span> obj;</span><br><span class="line">    <span class="type">char</span>*    text;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="type">char</span>* tmp_ptr;</span><br><span class="line">        <span class="type">char</span>  tmp[LV_LABEL_DOT_NUM + <span class="number">1</span>];</span><br><span class="line">    &#125; dot;</span><br><span class="line">    <span class="type">uint32_t</span> dot_end;</span><br><span class="line"></span><br><span class="line">    <span class="type">lv_draw_label_hint_t</span> hint;</span><br><span class="line"></span><br><span class="line">    <span class="type">uint32_t</span> sel_start;</span><br><span class="line">    <span class="type">uint32_t</span> sel_end;</span><br><span class="line"></span><br><span class="line">    <span class="type">lv_point_t</span>           offset;</span><br><span class="line">    <span class="type">lv_label_long_mode_t</span> long_mode : <span class="number">3</span>;</span><br><span class="line">    <span class="type">uint8_t</span>              static_txt : <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint8_t</span>              recolor : <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint8_t</span>              expand : <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint8_t</span>              dot_tmp_alloc : <span class="number">1</span>;</span><br><span class="line">&#125; <span class="type">lv_label_t</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="图片解码、缓存流程，显示"><a href="#图片解码、缓存流程，显示" class="headerlink" title="图片解码、缓存流程，显示"></a>图片解码、缓存流程，显示</h2><ol>
+<li>设置数据阶段：</li>
+</ol>
+<ul>
+<li>lv_img_set_src<ul>
+<li>lv_img_decoder_get_info</li>
+<li>标记这块区域要刷新</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>刷新绘制阶段：</li>
+</ol>
+<ul>
+<li>_lv_disp_refr_task<ul>
+<li>lv_refr_areas<ul>
+<li>lv_refr_area<ul>
+<li>lv_refr_area_part<ul>
+<li>lv_refr_obj<ul>
+<li>obj-&gt;design_cb(obj, &amp;obj_ext_mask, LV_DESIGN_DRAW_MAIN);// 调用widget自己的绘制函数</li>
+</ul>
+</li>
+<li>lv_refr_obj_and_children</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>调用widget自己的design函数：lv_xxx_design</li>
+</ol>
+<ul>
+<li>lv_img_design<ul>
+<li>lv_img_draw<ul>
+<li>lv_img_draw_core<ul>
+<li>_lv_img_cache_open 缓存  list(20)img<ul>
+<li>lv_img_decoder_open<ul>
+<li>_LV_LL_READ(LV_GC_ROOT(_lv_img_defoder_ll), d) // 尝试使用不同的解码器去解码：png/jpeg<ul>
+<li>info / open</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><h3 id="内存lv-mem-c"><a href="#内存lv-mem-c" class="headerlink" title="内存lv_mem.c"></a>内存lv_mem.c</h3><p>lvgl分配内存函数<code>void * lv_mem_alloc(size_t size);</code>，如果你使用的内存超出了你分配的内存，不会有段错误，然后会导致整个内存分配系统不可用</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span>* p = lv_mem_alloc(<span class="number">8</span>);</span><br><span class="line"><span class="type">char</span>* buffer = <span class="string">&quot;hello lvgl !!!&quot;</span>;</span><br><span class="line"><span class="built_in">memset</span>(p, buffer, <span class="built_in">strlen</span>(buffer));</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2078,246 +2365,6 @@
 <h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">-100</span>, <span class="number">100</span>);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Refrences</strong>:<br><span class="exturl" data-url="aHR0cHM6Ly93aXphcmRmb3JjZWwuZ2l0Ym9va3MuaW8vMTAwLWdkYi10aXBzL2NvbnRlbnQvaW5kZXguaHRtbA==">https://wizardforcel.gitbooks.io/100-gdb-tips/content/index.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saW51eHRvb2xzLXJzdC5yZWFkdGhlZG9jcy5pby96aF9DTi9sYXRlc3QvdG9vbC9nZGIuaHRtbA==">https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/03/docker%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/docker%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">【Tools】Docker入门</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-28 16:44:08" itemprop="dateCreated datePublished" datetime="2021-03-28T16:44:08+08:00">2021-03-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/03/docker%E5%85%A5%E9%97%A8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/03/docker入门/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在公司开发项目的时候，为了避免不出什么幺蛾子，会尽量保证多人的开发环境一致：系统版本，编译器版本，甚至交叉编译器目录都安装成一样的，避免因为环境出错而导致的不必要的成本.一切都运行的很好，直到有次遇到了问题，需要到杜工电脑上编译时，可能编译过多个项目的代码，依赖库的版本也可能和我们的环境不一样，折腾了二十分钟，最后还是在我电脑编译了发给他.</p>
-<p>我电脑之前就因为不同项目有依赖同一个软件的不同版本，最后电脑崩了，直接新装了系统.</p>
-<p><strong>问题场景：</strong></p>
-<ul>
-<li>一个人的主机编译不同的项目，不同的项目可能会依赖同一个软件/库的不同版本.有的项目依赖java5，有的依赖java8</li>
-<li>项目的开发，测试和部署环境不一致.导致：”我这儿都跑的好好的，怎么在你那里运行就有问题”</li>
-<li>程序部署到不同系统环境的server，(公司的不台服务器装有不同的系统，又或者你把程序发给客户)</li>
-</ul>
-<p>前者导致自己维护主机的环境困难，可能会和我一样弄的重装系统；后者导致会增加一些不必要的工作</p>
-<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>如果我给一个项目创建一个虚拟机，这个问题就能解决了.这个虚拟机的运行环境专门为这个项目定制的</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>占用资源高：占CPU，占内存，占磁盘</li>
-<li>启动慢：需要先启动一个系统</li>
-<li>共享麻烦：环境共享给别人时，拷贝一个系统实例?</li>
-</ul>
-<h2 id="Docker介绍"><a href="#Docker介绍" class="headerlink" title="Docker介绍"></a>Docker介绍</h2><p>官网：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbS8=">https://www.docker.com/<i class="fa fa-external-link-alt"></i></span></p>
-<p>Docker中的容器是虚拟了操作系统，而虚拟机虚拟了硬件资源</p>
-<p>能<strong>保证开发，测试，部署的环境一致（编译环境和运行环境）</strong>，和主机无关的环境</p>
-<p><img src="/images/docker/image-20210328205725519.png" alt="image-20210328205725519"></p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>占用资源低：用多少给多少</li>
-<li>启动快：像本地启动一个进程一样快</li>
-<li>共享方便：共享一个Dockerfile文件；或者共享一个docker hub的链接</li>
-<li>管理方便：不用就删了</li>
-</ul>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><img src="/images/docker/image-20210328202950078.png" alt="image-20210328202950078"></p>
-<ul>
-<li>镜像image：和虚拟机类比，就是系统镜像文件(里面包括一个程序必要的<strong>编译</strong>或<strong>运行环境</strong>)</li>
-<li>容器container：和虚拟机类比，就是安装好的虚拟机系统</li>
-<li>docker hub：一个下载镜像image的远程仓库，</li>
-<li>Dockerfile文件：一个用于创建镜像image的规则文件(添加软件去年依赖)</li>
-</ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>官网文档：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZ2V0LWRvY2tlci8=">https://docs.docker.com/get-docker/<i class="fa fa-external-link-alt"></i></span></p>
-<h4 id="Ubuntu安装："><a href="#Ubuntu安装：" class="headerlink" title="Ubuntu安装："></a>Ubuntu安装：</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.Update the apt package index and install packages to allow apt to use a repository over HTTPS:</span></span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg \</span><br><span class="line">    lsb-release</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.Add Docker’s official GPG key:</span></span><br><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.添加源（注意：当前是x86_64/amd64，其它的请参考官方文档）</span></span><br><span class="line">$ <span class="built_in">echo</span> \</span><br><span class="line">  <span class="string">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">  <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.安装docker</span></span><br><span class="line">$ sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Note：</p>
-<ol>
-<li><p>如果架构不是x86_64/amd64，去看文档找对应的；</p>
-</li>
-<li><p>另外，安装出问题了看官方文档，已官方文档为主，当前安装文档只是官方文档某个时间文档的快照</p>
-</li>
-</ol>
-</blockquote>
-<h4 id="Windows和MacOS安装："><a href="#Windows和MacOS安装：" class="headerlink" title="Windows和MacOS安装："></a>Windows和MacOS安装：</h4><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZ2V0LWRvY2tlci8=">https://docs.docker.com/get-docker/<i class="fa fa-external-link-alt"></i></span> 下载对应平台的安装包，然后双击、下一步、下一步、就可以了</p>
-<p>Windows和MacOS版本会有界面</p>
-<h4 id="配置镜像源"><a href="#配置镜像源" class="headerlink" title="配置镜像源"></a>配置镜像源</h4><p>是用来解决docker下载镜像慢问题，使用docker官方的镜像：<span class="exturl" data-url="aHR0cHM6Ly9yZWdpc3RyeS5kb2NrZXItY24uY29tLw==">https://registry.docker-cn.com<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>Ubuntu：</strong></p>
-<p>修改 <code>/etc/docker/daemon.json</code> 文件并添加上 registry-mirrors 键值。（如果文件不存在，请新建该文件）</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://registry.docker-cn.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>修改保存后重启 Docker 以使配置生效。Ubuntu重启Docker：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<p><strong>MacOS：</strong></p>
-<p>设置–&gt;Docker Engine：</p>
-<p><img src="/images/docker/image-20210825165057417.png" alt="image-20210825165057417"></p>
-<h3 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h3><h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看子命令的help: docker subcommand --help</span></span><br><span class="line">$ docker image --<span class="built_in">help</span></span><br><span class="line">$ docker container --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="镜像image相关命令"><a href="#镜像image相关命令" class="headerlink" title="镜像image相关命令"></a>镜像image相关命令</h4><p>Dockerhub：<span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS8=">https://hub.docker.com/<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看本机的镜像列表</span></span><br><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line"><span class="comment"># pull/push</span></span><br><span class="line"><span class="comment"># docker pull [OPTIONS] NAME[:TAG|@DIGEST]</span></span><br><span class="line">$ docker pull image_name <span class="comment"># 从docker hub拉取Ubuntu镜像</span></span><br><span class="line">$ docker push image_name <span class="comment"># 把本地镜像推到docker hub (可能需要用docker tag先重命令，需要和docker hub中的同名)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个tag</span></span><br><span class="line">$ docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存/导入镜像(共享给其它人同一个环境)</span></span><br><span class="line">$ docker save -o ubuntu.tar ubuntu20</span><br><span class="line">$ docker import ubuntu.tar ubuntu20_import:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># rm image</span></span><br><span class="line">$ docker rmi image_name</span><br></pre></td></tr></table></figure>
-
-<h4 id="容器container相关命令"><a href="#容器container相关命令" class="headerlink" title="容器container相关命令"></a>容器container相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker run [OPTIONS] IMAGE</span></span><br><span class="line"><span class="comment"># 用某个镜像image创建container</span></span><br><span class="line">$ docker run --name ubuntu20 -d ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于镜像ubuntu，创建名为ubuntu20的容器，并以交互的模式启动容器ubuntu20</span></span><br><span class="line"><span class="comment"># 	-name:指定创建的容器名为ubuntu20</span></span><br><span class="line"><span class="comment">#		-i:交互模式运行</span></span><br><span class="line"><span class="comment">#   -t:分配一个终端</span></span><br><span class="line">$ docker run --name ubuntu20 \</span><br><span class="line">					-i -t ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于镜像ubuntu，创建名为ubuntu20的容器，并以交互的模式启动容器ubuntu20</span></span><br><span class="line"><span class="comment"># 	-w:指定工作目录，进入到容器之后的目录</span></span><br><span class="line"><span class="comment"># 	-v:把本机的目录/home/shibin/repo/linux-kit，映射到容器的目录/workspace/linux-kit</span></span><br><span class="line">$ docker run --name ubuntu20 \</span><br><span class="line">					-w /workspace/linux-kit \</span><br><span class="line">					-v /home/shibin/repo/linux-kit:/workspace/linux-kit \</span><br><span class="line">					-it ubuntu <span class="comment"># 创建一个容器container，并启动容器container，以交互的方式运行</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前container的状态</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">$ docker start container_name/id    <span class="comment"># 启动一个容器container</span></span><br><span class="line">$ docker start -i container_name/id <span class="comment"># (i/interactive)启动一个容器container，交互模式运行</span></span><br><span class="line">$ docker restart container_name/id  <span class="comment"># 重启</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入到正在运行的container</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it webserver bash</span><br><span class="line">$ docker attach container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将容器保存为镜像</span></span><br><span class="line"><span class="comment"># -a 作者</span></span><br><span class="line"><span class="comment"># -m message</span></span><br><span class="line">$ docker commit -a shibin -m <span class="string">&quot;linux-kit dev env&quot;</span> cb9050bdc3cc linux-kit:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">$ docker stop container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器container</span></span><br><span class="line">$ docker <span class="built_in">rm</span> container_name/id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器运行的log</span></span><br><span class="line">$ docker logs container_name/id    <span class="comment"># 查看下log，并退出</span></span><br><span class="line">$ docker logs -f container_name/id <span class="comment"># (f/follow)查看log，不退出</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Dockerfile相关命令和语法"><a href="#Dockerfile相关命令和语法" class="headerlink" title="Dockerfile相关命令和语法"></a>Dockerfile相关命令和语法</h4><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL3JlZmVyZW5jZS9idWlsZGVyLw==">https://docs.docker.com/engine/reference/builder/<i class="fa fa-external-link-alt"></i></span></p>
-<p>Dockerfile是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。</p>
-<p><strong>语法：</strong></p>
-<ul>
-<li><strong>FROM</strong>：定义使用哪个为基础镜像</li>
-<li><strong>RUN</strong>：执行shell命令</li>
-<li>ENV：设置环境变量</li>
-<li>COPY：将主机的文件复制到容器内</li>
-<li>ADD：更高级的复制文件，如果 <code>&lt;源路径&gt;</code> 为一个 <code>tar</code> 压缩文件的话，压缩格式为 <code>gzip</code>, <code>bzip2</code> 以及 <code>xz</code> 的情况下，会解压</li>
-<li>VOLUME：将主机的文件映射到容器内</li>
-<li>EXPOSE：声明容器运行时提供服务的端口</li>
-<li>WORKDIR：工作目录</li>
-<li>CMD：最后执行的命令</li>
-</ul>
-<p><strong>Dockerfile文件example</strong></p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">20.04</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash">  apt-get update \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">export</span> DEBIAN_FRONTEND=<span class="string">&quot;noninteractive&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get install -y locales build-essential cmake cppcheck valgrind gdb vim \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get autoremove -y \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get clean -y \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> /opt/arm-linux-gnueabihf /opt/arm-linux-gnueabihf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> PATH=<span class="string">&quot;/opt/arm-linux-gnueabihf/bin:$&#123;PATH&#125;&quot;</span></span><br><span class="line"><span class="keyword">ENV</span> LANG=en_US.utf8</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /workspace/linux-kit</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;echo&quot;</span>, <span class="string">&quot;hello dockerfile&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>生成镜像</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker build -t image_name . <span class="comment"># .是指Dockerfile文件所在的目录</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>通过镜像启动container</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run --name container_name \</span><br><span class="line">					-w /workspace/linux-kit \</span><br><span class="line">					-v /home/shibin/repo/linux-kit:/workspace/linux-kit \ <span class="comment"># 映射项目代码</span></span><br><span class="line">					-it ubuntu \</span><br><span class="line">					bash -c <span class="string">&quot;echo hello container&quot;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 总结：镜像是用来构建程序的编译或运行环境，在运行项目的时候把代码映射进去</p>
-</blockquote>
-<h2 id="Docker实践"><a href="#Docker实践" class="headerlink" title="Docker实践"></a>Docker实践</h2><p>目标：构建Linux-kit的交叉编译环境，并分发给其它同事，保证统一的编译环境</p>
-<p><strong>步骤：</strong></p>
-<ol>
-<li>启动一个Container实例（image -&gt; container）</li>
-<li>为项目定制镜像Image，编写Dockerfile（Dockerfile -&gt; image）</li>
-<li>把交叉编译器和代码映射进去</li>
-<li>分发共享这个环境（镜像）</li>
-</ol>
-<h3 id="启动一个容器Container实例"><a href="#启动一个容器Container实例" class="headerlink" title="启动一个容器Container实例"></a>启动一个容器Container实例</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -it --name linux-kit ubuntu:latest bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># --rm：退出则删除Container</span></span><br><span class="line">$ docker run -it --<span class="built_in">rm</span> --name linux-kit ubuntu:latest bash</span><br></pre></td></tr></table></figure>
-
-<h3 id="为项目定制镜像Image，编写Dockerfile"><a href="#为项目定制镜像Image，编写Dockerfile" class="headerlink" title="为项目定制镜像Image，编写Dockerfile"></a>为项目定制镜像Image，编写Dockerfile</h3><p>Dockerfile文件：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">20.04</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash">  apt-get update \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">export</span> DEBIAN_FRONTEND=<span class="string">&quot;noninteractive&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get install -y locales build-essential cmake cppcheck valgrind gdb vim \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get autoremove -y \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get clean -y \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> /opt/arm-linux-gnueabihf /opt/arm-linux-gnueabihf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> PATH=<span class="string">&quot;/opt/arm-linux-gnueabihf/bin:$&#123;PATH&#125;&quot;</span></span><br><span class="line"><span class="keyword">ENV</span> LANG=en_US.utf8</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /workspace/linux-kit</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;echo&quot;</span>, <span class="string">&quot;hello dockerfile&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
-
-<p>构建镜像image：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker build -t linux-kit:latest . <span class="comment"># .是指Dockerfile文件所在的目录</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="把交叉编译器和代码映射到Container"><a href="#把交叉编译器和代码映射到Container" class="headerlink" title="把交叉编译器和代码映射到Container"></a>把交叉编译器和代码映射到Container</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 运行Container环境；把编译器，代码mount上去</span></span><br><span class="line">$ docker run -it \</span><br><span class="line">    -v /opt/arm-linux-gnueabihf:/opt/arm-linux-gnueabihf \</span><br><span class="line">    -v /home/shibin/repo/linux-kit:/workspace/linux-kit \</span><br><span class="line">    --<span class="built_in">env</span> PATH=/opt/arm-linux-gnueabihf/bin:<span class="variable">$PATH</span> \</span><br><span class="line">    --name linux-kit linux-kit:latest \</span><br><span class="line">    bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果上一步成功，会进入到容器内</span></span><br><span class="line"><span class="comment"># bash CMD: do something what you want 编译、运行、测试</span></span><br></pre></td></tr></table></figure>
-
-<p>在次启动和进入容器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方式1：直接启动容器Container，并进入</span></span><br><span class="line">$ docker start -i linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2：先启动容器Container，然后进入</span></span><br><span class="line">$ docker start linux-kit</span><br><span class="line">$ docker <span class="built_in">exec</span> -it linux-kit bash</span><br></pre></td></tr></table></figure>
-
-<h3 id="分发共享这个环境（镜像）"><a href="#分发共享这个环境（镜像）" class="headerlink" title="分发共享这个环境（镜像）"></a>分发共享这个环境（镜像）</h3><p>共享这一套环境给其它开发人员</p>
-<h4 id="分发方式："><a href="#分发方式：" class="headerlink" title="分发方式："></a>分发方式：</h4><ol>
-<li><strong>分发Dockerfile文件</strong></li>
-<li>上传到Docker hub</li>
-<li>分发镜像文件：<ul>
-<li>把镜像打包分享</li>
-<li>把Container打包成镜像分享</li>
-</ul>
-</li>
-</ol>
-<h4 id="分发Dockerfile文件："><a href="#分发Dockerfile文件：" class="headerlink" title="分发Dockerfile文件："></a>分发Dockerfile文件：</h4><p>一般把Dockerfile文件放在项目根目录下，开发人员自行远程下载，组装镜像环境，配置自己的项目目录，编译器目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -it \</span><br><span class="line">    -v /opt/arm-linux-gnueabihf:/opt/arm-linux-gnueabihf \</span><br><span class="line">    -v /home/shibin/repo/linux-kit:/workspace/linux-kit \</span><br><span class="line">    --<span class="built_in">env</span> PATH=/opt/arm-linux-gnueabihf/bin:<span class="variable">$PATH</span> \</span><br><span class="line">    --name linux-kit linux-kit:latest \</span><br><span class="line">    bash</span><br></pre></td></tr></table></figure>
-
-<p>最佳实践：本地的项目文件或是交叉编译器文件，建议映射（mount）到容器中，不建议拷贝进去。文件都本地方便管理，项目文件方便代码版本管理，Image和Container的性质是：不用随时可以删除。</p>
-<h4 id="上传到Docker-hub："><a href="#上传到Docker-hub：" class="headerlink" title="上传到Docker hub："></a>上传到Docker hub：</h4><p>todo：</p>
-<h4 id="分发镜像文件："><a href="#分发镜像文件：" class="headerlink" title="分发镜像文件："></a>分发镜像文件：</h4><h5 id="把镜像打包分享"><a href="#把镜像打包分享" class="headerlink" title="把镜像打包分享"></a>把镜像打包分享</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.保存镜像linux-kit到linux-kit.tar</span></span><br><span class="line">$ docker save -o linux-kit.tar linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.从linux-kit.tar导入镜像，新的镜像名是linux-kit</span></span><br><span class="line">$ docker import linux-kit.tar linux-kit:latest</span><br></pre></td></tr></table></figure>
-
-<h5 id="把Container打包成镜像分享"><a href="#把Container打包成镜像分享" class="headerlink" title="把Container打包成镜像分享"></a>把Container打包成镜像分享</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.把Container(cb9050bdc3cc)保存为镜像linux-kit:latest</span></span><br><span class="line">$ docker commit \</span><br><span class="line">    -a shibin \</span><br><span class="line">    -m <span class="string">&quot;linux-kit dev env&quot;</span> \</span><br><span class="line">    cb9050bdc3cc linux-kit:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.保存镜像linux-kit到linux-kit.tar</span></span><br><span class="line">$ docker save -o linux-kit.tar linux-kit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.从linux-kit.tar导入镜像，新的镜像名是linux-kit:latest</span></span><br><span class="line">$ docker import linux-kit.tar linux-kit:latest</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Docker-compose"><a href="#Docker-compose" class="headerlink" title="Docker compose"></a>Docker compose</h2><p>文档：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vY29tcG9zZS8=">https://docs.docker.com/compose/<i class="fa fa-external-link-alt"></i></span></p>
-<p>如果容器多了，管理就成了问题，启动的命令也这么长，不可能一个个的敲，把这些写到配置文件<code>docker-compose.yml</code>里面，</p>
-<p>一个简单的命令就能开启一个或多个container</p>
-<p><strong>docker-compose.yml示例</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.4&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">service_name:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">image_name</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/home/shibin/repo/linux-kit:/workspace/linux-kit</span></span><br><span class="line">    <span class="attr">working_dir:</span> <span class="string">/workspace/linux-kit</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">bash</span> <span class="string">-c</span> <span class="string">&quot;echo hello docker-compose&quot;</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">  	<span class="string">xxx</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">  	<span class="string">xxx</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>启动</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker-compose up</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="VSCode整合Docker"><a href="#VSCode整合Docker" class="headerlink" title="VSCode整合Docker"></a>VSCode整合Docker</h2><p>VSCode整合Docker，搭建开发环境</p>
-<p>文档：<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9yZW1vdGUvY29udGFpbmVycw==">https://code.visualstudio.com/docs/remote/containers<i class="fa fa-external-link-alt"></i></span></p>
-<p>安装插件：Remote - Containers</p>
-<p>实现：在Container里面装了一个VS Code Server，</p>
-<p><img src="/images/docker/image-20210328215327455.png" alt="image-20210328215327455"></p>
-<h2 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h2><p>书籍：<span class="exturl" data-url="aHR0cHM6Ly95ZWFzeS5naXRib29rLmlvL2RvY2tlcl9wcmFjdGljZS8=">Docker-从入门到实践<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

@@ -175,12 +175,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -223,6 +223,139 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/08/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">【Personal】阅读源码的技巧</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-22 15:58:11" itemprop="dateCreated datePublished" datetime="2021-08-22T15:58:11+08:00">2021-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Personal/" itemprop="url" rel="index"><span itemprop="name">Personal</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/08/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%8A%80%E5%B7%A7/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/08/阅读源码的技巧/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="阅读源码的技巧"><a href="#阅读源码的技巧" class="headerlink" title="阅读源码的技巧:"></a>阅读源码的技巧:</h2><ul>
+<li>前提：熟悉它的作用和功能</li>
+<li>有目的的看代码</li>
+<li>从代码的流程看</li>
+<li>从代码的架构看</li>
+<li>从代码的分类看</li>
+<li>调试Debug分析</li>
+<li>找核心代码（<strong>删代码</strong>）</li>
+<li>辅助工具：画图</li>
+</ul>
+<p>todo：</p>
+<h2 id="前提：熟悉它的作用和功能"><a href="#前提：熟悉它的作用和功能" class="headerlink" title="前提：熟悉它的作用和功能"></a>前提：熟悉它的作用和功能</h2><p>你不能说，对这个框架、库、工具功能都不熟悉，就去看它的源码，这就有点扯</p>
+<h2 id="有目的的看代码"><a href="#有目的的看代码" class="headerlink" title="有目的的看代码"></a>有目的的看代码</h2><ul>
+<li>架构是如何设计的</li>
+<li>某个功能是如何实现的</li>
+<li>…</li>
+</ul>
+<h2 id="从代码的架构看"><a href="#从代码的架构看" class="headerlink" title="从代码的架构看"></a>从代码的架构看</h2><h2 id="从代码的流程看"><a href="#从代码的流程看" class="headerlink" title="从代码的流程看"></a>从代码的流程看</h2><p>一般程序的三阶段：</p>
+<ol>
+<li>初始化</li>
+<li>正常运行（工作中）</li>
+<li>关闭（正常关闭）</li>
+</ol>
+<h2 id="从代码的分类看"><a href="#从代码的分类看" class="headerlink" title="从代码的分类看"></a>从代码的分类看</h2><ul>
+<li>流程型</li>
+<li>处理型</li>
+</ul>
+<p>这两个名字是我自己起的：</p>
+<h3 id="流程型："><a href="#流程型：" class="headerlink" title="流程型："></a>流程型：</h3><p>类似处理流程一样，按流程第1步，第2步，第3步…</p>
+<h3 id="处理型："><a href="#处理型：" class="headerlink" title="处理型："></a>处理型：</h3><p>这种代码可以看上去一大坨代码，实际核心的代码就一两行，其它的代码都是为这一两行代码做铺垫</p>
+<h2 id="调试Debug分析"><a href="#调试Debug分析" class="headerlink" title="调试Debug分析"></a>调试Debug分析</h2><p>这个不用说了，对于跟踪代码流程，和实现细节都很有帮助，懂的都懂</p>
+<h2 id="找核心代码（删代码）"><a href="#找核心代码（删代码）" class="headerlink" title="找核心代码（删代码）"></a>找核心代码（<strong>删代码</strong>）</h2><p>代码写多了，看多了，会发现一个问题：好的代码都差不多，不好的代码千奇百怪</p>
+<p>从单个函数看，一般代码分为三部分：</p>
+<ol>
+<li>条件不满足</li>
+<li>数据准备阶段</li>
+<li>核心处理函数调用</li>
+</ol>
+<h2 id="利用辅助工具：画图、笔记"><a href="#利用辅助工具：画图、笔记" class="headerlink" title="利用辅助工具：画图、笔记"></a>利用辅助工具：画图、笔记</h2><ul>
+<li>脑子不够用了才发明了文字，图画</li>
+<li>画图本身也是在理思路的一个过程，内化的过程</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2168,204 +2301,6 @@
 <li>手动刷新</li>
 </ol>
 <img src="/images/vscode/VSCode_image-20210422004320976.png" alt="Refresh explorer" style="zoom:67%;" />
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2021/04/GDB-get-start/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/GDB-get-start/" class="post-title-link" itemprop="url">【Debug】GDB上手</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-18 15:25:10" itemprop="dateCreated datePublished" datetime="2021-04-18T15:25:10+08:00">2021-04-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2021/04/GDB-get-start/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2021/04/GDB-get-start/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>官网:<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ251Lm9yZy9zb2Z0d2FyZS9nZGIv">https://www.gnu.org/software/gdb/<i class="fa fa-external-link-alt"></i></span><br>Debugging with GDB:<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2V3YXJlLm9yZy9nZGIvY3VycmVudC9vbmxpbmVkb2NzL2dkYi8=">https://sourceware.org/gdb/current/onlinedocs/gdb/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GDB, the GNU Project debugger, allows you to see what is going on `inside’ another program while it executes – or what another program was doing at the moment it crashed.</p>
-<p>GDB的功能:</p>
-<ul>
-<li>Start your program, specifying anything that might affect its behavior.</li>
-<li>Make your program stop on specified conditions.</li>
-<li>Examine what has happened, when your program has stopped.</li>
-<li>Change things in your program, so you can experiment with correcting the effects of one bug and go on to learn about another.</li>
-</ul>
-<h2 id="启动gdb"><a href="#启动gdb" class="headerlink" title="启动gdb"></a>启动gdb</h2><p>启动gdb之前,需要编译出debug版本的程序,编译时加<code>-g</code>选项</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -g main.c</span><br></pre></td></tr></table></figure>
-
-<p><strong>启动方法</strong>:</p>
-<ul>
-<li>调试直接启动程序</li>
-<li>调试一个正在运行的程序,attach</li>
-<li>调试core文件</li>
-</ul>
-<p><strong>调试直接启动程序</strong>:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt;</span></span><br><span class="line">$ gdb a.out</span><br></pre></td></tr></table></figure>
-
-<p><strong>调试一个正在运行的程序,attach</strong>:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt; &lt;PID&gt;</span></span><br><span class="line">$ gdb a.out 11127</span><br></pre></td></tr></table></figure>
-
-<p><strong>调试core文件</strong>:</p>
-<p>可以通过core文件调试程序来找到错误原因.比如跟踪常见的断错误</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 语法: gdb &lt;program&gt; &lt;core dump file&gt;</span></span><br><span class="line">$ gdb program core</span><br></pre></td></tr></table></figure>
-
-<h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><ul>
-<li><code>help</code></li>
-<li><code>help &lt;keyword&gt;</code></li>
-<li>tab键补全</li>
-<li>Enter回车:执行上一条命令</li>
-<li>大多命令都有简写</li>
-</ul>
-<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><ul>
-<li>设置断点:break/b</li>
-<li>查看断点:info breakpoints</li>
-<li>删除断点:delete</li>
-<li>关闭或开启断点:disable/enable<ul>
-<li>disable &lt;断点序列号&gt;:关闭指定序列号的断点</li>
-<li>enable &lt;断点序列号&gt;:开启指定序列号的断点</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置断点:break语法</span></span><br><span class="line"><span class="comment"># * break &lt;行号&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;文件名&gt;:&lt;行号&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;函数名&gt;</span></span><br><span class="line"><span class="comment"># * break &lt;文件名&gt;:&lt;函数名&gt;</span></span><br><span class="line">(gdb) <span class="built_in">break</span> 30          <span class="comment"># 设置30行为断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main.c:30   <span class="comment"># 设置main.c的30行断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main        <span class="comment"># 设置main函数为断点</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main.c:main <span class="comment"># 设置main.c文件的main函数为断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看断点</span></span><br><span class="line">(gdb) info breakpoints</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除断点:delete语法</span></span><br><span class="line"><span class="comment"># * delete &lt;断点序列号&gt;</span></span><br><span class="line"><span class="comment"># * delete breakpoints</span></span><br><span class="line">(gdb) delete 3              <span class="comment"># 删除序列号为3的断点</span></span><br><span class="line">(gdb) delete breakpoints    <span class="comment"># 删除所有断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它操作:disable/enable</span></span><br><span class="line"><span class="comment">#   * disable &lt;断点序列号&gt;:关闭指定序列号的断点</span></span><br><span class="line"><span class="comment">#   * enable &lt;断点序列号&gt;:开启指定序列号的断点</span></span><br><span class="line">(gdb) <span class="built_in">disable</span> 3</span><br><span class="line">(gdb) <span class="built_in">enable</span> 3</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
-<li>run/r:运行程序,当遇到断点后,程序会在断点处停止运行,等待用户输入下一步的命令</li>
-<li>next/n:单步跟踪程序,不会跳进去函数</li>
-<li>nexti:单步跟踪程序(汇编)</li>
-<li>continue/c:继续执行,到下一个断点处（或运行结束）</li>
-<li>step/s:单步调试如果有函数调用,则进入函数</li>
-<li>finish:运行程序,直到当前函数完成返回</li>
-<li>call:调用程序中可见的函数</li>
-<li>quit/q:退出</li>
-</ul>
-<h2 id="查看源代码"><a href="#查看源代码" class="headerlink" title="查看源代码"></a>查看源代码</h2><p>两种方式</p>
-<ul>
-<li>list/l<ul>
-<li>list &lt;行号&gt;:默认显示10行代码信息</li>
-<li>list &lt;函数名&gt;:以函数为中心,显示10行代码信息</li>
-<li>list &lt;文件名&gt;:&lt;函数名&gt;:</li>
-<li>show listsize:查看list命令显示的大小</li>
-<li>set listsize:设置list命令显示的大小</li>
-</ul>
-</li>
-<li>layout(src源代码/asm汇编/regs寄存器/分屏)<ul>
-<li>layout src:源代码</li>
-<li>layout asm:汇编</li>
-<li>layout regs:寄存器</li>
-<li>layout prev:上一种布局</li>
-<li>layout next:下一种布局</li>
-<li>refresh/Ctrl+L:刷新(屏幕出现花屏时使用)</li>
-</ul>
-</li>
-</ul>
-<h2 id="信息查看显示"><a href="#信息查看显示" class="headerlink" title="信息查看显示"></a>信息查看显示</h2><ul>
-<li>print/p:打印一个变量,取地址,表达式,函数</li>
-<li>backtrace full:打印栈里的所有局部变量</li>
-<li>display:类似print,每次单步调试都会输出</li>
-<li>undisplay:取消display的设置</li>
-<li>watch:监控变量,当变量变化时输出(删除watch使用delete命令)</li>
-<li>whatis:查询变量或函数信息</li>
-<li>info:查看相关信息<ul>
-<li>info breakpoints:查看断点设置</li>
-<li>info display:查看display设置</li>
-<li>info watchpoints:查看watch设置</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># print语法: print &lt;expression&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;变量&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;变量取地址&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;表达式&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;函数调用&gt;</span></span><br><span class="line">(gdb) <span class="built_in">print</span> a                       <span class="comment"># 变量值</span></span><br><span class="line">(gdb) <span class="built_in">print</span> &amp;a                      <span class="comment"># 取地址</span></span><br><span class="line">(gdb) <span class="built_in">print</span> a++                     <span class="comment"># 表达式</span></span><br><span class="line">(gdb) <span class="built_in">print</span> random_range(10, 20)    <span class="comment"># 函数调用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print 数组</span></span><br><span class="line"><span class="comment"># * print &lt;数据变量名&gt;</span></span><br><span class="line"><span class="comment"># * print &lt;数据变量名[index]@lenght&gt;</span></span><br><span class="line">(gdb) <span class="built_in">print</span> array       <span class="comment"># 打印数组</span></span><br><span class="line">(gdb) <span class="built_in">print</span> array[5]@10 <span class="comment"># 从第五个元素开始,打印10个元素</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="调试core文件"><a href="#调试core文件" class="headerlink" title="调试core文件"></a>调试core文件</h2><blockquote>
-<p>core文件:核心文件通常在系统收到特定的信号时由操作系统生成. 信号可以由程序执行过程中的异常触发,也可以由外部程序发送. 动作的结果一般是生成一个某个进程的内存转储的文件,文件包含了此进程当前的运行堆栈信息.</p>
-</blockquote>
-<p>系统默认不会产生core文件,默认core文件大小为0,需要设置<code>ulimit -c unlimited</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -a             <span class="comment"># 查看一个进程启动时的资源限制参数</span></span><br><span class="line">$ <span class="built_in">ulimit</span> -c unlimited   <span class="comment"># 设置core文件大小不设限制</span></span><br><span class="line">$ gdb a.out core</span><br><span class="line">(gdb) backtrace full</span><br></pre></td></tr></table></figure>
-<h2 id="多线程调试"><a href="#多线程调试" class="headerlink" title="多线程调试"></a>多线程调试</h2><p>todo…</p>
-<h2 id="远程调试"><a href="#远程调试" class="headerlink" title="远程调试"></a>远程调试</h2><blockquote>
-<p>如果远程和本地两台机架构相同:远程使用gdbserver,本地使用gdb<br>如果远程和本地两台机架构不同:远程使用gdbserver,本地使用gdb-multiarch</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 远程</span></span><br><span class="line">$ gdbserver :12345 a.out</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地</span></span><br><span class="line">$ gdb</span><br><span class="line">(gdb) target remote 127.0.0.1:port  <span class="comment"># 连接远程gdbserver</span></span><br><span class="line">(gdb) <span class="built_in">break</span> main                    <span class="comment"># 设置main函数断点</span></span><br><span class="line">(gdb) <span class="built_in">continue</span>                      <span class="comment"># 开始调试</span></span><br><span class="line">(gdb) next                          <span class="comment"># 单步调试</span></span><br><span class="line">(gdb) monitor <span class="built_in">exit</span>                  <span class="comment"># 关闭远程gdbserver</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">random_range</span><span class="params">(<span class="type">int</span> min_num, <span class="type">int</span> max_num)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (min_num &gt; max_num) &#123;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">1</span> + rand() % (max_num - min_num) + min_num;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span>* nil = <span class="literal">NULL</span>;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">        ret = random_range(<span class="number">-100</span>, <span class="number">100</span>);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">13</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;boom!\n&quot;</span>);</span><br><span class="line">            <span class="built_in">memcpy</span>(nil, &amp;ret, <span class="keyword">sizeof</span>(nil));  <span class="comment">// segmentation fault</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ret = %d\n&quot;</span>, ret);</span><br><span class="line">        usleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Refrences</strong>:<br><span class="exturl" data-url="aHR0cHM6Ly93aXphcmRmb3JjZWwuZ2l0Ym9va3MuaW8vMTAwLWdkYi10aXBzL2NvbnRlbnQvaW5kZXguaHRtbA==">https://wizardforcel.gitbooks.io/100-gdb-tips/content/index.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saW51eHRvb2xzLXJzdC5yZWFkdGhlZG9jcy5pby96aF9DTi9sYXRlc3QvdG9vbC9nZGIuaHRtbA==">https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html<i class="fa fa-external-link-alt"></i></span></p>
-
       
     </div>
 

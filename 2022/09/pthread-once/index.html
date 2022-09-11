@@ -33,7 +33,7 @@
 <meta property="og:description" content="前些天看adb的源代码，发现很多地方用了pthread_once去做相应模块的初始化，就去研究了下这个函数。  需求在使用任何的模块，编写代码一个很常见的步骤就是：  初始化 中间操作、工作代码 销毁、释放  文件操作，数据库操作、va_list、cJSON、日志框架基本都是这样。现在关注点放在上面的第一步在，初始化有几种常见的处理方式：  显示调用初始化 隐式调用初始化： 在使用时，用标记记录">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-07T14:18:20.000Z">
-<meta property="article:modified_time" content="2022-09-07T16:20:19.265Z">
+<meta property="article:modified_time" content="2022-09-08T13:25:04.564Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="pthread">
@@ -181,12 +181,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -384,8 +384,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/Bash/" rel="prev" title="【Bash】Bash小结">
-                  <i class="fa fa-chevron-left"></i> 【Bash】Bash小结
+                <a href="/2022/09/Electron/" rel="prev" title="【Electron】Electron上手">
+                  <i class="fa fa-chevron-left"></i> 【Electron】Electron上手
                 </a>
             </div>
             <div class="post-nav-item">

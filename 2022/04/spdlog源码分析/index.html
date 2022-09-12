@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -20,10 +20,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/config.min.js"></script>
 
     <meta name="description" content="公司QT项目有用到，就看了下它的源码；文章会介绍库的使用特点，核心的类和字段，然后讲同步日志，同步日志会把里面的概念基本过一遍；然后是异步日志，这个相对复杂点，理解起来其实也不复杂，就是一个mpmc，多生产者和多消费者模型，及线程池；异步才需要线程池，同步不需要  项目地址：https:&#x2F;&#x2F;github.com&#x2F;gabime&#x2F;spdlog Log框架主要面临的问题是什么？答案是：IO性能，Log">
 <meta property="og:type" content="article">
@@ -32,16 +32,16 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="公司QT项目有用到，就看了下它的源码；文章会介绍库的使用特点，核心的类和字段，然后讲同步日志，同步日志会把里面的概念基本过一遍；然后是异步日志，这个相对复杂点，理解起来其实也不复杂，就是一个mpmc，多生产者和多消费者模型，及线程池；异步才需要线程池，同步不需要  项目地址：https:&#x2F;&#x2F;github.com&#x2F;gabime&#x2F;spdlog Log框架主要面临的问题是什么？答案是：IO性能，Log">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wshibin.github.io/images/spdlog/image-2022082190245410%20AM.png">
-<meta property="og:image" content="https://wshibin.github.io/images/spdlog/image-2022082194624801%20AM.png">
+<meta property="og:image" content="https://wshibin.github.io/images/spdlog/image-2022082190245410_AM.png">
+<meta property="og:image" content="https://wshibin.github.io/images/spdlog/image-2022082194624801_AM.png">
 <meta property="article:published_time" content="2022-04-24T15:40:36.000Z">
-<meta property="article:modified_time" content="2022-08-21T01:51:37.414Z">
+<meta property="article:modified_time" content="2022-09-12T15:38:15.303Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="源码分析">
 <meta property="article:tag" content="spdlog">
 <meta property="article:tag" content="RTFC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/spdlog/image-2022082190245410%20AM.png">
+<meta name="twitter:image" content="https://wshibin.github.io/images/spdlog/image-2022082190245410_AM.png">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
@@ -54,9 +54,9 @@
 <title>【RTFC】spdlog源码分析 | WShiBin's blogs</title>
   
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
-  <script src="/js/third-party/analytics/google-analytics.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -69,6 +69,7 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "albpra1b9p");
 </script>
+
 
 
 
@@ -320,10 +321,10 @@
 </blockquote>
 <p>项目地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dhYmltZS9zcGRsb2c=">https://github.com/gabime/spdlog<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="Log框架主要面临的问题是什么？"><a href="#Log框架主要面临的问题是什么？" class="headerlink" title="Log框架主要面临的问题是什么？"></a>Log框架主要面临的问题是什么？</h2><p>答案是：IO性能，Log框架的核心在于把IO操作从当前的工作线程中移出去；下图是不同存储器访问需要的时钟周期差异：</p>
-<img src="/images/spdlog/image-2022082190245410 AM.png" style="zoom:50%;" />
+<img src="/images/spdlog/image-2022082190245410_AM.png" style="zoom:50%;" />
 
 <p>而且，在近几十年的改进并不是特别大（SSD的出现改进了不少）：</p>
-<img src="/images/spdlog/image-2022082194624801 AM.png" style="zoom:50%;" />
+<img src="/images/spdlog/image-2022082194624801_AM.png" style="zoom:50%;" />
 
 <p>IO操作会去调用<code>syscall</code>系统调用的<code>write</code>函数，对于<code>syscall</code>的优化，有两种常见的方式：一种是不用，怎么可能不用呢？简单的说就是：把以前需要调用内核态的函数，自己去在用户态自己实现下，Go语言里面有不少东西是这样做的，这样做的好处体现在，可以屏蔽不同系统内核版本的差异，还有个好处是内核的东西更新慢，它的实现方式效率不一定是最化的；另一种方式尽量少用，最常见的就是IO操作里面加Buffer缓冲区</p>
 <h2 id="Spdlog特点及核心数据结构"><a href="#Spdlog特点及核心数据结构" class="headerlink" title="Spdlog特点及核心数据结构"></a>Spdlog特点及核心数据结构</h2><h3 id="头文件xxx-h-实现xxx-inl-h方式"><a href="#头文件xxx-h-实现xxx-inl-h方式" class="headerlink" title="头文件xxx.h + 实现xxx-inl.h方式"></a>头文件<code>xxx.h</code> + 实现<code>xxx-inl.h</code>方式</h3><p>与一般<code>.h</code>头文件+<code>.cpp</code>实现文件不同，spdlog使用<code>xxx.h</code> + 实现<code>xxx-inl.h</code>方式，也一般只有开源的库喜欢把实现写在<code>.h</code>或是<code>.hpp</code>文件里面，反正代码开源，不需要隐藏什么；另一个喜欢把实现写在头文件里面的好处是，只需要<code>#include</code> 头文件即可以使用该库，不需要去链接库文件</p>
@@ -526,21 +527,21 @@
   </footer>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/pjax.min.js"></script>
 
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/search/local-search.min.js"></script>
 
 
 
-  <script src="/js/third-party/fancybox.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/fancybox.min.js"></script>
 
 
   
@@ -551,15 +552,15 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/04/spdlog%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"}</script>
-  <script src="/js/third-party/quicklink.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="/js/third-party/comments/disqus.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -20,10 +20,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/config.min.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
@@ -45,9 +45,9 @@
 <title>WShiBin's blogs - Follow your heart!</title>
   
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
-  <script src="/js/third-party/analytics/google-analytics.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -60,6 +60,7 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "albpra1b9p");
 </script>
+
 
 
 
@@ -499,15 +500,15 @@
 <p>上周同事遇到了一个bug，程序中使用了一个线程等待函数<code>int pthread_cond_timedwait(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, const struct timespec *restrict abstime);</code>，而其中最后一个参数<code>struct timespec</code>是个时间点。引发bug的原因是另一个程序把系统的时间改了，使得这个线程卡在那里一直等待。</p>
 </blockquote>
 <p><strong>那如果我把电脑上的时间手动改成了一年前，会发生什么？测试记录下</strong></p>
-<h2 id="Mail邮箱中的账号需要我重新去登录"><a href="#Mail邮箱中的账号需要我重新去登录" class="headerlink" title="Mail邮箱中的账号需要我重新去登录"></a>Mail邮箱中的账号需要我重新去登录</h2><img src="/images/work/image-20210102080433136.png" alt="image-20210102080433136" style="zoom:50%;" />
+<h2 id="Mail邮箱中的账号需要我重新去登录"><a href="#Mail邮箱中的账号需要我重新去登录" class="headerlink" title="Mail邮箱中的账号需要我重新去登录"></a>Mail邮箱中的账号需要我重新去登录</h2><img src="/images/work/image-20210102080433136.png" style="zoom:50%;" />
 
-<h2 id="Calendar日历应用提示"><a href="#Calendar日历应用提示" class="headerlink" title="Calendar日历应用提示"></a>Calendar日历应用提示</h2><img src="/images/work/image-20210102080901798.png" alt="image-20210102080901798" style="zoom:50%;" />
+<h2 id="Calendar日历应用提示"><a href="#Calendar日历应用提示" class="headerlink" title="Calendar日历应用提示"></a>Calendar日历应用提示</h2><img src="/images/work/image-20210102080901798.png" style="zoom:50%;" />
 
 <h2 id="Safari和Google-Chrome浏览器禁止我打开网页，并提示我电脑的时间错了"><a href="#Safari和Google-Chrome浏览器禁止我打开网页，并提示我电脑的时间错了" class="headerlink" title="Safari和Google Chrome浏览器禁止我打开网页，并提示我电脑的时间错了"></a>Safari和Google Chrome浏览器禁止我打开网页，并提示我电脑的时间错了</h2><p>也能访问，它的提示是让我明白有风险。</p>
-<img src="/images/work/image-20210102080215885.png" alt="image-20210102080215885" style="zoom:50%;" />
+<img src="/images/work/image-20210102080215885.png" style="zoom:50%;" />
 
 <h2 id="某些付费软件，试用过期现在又能用了"><a href="#某些付费软件，试用过期现在又能用了" class="headerlink" title="某些付费软件，试用过期现在又能用了"></a>某些付费软件，试用过期现在又能用了</h2><p>🙀🙀🙀惊喜呀</p>
-<img src="/images/work/image-20210102081542447.png" alt="image-20210102081542447" style="zoom:50%;" />
+<img src="/images/work/image-20210102081542447.png" style="zoom:50%;" />
 
 
 
@@ -798,13 +799,13 @@
 <li>MQTT协议</li>
 <li>DBus协议</li>
 </ul>
-<h1 id="TCP-IP协议栈："><a href="#TCP-IP协议栈：" class="headerlink" title="TCP/IP协议栈："></a>TCP/IP协议栈：</h1><img src="/images/protocol/image-20220105213240854.png" alt="TCP/IP Protocol Stack" style="zoom:70%;" />
+<h1 id="TCP-IP协议栈："><a href="#TCP-IP协议栈：" class="headerlink" title="TCP/IP协议栈："></a>TCP/IP协议栈：</h1><img src="/images/protocol/image-20220105213240854.png" style="zoom:70%;" />
 
-<h1 id="HTTP协议："><a href="#HTTP协议：" class="headerlink" title="HTTP协议："></a>HTTP协议：</h1><img src="/images/protocol/image-20220105220038745.png" alt="HTTP Protocol" style="zoom:65%;" />
+<h1 id="HTTP协议："><a href="#HTTP协议：" class="headerlink" title="HTTP协议："></a>HTTP协议：</h1><img src="/images/protocol/image-20220105220038745.png" style="zoom:65%;" />
 
-<h1 id="MQTT协议："><a href="#MQTT协议：" class="headerlink" title="MQTT协议："></a>MQTT协议：</h1><img src="/images/protocol/image-20220105220502627.png" alt="MQTT Protocol" style="zoom:50%;" />
+<h1 id="MQTT协议："><a href="#MQTT协议：" class="headerlink" title="MQTT协议："></a>MQTT协议：</h1><img src="/images/protocol/image-20220105220502627.png" style="zoom:50%;" />
 
-<h1 id="DBus协议"><a href="#DBus协议" class="headerlink" title="DBus协议:"></a>DBus协议:</h1><img src="/images/protocol/image-20220105221750042.png" alt="DBUS Protocol" style="zoom:50%;" />
+<h1 id="DBus协议"><a href="#DBus协议" class="headerlink" title="DBus协议:"></a>DBus协议:</h1><img src="/images/protocol/image-20220105221750042.png" style="zoom:50%;" />
 
 <p>DBus参考资料：</p>
 <ul>
@@ -921,7 +922,7 @@
 <p>上周在移植cJSON代码的时候遇到了点问题，就顺道跟踪了他的代码，写个文章记录下</p>
 </blockquote>
 <h1 id="Native-JSON-Benchmark"><a href="#Native-JSON-Benchmark" class="headerlink" title="Native JSON Benchmark"></a>Native JSON Benchmark</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pbG95aXAvbmF0aXZlanNvbi1iZW5jaG1hcms=">https://github.com/miloyip/nativejson-benchmark<i class="fa fa-external-link-alt"></i></span></p>
-<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" alt="Native JSON Benchmark" style="zoom:50%;" />
+<img src="/images/cjson/Xnip2021-12-28_23-28-44.png" style="zoom:50%;" />
 
 <h2 id="为什么用cJSON？"><a href="#为什么用cJSON？" class="headerlink" title="为什么用cJSON？"></a>为什么用cJSON？</h2><p>从Benchmark上看，cJSON性能上只能算是非常一般的存在；通常选择一个库的理由维度有很多，比如：</p>
 <ul>
@@ -1583,21 +1584,21 @@
   </footer>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/pjax.min.js"></script>
 
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/search/local-search.min.js"></script>
 
 
 
-  <script src="/js/third-party/fancybox.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/fancybox.min.js"></script>
 
 
   
@@ -1608,15 +1609,15 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/archives/page/3/"}</script>
-  <script src="/js/third-party/quicklink.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="/js/third-party/comments/disqus.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

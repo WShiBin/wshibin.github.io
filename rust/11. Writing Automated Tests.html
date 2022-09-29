@@ -25,13 +25,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.13.0/source/js/config.min.js"></script>
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="编写自动化测试如何编写测试Hello world#[cfg(test)]mod tests &amp;#123;    #[test]    fn it_works() &amp;#123;        assert_eq!(2 + 2, 4);		&amp;#125; &amp;#125;  运行： $ cargo test  断言宏 assert!： 真假 assert_eq!：是否相同 assert_ne!：是否不相同">
+<meta property="og:type" content="website">
 <meta property="og:title" content="WShiBin&#39;s blogs">
 <meta property="og:url" content="https://wshibin.github.io/rust/11.%20Writing%20Automated%20Tests.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="编写自动化测试如何编写测试Hello world#[cfg(test)]mod tests &amp;#123;    #[test]    fn it_works() &amp;#123;        assert_eq!(2 + 2, 4);		&amp;#125; &amp;#125;  运行： $ cargo test  断言宏 assert!： 真假 assert_eq!：是否相同 assert_ne!：是否不相同">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-31T02:46:47.065Z">
-<meta property="article:modified_time" content="2021-01-10T06:12:43.379Z">
+<meta property="article:published_time" content="2022-09-29T15:07:52.187Z">
+<meta property="article:modified_time" content="2022-09-29T15:07:52.187Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="WShiBin">
 <meta name="twitter:card" content="summary">
@@ -108,7 +110,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-mdbook"><a href="/mdbook" rel="section"><i class="fa fa-book fa-fw"></i>MDBook</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -152,7 +154,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -165,6 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">编写自动化测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95"><span class="nav-number">1.1.</span> <span class="nav-text">如何编写测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hello-world"><span class="nav-number">1.1.1.</span> <span class="nav-text">Hello world</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%AD%E8%A8%80%E5%AE%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">断言宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89message"><span class="nav-number">1.1.3.</span> <span class="nav-text">自定义message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#should-panic%E6%A3%80%E6%9F%A5panic"><span class="nav-number">1.1.4.</span> <span class="nav-text">should_panic检查panic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86Result-lt-T-E-gt-%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95"><span class="nav-number">1.1.5.</span> <span class="nav-text">将Result&lt;T, E&gt;用于测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%8B%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="nav-number">1.2.</span> <span class="nav-text">控制测试运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%9A%84%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">测试的组织结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">集成测试</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -245,7 +248,52 @@
       
       
       <div class="post-body">
-          
+          <h1 id="编写自动化测试"><a href="#编写自动化测试" class="headerlink" title="编写自动化测试"></a>编写自动化测试</h1><h2 id="如何编写测试"><a href="#如何编写测试" class="headerlink" title="如何编写测试"></a>如何编写测试</h2><h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[cfg(test)]</span></span><br><span class="line"><span class="keyword">mod</span> tests &#123;</span><br><span class="line">    <span class="meta">#[test]</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">it_works</span>() &#123;</span><br><span class="line">        <span class="built_in">assert_eq!</span>(<span class="number">2</span> + <span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">		&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cargo <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="断言宏"><a href="#断言宏" class="headerlink" title="断言宏"></a>断言宏</h3><ul>
+<li><code>assert!</code>： 真假</li>
+<li><code>assert_eq!</code>：是否相同</li>
+<li><code>assert_ne!</code>：是否不相同</li>
+</ul>
+<p>如果失败，内部会调用<code>panic!</code>；assert会在debug和release版本中都生效，debug_assert默认只在非优化构建（非release）的版本中生效</p>
+<ul>
+<li><code>debug_assert!</code>： 真假</li>
+<li><code>debug_assert_eq!</code>：是否相同</li>
+<li><code>debug_assert_ne!</code>：是否不相同</li>
+</ul>
+<h3 id="自定义message"><a href="#自定义message" class="headerlink" title="自定义message"></a>自定义message</h3><p><code>assert</code>后面的参数, 请看<code>std::fmt</code></p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[cfg(test)]</span></span><br><span class="line"><span class="keyword">mod</span> tests &#123;</span><br><span class="line">    <span class="meta">#[test]</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">it_works</span>() &#123;</span><br><span class="line">        <span class="comment">// assert with a custom message</span></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">x</span> = <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">assert!</span>(x, <span class="string">&quot;x wasn&#x27;t true!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">a</span> = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">b</span> = <span class="number">27</span>;</span><br><span class="line">        <span class="built_in">assert!</span>(a + b == <span class="number">301</span>, <span class="string">&quot;a = &#123;&#125;, b = &#123;&#125;&quot;</span>, a, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="should-panic检查panic"><a href="#should-panic检查panic" class="headerlink" title="should_panic检查panic"></a>should_panic检查panic</h3><p>如果程序执行到了panic，表示测试通过</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Guess</span> &#123;</span><br><span class="line">    value: <span class="type">i32</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Guess</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(value: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> Guess &#123;</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">1</span> || value &gt; <span class="number">100</span> &#123;</span><br><span class="line">            <span class="built_in">panic!</span>(<span class="string">&quot;Guess value must be between 1 and 100, got &#123;&#125;.&quot;</span>, value);</span><br><span class="line">        &#125;</span><br><span class="line">        Guess &#123; value &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[cfg(test)]</span></span><br><span class="line"><span class="keyword">mod</span> tests &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line"></span><br><span class="line">    <span class="meta">#[test]</span></span><br><span class="line">    <span class="meta">#[should_panic]</span>  <span class="comment">// should_panic注解</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">greater_than_100</span>() &#123;</span><br><span class="line">        Guess::<span class="title function_ invoke__">new</span>(<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="将Result-lt-T-E-gt-用于测试"><a href="#将Result-lt-T-E-gt-用于测试" class="headerlink" title="将Result&lt;T, E&gt;用于测试"></a>将<code>Result&lt;T, E&gt;</code>用于测试</h3><p><code>Err</code>可以携带错误信息，在测试失败时，会打印出来</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[cfg(test)]</span></span><br><span class="line"><span class="keyword">mod</span> tests &#123;</span><br><span class="line">    <span class="meta">#[test]</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">it_works</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;(), <span class="type">String</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="number">2</span> + <span class="number">2</span> == <span class="number">4</span> &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;two plus two does not equal four&quot;</span>))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Result</code>同时不能使用<code>should_panic</code></p>
+<h2 id="控制测试运行"><a href="#控制测试运行" class="headerlink" title="控制测试运行"></a>控制测试运行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -- 后面的是参数是：传递给二进制的参数 </span></span><br><span class="line">$ cargo <span class="built_in">test</span> -- --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当运行多个测试时，Rust默认使用线程来并行运行；设置线程数</span></span><br><span class="line">$ cargo <span class="built_in">test</span> -- --test-threads=1</span><br><span class="line"></span><br><span class="line"><span class="comment"># Rust测试库会截获到标准输出的内容；如果测试成功了，就看不到println输出的内容，如果测试失败了，就可以看到相应的println输出内容</span></span><br><span class="line"><span class="comment"># 禁用rust的捕获输出内容，全部的标准输出会打印输出，和测试的成功失败无关</span></span><br><span class="line">$ cargo <span class="built_in">test</span> -- --nocapture</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以指定运行特定的测试，也可以是匹配（规则：是否包含）</span></span><br><span class="line">$ cargo <span class="built_in">test</span> one_hundred</span><br><span class="line">$ cargo <span class="built_in">test</span> add</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排除执行使用了#[ignored]注解的测试</span></span><br><span class="line">$ cargo <span class="built_in">test</span> -- --ignored</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试的组织结构"><a href="#测试的组织结构" class="headerlink" title="测试的组织结构"></a>测试的组织结构</h2><p>单元测试与集成测试</p>
+<ul>
+<li>单元测试：内部测试一个模块，测试一个私有接口。（对内）</li>
+<li>集成测试：库对外的接口，别人集成你这个库调用的接口。（对外）</li>
+</ul>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p><code>#[cfg(test)]</code>中cfg的意思是，告诉<code>cargo test</code>时会去编译和运行这部分代码；而<code>cargo build</code>不会去编译这部分代码，也不会打包到二进程程序中</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">add_two</span>(a: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">internal_adder</span>(a, <span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">internal_adder</span>(a: <span class="type">i32</span>, b: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[cfg(test)]</span></span><br><span class="line"><span class="keyword">mod</span> tests &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">    <span class="meta">#[test]</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">internal</span>() &#123;</span><br><span class="line">        <span class="built_in">assert_eq!</span>(<span class="number">4</span>, <span class="title function_ invoke__">internal_adder</span>(<span class="number">2</span>, <span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><p>tests目录，和src同级</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adder</span><br><span class="line">├── Cargo.lock</span><br><span class="line">├── Cargo.toml</span><br><span class="line">├── src</span><br><span class="line">│   └── lib.rs</span><br><span class="line">└── tests</span><br><span class="line">    └── integration_test.rs</span><br></pre></td></tr></table></figure>
+
+<p>文件名: tests/integration_test.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> adder;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[test]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">it_adds_two</span>() &#123;</span><br><span class="line">    <span class="built_in">assert_eq!</span>(<span class="number">4</span>, adder::<span class="title function_ invoke__">add_two</span>(<span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 运行所有的测试</span></span><br><span class="line">$ cargo <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行指定的集成测试</span></span><br><span class="line">$ cargo <span class="built_in">test</span> --<span class="built_in">test</span> integration_test</span><br></pre></td></tr></table></figure>
+
+
       </div>
       
       

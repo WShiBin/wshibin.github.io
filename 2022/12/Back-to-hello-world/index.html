@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/config.min.js"></script>
+
+    <meta name="description" content="以前很喜欢一句，大意是“认知或是成长是盘旋式上升，波浪式前进的”，一个概念多年前是那个意思，但随着时间的推移，阅历的增加，这个概念有了新的含义，你对这个概念的认知也会加深，也有可能有自己独特的理解。比如“垃圾”这个词，当垃圾能回收了，在另外的地方发光发热，有了新的价值，它还是原本那个“垃圾”的意思吗？而这次就回头看看经典的“hello world”。  Hello world当你新学一门编程语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C】Back to &quot;hello world&quot;">
+<meta property="og:url" content="https://wshibin.github.io/2022/12/Back-to-hello-world/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="以前很喜欢一句，大意是“认知或是成长是盘旋式上升，波浪式前进的”，一个概念多年前是那个意思，但随着时间的推移，阅历的增加，这个概念有了新的含义，你对这个概念的认知也会加深，也有可能有自己独特的理解。比如“垃圾”这个词，当垃圾能回收了，在另外的地方发光发热，有了新的价值，它还是原本那个“垃圾”的意思吗？而这次就回头看看经典的“hello world”。  Hello world当你新学一门编程语言">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wshibin.github.io/images/2022-12-31_Back-to-hello-world.assets/image-20221231114452714%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/images/2022-12-31_Back-to-hello-world.assets/image-20230101120236881%20AM.png">
+<meta property="og:image" content="https://wshibin.github.io/images/2022-12-31_Back-to-hello-world.assets/image-20230101120711872%20AM.png">
+<meta property="og:image" content="https://wshibin.github.io/images/2022-12-31_Back-to-hello-world.assets/image-20221231114452714%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/images/2022-12-31_Back-to-hello-world.assets/image-20230103113123002%20PM.png">
+<meta property="article:published_time" content="2022-12-31T01:59:08.000Z">
+<meta property="article:modified_time" content="2023-01-03T16:02:52.856Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="Another Tag">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/images/2022-12-31_Back-to-hello-world.assets/image-20221231114452714%20PM.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2022/12/Back-to-hello-world/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/12/Back-to-hello-world/","path":"/2022/12/Back-to-hello-world/","title":"【C】Back to \"hello world\""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【C】Back to "hello world" | WShiBin's blogs</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+  <script data-pjax defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;fdce1369bd7b4881bc693823aa6eaf36&quot;}'></script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-world"><span class="nav-number">1.</span> <span class="nav-text">Hello world</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%A6%81%E5%A4%84%E7%90%86%E7%9A%84%E8%AF%AD%E5%8F%A5%E7%89%B9%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">预处理要处理的语句特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">预处理做了什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%80%E4%BB%A5%E9%A2%84%E5%A4%84%E7%90%86%E5%88%B0%E5%BA%95%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">所以预处理到底做了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-%E5%87%BD%E6%95%B0%E6%98%AF%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%85%A5%E5%8F%A3"><span class="nav-number">3.</span> <span class="nav-text">main 函数是程序的入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-%E5%87%BD%E6%95%B0%E7%BB%93%E6%9D%9F%E6%84%8F%E5%91%B3%E7%9D%80%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9D%9F"><span class="nav-number">4.</span> <span class="nav-text">main 函数结束意味着程序结束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-number">5.</span> <span class="nav-text">main 函数的版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8%E5%8F%AA%E5%85%81%E8%AE%B8-main-%E5%87%BD%E6%95%B0%E6%9C%89%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="nav-number">5.1.</span> <span class="nav-text">现代的编译器只允许 main 函数有多个版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E6%88%90%E6%9C%AC"><span class="nav-number">6.</span> <span class="nav-text">函数调用的成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#printf-%E5%87%BD%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">printf 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">8.</span> <span class="nav-text">main 函数的返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#return-%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="nav-number">8.1.</span> <span class="nav-text">return 的返回值有什么用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXIT-FAILURE%E5%92%8CEXIT-SUCCESS"><span class="nav-number">8.2.</span> <span class="nav-text">EXIT_FAILURE和EXIT_SUCCESS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E9%80%80%E5%87%BA%E7%8A%B6%E6%80%81"><span class="nav-number">8.3.</span> <span class="nav-text">$?获取进程退出状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC%E7%B1%BB%E5%9E%8B-Int"><span class="nav-number">8.4.</span> <span class="nav-text">返回值类型 Int</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/12/Back-to-hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【C】Back to "hello world" | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【C】Back to "hello world"
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-31 09:59:08" itemprop="dateCreated datePublished" datetime="2022-12-31T09:59:08+08:00">2022-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/12/Back-to-hello-world/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/12/Back-to-hello-world/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>以前很喜欢一句，大意是“认知或是成长是盘旋式上升，波浪式前进的”，一个概念多年前是那个意思，但随着时间的推移，阅历的增加，这个概念有了新的含义，你对这个概念的认知也会加深，也有可能有自己独特的理解。比如“垃圾”这个词，当垃圾能回收了，在另外的地方发光发热，有了新的价值，它还是原本那个“垃圾”的意思吗？而这次就回头看看经典的“hello world”。</p>
+</blockquote>
+<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>当你新学一门编程语言，写的第一段代码大概就是<code>hello world</code>；又或是当你使用了一个框架，通过框架的<code>Quick start</code>文档，把框架的简单的 Demo跑了起来，这也能被称为广义的<code>hello world</code> ，它更像是一个仪式。下面是 C 语言的版本:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="预处理要处理的语句特点"><a href="#预处理要处理的语句特点" class="headerlink" title="预处理要处理的语句特点"></a>预处理要处理的语句特点</h3><p>都是<code>#</code>开头，比如：<code>#include</code>、<code>#if</code>、<code>#ifdef</code>、<code>#ifndef</code>、<code>#else</code>、<code>#elif</code>、<code>#define</code>，这个有点类似于，代码用特定标识给预处理器做标记一样；</p>
+<h3 id="预处理做了什么？"><a href="#预处理做了什么？" class="headerlink" title="预处理做了什么？"></a>预处理做了什么？</h3><ol>
+<li>搜索文件<code>stdio.h</code>；对应有<code>&lt;&gt;</code>和<code>&quot;&quot;</code>的搜索规则</li>
+<li>然后把文件的内容 copy，然后 paste 到当前的文件</li>
+<li>如果paste 过来的内容里面还有<code>#include</code>语句，继续上两个步骤</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc -E main.c &gt; main_preprocessed.out</span><br></pre></td></tr></table></figure>
+
+<p>截取一小段内容：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"># 1 &quot;main.c&quot;</span><br><span class="line"># 1 &quot;/usr/include/stdio.h&quot; 1 3 4</span><br><span class="line"># 27 &quot;/usr/include/stdio.h&quot; 3 4</span><br><span class="line"># 1 &quot;/usr/include/x86_64-linux-gnu/bits/libc-header-start.h&quot; 1 3 4</span><br><span class="line"># 33 &quot;/usr/include/x86_64-linux-gnu/bits/libc-header-start.h&quot; 3 4</span><br><span class="line"># 1 &quot;/usr/include/features.h&quot; 1 3 4</span><br><span class="line"># 461 &quot;/usr/include/features.h&quot; 3 4</span><br><span class="line"># 1 &quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot; 1 3 4</span><br><span class="line"># 452 &quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot; 3 4</span><br><span class="line"># 1 &quot;/usr/include/x86_64-linux-gnu/bits/wordsize.h&quot; 1 3 4</span><br><span class="line"># 453 &quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot; 2 3 4</span><br><span class="line"># 1 &quot;/usr/include/x86_64-linux-gnu/bits/long-double.h&quot; 1 3 4</span><br><span class="line"># 454 &quot;/usr/include/x86_64-linux-gnu/sys/cdefs.h&quot; 2 3 4</span><br><span class="line"># 462 &quot;/usr/include/features.h&quot; 2 3 4</span><br><span class="line"># 485 &quot;/usr/include/features.h&quot; 3 4</span><br><span class="line"># 1 &quot;/usr/include/x86_64-linux-gnu/gnu/stubs.h&quot; 1 3 4</span><br><span class="line"># 10 &quot;/usr/include/x86_64-linux-gnu/gnu/stubs.h&quot; 3 4</span><br><span class="line"># 1 &quot;/usr/include/x86_64-linux-gnu/gnu/stubs-64.h&quot; 1 3 4</span><br><span class="line"># 11 &quot;/usr/include/x86_64-linux-gnu/gnu/stubs.h&quot; 2 3 4</span><br><span class="line"># 486 &quot;/usr/include/features.h&quot; 2 3 4</span><br><span class="line"># 34 &quot;/usr/include/x86_64-linux-gnu/bits/libc-header-start.h&quot; 2 3 4</span><br><span class="line"># 28 &quot;/usr/include/stdio.h&quot; 2 3 4</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>简单翻译：</p>
+<ul>
+<li>第一行：<code>main.c</code>的第1行包含了<code>stdio.h</code>文件</li>
+<li>第三行：<code>stdio.h</code>文件的第27行包含了<code>libc-header-start.h</code>文件</li>
+<li>第五行：<code>libc-header-start.h</code>文件的每33行包含了<code>features.h</code>文件</li>
+<li>以此类推…</li>
+</ul>
+<p>这里有大量的头文件文件检索、读头文件、合并头文件内容到 C 文件；而这只是处理编译一个文件的内容，这里属于有大量重复性的工作，能不能优化？这东西叫<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHJlY29tcGlsZWRfaGVhZGVy">precompiled header(PCH)<i class="fa fa-external-link-alt"></i></span>，很多编译器和构建系统已经支持了，GCC在3.4版本后就支持了。</p>
+<h3 id="所以预处理到底做了什么？"><a href="#所以预处理到底做了什么？" class="headerlink" title="所以预处理到底做了什么？"></a>所以预处理到底做了什么？</h3><p>把一堆东西 copy 过来，里面都是些类型的定义，还有函数的声明。那既然这样，我把原来的代码做一点小的改动，注释<code>#include &lt;stdio.h&gt;</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// #include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译：</p>
+<p>Linux上GCC 版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc --version</span><br><span class="line">cc (Debian 10.2.1-6) 10.2.1 20210110</span><br><span class="line">Copyright (C) 2020 Free Software Foundation, Inc.</span><br><span class="line">This is free software; see the <span class="built_in">source</span> <span class="keyword">for</span> copying conditions.  There is NO</span><br><span class="line">warranty; not even <span class="keyword">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span><br><span class="line"></span><br><span class="line">$ cc main.c</span><br><span class="line">main.c: In <span class="keyword">function</span> ‘main’:</span><br><span class="line">main.c:3:5: warning: implicit declaration of <span class="keyword">function</span> ‘<span class="built_in">printf</span>’ [-Wimplicit-function-declaration]</span><br><span class="line">    3 |     <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">      |     ^~~~~~</span><br><span class="line">main.c:3:5: warning: incompatible implicit declaration of built-in <span class="keyword">function</span> ‘<span class="built_in">printf</span>’</span><br><span class="line">main.c:1:1: note: include ‘&lt;stdio.h&gt;’ or provide a declaration of ‘<span class="built_in">printf</span>’</span><br><span class="line">  +++ |+<span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">    1 |</span><br></pre></td></tr></table></figure>
+
+<p>macOS上Clang 版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc --version</span><br><span class="line">Apple clang version 14.0.0 (clang-1400.0.29.202)</span><br><span class="line">Target: x86_64-apple-darwin22.2.0</span><br><span class="line">Thread model: posix</span><br><span class="line">InstalledDir: /Library/Developer/CommandLineTools/usr/bin</span><br><span class="line"></span><br><span class="line">$ cc main.c</span><br><span class="line">main.c:6:5: error: implicitly declaring library <span class="keyword">function</span> <span class="string">&#x27;printf&#x27;</span> with <span class="built_in">type</span> <span class="string">&#x27;int (const char *, ...)&#x27;</span> [-Werror,-Wimplicit-function-declaration]</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    ^</span><br><span class="line">main.c:6:5: note: include the header &lt;stdio.h&gt; or explicitly provide a declaration <span class="keyword">for</span> <span class="string">&#x27;printf&#x27;</span></span><br><span class="line">1 error generated.</span><br></pre></td></tr></table></figure>
+
+<p>不同的编译器处理起来还有点小差异，Clang 直接不让编译通过，GCC择显示警告可以通过；差异在于编译器默认缺省的<code>Werror</code>选项不一样，Clang 的默认配置的更多。那既然前面我们提到<code>#include &lt;stdio.h&gt;</code>只是把一些<strong>类型定义</strong>和<strong>函数声明</strong>copy 到了当前的文件，那在改动一点点，自己添加上<code>printf</code>的函数定义，如下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">printf</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* __restrict, ...)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+<p>可以正常工作了</p>
+<h2 id="main-函数是程序的入口"><a href="#main-函数是程序的入口" class="headerlink" title="main 函数是程序的入口"></a>main 函数是程序的入口</h2><p>可能你在刚开始学习编程的时候，老师会给你叫 <code>main</code> 函数是程序的入口，尝试用lldb（类型 gdb）跟踪下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(lldb) thread backtrace</span><br><span class="line">* thread <span class="comment">#1, name = &#x27;a.out&#x27;, stop reason = breakpoint 1.1</span></span><br><span class="line">  * frame <span class="comment">#0: 0x000055d2e3f5a144 a.out`main(argc=1, argv=0x00007fffe7a58ee8) at main.c:6:5</span></span><br><span class="line">    frame <span class="comment">#1: 0x00007f98049b2d0a libc.so.6`__libc_start_main + 234</span></span><br><span class="line">    frame <span class="comment">#2: 0x000055d2e3f5a07a a.out`_start + 42</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到程序是从<code>_start</code>函数开始的，在调用<code>__libc_start_main</code>函数，最后调用才调用了我们编写的<code>main</code>函数；其中的<code>__libc_start_main</code>是属于 <code>libc</code> 库。</p>
+<p><code>csu/libc-start.c</code>中的代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LIBC_START_MAIN __libc_start_main</span></span><br><span class="line">STATIC <span class="type">int</span> <span class="title function_">LIBC_START_MAIN</span><span class="params">(</span></span><br><span class="line"><span class="params">    <span class="type">int</span> (*main)(<span class="type">int</span>, <span class="type">char</span>**, <span class="type">char</span>** MAIN_AUXVEC_DECL),</span></span><br><span class="line"><span class="params">    <span class="type">int</span>            argc,</span></span><br><span class="line"><span class="params">    <span class="type">char</span>**         argv,</span></span><br><span class="line"><span class="params">    __typeof(main) init,</span></span><br><span class="line"><span class="params">    <span class="type">void</span> (*fini)(<span class="type">void</span>),</span></span><br><span class="line"><span class="params">    <span class="type">void</span> (*rtld_fini)(<span class="type">void</span>),</span></span><br><span class="line"><span class="params">    <span class="type">void</span>* stack_end)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// some code ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Run the program.  */</span></span><br><span class="line">    result = main(argc, argv, __environ MAIN_AUXVEC_PARAM);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// some code ...</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="main-函数结束意味着程序结束"><a href="#main-函数结束意味着程序结束" class="headerlink" title="main 函数结束意味着程序结束"></a>main 函数结束意味着程序结束</h2><p>为啥<code>main</code>函数调用结束，意味着程序的结束？有人可能会给你解释说：<code>main </code>函数是个特殊的函数；是，它是一个特殊的函数；但问题是一个函数的调用结束，为啥能代表程序调用的结束的？return 不能代表着程序的结束；如果你留意看了上面的代码，调用<code>main</code>函数之后，继续调用了一个<code>exit</code>函数，<code>exit</code>函数的作用是退出进程，这才是结束当前进程的原因。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    result = main(argc, argv, __environ MAIN_AUXVEC_PARAM);</span><br><span class="line">    <span class="built_in">exit</span>(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="main-函数的版本"><a href="#main-函数的版本" class="headerlink" title="main 函数的版本"></a>main 函数的版本</h2><p><code>main</code>函数的参数，我见过的大概有下面三个版本，其中最常用的是第二个版本</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// int main(void) &#123;</span></span><br><span class="line"><span class="comment">// int main(int argc, char* argv[]) &#123;</span></span><br><span class="line"><span class="comment">// int main(int argc, char* argv[], char* env[]) &#123;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前面的描述已经说明<code>main</code>函数是被其它的函数调用的；那这里还影藏了另一个问题：函数参数对不上既然也能调用？那函数名到底是个什么东西？下面是C 代码对应的 RISC-V 汇编</p>
+<img src="/images/2022-12-31_Back-to-hello-world.assets/image-20221231114452714 PM.png" style="zoom:50%;" />
+
+<p>在汇编上能看到的是 main 其实是一个 label，有点类似在 C 语言中写<code>goto</code>语句要转跳的 label，跑偏了；汇编代码最终要通过汇编器转成 CPU要执行的指令，而 CPU 只关心最终要运行的指令，而 label 是不指令的一部分，所以这个 label 其实是给汇编器用的，类似于汇编器在汇编代码中做的标记；</p>
+<p>汇编会被翻译成一条条机器指令，而这一条条的指令会被存储到<code>a.out</code>文件中的<code>.text</code>代码段，后面会被loader 加载器加载到内存中去运行，在虚拟内存当中是也是只读的代码段；下面是一个典型的进程的虚拟内存图，机器指令被加载到最底下的 Text 段；</p>
+<img src="/images/2022-12-31_Back-to-hello-world.assets/image-20230101120236881 AM.png" style="zoom:30%;" />
+
+<p>我们现在关心一个问题，这些被翻译后的机器指令在 Text 段中如何存放，以及汇编中的label 被汇编器翻译成什么了？下面是汇编被翻译成机器码的过程图；</p>
+<img src="/images/2022-12-31_Back-to-hello-world.assets/image-20230101120711872 AM.png" style="zoom:50%;" />
+
+<p>依据不同的指令集架构 ISA，不同的指令会有不同的字节大小（看是RISC精简指令集还是CISC复杂指令集，前者是定长的，后者是不定长的；前者也可以不定长，自己加自定义指令），存放时也会依次排放，而函数标签被转换了成标签后面的指令，在 text 代码段中的起始位置，简单的说是一个地址数字，是函数第一条指令的地址数字。前面的main 函数调用追踪已经看到了，函数前面的一串数字<code>0x000055d2e3f5a144</code>之类的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(lldb) thread backtrace</span><br><span class="line">* thread <span class="comment">#1, name = &#x27;a.out&#x27;, stop reason = breakpoint 1.1</span></span><br><span class="line">  * frame <span class="comment">#0: 0x000055d2e3f5a144 a.out`main(argc=1, argv=0x00007fffe7a58ee8) at main.c:6:5</span></span><br><span class="line">    frame <span class="comment">#1: 0x00007f98049b2d0a libc.so.6`__libc_start_main + 234</span></span><br><span class="line">    frame <span class="comment">#2: 0x000055d2e3f5a07a a.out`_start + 42</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="现代的编译器只允许-main-函数有多个版本"><a href="#现代的编译器只允许-main-函数有多个版本" class="headerlink" title="现代的编译器只允许 main 函数有多个版本"></a>现代的编译器只允许 main 函数有多个版本</h3><p>其它函数使用</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;foo\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    foo();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c</span><br><span class="line">main.c: In <span class="keyword">function</span> ‘main’:</span><br><span class="line">main.c:7:5: error: too few arguments to <span class="keyword">function</span> ‘foo’</span><br><span class="line">    7 |     foo();</span><br><span class="line">      |     ^~~</span><br><span class="line">main.c:3:5: note: declared here</span><br><span class="line">    3 | int foo(int arg) &#123;</span><br><span class="line">      |     ^~~</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="函数调用的成本"><a href="#函数调用的成本" class="headerlink" title="函数调用的成本"></a>函数调用的成本</h2><img src="/images/2022-12-31_Back-to-hello-world.assets/image-20221231114452714 PM.png" style="zoom:50%;" />
+
+<p>这图是网站 <span class="exturl" data-url="aHR0cHM6Ly9nb2Rib2x0Lm9yZy8=">https://godbolt.org/<i class="fa fa-external-link-alt"></i></span> 的截图，另外一点好的地方在于用颜色标注了不同的行的 C语言代码会翻译成那些汇编代码，可以看到上面黄色才是正真“工作”的代码，而为了一点“工作”却要执行一堆额外的指令，压栈、记录函数调用完之后的返回的地址、传递函数参数，以前“工作”完之后，还有出栈、返回到函数调用完之后的下一条指令。这就是函数调用的成本：为了一些工作指令，要去执行一些额外的“准备工作”指令和“收尾”工作指令。这时个<code>inline</code>关键字<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9JbmxpbmUuaHRtbA==">https://gcc.gnu.org/onlinedocs/gcc/Inline.html<i class="fa fa-external-link-alt"></i></span> 来了，它会省去函数调用的开销，类似宏的替换一样，把inline函数体的代码替换到代码调用的地方。</p>
+<h2 id="printf-函数"><a href="#printf-函数" class="headerlink" title="printf 函数"></a>printf 函数</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello %s\n&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译成汇编：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc -S main.c -o main.s</span><br></pre></td></tr></table></figure>
+
+<p><code>main.s</code>代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	.file	&quot;main_ass.c&quot;</span><br><span class="line">	.text</span><br><span class="line">	.section	.rodata</span><br><span class="line">.LC0:</span><br><span class="line">	.string	&quot;hello world&quot;</span><br><span class="line">.LC1:</span><br><span class="line">	.string	&quot;world&quot;</span><br><span class="line">.LC2:</span><br><span class="line">	.string	&quot;hello %s\n&quot;</span><br><span class="line">	.text</span><br><span class="line">	.globl	main</span><br><span class="line">	.type	main, @function</span><br><span class="line">main:</span><br><span class="line">.LFB6:</span><br><span class="line">	.cfi_startproc</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset 6, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register 6</span><br><span class="line">	subq	$16, %rsp</span><br><span class="line">	movl	%edi, -4(%rbp)</span><br><span class="line">	movq	%rsi, -16(%rbp)</span><br><span class="line">	leaq	.LC0(%rip), %rdi</span><br><span class="line">	call	puts@PLT</span><br><span class="line">	leaq	.LC1(%rip), %rsi</span><br><span class="line">	leaq	.LC2(%rip), %rdi</span><br><span class="line">	movl	$0, %eax</span><br><span class="line">	call	printf@PLT</span><br><span class="line">	movl	$0, %eax</span><br><span class="line">	leave</span><br><span class="line">	.cfi_def_cfa 7, 8</span><br><span class="line">	ret</span><br><span class="line">	.cfi_endproc</span><br><span class="line">.LFE6:</span><br><span class="line">	.size	main, .-main</span><br><span class="line">	.ident	&quot;GCC: (Debian 10.2.1-6) 10.2.1 20210110&quot;</span><br><span class="line">	.section	.note.GNU-stack,&quot;&quot;,@progbits</span><br></pre></td></tr></table></figure>
+
+<p>汇编中能找到两个 call 指令，一个是调用 <code>puts</code>，一个是调用 <code>printf</code>；显然 C 代码中的第一次调用 <code>printf</code>被编译器优化成了 <code>puts</code>；虽然最后的作用效果是一样的，但是，有种“真正执行的函数，不是你所编写的那个函数”的感觉。</p>
+<h2 id="main-函数的返回值"><a href="#main-函数的返回值" class="headerlink" title="main 函数的返回值"></a>main 函数的返回值</h2><p>新人时常会有个疑问：这个return到底返回给了谁？有什么用？</p>
+<h3 id="return-的返回值有什么用？"><a href="#return-的返回值有什么用？" class="headerlink" title="return 的返回值有什么用？"></a>return 的返回值有什么用？</h3><p>回答这个问题前需要先回答另一个问题：谁启动了这个程序/进程？实际上大多时候，只有当前进程的父进程才会关心子进程的退出状态，老子关心儿子是怎么挂的，然后根据相关的退出状态做出相应的响应。Linux 里面创建进程的方式：<code>fork + exec函数族</code> 组合方式，这两个函数的调用可能是写在代码里面，也可能是通过 Shell 的交互命令；实际上当你在 Shell 中敲了类似<code>./a.out</code> 这样的程序启动命令，就是去调用<code>fork + exec</code>，然后调用<code>wait</code>函数等待子进程运行结束。简单如下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (fork() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// child process</span></span><br><span class="line">        <span class="type">char</span>* <span class="type">const</span> argv[] = &#123;<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">        execvp(<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, argv);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// parent process</span></span><br><span class="line">        <span class="type">int</span> child_exit_status = <span class="number">0</span>;</span><br><span class="line">        wait(&amp;child_exit_status);  <span class="comment">// wait for child process</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;child_return_value: %d\n&quot;</span>, child_return_value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以 结合下前面的代码（下面），总结下就是：return 的值是用来退出当前进程的，而一般情况下父进程会关注子进程的退出状态，父进程可以根据这个状态去做相应的响应动作：知道子进程是否是正常结束，正常结束代表工作顺利完成；如果是不正常的退出，会去检查是什么原因导致的，可以做相应的补救措施。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// some code ...</span></span><br><span class="line">&#123;</span><br><span class="line">    result = main(argc, argv, __environ MAIN_AUXVEC_PARAM);</span><br><span class="line">    <span class="built_in">exit</span>(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXIT-FAILURE和EXIT-SUCCESS"><a href="#EXIT-FAILURE和EXIT-SUCCESS" class="headerlink" title="EXIT_FAILURE和EXIT_SUCCESS"></a>EXIT_FAILURE和EXIT_SUCCESS</h3><p>在 <code>stdlib.h</code> 文件中还定义了两个宏常用的宏</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// stdlib.h</span></span><br><span class="line"><span class="comment">/* We define these the same for all machines.</span></span><br><span class="line"><span class="comment">   Changes from this to the outside world should be done in `_exit&#x27;.  */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EXIT_FAILURE 1 <span class="comment">/* Failing exit status.  */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EXIT_SUCCESS 0 <span class="comment">/* Successful exit status.  */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// main.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取进程退出状态"><a href="#获取进程退出状态" class="headerlink" title="$?获取进程退出状态"></a><code>$?</code>获取进程退出状态</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main_exit.c &amp;&amp; ./a.out</span><br><span class="line">hello world</span><br><span class="line">$ <span class="built_in">echo</span> $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<h3 id="返回值类型-Int"><a href="#返回值类型-Int" class="headerlink" title="返回值类型 Int"></a>返回值类型 Int</h3><p>int 在我电脑上是4个字节，那我改成256</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">256</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out </span><br><span class="line">hello world</span><br><span class="line">$ echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>把 <code>return</code> 改成257呢，</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">257</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out </span><br><span class="line">hello world</span><br><span class="line">$ echo $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>变成了1，这就有意思了；不卖关子，程序的退出方式有很多种，一个 int 用不同的 bit分成了多种情况去使用，如下图，正常退出值的范围是：0~255。所以，<code>return</code>的值是</p>
+<img src="/images/2022-12-31_Back-to-hello-world.assets/image-20230103113123002 PM.png" style="zoom:30%;" />
+
+<p><code>WEXITSTATUS</code>宏可以去获取进程正常退出的状态，也就是子进程正常退出 <code>return</code>返回的值</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (fork() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// child process</span></span><br><span class="line">        <span class="type">char</span>* <span class="type">const</span> argv[] = &#123;<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">        execvp(<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, argv);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// parent process</span></span><br><span class="line">        <span class="type">int</span> child_exit_status = <span class="number">0</span>;</span><br><span class="line">        wait(&amp;child_exit_status);                                                   <span class="comment">// wait for child process</span></span><br><span class="line">        <span class="type">int</span> child_normal_termination_exit_status = WEXITSTATUS(child_exit_status);  <span class="comment">// get normal termination exit status</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;child_return_value: %d\n&quot;</span>, child_normal_termination_exit_status);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Another-Tag/" rel="tag"># Another Tag</a>
+              <a href="/tags/C/" rel="tag"># C</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/memory/" rel="prev" title="【Memory】内存">
+                  <i class="fa fa-chevron-left"></i> 【Memory】内存
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/pjax.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/search/local-search.min.js"></script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/fancybox.min.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/12/Back-to-hello-world/"}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/quicklink.min.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

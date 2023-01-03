@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/config.min.js"></script>
+
+    <meta name="description" content="内存管理问题：  希望内存能在我们想要释放的时候被及时释放 永远不希望使用一个指向已经被释放的对象的指针。这会导致未定义行为，进而导致崩溃和安全漏洞。  现有方案：  垃圾回收：Python、JavaScript、Ruby、Java、C# 自己负责释放内存：C 和 C++  Rust不同于上面两种方案：严格限制程序使用指针的方法 所有权如果你读过很多 C 或 C++ 的代码，你可能会看到过有注释说">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chapter 4 所有权与 move">
+<meta property="og:url" content="https://wshibin.github.io/OS%20Training%20Camp/Chapter04%20Ownership%20and%20Moves.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="内存管理问题：  希望内存能在我们想要释放的时候被及时释放 永远不希望使用一个指向已经被释放的对象的指针。这会导致未定义行为，进而导致崩溃和安全漏洞。  现有方案：  垃圾回收：Python、JavaScript、Ruby、Java、C# 自己负责释放内存：C 和 C++  Rust不同于上面两种方案：严格限制程序使用指针的方法 所有权如果你读过很多 C 或 C++ 的代码，你可能会看到过有注释说">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-07T14:34:40.000Z">
+<meta property="article:modified_time" content="2022-11-07T16:07:42.599Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="WShiBin">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wshibin.github.io/OS%20Training%20Camp/Chapter04%20Ownership%20and%20Moves">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/OS%20Training%20Camp/Chapter04%20Ownership%20and%20Moves.html","path":"OS Training Camp/Chapter04 Ownership and Moves.html","title":"Chapter 4 所有权与 move"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Chapter 4 所有权与 move | WShiBin's blogs
+</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+  <script data-pjax defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;fdce1369bd7b4881bc693823aa6eaf36&quot;}'></script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">所有权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#move"><span class="nav-number">2.</span> <span class="nav-text">move</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A-move-%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">更多 move 的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#move-%E5%92%8C%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="nav-number">2.2.</span> <span class="nav-text">move 和控制流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#move-%E5%92%8C%E7%B4%A2%E5%BC%95"><span class="nav-number">2.3.</span> <span class="nav-text">move 和索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copy-%E7%B1%BB%E5%9E%8B-move-%E7%9A%84%E4%BE%8B%E5%A4%96"><span class="nav-number">3.</span> <span class="nav-text">Copy 类型:move 的例外</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Chapter 4 所有权与 move
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <p>内存管理问题：</p>
+<ul>
+<li>希望内存能在我们想要释放的时候被及时释放</li>
+<li>永远不希望使用一个指向已经被释放的对象的指针。这会导致未定义行为，进而导致崩溃和安全漏洞。</li>
+</ul>
+<p>现有方案：</p>
+<ul>
+<li>垃圾回收：Python、JavaScript、Ruby、Java、C#</li>
+<li>自己负责释放内存：C 和 C++</li>
+</ul>
+<p>Rust不同于上面两种方案：严格限制程序使用指针的方法</p>
+<h2 id="所有权"><a href="#所有权" class="headerlink" title="所有权"></a>所有权</h2><p>如果你读过很多 C 或 C++ 的代码，你可能会看到过有注释说某个类的实例拥有 (own) 某些它指向的其他对象。</p>
+<p>在别的语言中是隐式的有这种概念，是规范、或最佳实践。但在 Rust 中，所有权的概念被内建在语言之中，并且通过编译期检查确保强制执行。每个值都只有一个决定它生命周期的所有者。</p>
+<p>所有权的树：所有者和它们拥有的值组成了树，值的拥有者是它的父结点，值拥有的值是它的孩子结点。</p>
+<p>灵活和限制：激进赌注，保证安全，但对你有一定的限制</p>
+<p>Rust 声称，在实践中，解决问题时通常有足够的灵活性来保证至少有一些完美的解决方案可以在语 言强加的限制范围内实现。</p>
+<p>Rust 在以下几 个方面扩展了这个简单的想法:</p>
+<ul>
+<li>你可以将值从一个所有者移动到另一个所有者。这允许你构建、更改、拆除所有权树。</li>
+<li>很简单的类型例如整数、浮点数和字符被所有权规则排除在外。它们被称为Copy类型。</li>
+<li>标准库提供了引用计数的指针类型Rc和Arc，它们允许值在一定的限制下可以有多个所有者。</li>
+<li>你可以“借用一个值的引用”，引用是生命周期受限的非占有的指针。</li>
+</ul>
+<h2 id="move"><a href="#move" class="headerlink" title="move"></a>move</h2><p>在 Rust 里对大多数类型来说，赋值给变量、把值传给函数、或者从函数返回值并不会拷 贝这个值:它们只会 move 它。源对象放弃了值的所有权，把所有权转移给了目的对象，同 时源对象变为未初始化的状态;此时目的对象控制值的生命周期。</p>
+<h3 id="更多-move-的操作"><a href="#更多-move-的操作" class="headerlink" title="更多 move 的操作"></a>更多 move 的操作</h3><p>move 常用于初始化和赋值，还有其它的几个场景：</p>
+<ul>
+<li>从函数返回值</li>
+<li>构造新的值</li>
+<li>向函数传递值</li>
+</ul>
+<h3 id="move-和控制流"><a href="#move-和控制流" class="headerlink" title="move 和控制流"></a>move 和控制流</h3><h3 id="move-和索引"><a href="#move-和索引" class="headerlink" title="move 和索引"></a>move 和索引</h3><p> move 会将源对象设置为未初始化状态，目的对象会获得值的所有权，所以不能转移初始化了的 Vec 中的元素。只能用其它方式：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建一个 string 的 vector:&quot;101&quot;, &quot;102&quot;, ... &quot;105&quot; </span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">v</span> = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"><span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">101</span>..<span class="number">106</span>&#123;</span><br><span class="line">    v.<span class="title function_ invoke__">push</span>(i.<span class="title function_ invoke__">to_string</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 弹出 vector 尾部的元素</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">fifth</span> = v.<span class="title function_ invoke__">pop</span>().<span class="title function_ invoke__">expect</span>(<span class="string">&quot;vector empty!&quot;</span>); </span><br><span class="line"><span class="built_in">assert_eq!</span>(fifth, <span class="string">&quot;105&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 移出给定位置的元素，并把最后一个元素移动过来: </span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">second</span> = v.<span class="title function_ invoke__">swap_remove</span>(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">assert_eq!</span>(second, <span class="string">&quot;102&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 用另一个值和我们想移出的值交换</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">third</span> = std::mem::<span class="title function_ invoke__">replace</span>(&amp;<span class="keyword">mut</span> v[<span class="number">2</span>], <span class="string">&quot;substitute&quot;</span>.<span class="title function_ invoke__">to_string</span>()); </span><br><span class="line"><span class="built_in">assert_eq!</span>(third, <span class="string">&quot;103&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 让我们看看vector中还剩下什么。</span></span><br><span class="line"><span class="built_in">assert_eq!</span>(v, <span class="built_in">vec!</span>[<span class="string">&quot;101&quot;</span>, <span class="string">&quot;104&quot;</span>, <span class="string">&quot;substitute&quot;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p><code>take()</code>函数</p>
+<h2 id="Copy-类型-move-的例外"><a href="#Copy-类型-move-的例外" class="headerlink" title="Copy 类型:move 的例外"></a>Copy 类型:move 的例外</h2><p>赋予一个 Copy 类型的值会拷贝它，而不是移动它。</p>
+<p>用户自定义类型只是默认不是 Copy 类型</p>
+<p>因此将一个类型标记为 Copy 代表 着实现者的一个承诺:如果之后它必须要修改为非 Copy 类型，很多使用它的代码都需要修 改。</p>
+<p>没有太理解这个地方</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/pjax.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/search/local-search.min.js"></script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/fancybox.min.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/OS%20Training%20Camp/Chapter04%20Ownership%20and%20Moves.html"}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/quicklink.min.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.14.1/source/js/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -206,6 +206,116 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2023/01/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%B5%8C%E5%A5%97%E5%AE%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%B5%8C%E5%A5%97%E5%AE%8F/" class="post-title-link" itemprop="url">【RTFC】源码阅读-嵌套宏</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-10 21:46:23" itemprop="dateCreated datePublished" datetime="2023-01-10T21:46:23+08:00">2023-01-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RTFC/" itemprop="url" rel="index"><span itemprop="name">RTFC</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/01/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%B5%8C%E5%A5%97%E5%AE%8F/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2023/01/源码阅读-嵌套宏/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>在源码阅读的时候，有个非常讨厌的家伙—多层嵌套宏，简单的宏还 OK，有些多则嵌套个四五层，看代码时直接血压飙升。</p>
+</blockquote>
+<p>后来一想，编译器的预处理器不就是在预处理阶段把宏展开嘛？命令示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc -E main.c &gt; main.i</span><br></pre></td></tr></table></figure>
+
+<p>但实际上<strong>多层嵌套的宏</strong>一般会出现在大型项目里面，而不是像上面一个的单个文件当中。那问题就转变成了：怎么在编译时保留这个预处理阶段的产生的中间临时文件？或是怎么生成这样的目标文件？这里选后者-去生成目标文件，拿 CMake 的项目来举例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置、编译</span></span><br><span class="line">$ cmake -S . -B build </span><br><span class="line">$ cmake --build build -j</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重点：查找对应的target 目标</span></span><br><span class="line">$ cmake --build build/lvgl --target <span class="built_in">help</span> | grep lv_gc.i</span><br><span class="line">... src/misc/lv_gc.i</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成对应的目标文件</span></span><br><span class="line">$ cmake --build build/lvgl --target src/misc/lv_gc.i</span><br><span class="line"><span class="built_in">cd</span> /Users/shibin/repo/lv_sim_vscode_sdl_8/build &amp;&amp; /Library/Developer/CommandLineTools/usr/bin/make  -f lvgl/CMakeFiles/lvgl.dir/build.make lvgl/CMakeFiles/lvgl.dir/src/misc/lv_gc.c.i</span><br><span class="line">Preprocessing C <span class="built_in">source</span> to CMakeFiles/lvgl.dir/src/misc/lv_gc.c.i</span><br><span class="line"><span class="built_in">cd</span> /Users/shibin/repo/lv_sim_vscode_sdl_8/build/lvgl &amp;&amp; /Library/Developer/CommandLineTools/usr/bin/cc -DLV_CONF_INCLUDE_SIMPLE -DLV_LVGL_H_INCLUDE_SIMPLE -I/Users/shibin/repo/lv_sim_vscode_sdl_8 -I/opt/homebrew/Cellar/sdl2/2.26.1/include -isystem /Users/shibin/repo/lv_sim_vscode_sdl_8/lvgl -fno-omit-frame-pointer -fsanitize=undefined -fsanitize=float-cast-overflow -fsanitize-address-use-after-scope -fno-sanitize-recover -g -<span class="built_in">arch</span> arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -E /Users/shibin/repo/lv_sim_vscode_sdl_8/lvgl/src/misc/lv_gc.c &gt; CMakeFiles/lvgl.dir/src/misc/lv_gc.c.i</span><br><span class="line"></span><br><span class="line">$ find . -name lv_gc.c.i                     </span><br><span class="line">./build/lvgl/CMakeFiles/lvgl.dir/src/misc/lv_gc.c.i</span><br><span class="line"></span><br><span class="line">$ code ./build/lvgl/CMakeFiles/lvgl.dir/src/misc/lv_gc.c.i</span><br></pre></td></tr></table></figure>
+
+<p> CMake项目默认会生成 <code>Makefile</code> 的构建脚本，然后调用 make 去编译项目，多层嵌套的 <code>CMakeLists.txt</code> 项目就会生成多层嵌套的 <code>Makefile</code> 脚本文件。上述前面两个命令不用多解释，是 CMake 的配置和编译，编译缓存会生成在 build 目录下，build 目录下有对应的 <code>Makefile</code> 文件；重点是第三四条命令 :</p>
+<ul>
+<li><code>cmake --build build/lvgl --target help</code> ：显示<code>build/lvgl</code>下面的 <code>Makefile</code> 里面有哪些目标；这里由于我的是多层CMake 项目，所以我去<code>build/lvgl/Makefile</code>里面去查找</li>
+<li><code>grep lv_gc.i</code> ：过滤查找 我要展开宏的源代码文件；如果文件名是<code>xxx.c</code>，对应搜索<code>xxx.i</code></li>
+<li><code>cmake --build build/lvgl --target src/misc/lv_gc.i</code>：来去生成对应的 target 目标，就是对应源代码进行预处理的目标</li>
+</ul>
+<p>最后可能需要<code>find</code>搜索查找下，多层嵌套的 <code>CMakeLists.txt</code> 项目目录相对复杂点，使用搜索稳妥些。最后打开文件，代码格式化一下，立马清晰了，截图如下：生成的文件还会有源文件的行号注释（指示什么文件的多少行代码如下）</p>
+<img src="/images/rtfc/image-20230110102350586 PM.png" style="zoom:50%;" />
+
+<p>那如果要展开的宏在头文件中，而不是在<code>c</code>文件中呢？把这个头文件包含<code>include</code>到另一个<code>c</code>源文件中，然后去生成这个 <code>c</code>文件的目标文件。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -392,20 +502,25 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">256</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>编译运行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out </span><br><span class="line">hello world</span><br><span class="line">$ echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">hello world</span><br><span class="line">$ echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
 
 <p>把 <code>return</code> 改成257呢，</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">257</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>编译运行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out </span><br><span class="line">hello world</span><br><span class="line">$ echo $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">hello world</span><br><span class="line">$ echo $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
 
 <p>变成了1，这就有意思了；不卖关子，程序的退出方式有很多种，一个 int 用不同的 bit分成了多种情况去使用，如下图，正常退出值的范围是：0~255。所以，<code>return</code>的值是</p>
 <img src="/images/2022-12-31_Back-to-hello-world.assets/image-20230103113123002 PM.png" style="zoom:30%;" />
 
 <p><code>WEXITSTATUS</code>宏可以去获取进程正常退出的状态，也就是子进程正常退出 <code>return</code>返回的值</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (fork() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// child process</span></span><br><span class="line">        <span class="type">char</span>* <span class="type">const</span> argv[] = &#123;<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">        execvp(<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, argv);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// parent process</span></span><br><span class="line">        <span class="type">int</span> child_exit_status = <span class="number">0</span>;</span><br><span class="line">        wait(&amp;child_exit_status);                                                   <span class="comment">// wait for child process</span></span><br><span class="line">        <span class="type">int</span> child_normal_termination_exit_status = WEXITSTATUS(child_exit_status);  <span class="comment">// get normal termination exit status</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;child_return_value: %d\n&quot;</span>, child_normal_termination_exit_status);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (fork() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// child process</span></span><br><span class="line">        <span class="type">char</span>* <span class="type">const</span> argv[] = &#123;<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">        execvp(<span class="string">&quot;/com.docker.devenvironments.code/hello_world/a.out&quot;</span>, argv);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// parent process</span></span><br><span class="line">        <span class="type">int</span> child_exit_status = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> child_normal_termination_exit_status = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        wait(&amp;child_exit_status);                                               <span class="comment">// wait for child process</span></span><br><span class="line">        child_normal_termination_exit_status = WEXITSTATUS(child_exit_status);  <span class="comment">// get normal termination exit status</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;child_return_value: %d\n&quot;</span>, child_normal_termination_exit_status);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p>编译运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cc main.c -o parent.out &amp;&amp; ./parent.out</span><br><span class="line">child_return_value: 1</span><br></pre></td></tr></table></figure>
+
+<p>这样就能获取到进程最后正常退出的状态；而WEXITSTATUS宏就是做下位移和与运算:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> WEXITSTATUS(x)  ((_W_INT(x) &gt;&gt; 8) &amp; 0x000000ff)</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1830,160 +1945,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/08/Control-Multiple-Computers-With-One-Keyboard-and-Mouse/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/Control-Multiple-Computers-With-One-Keyboard-and-Mouse/" class="post-title-link" itemprop="url">【Software】Barrier:多台电脑共享一套键盘和鼠标</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-21 22:23:58" itemprop="dateCreated datePublished" datetime="2022-08-21T22:23:58+08:00">2022-08-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/08/Control-Multiple-Computers-With-One-Keyboard-and-Mouse/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/08/Control-Multiple-Computers-With-One-Keyboard-and-Mouse/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>公司上班会使用两台电脑：一台Ubuntu工作用主机和一台Macbook笔记本。经常需要在两套键盘和鼠标之间切换，加上Macbook的键盘很拉夸，Macbook 的键盘从2015年之后的款就非常拉；16年出的为了做轻薄，出了蝴蝶键盘，跟敲木板似的；M1芯片的mac增加了键程，但也赶不上2015款之前的版本；然后就有标题：能不能多台电脑共享一套鼠标和键盘？</p>
-</blockquote>
-<h2 id="方案："><a href="#方案：" class="headerlink" title="方案："></a>方案：</h2><ul>
-<li>远程控制</li>
-<li>KVM切换器（硬件）</li>
-<li>软件实现</li>
-</ul>
-<p>单从实现的角度讲有上面这些</p>
-<h3 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h3><p>从体验的角度看，远程控制体验可定不太好，实现上需要传输屏幕画面+模拟硬件；体验不好的原因主要是传输屏幕画面；当然也可以去做优化，比如说：把屏幕界面切分成很多快，只传输变化了的部分界面；比如腾讯会议里面摄像头可以设置固定背景，这样只需要传输头像的部分数据；还有一个是功能是：在共享屏幕的时候只共享指定的窗口，都是为了减少数据的传输量，来增加用户体验；另外一个是对传输的图像数据进行压缩；那我们知道这些软件的工作原理之后，反过来我们就可以和它打配合，问题来了：怎么样去让这个传输的图像更利于压缩呢？一个简单的方式是：尽可能用纯色的背景，嗯，不要整些花里胡哨的。以上的底层逻辑是：像程序一样去思考</p>
-<h3 id="KVM切换器"><a href="#KVM切换器" class="headerlink" title="KVM切换器"></a>KVM切换器</h3><p>KVM的全称是<code>Keyboard Video Mouse</code>，淘宝搜索可以有一堆；使用这个需要额外的硬件和线材成本，在实际的使用过程中也可能需要手动的按键去切换，麻烦</p>
-<h3 id="软件实现"><a href="#软件实现" class="headerlink" title="软件实现"></a>软件实现</h3><p>网上搜索一番相应的软件也不少：</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zeW1sZXNzLmNvbS9zeW5lcmd5">Synergy<i class="fa fa-external-link-alt"></i></span>，</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RlYmF1Y2hlZS9iYXJyaWVy">Barrier<i class="fa fa-external-link-alt"></i></span>，</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2hhcmVtb3VzZS5jb20v">ShareMouse<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p>ShareMouse不支持Linux平台；Synergy收费，而Barrier是基于Synergy开源的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N5bWxlc3Mvc3luZXJneS1jb3Jl">symless/synergy-core<i class="fa fa-external-link-alt"></i></span> 1.9 代码，开源免费，最后选择了Barrie</p>
-<h2 id="Barrier安装："><a href="#Barrier安装：" class="headerlink" title="Barrier安装："></a>Barrier安装：</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># macOS</span></span><br><span class="line">$ brew install barrier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux：推荐用flatpak方式安装；安装flatpack：https://flatpak.org/setup/</span></span><br><span class="line">$ flatpak install flathub com.github.debauchee.barrier	<span class="comment"># install</span></span><br><span class="line">$ flatpak run com.github.debauchee.barrier							<span class="comment"># run</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>macOS遇到的问题，解决方案：去Finder中找到<code>Barrier.app</code>，按住<code>ctrl + click</code>，然后菜单中点击<code>open</code>即可</p>
-</blockquote>
-<img src="/images/barrier/image-2022082154619852_PM.png" style="zoom:40%;" />
-
-<h2 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h2><p>打开软件后界面如下：</p>
-<ul>
-<li>Server端：需要共享键盘和鼠标的这台电脑使用Server模式</li>
-<li>Client端：被控制的电脑端使用Client模式</li>
-</ul>
-<img src="/images/barrier/image-2022082155629717_PM.png" style="zoom:50%;" />
-
-<h3 id="Server端配置："><a href="#Server端配置：" class="headerlink" title="Server端配置："></a>Server端配置：</h3><p>点击Configure Server</p>
-<img src="/images/barrier/image-2022082160136397_PM.png" style="zoom:40%;" />
-
-<p>这个用来配置屏幕的多台电脑的布局：也就是多台电脑之间屏幕的关系。上图是的IMac.local标识自己当前的台电脑</p>
-<h4 id="添加Client端电脑屏幕："><a href="#添加Client端电脑屏幕：" class="headerlink" title="添加Client端电脑屏幕："></a>添加Client端电脑屏幕：</h4><ul>
-<li>拖动右上角的显示器图标到下面网格布局中<ul>
-<li>把新的显示器拖动到当前电脑屏幕的右边，表示当前鼠标可以通过右移，去操作控制另一台电脑</li>
-</ul>
-</li>
-<li>双击新添加的显示器图标，编辑<code>Screen name</code>；(这个不能乱写，使用Barrier选中client模式时，自动识别出的名字）</li>
-</ul>
-<img src="/images/barrier/image-2022082161430961_PM.png" style="zoom:40%;" />
-
-<h3 id="Client端配置："><a href="#Client端配置：" class="headerlink" title="Client端配置："></a>Client端配置：</h3><p>可以选择<code>Auto config</code>模式，或是自己手动填写Server端IP</p>
-<h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>上面配置完了之后分别启动Server端和Client端，这样就可以共享Server端的鼠标和键盘了</p>
-<p>另一个特点是：鼠标所在的显示器，就表示键盘能输入到哪台电脑</p>
-<blockquote>
-<p>Note：遇到问题开启log调试（软件菜单栏中）</p>
-</blockquote>
-<h2 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h2><p>在公司用了两个月，mac使用linux的键盘：</p>
-<ul>
-<li>支持剪切板跨电脑共享：在这台电脑上复制，在另一台电脑上粘贴，Nice。经测试：能共享复制的文本，共享不了复制的文件</li>
-<li>mac和linux的win键和alt键不一样，可以在设置中修改：把在mac下alt和win互换</li>
-<li>共享键盘时，使用同时按多键时的快捷键，有时会生效。可能按键事件是一个个发过去的，没有真机那么灵敏</li>
-</ul>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref:"></a>Ref:</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zeW1sZXNzLmNvbS9ndWlkZXMvc2hhcmUta2V5Ym9hcmQtbW91c2U=">https://symless.com/guides/share-keyboard-mouse<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucGNtYWcuY29tL2hvdy10by9ob3ctdG8tY29udHJvbC1tdWx0aXBsZS1jb21wdXRlcnMtd2l0aC1vbmUta2V5Ym9hcmQtYW5kLW1vdXNl">https://www.pcmag.com/how-to/how-to-control-multiple-computers-with-one-keyboard-and-mouse<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

@@ -215,6 +215,133 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/08/Strings-in-C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/Strings-in-C/" class="post-title-link" itemprop="url">【C】C语言中的字符串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-29 21:43:54" itemprop="dateCreated datePublished" datetime="2022-08-29T21:43:54+08:00">2022-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/08/Strings-in-C/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/08/Strings-in-C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>c语言的字符串，本质上是一个以<code>\0</code>字符结尾的字符数组，使用起来操作想去繁琐，不少库都会对其进行封装。下面看一些比较有代表性的</p>
+</blockquote>
+<h2 id="典型库里面的字符串的封装："><a href="#典型库里面的字符串的封装：" class="headerlink" title="典型库里面的字符串的封装："></a>典型库里面的字符串的封装：</h2><ul>
+<li>Git里面的<code>strbuf</code></li>
+<li>Dbus里面的字符串<code>DBusRealString</code></li>
+<li>Glib中的<code>GString</code></li>
+<li>nginx中的<code>ngx_str_t</code></li>
+<li>Redis中的<code>sds</code></li>
+</ul>
+<h3 id="Git里面的strbuf"><a href="#Git里面的strbuf" class="headerlink" title="Git里面的strbuf"></a>Git里面的<code>strbuf</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">strbuf</span> &#123;</span></span><br><span class="line">    <span class="type">size_t</span> alloc;</span><br><span class="line">    <span class="type">size_t</span> len;</span><br><span class="line">    <span class="type">char</span>*  buf;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dbus里面的字符串DBusRealString"><a href="#Dbus里面的字符串DBusRealString" class="headerlink" title="Dbus里面的字符串DBusRealString"></a>Dbus里面的字符串<code>DBusRealString</code></h3><p><code>Dbus</code>是<code>DBusString</code>包装了一层<code>DBusRealString</code>，对外<code>DBusString</code>，对内<code>DBusRealString</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>* str;              <span class="comment">/**&lt; String data, plus nul termination */</span></span><br><span class="line">    <span class="type">int</span>            len;              <span class="comment">/**&lt; Length without nul */</span></span><br><span class="line">    <span class="type">int</span>            allocated;        <span class="comment">/**&lt; Allocated size of data */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   constant : <span class="number">1</span>;     <span class="comment">/**&lt; String data is not owned by DBusString */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   locked : <span class="number">1</span>;       <span class="comment">/**&lt; DBusString has been locked and can&#x27;t be changed */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   valid : <span class="number">1</span>;        <span class="comment">/**&lt; DBusString is valid (initialized and not freed) */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span>   align_offset : <span class="number">3</span>; <span class="comment">/**&lt; str - align_offset is the actual malloc block */</span></span><br><span class="line">&#125; DBusRealString;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Glib中的GString"><a href="#Glib中的GString" class="headerlink" title="Glib中的GString"></a>Glib中的<code>GString</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">GString</span> &#123;</span></span><br><span class="line">    gchar* str;</span><br><span class="line">    gsize  len;</span><br><span class="line">    gsize  allocated_len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="nginx中的ngx-str-t"><a href="#nginx中的ngx-str-t" class="headerlink" title="nginx中的ngx_str_t"></a>nginx中的<code>ngx_str_t</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">size_t</span>  len;</span><br><span class="line">    u_char* data;</span><br><span class="line">&#125; <span class="type">ngx_str_t</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis中的sds"><a href="#Redis中的sds" class="headerlink" title="Redis中的sds"></a>Redis中的<code>sds</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">char</span>* sds;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Note: sdshdr5 is never used, we just access the flags byte directly.</span></span><br><span class="line"><span class="comment"> * However is here to document the layout of type 5 SDS strings. */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr5</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, and 5 msb of string length */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr8</span> &#123;</span></span><br><span class="line">    <span class="type">uint8_t</span>       len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint8_t</span>       alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr16</span> &#123;</span></span><br><span class="line">    <span class="type">uint16_t</span>      len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint16_t</span>      alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr32</span> &#123;</span></span><br><span class="line">    <span class="type">uint32_t</span>      len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint32_t</span>      alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((__<span class="title">packed__</span>)) <span class="title">sdshdr64</span> &#123;</span></span><br><span class="line">    <span class="type">uint64_t</span>      len;   <span class="comment">/* used */</span></span><br><span class="line">    <span class="type">uint64_t</span>      alloc; <span class="comment">/* excluding the header and null terminator */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></span><br><span class="line">    <span class="type">char</span>          buf[];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="SDS：Simple-Dynamic-Strings"><a href="#SDS：Simple-Dynamic-Strings" class="headerlink" title="SDS：Simple Dynamic Strings"></a>SDS：Simple Dynamic Strings</h2><p>其它几没有太大差别：容量、长度、数据，到是这个SDS<br>SDS是在redis中使用的字符串，后面独立成了单独的仓库：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FudGlyZXovc2Rz">https://github.com/antirez/sds<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><code>__attribute__((__packed__))</code> 属性: <a href="https://wshibin.github.io/2022/08/Compiler-Attributes/#packed-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A">https://wshibin.github.io/2022/08/Compiler-Attributes/#packed-%E5%B1%9E%E6%80%A7-%E5%90%8C%E4%B8%8A</a></li>
+<li>弹性数组成员: <a href="https://wshibin.github.io/2022/09/Flexible-array-member/">https://wshibin.github.io/2022/09/Flexible-array-member/</a></li>
+</ul>
+<h3 id="设计："><a href="#设计：" class="headerlink" title="设计："></a>设计：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------+-------------------------------+-----------+</span><br><span class="line">| Header | Binary safe C alike string... | Null term |</span><br><span class="line">+--------+-------------------------------+-----------+</span><br><span class="line">         |</span><br><span class="line">         `-&gt; Pointer returned to the user.</span><br></pre></td></tr></table></figure>
+
+<p>示例：<code>HELLOWORLD</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+------------+------------------------+-----------+---------------\</span><br><span class="line">| Len | Free | H E L L O W O R L D \n | Null term |  Free space   \</span><br><span class="line">+------------+------------------------+-----------+---------------\</span><br><span class="line">             |</span><br><span class="line">             `-&gt; Pointer returned to the user.</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><p>todo</p>
+<h3 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h3><p>LSB： <code>least significant bit</code></p>
+<img src="/images/cstring/byte-and-bit-image-20220829103838200.png" style="zoom:80%;" />
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/08/Control-Multiple-Computers-With-One-Keyboard-and-Mouse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -25876,244 +26003,6 @@
 <img src="/images/hackintosh/image-20220410083327828.png" style="zoom:50%;" />
 
 <p>结束</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" class="post-title-link" itemprop="url">【Design Principles】LVGL中的一些设计原则</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-03-21 20:25:53" itemprop="dateCreated datePublished" datetime="2022-03-21T20:25:53+08:00">2022-03-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/03/LVGL中的一些设计原则/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。</p>
-</blockquote>
-<h2 id="软件设计七大原则"><a href="#软件设计七大原则" class="headerlink" title="软件设计七大原则"></a>软件设计七大原则</h2><table>
-<thead>
-<tr>
-<th>设计原则</th>
-<th>定义</th>
-<th>目的</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>开闭原则</strong></td>
-<td>对扩展开放，对修改关闭</td>
-<td>降低维护带来的新风险</td>
-</tr>
-<tr>
-<td><strong>依赖倒置原则</strong></td>
-<td>高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</td>
-<td>更利于代码结构的升级扩展</td>
-</tr>
-<tr>
-<td><strong>单一职责原则</strong></td>
-<td>一个类只干一件事，实现类要单一</td>
-<td>便于理解，提高代码的可读性</td>
-</tr>
-<tr>
-<td><strong>接口隔离原则</strong></td>
-<td>一个接口只干一件事，接口要精简单一</td>
-<td>功能解耦，高聚合、低耦合</td>
-</tr>
-<tr>
-<td><strong>迪米特法则</strong></td>
-<td>最少知识原则，不该知道的不要知道，一个类应该保持对其它对象最少的了解，降低耦合度</td>
-<td>只和朋友交流，不和陌生人说话，减少代码臃肿</td>
-</tr>
-<tr>
-<td><strong>里氏替换原则</strong></td>
-<td>不要破坏继承体系，子类重写方法功能发生改变，不应该影响父类方法的含义</td>
-<td>防止继承泛滥</td>
-</tr>
-<tr>
-<td><strong>合成复用原则</strong></td>
-<td>尽量使用组合或者聚合关系实现代码复用，少使用继承</td>
-<td>降低代码耦合</td>
-</tr>
-</tbody></table>
-<h2 id="设计原则和设计模式的关系"><a href="#设计原则和设计模式的关系" class="headerlink" title="设计原则和设计模式的关系"></a>设计原则和设计模式的关系</h2><h3 id="设计模式分类："><a href="#设计模式分类：" class="headerlink" title="设计模式分类："></a>设计模式分类：</h3><ul>
-<li><strong>创建型模式</strong>：工厂模式、抽象工厂模式、单例模式、建造者模式、原型模式</li>
-<li><strong>结构型模式</strong>：适配器模式、桥接模式、过滤器模式、组合模式、装饰器模式、外观模式、享元模式、代理模式</li>
-<li><strong>行为型模式</strong>：责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、空对象模式、策略模式、模板模式、访问者模式</li>
-</ul>
-<h3 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h3><p>设计模式是设计原则的应用、实现。设计原则是底层原则、是根本；设计模式里面的套路用了设计原则。简单的讲，你写的代码可以没有使用设计模式，但一定不能没有设计原则</p>
-<h2 id="C语言和面向对象"><a href="#C语言和面向对象" class="headerlink" title="C语言和面向对象"></a>C语言和面向对象</h2><h3 id="先讨论下C"><a href="#先讨论下C" class="headerlink" title="先讨论下C++"></a>先讨论下C++</h3><p>C++作者：Bjarne Stroustrup</p>
-<img src="/images/design_principles/image-20220321164258684.png" style="zoom: 20%;" />
-
-<p>C++是一个多范式的语言；包括支持面向对象，也被有人称为“C with Classes”；</p>
-<p><strong>CFront</strong>：C++原始的编译器，作用把C++代码转成C代码；为啥叫CFront？在C的编译器前面加了一个编译器，把C++代码通过CFront转成C代码，然后用C编译器去编译生成程序</p>
-<img src="/images/design_principles/image-20220321165435232.png" style="zoom: 40%;" />
-
-<h3 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h3><h3 id="问题：C-中的高级特性如何在C中表示？"><a href="#问题：C-中的高级特性如何在C中表示？" class="headerlink" title="问题：C++中的高级特性如何在C中表示？"></a>问题：C++中的高级特性如何在C中表示？</h3><ul>
-<li>类里面的函数真的属于这个Class吗？<code>sizeof()</code></li>
-<li>类中的<code>this</code>怎么来的？语法糖而已；有些语言会显示写<code>self</code>（Python、Rust）</li>
-<li>类调用成员函数是怎么回事？语法糖，和调用普通全局函数并没有什么区别</li>
-</ul>
-<img src="/images/design_principles/image-20220322004626246.png" style="zoom:540%;" />
-
-<h3 id="C-的虚函数、Java的Interface，Rust的Trait"><a href="#C-的虚函数、Java的Interface，Rust的Trait" class="headerlink" title="C++的虚函数、Java的Interface，Rust的Trait"></a>C++的虚函数、Java的Interface，Rust的Trait</h3><p>父类定义接口，然后子类有不同的实现，在实际运行的时候会调用不同的子类实现，<br>下图中的接口函数本质上是一个函数指针变量，在使用时指定了不同的子类的实现的函数</p>
-<img src="/images/design_principles/image-20220323232530466.png" style="zoom:50%;" />
-
-<h2 id="设计原则和LVGL"><a href="#设计原则和LVGL" class="headerlink" title="设计原则和LVGL"></a>设计原则和LVGL</h2><h3 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h3><p><strong>一个类只负责完成一个职责或者功能</strong></p>
-<ul>
-<li>目录的命名</li>
-<li>源代码文件的命名</li>
-</ul>
-<h3 id="依赖倒置原则："><a href="#依赖倒置原则：" class="headerlink" title="依赖倒置原则："></a><strong>依赖倒置原则</strong>：</h3><p><strong>定义</strong>：高层不应该依赖低层，要依赖于抽象，不要依赖于具体实现（面向接口编程）</p>
-<p><strong>目的</strong>：更利于代码结构的<strong>升级扩展</strong></p>
-<blockquote>
-<p>问题：依赖于<strong>抽象</strong>？这里的<strong>抽象</strong>指的是什么？</p>
-</blockquote>
-<h4 id="LVGL中扩展使用："><a href="#LVGL中扩展使用：" class="headerlink" title="LVGL中扩展使用："></a>LVGL中扩展使用：</h4><ul>
-<li>lvgl如何显示到不同的屏幕？</li>
-<li>lvgl如何获取不同屏幕的点击坐标？</li>
-<li>lvgl如何显示不同格式的图片？</li>
-</ul>
-<h4 id="lvgl如何显示到不同的屏幕"><a href="#lvgl如何显示到不同的屏幕" class="headerlink" title="lvgl如何显示到不同的屏幕?"></a>lvgl如何显示到不同的屏幕?</h4><h5 id="框架怎么写？"><a href="#框架怎么写？" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>显示到屏幕（估计就会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？"><a href="#改完后？" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>void (*flush_cb)(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>把对应的数据给你：哪块区域的屏幕要刷新<code>area</code>，以及这块区域对应的数据值<code>color_p</code></li>
-</ul>
-</li>
-<li>对应的拓展自己去处理数据：通过SDL刷到屏幕；通过Framebuffer刷到屏幕：和不同平台，实现相关</li>
-</ol>
-<h4 id="lvgl如何获取不同屏幕的点击坐标？"><a href="#lvgl如何获取不同屏幕的点击坐标？" class="headerlink" title="lvgl如何获取不同屏幕的点击坐标？"></a>lvgl如何获取不同屏幕的点击坐标？</h4><h5 id="框架怎么写？-1"><a href="#框架怎么写？-1" class="headerlink" title="框架怎么写？"></a>框架怎么写？</h5><ol>
-<li>xxx</li>
-<li>xxx</li>
-<li>获取屏幕点击的坐标（估计就又会写死）</li>
-<li>xxx</li>
-</ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
-
-<h5 id="改完后？-1"><a href="#改完后？-1" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
-<li>LVGL框架定义接口：<code>bool (*read_cb)(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);</code><ul>
-<li>我框架内部会在需要的时候去调这个函数</li>
-<li>我框架把这个结构体指针<code>data</code>给你：你负责把对应点击的坐标填进去，然后我框架内部要用（传递到对应控件的点击回调函数）</li>
-</ul>
-</li>
-<li>具体的实现如何去填充数据</li>
-</ol>
-<p>上面两者的区别：</p>
-<ul>
-<li>显示：一个是把数据给你，实现负责去使用这些数据</li>
-<li>点击：我把结构休指针给你，实现负责把数据填充进去</li>
-</ul>
-<h4 id="lvgl如何显示不同格式的图片？"><a href="#lvgl如何显示不同格式的图片？" class="headerlink" title="lvgl如何显示不同格式的图片？"></a>lvgl如何显示不同格式的图片？</h4><p>通过实现图片解码器，实现对应函数回调。步骤同上……</p>
-<h4 id="现实生活：公司做项目的例子"><a href="#现实生活：公司做项目的例子" class="headerlink" title="现实生活：公司做项目的例子"></a>现实生活：公司做项目的例子</h4><ul>
-<li>依赖反转前：我领导依赖于我，我的任务完成了，他的项目才能算完成</li>
-<li>依赖反转后：我领导提出标准，提供对应的资源；我拿到标准和资源，然后去实现</li>
-</ul>
-<img src="/images/design_principles/image-20220324000531092.png" style="zoom:40%;" />
-
-<p>一开始领导依赖于我的工作，他的任务就算完成；我依赖于我领导给的标准和资源去完成这个任务；另外的一个变化是：对于前者，你的领导可能会控制你的细节（不能用这个，得用那个；不能这样搞，要那样搞）；对于后者，我领导就成了标准的制定者</p>
-<h4 id="抽象的定义："><a href="#抽象的定义：" class="headerlink" title="抽象的定义："></a>抽象的定义：</h4><ul>
-<li>需要对业务有足够的了解，对问题抽象<ul>
-<li>回调中的参数：能够实现拓展；不要出现冗余的参数</li>
-</ul>
-</li>
-<li>抽象标准的要求<ul>
-<li>Android的UI线程：死循环不停的去调回调，用户写的ui代码，用户写的事件代码；这些代码得满足一定的要求，比如说：不能卡太久；你卡住了，我内部的死循环就被这个卡死</li>
-</ul>
-</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
-<li>SOLID：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU09MSUQ=">https://en.wikipedia.org/wiki/SOLID<i class="fa fa-external-link-alt"></i></span></li>
-<li>SOLID 设计原则文章：<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAyMzExNDMwMA==">https://segmentfault.com/a/1190000023114300<i class="fa fa-external-link-alt"></i></span></li>
-<li>CFront：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2Zyb250">https://en.wikipedia.org/wiki/Cfront<i class="fa fa-external-link-alt"></i></span></li>
-<li>Modern C：<span class="exturl" data-url="aHR0cHM6Ly93d3cubWFubmluZy5jb20vYm9va3MvbW9kZXJuLWM=">https://www.manning.com/books/modern-c<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAzOTAxMzc5NA==">https://segmentfault.com/a/1190000039013794<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
 
       
     </div>

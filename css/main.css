@@ -1621,7 +1621,7 @@ pre code {
   width: 100%;
 }
 .with-love {
-  color: #666c79;
+  color: #f00;
   display: inline-block;
   margin: 0 5px;
 }
@@ -1744,7 +1744,7 @@ pre code {
 }
 .reading-progress-bar {
   --progress: 0;
-  background: #222;
+  background: #37c6c0;
   height: 3px;
   position: fixed;
   z-index: 50;
@@ -2108,9 +2108,6 @@ pre code {
 .post-meta-break {
   flex-basis: 100%;
   height: 0;
-}
-#busuanzi_container_page_pv {
-  display: none;
 }
 .post-nav {
   border-top: 1px solid #eee;

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+
+    <meta name="description" content="Overview同事反馈：调用一个函数，返回地址无效，导致程序崩溃；被调用函数明明分配空间（调用malloc）成功了，返回后判断是否为NULL也没有用，还是会崩溃了。弄有有点怀疑人生了 代码代码简化之后，大概是这样： &#x2F;&#x2F; foo.h文件 -------------------------------------------#ifndef FOO_H#define FOO_Htypedef str">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Bugs】函数返回地址无效">
+<meta property="og:url" content="https://wshibin.github.io/2023/03/return_address_invalid/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="Overview同事反馈：调用一个函数，返回地址无效，导致程序崩溃；被调用函数明明分配空间（调用malloc）成功了，返回后判断是否为NULL也没有用，还是会崩溃了。弄有有点怀疑人生了 代码代码简化之后，大概是这样： &#x2F;&#x2F; foo.h文件 -------------------------------------------#ifndef FOO_H#define FOO_Htypedef str">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-27T12:40:53.000Z">
+<meta property="article:modified_time" content="2023-05-13T04:07:55.077Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="Bugs">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2023/03/return_address_invalid/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wshibin.github.io/2023/03/return_address_invalid/","path":"/2023/03/return_address_invalid/","title":"【Bugs】函数返回地址无效"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【Bugs】函数返回地址无效 | WShiBin's blogs</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+  <script data-pjax defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;fdce1369bd7b4881bc693823aa6eaf36&quot;}'></script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li><li class="menu-item menu-item-cheat-sheet"><a href="/cheatsheet/" rel="section"><i class="fa fa-book fa-fw"></i>Cheat Sheet</a></li><li class="menu-item menu-item-talks"><a href="/talks/" rel="section"><i class="fa fa-book fa-fw"></i>Talks</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">3.</span> <span class="nav-text">原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5"><span class="nav-number">3.1.</span> <span class="nav-text">已知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E8%A7%A3%E9%87%8A"><span class="nav-number">3.2.</span> <span class="nav-text">详细解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="nav-number">3.3.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">5.</span> <span class="nav-text">Ref:</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2023/03/return_address_invalid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【Bugs】函数返回地址无效 | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Bugs】函数返回地址无效
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-27 20:40:53" itemprop="dateCreated datePublished" datetime="2023-03-27T20:40:53+08:00">2023-03-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Bugs/" itemprop="url" rel="index"><span itemprop="name">Bugs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/03/return_address_invalid/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2023/03/return_address_invalid/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>同事反馈：调用一个函数，返回地址无效，导致程序崩溃；被调用函数明明分配空间（调用<code>malloc</code>）成功了，返回后判断是否为NULL也没有用，还是会崩溃了。弄有有点怀疑人生了</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>代码简化之后，大概是这样：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// foo.h文件 -------------------------------------------</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> FOO_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOO_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">&#125; <span class="type">foo_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">foo_t</span>* <span class="title function_">foo</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span>  <span class="comment">// !FOO_H</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// foo.c文件 -------------------------------------------</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;foo.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">foo_t</span>* <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">foo_t</span>* foo = (<span class="type">foo_t</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">foo_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (foo == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to malloc memory, error msg: %s\n&quot;</span>, strerror(errno));</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(foo, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="type">foo_t</span>));</span><br><span class="line">    <span class="keyword">return</span> foo;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.c文件 -------------------------------------------</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// 调用foo函数，返回地址无效</span></span><br><span class="line">    <span class="type">foo_t</span>* bar = foo();</span><br><span class="line">    <span class="keyword">if</span> (bar == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bar is NULL\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 崩溃</span></span><br><span class="line">    <span class="comment">// do something with bar</span></span><br><span class="line">    bar-&gt;a = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// other code ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用<code>foo</code>函数，返回地址无效，判断是否为NULL也拦截不了，操作<code>bar</code>里面的内容，程序就崩溃了。哪里有问题？</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><h3 id="已知"><a href="#已知" class="headerlink" title="已知"></a>已知</h3><p><code>foo</code>里面的<code>malloc</code>函数调用成功了，返回了一个有效的地址；但<code>foo</code>函数完成后，返回的地址就无效了。这是为什么呢？</p>
+<h3 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a>详细解释</h3><p>问题在于<code>main.c</code>中没有包含<code>foo.h</code>头文件，缺少函数原型定义，编译器在编译的时候不认识这个<code>foo_t*</code>类型，编译器把它当成<code>int</code>类型处理了。一个8字节的地址，被当成4字节的<code>int</code>类型处理了，高4字节数据丢失了，比如：<code>0x00000001 00304080</code>的地址变成了<code>0x00304080</code>，但它也不是空，返回一个低位区域的地址，所以返回的地址就无效了。</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>通过调试定位的问题，用lldb的<code>p</code>命令，打印<code>malloc</code>分配的地址，以及函数返回值存放的<code>bar</code>地址值，发现高4字节数据丢失了</p>
+<p>包含对应函数原型的头文件</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>写代码不规范</li>
+<li>老版本编译器检查不严谨</li>
+<li>可以尝试开启编译器的<code>-Werror</code>选项，开启后，编译器会把警告当成错误，让编译不通过</li>
+</ul>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref:"></a>Ref:</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMjMxNDQxNTEvNjQtYml0LWZ1bmN0aW9uLXJldHVybnMtMzItYml0LXBvaW50ZXI=">https://stackoverflow.com/questions/23144151/64-bit-function-returns-32-bit-pointer<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Bugs/" rel="tag"># Bugs</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/mutex_and_signal/" rel="prev" title="【Bugs】Mutex & Signal死锁">
+                  <i class="fa fa-chevron-left"></i> 【Bugs】Mutex & Signal死锁
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/04/musl-source-code/" rel="next" title="【C】musl libc source code">
+                  【C】musl libc source code <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2023/03/return_address_invalid/"}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

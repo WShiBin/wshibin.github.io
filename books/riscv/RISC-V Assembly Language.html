@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+
+    <meta name="description" content="RISV-V Assembly Language It’s very satisfying to take a problem we thought difficult and find a simple solution. The best solutions are always simple. – Ivan Sutherland  3.1 Introduction宏Figure 3.2 sh">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WShiBin&#39;s blogs">
+<meta property="og:url" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="RISV-V Assembly Language It’s very satisfying to take a problem we thought difficult and find a simple solution. The best solutions are always simple. – Ivan Sutherland  3.1 Introduction宏Figure 3.2 sh">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.assets/image-2023042482437572%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.assets/image-2023042484141245%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.assets/image-2023042490250466%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.assets/image-2023042491326983%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.assets/image-2023042493710538%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.assets/image-20230424100116570%20PM.png">
+<meta property="article:published_time" content="2023-04-29T02:25:01.296Z">
+<meta property="article:modified_time" content="2023-04-29T02:25:01.287Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="WShiBin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.assets/image-2023042482437572%20PM.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.html","path":"books/riscv/RISC-V Assembly Language.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | WShiBin's blogs
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+  <script data-pjax defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;fdce1369bd7b4881bc693823aa6eaf36&quot;}'></script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li><li class="menu-item menu-item-cheat-sheet"><a href="/cheatsheet/" rel="section"><i class="fa fa-book fa-fw"></i>Cheat Sheet</a></li><li class="menu-item menu-item-talks"><a href="/talks/" rel="section"><i class="fa fa-book fa-fw"></i>Talks</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RISV-V-Assembly-Language"><span class="nav-number">1.</span> <span class="nav-text">RISV-V Assembly Language</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Introduction%E5%AE%8F"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 Introduction宏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Calling-convention"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 Calling convention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Assembly"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 Assembly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Linker"><span class="nav-number">1.4.</span> <span class="nav-text">3.4 Linker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-Static-vs-Dynamic-Linking"><span class="nav-number">1.5.</span> <span class="nav-text">3.5 Static vs. Dynamic Linking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-Loader"><span class="nav-number">1.6.</span> <span class="nav-text">3.6 Loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-Concluding-Remarks"><span class="nav-number">1.7.</span> <span class="nav-text">3.7 Concluding Remarks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Use-AddressSanitizer"><span class="nav-number">1.8.</span> <span class="nav-text">Use AddressSanitizer</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/books/">BOOKS</a></li>
+            <li><a href="/books/riscv/">RISCV</a></li>
+            <li>RISC-V ASSEMBLY LANGUAGE</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h1 id="RISV-V-Assembly-Language"><a href="#RISV-V-Assembly-Language" class="headerlink" title="RISV-V Assembly Language"></a>RISV-V Assembly Language</h1><blockquote>
+<p>It’s very satisfying to take a problem we thought difficult and find a simple solution. The best solutions are always simple.</p>
+<p>– Ivan Sutherland</p>
+</blockquote>
+<h2 id="3-1-Introduction宏"><a href="#3-1-Introduction宏" class="headerlink" title="3.1 Introduction宏"></a>3.1 Introduction宏</h2><p>Figure 3.2 shows the four classic steps in translation starting from a C program and ending with a machine-language program ready to run in the computer. This chapter covers the last three steps, but we begin with the role the assembler plays in the RISC-V calling convention.</p>
+<img src="RISC-V Assembly Language.assets/image-2023042482437572 PM.png" style="zoom:50%;" />
+
+<h2 id="3-2-Calling-convention"><a href="#3-2-Calling-convention" class="headerlink" title="3.2 Calling convention"></a>3.2 Calling convention</h2><p>There are six general stages in calling a funciton:</p>
+<ol>
+<li>Place the arguments where the funciotn can access them.</li>
+<li>Jump to the function (using RV32I’s jal).</li>
+<li>Acquire local storage resources the function needs, saving registers as required.</li>
+<li>Perform the desired task of the function.</li>
+<li>Place the function result value where the calling program can access it, restore my registers, and release any local storage resources.</li>
+<li>Since a function can be called from several points in a program, return control to the point of origin (using ret)</li>
+</ol>
+<p>To obtain good performance, try to keep variables in registers rather than memory, but on the other hand, avoid going to memory frequently to save and restore these registers.</p>
+<p>RISC-V fortunately has enough registers to offer the best of both worlds: keep operands in registers yet reduce the need to save and restore them. The insight is to have some registers that are <em>not</em> guaranteed to be preserved across a function call, called <em>temporary registers</em>, and some that are, called <em>save registers</em>. Functions that avoid calling other functions are called <em>leaf</em> function. When a leaf function has only a few arguments and local variables, we can keep everything in registers without “spilling” any to memory. If these conditions don’t hold, then the program must save register values in memory, but a surprising fraction of function calls fall into this happy case.</p>
+<p>Other registers within a function call must be considered either in the same class as saved registers, which are preserved across a function call, or in the same class as the temporary registers, which are not. A function will change the register(s) containing the return value(s), so they are like temporary registers. There is no reason to preserve the registers to pass arguments to functions, so they also are like temporaries. The caller can rely on the remaining registers to be unchanged by across a function call: the registers used for the return address and the stack pointer. Figure 3.2 lists the RISC-V application binary interface (ABI) names of registers and the convention on whether they are preserved or not across function call.</p>
+<p>Given the ABI conventions, we can see the standard RV32I code for function entry and exit. The function <em>prologue</em> looks like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">entry_label:</span><br><span class="line">	addi sp,sp,-framesize		# Allocate space for stack frame</span><br><span class="line">													# by ajusting stack pointer (sp register)</span><br><span class="line">	sw   ra,framesize-4(sp)	# Save return address (ra register)</span><br><span class="line">	# save other registers to stack if needed</span><br><span class="line">	... # body of the function</span><br></pre></td></tr></table></figure>
+
+<p>If there are too many function arguments and variables to fit in the registers, the prologue allocates space on the stack for the function frame, as it is called. After the task of the function is complete, the epilogue undoes the stack frame and returns to the point of origin: </p>
+<img src="RISC-V Assembly Language.assets/image-2023042484141245 PM.png" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># restore registers from stack if needed</span><br><span class="line">lw		ra,framesize-4(sp)	# Restore return address register</span><br><span class="line">addi	sp,sp, framesize		# De-allocate space for stack frame</span><br><span class="line">ret												# Return to calling point</span><br></pre></td></tr></table></figure>
+
+<p>We’ll see an example that follows this ABI shortly, but first we need to explain the remaining assembly tasks beond turning the ABI register names into register numbers.</p>
+<h2 id="3-3-Assembly"><a href="#3-3-Assembly" class="headerlink" title="3.3 Assembly"></a>3.3 Assembly</h2><p>The input to this step in Unix is a file with the suffix <code>.s</code>, such as <code>foo.s</code>; for MS-DOS it is <code>.ASM</code>.</p>
+<p>The job of the assembler step of Figure 3.1 is not simply to produce object code from the instructions that the processor understands, but to extend them to include operations useful for the assembly language programmer or the compiler writer. This category, based on clever configurations of regular instructions, is called <em>pseudoinstructions</em>.  Figures 3.3 and 3.4 list the RISC-V pseudoinstructions, with those in the first figure all relying on register x0 to always be zero while those in the second list do not. For example, <code>ret</code> mentioned above is actually a pseudoinstruction that the assembler replaces with <code>jalr x0, x1, 0</code> (see Figure 3.3). The majority of RISC-V pseudoinstructions depend on x0. As you can see, setting aside one of the 32 registers to be hardwired to zero greatly simplifies the RISC-V instruction set by providing many popular operations–such as <code>jump</code>, <code>return</code>, and <code>branch on equal to zero</code>–as pseudoinstructions.</p>
+<p>Figure 3.5 shows the classic “Hello World” program in C. The compiler produces the assembly language output in Figures 3.3 and 3.4.</p>
+<p>The commands that start with a period are assembler directives. They are commands to the assembler rather than code to be translated by it. They tell the assembler where to place code and data, specify text and data constants for use in the program, and so forth. Figure 3.9 shows the assembler directives of RISC-V. For Figure 3.6, the directives are；</p>
+<ul>
+<li>.text – Enter text section.</li>
+<li>.align 2 – Align following code to 2^2 bytes,</li>
+<li>.globl main – Declare global symbol “main”</li>
+<li>.section .rodata – Enter read-only data section.</li>
+<li>.balign 4 – Align data section to 4 bytes.</li>
+<li>.string “Hello, %s!” – Create this null-terminated string.</li>
+<li>.string “world” – Create this null-terminated string.</li>
+</ul>
+<p>The assembler produces the object file Figure 3.7 using the Executable and Linkable Format (ELF) standard format.</p>
+<img src="RISC-V Assembly Language.assets/image-2023042490250466 PM.png" style="zoom:50%;" />
+
+<img src="RISC-V Assembly Language.assets/image-2023042491326983 PM.png" style="zoom:50%;" />
+
+<p>Hello.c</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Hello, %s\n&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Hello.s</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    .text                           # Directive: enter text section</span><br><span class="line">    .align 2                        # Directive: align code to 2^2 bytes</span><br><span class="line">    .global main                    # Directive: declare global symbol main</span><br><span class="line">main:                               # label for start of main</span><br><span class="line">    addi    sp,sp,-16               # allocate stack frame</span><br><span class="line">    sw      ra,12(sp)               # save return address</span><br><span class="line">    lui     a0,%hi(string1)         # compute address of</span><br><span class="line">    addi    a0,a0,%lo(string1)      #   string1</span><br><span class="line">    lui     a1,%hi(string2)         # compute address of</span><br><span class="line">    addi    a1,a1,%lo(string2)      #   string2</span><br><span class="line">    call    printf                  # call function printf</span><br><span class="line">    lw      ra,12(sp)               # restore return address</span><br><span class="line">    addi    sp,sp,16                # deallocate stack frame</span><br><span class="line">    li      a0,0                    # load return value 0</span><br><span class="line">    ret                             # return</span><br><span class="line">    .section .rodata                # Directive: enter read-only data section</span><br><span class="line">    .balign 4                       # Directive: align data section to 4 bytes</span><br><span class="line">string1:                            # label for first string</span><br><span class="line">    .string &quot;Hello, %s!\n&quot;          # Directive: null-terminated string</span><br><span class="line">string2:                            # label for second string</span><br><span class="line">    .string &quot;world&quot;                 # Directive: null-terminated string</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Hello.o</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">00000000 &lt;main&gt;</span><br><span class="line"> 0: ff010113           addi     sp,sp,-16</span><br><span class="line"> 4: 00112623           sw       ra,12(sp)</span><br><span class="line"> 8: 00000537           lui      a0,0x0</span><br><span class="line"> c: 00050513           mv       a0,a0</span><br><span class="line">10: 000005b7           lui      a1,0x0</span><br><span class="line">14: 00058593           mv       a1,a1</span><br><span class="line">18: 00000097           auipc    ra,0x0</span><br><span class="line">1c: 000080e7           jalr     ra</span><br><span class="line">20: 00c12083           lw       ra,12(sp)</span><br><span class="line">24: 01010113           addi     sp,sp,16</span><br><span class="line">28: 00000513           li       a0,0</span><br><span class="line">2c: 00008067           ret</span><br></pre></td></tr></table></figure>
+
+<p>a.out</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">000101b0 &lt;main&gt;:</span><br><span class="line">   101b0: ff010113          addi     sp,sp,-16</span><br><span class="line">   101b4: 00112623          sw       ra,12(sp)</span><br><span class="line">   101b8: 00000537          lui      a0,0x21</span><br><span class="line">   101bc: a1050513          addi     a0,a0,-1520 # 20a10 &lt;string1&gt;</span><br><span class="line">   101c0: 000215b7          lui      a1,0x21</span><br><span class="line">   101c4: aic58593          addi     a1,a1,-1508 # 20a1c &lt;string2&gt;</span><br><span class="line">   101c8: 288000ef          jal      ra,10450 &lt;printf&gt;</span><br><span class="line">   101cc: 00c12083          lw       ra,12(sp)</span><br><span class="line">   101d0: 01010113          addi     sp,sp,16</span><br><span class="line">   101d4: 00000513          li       a0,0</span><br><span class="line">   101d8: 00008067          ret</span><br></pre></td></tr></table></figure>
+
+<img src="RISC-V Assembly Language.assets/image-2023042493710538 PM.png" style="zoom:50%;" />
+
+<h2 id="3-4-Linker"><a href="#3-4-Linker" class="headerlink" title="3.4 Linker"></a>3.4 Linker</h2><p>Rather than compile all the source code every time one file changes, the linker allows individual files to be compiled and assembled separately. It “stitches” the new object code together with existing machine language modules, such as libraries. It derives its name from one of its tasks, which is to all edit the links of the jump and link instructions in the object file. In fact, linker is short for link editor, which was the histtorical name of this step in Figure 3.1. In Unix systems, the input to the kinker are files with the .o suffix (e.g., foo.o, libc.o), and its output is the a.out file. For MS-DOS, the inputs are files with the suffix .OBJ or .LTB and the output is a .EXT file.</p>
+<p>Figure 3.10 shows the addresses of the regions of memory allocated for code and data in a typical RISC-V program. The linker must adjust the program and data addresses of instructions in all the object files to match addresses in this figure. It is less work for the linker if the input file are position independent code (PIC). PIC means that all the branches to instructions and references to data inside the file are correct wherever the code is placed. As mentioned in Chapter 2, the PC-relative branch of RV32I makes PIC much easier to fulfill.</p>
+<p>In addition to the instructions, each object file contains a symbol table that includes all the labels in the program that must be given addresses as part of the linking process. This list includes labels to data as well as to code. Figure 3.6 has two data labels to be set (string1 and string2) and two code labels to be assigned in (main and printf). Since it’s hard to specify a 32-bit address within a single 32-bit instruction, the linker must adjust two instructions per label in the RV32I code, as Figure 3.6 shows: <code>lui</code> and <code>addi</code> for data addresses, and <code>auipc</code> and <code>jalr</code> for code addresses. Figure 3.8 shows the final linked a.out version of the object file in Figure 3.7.</p>
+<p>RISC-V compiler support several ABIs, depending on whether the F and D extensions are present. For RV32, the ABIs are named ilp32, ilp32f, and ilp32d. Ilp32 means that the C language data types int, long, and pointer are all 32 bits; the optional suffix indicates how flating-point arguments are passed. in ilp32, floating-point arguments are passed in integer registers. In ilp32f, single-precision floating-point arguments are passed in floating-point registers. In ilp32d, double-precision flating-point arguments are also passed in floating-point registers.</p>
+<p>Naturally, to pass a floating-point argument in a floating-point register, you need the corresponding floating-point ISA extension F or D (see Chapter 5). So, to compile code for RV32I (GCC flag ‘-march-rv32i’), you must use the ilp32 ABI (GCC flag ‘-mabi=ilp32’). On the other hand, having floating-point instructions does’t mean the calling convention is required to use them; so, for example, RV32IFD is compatible with all three ABIs: ilp32, ilp32f, and ilp32d.</p>
+<p>The linker checks that the program’s ABI matches all of its libraries. Although the compiler supports many combinations of ISA extensions and ABIs, only a few sets of libraries might be installed. Hence, a common pitfall is attempting to link a program without having compatible libraries installed. The linker will not produce a helpful diagnostic message in this case; it will simply attempt to link with an incompatible library, then inform you of the incompatibility. This pitfall generally occurs only when compilling on one computer for different computer (<em>corss compiling</em>).</p>
+<img src="RISC-V Assembly Language.assets/image-20230424100116570 PM.png" style="zoom:50%;" />
+
+<h2 id="3-5-Static-vs-Dynamic-Linking"><a href="#3-5-Static-vs-Dynamic-Linking" class="headerlink" title="3.5 Static vs. Dynamic Linking"></a>3.5 Static vs. Dynamic Linking</h2><p>The prior section describes <em>static</em> linking, where all potential library code is linked and then locaed together before execution. Such libraries can be relatively large, so linking a popular library into multiple programs wastes memory. Moreover, the libraries are bound when linked–even when they are updated later to fix bugs–forcing the statically-linked code to use the old, buggy version.</p>
+<p>To avoid both problems, most systems today rely on <em>dynamic</em> linking, where the desired external function is loaded and linked to the program only after it is first called; if it’s never called, it’s never loaded and linked. Every call after the first one uses a fast link, so the dynamic overhead is only paid once. Each time a program starts it links in the current version of the library functions it needs, which is how it can get the newest version. Furthermore, if multiple programs use the same dynaimcally linked library, the code in the library need appear only once in memory.</p>
+<p>The code that the compiler generates resembles that for static linking. Instead of jumping to the real function, it jumps to a short (three-instruction) stub function. The stub function loads the address of the real function from a table in memory, then jumps to it. However, on the first call, the table lacks the address of the real function, but instead contains the address of the dynmaic-linking routine. When invoked , the dynamic linker uses the symbol table to find the real function, copies it into memory, and then updates the table to point to the real function. Each subsequent call pays only the three-instruction overhead of stub function.</p>
+<h2 id="3-6-Loader"><a href="#3-6-Loader" class="headerlink" title="3.6 Loader"></a>3.6 Loader</h2><p>A program like the one in Figure 3.8 is an executable file kept in the computer’s storage. When one is to be run, the loader’s job is to load it into memory and jump to the starting address. The “loader” today is the operating system; stated alternatively, loading a.out is one of many tasks of an operating system.</p>
+<p>Loading is little trickier for dynamically-linked programs. Instead of simply starting the program, the operating system starts the dynamic linker. It in turn starts the desired program, and then handles all first-time external calls, copies the functions into memory, and edits the program after each call to point it to the correct function.</p>
+<h2 id="3-7-Concluding-Remarks"><a href="#3-7-Concluding-Remarks" class="headerlink" title="3.7 Concluding Remarks"></a>3.7 Concluding Remarks</h2><blockquote>
+<p>keep it simple, stupid.</p>
+<p>– kelly Johnson, aeronautical engineer who coined the “KISS Principle,” 1960</p>
+</blockquote>
+<p>The assembler enhances the simple RESC-V ISA with 60 pseudoinstructions that make RISC-V code easier to read and to write without increasing hardware costs. Simply dedicating one RISC-V register to zero enables many of these helpful operations. The Load Upper Immediate (lui) and Add Upper Immediate to PC (auipc) instructions make it easier for the compiler and linker to adjust addresses for external data and functions, and PC-relative branching makes it easier to help the linker with position-independent code. Having plenty of registers enables a calling convention that makes function call and return faster by reducing the number of register spills and restores.</p>
+<p>RISC-V offers a tasteful collection of simple but impactful mechanisms that reduce cost, improve performance, and make it easier to program.</p>
+<h2 id="Use-AddressSanitizer"><a href="#Use-AddressSanitizer" class="headerlink" title="Use AddressSanitizer"></a>Use AddressSanitizer</h2><p>Start building your executables with the <code>-fsanitize=address</code> compiler option.<br>Microsoft recommends you use AddressSanitizer in these three standard workflows:</p>
+<ul>
+<li>Developer inner loop</li>
+<li>CI/CD - continuous integration / continuous development<ul>
+<li>Error reporting：dump file</li>
+</ul>
+</li>
+<li>Fuzzing - building with the libFuzzer wrapper</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/books/">BOOKS</a></li>
+            <li><a href="/books/riscv/">RISCV</a></li>
+            <li>RISC-V ASSEMBLY LANGUAGE</li>
+  </ul>
+
+    
+    
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/books/riscv/RISC-V%20Assembly%20Language.html"}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

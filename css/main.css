@@ -310,7 +310,7 @@ dd {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  font-size: 13px;
+  font-size: 14px;
   margin: 0 0 20px;
   width: 100%;
 }
@@ -471,7 +471,7 @@ pre figcaption {
   background: var(--highlight-gutter-background);
   color: var(--highlight-foreground);
   display: flow-root;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.2;
   padding: 0.5em;
 }
@@ -492,7 +492,7 @@ code {
 }
 code {
   border-radius: 3px;
-  font-size: 13px;
+  font-size: 14px;
   padding: 2px 4px;
   overflow-wrap: break-word;
 }
@@ -1570,6 +1570,8 @@ pre code {
   color: #999;
   font-size: 0.875em;
   padding: 20px 0;
+  transition: 0.2s ease-in-out;
+  transition-property: left, right;
 }
 .footer.footer-fixed {
   bottom: 0;
@@ -1682,6 +1684,11 @@ pre code {
   .post-body img,
   .post-body video {
     margin-bottom: 10px !important;
+  }
+  .post-body .image-caption,
+  .post-body img + figcaption,
+  .post-body .fancybox + figcaption {
+    margin: -5px auto 15px !important;
   }
   .post-body .note {
     margin-bottom: 10px !important;
@@ -2174,7 +2181,12 @@ pre code {
   font-size: 0.875em;
   margin-top: 1em;
   padding-top: 1em;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.social-like a {
+  border-bottom: none;
 }
 .reward-container {
   margin: 1em 0 0;
@@ -2581,13 +2593,13 @@ mjx-container[display='true'] + br {
 .use-motion .sidebar .animated {
   animation-fill-mode: both;
 }
-.header {
+header.header {
   background: var(--content-bg-color);
   border-radius: initial;
   box-shadow: initial;
 }
 @media (max-width: 991px) {
-  .header {
+  header.header {
     border-radius: initial;
   }
 }

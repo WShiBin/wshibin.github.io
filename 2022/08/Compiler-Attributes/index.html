@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -21,10 +21,10 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.15.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
 
     <meta name="description" content="看源码时时常会看到一些使用一些编译器提供的属性__attribute__，这里对一些常见的编译器属性做个汇总：  我们写的代码会经过编译器的处理，这就是这就意味着它可以做很多的事情，例如：  参数检查 指令优化 指令重排 插入指令 修改symbol …  编译器把这些特性以类似“代码标注”的方式提供出来；比如这文章要讲的一些常见的属性__attribute__，可以用来去“标注”函数、变量和类型">
 <meta property="og:type" content="article">
@@ -32,10 +32,10 @@
 <meta property="og:url" content="https://wshibin.github.io/2022/08/Compiler-Attributes/index.html">
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="看源码时时常会看到一些使用一些编译器提供的属性__attribute__，这里对一些常见的编译器属性做个汇总：  我们写的代码会经过编译器的处理，这就是这就意味着它可以做很多的事情，例如：  参数检查 指令优化 指令重排 插入指令 修改symbol …  编译器把这些特性以类似“代码标注”的方式提供出来；比如这文章要讲的一些常见的属性__attribute__，可以用来去“标注”函数、变量和类型">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wshibin.github.io/images/compiler/image-20220830103307039_PM.png">
 <meta property="article:published_time" content="2022-08-30T13:35:55.000Z">
-<meta property="article:modified_time" content="2022-09-12T15:39:21.396Z">
+<meta property="article:modified_time" content="2023-04-28T11:06:24.119Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="GCC">
 <meta property="article:tag" content="Compiler">
@@ -47,15 +47,16 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wshibin.github.io/2022/08/Compiler-Attributes/","path":"/2022/08/Compiler-Attributes/","title":"【GCC】Compiler Attributes"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wshibin.github.io/2022/08/Compiler-Attributes/","path":"/2022/08/Compiler-Attributes/","title":"【GCC】Compiler Attributes"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>【GCC】Compiler Attributes | WShiBin's blogs</title>
   
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-149513847-1","only_pageview":true}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -88,7 +89,7 @@
     <div class="column">
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -106,7 +107,7 @@
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -115,9 +116,9 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-cmake教程"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake教程</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li><li class="menu-item menu-item-cheat-sheet"><a href="/cheatsheet/" rel="section"><i class="fa fa-book fa-fw"></i>Cheat Sheet</a></li><li class="menu-item menu-item-talks"><a href="/talks/" rel="section"><i class="fa fa-book fa-fw"></i>Talks</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
       </li>
   </ul>
@@ -132,7 +133,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
+           placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close" role="button">
@@ -156,10 +157,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          文章目录
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          站点概览
+          Overview
         </li>
       </ul>
 
@@ -181,13 +182,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">28</span>
-        <span class="site-state-item-name">分类</span></a>
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">65</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -223,7 +224,7 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/08/Compiler-Attributes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -251,26 +252,26 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">发表于</span>
+      <span class="post-meta-item-text">Posted on</span>
 
-      <time title="创建时间：2022-08-30 21:35:55" itemprop="dateCreated datePublished" datetime="2022-08-30T21:35:55+08:00">2022-08-30</time>
+      <time title="Created: 2022-08-30 21:35:55" itemprop="dateCreated datePublished" datetime="2022-08-30T21:35:55+08:00">2022-08-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">分类于</span>
+      <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Compiler/" itemprop="url" rel="index"><span itemprop="name">Compiler</span></a>
         </span>
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
-      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="post-meta-item-text">Views: </span>
       <span id="busuanzi_value_page_pv"></span>
     </span>
   
@@ -279,7 +280,7 @@
       <span class="post-meta-item-icon">
         <i class="far fa-comment"></i>
       </span>
-      <span class="post-meta-item-text">Disqus：</span>
+      <span class="post-meta-item-text">Disqus: </span>
     
     <a title="disqus" href="/2022/08/Compiler-Attributes/#disqus_thread" itemprop="discussionUrl">
       <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/08/Compiler-Attributes/" itemprop="commentCount"></span>
@@ -295,8 +296,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <blockquote>
+    <div class="post-body" itemprop="articleBody"><blockquote>
 <p>看源码时时常会看到一些使用一些编译器提供的属性<code>__attribute__</code>，这里对一些常见的编译器属性做个汇总：</p>
 </blockquote>
 <p>我们写的代码会经过编译器的处理，这就是这就意味着它可以做很多的事情，例如：</p>
@@ -327,7 +327,8 @@
 <li><code>weak</code></li>
 <li><code>nonnull(arg-index, …)</code></li>
 </ul>
-<h3 id="alias-“target”-属性"><a href="#alias-“target”-属性" class="headerlink" title="alias (“target”)属性"></a>alias (“target”)属性</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> __f() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;foo\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">__attribute__((weak, alias(<span class="string">&quot;__f&quot;</span>))) <span class="type">void</span> <span class="title function_">f</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    f();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="alias-“target”-属性"><a href="#alias-“target”-属性" class="headerlink" title="alias (“target”)属性"></a>alias (“target”)属性</h3><p>给一个符号（函数/全局变量）起别名</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> __f() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;foo\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">__attribute__((weak, alias(<span class="string">&quot;__f&quot;</span>))) <span class="type">void</span> <span class="title function_">f</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    f();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">foo</span><br></pre></td></tr></table></figure>
@@ -338,7 +339,10 @@
 <p>输出：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">constructor</span><br><span class="line">main</span><br><span class="line">destructor</span><br></pre></td></tr></table></figure>
 
-<p>另外：<code>constructor (priority)</code>和<code>destructor (priority)</code>可以加优先级去修饰函数，优先级用来控制函数调用的顺序：</p>
+<blockquote>
+<p>golang里面有个init函数也是类似，在main函数之前执行。</p>
+</blockquote>
+<p><strong>优先级</strong>：<code>constructor (priority)</code>和<code>destructor (priority)</code>可以加优先级去修饰函数，优先级用来控制函数调用的顺序：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((constructor(<span class="number">1</span>))) <span class="type">void</span> <span class="title function_">init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor 1\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">__attribute__((constructor(<span class="number">2</span>))) <span class="type">void</span> <span class="title function_">foo1</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;constructor 2\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;main\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor(<span class="number">1</span>))) <span class="type">void</span> <span class="title function_">release</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor 1\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__attribute__((destructor(<span class="number">2</span>))) <span class="type">void</span> <span class="title function_">bar1</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;destructor 2\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出：</p>
@@ -364,7 +368,7 @@
 <h3 id="section-“section-name”-属性"><a href="#section-“section-name”-属性" class="headerlink" title="section (“section-name”)属性"></a>section (“section-name”)属性</h3><p>把相应的函数放到对应的section段</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((section(<span class="string">&quot;foo&quot;</span>))) <span class="type">void</span> <span class="title function_">foobar</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>输出：程序文件会多一个foo的section</p>
+<p>输出：程序文件会多一个foo的section（Nr列是15）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c</span><br><span class="line">$ readelf -SW a.out</span><br><span class="line">There are 30 section headers, starting at offset 0x3678:</span><br><span class="line"></span><br><span class="line">Section Headers:</span><br><span class="line">  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al</span><br><span class="line">  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0</span><br><span class="line">  [ 1] .interp           PROGBITS        0000000000000318 000318 00001c 00   A  0   0  1</span><br><span class="line">  [ 2] .note.gnu.property NOTE            0000000000000338 000338 000030 00   A  0   0  8</span><br><span class="line">  [ 3] .note.gnu.build-id NOTE            0000000000000368 000368 000024 00   A  0   0  4</span><br><span class="line">  [ 4] .note.ABI-tag     NOTE            000000000000038c 00038c 000020 00   A  0   0  4</span><br><span class="line">  [ 5] .gnu.hash         GNU_HASH        00000000000003b0 0003b0 000024 00   A  6   0  8</span><br><span class="line">  [ 6] .dynsym           DYNSYM          00000000000003d8 0003d8 000090 18   A  7   1  8</span><br><span class="line">  [ 7] .dynstr           STRTAB          0000000000000468 000468 000088 00   A  0   0  1</span><br><span class="line">  [ 8] .gnu.version      VERSYM          00000000000004f0 0004f0 00000c 02   A  6   0  2</span><br><span class="line">  [ 9] .gnu.version_r    VERNEED         0000000000000500 000500 000030 00   A  7   1  8</span><br><span class="line">  [10] .rela.dyn         RELA            0000000000000530 000530 0000c0 18   A  6   0  8</span><br><span class="line">  [11] .init             PROGBITS        0000000000001000 001000 00001b 00  AX  0   0  4</span><br><span class="line">  [12] .plt              PROGBITS        0000000000001020 001020 000010 10  AX  0   0 16</span><br><span class="line">  [13] .plt.got          PROGBITS        0000000000001030 001030 000010 10  AX  0   0 16</span><br><span class="line">  [14] .text             PROGBITS        0000000000001040 001040 0000ff 00  AX  0   0 16</span><br><span class="line">  [15] foo               PROGBITS        000000000000113f 00113f 00000b 00  AX  0   0  1</span><br><span class="line">  [16] .fini             PROGBITS        000000000000114c 00114c 00000d 00  AX  0   0  4</span><br><span class="line">  [17] .rodata           PROGBITS        0000000000002000 002000 000004 04  AM  0   0  4</span><br><span class="line">  [18] .eh_frame_hdr     PROGBITS        0000000000002004 002004 000034 00   A  0   0  4</span><br><span class="line">  [19] .eh_frame         PROGBITS        0000000000002038 002038 0000b4 00   A  0   0  8</span><br><span class="line">  [20] .init_array       INIT_ARRAY      0000000000003df0 002df0 000008 08  WA  0   0  8</span><br><span class="line">  [21] .fini_array       FINI_ARRAY      0000000000003df8 002df8 000008 08  WA  0   0  8</span><br><span class="line">  [22] .dynamic          DYNAMIC         0000000000003e00 002e00 0001c0 10  WA  7   0  8</span><br><span class="line">  [23] .got              PROGBITS        0000000000003fc0 002fc0 000040 08  WA  0   0  8</span><br><span class="line">  [24] .data             PROGBITS        0000000000004000 003000 000010 00  WA  0   0  8</span><br><span class="line">  [25] .bss              NOBITS          0000000000004010 003010 000008 00  WA  0   0  1</span><br><span class="line">  [26] .comment          PROGBITS        0000000000000000 003010 000026 01  MS  0   0  1</span><br><span class="line">  [27] .symtab           SYMTAB          0000000000000000 003038 000360 18     28  18  8</span><br><span class="line">  [28] .strtab           STRTAB          0000000000000000 003398 0001d0 00      0   0  1</span><br><span class="line">  [29] .shstrtab         STRTAB          0000000000000000 003568 000110 00      0   0  1</span><br></pre></td></tr></table></figure>
 
 <h3 id="visibility-“visibility-type”-属性"><a href="#visibility-“visibility-type”-属性" class="headerlink" title="visibility (“visibility_type”)属性"></a>visibility (“visibility_type”)属性</h3><p>可以用来修饰函数、变量和类型。当一个库用来给别人调用的时候，当前库对外暴露的函数、变量和类型就有可见性的问题；比如说这个想对外暴露那些接口，影藏哪些接口；一个好的最佳实践是：尽可能少地输出符号。动态库装载和识别的符号越少，程序启动和运行的速度就越快。导出所有符号会减慢程序速度，并耗用大量内存。</p>
@@ -378,7 +382,13 @@
 <p>cJSON和dbus中的使用示例：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> (defined(__GNUC__) || defined(__SUNPRO_CC) || defined (__SUNPRO_C)) &amp;&amp; defined(CJSON_API_VISIBILITY)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CJSON_PUBLIC(type)   __attribute__((visibility(<span class="string">&quot;default&quot;</span>))) type</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CJSON_PUBLIC(type) type</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(__GNUC__) &amp;&amp; __GNUC__ &gt;= 4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_EXPORT __attribute__ ((__visibility__ (<span class="string">&quot;default&quot;</span>)))</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBUS_EXPORT</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
-<h3 id="weak属性"><a href="#weak属性" class="headerlink" title="weak属性"></a>weak属性</h3><p>todo</p>
+<h3 id="weak属性"><a href="#weak属性" class="headerlink" title="weak属性"></a>weak属性</h3><p>对于编译器来说，（全局）变量和函数名都是一个符号，符号分为强符号和弱符号。weak可以将一个强符号转为弱符号。</p>
+<ul>
+<li>强符号：函数名，初始化的全局变量名</li>
+<li>弱符号：未初始化的全局变量名</li>
+</ul>
+<p>什么情况下用？</p>
+<p>TODO</p>
 <h3 id="nonnull-arg-index-…-属性"><a href="#nonnull-arg-index-…-属性" class="headerlink" title="nonnull(arg-index, …) 属性"></a>nonnull(arg-index, …) 属性</h3><p>编译器对函数参数进行检测：参数不能为空。在编译期发现问题并解决，总比在运行期发现问题在去解决好的多</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((nonnull(<span class="number">1</span>, <span class="number">2</span>)))</span><br><span class="line"><span class="type">int</span> <span class="title function_">my_memcpy</span><span class="params">(<span class="type">void</span>* dest, <span class="type">const</span> <span class="type">void</span>* src, <span class="type">size_t</span> len)</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    my_memcpy(<span class="literal">NULL</span>, <span class="string">&quot;foo&quot;</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -522,14 +532,14 @@
 </div>
 <div class="busuanzi-count">
 </div>
-  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span>
   </div>
 
     </div>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
+  <div class="back-to-top" role="button" aria-label="Back to top">
     <i class="fa fa-arrow-up fa-lg"></i>
     <span>0%</span>
   </div>
@@ -545,20 +555,21 @@
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
 
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.0/dist/mermaid.min.js","integrity":"sha256-3JloMMI/ZQx6ryuhhZTsQJQmGAkXeni6PkshX7UUO2s="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
 
 
   
@@ -570,14 +581,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/08/Compiler-Attributes/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.15.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

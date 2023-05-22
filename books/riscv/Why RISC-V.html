@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+
+    <meta name="description" content="1.1 IntroductionThe goal for RISC-V (“RISC five”) is to become a universal instruction set architecture(ISA):  It should suit all size of processors, from the tiniest embedded controller to the fastes">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WShiBin&#39;s blogs">
+<meta property="og:url" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="1.1 IntroductionThe goal for RISC-V (“RISC five”) is to become a universal instruction set architecture(ISA):  It should suit all size of processors, from the tiniest embedded controller to the fastes">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040914140695%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040914903590%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040915422848%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040924042022%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040924357699%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040930616863%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040930902714%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040931000027%20PM.png">
+<meta property="og:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040934320910%20PM.png">
+<meta property="article:published_time" content="2023-05-21T02:32:36.386Z">
+<meta property="article:modified_time" content="2023-04-09T08:06:14.916Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="WShiBin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/books/riscv/Why%20RISC-V.assets/image-2023040914140695%20PM.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/books/riscv/Why%20RISC-V">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://wshibin.github.io/books/riscv/Why%20RISC-V.html","path":"books/riscv/Why RISC-V.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | WShiBin's blogs
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+  <script data-pjax defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;fdce1369bd7b4881bc693823aa6eaf36&quot;}'></script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li><li class="menu-item menu-item-cheat-sheet"><a href="/cheatsheet/" rel="section"><i class="fa fa-book fa-fw"></i>Cheat Sheet</a></li><li class="menu-item menu-item-talks"><a href="/talks/" rel="section"><i class="fa fa-book fa-fw"></i>Talks</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1.1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Modular-vs-Incremental-ISAs"><span class="nav-number">2.</span> <span class="nav-text">1.2 Modular vs. Incremental ISAs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-ISA-Design-101"><span class="nav-number">3.</span> <span class="nav-text">1.3 ISA Design 101</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/books/">BOOKS</a></li>
+            <li><a href="/books/riscv/">RISCV</a></li>
+            <li>WHY RISC-V</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h2 id="1-1-Introduction"><a href="#1-1-Introduction" class="headerlink" title="1.1 Introduction"></a>1.1 Introduction</h2><p>The goal for RISC-V (“RISC five”) is to become a universal <em>instruction set architecture</em>(ISA):</p>
+<ul>
+<li>It should suit all size of processors, from the tiniest embedded controller to the fastest high-performance computer.</li>
+<li>It should work well with a wide variety of popular software stacks and programming languages.</li>
+<li>It should accommodate all implementation technologies: Field-Programmable Gate Arrays (FPGAs), Application-Specific Integrated Circuits (ASICs), full-custom chips, and even future device technologies.</li>
+<li>It should be efficient for all microarchitecture styles: microcoded or hardwired control; in-order, decoupled, or out-of-order pipelines; single or superscalar instruction issue; and so on.</li>
+<li>It should support extensive specialization to act as a base for customized accelerators, which rise in importance as Moore’s Law fades.</li>
+<li>It shoud be stable, in that the base ISA should not change. More importantly, the ISA cannot be discontinued, as has happened in the past to proprietary ISAs such as the AMD Am29000, the Digital Alpha, the Gigital VAX, the Hewlett Packard PA-RISC, the Intel i860, the Intel i960, the Motorola 88000, and the Zilog Z8000.</li>
+</ul>
+<p>RISC-V is unusual not only because it is a recent ISA–born this decade when most alternatives date from the 1970s or 1980s–but also because it is an <em>open</em> ISA. Unlike practically all prior architectures, Its future is free from the fate or the whims of any single corporation, which has doomed many ISAs in the past. It belongs instead to an open, non-profit foundation. The goal of the RISC-V Foundation is to maintain the stability of RISC-V, evolve it slowly and carefully, solely for technical reasons, and try to make it as popular for hardware sa Linux is for operating system. As a sign of its vitality, Figure 1.1 lists the largest corporate members of the RISC-V Foundation.</p>
+<img src="Why RISC-V.assets/image-2023040914140695 PM.png" style="zoom:50%;" />
+
+<p>Figure 1.1: The corporate members of the RISC-V Foundation as of the Sixth RISC-V Workshop in May 2017 ranked by annual sales. The left column companies all exceed $US 50B in annual sales, the middle column companies sell less than $US 50B but more tha $US 5B, and the sales of those in the right column are less the $US 5B but more than $US 0.5B. The foundation includes another 25 smaller companies, 5 startup companies (Antmicro Ltd, Blockstream, Esperanto Technologies, Greenwaves Technologies, and SiFive), 4 nonprofit organizations (CSEM, Draper Laboratory, ICT, and lowRISC), and 6universities (ETH Zurich, IIT Madras, National University of Defense Technology, Princeton, and UC Berkeley). Most of the 60 organizations have their headquarters outside the US. To learn more, see <span class="exturl" data-url="aHR0cDovL3d3dy5yaXNjdi5vcmcv">www.riscv.org<i class="fa fa-external-link-alt"></i></span>.</p>
+<img src="Why RISC-V.assets/image-2023040914903590 PM.png" style="zoom:50%;" />
+
+<p>Figure 1.2: Growth of x86 instruction set over its lifetime. x86 started with 80 instructions in 1978. It grew 16X to 1338 instructions by 2015, and it’s still growing, Amazingly, this graph is conservative. An Intel blog puts the count at 3600 instructions in 2015[Rodgers and Uhlig 2017], which would raise the x86 rate to one new instruction <em>every four days</em> between 1978 and 2015. We count assembly language instructions, and they presumably count machine language instructions. As Chapter 8 explains, a large part of the growth is because the x86 ISA relies on SIMD instructions for data level parallelism.</p>
+<img src="Why RISC-V.assets/image-2023040915422848 PM.png" style="zoom:50%;" />
+
+<p>Figure 1.3: Description of the x86-32 <em>ASCII Adjust after Addition</em> (aaa) instruction. It performs computer arithmetic in Binary Coded Decimal (BCD), which has fallen into the dustbin of information technology history. The x86 also has three related instructions for subtraction (aas), multiplication (aam), and division (aad). As each is a one-byte instruction, they collectively occupy 1.6% (4/256) of the precious opcode space.</p>
+<h2 id="1-2-Modular-vs-Incremental-ISAs"><a href="#1-2-Modular-vs-Incremental-ISAs" class="headerlink" title="1.2 Modular vs. Incremental ISAs"></a>1.2 Modular vs. Incremental ISAs</h2><blockquote>
+<p><em>Intel was betting its future on a high-end microprocessor, but that was still years away. To counter Zilog, Intel developed a stop-gap processor and called it the 8086. It was intended to be short-lived and not have any successors, but that’s not how things turned out. The high-end processor ended up being late to marked, and when it did come out, it was too slow. So the 8086 architecutre lived on–it evolved into a 32-bit processor and eventually into a 64-bit one. The names kept changing (80186, 80286, i386, i486, Pentium), but the underlying instruction set remained intact.</em></p>
+<p>​                                                                              – Stephen P. Morse, architect of the 8086 [morse 2017]</p>
+</blockquote>
+<p>The conventional approach to computer architecture is <em>incremental</em> ISAAs, where new processors must implement not only new ISA extensions but also all extensions of the past. the purpose is to maintain <em>backwords binary-compatibility</em> so that binary versions of decades-old programs can still run correctly on the latest processor. This requirement, when combined with the marketing appeal of announcing new instructions with a new generation of processors, has led to ISAs that grow substantially in size with age. For example, Figure 1.2 shows the growth in the number of instructions for dominant ISAA today: the 80x86. It dates back to 1978, yet it has added about <em>three instructions pre month</em> over its long lifetime. </p>
+<p>This convention meas that every implementation of the x86-32 (the name we use for the 32-bit address version of x86) must implement the mistakes of past extensions, even when they no longer make sense. For example, Figure 1.3 describes the ASCII Adjust after Addition (aaa) instruction of the x86, which has long outlived its usefulness.</p>
+<p>As an analogy, suppose a restaurant serves only a fixed-price meal, which starts out as a small dinner of just a hamburger and a milkshake. Over time, it adds fries, and then an icecream sundae, followed by salad, pie, wine, vegetarian pasta, steak, beer, ad infinitum until it becomes a gigantic banquet. It may make little sense in total, but diners can find whatever they’ve ever eaten in a past meal at that restaurant. The bad news is that diners must pay the rising cost of expanding banquet for each dinner.</p>
+<p>Beyond being recent and open, RISC-V is unusual since, unlike almost all prior ISAs, it is <em>modular</em>. At the core is base ISA, called <em>RV321</em>, which runs a full software stack. RV321 is frozen and will never change, which gives compiler writers, operating system developers, and assembly language programmers a stable target. The modularity come from optional standard extensions that hardware can include or not depending on the needs of the appliction. This modularity enables every small and low energy implementations of RISC-V, which can he critical for embedded applications. By informing the RISC-V compiler what extensions are included, it can generate the bast code for that hardware. The convention is to append the extension letters to the name to indicate which are included. For example, RV321MFD adds the multiply (RV32M), single-precision floating point (RV32F), and double-precision floating point extensions (RV32D) to the mandatory base instructions (RV321).</p>
+<p>Returning to our analogy, RISC-V offers a menu instead of a buffet; the chef need cook only what the customers want–not a feast for every meal–and the customers pay only for what they order. RISC-V Foundation decides when to add a new option to the menu, and they will do so only for solid technical reasons after an extended open discussion by a committee of hardware and software experts. Even when new choices appear on the menu, they remain optional and not a new requirement for all future implementations, like incremental ISAs.</p>
+<h2 id="1-3-ISA-Design-101"><a href="#1-3-ISA-Design-101" class="headerlink" title="1.3 ISA Design 101"></a>1.3 ISA Design 101</h2><p>Before introducing the RISC-V ISA, it will be helpful to understand the underlying principles and trade-offs that a computer architect must make while designing an ISA. Below is a list of the seven measures, along with icons we’ll put in page margins to highlight instances when RISC-V addresses them in the following chapters. (The cack cover of the print book has a legend for the icons.)</p>
+<ul>
+<li>cost (US dollar coin icon)</li>
+<li>simplicity (wheel)</li>
+<li>performance (speedometer)</li>
+<li>isolation of architecture from implementation (detached halves of a circle)</li>
+<li>room for growth (accordion)</li>
+<li>program size (opposing arrows compressing line)</li>
+<li>ease of programming / compiling / linking (children’s blocks for “as easy as ABC”)</li>
+</ul>
+<p>To illustrate what we mean, in this section we’ll show some choices from older ISAs that look unwise in retrospect and where RISC-V often made much better decisions.</p>
+<p><strong>Cost</strong>. Processors are implemented as integrated circuits, commonly call <em>chips</em> or <em>dies</em>. They are called dies because they start life as a piece of a single round wafer, which is <em>diced</em> into many individual pieces. Figure 1.4 shows a wafer of RISC-V processors. The cost is very seensitive to the area of the die:</p>
+<img src="Why RISC-V.assets/image-2023040924042022 PM.png" style="zoom:50%;" />
+
+<p>Obviously, the smaller the die, the more dies per wafer, and most of the cost of the die is the processed wafer itself. Less obvious is that the smaller the die, the higher the <em>yield</em>, the fraction of manufactured dies that work. The reason is that the silicon manufacturing will result in small flaws scattered about the wafer, so the smaller the die, the lower the fraction that will be flawed. </p>
+<img src="Why RISC-V.assets/image-2023040924357699 PM.png" style="zoom:50%;" />
+
+<p>Figure 1.4: An 8-inch diameter wafer of RISC-V dies designed by SiFive. It has two type of RISC-V dies using an older, larger processing line. An FE310 die is 2.65mm x 2.72mm and a SiFive test die that is 2.89mm x 2.72mm. The wafer contains 1846 of the former and 1866 of the latter, totaling 3712 chips.</p>
+<p>An architect wants to keep the ISA simple to shrink the size of processors that implement it. As we shall see in the following chapters, the RISC-V ISA is much simpler ISA than the ARM-32 ISA. As a concrete example of the impact of simplicity, let’s compare a RISC-V Rocket processor to an ARM-32 Cortex-A5 processor in then same technology (TSMC40GPLUS) using the same-size caches (16KiB). The RISC-V die is 0.27mm2 versus 0.53mm for ARM-32. Around twice the area, the ARM-32 Cortex-A5 die cost approximately 4X as much as RISC-V Rocket die. Even a 10% smaller die reduces cost by a factor of 1.2.</p>
+<p><strong>Simplicity</strong>. Given the cost sensitivity to complexity, architects want a simple ISA to reduce die area. Simplicity also reduces chip design time and verification time, which can be much of the cost of development of the chip. These costs must be added to the cost of chip, with this overhead dependent on the number of chips shipped. simplicity also reduces the cost of documentation and the difficulty of getting customers to understand how to use the ISA.</p>
+<p>Below is a glaring example of ISAA complexity from ARM-32:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">idmiaeq SP!, &#123;R4-R7, PC&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The instruction stands for LoaD Multiple, Increment-Address, on EQual. It performs 6 data loads and writes to 6 registers but executes only if the EQ condition code is set. Moreover, it writes a result to the PC, so it is also preforming a conditional branch Quite a handfule!</p>
+<p>Ironically, simple instructions are much more likely to be used than complex ones. For example, x86-32 includes an enter instruction, which was intended to be the first instruction executed on entering a procedure to crate a stack frame for it (see Chapter3). Most compilers instead use only these two simple x86-32 instructions:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">push ebp      # Push the frame pointer onto the stack</span><br><span class="line">mov  ebp, esp # Copy the stack pointer to the frame pointer</span><br></pre></td></tr></table></figure>
+
+<p><strong>Performance</strong>. Except for the tiny chips for embedded applications, architects are typically concerned about performance as well as cost. Performance can be factored into three terms:</p>
+<img src="Why RISC-V.assets/image-2023040930616863 PM.png" style="zoom:50%;" />
+
+<p>Even if a simple ISA might execute more instructions per program than a complex ISA, it can more than make up for that by having a faster clock cycle or average fewer clock cycles per instruction (CPI).</p>
+<p>For example, for the CoreMark benchmark [Gal-On and Levy 2012] (100,000 iterations), the performance on the ARM-32 Cortex-A9 is </p>
+<img src="Why RISC-V.assets/image-2023040930902714 PM.png" style="zoom:50%;" />
+
+<p>For the BOOM implementation of RISC-V, the equation is</p>
+<img src="Why RISC-V.assets/image-2023040931000027 PM.png" style="zoom:50%;" />
+
+<p>The ARM processor didn’t execute fewer instructions then RISC-V in this case. As we shall see, the simple instructions are also the most popular instructions, so ISA simplicity can win in all metrics. For this program, the RISC-V processor gains nearly 10% in each of the three factors, which results in a performance advantage of almost 30%. If a simpler ISA also results in a smaller chip, its cost-performance will be excellent.</p>
+<p><strong>Isolation of Architecture from Implementation</strong>. The orginal distinction between <em>architecture</em> and <em>implementation</em>, which goes back to the 1960s, is that architecture is what a machine language programmer needs to know to write a correct program, but not the performance of that program. The temptation for an architect is to include instructions in an ISA that help performance or cost of one implementation at a particular time, but burden different of future implementations.</p>
+<p>For the MIPS-32 ISA, the regrettable example was the <em>delayed branch</em>. Conditional branches cause problems in pipelined execution because the processor wants to have the next instruction to execute already in the piepeline, but it can’t decide whether it wants the next sequential one (if the branch isn’t taken) or the one at then branch target address (if it is taken). For their first microprocessor with a 5-stage pipeline, this indecision could have caused a one clock-cycle stall of the pipeline. MIPS-32 solved this problem by redefining branch to occur in the instruction <em>after</em> the next one. Thus, the following instrction is <em>always</em> executed. The job of the programmer or compiler writer was to put something useful into the <em>delay slot</em>.</p>
+<p>Alas, this “solution” didn’t help later MIPS-32 procesors with many more pipeline stages (hence many more instructions fetched before the branch outcome is computed), but it made life harder for MIPS-32 programmers, compiler writers, and processor designers ever after, since incrmental ISAs demand backwards compatibility (see Section 1.2). In addition, it makes the MIPS-32 code much harder to understand (see Figure 2.10 on page 29).</p>
+<p>While architects shouldn’t put in features that <em>help</em> jsut one implementation at a point in time, they also shouldn’t put in features that <em>hinder</em> some implementations. For example, ARM-32 and some other ISAs have a Load Multiple instruction, as mentioned on the previous page. These instructions can improve proformance of single-instruction isssue pipelined designs, but hurt multiple-instruction issue pipeline. The reason is that the straightforward implementation precludes scheduling the individual loads of a Load Multiple in parallel with other instructions, reducing instruction throughput of such processors.</p>
+<p><strong>Room for Growth</strong>. With ending of Moore’s Law, the only path forward for major improvements in cost-performance is to add custom instructions for specific domains, such as deep learning, angmented reality, combinatorial optimization, graphics, and so. That means it’s important today for an ISA to reserve opcode space for future enhancements.</p>
+<p>In the 1970s and 1980s, when Moore’s Law was in full fore, there was little thought of saving opcode space for future accelerators. Architects instead valued valued largeer address and immediate fields to reduce the number of instructions executed per perogram, the first factor in the performance equation on the prior page.</p>
+<p>An example of the impact of paucity of opcode space was when the architeects of ARM-32 later tried to reduce code size by adding 16-bit length instructions to the formerly uniform 32-bit length ISA. There was simply no room left. Thus, the only solution was to create a new ISA first with 16-bit instructions (Thumb) and later a new ISA with both 16-bit and 32-bit instructions (thumb-2) using a mode bit to byte address with a 1 in the least-significant bit, which worked becaouse 16-bit and 32-bit instructions should have 0 in that bit.</p>
+<img src="Why RISC-V.assets/image-2023040934320910 PM.png" style="zoom:50%;" />
+
+<p>Figure 1.5: Relative program sizes for RV32G, ARM-32, x86-32, RV32C, and Thumb-2. The last two ISAs are aimed at small code size. The Programs were the SPEC CPU2006 benchmarks using the GCC compilers. The small size advantage of Thumb-2 over RV32C is due to the code size savings of Load and Store Multiple on procedure entry. RV32C excludes them to maintain the one-to-one mapping to instructions of RV32G, which omits Load and Store Multiple to reduce implementation complexity for high-end processors (see below). Chapter7 explains RV32C. RV32G indicates a popular combination of RISC-V extensions (RV32M, RV32F, RV32D, and RV32A), properly called RV321MAFD. [Waterman 2016]</p>
+<p><strong>Program Size</strong>. The smaller the program, the smaller the area on a chip needed for the program memory, which can be a significant cost for embedded devices. Indeed, that issue inspired ARM architects to retroactively add shorter instructions in the Thumb and Thumb-2 ISAs. Smaller programs also lead to fewer misses in instruction caches, which saves power since off-chip DRAW accesses use much more energy then on-chip SRAMaccesses, and improves proformance as well. Small code size can be one of the goals of ISA architects.</p>
+<p>The x86-32 ISA has instructions as short as I byte and as long as 15 bytes. One would expect that the byte-variable length instructions of the x86 should certainly lead to smaller programs than ISAs limited to 32-bit length instructions, like ARM-32 and RISC-V. Logically, 8-bit variable length instructions should also be smaller than ISAs that offer only 16-bit and 32-bit instructions, like Thumb-2 and RISC-V using the RV32C extension (see Chapter7). Figure 1.5 shows that, while ARM-32 and RISC-V code is 6% to 9% larger than code for x86-32 when all instructions are 32 bits long, surprisingly x86-32 is 26% <em>larger</em> than the compressed versions (RV32C and Thumb-2) that offer both 16-bit and 32-bit instructions.</p>
+<p>While a new ISA using 8-bit variable instructios would likely lead to smaller code than RV32C and Thumb-2, the architects of the first x86 in the 1970s had different concerns. Morevoer, given the requirement of backwards binary-compatibility of an incremental ISA (Section 1.2), The hundreds of new x86-32 instructions are longer than one might expect, since they bear the burden of a one- or two-byte prefix to squeeze them into the limited free opcode space of the original x86.</p>
+<p><strong>Ease of programming, compiling, and linking.</strong> Since data in a register is so much faster to access than data in memory, it is </p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/books/">BOOKS</a></li>
+            <li><a href="/books/riscv/">RISCV</a></li>
+            <li>WHY RISC-V</li>
+  </ul>
+
+    
+    
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/books/riscv/Why%20RISC-V.html"}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

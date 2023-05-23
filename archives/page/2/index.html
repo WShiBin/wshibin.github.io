@@ -179,7 +179,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-count">70</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -207,6 +207,331 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/09/Electron/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/Electron/" class="post-title-link" itemprop="url">【Electron】Electron上手</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-03 22:14:20" itemprop="dateCreated datePublished" datetime="2022-09-03T22:14:20+08:00">2022-09-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Electron/" itemprop="url" rel="index"><span itemprop="name">Electron</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/09/Electron/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/09/Electron/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="来瞅瞅自己电脑哪些软件用了Electron？"><a href="#来瞅瞅自己电脑哪些软件用了Electron？" class="headerlink" title="来瞅瞅自己电脑哪些软件用了Electron？"></a>来瞅瞅自己电脑哪些软件用了Electron？</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Applications</span><br><span class="line">$ find . | grep Electron</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精简后</span></span><br><span class="line">./Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./XMind.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./Lark.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./StarUML.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./VMware Fusion.app/Contents/Library/VMware Fusion Applications Menu.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./SwitchHosts.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./aDrive.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./Docker.app/Contents/MacOS/Docker Desktop.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./balenaEtcher.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./Feishu.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./BaiduNetdisk_mac.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./哔哩哔哩.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./斗鱼直播.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./Postman.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./Trello.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./AdGuard <span class="keyword">for</span> Safari.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./新东方大学考试.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./Discord.app/Contents/Frameworks/Electron Framework.framework</span><br><span class="line">./QQ.app/Contents/MacOS/QQGuild.app/Contents/Frameworks/Electron Framework.framework</span><br></pre></td></tr></table></figure>
+
+<p>老实说有被这个搜索结果吓到，知道有一些软件是用Electron写的，没想到会有这么多；网盘和直播基本都在用Electron，抖音最近也推出了桌面估计跑不了；另外有些app只用它写部分模块，比如，VMware只用它写了菜单，QQ只用它写了<code>QQGuild.app</code> 频道；不过最近QQ内测版本被爆出也在用Electron重写主界面。</p>
+<p>另外一个值得注意的问题是，不少桌面软件现在也有做前-后端分离，所以部分软件只是用Electron是重写前端-界面展示的部分，后端或者核心部分可以用其它语言去实现，C++/Rust之类，并不是用Electron写所有部分</p>
+<h3 id="网页体验不好显示慢的误区："><a href="#网页体验不好显示慢的误区：" class="headerlink" title="网页体验不好显示慢的误区："></a>网页体验不好显示慢的误区：</h3><ul>
+<li>慢的原因：显示的Html文件是从远程服务器下载的，<strong>慢</strong>的大多时间都花在去下载Html文件上面</li>
+<li>本地的Html渲染显示并不慢（其它UI框架Android UI、Qt Widgets也是显示本地的xml布局Layout文件)</li>
+</ul>
+<h2 id="简单认识桌面软件开发"><a href="#简单认识桌面软件开发" class="headerlink" title="简单认识桌面软件开发"></a>简单认识桌面软件开发</h2><h3 id="桌面软件通用布局："><a href="#桌面软件通用布局：" class="headerlink" title="桌面软件通用布局："></a>桌面软件通用布局：</h3><ul>
+<li><code>Menu bar</code> 菜单栏</li>
+<li><code>Main Window</code> 主窗口</li>
+<li><code>Status bar 状态栏</code>（可选）</li>
+</ul>
+<img src="/images/electron/image-20220822140545744.png" />
+
+<h3 id="Notepad-界面示例："><a href="#Notepad-界面示例：" class="headerlink" title="Notepad++界面示例："></a>Notepad++界面示例：</h3><p><strong>从上往下，依次是：</strong></p>
+<ul>
+<li><code>Title</code>：标题</li>
+<li><code>Menu bar</code>：菜单栏</li>
+<li><code>Tool bar</code>：工具栏</li>
+<li><code>Main Window</code>: <code>Tab + Frame</code> 主窗口</li>
+<li><code>Status bar</code>：状态栏</li>
+</ul>
+<img src="/images/electron/image-2022082210627361_PM.png" />
+
+<h3 id="跨平台UI框架："><a href="#跨平台UI框架：" class="headerlink" title="跨平台UI框架："></a>跨平台UI框架：</h3><ul>
+<li>QT：<code>C++ + XML</code> （<code>C++ + QML、JS</code>)<ul>
+<li>WPS</li>
+</ul>
+</li>
+<li><strong>Electron</strong>： JavaScript、HTML 和 CSS<ul>
+<li>VSCode：Electron</li>
+<li>Feishu：<code>/Applications/Feishu.app/Contents/Frameworks/Electron Framework.framework</code> + Rust（业务）</li>
+<li>Dingtalk：node-webkit –&gt; <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/c2E9dCZyY3Q9aiZxPSZlc3JjPXMmc291cmNlPXdlYiZjZD0mdmVkPTJhaFVLRXdpMjRxZk45OW41QWhYb1Jtd0dIZmQ1Qm9VUUZub0VDQWNRQVEmdXJsPWh0dHBzOi8vZ2l0aHViLmNvbS9jaHJvbWl1bWVtYmVkZGVkJnVzZz1BT3ZWYXczYk9kcjUzQmlsWDNRVVNpTTJBX0xZ">Chromium Embedded Framework<i class="fa fa-external-link-alt"></i></span> –&gt; Native UI + 前端 + fluttter</li>
+</ul>
+</li>
+<li>JAVA GUI：<ul>
+<li>Idea、Android Studio</li>
+</ul>
+</li>
+</ul>
+<p>其他：专属平台，比如：Windows平台的<code>C#</code>（比如：VS、ITE Designer），macOS用SwiftUI（苹果自已的软件也用了不少js写界面），Linux平台上用的较多的<span class="exturl" data-url="aHR0cHM6Ly96aC5tLndpa2lwZWRpYS5vcmcvemgvR1RL">GTK<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a>Electron</h2><p>Electron是一个使用 JavaScript、HTML 和 CSS 构建桌面应用程序的框架<br>Electron = <span class="exturl" data-url="aHR0cHM6Ly93d3cuY2hyb21pdW0ub3JnLw==">Chromium<i class="fa fa-external-link-alt"></i></span> 和 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnLw==">Node.js<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p>官网：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcv">https://www.electronjs.org/<i class="fa fa-external-link-alt"></i></span><br>Awesome electron：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy9hd2Vzb21lLWVsZWN0cm9uI3Rvb2xz">https://github.com/sindresorhus/awesome-electron#tools<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9MZWFybi8=">Web 入门 (MDN Web Docs)<i class="fa fa-external-link-alt"></i></span> ：JS + BOM + DOM</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMuZGV2L2xlYXJu">NodeJS官方入门指南<i class="fa fa-external-link-alt"></i></span>：暴露操作系统的接口，及常用工具库</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvemgvZG9jcy9sYXRlc3QvYXBpL2FwcA==">Electron API<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Electron开发环境：Nodejs项目 + Electron 开发依赖</p>
+<h3 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># macOS</span></span><br><span class="line">$ brew install node@16</span><br><span class="line"><span class="comment"># linux</span></span><br><span class="line">$ wget https://nodejs.org/dist/v16.17.0/node-v16.17.0-linux-x64.tar.xz		<span class="comment"># 下载Nodejs</span></span><br><span class="line">$ sudo tar -xvf node-v16.17.0-linux-x64.tar.xz --directory /opt						<span class="comment"># 解压</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export PATH=/opt/node-v16.17.0-linux-x64/bin:$PATH&#x27;</span> &gt;&gt; ~/.bashrc	<span class="comment"># 添加环境变量</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bashrc																												<span class="comment"># 让刚刚设置的环境变量生效</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># verify</span></span><br><span class="line">$ node --version</span><br><span class="line">$ npm --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># install yarn</span></span><br><span class="line">$ npm install --global yarn</span><br><span class="line">$ yarn --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目添加Electron开发依赖"><a href="#项目添加Electron开发依赖" class="headerlink" title="项目添加Electron开发依赖"></a>项目添加Electron开发依赖</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> <span class="variable">$&#123;project_name&#125;</span> &amp;&amp; <span class="built_in">cd</span> <span class="variable">$&#123;project_name&#125;</span></span><br><span class="line">$ npm init</span><br><span class="line">$ npm install electron --save-dev	<span class="comment"># 添加electron开发依赖</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Hello-Electron"><a href="#Hello-Electron" class="headerlink" title="Hello Electron"></a>Hello Electron</h2><h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># init projcet</span></span><br><span class="line">$ <span class="built_in">mkdir</span> hello-electron-app &amp;&amp; <span class="built_in">cd</span> hello-electron-app</span><br><span class="line">$ npm init</span><br><span class="line"></span><br><span class="line">$ npm install electron --save-dev	<span class="comment"># 添加electron开发依赖</span></span><br><span class="line">$ npm run start										<span class="comment"># 运行</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="添加package-json"><a href="#添加package-json" class="headerlink" title="添加package.json"></a>添加<code>package.json</code></h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hello-electron-app&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 运行脚本</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;electron .&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shibin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MIT&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;electron&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^20.0.3&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="界面index-html"><a href="#界面index-html" class="headerlink" title="界面index.html"></a>界面<code>index.html</code></h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span></span></span><br><span class="line"><span class="tag">      <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Security-Policy&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">content</span>=<span class="string">&quot;default-src &#x27;self&#x27;; script-src &#x27;self&#x27;&quot;</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span></span></span><br><span class="line"><span class="tag">      <span class="attr">http-equiv</span>=<span class="string">&quot;X-Content-Security-Policy&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">content</span>=<span class="string">&quot;default-src &#x27;self&#x27;; script-src &#x27;self&#x27;&quot;</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello from Electron renderer!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello from Electron renderer!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>👋<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="界面创建加载main-js"><a href="#界面创建加载main-js" class="headerlink" title="界面创建加载main.js"></a>界面创建加载<code>main.js</code></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; app, <span class="title class_">BrowserWindow</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;electron&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createWindow</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> win = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">800</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">600</span>,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  win.<span class="title function_">loadFile</span>(<span class="string">&#x27;index.html&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">whenReady</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">createWindow</span>();</span><br><span class="line"></span><br><span class="line">  app.<span class="title function_">on</span>(<span class="string">&#x27;activate&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">BrowserWindow</span>.<span class="title function_">getAllWindows</span>().<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="title function_">createWindow</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">on</span>(<span class="string">&#x27;window-all-closed&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (process.<span class="property">platform</span> !== <span class="string">&#x27;darwin&#x27;</span>) &#123;</span><br><span class="line">    app.<span class="title function_">quit</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>简单的说：是一个node项目，添加了electron的开发依赖</li>
+<li>网页显示慢的误区：<ul>
+<li>慢的原因：显示的html是从远程的服务器去下载的，大多时间都花在去下载上面</li>
+<li>本地的Html渲染显示并不慢，（Android、Qt、ITE同理，显示本地的xml)</li>
+</ul>
+</li>
+</ul>
+<h2 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型"></a>进程模型</h2><h3 id="Chrome浏览器进程模型"><a href="#Chrome浏览器进程模型" class="headerlink" title="Chrome浏览器进程模型"></a>Chrome浏览器进程模型</h3><img src="/images/electron/image-2022082220956421_PM.png" style="zoom:50%;" />
+
+<ul>
+<li>一个网页的崩溃不能引起其它网页的崩溃：<code>site-per-process</code> 一个网页一个进程</li>
+<li>安全问题：js是一个解释类语言，浏览器要执行从服务器拉过来的代码（有很多位置和不确定性）。如何去限制这些代码的能力？<ul>
+<li>Sanbox沙箱：通过限制对大多数系统资源的访问来限制恶意代码可能造成的危害</li>
+</ul>
+</li>
+<li>……</li>
+</ul>
+<img src="/images/electron/image-20220822180000566.png"  style="zoom:40%;" />
+
+<h3 id="Electron多进程模型"><a href="#Electron多进程模型" class="headerlink" title="Electron多进程模型"></a>Electron多进程模型</h3><p>Electron进程模型：<strong>一个Main进程</strong> + <strong>一个或多个Rendered进程</strong></p>
+<img src="/images/electron/image-20220822180400610.png" style="zoom:50%;" />
+
+<ul>
+<li>两个进程的能力不一样<ul>
+<li>main进程向上可以通用Nodejs调用操作系统的能力，向上管理渲染进程</li>
+<li>Rendered进程，用来显示UI</li>
+</ul>
+</li>
+<li>进程之间通信</li>
+</ul>
+<h3 id="Main进程"><a href="#Main进程" class="headerlink" title="Main进程"></a>Main进程</h3><ul>
+<li>每个 Electron 应用都有一个单一的主进程，作为应用程序的入口点。</li>
+<li>主进程在 Node.js 环境中运行，使用所有 Node.js API 的能力。</li>
+</ul>
+<h4 id="Window-management窗口管理"><a href="#Window-management窗口管理" class="headerlink" title="Window management窗口管理"></a>Window management窗口管理</h4><p>main进程使用<a target="_blank" rel="noopener" href="https://www.electronjs.org/zh/docs/latest/api/browser-window"><code>BrowserWindow</code></a> 模块来创建和管理窗口界面</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">BrowserWindow</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;electron&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> win = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123; <span class="attr">width</span>: <span class="number">800</span>, <span class="attr">height</span>: <span class="number">1500</span> &#125;)</span><br><span class="line">win.<span class="title function_">loadURL</span>(<span class="string">&#x27;https://github.com&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> contents = win.<span class="property">webContents</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(contents)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Application-lifecycle"><a href="#Application-lifecycle" class="headerlink" title="Application lifecycle"></a>Application lifecycle</h4><p>Main进程可以用<a target="_blank" rel="noopener" href="https://www.electronjs.org/zh/docs/latest/api/app"><code>app</code></a> 模块来控件应用的生命周期</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// quitting the app when no windows are open on non-macOS platforms</span></span><br><span class="line">app.<span class="title function_">on</span>(<span class="string">&#x27;window-all-closed&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (process.<span class="property">platform</span> !== <span class="string">&#x27;darwin&#x27;</span>) app.<span class="title function_">quit</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Native-APIs"><a href="#Native-APIs" class="headerlink" title="Native APIs"></a>Native APIs</h4><p>Main进程与Native系统的API交互；比如菜单、对话框和托盘图标。（不同系统的菜单、对话框有差异，兼容不同系统）</p>
+<h3 id="Rendered渲染进程"><a href="#Rendered渲染进程" class="headerlink" title="Rendered渲染进程"></a>Rendered渲染进程</h3><p>每个 Electron 应用程序为每个打开BrowserWindow生成一个单独的渲染器进程。顾名思义，渲染进程负责 <em>渲染</em>网页内容，在渲染器进程中运行的代码应该按照 Web 标准运行</p>
+<p><strong>Web 规范：</strong></p>
+<ul>
+<li>HTML 文件是渲染器进程的入口点。</li>
+<li>UI 样式是通过级联样式表 (CSS) 添加的。</li>
+<li>可以通过<code>&lt;script&gt;</code>元素添加可执行的 JavaScript 代码。</li>
+</ul>
+<p>渲染器进程无法直接访问<code>require</code> 或其他 Node.js API</p>
+<h3 id="Perload预加载脚本"><a href="#Perload预加载脚本" class="headerlink" title="Perload预加载脚本"></a>Perload预加载脚本</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvemgvZG9jcy9sYXRlc3QvdHV0b3JpYWwvY29udGV4dC1pc29sYXRpb24=">https://www.electronjs.org/zh/docs/latest/tutorial/context-isolation<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>Preload脚本在web内存加载前执行</li>
+<li>运行在Renderer渲染进程的上下文里面</li>
+<li>可以通过访问 Node.js API 被授予更多权限</li>
+</ul>
+<p>通俗的讲preload.js是Rendered渲染进程（低权限进程）的一个代理、客户端，通过preload.js可以有更高的权限</p>
+<img src="/images/electron/image-20220822203128238.png" style="zoom:40%;" />
+
+<p><strong>示例代码：</strong></p>
+<p><img src="/images/electron/image-20220822201718626.png" alt="image-20220822201718626"></p>
+<h3 id="IPC进程间通信"><a href="#IPC进程间通信" class="headerlink" title="IPC进程间通信"></a>IPC进程间通信</h3><p>文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvemgvZG9jcy9sYXRlc3QvdHV0b3JpYWwvaXBj">https://www.electronjs.org/zh/docs/latest/tutorial/ipc<i class="fa fa-external-link-alt"></i></span></p>
+<p>前面讲的都是多进程的模型，需不需要自已写IPC通信？不需要，已经封装好了。</p>
+<ul>
+<li>Main进程中使用<a target="_blank" rel="noopener" href="https://www.electronjs.org/zh/docs/latest/api/ipc-main"><code>ipcMain</code></a> 模块</li>
+<li>Rendered进程中使用 <a target="_blank" rel="noopener" href="https://www.electronjs.org/zh/docs/latest/api/ipc-renderer"><code>ipcRenderer</code></a> 模块</li>
+</ul>
+<p><strong>几种通信方式：</strong></p>
+<ul>
+<li>模式 1：渲染器进程到主进程（单向）</li>
+<li>模式 2：渲染器进程到主进程（双向）</li>
+<li>模式 3：主进程到渲染器进程</li>
+<li>模式 4：渲染器进程到渲染器进程<ul>
+<li>将主进程作为渲染器之间的消息代理</li>
+<li>从主进程将一个 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvemgvZG9jcy9sYXRlc3QvdHV0b3JpYWwvbWVzc2FnZS1wb3J0cw==">MessagePort<i class="fa fa-external-link-alt"></i></span> 传递到两个渲染器</li>
+</ul>
+</li>
+</ul>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvemgvZG9jcy9sYXRlc3QvYXBpL2FwcA==">app<i class="fa fa-external-link-alt"></i></span>，控制应用的事件生命周期。</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvemgvZG9jcy9sYXRlc3QvYXBpL2Jyb3dzZXItd2luZG93">BrowserWindow<i class="fa fa-external-link-alt"></i></span>，它负责创建和管理应用的窗口。</li>
+</ul>
+<h3 id="常见模块"><a href="#常见模块" class="headerlink" title="常见模块"></a>常见模块</h3><p>进程能力不一样，分类：</p>
+<ul>
+<li>Main进程模块</li>
+<li>Rendered进程模块：preload.js</li>
+</ul>
+<blockquote>
+<p>Electron 遵循 JavaScript 传统约定：比如 <strong>a</strong>pp 和 <strong>B</strong>rowser<strong>W</strong>indow 两个模块名的大小写差异。</p>
+<ul>
+<li>以帕斯卡命名法 (PascalCase) 命名可实例化的类 (如 BrowserWindow, Tray 和 Notification)，</li>
+<li>以驼峰命名法 (camelCase) 命名不可实例化的函数、变量等 (如 app, ipcRenderer, webContents) 。</li>
+</ul>
+</blockquote>
+<h3 id="Main进程模块"><a href="#Main进程模块" class="headerlink" title="Main进程模块"></a>Main进程模块</h3><ul>
+<li>app应用</li>
+<li>BrowserWindow浏览器窗口</li>
+<li>Menu菜单</li>
+<li>dialog对话框</li>
+<li>Notification通知</li>
+<li>ipcMain进程通信</li>
+<li>net网络<ul>
+<li>函数：<code>net.isOnline()</code></li>
+</ul>
+</li>
+<li>autoUpdater自已更新模块；服务端配置下就可以了<ul>
+<li>函数：<code>autoUpdater.checkForUpdates()</code></li>
+<li>函数：<code>autoUpdater.quitAndInstall()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Rendered进程模块"><a href="#Rendered进程模块" class="headerlink" title="Rendered进程模块"></a>Rendered进程模块</h3><ul>
+<li>contextBridge</li>
+<li>ipcRenderer</li>
+</ul>
+<h4 id="Menu菜单代码示例"><a href="#Menu菜单代码示例" class="headerlink" title="Menu菜单代码示例"></a>Menu菜单代码示例</h4><img src="/images/electron/image-20220823100410246.png"  style="zoom:50%;" />
+
+
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; app, <span class="title class_">Menu</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;electron&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isMac = process.<span class="property">platform</span> === <span class="string">&#x27;darwin&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> template = [</span><br><span class="line">    ...(isMac</span><br><span class="line">        ? [</span><br><span class="line">              &#123;</span><br><span class="line">                  <span class="attr">label</span>: app.<span class="property">name</span>,</span><br><span class="line">                  <span class="attr">submenu</span>: [</span><br><span class="line">                      &#123; <span class="attr">role</span>: <span class="string">&#x27;about&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">type</span>: <span class="string">&#x27;separator&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">role</span>: <span class="string">&#x27;services&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">type</span>: <span class="string">&#x27;separator&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">role</span>: <span class="string">&#x27;hide&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">role</span>: <span class="string">&#x27;hideOthers&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">role</span>: <span class="string">&#x27;unhide&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">type</span>: <span class="string">&#x27;separator&#x27;</span> &#125;,</span><br><span class="line">                      &#123; <span class="attr">role</span>: <span class="string">&#x27;quit&#x27;</span> &#125;,</span><br><span class="line">                  ],</span><br><span class="line">              &#125;,</span><br><span class="line">          ]</span><br><span class="line">        : []),</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;File&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">label</span>: <span class="string">&#x27;New&#x27;</span>,</span><br><span class="line">                <span class="attr">accelerator</span>: process.<span class="property">platform</span> === <span class="string">&#x27;darwin&#x27;</span> ? <span class="string">&#x27;Cmd+N&#x27;</span> : <span class="string">&#x27;Ctrl+N&#x27;</span>,</span><br><span class="line">                <span class="attr">click</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Electron rocks!&#x27;</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">label</span>: <span class="string">&#x27;New Tab&#x27;</span>,</span><br><span class="line">                <span class="attr">click</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Electron rocks!&#x27;</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">label</span>: <span class="string">&#x27;New Windows&#x27;</span>,</span><br><span class="line">                <span class="attr">click</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Electron rocks!&#x27;</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123; <span class="attr">type</span>: <span class="string">&#x27;separator&#x27;</span> &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">label</span>: <span class="string">&#x27;Open...&#x27;</span>,</span><br><span class="line">                <span class="attr">click</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Electron rocks!&#x27;</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">label</span>: <span class="string">&#x27;Open Recent&#x27;</span>,</span><br><span class="line">                <span class="attr">click</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Electron rocks!&#x27;</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">label</span>: <span class="string">&#x27;Open Quickly...&#x27;</span>,</span><br><span class="line">                <span class="attr">click</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Electron rocks!&#x27;</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123; <span class="attr">type</span>: <span class="string">&#x27;separator&#x27;</span> &#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;View&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [</span><br><span class="line">            &#123; <span class="attr">role</span>: <span class="string">&#x27;reload&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">role</span>: <span class="string">&#x27;forceReload&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">role</span>: <span class="string">&#x27;toggleDevTools&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">type</span>: <span class="string">&#x27;separator&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">role</span>: <span class="string">&#x27;resetZoom&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">role</span>: <span class="string">&#x27;zoomIn&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">role</span>: <span class="string">&#x27;zoomOut&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">type</span>: <span class="string">&#x27;separator&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">role</span>: <span class="string">&#x27;togglefullscreen&#x27;</span> &#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Edit&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [&#123; <span class="attr">role</span>: <span class="string">&#x27;reload&#x27;</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Pargraph&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [&#123; <span class="attr">label</span>: <span class="string">&#x27;foo&#x27;</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Format&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [&#123; <span class="attr">label</span>: <span class="string">&#x27;foo&#x27;</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;View&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [&#123; <span class="attr">label</span>: <span class="string">&#x27;foo&#x27;</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Theme&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [&#123; <span class="attr">label</span>: <span class="string">&#x27;foo&#x27;</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Windows&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [&#123; <span class="attr">label</span>: <span class="string">&#x27;foo&#x27;</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">label</span>: <span class="string">&#x27;Help&#x27;</span>,</span><br><span class="line">        <span class="attr">submenu</span>: [&#123; <span class="attr">label</span>: <span class="string">&#x27;foo&#x27;</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> menu = <span class="title class_">Menu</span>.<span class="title function_">buildFromTemplate</span>(template)</span><br><span class="line"><span class="title class_">Menu</span>.<span class="title function_">setApplicationMenu</span>(menu)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="和硬件交互"><a href="#和硬件交互" class="headerlink" title="和硬件交互"></a>和硬件交互</h2><p><span class="exturl" data-url="aHR0cHM6Ly93ZWIuZGV2L2RldmljZXMv">https://web.dev/devices/<i class="fa fa-external-link-alt"></i></span><br>从网站上通过蓝牙、USB、NFC、串行和 HID 与硬件设备进行通信。</p>
+<h3 id="Web-amp-设备-硬件"><a href="#Web-amp-设备-硬件" class="headerlink" title="Web &amp; 设备/硬件"></a>Web &amp; 设备/硬件</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvemgvZG9jcy9sYXRlc3QvdHV0b3JpYWwvZGV2aWNlcw==">https://www.electronjs.org/zh/docs/latest/tutorial/devices<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93ZWIuZGV2L2RldmljZXMv">https://web.dev/devices/<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIuZGV2L2JsdWV0b290aC8=">Web Bluetooth API<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIuZGV2L2hpZC8=">WebHID API<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIuZGV2L3NlcmlhbC8=">Web Serial API<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="和硬件设备的交互能力不用太担心，但还需要测试："><a href="#和硬件设备的交互能力不用太担心，但还需要测试：" class="headerlink" title="和硬件设备的交互能力不用太担心，但还需要测试："></a>和硬件设备的交互能力不用太担心，但还需要测试：</h3><ul>
+<li>浏览器及JS引擎是C/C++写的</li>
+<li>Nodejs底下也是C/C++写的</li>
+<li>Web正在把这部分标准化</li>
+</ul>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="VS-Code-调试"><a href="#VS-Code-调试" class="headerlink" title="VS Code 调试"></a>VS Code 调试</h3><p>配置文件<code>.vscode/launch.json</code>：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;compounds&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Main + renderer&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;Main&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Renderer&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;stopAll&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Renderer&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">9222</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;attach&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pwa-chrome&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;webRoot&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Main&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pwa-node&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;runtimeExecutable&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/node_modules/.bin/electron&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;windows&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;runtimeExecutable&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/node_modules/.bin/electron.cmd&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;.&quot;</span><span class="punctuation">,</span> <span class="string">&quot;--remote-debugging-port=9222&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;outputCapture&quot;</span><span class="punctuation">:</span> <span class="string">&quot;std&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;console&quot;</span><span class="punctuation">:</span> <span class="string">&quot;integratedTerminal&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>三个配置项：</p>
+<ul>
+<li><code>Main</code> 用来运行主程序，并且暴露出 9222 端口用于远程调试 (<code>--remote-debugging-port=9222</code>) 。 我们将把调试器绑定到那个端口来调试 <code>renderer</code> 。 因为主进程是一个 Node.js 进程，type 被设置为 <code>pwa-node</code> (<code>pwa-</code> 这个前缀用来告诉 VS Code，使用最新的 JavaScript 调试器) 。</li>
+<li><code>Renderer</code> 用来调试渲染器进程。 因为后者是由主进程创建的，我们要把它 “绑定” 到主进程上 ()<code>&quot;request&quot;: &quot;attach&quot;</code>，而不是创建一个新的。 渲染器是 web 进程，因此要选择 <code>pwa-chrome</code> 调试器。</li>
+<li><code>Main + renderer</code> 是一个 <span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vRG9jcy9lZGl0b3IvdGFza3MjX2NvbXBvdW5kLXRhc2tz">复合任务<i class="fa fa-external-link-alt"></i></span>，可同时执行前两个任务。</li>
+</ul>
+<h3 id="日志输出"><a href="#日志输出" class="headerlink" title="日志输出"></a>日志输出</h3><p>因为是多进程的模型，不同的进程输出到不同的地方</p>
+<ul>
+<li>Main进程输出到Terminal启动终端</li>
+<li>Redered渲染进程输出到开发者工具控制台</li>
+</ul>
+<h4 id="Redered渲染进程打开DevTools："><a href="#Redered渲染进程打开DevTools：" class="headerlink" title="Redered渲染进程打开DevTools："></a>Redered渲染进程打开DevTools：</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">BrowserWindow</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;electron&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> win = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>()</span><br><span class="line">win.<span class="property">webContents</span>.<span class="title function_">openDevTools</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>使用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25mb3JnZS5pby8=">Electron Forge<i class="fa fa-external-link-alt"></i></span> 打包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save-dev @electron-forge/cli</span><br><span class="line">$ npx electron-forge import</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包，生成在out目录下</span></span><br><span class="line">$ npm run make	<span class="comment"># ./out/my-electron-app-darwin-arm64/my-electron-app.app</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>很多成熟的商业应用（杀手级应用）：VSCode、Facebook Messager、Twitch、InVision</li>
+<li>Js、html、css开发成本相对Qt / C++较低<ul>
+<li>开发效率/周期</li>
+<li>对人素质的要求相对Cpp较低</li>
+<li>JS没有多线程（回调 –&gt; promise，JS底下是多线程）</li>
+</ul>
+</li>
+<li>前端网页本地加载的速度并不慢，网页显示的耗时大多在网络下载上；Android、QT这种也是加载的本地XML</li>
+<li>Electron有很多<code>out-of-box</code>开箱即用的模块：自已更新</li>
+<li>Nodejs生态，有很多库可以用</li>
+<li>JavaScript和JSON就是一个东西：配置、协议都用jSON，少写JSON转换结构体的代码</li>
+<li>打包程序至少80MB网上</li>
+<li>对运行内存的要求相对也较高（内嵌Chromium内核，多进程模型）</li>
+<li>对性能要求特别高的场景可能不太合适</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -25698,197 +26023,6 @@
 <td></td>
 </tr>
 </tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shi Bin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | WShiBin's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/" class="post-title-link" itemprop="url">【Tools】来玩一玩件值一个亿的终端软件-Warp</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-04-10 15:38:47" itemprop="dateCreated datePublished" datetime="2022-04-10T15:38:47+08:00">2022-04-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/04/%E6%9D%A5%E7%8E%A9%E4%B8%80%E7%8E%A9%E4%BB%B6%E5%80%BC%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%9A%84%E7%BB%88%E7%AB%AF%E8%BD%AF%E4%BB%B6/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2022/04/来玩一玩件值一个亿的终端软件/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>一个叫Warp的终端软件<strong>融资 2300 w 美元</strong>，<span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h2 id="一个好的故事："><a href="#一个好的故事：" class="headerlink" title="一个好的故事："></a>一个好的故事：</h2><blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cud2FycC5kZXYvYmxvZy9pbnRyb2R1Y2luZy13YXJw">https://www.warp.dev/blog/introducing-warp<i class="fa fa-external-link-alt"></i></span><br>Walk by any developer’s desk and you are likely to see two apps open: their <strong>code editor</strong> and their <strong>terminal</strong> (sometimes the code editor is the terminal!). ‍</p>
-<p>Both are crucial to developer productivity. The code editor is where developers write code; the terminal is where they do pretty much everything else, from building code to running and deploying it, interacting with source control, configuring their cloud systems, and more.</p>
-<p>And yet only one of these two apps – the code editor – has experienced meaningful product improvement over the past 40 years. Compared to using VS Code, using the terminal is like stepping back in time to the 1970s. Only <span class="exturl" data-url="aHR0cHM6Ly9pbnNpZ2h0cy5zdGFja292ZXJmbG93LmNvbS9zdXJ2ZXkvMjAyMSNzZWN0aW9uLW1vc3QtcG9wdWxhci10ZWNobm9sb2dpZXMtaW50ZWdyYXRlZC1kZXZlbG9wbWVudC1lbnZpcm9ubWVudA==">70% of developers use VSCode<i class="fa fa-external-link-alt"></i></span>, while 100% use the terminal. So why is the terminal experience still so lackluster?</p>
-</blockquote>
-<p><strong>程序员最重要的两个工具：</strong></p>
-<ul>
-<li>Coder editor</li>
-<li>Terminal：编译，运行，部署，代码版本管理，配置云服务器……</li>
-<li>Browser浏览器</li>
-</ul>
-<p>Coder editor在过去40年一直在改善，而Terminal用起来还是最开始的那个样子。<br>个人觉得：后半句只是对了一半，提示、补全、搜索、主题都在发展，没有被整合起来</p>
-<p><strong>现今Terminal面临的问题：</strong></p>
-<ul>
-<li>Terminals are hard to use难用</li>
-<li>They don’t work for teams不是为团队协作设计的</li>
-</ul>
-<h2 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h2><ul>
-<li>Command Palette</li>
-<li>The Input / Text Editor</li>
-<li>Blocks</li>
-<li>Find</li>
-<li>Command History</li>
-<li>Autosuggestions</li>
-<li>Completions</li>
-<li>Themes</li>
-<li>Prompt</li>
-<li>Split Panes</li>
-<li>Session Management and Restoration</li>
-<li>Workflows</li>
-<li>Global Hotkey Window</li>
-<li>A.I. Command Search</li>
-</ul>
-<h2 id="Command-Palette"><a href="#Command-Palette" class="headerlink" title="Command Palette"></a>Command Palette</h2><p>快捷键：<code>CMD + P</code></p>
-<p>Terminal上所有的功能，几本上都这个通过这个搜索框去执行，还能模糊匹配；如果忘记某些功能的快捷键了，可以通过这个来搜索</p>
-<img src="/images/warp/warp_command_palette.gif" style="zoom: 43%;" />
-
-<p>这个功能应该是借鉴Sublime Text 、VSCode</p>
-<h2 id="The-Input-Text-Editor"><a href="#The-Input-Text-Editor" class="headerlink" title="The Input / Text Editor"></a>The Input / Text Editor</h2><img src="/images/warp/warp_input_editor.gif"/>
-
-<h2 id="Blocks块"><a href="#Blocks块" class="headerlink" title="Blocks块"></a>Blocks块</h2><p>概念：一次命令的执行称为一个块。</p>
-<ul>
-<li>copy命令</li>
-<li>copy命令的输出</li>
-<li>直接划到命令输出开始的地方</li>
-<li>重新输入这个命令</li>
-<li>共享这个命令和输出</li>
-</ul>
-<img src="/images/warp/warp_annotated_blocks_v2.png" style="zoom:50%;" />
-
-<p>在Blocks之间转跳：<code>CMD-UP</code>和<code>CMD-DOWN</code>，之后按上和下就可以了</p>
-<h2 id="Find查找"><a href="#Find查找" class="headerlink" title="Find查找"></a>Find查找</h2><ul>
-<li>支持大小写匹配</li>
-<li>支持锁定Blocks</li>
-</ul>
-<blockquote>
-<p>可以考虑下支持正则表达式</p>
-</blockquote>
-<h2 id="Command-History命令历史记录"><a href="#Command-History命令历史记录" class="headerlink" title="Command History命令历史记录"></a>Command History命令历史记录</h2><p>快捷键：<code>Ctrl + R</code></p>
-<ul>
-<li>支持模糊匹配</li>
-</ul>
-<p>fzf的<code>Ctrl + R</code>搜索历史记录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p1bmVndW5uL2Z6ZiNrZXktYmluZGluZ3MtZm9yLWNvbW1hbmQtbGluZQ==">https://github.com/junegunn/fzf#key-bindings-for-command-line<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Autosuggestions自动提示"><a href="#Autosuggestions自动提示" class="headerlink" title="Autosuggestions自动提示"></a>Autosuggestions自动提示</h2><p>快捷键：<code>方向右键</code> 或 <code>CTRL-F</code>. （F：forward）</p>
-<h2 id="Completions补全"><a href="#Completions补全" class="headerlink" title="Completions补全"></a>Completions补全</h2><p>快捷键：<code>TAB</code>，之后按上和下选择</p>
-<h2 id="Themes主题"><a href="#Themes主题" class="headerlink" title="Themes主题"></a>Themes主题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvdGhlbWVzL3RyZWUvMTk0MzZkOTlmNzFkNmQ1NTEzN2JjZjhmNTQ3NWVhMTMwNTZlN2FkZCNvcGVuLXNvdXJjZS1kZXBlbmRlbmNpZXM=">https://github.com/warpdotdev/themes/tree/19436d99f71d6d55137bcf8f5475ea13056e7add#open-source-dependencies<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>We’d like to call out a few of the open source themes and repositories that helped bootstrap the set of themes for Warp:</p>
-<ul>
-<li>iTerm colors pencil</li>
-<li>Alacritty-theme</li>
-<li>base16-Alacritty</li>
-<li>base16</li>
-<li>Solarized</li>
-<li>Dracula</li>
-<li>Gruvbox</li>
-</ul>
-</blockquote>
-<h2 id="Prompt"><a href="#Prompt" class="headerlink" title="Prompt"></a>Prompt</h2><p>分Warp和用户自定义的</p>
-<ul>
-<li>开启自定义：<code>Settings &gt; Features</code> 打开<code>Honor user&#39;s custom prompt (PS1) setting.</code></li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29obXl6c2gvb2hteXpzaA==">ohmyzsh<i class="fa fa-external-link-alt"></i></span> + <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NwYWNlc2hpcC1wcm9tcHQvc3BhY2VzaGlwLXByb21wdA==">spaceship prompt<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Split-Panes分屏"><a href="#Split-Panes分屏" class="headerlink" title="Split Panes分屏"></a>Split Panes分屏</h2><h2 id="Session-Management-and-Restoration"><a href="#Session-Management-and-Restoration" class="headerlink" title="Session Management and Restoration"></a>Session Management and Restoration</h2><p>When Warp opens, it restores your session history, specifically windows, tabs, panes, and also the last few Blocks in each pane.</p>
-<p>当打开Warp，它会恢复历史会话，窗口，Tabs，面板，以及之前的Blocks；保存到sqlite里面</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sqlite3 <span class="variable">$HOME</span>/Library/Application Support/dev.warp.Warp-Stable/warp.sqlite</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>用起来很方便；反过来，就会有隐私及安全的顾虑</p>
-</blockquote>
-<h2 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h2><h2 id="Global-Hotkey-Window"><a href="#Global-Hotkey-Window" class="headerlink" title="Global Hotkey Window"></a>Global Hotkey Window</h2><h2 id="A-I-Command-Search"><a href="#A-I-Command-Search" class="headerlink" title="A.I. Command Search"></a>A.I. Command Search</h2><h2 id="安装遇到的登录校验问题："><a href="#安装遇到的登录校验问题：" class="headerlink" title="安装遇到的登录校验问题："></a>安装遇到的登录校验问题：</h2><p>情况：用github账号登录，转跳到Warp之后卡顿，无法登录<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhcnBkb3RkZXYvV2FycC9pc3N1ZXMvOTA2">https://github.com/warpdotdev/Warp/issues/906<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li>需要开代理，在命令行中配置</li>
-<li>用命令行去启动Warp</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在命令行里面配置代理</span></span><br><span class="line">$ <span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:1077</span><br><span class="line">$ <span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:1077</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动warp</span></span><br><span class="line">$ /Applications/Warp.app/Contents/MacOS/stable</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="HiNZr_v0usq0hdLnT0OsK3fGdLO8Fx33AgXl38r5eog">
+  <meta name="msvalidate.01" content="2AD07AB8FDA208191007DAF820F798BA">
+  <meta name="yandex-verification" content="71a56869afc0e0fd">
+  <meta name="baidu-site-verification" content="UnLtBrRQzh">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+
+    <meta name="description" content="Cfront编译器语言之间的转换：C++语言 –&gt; C语言 –&gt; 汇编 –&gt; 机器指令  汇编器：将汇编语言翻译成机器指令 C编译器：将C语言翻译成汇编语言 C++编译器：将C++语言翻译成C语言  广义上的 C 编译器，指的是把 C 语言翻译成机器码（程序）的编译器。但严格意义上讲，是指把 C 语言翻译成汇编语言，然后再由汇编器把汇编语言翻译成机器码。看到 C++ 编译器时，你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C】C 语言和 OOP">
+<meta property="og:url" content="https://wshibin.github.io/2023/05/The-C-Language-and-OOP/index.html">
+<meta property="og:site_name" content="WShiBin&#39;s blogs">
+<meta property="og:description" content="Cfront编译器语言之间的转换：C++语言 –&gt; C语言 –&gt; 汇编 –&gt; 机器指令  汇编器：将汇编语言翻译成机器指令 C编译器：将C语言翻译成汇编语言 C++编译器：将C++语言翻译成C语言  广义上的 C 编译器，指的是把 C 语言翻译成机器码（程序）的编译器。但严格意义上讲，是指把 C 语言翻译成汇编语言，然后再由汇编器把汇编语言翻译成机器码。看到 C++ 编译器时，你">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wshibin.github.io/images/2023-05-23_The-C-Language-and-OOP.assets/image-20230328155533042.png">
+<meta property="og:image" content="https://wshibin.github.io/images/2023-05-23_The-C-Language-and-OOP.assets/Inheritance.excalidraw.png">
+<meta property="article:published_time" content="2023-05-23T14:07:31.000Z">
+<meta property="article:modified_time" content="2023-05-23T16:24:10.033Z">
+<meta property="article:author" content="Shi Bin">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="OOP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wshibin.github.io/images/2023-05-23_The-C-Language-and-OOP.assets/image-20230328155533042.png">
+
+
+<link rel="canonical" href="https://wshibin.github.io/2023/05/The-C-Language-and-OOP/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wshibin.github.io/2023/05/The-C-Language-and-OOP/","path":"/2023/05/The-C-Language-and-OOP/","title":"【C】C 语言和 OOP"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【C】C 语言和 OOP | WShiBin's blogs</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
+
+
+  <script data-pjax defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;fdce1369bd7b4881bc693823aa6eaf36&quot;}'></script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "albpra1b9p");
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xiangsudian/CaoMei/style.min.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="WShiBin's blogs" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WShiBin's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Follow your heart!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-csapp"><a href="/csapp" rel="section"><i class="fa fa-book fa-fw"></i>CSAPP</a></li><li class="menu-item menu-item-apue"><a href="/apue" rel="section"><i class="fa fa-book fa-fw"></i>APUE</a></li><li class="menu-item menu-item-cmake"><a href="/cmake" rel="section"><i class="fa fa-book fa-fw"></i>CMake</a></li><li class="menu-item menu-item-cheat-sheet"><a href="/cheatsheet/" rel="section"><i class="fa fa-book fa-fw"></i>Cheat Sheet</a></li><li class="menu-item menu-item-talks"><a href="/talks/" rel="section"><i class="fa fa-book fa-fw"></i>Talks</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cfront%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">Cfront编译器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">函数和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.2.</span> <span class="nav-text">this关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">方法重载怎么实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">封装：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%EF%BC%9A-1"><span class="nav-number">3.1.</span> <span class="nav-text">封装：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%EF%BC%9A%E6%88%90%E5%91%98%E5%92%8C%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">隐藏：成员和函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">继承：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%EF%BC%9A%E7%88%B6%E7%B1%BB%E7%94%A8-void-%E5%8E%BB%E6%8B%93%E5%B1%95%E5%AD%90%E7%B1%BB"><span class="nav-number">4.1.</span> <span class="nav-text">拓展：父类用 void* 去拓展子类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%EF%BC%9A%E5%AD%90%E7%B1%BB%E5%B5%8C%E5%A5%97%E7%88%B6%E7%B1%BB%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">4.2.</span> <span class="nav-text">组合：子类嵌套父类结构体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%80%81%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">多态：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-amp-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B-%E6%80%8E%E4%B9%88%E9%80%89%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">面向对象 &amp; 面向过程 怎么选？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shi Bin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shi Bin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WShiBin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjE1NTE5OTAwODA3QHFxLmNvbQ==" title="E-Mail → mailto:15519900807@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTEyNTE2NTU3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;112516557"><i class="fas fa-tv fa-fw"></i>Bilibili</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wshibin.github.io/2023/05/The-C-Language-and-OOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shi Bin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【C】C 语言和 OOP | WShiBin's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【C】C 语言和 OOP
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-05-23 22:07:31" itemprop="dateCreated datePublished" datetime="2023-05-23T22:07:31+08:00">2023-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/05/The-C-Language-and-OOP/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/2023/05/The-C-Language-and-OOP/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Cfront编译器"><a href="#Cfront编译器" class="headerlink" title="Cfront编译器"></a>Cfront编译器</h2><p>语言之间的转换：C++语言 –&gt; C语言 –&gt; 汇编 –&gt; 机器指令</p>
+<ul>
+<li>汇编器：将汇编语言翻译成机器指令</li>
+<li>C编译器：将C语言翻译成汇编语言</li>
+<li>C++编译器：将C++语言翻译成C语言</li>
+</ul>
+<p>广义上的 C 编译器，指的是把 C 语言翻译成机器码（程序）的编译器。但严格意义上讲，是指把 C 语言翻译成汇编语言，然后再由汇编器把汇编语言翻译成机器码。<br>看到 C++ 编译器时，你可能会有疑问，C++编译器是将C++语言翻译成C语言？是不是在扯犊子，C++语言和C语言不是两种不同的语言吗？怎么能由一种语言翻译成另一种语言呢？这时候来看下 C++ 原始的编译器：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2Zyb250">CFront<i class="fa fa-external-link-alt"></i></span> 编译器的描述</p>
+<blockquote>
+<p><strong>Cfront</strong> was the original <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ29tcGlsZXI=">compiler<i class="fa fa-external-link-alt"></i></span> for <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQyUyQiUyQg==">C++<i class="fa fa-external-link-alt"></i></span> (then known as “<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ18ocHJvZ3JhbW1pbmdfbGFuZ3VhZ2Up">C<i class="fa fa-external-link-alt"></i></span> with Classes”) from around 1983, which <strong>converted C++ to C</strong>; developed by <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQmphcm5lX1N0cm91c3RydXA=">Bjarne Stroustrup<i class="fa fa-external-link-alt"></i></span> at AT&amp;T Bell Labs.</p>
+<p><strong>Cfront</strong> 是原始的 C++ 编译器，作用是把 C++ 代码转成 C 代码</p>
+</blockquote>
+<p>可能你对把 “C++代码转成 C 代码”这个问题没有疑问了。但又会冒出新的问题：</p>
+<ul>
+<li> C++代码都转成什么样的 C 代码了？</li>
+<li><code>Class</code> 转成 C 的时候变成了什么？</li>
+<li>C++的引用在 C 里面是怎么实现的？</li>
+<li><code>public</code> 和 <code>private</code> 关键字怎么实现？</li>
+<li><code>this</code> 关键字到底是怎么来的？</li>
+<li>方法重载怎么实现？</li>
+<li>etc</li>
+</ul>
+<p>不过这里不会一一讨论这些细节，主要是讲和 OOP 面向对象相关的知识点。有兴趣可以移步CFront 的源代码查阅：<span class="exturl" data-url="aHR0cHM6Ly93d3cuc29mdHdhcmVwcmVzZXJ2YXRpb24ub3JnL3Byb2plY3RzL2NfcGx1c19wbHVzL2Nmcm9udC9yZWxlYXNlXzEuMC9zcmMvY2Zyb250Lw==">https://www.softwarepreservation.org/projects/c_plus_plus/cfront/release_1.0/src/cfront/<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h3><p>如果你只写过 C，那你可能只听过 Function 函数这个词， 但如果你学了其它支持面向对象范式的语言，如 C++、Java、Golang 之类，会给你说，Class 里面的函数叫方法 Method。那今天来做一个总结：</p>
+<ul>
+<li>原本只有函数 Function</li>
+<li>而方法 Method 是函数的特例、子集，它其实也是函数</li>
+</ul>
+<p>有什么证据来支持你这个结论吗？往下看 this 关键字。</p>
+<h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h3><p><code>this</code>关键字“官方”一点的解释：<code>this</code> 是当前类的实例。不知道在用 this 关键字的时候有没有过疑问：</p>
+<ul>
+<li><code>this</code>关键字怎么来的？你也没有声明和定义，就能直接用了</li>
+<li>如果他是个变量，不都应该有作用域吗？</li>
+</ul>
+<p>第一个疑问：编译器给你生成的。实际上现代的编译器能做的更多：修改代码、插入指定、编译时计算、即时编译 Jit、边翻译边执行（解释器）、etc。对于后者作用域，你大概知道它的作用域：在方法 Method 里面都能用。那它实现的方式：应该是这个方法里面的“一个函数的参数”或者是“一个局部变量”，所以才能去使用<code>this</code>变量。</p>
+<p>看到这里，你可能还是有点懵，下面图中写了三段代码：左边是 C 语言、中间是 Rust 语言、右边是 C++语言。代码功能含义都一样：定义了一个 Person 的类，定义了构造函数和它的一些方法。不同于 C++、Java这类语言，会完全的隐藏<code>this</code> 关键字，Rust 和Python会保留了一个 <code>self</code> 关键字在函数的参数里面。那现在有一个大概的结论：<code>this</code> 就是“方法”里面的一个参数。而“恰好”C++版本的 <code>this</code> 可以通过<code>-&gt;</code> 操作符去访问它的成员，这不就是 C 语言中：结构体指针通过<code>-&gt;</code>操作符去访问成员 的方式一模一样吗。所以说：方法是一种特殊的函数，隐藏了一个当前类实例 <code>this</code>参数的函数。</p>
+<p><img src="/images/2023-05-23_The-C-Language-and-OOP.assets/image-20230328155533042.png" alt="image-20230328155533042"></p>
+<h2 id="方法重载怎么实现"><a href="#方法重载怎么实现" class="headerlink" title="方法重载怎么实现"></a>方法重载怎么实现</h2><p>函数重载只需要增加编译器支持：编译器在编译时去改代码，去对方法进行重命名。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((overloadable)) <span class="type">void</span> <span class="title function_">foo_</span><span class="params">(<span class="type">int</span>    x)</span> &#123; <span class="built_in">printf</span>(<span class="string">&quot;foo_with_int: %d\n&quot;</span>, x);     &#125;</span><br><span class="line">__attribute__((overloadable)) <span class="type">void</span> <span class="title function_">foo_</span><span class="params">(<span class="type">float</span>  x)</span> &#123; <span class="built_in">printf</span>(<span class="string">&quot;foo_with_float: %f\n&quot;</span>, x);   &#125;</span><br><span class="line">__attribute__((overloadable)) <span class="type">void</span> <span class="title function_">foo_</span><span class="params">(<span class="type">double</span> x)</span> &#123; <span class="built_in">printf</span>(<span class="string">&quot;foo_with_double: %lf\n&quot;</span>, x); &#125;</span><br><span class="line">__attribute__((overloadable)) <span class="type">void</span> <span class="title function_">foo_</span><span class="params">(<span class="type">char</span>*  x)</span> &#123; <span class="built_in">printf</span>(<span class="string">&quot;foo_with_string: %s\n&quot;</span>, x);  &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    foo_(<span class="number">10</span>);</span><br><span class="line">    foo_(<span class="number">10.1f</span>);</span><br><span class="line">    foo_(<span class="number">10.1</span>);</span><br><span class="line">    foo_(<span class="string">&quot;10.1&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用用clang编译器 编译程序</span></span><br><span class="line">$ clang main.c</span><br><span class="line">$ ./a.out</span><br><span class="line">foo_with_int: 10</span><br><span class="line">foo_with_float: 10.100000</span><br><span class="line">foo_with_double: 10.100000</span><br><span class="line">foo_with_string: 10.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># mn:  list symbols from object files</span></span><br><span class="line">$ nm a.out</span><br><span class="line">0000000100003eb8 T __Z4foo_Pc</span><br><span class="line">0000000100003e84 T __Z4foo_d</span><br><span class="line">0000000100003e4c T __Z4foo_f</span><br><span class="line">0000000100003e14 T __Z4foo_i</span><br><span class="line">0000000100000000 T __mh_execute_header</span><br><span class="line">0000000100003eec T _main</span><br><span class="line">                 U _printf</span><br></pre></td></tr></table></figure>
+
+<p>TODO: 代码解释，重命名 symbol</p>
+<h2 id="封装："><a href="#封装：" class="headerlink" title="封装："></a>封装：</h2><p>封装从字面上来理解就是包装的意思，是指利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外接口使之与外部发生联系。两个关键点：封装和隐藏；封装：就是把结构体和函数捆绑在一起，看成一个整体，上面 <code>this</code>关键字部分，专业点就是信息隐藏，</p>
+<h3 id="封装：-1"><a href="#封装：-1" class="headerlink" title="封装："></a>封装：</h3><p>TODO：curl、sqlite3、dbus、Glib接口设计</p>
+<h3 id="隐藏：成员和函数"><a href="#隐藏：成员和函数" class="headerlink" title="隐藏：成员和函数"></a>隐藏：成员和函数</h3><p>一个对象的属性私有化，同时提供一些可以被外界访问的属性的方法，如果不想被外界方法，我们大可不必提供方法给外界访问</p>
+<ol>
+<li>良好的封装能够减少耦合。</li>
+<li>类内部的结构可以自由修改。</li>
+<li>可以对成员进行更精确的控制。</li>
+<li>隐藏信息，实现细节。</li>
+</ol>
+<p>TODO：dbus</p>
+<h2 id="继承："><a href="#继承：" class="headerlink" title="继承："></a>继承：</h2><p>用 C 实现继承有两种方法：</p>
+<ul>
+<li>拓展：父类用 <code>void*</code> 去拓展子类</li>
+<li>组合：子类嵌套父类结构体</li>
+</ul>
+<h3 id="拓展：父类用-void-去拓展子类"><a href="#拓展：父类用-void-去拓展子类" class="headerlink" title="拓展：父类用 void* 去拓展子类"></a>拓展：父类用 <code>void*</code> 去拓展子类</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 继承：通过使用拓展实现</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">object</span> &#123;</span></span><br><span class="line">    <span class="type">int</span>   x;</span><br><span class="line">    <span class="type">int</span>   y;</span><br><span class="line">    <span class="type">int</span>   width;</span><br><span class="line">    <span class="type">int</span>   height;</span><br><span class="line">    <span class="type">void</span>* sub_obj;</span><br><span class="line">&#125; <span class="type">object_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建父类对象</span></span><br><span class="line"><span class="type">object_t</span>* <span class="title function_">object_new</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> width, <span class="type">int</span> height)</span> &#123;</span><br><span class="line">    <span class="type">object_t</span>* obj = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">object_t</span>));</span><br><span class="line">    obj-&gt;x        = x;</span><br><span class="line">    obj-&gt;y        = y;</span><br><span class="line">    obj-&gt;width    = width;</span><br><span class="line">    obj-&gt;height   = height;</span><br><span class="line">    obj-&gt;sub_obj  = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">img</span> &#123;</span></span><br><span class="line">    <span class="type">char</span>* src;</span><br><span class="line">&#125; <span class="type">img_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建子类对象</span></span><br><span class="line"><span class="type">object_t</span>* <span class="title function_">img_new</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> width, <span class="type">int</span> height)</span> &#123;</span><br><span class="line">    <span class="type">object_t</span>* obj = object_new(x, y, width, height);</span><br><span class="line">    obj-&gt;sub_obj  = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">img_t</span>));</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置子类对象的成员</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">img_set_src</span><span class="params">(<span class="type">object_t</span>* obj, <span class="type">char</span>* src)</span> &#123;</span><br><span class="line">    <span class="type">img_t</span>* img = (<span class="type">img_t</span>*)obj-&gt;sub_obj;</span><br><span class="line">    img-&gt;src   = src;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取子类对象的成员</span></span><br><span class="line"><span class="type">char</span>* <span class="title function_">img_get_src</span><span class="params">(<span class="type">object_t</span>* obj)</span> &#123;</span><br><span class="line">    <span class="type">img_t</span>* img = (<span class="type">img_t</span>*)obj-&gt;sub_obj;</span><br><span class="line">    <span class="keyword">return</span> img-&gt;src;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// 创建子类对象</span></span><br><span class="line">    <span class="type">object_t</span>* obj = img_new(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line"></span><br><span class="line">    img_set_src(obj, <span class="string">&quot;bar.png&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;obj width: %d\n&quot;</span>, obj-&gt;width);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;obj heith: %d\n&quot;</span>, obj-&gt;height);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;img src: %s\n&quot;</span>, img_get_src(obj));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="组合：子类嵌套父类结构体"><a href="#组合：子类嵌套父类结构体" class="headerlink" title="组合：子类嵌套父类结构体"></a>组合：子类嵌套父类结构体</h3><p>把父类结构体放在子类的结构成员的第一个，</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">object</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line">    <span class="type">int</span> width;</span><br><span class="line">    <span class="type">int</span> height;</span><br><span class="line">&#125; <span class="type">object_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继承：通过使用组合实现</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">img</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">object</span> <span class="title">obj</span>;</span></span><br><span class="line">    <span class="type">char</span>*         src;</span><br><span class="line">&#125; <span class="type">img_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">img_t</span>* <span class="title function_">img_new</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> width, <span class="type">int</span> height, <span class="type">char</span>* src)</span> &#123;</span><br><span class="line">    <span class="type">img_t</span>* img      = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">img_t</span>));</span><br><span class="line">    img-&gt;obj.x      = x;</span><br><span class="line">    img-&gt;obj.y      = y;</span><br><span class="line">    img-&gt;obj.width  = width;</span><br><span class="line">    img-&gt;obj.height = height;</span><br><span class="line">    img-&gt;src        = src;</span><br><span class="line">    <span class="keyword">return</span> img;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">label</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">object</span> <span class="title">obj</span>;</span></span><br><span class="line">    <span class="type">char</span>*         text;</span><br><span class="line">&#125; <span class="type">label_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// 创建子类对象</span></span><br><span class="line">    <span class="type">img_t</span>* img = img_new(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="string">&quot;foo.png&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 子类对象转换为父类对象</span></span><br><span class="line">    <span class="type">object_t</span>* obj = (<span class="type">object_t</span>*)img;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 访问父类对象的成员</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;obj width: %d\n&quot;</span>, obj-&gt;width);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;obj heith: %d\n&quot;</span>, obj-&gt;height);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2023-05-23_The-C-Language-and-OOP.assets/Inheritance.excalidraw.png" alt="Inheritance.excalidraw.png"></p>
+<h2 id="多态："><a href="#多态：" class="headerlink" title="多态："></a>多态：</h2><p>多态在面向对象语言里面有两种实现方式：抽象类实现、接口实现。但从结果上讲，他们解决的问题是：最后去调谁的实现函数的问题，是调用 A 子类的实现，还是调用 B 子类的实现。所以最后本质问题是，调用哪个函数的问题，对于C语言来说，就是一个函数指针变量赋值的问题。你对这个函数指针变量赋值了 A 类的函数，最终就会调用 A 类的实现；对这个函数指针变量赋值了 B 类的函数，最终就会调用 B 类的实现。</p>
+<p>TODO：举例 fs？</p>
+<h2 id="面向对象-amp-面向过程-怎么选？"><a href="#面向对象-amp-面向过程-怎么选？" class="headerlink" title="面向对象 &amp; 面向过程 怎么选？"></a>面向对象 &amp; 面向过程 怎么选？</h2><ul>
+<li>当然是：全都要</li>
+<li>建模时、整体结构上，使用面向对象</li>
+<li>处理流程、细节上，使用面向过程</li>
+</ul>
+<p>TODO</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+              <a href="/tags/OOP/" rel="tag"># OOP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/musl-source-code/" rel="prev" title="【C】musl libc source code">
+                  <i class="fa fa-chevron-left"></i> 【C】musl libc source code
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+</div>
+<div class="busuanzi-count">
+</div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dTaGlCaW4=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2023/05/The-C-Language-and-OOP/"}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

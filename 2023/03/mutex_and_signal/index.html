@@ -33,15 +33,15 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="项目遇到一次死锁的问题记录。  前置知识Mutex互斥锁#include &lt;pthread.h&gt;static int data &#x3D; 0;static pthread_mutex_t mtx &#x3D; PTHREAD_MUTEX_INITIALIZER;void foo(void) &amp;#123;    pthread_mutex_lock(&amp;mtx);    data ++;">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wshibin.github.io/excalidraw/2022-03-24-1647-mutex-and-signal.excalidraw.png">
+<meta property="og:image" content="https://wshibin.github.io/images/2023-03-24_mutex_and_signal.assets/2022-03-24-1647-mutex-and-signal.excalidraw.png">
 <meta property="article:published_time" content="2023-03-24T08:37:35.000Z">
-<meta property="article:modified_time" content="2023-05-22T15:19:27.188Z">
+<meta property="article:modified_time" content="2023-05-24T10:55:23.975Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Bugs">
 <meta property="article:tag" content="Deadlock">
 <meta property="article:tag" content="Signal">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/excalidraw/2022-03-24-1647-mutex-and-signal.excalidraw.png">
+<meta name="twitter:image" content="https://wshibin.github.io/images/2023-03-24_mutex_and_signal.assets/2022-03-24-1647-mutex-and-signal.excalidraw.png">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2023/03/mutex_and_signal/">
@@ -314,7 +314,7 @@
 
 <p>有意思的问题来了，<code>handle_sigint</code>函数的执行线程居然和<code>main</code>函数线程是同一个线程。你可能会有疑问，<code>main</code>函数里面是个<code>while (true)</code>的死循环，主线程应该一直执行这个循环，执行流程为什么会跑到<code>hanldle_sigint</code>函数那里去？这不符合程序循序执行的逻辑啊。</p>
 <p>回答这个问题，站在程序本身执行的角度是无法理解的，应该站在操作系统的视角去看。现代的操作系统大多是<code>time-share</code>时间分片的操作系统，调度的时候：先执行下内核，然后执行下A程序；中间可能还有其它打断，又会调度到内核。Signal就是其中一种，</p>
-<p><img src="/excalidraw/2022-03-24-1647-mutex-and-signal.excalidraw.png"></p>
+<p><img src="/images/2023-03-24_mutex_and_signal.assets/2022-03-24-1647-mutex-and-signal.excalidraw.png"></p>
 <p>现在来分析<code>while (true)</code>代码块，站在操作系统的角度看，在执行<code>while (true)</code>代码块过程中，也会被分成多个段去执行，在操作系统的执行流程中也会有断开，而不是一直霸占着CPU的执行权。</p>
 <p>现在来分析<code>while (true)</code>代码块，在操作系统调度程序的过程中，是会有断开的，而不是<code>while (true)</code>代码块一直霸占着CPU的执行权。从内核态和用户态的角度看，用户态的代码只是属于内核态代码的“回调函数”，内核还有一个功能，能暂停用户态的回调的执行，跑去执行其它的流程。</p>
 <h2 id="Mutex和Singal组合"><a href="#Mutex和Singal组合" class="headerlink" title="Mutex和Singal组合"></a>Mutex和Singal组合</h2><p>代码简单：主线程和Singal处理函数使用同一把互斥锁。</p>

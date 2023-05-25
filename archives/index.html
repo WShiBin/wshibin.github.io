@@ -533,7 +533,7 @@
 <h3 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// include/stdlib.h</span></span><br><span class="line"><span class="type">int</span>  <span class="title function_">rand</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">srand</span><span class="params">(<span class="type">unsigned</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// src/prng/rand.c</span></span><br><span class="line"><span class="type">static</span> <span class="type">uint64_t</span> seed;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">srand</span><span class="params">(<span class="type">unsigned</span> s)</span> &#123;</span><br><span class="line">    seed = s - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">rand</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    seed = <span class="number">6364136223846793005ULL</span> * seed + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> seed &gt;&gt; <span class="number">33</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="进程退出函数"><a href="#进程退出函数" class="headerlink" title="进程退出函数"></a>进程退出函数</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">_Noreturn</span> <span class="type">void</span> <span class="title function_">abort</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">int</span>            <span class="title function_">atexit</span><span class="params">(<span class="type">void</span> (*)(<span class="type">void</span>))</span>;</span><br><span class="line"><span class="keyword">_Noreturn</span> <span class="type">void</span> <span class="title function_">exit</span><span class="params">(<span class="type">int</span>)</span>;</span><br><span class="line"><span class="keyword">_Noreturn</span> <span class="type">void</span> _Exit(<span class="type">int</span>);</span><br><span class="line"><span class="type">int</span>            <span class="title function_">at_quick_exit</span><span class="params">(<span class="type">void</span> (*)(<span class="type">void</span>))</span>;</span><br><span class="line"><span class="keyword">_Noreturn</span> <span class="type">void</span> <span class="title function_">quick_exit</span><span class="params">(<span class="type">int</span>)</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="/excalidraw/2023-04-26-1830-exit.excalidraw.png"></p>
+<p><img src="/images/2023-04-26_musl-source-code.assets/2023-04-26-1830-exit.excalidraw.png"></p>
 <ul>
 <li><code>at_xxx</code>前缀的函数是为<code>xxx</code>服务的，添加退出时要调用的函数</li>
 <li><code>exit</code>/<code>abort</code>/<code>quick_exit</code>最终都是调用<code>_Exit</code>退出，内部调用系统调用<code>SYS_exit</code>，编号93</li>
@@ -542,6 +542,7 @@
 
 <p>疑问：env内部是维护了一个什么结构，让我们可以去<code>set、get</code></p>
 <p>TODO</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="为什么基本上一个函数实现对应一个c文件？"><a href="#为什么基本上一个函数实现对应一个c文件？" class="headerlink" title="为什么基本上一个函数实现对应一个c文件？"></a>为什么基本上一个函数实现对应一个c文件？</h3><p>比如：<code>malloc</code>函数对应实现在<code>malloc.c</code>文件，<code>free</code>函数对应实现在<code>free.c</code>文件，一个函数对应一个实现文件。因为<code>libc</code>库过于基础，应用层的每个程序都会用到；在程序编译链接时，避免把不必要的函数链接到应用程序，会增加程序体积，占用磁盘和内存。</p>
 
       
     </div>
@@ -757,7 +758,7 @@
 
 <p>有意思的问题来了，<code>handle_sigint</code>函数的执行线程居然和<code>main</code>函数线程是同一个线程。你可能会有疑问，<code>main</code>函数里面是个<code>while (true)</code>的死循环，主线程应该一直执行这个循环，执行流程为什么会跑到<code>hanldle_sigint</code>函数那里去？这不符合程序循序执行的逻辑啊。</p>
 <p>回答这个问题，站在程序本身执行的角度是无法理解的，应该站在操作系统的视角去看。现代的操作系统大多是<code>time-share</code>时间分片的操作系统，调度的时候：先执行下内核，然后执行下A程序；中间可能还有其它打断，又会调度到内核。Signal就是其中一种，</p>
-<p><img src="/excalidraw/2022-03-24-1647-mutex-and-signal.excalidraw.png"></p>
+<p><img src="/images/2023-03-24_mutex_and_signal.assets/2022-03-24-1647-mutex-and-signal.excalidraw.png"></p>
 <p>现在来分析<code>while (true)</code>代码块，站在操作系统的角度看，在执行<code>while (true)</code>代码块过程中，也会被分成多个段去执行，在操作系统的执行流程中也会有断开，而不是一直霸占着CPU的执行权。</p>
 <p>现在来分析<code>while (true)</code>代码块，在操作系统调度程序的过程中，是会有断开的，而不是<code>while (true)</code>代码块一直霸占着CPU的执行权。从内核态和用户态的角度看，用户态的代码只是属于内核态代码的“回调函数”，内核还有一个功能，能暂停用户态的回调的执行，跑去执行其它的流程。</p>
 <h2 id="Mutex和Singal组合"><a href="#Mutex和Singal组合" class="headerlink" title="Mutex和Singal组合"></a>Mutex和Singal组合</h2><p>代码简单：主线程和Singal处理函数使用同一把互斥锁。</p>

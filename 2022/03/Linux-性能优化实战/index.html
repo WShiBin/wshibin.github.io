@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
 
     <meta name="description" content="开篇如何学习Linux性能优化？理解组件之间的工作原理和协作方式 性能指标是什么？  性能分析，其实就是找出应用或系统的瓶颈，并设法去避免或者缓解它们 步骤：  选择指标评估应用程序和系统的性能； 为应用程序和系统设置性能目标； 进行性能基准测试； 性能分析定位瓶颈； 优化系统和应用程序； 性能监控和告警。  布伦丹·格雷格（Brendan Gregg）https:&#x2F;&#x2F;www.brendangre">
 <meta property="og:type" content="article">
@@ -33,22 +33,22 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="开篇如何学习Linux性能优化？理解组件之间的工作原理和协作方式 性能指标是什么？  性能分析，其实就是找出应用或系统的瓶颈，并设法去避免或者缓解它们 步骤：  选择指标评估应用程序和系统的性能； 为应用程序和系统设置性能目标； 进行性能基准测试； 性能分析定位瓶颈； 优化系统和应用程序； 性能监控和告警。  布伦丹·格雷格（Brendan Gregg）https:&#x2F;&#x2F;www.brendangre">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_systems_performance/image-20220410151723246.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_systems_performance/image-20220410151853171.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_systems_performance/image-20220410152048658.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_systems_performance/image-20220410152155659.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_systems_performance/image-20220410152235647.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_systems_performance/image-20220410152319477.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_performance/ed8824c7a2e4020e2fdd2a104c70ab7b.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_performance/fcfbe2f8eb7c6090d82bf93ecdc1f0b6-8553278.png">
-<meta property="og:image" content="https://wshibin.github.io/images/linux_performance/71a754523386cc75f4456a5eabc93c5d.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/image-20220410151723246.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/image-20220410151853171.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/image-20220410152048658.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/image-20220410152155659.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/image-20220410152235647.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/image-20220410152319477.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/ed8824c7a2e4020e2fdd2a104c70ab7b.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/fcfbe2f8eb7c6090d82bf93ecdc1f0b6-8553278.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/71a754523386cc75f4456a5eabc93c5d.png">
 <meta property="article:published_time" content="2022-03-15T07:05:34.000Z">
-<meta property="article:modified_time" content="2022-09-12T15:36:17.246Z">
+<meta property="article:modified_time" content="2023-06-13T15:21:08.637Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Performance optimization">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/linux_systems_performance/image-20220410151723246.png">
+<meta name="twitter:image" content="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/image-20220410151723246.png">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/">
@@ -62,9 +62,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -190,12 +190,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -305,7 +305,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><h2 id="如何学习Linux性能优化？"><a href="#如何学习Linux性能优化？" class="headerlink" title="如何学习Linux性能优化？"></a>如何学习Linux性能优化？</h2><p>理解组件之间的工作原理和协作方式</p>
-<h3 id="性能指标是什么？"><a href="#性能指标是什么？" class="headerlink" title="性能指标是什么？"></a>性能指标是什么？</h3><img src="/images/linux_systems_performance/image-20220410151723246.png" style="zoom:50%;" />
+<h3 id="性能指标是什么？"><a href="#性能指标是什么？" class="headerlink" title="性能指标是什么？"></a>性能指标是什么？</h3><img src="image-20220410151723246.png" style="zoom:50%;" />
 
 <p>性能分析，其实就是找出应用或系统的瓶颈，并设法去避免或者缓解它们</p>
 <p>步骤：</p>
@@ -319,7 +319,7 @@
 </ul>
 <h3 id="布伦丹·格雷格（Brendan-Gregg）"><a href="#布伦丹·格雷格（Brendan-Gregg）" class="headerlink" title="布伦丹·格雷格（Brendan Gregg）"></a>布伦丹·格雷格（Brendan Gregg）</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYnJlbmRhbmdyZWdnLmNvbS8=">https://www.brendangregg.com/<i class="fa fa-external-link-alt"></i></span><br>性能领域的大师，DTrace作者</p>
 <p>Linux 性能工具图谱：</p>
-<img src="/images/linux_systems_performance/image-20220410151853171.png" style="zoom:50%;" />
+<img src="image-20220410151853171.png" style="zoom:50%;" />
 
 <h3 id="怎么学更高效？"><a href="#怎么学更高效？" class="headerlink" title="怎么学更高效？"></a>怎么学更高效？</h3><ul>
 <li>虽然系统的原理很重要，但在刚开始一定不要试图抓住所有的实现细节<ul>
@@ -379,7 +379,7 @@
 <li>内核空间（Ring 0）具有最高权限，可以直接访问所有资源；</li>
 <li>用户空间（Ring 3）只能访问受限资源，不能直接访问内存等硬件设备，必须通过系统调用陷入到内核中，才能访问这些特权资源。</li>
 </ul>
-<img src="/images/linux_systems_performance/image-20220410152048658.png" style="zoom:50%;" />
+<img src="image-20220410152048658.png" style="zoom:50%;" />
 
 <p>从用户态到内核态的转变，需要通过系统调用来完成</p>
 <p>那么，系统调用的过程有没有发生 CPU 上下文的切换呢？答案自然是肯定的。CPU 寄存器里原来用户态的指令位置，需要先保存起来。接着，为了执行内核态代码，CPU 寄存器需要更新为内核态指令的新位置。最后才是跳转到内核态运行内核任务。</p>
@@ -424,16 +424,16 @@
 </li>
 <li>CPU 缓存的命中率</li>
 </ul>
-<h3 id="性能工具"><a href="#性能工具" class="headerlink" title="性能工具"></a>性能工具</h3><img src="/images/linux_systems_performance/image-20220410152155659.png" style="zoom:50%;" />
+<h3 id="性能工具"><a href="#性能工具" class="headerlink" title="性能工具"></a>性能工具</h3><img src="image-20220410152155659.png" style="zoom:50%;" />
 
 <p>第一个维度，从 CPU 的性能指标出发。也就是说，当你要查看某个性能指标时，要清楚知道哪些工具可以做到。</p>
 <p>第二个维度，从工具出发。也就是当你已经安装了某个工具后，要知道这个工具能提供哪些指标。</p>
-<img src="/images/linux_systems_performance/image-20220410152235647.png" style="zoom:50%;" />
+<img src="image-20220410152235647.png" style="zoom:50%;" />
 
 <h3 id="如何迅速分析-CPU-的性能瓶颈"><a href="#如何迅速分析-CPU-的性能瓶颈" class="headerlink" title="如何迅速分析 CPU 的性能瓶颈"></a>如何迅速分析 CPU 的性能瓶颈</h3><p>想弄清楚性能指标的关联性，就要通晓每种性能指标的工作原理</p>
 <p>举个例子，用户 CPU 使用率高，我们应该去排查进程的用户态而不是内核态。因为用户 CPU 使用率反映的就是用户态的 CPU 使用情况，而内核态的 CPU 使用情况只会反映到系统 CPU 使用率上。</p>
 <p>为了缩小排查范围，我通常会先运行几个支持指标较多的工具，如 top、vmstat 和 pidstat</p>
-<img src="/images/linux_systems_performance/image-20220410152319477.png" style="zoom:50%;" />
+<img src="image-20220410152319477.png" style="zoom:50%;" />
 
 <h3 id="性能优化方法论"><a href="#性能优化方法论" class="headerlink" title="性能优化方法论"></a>性能优化方法论</h3><ul>
 <li>首先，既然要做性能优化，那要怎么判断它是不是有效呢？特别是优化后，到底能提升多少性能呢？</li>
@@ -481,12 +481,12 @@
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>但是记住，一定要忍住“把 CPU 性能优化到极致”的冲动，因为 CPU 并不是唯一的性能因素。在后续的文章中，我还会介绍更多的性能问题，比如内存、网络、I/O 甚至是架构设计的问题。</p>
 <h1 id="内存性能篇"><a href="#内存性能篇" class="headerlink" title="内存性能篇"></a>内存性能篇</h1><h2 id="基础篇：Linux内存是怎么工作的？"><a href="#基础篇：Linux内存是怎么工作的？" class="headerlink" title="基础篇：Linux内存是怎么工作的？"></a>基础篇：Linux内存是怎么工作的？</h2><h3 id="内存映射"><a href="#内存映射" class="headerlink" title="内存映射"></a>内存映射</h3><p>物理内存、虚拟内存</p>
 <p>虚拟地址空间的内部又被分为内核空间和用户空间</p>
-<img src="/images/linux_performance/ed8824c7a2e4020e2fdd2a104c70ab7b.png" style="zoom: 67%;" />
+<img src="ed8824c7a2e4020e2fdd2a104c70ab7b.png" style="zoom: 67%;" />
 
 <p>MMU</p>
-<p><img src="/images/linux_performance/fcfbe2f8eb7c6090d82bf93ecdc1f0b6-8553278.png" alt="img"></p>
+<p><img src="fcfbe2f8eb7c6090d82bf93ecdc1f0b6-8553278.png"></p>
 <p>内存映射的最小单位，也就是页，通常是 4 KB 大小。这样，每一次内存映射，都需要关联 4 KB 或者 4KB 整数倍的内存空间</p>
-<h3 id="虚拟内存空间分布"><a href="#虚拟内存空间分布" class="headerlink" title="虚拟内存空间分布"></a>虚拟内存空间分布</h3><p><img src="/images/linux_performance/71a754523386cc75f4456a5eabc93c5d.png" alt="img"></p>
+<h3 id="虚拟内存空间分布"><a href="#虚拟内存空间分布" class="headerlink" title="虚拟内存空间分布"></a>虚拟内存空间分布</h3><p><img src="71a754523386cc75f4456a5eabc93c5d.png"></p>
 <ul>
 <li>只读段，包括代码和常量等</li>
 <li>数据段，包括全局变量等</li>
@@ -663,20 +663,21 @@
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
 
 
   <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -689,14 +690,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/03/Linux-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

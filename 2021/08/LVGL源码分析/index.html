@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
 
     <meta name="description" content="文章基于LVGL V7.11.0版本https:&#x2F;&#x2F;github.com&#x2F;lvgl&#x2F;lvgl&#x2F;tree&#x2F;v7.11.0  UI框架核心流程：  对于一个UI系统来说最原始的三个需求：  控件树维护：在前端叫DOM树（创建控件时，都需要传一个父控件） UI显示、刷新：通过迭代控件树，调用每个控件自己的绘制函数 点击事件传递到控件：TP硬件获取到点击坐标，传给UI系统，在去控件树去找到对应位置的控件">
 <meta property="og:type" content="article">
@@ -33,16 +33,16 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="文章基于LVGL V7.11.0版本https:&#x2F;&#x2F;github.com&#x2F;lvgl&#x2F;lvgl&#x2F;tree&#x2F;v7.11.0  UI框架核心流程：  对于一个UI系统来说最原始的三个需求：  控件树维护：在前端叫DOM树（创建控件时，都需要传一个父控件） UI显示、刷新：通过迭代控件树，调用每个控件自己的绘制函数 点击事件传递到控件：TP硬件获取到点击坐标，传给UI系统，在去控件树去找到对应位置的控件">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wshibin.github.io/images/lvgl/image-20220823121744058_AM.png">
+<meta property="og:image" content="https://wshibin.github.io/2021/08/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220823121744058_AM.png">
 <meta property="article:published_time" content="2021-08-15T06:53:29.000Z">
-<meta property="article:modified_time" content="2022-09-25T15:07:09.683Z">
+<meta property="article:modified_time" content="2023-06-13T14:37:25.741Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="源码分析">
 <meta property="article:tag" content="GUI">
 <meta property="article:tag" content="LVGL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/lvgl/image-20220823121744058_AM.png">
+<meta name="twitter:image" content="https://wshibin.github.io/2021/08/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220823121744058_AM.png">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2021/08/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
@@ -56,9 +56,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -184,12 +184,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -301,7 +301,7 @@
     <div class="post-body" itemprop="articleBody"><blockquote>
 <p>文章基于LVGL V7.11.0版本<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x2Z2wvbHZnbC90cmVlL3Y3LjExLjA=">https://github.com/lvgl/lvgl/tree/v7.11.0<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<h2 id="UI框架核心流程："><a href="#UI框架核心流程：" class="headerlink" title="UI框架核心流程："></a>UI框架核心流程：</h2><img src="/images/lvgl/image-20220823121744058_AM.png" style="zoom:50%;" />
+<h2 id="UI框架核心流程："><a href="#UI框架核心流程：" class="headerlink" title="UI框架核心流程："></a>UI框架核心流程：</h2><img src="image-20220823121744058_AM.png" style="zoom:50%;" />
 
 <p>对于一个UI系统来说最原始的三个需求：</p>
 <ul>
@@ -577,20 +577,21 @@
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
 
 
   <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -603,14 +604,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2021/08/LVGL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

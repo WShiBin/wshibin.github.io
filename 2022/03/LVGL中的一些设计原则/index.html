@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
 
     <meta name="description" content="上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。  软件设计七大原则   设计原则 定义 目的    开闭原则 对扩">
 <meta property="og:type" content="article">
@@ -33,19 +33,19 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="上上周在改一个框架，当然，是基于别人的框架来改，改了两天之后发现有点不太对劲，把原有框架的拓展性改没了。然后就去重新刷了下设计原则。当然，我们的框架不需要太多的拓展性，因为太多的拓展性意会让使用的难度变大，这些就是满大街的大而全的通用框架，面向的是能用的场景；我们框架的目标可能就是对特殊场景的优化，然后让人简单的设置就能用起来。  软件设计七大原则   设计原则 定义 目的    开闭原则 对扩">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wshibin.github.io/images/design_principles/image-20220321164258684.png">
-<meta property="og:image" content="https://wshibin.github.io/images/design_principles/image-20220321165435232.png">
-<meta property="og:image" content="https://wshibin.github.io/images/design_principles/image-20220322004626246.png">
-<meta property="og:image" content="https://wshibin.github.io/images/design_principles/image-20220323232530466.png">
-<meta property="og:image" content="https://wshibin.github.io/images/design_principles/image-20220323231930688.png">
-<meta property="og:image" content="https://wshibin.github.io/images/design_principles/image-20220323231930688.png">
-<meta property="og:image" content="https://wshibin.github.io/images/design_principles/image-20220324000531092.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220321164258684.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220321165435232.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220322004626246.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220323232530466.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220323231930688.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220323231930688.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220324000531092.png">
 <meta property="article:published_time" content="2022-03-21T12:25:53.000Z">
-<meta property="article:modified_time" content="2022-09-12T15:36:37.203Z">
+<meta property="article:modified_time" content="2023-06-13T14:49:46.257Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Design Principles">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/design_principles/image-20220321164258684.png">
+<meta name="twitter:image" content="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/image-20220321164258684.png">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
@@ -59,9 +59,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -187,12 +187,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -355,21 +355,21 @@
 </ul>
 <h3 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h3><p>设计模式是设计原则的应用、实现。设计原则是底层原则、是根本；设计模式里面的套路用了设计原则。简单的讲，你写的代码可以没有使用设计模式，但一定不能没有设计原则</p>
 <h2 id="C语言和面向对象"><a href="#C语言和面向对象" class="headerlink" title="C语言和面向对象"></a>C语言和面向对象</h2><h3 id="先讨论下C"><a href="#先讨论下C" class="headerlink" title="先讨论下C++"></a>先讨论下C++</h3><p>C++作者：Bjarne Stroustrup</p>
-<img src="/images/design_principles/image-20220321164258684.png" style="zoom: 20%;" />
+<img src="image-20220321164258684.png" style="zoom: 20%;" />
 
 <p>C++是一个多范式的语言；包括支持面向对象，也被有人称为“C with Classes”；</p>
 <p><strong>CFront</strong>：C++原始的编译器，作用把C++代码转成C代码；为啥叫CFront？在C的编译器前面加了一个编译器，把C++代码通过CFront转成C代码，然后用C编译器去编译生成程序</p>
-<img src="/images/design_principles/image-20220321165435232.png" style="zoom: 40%;" />
+<img src="image-20220321165435232.png" style="zoom: 40%;" />
 
 <h3 id="面向对象："><a href="#面向对象：" class="headerlink" title="面向对象："></a>面向对象：</h3><h3 id="问题：C-中的高级特性如何在C中表示？"><a href="#问题：C-中的高级特性如何在C中表示？" class="headerlink" title="问题：C++中的高级特性如何在C中表示？"></a>问题：C++中的高级特性如何在C中表示？</h3><ul>
 <li>类里面的函数真的属于这个Class吗？<code>sizeof()</code></li>
 <li>类中的<code>this</code>怎么来的？语法糖而已；有些语言会显示写<code>self</code>（Python、Rust）</li>
 <li>类调用成员函数是怎么回事？语法糖，和调用普通全局函数并没有什么区别</li>
 </ul>
-<img src="/images/design_principles/image-20220322004626246.png" style="zoom:540%;" />
+<img src="image-20220322004626246.png" style="zoom:540%;" />
 
 <h3 id="C-的虚函数、Java的Interface，Rust的Trait"><a href="#C-的虚函数、Java的Interface，Rust的Trait" class="headerlink" title="C++的虚函数、Java的Interface，Rust的Trait"></a>C++的虚函数、Java的Interface，Rust的Trait</h3><p>父类定义接口，然后子类有不同的实现，在实际运行的时候会调用不同的子类实现，<br>下图中的接口函数本质上是一个函数指针变量，在使用时指定了不同的子类的实现的函数</p>
-<img src="/images/design_principles/image-20220323232530466.png" style="zoom:50%;" />
+<img src="image-20220323232530466.png" style="zoom:50%;" />
 
 <h2 id="设计原则和LVGL"><a href="#设计原则和LVGL" class="headerlink" title="设计原则和LVGL"></a>设计原则和LVGL</h2><h3 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h3><p><strong>一个类只负责完成一个职责或者功能</strong></p>
 <ul>
@@ -392,7 +392,7 @@
 <li>显示到屏幕（估计就会写死）</li>
 <li>xxx</li>
 </ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
+<img src="image-20220323231930688.png" style="zoom:40%;" />
 
 <h5 id="改完后？"><a href="#改完后？" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
 <li>LVGL框架定义接口：<code>void (*flush_cb)(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p);</code><ul>
@@ -408,7 +408,7 @@
 <li>获取屏幕点击的坐标（估计就又会写死）</li>
 <li>xxx</li>
 </ol>
-<img src="/images/design_principles/image-20220323231930688.png" style="zoom:40%;" />
+<img src="image-20220323231930688.png" style="zoom:40%;" />
 
 <h5 id="改完后？-1"><a href="#改完后？-1" class="headerlink" title="改完后？"></a>改完后？</h5><ol>
 <li>LVGL框架定义接口：<code>bool (*read_cb)(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);</code><ul>
@@ -428,7 +428,7 @@
 <li>依赖反转前：我领导依赖于我，我的任务完成了，他的项目才能算完成</li>
 <li>依赖反转后：我领导提出标准，提供对应的资源；我拿到标准和资源，然后去实现</li>
 </ul>
-<img src="/images/design_principles/image-20220324000531092.png" style="zoom:40%;" />
+<img src="image-20220324000531092.png" style="zoom:40%;" />
 
 <p>一开始领导依赖于我的工作，他的任务就算完成；我依赖于我领导给的标准和资源去完成这个任务；另外的一个变化是：对于前者，你的领导可能会控制你的细节（不能用这个，得用那个；不能这样搞，要那样搞）；对于后者，我领导就成了标准的制定者</p>
 <h4 id="抽象的定义："><a href="#抽象的定义：" class="headerlink" title="抽象的定义："></a>抽象的定义：</h4><ul>
@@ -528,20 +528,21 @@
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
 
 
   <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -554,14 +555,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/03/LVGL%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

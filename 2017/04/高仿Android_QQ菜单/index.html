@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
 
     <meta name="description" content="Note:以前写的文章，搬迁过来 高仿Android QQ菜单,左侧抽屉,底部导航   实现这种效果的方式有很多,在不使用第三方包的前提下,这里用V4包原生DrawerLayout+FragmentTabHost控件实现, 先来张效果图:   ##实现这种效果的技术点:  DrawerLayout拖动菜单时主内容布局不会跟着移动 DrawerLayout拖动时很生硬,是直接拖出来的 Fragme">
 <meta property="og:type" content="article">
@@ -33,22 +33,23 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="Note:以前写的文章，搬迁过来 高仿Android QQ菜单,左侧抽屉,底部导航   实现这种效果的方式有很多,在不使用第三方包的前提下,这里用V4包原生DrawerLayout+FragmentTabHost控件实现, 先来张效果图:   ##实现这种效果的技术点:  DrawerLayout拖动菜单时主内容布局不会跟着移动 DrawerLayout拖动时很生硬,是直接拖出来的 Fragme">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/QQNavigation.gif">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Google_Play.gif">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-19-42.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-20-21.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-21-08.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-25-09.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-25-37.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-26-00.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-26-25.jpg">
-<meta property="og:image" content="https://wshibin.github.io/images/qq_navigation/Xnip2021-01-16_22-27-01.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/QQNavigation.gif">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/QQNavigation.gif">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Google_Play.gif">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-19-42.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-20-21.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-21-08.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-25-09.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-25-37.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-26-00.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-26-25.jpg">
+<meta property="og:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/Xnip2021-01-16_22-27-01.jpg">
 <meta property="article:published_time" content="2017-04-09T18:09:04.000Z">
-<meta property="article:modified_time" content="2022-05-02T04:54:21.000Z">
+<meta property="article:modified_time" content="2023-06-13T14:18:50.652Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/qq_navigation/QQNavigation.gif">
+<meta name="twitter:image" content="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/QQNavigation.gif">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/">
@@ -62,9 +63,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -189,12 +190,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -300,7 +301,7 @@
 <blockquote>
 <p>实现这种效果的方式有很多,在不使用第三方包的前提下,这里用V4包原生DrawerLayout+FragmentTabHost控件实现, 先来张效果图:</p>
 </blockquote>
-<p><img src="/images/qq_navigation/QQNavigation.gif"></p>
+<p><img src="QQNavigation.gif"><br><img src="QQNavigation.gif"></p>
 <p>##实现这种效果的技术点:</p>
 <ul>
 <li>DrawerLayout拖动菜单时主内容布局不会跟着移动</li>
@@ -309,21 +310,22 @@
 <li>解决FragmentTabHost切换时,主布局Fragment会重走生命周期的问题</li>
 </ul>
 <p>好吧,你可能不知道我在说什么, 一个一个来:<br>###1. DrawerLayout拖动菜单时主内容布局不会跟着移动<br>你可能见到的DrawerLayout的使用效果是这样的,这是Google Play上的DrawerLayout,当手指侧滑时,左侧抽屉菜单会覆盖中间布局,中间布局不会随手指拖动而移动</p>
-<p><img src="/images/qq_navigation/Google_Play.gif"></p>
+<p><img src="Google_Play.gif"></p>
 <p>解决这个问题很简单, 在DrawerLayout的监听事件onDrawerSlide回调中对其进行操作,slideOffset是滑动的偏移值:会在0~1之间变化:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-19-42.jpg"></p>
+<p><img src="Xnip2021-01-16_22-19-42.jpg"></p>
 <p>###2. DrawerLayout拖动时很生硬,是直接拖出来的<br>DrawerLayout菜单拖出来时,默认最先展示到屏幕上的是菜单布局的边缘位置,而QQ的侧滑菜单最先展示在屏幕上的是菜单布局中间偏右的位置,目测大概是黄金分割点,如图:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-20-21.jpg"></p>
+<img src="Xnip2021-01-16_22-20-21.jpg" style="zoom:50%;" >
+
 <p>解决这个问题也不难, 动态修改菜单布局的PadingLeft,在菜单滑出的过程中,PadingLeft从菜单宽度的(1-0.618)倍,动态减少到0方可实现这种效果:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-21-08.jpg"></p>
+<p><img src="Xnip2021-01-16_22-21-08.jpg"></p>
 <p>###3. FragmentTabHost自定义底部Tab布局<br>第一次听说FragmentTabHost可以用来做导航之后,就去找资料,官方文档还给了示例代码<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5nb29nbGUuY24vcmVmZXJlbmNlL2FuZHJvaWQvc3VwcG9ydC92NC9hcHAvRnJhZ21lbnRUYWJIb3N0Lmh0bWw=">https://developer.android.google.cn/reference/android/support/v4/app/FragmentTabHost.html<i class="fa fa-external-link-alt"></i></span><br>当我跑上这段代码之后完全高兴不起来,太TM难看了,底部Tab就几个文字,然后就去查API,果然有了新的发现:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-25-09.jpg"></p>
+<p><img src="Xnip2021-01-16_22-25-09.jpg"></p>
 <p>###4. 解决FragmentTabHost切换时,主布局Fragment会重走生命周期的问题<br>当切换底部的Tab时,主布局中的三个Fragment会重走生命周期,也就意味着页面的数据又得重新加载,这对用户体验都不是个好消息,解决的办法就是重写FragmentTabHost,其实就是改了原控件的几个方法:</p>
-<p>重写前是这样的:<br><img src="/images/qq_navigation/Xnip2021-01-16_22-25-37.jpg"></p>
-<p>重写后是这样的:<br><img src="/images/qq_navigation/Xnip2021-01-16_22-26-00.jpg"></p>
+<p>重写前是这样的:<br><img src="Xnip2021-01-16_22-25-37.jpg"></p>
+<p>重写后是这样的:<br><img src="Xnip2021-01-16_22-26-00.jpg"></p>
 <p>代码就是在原有控件的基础上改了三行:</p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-26-25.jpg"></p>
-<p><img src="/images/qq_navigation/Xnip2021-01-16_22-27-01.jpg"></p>
+<p><img src="Xnip2021-01-16_22-26-25.jpg"></p>
+<p><img src="Xnip2021-01-16_22-27-01.jpg"></p>
 <p>好了,原本不那么看好的控件经过改造,已经丑小鸭变成天鹅了.<br>**代码链接:**<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoaWI5MC9RUU5hdmlnYXRpb25EZW1vLW1hc3Rlcg==">https://github.com/Shib90/QQNavigationDemo-master<i class="fa fa-external-link-alt"></i></span></p>
 <p>当然这个只是模仿拿来练手,还存在很多问题:</p>
 <ul>
@@ -409,20 +411,21 @@
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
 
 
   <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -435,14 +438,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2017/04/%E9%AB%98%E4%BB%BFAndroid_QQ%E8%8F%9C%E5%8D%95/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

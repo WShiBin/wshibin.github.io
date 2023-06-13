@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
 
     <meta name="description" content="看源码时时常会看到一些使用一些编译器提供的属性__attribute__，这里对一些常见的编译器属性做个汇总：  我们写的代码会经过编译器的处理，这就是这就意味着它可以做很多的事情，例如：  参数检查 指令优化 指令重排 插入指令 修改symbol …  编译器把这些特性以类似“代码标注”的方式提供出来；比如这文章要讲的一些常见的属性__attribute__，可以用来去“标注”函数、变量和类型">
 <meta property="og:type" content="article">
@@ -33,14 +33,14 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="看源码时时常会看到一些使用一些编译器提供的属性__attribute__，这里对一些常见的编译器属性做个汇总：  我们写的代码会经过编译器的处理，这就是这就意味着它可以做很多的事情，例如：  参数检查 指令优化 指令重排 插入指令 修改symbol …  编译器把这些特性以类似“代码标注”的方式提供出来；比如这文章要讲的一些常见的属性__attribute__，可以用来去“标注”函数、变量和类型">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wshibin.github.io/images/compiler/image-20220830103307039_PM.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/08/Compiler-Attributes/image-20220830103307039_PM.png">
 <meta property="article:published_time" content="2022-08-30T13:35:55.000Z">
-<meta property="article:modified_time" content="2023-05-24T14:02:00.133Z">
+<meta property="article:modified_time" content="2023-06-13T14:57:04.150Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="GCC">
 <meta property="article:tag" content="Compiler">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/compiler/image-20220830103307039_PM.png">
+<meta name="twitter:image" content="https://wshibin.github.io/2022/08/Compiler-Attributes/image-20220830103307039_PM.png">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2022/08/Compiler-Attributes/">
@@ -54,9 +54,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -182,12 +182,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -353,7 +353,7 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span> __<span class="title function_">attribute__</span><span class="params">((deprecated(<span class="string">&quot;for some reason&quot;</span>)))</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">old_fn</span><span class="params">()</span>;</span><br><span class="line"><span class="type">int</span> (*fn_ptr)() = old_fn;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    old_fn();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>VSCode + clangd + Error Lens</code> 提示截图：</p>
-<img src="/images/compiler/image-20220830103307039_PM.png" style="zoom:50%;" />
+<img src="image-20220830103307039_PM.png" style="zoom:50%;" />
 
 <p>编译输出提示：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">main.c:5:1: warning: ‘old_fn’ is deprecated: <span class="keyword">for</span> some reason [-Wdeprecated-declarations]</span><br><span class="line">    5 | int (*fn_ptr)() = old_fn;</span><br><span class="line">      | ^~~</span><br><span class="line">main.c:4:5: note: declared here</span><br><span class="line">    4 | int old_fn();</span><br><span class="line">      |     ^~~~~~</span><br><span class="line">main.c: In <span class="keyword">function</span> ‘main’:</span><br></pre></td></tr></table></figure>
@@ -396,7 +396,7 @@
 <li>弱符号：未初始化的全局变量名</li>
 </ul>
 <p>当编译一个程序时定义了两个同名的函数（不同文件中），编译则会报错，因为他不知道去使用哪一个。这时候可以把其中的一个函数转成弱符号，则程序可以正常的编译和运行，运行时会调用强符号的函数。可以用来做兼容、做自定义实现，比如，在 SDK 中提供的是弱符号的实现函数，你可以用 SDK 中默认的实现函数；如果你想用自己的实现，则可以重新去实现这个函数（强符号），实际运行会调用你自己实现的强符号的函数。比如：实现 libc 的 musl 库的线程相关的函数是弱符号的：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// features.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> weak_alias(old, new) extern __typeof(old) new __attribute__((__weak__, __alias__(#old)))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// pthread_create.c</span></span><br><span class="line"><span class="type">int</span> __pthread_create(<span class="type">pthread_t</span>* <span class="keyword">restrict</span> res, <span class="type">const</span> <span class="type">pthread_attr_t</span>* <span class="keyword">restrict</span> attrp, <span class="type">void</span>* (*entry)(<span class="type">void</span>*), <span class="type">void</span>* <span class="keyword">restrict</span> arg)&#123;</span><br><span class="line">    <span class="comment">// ... </span></span><br><span class="line">&#125;</span><br><span class="line">weak_alias(__pthread_create, pthread_create);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// features.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> weak_alias(old, new) extern __typeof(old) new __attribute__((__weak__, __alias__(#old)))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// pthread_create.c</span></span><br><span class="line"><span class="type">int</span> __pthread_create(<span class="type">pthread_t</span>* <span class="keyword">restrict</span> res, <span class="type">const</span> <span class="type">pthread_attr_t</span>* <span class="keyword">restrict</span> attrp, <span class="type">void</span>* (*entry)(<span class="type">void</span>*), <span class="type">void</span>* <span class="keyword">restrict</span> arg)&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">weak_alias(__pthread_create, pthread_create);</span><br></pre></td></tr></table></figure>
 
 <p>给<code>__pthread_create</code>函数起一个别名<code>pthread_create</code>；当使用<code>pthread_create</code>时，实际就会去调用<code>__pthread_create</code>函数。</p>
 <h3 id="nonnull-arg-index-…-属性"><a href="#nonnull-arg-index-…-属性" class="headerlink" title="nonnull(arg-index, …) 属性"></a>nonnull(arg-index, …) 属性</h3><p>编译器对函数参数进行检测：参数不能为空。在编译期发现问题并解决，总比在运行期发现问题在去解决好的多</p>
@@ -419,7 +419,7 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> c1                              = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="type">char</span> c2 __attribute__((aligned(<span class="number">16</span>))) = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="type">char</span> c3                              = <span class="string">&#x27;c&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;c1: %p\n&quot;</span>, &amp;c1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;c2: %p\n&quot;</span>, &amp;c2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;c3: %p\n&quot;</span>, &amp;c3);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out   </span><br><span class="line">c1: 0x10b08e000</span><br><span class="line">c2: 0x10b08e010</span><br><span class="line">c3: 0x10b08e011</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">c1: 0x10b08e000</span><br><span class="line">c2: 0x10b08e010</span><br><span class="line">c3: 0x10b08e011</span><br></pre></td></tr></table></figure>
 
 <h3 id="cleanup-cleanup-function-属性"><a href="#cleanup-cleanup-function-属性" class="headerlink" title="cleanup (cleanup_function)属性"></a>cleanup (cleanup_function)属性</h3><p>用来修饰变量，当变量超出作用域范围后，调用该函数</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func_cleanup</span><span class="params">(<span class="type">int</span>* value)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;func cleanup\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;value: %d\n&quot;</span>, *value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;enter scope ~~~\n&quot;</span>);</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> value __attribute__((__cleanup__(func_cleanup))) = <span class="number">1</span>;</span><br><span class="line">        value                                                = <span class="number">5</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;leave scope ~~~\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;out of scope ~~~\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -587,20 +587,21 @@
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
 
 
   <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -613,14 +614,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/08/Compiler-Attributes/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

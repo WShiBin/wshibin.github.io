@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.16.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
 
     <meta name="description" content="Git官网：https:&#x2F;&#x2F;git-scm.com&#x2F; Git：How it works?版本控制系统VCS Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and ef">
 <meta property="og:type" content="article">
@@ -33,16 +33,16 @@
 <meta property="og:site_name" content="WShiBin&#39;s blogs">
 <meta property="og:description" content="Git官网：https:&#x2F;&#x2F;git-scm.com&#x2F; Git：How it works?版本控制系统VCS Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and ef">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wshibin.github.io/images/git/image-20220619223106119.png">
-<meta property="og:image" content="https://wshibin.github.io/images/git/image-20220619231000986.png">
-<meta property="og:image" content="https://wshibin.github.io/images/git/image-20220628234905676.png">
-<meta property="og:image" content="https://wshibin.github.io/images/git/image-20220621000919872.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/06/Git-internal/image-20220619223106119.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/06/Git-internal/image-20220619231000986.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/06/Git-internal/image-20220628234905676.png">
+<meta property="og:image" content="https://wshibin.github.io/2022/06/Git-internal/image-20220621000919872.png">
 <meta property="article:published_time" content="2022-06-16T14:46:26.000Z">
-<meta property="article:modified_time" content="2022-09-12T15:38:29.660Z">
+<meta property="article:modified_time" content="2023-06-13T14:55:00.002Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wshibin.github.io/images/git/image-20220619223106119.png">
+<meta name="twitter:image" content="https://wshibin.github.io/2022/06/Git-internal/image-20220619223106119.png">
 
 
 <link rel="canonical" href="https://wshibin.github.io/2022/06/Git-internal/">
@@ -56,9 +56,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -184,12 +184,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -303,7 +303,7 @@
 <p>Git is a <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9hYm91dC9mcmVlLWFuZC1vcGVuLXNvdXJjZQ==">free and open source<i class="fa fa-external-link-alt"></i></span> distributed <strong>version control system</strong> designed to handle everything from small to very large projects with speed and efficiency.</p>
 </blockquote>
 <p><strong>版本控制系统</strong>：是一种<strong>记录一个或若干文件内容变化</strong>，以便将来查阅特定版本修订情况的系统</p>
-<img src="/images/git/image-20220619223106119.png" style="zoom:50%;" />
+<img src="image-20220619223106119.png" style="zoom:50%;" />
 
 <h3 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h3><p><strong>项目里的文件/目录怎么存？存在哪里？怎么去检索？</strong></p>
 <p>以Git对象（文件内容对象、目录对象、提交对象）方式存储；本地存放在.<code>git</code>目录；通过<code>Hash Code</code>去检索</p>
@@ -312,11 +312,11 @@
 <li>Key：Hash Code，就是查看git日志里面的一串码（hash算法基于<code>内容</code>计算出来）</li>
 <li>Value：Git对象（文件对象blob，目录对象tree，提交对象commit）</li>
 </ul>
-<h3 id="Git项目目录"><a href="#Git项目目录" class="headerlink" title="Git项目目录"></a>Git项目目录</h3><img src="/images/git/image-20220619231000986.png" style="zoom:40%;" />
+<h3 id="Git项目目录"><a href="#Git项目目录" class="headerlink" title="Git项目目录"></a>Git项目目录</h3><img src="image-20220619231000986.png" style="zoom:40%;" />
 
 <h4 id="仓库-git目录介绍"><a href="#仓库-git目录介绍" class="headerlink" title="仓库.git目录介绍"></a>仓库<code>.git</code>目录介绍</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tree .git         <span class="comment"># 输出:有省略部分内容</span></span><br><span class="line">.git</span><br><span class="line">├── HEAD            <span class="comment"># 记录工作区的代码版本</span></span><br><span class="line">├── config          <span class="comment"># 项目配置</span></span><br><span class="line">├── objects         <span class="comment"># Git对象存储目录(核心目录)</span></span><br><span class="line">└── refs            <span class="comment"># 引用：存放分支、远程分析、Tags</span></span><br><span class="line">    ├── heads       <span class="comment"># 本地分支存放的目录</span></span><br><span class="line">    │   └── master</span><br><span class="line">    ├── remotes</span><br><span class="line">    │   └── origin</span><br><span class="line">    └── tags</span><br></pre></td></tr></table></figure>
 
-<h2 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h2><img src="/images/git/image-20220628234905676.png" style="zoom:50%;" />
+<h2 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h2><img src="image-20220628234905676.png" style="zoom:50%;" />
 
 <h2 id="底层命令和高层命令"><a href="#底层命令和高层命令" class="headerlink" title="底层命令和高层命令"></a>底层命令和高层命令</h2><p>Git最开始工具集（多个命令工具），后面整合改成了git的子命令</p>
 <ul>
@@ -348,7 +348,7 @@
 <h3 id="Git提交对象Commit："><a href="#Git提交对象Commit：" class="headerlink" title="Git提交对象Commit："></a>Git提交对象Commit：</h3><p>基本就是用<code>git log</code>可以看到的内容</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit-tree <span class="variable">$&#123;tree_hash&#125;</span> -m <span class="variable">$&#123;commit_message&#125;</span>                             <span class="comment"># 创建提交对象；第一次提交</span></span><br><span class="line">$ git commit-tree <span class="variable">$&#123;tree_hash&#125;</span> -m <span class="variable">$&#123;commit_message&#125;</span> -p <span class="variable">$&#123;parent_commit_hash&#125;</span>    <span class="comment"># 创建提交对象；第二次提交</span></span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">log</span> --<span class="built_in">stat</span> <span class="variable">$&#123;commit_hash&#125;</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;commit_hash&#125;</span>&quot;</span> &gt; .git/heads/master                                     <span class="comment"># 指定master分支指向的提交对象</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Git存储结构图"><a href="#Git存储结构图" class="headerlink" title="Git存储结构图"></a>Git存储结构图</h2><img src="/images/git/image-20220621000919872.png" style="zoom:50%;" />
+<h2 id="Git存储结构图"><a href="#Git存储结构图" class="headerlink" title="Git存储结构图"></a>Git存储结构图</h2><img src="image-20220621000919872.png" style="zoom:50%;" />
 
 <h3 id="对象存储"><a href="#对象存储" class="headerlink" title="对象存储"></a>对象存储</h3><p> Git 是如何存储其对象（blob对象、tree对象、commit对象）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># store = header + content</span></span><br><span class="line">blob 16\u0000what is up, doc?</span><br></pre></td></tr></table></figure>
@@ -447,20 +447,21 @@
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
 
 
   <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -473,14 +474,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/06/Git-internal/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

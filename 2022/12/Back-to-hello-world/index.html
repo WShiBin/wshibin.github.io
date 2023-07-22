@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/config.min.js"></script>
 
     <meta name="description" content="以前很喜欢一句，大意是“认知或是成长是盘旋式上升，波浪式前进的”，一个概念多年前是那个意思，但随着时间的推移，阅历的增加，这个概念有了新的含义，你对这个概念的认知也会加深，也有可能有自己独特的理解。比如“垃圾”这个词，当垃圾能回收了，在另外的地方发光发热，有了新的价值，它还是原本那个“垃圾”的意思吗？而这次就回头看看经典的“hello world”。  Hello world当你新学一门编程语言">
 <meta property="og:type" content="article">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://wshibin.github.io/2022/12/Back-to-hello-world/image-20221231114452714%20PM.png">
 <meta property="og:image" content="https://wshibin.github.io/2022/12/Back-to-hello-world/image-20230103113123002%20PM.png">
 <meta property="article:published_time" content="2022-12-31T01:59:08.000Z">
-<meta property="article:modified_time" content="2023-06-13T14:59:18.478Z">
+<meta property="article:modified_time" content="2023-07-06T14:23:55.048Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Another Tag">
 <meta property="article:tag" content="C">
@@ -58,9 +58,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -329,7 +329,7 @@
 <li>第五行：<code>libc-header-start.h</code>文件的每33行包含了<code>features.h</code>文件</li>
 <li>以此类推…</li>
 </ul>
-<p>这里有大量的头文件文件检索、读头文件、合并头文件内容到 C 文件；而这只是处理编译一个文件的内容，这里属于有大量重复性的工作，能不能优化？这东西叫<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHJlY29tcGlsZWRfaGVhZGVy">precompiled header(PCH)<i class="fa fa-external-link-alt"></i></span>，很多编译器和构建系统已经支持了，GCC在3.4版本后就支持了。</p>
+<p>这里有大量的头文件文件检索、读头文件、合并头文件内容到 C 文件；而这只是处理编译一个文件的内容，这里属于有大量重复性的工作，并且这都属于特别慢的 IO 操作，能不能优化？这东西叫<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHJlY29tcGlsZWRfaGVhZGVy">precompiled header(PCH)<i class="fa fa-external-link-alt"></i></span>，很多编译器和构建系统已经支持了，GCC在3.4版本后就支持了。编译会生成大量中间文件(预处理、编译、汇编)、文件的合并（预处理、链接）、文件编辑（链接），或许花几百块钱升级下硬盘比升级 CPU 的性价比来的更高。</p>
 <h3 id="所以预处理到底做了什么？"><a href="#所以预处理到底做了什么？" class="headerlink" title="所以预处理到底做了什么？"></a>所以预处理到底做了什么？</h3><p>把一堆东西 copy 过来，里面都是些类型的定义，还有函数的声明。那既然这样，我把原来的代码做一点小的改动，注释<code>#include &lt;stdio.h&gt;</code></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// #include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -347,14 +347,14 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc main.c &amp;&amp; ./a.out</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
 
 <p>可以正常工作了</p>
-<h2 id="main-函数是程序的入口"><a href="#main-函数是程序的入口" class="headerlink" title="main 函数是程序的入口"></a>main 函数是程序的入口</h2><p>可能你在刚开始学习编程的时候，老师会给你叫 <code>main</code> 函数是程序的入口，尝试用lldb（类型 gdb）跟踪下：</p>
+<h2 id="main-函数是程序的入口"><a href="#main-函数是程序的入口" class="headerlink" title="main 函数是程序的入口"></a>main 函数是程序的入口</h2><p>可能你在刚开始学习编程的时候，老师会给你讲 <code>main</code> 函数是程序的入口，尝试用调试器lldb（类似 gdb）跟踪下：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(lldb) thread backtrace</span><br><span class="line">* thread <span class="comment">#1, name = &#x27;a.out&#x27;, stop reason = breakpoint 1.1</span></span><br><span class="line">  * frame <span class="comment">#0: 0x000055d2e3f5a144 a.out`main(argc=1, argv=0x00007fffe7a58ee8) at main.c:6:5</span></span><br><span class="line">    frame <span class="comment">#1: 0x00007f98049b2d0a libc.so.6`__libc_start_main + 234</span></span><br><span class="line">    frame <span class="comment">#2: 0x000055d2e3f5a07a a.out`_start + 42</span></span><br></pre></td></tr></table></figure>
 
 <p>可以看到程序是从<code>_start</code>函数开始的，在调用<code>__libc_start_main</code>函数，最后调用才调用了我们编写的<code>main</code>函数；其中的<code>__libc_start_main</code>是属于 <code>libc</code> 库。</p>
 <p><code>csu/libc-start.c</code>中的代码：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LIBC_START_MAIN __libc_start_main</span></span><br><span class="line">STATIC <span class="type">int</span> <span class="title function_">LIBC_START_MAIN</span><span class="params">(</span></span><br><span class="line"><span class="params">    <span class="type">int</span> (*main)(<span class="type">int</span>, <span class="type">char</span>**, <span class="type">char</span>** MAIN_AUXVEC_DECL),</span></span><br><span class="line"><span class="params">    <span class="type">int</span>            argc,</span></span><br><span class="line"><span class="params">    <span class="type">char</span>**         argv,</span></span><br><span class="line"><span class="params">    __typeof(main) init,</span></span><br><span class="line"><span class="params">    <span class="type">void</span> (*fini)(<span class="type">void</span>),</span></span><br><span class="line"><span class="params">    <span class="type">void</span> (*rtld_fini)(<span class="type">void</span>),</span></span><br><span class="line"><span class="params">    <span class="type">void</span>* stack_end)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// some code ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Run the program.  */</span></span><br><span class="line">    result = main(argc, argv, __environ MAIN_AUXVEC_PARAM);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// some code ...</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="main-函数结束意味着程序结束"><a href="#main-函数结束意味着程序结束" class="headerlink" title="main 函数结束意味着程序结束"></a>main 函数结束意味着程序结束</h2><p>为啥<code>main</code>函数调用结束，意味着程序的结束？有人可能会给你解释说：<code>main </code>函数是个特殊的函数；是，它是一个特殊的函数；但问题是一个函数的调用结束，为啥能代表程序调用的结束的？return 不能代表着程序的结束；如果你留意看了上面的代码，调用<code>main</code>函数之后，继续调用了一个<code>exit</code>函数，<code>exit</code>函数的作用是退出进程，这才是结束当前进程的原因。</p>
+<h2 id="main-函数结束意味着程序结束"><a href="#main-函数结束意味着程序结束" class="headerlink" title="main 函数结束意味着程序结束"></a>main 函数结束意味着程序结束</h2><p>为啥<code>main</code>函数调用结束，意味着程序的结束？有人可能会给你解释说：<code>main </code>函数是个特殊的函数；是，它是一个特殊的函数；但问题是: 一个函数的调用结束，为啥能代表程序调用的结束的？return 不能代表着程序的结束；如果你留意看了上面的代码，调用<code>main</code>函数之后，继续调用了一个<code>exit</code>函数，<code>exit</code>函数的作用是退出进程，这才是结束当前进程的原因。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    result = main(argc, argv, __environ MAIN_AUXVEC_PARAM);</span><br><span class="line">    <span class="built_in">exit</span>(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="main-函数的版本"><a href="#main-函数的版本" class="headerlink" title="main 函数的版本"></a>main 函数的版本</h2><p><code>main</code>函数的参数，我见过的大概有下面三个版本，其中最常用的是第二个版本</p>
@@ -383,7 +383,7 @@
 
 <h2 id="函数调用的成本"><a href="#函数调用的成本" class="headerlink" title="函数调用的成本"></a>函数调用的成本</h2><img src="image-20221231114452714 PM.png" style="zoom:50%;" />
 
-<p>这图是网站 <span class="exturl" data-url="aHR0cHM6Ly9nb2Rib2x0Lm9yZy8=">https://godbolt.org/<i class="fa fa-external-link-alt"></i></span> 的截图，另外一点好的地方在于用颜色标注了不同的行的 C语言代码会翻译成那些汇编代码，可以看到上面黄色才是正真“工作”的代码，而为了一点“工作”却要执行一堆额外的指令，压栈、记录函数调用完之后的返回的地址、传递函数参数，以前“工作”完之后，还有出栈、返回到函数调用完之后的下一条指令。这就是函数调用的成本：为了一些工作指令，要去执行一些额外的“准备工作”指令和“收尾”工作指令。这时个<code>inline</code>关键字<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9JbmxpbmUuaHRtbA==">https://gcc.gnu.org/onlinedocs/gcc/Inline.html<i class="fa fa-external-link-alt"></i></span> 来了，它会省去函数调用的开销，类似宏的替换一样，把inline函数体的代码替换到代码调用的地方。</p>
+<p>这图是网站 <span class="exturl" data-url="aHR0cHM6Ly9nb2Rib2x0Lm9yZy8=">https://godbolt.org/<i class="fa fa-external-link-alt"></i></span> 的截图，这网站另外一个好的地方在于，用颜色标注了不同的行的 C语言代码会翻译成那些汇编代码，可以看到上面黄色才是正真“工作”的代码，而为了一点“工作”却要执行一堆额外的指令，压栈、记录函数调用完之后的返回的地址、传递函数参数，在“工作”完之后，还有出栈、返回到函数调用完之后的下一条指令。这就是函数调用的成本：为了一些工作指令，要去执行一些额外的“准备工作”指令和“收尾”工作指令。这时个<code>inline</code>关键字<span class="exturl" data-url="aHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxpbmVkb2NzL2djYy9JbmxpbmUuaHRtbA==">https://gcc.gnu.org/onlinedocs/gcc/Inline.html<i class="fa fa-external-link-alt"></i></span> 来了，它会省去函数调用的开销，类似宏的替换一样，把inline函数体的代码替换到代码调用的地方。</p>
 <h2 id="printf-函数"><a href="#printf-函数" class="headerlink" title="printf 函数"></a>printf 函数</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello %s\n&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>编译成汇编：</p>
@@ -478,15 +478,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
-</div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+  </div>
 <div class="busuanzi-count">
 </div>
   <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span>
@@ -516,17 +515,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/search/local-search.min.js"></script>
 
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@10.2.3/dist/mermaid.min.js","integrity":"sha256-JFptYy4KzJ5OQP+Q9fubNf3cxpPPmZKqUOovyEONKrQ="}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/tags/mermaid.min.js"></script>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -539,14 +538,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2022/12/Back-to-hello-world/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

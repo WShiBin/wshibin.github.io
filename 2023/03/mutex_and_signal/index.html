@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/config.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wshibin.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/config.min.js"></script>
 
     <meta name="description" content="项目遇到一次死锁的问题记录。  前置知识Mutex互斥锁#include &lt;pthread.h&gt;static int data &#x3D; 0;static pthread_mutex_t mtx &#x3D; PTHREAD_MUTEX_INITIALIZER;void foo(void) &amp;#123;    pthread_mutex_lock(&amp;mtx);    data ++;">
 <meta property="og:type" content="article">
@@ -34,8 +34,9 @@
 <meta property="og:description" content="项目遇到一次死锁的问题记录。  前置知识Mutex互斥锁#include &lt;pthread.h&gt;static int data &#x3D; 0;static pthread_mutex_t mtx &#x3D; PTHREAD_MUTEX_INITIALIZER;void foo(void) &amp;#123;    pthread_mutex_lock(&amp;mtx);    data ++;">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wshibin.github.io/2023/03/mutex_and_signal/2023-03-24-1647-mutex-and-signal.excalidraw.png">
+<meta property="og:image" content="https://wshibin.github.io/2023/03/mutex_and_signal/image-2023062895738841%20PM.png">
 <meta property="article:published_time" content="2023-03-24T08:37:35.000Z">
-<meta property="article:modified_time" content="2023-06-13T15:04:59.696Z">
+<meta property="article:modified_time" content="2023-06-28T14:08:48.663Z">
 <meta property="article:author" content="Shi Bin">
 <meta property="article:tag" content="Bugs">
 <meta property="article:tag" content="Deadlock">
@@ -55,9 +56,9 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRN6ET2GNJ"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QRN6ET2GNJ","only_pageview":false}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/google-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/analytics/google-analytics.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/analytics/baidu-analytics.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/analytics/baidu-analytics.min.js"></script>
   <script async src="https://hm.baidu.com/hm.js?3e0a0d168e350383554c2e92aa1d9c4a"></script>
 
 
@@ -302,26 +303,30 @@
 </blockquote>
 <h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><h3 id="Mutex互斥锁"><a href="#Mutex互斥锁" class="headerlink" title="Mutex互斥锁"></a>Mutex互斥锁</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> data = <span class="number">0</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">pthread_mutex_t</span> mtx = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    pthread_mutex_lock(&amp;mtx);</span><br><span class="line">    data ++;</span><br><span class="line">    pthread_mutex_unlock(&amp;mtx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上述是Mutex互斥锁的基本用法，初始化一个全局的互斥锁，用来保护了一个全局变量<code>data</code>；在函数调用后，先加锁，再修改<code>data</code>，最后释放锁。看起来很稳，不会有什么问题，那可能是它没有遇到不省心的队友–<code>Signal</code>。</p>
+<p>上述是Mutex互斥锁的基本用法，初始化一个全局的互斥锁，用来保护了一个全局变量<code>data</code>；在数据<code>data</code>前后使用锁对其进行保护。看起来很稳，不会有什么问题，那可能是它没有遇到不省心的队友–<code>Signal</code>。</p>
 <h3 id="Signal信号"><a href="#Signal信号" class="headerlink" title="Signal信号"></a>Signal信号</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">handle_sigint</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;handle_sigint\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// ctl + C</span></span><br><span class="line">    signal(SIGINT, handle_sigint);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>解释：设置一个信号处理函数，当接收到<code>SIGINT</code>信号时，执行<code>handle_sigint</code>函数。<code>SIGINT</code>信号是<code>ctrl + c</code>产生的，所以按下<code>ctrl + c</code>，会执行<code>handle_sigint</code>函数。</p>
+<p>代码说明：设置一个信号处理函数，当接收到<code>SIGINT</code>信号时，执行<code>handle_sigint</code>函数。<code>SIGINT</code>信号是<code>ctrl + c</code>产生的，所以按下<code>ctrl + c</code>，会执行<code>handle_sigint</code>函数。</p>
 <p>代码小改一下：打印相应函数的线程信息</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">handle_sigint</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;handle_sigint, thread ID: %ld\n&quot;</span>, pthread_self());</span><br><span class="line">    pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;main, thread ID: %ld\n&quot;</span>, pthread_self());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ctl + C</span></span><br><span class="line">    signal(SIGINT, handle_sigint);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>编译&amp;运行：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./a.out</span><br><span class="line">main, thread ID: 139685512120128</span><br><span class="line">^Chandle_sigint, thread ID: 139685512120128</span><br></pre></td></tr></table></figure>
 
-<p>有意思的问题来了，<code>handle_sigint</code>函数的执行线程居然和<code>main</code>函数线程是同一个线程。你可能会有疑问，<code>main</code>函数里面是个<code>while (true)</code>的死循环，主线程应该一直执行这个循环，执行流程为什么会跑到<code>hanldle_sigint</code>函数那里去？这不符合程序循序执行的逻辑啊。</p>
-<p>回答这个问题，站在程序本身执行的角度是无法理解的，应该站在操作系统的视角去看。现代的操作系统大多是<code>time-share</code>时间分片的操作系统，调度的时候：先执行下内核，然后执行下A程序；中间可能还有其它打断，又会调度到内核。Signal就是其中一种，</p>
+<p>有意思的问题来了，<code>handle_sigint</code>函数的执行线程居然和<code>main</code>函数线程是同一个线程。你可能会有疑问，<code>main</code>函数里面是个<code>while (true)</code>的死循环，程序主线程应该一直执行这个循环，主线程执行流程为什么会跑到<code>hanldle_sigint</code>函数那里去呢？这不符合程序循序执行的逻辑啊。</p>
+<p>回答这个问题，站在程序本身执行的角度是无法理解的，应该站在操作系统的视角去看。现代主流的操作系统大多是<code>time-share</code>时间分片的操作系统，把时间分成片，固定时长被动的进行调度切换；调度的时候：先执行下内核，然后进程调度去执行下A程序；过了一个固定时长，又会切换到其它的程序；中间可能还有其它打断，执行流又会回到内核。Signal就是其中一种，</p>
 <p><img src="2023-03-24-1647-mutex-and-signal.excalidraw.png"></p>
-<p>现在来分析<code>while (true)</code>代码块，站在操作系统的角度看，在执行<code>while (true)</code>代码块过程中，也会被分成多个段去执行，在操作系统的执行流程中也会有断开，而不是一直霸占着CPU的执行权。</p>
-<p>现在来分析<code>while (true)</code>代码块，在操作系统调度程序的过程中，是会有断开的，而不是<code>while (true)</code>代码块一直霸占着CPU的执行权。从内核态和用户态的角度看，用户态的代码只是属于内核态代码的“回调函数”，内核还有一个功能，能暂停用户态的回调的执行，跑去执行其它的流程。</p>
+<p>现在来分析<code>while (true)</code>代码块，在操作系统调度程序的过程中，程序是被切成多个指令片段去执行的，而不是被某一个程序的 <code>while (true)</code> 代码块一直霸占着CPU的执行权。从内核态和用户态的角度看，用户态的代码只是属于内核态代码的“回调程序”。</p>
+<!-- 内核还有一个功能，能暂停用户态的回调的执行，跑去执行其它的流程。 -->
+
+<p>Signal的处理函数执行流程如下：</p>
+<img src="image-2023062895738841 PM.png" style="zoom:50%;" />
+
 <h2 id="Mutex和Singal组合"><a href="#Mutex和Singal组合" class="headerlink" title="Mutex和Singal组合"></a>Mutex和Singal组合</h2><p>代码简单：主线程和Singal处理函数使用同一把互斥锁。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">pthread_mutex_t</span> mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main_thread_func</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    pthread_mutex_lock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Main thread: Got ths lock\n&quot;</span>);</span><br><span class="line">    usleep(<span class="number">100</span> * <span class="number">1000</span>);  <span class="comment">// do something</span></span><br><span class="line">    pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Main thread: Release ths lock\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">sig_handler</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sig handler\n&quot;</span>);</span><br><span class="line">    pthread_mutex_lock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Signal handle func: Got ths lock\n&quot;</span>);</span><br><span class="line">    usleep(<span class="number">100</span> * <span class="number">1000</span>);  <span class="comment">// do something</span></span><br><span class="line">    pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Signal handle func: Release ths lock\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// handle ctrl-c</span></span><br><span class="line">    signal(SIGINT, sig_handler);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        main_thread_func();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行程序，按下<code>Ctrl-C</code>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc 03_demo.c &amp;&amp; ./a.out</span><br><span class="line">Main thread: Got ths lock</span><br><span class="line">Main thread: Release ths lock</span><br><span class="line">Main thread: Got ths lock</span><br><span class="line">Main thread: Release ths lock</span><br><span class="line">Main thread: Got ths lock</span><br><span class="line">^Csig handler</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cc 03_demo.c &amp;&amp; ./a.out</span><br><span class="line">Main thread: Got ths lock</span><br><span class="line">Main thread: Release ths lock</span><br><span class="line">Main thread: Got ths lock</span><br><span class="line">Main thread: Release ths lock</span><br><span class="line">Main thread: Got ths lock</span><br><span class="line">^Csig handler</span><br></pre></td></tr></table></figure>
 
 <p>要退出可以按下<code>Ctrl-\</code> 发送SIGQUIT信号来退出程序。实际项目中出现这种问题可能没有这么直接明显，可能是调用其它的库，其它的库里面用了锁。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="Mutex的类型recursive"><a href="#Mutex的类型recursive" class="headerlink" title="Mutex的类型recursive"></a>Mutex的类型recursive</h3><p>Mutex互斥锁也有多种类型：</p>
@@ -337,7 +342,7 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">pthread_mutex_t</span> mutex = PTHREAD_RECURSIVE_MUTEX_INITIALIZER;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main_thread_func</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    pthread_mutex_lock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Main thread: Got ths lock\n&quot;</span>);</span><br><span class="line">    usleep(<span class="number">100</span> * <span class="number">1000</span>);  <span class="comment">// do something</span></span><br><span class="line">    pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Main thread: Release ths lock\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">sig_handler</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sig handler\n&quot;</span>);</span><br><span class="line">    pthread_mutex_lock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Signal handle func: Got ths lock\n&quot;</span>);</span><br><span class="line">    usleep(<span class="number">100</span> * <span class="number">1000</span>);  <span class="comment">// do something</span></span><br><span class="line">    pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Signal handle func: Release ths lock\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// handle ctrl-c</span></span><br><span class="line">    signal(SIGINT, sig_handler);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        main_thread_func();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里在怎么按<code>Ctrl-C</code>都不会出现死锁了。好像问题解决了，但也只是死锁的问题解决了；信号打断其它处理函数、中断其它函数的问题并没有解决，这里就可能会有 <code>data race</code> 的问题。</p>
-<h3 id="类似中断处理的方式"><a href="#类似中断处理的方式" class="headerlink" title="类似中断处理的方式"></a>类似中断处理的方式</h3><p>繁重的中断处理，系统在处理时会分为两部分：上半部和下半部。上半部只用来通知，简单快速、主打一个轻量化，类似做一个标记或者通知一样的处理；真正核心处理流程放到了下半部里面。最后代码做了类似这样的处理，Signal处理函数只是用来做标记或通知，不写处理逻辑。这里的核心是：<strong>信号函数尽量少去和其它函数竞争资源。</strong></p>
+<h3 id="类似中断处理的方式"><a href="#类似中断处理的方式" class="headerlink" title="类似中断处理的方式"></a>类似中断处理的方式</h3><p>Linux 内核对于繁重的中断处理，在处理时会分为两部分：上半部和下半部。上半部只用来通知，简单快速、主打一个轻量化，类似做一个标记或者通知一样的处理；真正核心处理流程放到了下半部里面。也提供了相应的原子类型<code>sig_atomic_t</code>去设置状态。有最后代码做了类似这样的处理，Signal处理函数只是用来做标记或通知，不写相应的业务逻辑。这里的核心是：<strong>信号处理函数尽量少去和其它函数竞争资源。</strong></p>
 
     </div>
 
@@ -386,15 +391,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shi Bin</span>
-</div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Shi Bin</span>
+  </div>
 <div class="busuanzi-count">
 </div>
   <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span>
@@ -424,17 +428,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/pjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/comments.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/next-boot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/pjax.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/search/local-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/search/local-search.min.js"></script>
 
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/tags/mermaid.min.js"></script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"base","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@10.2.3/dist/mermaid.min.js","integrity":"sha256-JFptYy4KzJ5OQP+Q9fubNf3cxpPPmZKqUOovyEONKrQ="}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/tags/mermaid.min.js"></script>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/fancybox.min.js"></script>
 
 
 
@@ -447,14 +451,14 @@
   
 
   <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/math/mathjax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/math/mathjax.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://wshibin.github.io/2023/03/mutex_and_signal/"}</script>
-  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/quicklink.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/quicklink.min.js"></script>
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"WShiBin","count":true,"i18n":{"disqus":"disqus"}}</script>
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.0/source/js/third-party/comments/disqus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.17.1/source/js/third-party/comments/disqus.min.js"></script>
 
 </body>
 </html>

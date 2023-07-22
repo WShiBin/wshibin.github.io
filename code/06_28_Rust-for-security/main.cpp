@@ -26,7 +26,7 @@ Foo::~Foo()
 
 int main(int argc, char* argv[]) {
     Foo* foo = new Foo();
-    Foo::bar(foo);
+    // Foo::bar(foo);
 
     return 0;
 }

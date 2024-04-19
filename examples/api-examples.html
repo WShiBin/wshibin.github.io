@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Runtime API Examples | 施斌斌的知识库</title>
+    <meta name="description" content="专注 & 洞察 & 分享">
+    <meta name="generator" content="VitePress v1.1.3">
+    <link rel="preload stylesheet" href="/assets/style.ApwGUA0z.css" as="style">
+    
+    
+    <link rel="icon" href="/vitepress-logo-mini.svg">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0f60ec36></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0f60ec36> Skip to content </a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar top" data-v-ae24b3ad data-v-ccf7ddec><div class="wrapper" data-v-ccf7ddec><div class="container" data-v-ccf7ddec><div class="title" data-v-ccf7ddec><div class="VPNavBarTitle" data-v-ccf7ddec data-v-ab179fa1><a class="title" href="/" data-v-ab179fa1><!--[--><!--]--><!----><span data-v-ab179fa1>ShiBin&#39;s Wiki</span><!--[--><!--]--></a></div></div><div class="content" data-v-ccf7ddec><div class="content-body" data-v-ccf7ddec><!--[--><!--]--><div class="VPNavBarSearch search" data-v-ccf7ddec><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-ccf7ddec data-v-7f418b0f><span id="main-nav-aria-label" class="visually-hidden" data-v-7f418b0f>Main Navigation</span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/archives.html" tabindex="0" data-v-7f418b0f data-v-9c663999><!--[--><span data-v-9c663999>Blogs</span><!--]--></a><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>CS Primer</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/os/" data-v-43f1e123><!--[-->OS<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/network/" data-v-43f1e123><!--[-->Network<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/database/" data-v-43f1e123><!--[-->Database<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/compiler/" data-v-43f1e123><!--[-->Compiler<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>Linux</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/linux/01basic/" data-v-43f1e123><!--[-->Basic<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/linux/02app/" data-v-43f1e123><!--[-->App<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/linux/03kernel/" data-v-43f1e123><!--[-->Kernel<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>Language</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/assembly/" data-v-43f1e123><!--[-->Assembly<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/c/" data-v-43f1e123><!--[-->C<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/c++/" data-v-43f1e123><!--[-->C++<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/rust/" data-v-43f1e123><!--[-->Rust<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/JTS/" data-v-43f1e123><!--[-->JS/TS<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>Other</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/other/cmake/" data-v-43f1e123><!--[-->CMake<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/examples/" data-v-43f1e123><!--[-->Examples<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-ccf7ddec data-v-e6aabb21><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to dark theme" aria-checked="false" data-v-e6aabb21 data-v-d1f28634 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-d1f28634></span><span class="vpi-moon moon" data-v-d1f28634></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-ccf7ddec data-v-0394ad82 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/WShiBin" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-eee4e7cb><span class="vpi-social-github" /></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-ccf7ddec data-v-d0bd9dde data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-b6c34ac9><span class="vpi-more-horizontal icon" data-v-b6c34ac9></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><!----><!--[--><!--[--><!----><div class="group" data-v-d0bd9dde><div class="item appearance" data-v-d0bd9dde><p class="label" data-v-d0bd9dde>Appearance</p><div class="appearance-action" data-v-d0bd9dde><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to dark theme" aria-checked="false" data-v-d0bd9dde data-v-d1f28634 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-d1f28634></span><span class="vpi-moon moon" data-v-d1f28634></span><!--]--></span></span></button></div></div></div><div class="group" data-v-d0bd9dde><div class="item social-links" data-v-d0bd9dde><div class="VPSocialLinks social-links-list" data-v-d0bd9dde data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/WShiBin" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-eee4e7cb><span class="vpi-social-github" /></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-ccf7ddec data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-ccf7ddec><div class="divider-line" data-v-ccf7ddec></div></div></div><!----></header><div class="VPLocalNav empty fixed" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><!----><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-267dd0ed><button data-v-267dd0ed>Return to top</button><!----></div></div></div><!----><div class="VPContent" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><div class="VPDocAsideOutline" role="navigation" data-v-3f215769 data-v-935f8a84><div class="content" data-v-935f8a84><div class="outline-marker" data-v-935f8a84></div><div class="outline-title" role="heading" aria-level="2" data-v-935f8a84>On this page</div><nav aria-labelledby="doc-outline-aria-label" data-v-935f8a84><span class="visually-hidden" id="doc-outline-aria-label" data-v-935f8a84> Table of Contents for current page </span><ul class="VPDocOutlineItem root" data-v-935f8a84 data-v-b933a997><!--[--><!--]--></ul></nav></div></div><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--[--><!--[--><div data-v-0fd4bd6f><span class="date" data-v-0fd4bd6f> Published at: </span></div><!--]--><!--]--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _examples_api-examples" data-v-39a288b8><div><h1 id="runtime-api-examples" tabindex="-1">Runtime API Examples <a class="header-anchor" href="#runtime-api-examples" aria-label="Permalink to &quot;Runtime API Examples&quot;">​</a></h1><p>前提</p><p>理论上任何工具写出来的markdown(下文简称md)文件都能用，但是如果是按照以下方式写的话，可能表现力会丰富很多</p><p>This page demonstrates usage of some of the runtime APIs provided by VitePress.</p><p>The main <code>useData()</code> API can be used to access site, theme, and page data for the current page. It works in both <code>.md</code> and <code>.vue</code> files:</p><h2 id="动机" tabindex="-1">动机 <a class="header-anchor" href="#动机" aria-label="Permalink to &quot;动机&quot;">​</a></h2><p>一直想找一个架构足够干净的 ssg 程序，hexo,hugo,vuepress,docsify 等各种网上能找的都试了，总有不满意的地方，包括这些程序的主题也没有直接满意的（编程语言不会，功能太多，生成的 html 的文件还有不少插件的残留等）。</p><p>vitepress 足够轻量，系统干净，博客主题这块又是空白，所以做一个自己满意的博客主题吧，诉求就是功能可以少，但要足够的轻量。</p><p>认真来说对比博客程序的话，其实当前的功能更像是线上笔记展示。</p><div class="language-md vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">md</span><pre class="shiki shiki-themes github-light github-dark vp-code"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> setup</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { useData } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;vitepress&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">theme</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">page</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">frontmatter</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> useData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;--shiki-light-font-weight:bold;--shiki-dark-font-weight:bold;">## Results</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;--shiki-light-font-weight:bold;--shiki-dark-font-weight:bold;">### Theme Data</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;{{ theme }}&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">### Page Data</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;{{ page }}&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">### Page Frontmatter</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;{{ frontmatter }}&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span></code></pre></div><h2 id="results" tabindex="-1">Results <a class="header-anchor" href="#results" aria-label="Permalink to &quot;Results&quot;">​</a></h2><h3 id="theme-data" tabindex="-1">Theme Data <a class="header-anchor" href="#theme-data" aria-label="Permalink to &quot;Theme Data&quot;">​</a></h3><pre>{
+  &quot;posts&quot;: [
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【JS】Nodejs&quot;,
+        &quot;categories&quot;: &quot;JS&quot;,
+        &quot;tags&quot;: [
+          &quot;Nodejs&quot;,
+          &quot;JS&quot;,
+          &quot;TS&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-08-20&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/08_20_Nodejs.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【VSCode】VSCode插件开发&quot;,
+        &quot;categories&quot;: &quot;VSCode&quot;,
+        &quot;tags&quot;: [
+          &quot;VSCode&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-07-15&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/07_15_VSCode-Plugins-dev.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】C 语言和 OOP&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;,
+          &quot;OOP&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-05-23&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/05_23_The-C-Language-and-OOP.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】musl libc source code&quot;,
+        &quot;categories&quot;: &quot;Testing&quot;,
+        &quot;tags&quot;: [
+          &quot;Testing&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-04-26&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/04_26_musl-source-code.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Bugs】函数返回地址无效&quot;,
+        &quot;categories&quot;: &quot;Bugs&quot;,
+        &quot;tags&quot;: [
+          &quot;Bugs&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-03-27&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/03_27_return_address_invalid.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Bugs】Mutex &amp; Signal死锁&quot;,
+        &quot;categories&quot;: &quot;bugs&quot;,
+        &quot;tags&quot;: [
+          &quot;Bugs&quot;,
+          &quot;Deadlock&quot;,
+          &quot;Signal&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-03-24&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/03_24_mutex_and_signal.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Design Patterns】设计模式&quot;,
+        &quot;categories&quot;: &quot;Design Patterns&quot;,
+        &quot;tags&quot;: [
+          &quot;Design Patterns&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-02-19&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/02_19_Design-Patterns.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【RTFC】源码阅读-嵌套宏&quot;,
+        &quot;categories&quot;: &quot;RTFC&quot;,
+        &quot;tags&quot;: [
+          &quot;RTFC&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2023-01-10&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2023/01_10_源码阅读-嵌套宏.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】Back to \&quot;hello world\&quot;&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;,
+          &quot;Another Tag&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;lastUpdated&quot;: true,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-12-31&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/12_31_Back-to-hello-world.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Memory】内存&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;Memory&quot;,
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-10-28&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/10_28_memory.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】pthread_once函数&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;,
+          &quot;pthread&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-09-07&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/09_07_pthread-once.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Bash】Bash小结&quot;,
+        &quot;categories&quot;: &quot;Shell&quot;,
+        &quot;tags&quot;: [
+          &quot;Bash&quot;,
+          &quot;Shell&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-09-05&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/09_05_Bash.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Electron】Electron上手&quot;,
+        &quot;categories&quot;: &quot;Electron&quot;,
+        &quot;tags&quot;: [
+          &quot;Electron&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-09-03&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/09_07_Electron.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】弹性数组成员&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-09-01&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/09_01_Flexible-array-member.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【GCC】Compiler Attributes&quot;,
+        &quot;categories&quot;: &quot;Compiler&quot;,
+        &quot;tags&quot;: [
+          &quot;Compiler&quot;,
+          &quot;GCC&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-08-30&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/08_30_Compiler-Attributes.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】C语言中的字符串&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;Strings&quot;,
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-08-29&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/08_29_Strings-in-C.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Software】Barrier:多台电脑共享一套键盘和鼠标&quot;,
+        &quot;categories&quot;: &quot;Software&quot;,
+        &quot;tags&quot;: [
+          &quot;Software&quot;,
+          &quot;Barrier&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-08-21&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/08_21_Control-Multiple-Computers-With-One-Keyboard-and-Mouse.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Env】VSCode + Container构建开发环境&quot;,
+        &quot;categories&quot;: &quot;VSCode&quot;,
+        &quot;tags&quot;: [
+          &quot;Docker&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-07-02&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/07_02_Container-VSCode-development-environment.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Git】Git内部原理&quot;,
+        &quot;categories&quot;: &quot;Git&quot;,
+        &quot;tags&quot;: [
+          &quot;Git&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-06-16&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/06_16_Git-internal.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【转】KK:103 Bits of Advice I Wish I Had Known&quot;,
+        &quot;categories&quot;: &quot;KK&quot;,
+        &quot;tags&quot;: [
+          &quot;KK&quot;,
+          &quot;Advice&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-05-07&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/05_07_KK-103-Bits-of-Advice-I-Wish-I-Had-Known.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【RTFC】spdlog源码分析&quot;,
+        &quot;categories&quot;: &quot;源码分析&quot;,
+        &quot;tags&quot;: [
+          &quot;spdlog&quot;,
+          &quot;源码分析&quot;,
+          &quot;RTFC&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-04-24&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/04_24_spdlog源码分析.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【English】英语高频6000词精析&quot;,
+        &quot;categories&quot;: &quot;English&quot;,
+        &quot;tags&quot;: [
+          &quot;English&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-04-11&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/04_11_英语高频6000词精析.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Tools】来玩一玩件值一个亿的终端软件-Warp&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Tools&quot;,
+          &quot;Terminal&quot;,
+          &quot;Warp&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-04-10&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/04_10_来玩一玩件值一个亿的终端软件.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【VSCode】VSCode搭建C/C++开发环境&quot;,
+        &quot;categories&quot;: &quot;VSCode&quot;,
+        &quot;tags&quot;: [
+          &quot;VSCode&quot;,
+          &quot;C&quot;,
+          &quot;CPP&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-04-04&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/04_04_VSCode搭建C-C-开发环境.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【电脑】黑苹果主机折腾记&quot;,
+        &quot;categories&quot;: &quot;Computer&quot;,
+        &quot;tags&quot;: [
+          &quot;Computer&quot;,
+          &quot;Hackintosh&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-04-03&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/04_03_主机折腾记.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Design Principles】LVGL中的一些设计原则&quot;,
+        &quot;categories&quot;: &quot;Software&quot;,
+        &quot;tags&quot;: [
+          &quot;Design Principles&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-03-21&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/03_21_LVGL中的一些设计原则.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Linux】Linux 性能优化实战&quot;,
+        &quot;categories&quot;: &quot;Linux&quot;,
+        &quot;tags&quot;: [
+          &quot;Linux&quot;,
+          &quot;Performance optimization&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-03-15&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/03_15_Linux-性能优化实战.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Program】改变程序行为的几种方式总结&quot;,
+        &quot;categories&quot;: &quot;Program&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;,
+          &quot;Work&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-03-10&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/03_10_改变程序行为的几种方式.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Rust】CS 110L: Safety in Systems Programming记录&quot;,
+        &quot;categories&quot;: &quot;Rust&quot;,
+        &quot;tags&quot;: [
+          &quot;Rust&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-02-28&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/02_28_CS-110L-Safety-in-Systems-Programming.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】函数回调栈跟踪&quot;,
+        &quot;categories&quot;: &quot;Backtrace&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;,
+          &quot;Backtrace&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-02-24&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/02_24_函数回调栈跟踪.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Work】SQLite: Database is locked&quot;,
+        &quot;categories&quot;: &quot;Work&quot;,
+        &quot;tags&quot;: [
+          &quot;Work&quot;,
+          &quot;datebase&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-02-13&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/02_13_SQLite-Database-is-locked.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Work】当电脑的时间被手动修改了会发生什么？&quot;,
+        &quot;categories&quot;: &quot;Work&quot;,
+        &quot;tags&quot;: [
+          &quot;Work&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-02-12&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/02_12_当电脑的时间被手动修改了会发生什么.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Personal】2021回顾&quot;,
+        &quot;categories&quot;: &quot;Summarize&quot;,
+        &quot;tags&quot;: [
+          &quot;Summarize&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-01-16&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/01_16_2021Summarize.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Protocol】协议设计小记&quot;,
+        &quot;categories&quot;: &quot;Protocol&quot;,
+        &quot;tags&quot;: [
+          &quot;Protocol&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2022-01-05&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2022/01_05_Protocol.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】cJSON源码 使用建议及吐嘈&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;cJSON&quot;,
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-12-26&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/12_26_cJSON.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【JS】JavaScript基础&quot;,
+        &quot;categories&quot;: &quot;Languages&quot;,
+        &quot;tags&quot;: [
+          &quot;JavaScript&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-11-04&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/11_04_JavaScript-getting-started.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【GTest】googletest上手&quot;,
+        &quot;categories&quot;: &quot;Test&quot;,
+        &quot;tags&quot;: [
+          &quot;GTest&quot;,
+          &quot;googletest&quot;,
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-10-21&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/10_21_googletest-guide.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Tool】Clang-tidy——静态代码分析框架&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Clang-tidy&quot;,
+          &quot;LLVM&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-08-29&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/08_29_Clang-tidy——静态代码分析框架.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【CMake】如果提高CMake编译速度&quot;,
+        &quot;categories&quot;: &quot;Complie&quot;,
+        &quot;tags&quot;: [
+          &quot;CMake&quot;,
+          &quot;Complie&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-08-24&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/08_24_如果提高CMake编译速度.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Personal】阅读源码的技巧&quot;,
+        &quot;categories&quot;: &quot;Personal&quot;,
+        &quot;tags&quot;: [
+          &quot;Personal&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-08-22&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/08_22_阅读源码的技巧.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】LVGL源码分析&quot;,
+        &quot;categories&quot;: &quot;LVGL&quot;,
+        &quot;tags&quot;: [
+          &quot;源码分析&quot;,
+          &quot;GUI&quot;,
+          &quot;LVGL&quot;,
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-08-15&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/08_15_LVGL源码分析.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Vim】Vim笔记&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Vim&quot;,
+          &quot;Editor&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-08-08&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/08_08_Vim-notes.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【GCC】GCC笔记&quot;,
+        &quot;categories&quot;: &quot;Compiler&quot;,
+        &quot;tags&quot;: [
+          &quot;GCC&quot;,
+          &quot;Compiler&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-08-04&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/08_04_GCC-notes.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Personal】结构体还是结构体指针?&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-08-01&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/08_01_结构体还是结构体指针.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Personal】记一次生病经历复盘&quot;,
+        &quot;categories&quot;: &quot;Personal&quot;,
+        &quot;tags&quot;: [
+          &quot;Personal&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-07-06&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/07_06_记一次生病经历复盘.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Work】编程中如何跟人描述Bug&quot;,
+        &quot;categories&quot;: &quot;Personal&quot;,
+        &quot;tags&quot;: [
+          &quot;Personal&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-06-12&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/06_12_编程中如何跟人描述Bug.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Personal】编程漫谈&quot;,
+        &quot;categories&quot;: &quot;Personal&quot;,
+        &quot;next&quot;: false,
+        &quot;tags&quot;: null,
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-05-12&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/05_12_编程漫谈.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【VSCode】VSCode C/C++环境&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;VSCode&quot;,
+          &quot;Editor&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-05-05&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/05_05_VSCode-C-CPP-Environment.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Markdown】Markdown问题汇总&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Markdown&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-05-05&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/05_05_Markdown问题汇总.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Debug】GDB上手&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Debug&quot;,
+          &quot;GDB&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-04-18&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/04_18_GDB-get-start.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Tools】Docker入门&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Docker&quot;,
+          &quot;Tools&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-03-28&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/03_28_docker入门.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Personal】2020总结，2021展望&quot;,
+        &quot;categories&quot;: &quot;Personal&quot;,
+        &quot;tags&quot;: [
+          &quot;Personal&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-02-21&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/02_21_2020总结-2021展望.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】libuuid上手教程&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;,
+          &quot;UUID&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-01-16&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/01_16_libuuid上手教程.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】libdbus上手教程&quot;,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;C&quot;,
+          &quot;DBus&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2021-01-15&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2021/01_15_libdbus上手教程.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【C】通过\&quot;字符串\&quot;调用同名的函数&quot;,
+        &quot;comments&quot;: true,
+        &quot;categories&quot;: &quot;C&quot;,
+        &quot;tags&quot;: [
+          &quot;GCC&quot;,
+          &quot;C&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;date&quot;: &quot;2020-12-27&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/12_27_通过-字符串-调用同名的函数.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【VSCode】VSCode C/C++ 环境配置&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;VSCode&quot;,
+          &quot;Editor&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2020-11-29&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/11_29_VSCode-C-C-环境配置.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Github】Github下载慢问题探究&quot;,
+        &quot;categories&quot;: &quot;Git&quot;,
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;tags&quot;: [
+          &quot;Github&quot;,
+          &quot;Git&quot;
+        ],
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2020-07-18&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/07_18_Github下载慢问题探究.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Test】译文:Googletest Primer&quot;,
+        &quot;categories&quot;: &quot;Test&quot;,
+        &quot;tags&quot;: [
+          &quot;Test&quot;,
+          &quot;googletest&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2020-05-30&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/05_30_Googletest-Primer.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【CMD】理解命令行程序&quot;,
+        &quot;categories&quot;: &quot;CMD&quot;,
+        &quot;tags&quot;: [
+          &quot;help&quot;,
+          &quot;manual&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2020-05-27&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/05_27_Understand-Command-Line-Programming.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Git】理解 Git&quot;,
+        &quot;categories&quot;: &quot;Git&quot;,
+        &quot;tags&quot;: [
+          &quot;Git&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2020-05-26&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/05_26_Understand-Git.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Mac】Homebrew上手教程&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Homebrew&quot;,
+          &quot;Mac&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2020-05-21&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/05_11_Homebrew.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Hexo】本站搭建相关文档及设置&quot;,
+        &quot;categories&quot;: &quot;Tools&quot;,
+        &quot;tags&quot;: [
+          &quot;Hexo&quot;,
+          &quot;Next theme&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2020-05-01&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2020/05_01_本站搭建相关文档.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Personal】我为什么喜欢用键盘/快捷键,而不是鼠标?&quot;,
+        &quot;categories&quot;: &quot;Shortcut&quot;,
+        &quot;tags&quot;: [
+          &quot;Shortcut&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2017-06-13&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2017/06_13_我为什么喜欢用键盘.快捷键.而不是鼠标.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Android】翻了一遍EventBus官方文档&quot;,
+        &quot;categories&quot;: &quot;Android&quot;,
+        &quot;tags&quot;: [
+          &quot;Android&quot;,
+          &quot;EventBus&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2017-04-26&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2017/04_26_翻了一遍EventBus官方文档.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Android】ButterKnife使用详解&quot;,
+        &quot;categories&quot;: &quot;Android&quot;,
+        &quot;tags&quot;: [
+          &quot;Android&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2017-04-24&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2017/04_24_ButterKnife使用详解.html&quot;
+    },
+    {
+      &quot;frontMatter&quot;: {
+        &quot;title&quot;: &quot;【Android】高仿Android QQ菜单,左侧抽屉,底部导航&quot;,
+        &quot;categories&quot;: &quot;Android&quot;,
+        &quot;tags&quot;: [
+          &quot;Android&quot;
+        ],
+        &quot;sidebar&quot;: false,
+        &quot;prev&quot;: false,
+        &quot;next&quot;: false,
+        &quot;comments&quot;: true,
+        &quot;date&quot;: &quot;2017-04-10&quot;
+      },
+      &quot;regularPath&quot;: &quot;/posts/2017/04_10_高仿Android_QQ菜单.html&quot;
+    }
+  ],
+  &quot;siteTitle&quot;: &quot;ShiBin&#39;s Wiki&quot;,
+  &quot;nav&quot;: [
+    {
+      &quot;text&quot;: &quot;Blogs&quot;,
+      &quot;link&quot;: &quot;/archives&quot;
+    },
+    {
+      &quot;text&quot;: &quot;CS Primer&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;OS&quot;,
+          &quot;link&quot;: &quot;/csprimer/os/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Network&quot;,
+          &quot;link&quot;: &quot;/csprimer/network/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Database&quot;,
+          &quot;link&quot;: &quot;/csprimer/database/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Compiler&quot;,
+          &quot;link&quot;: &quot;/csprimer/compiler/&quot;
+        }
+      ]
+    },
+    {
+      &quot;text&quot;: &quot;Linux&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;Basic&quot;,
+          &quot;link&quot;: &quot;/linux/01basic/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;App&quot;,
+          &quot;link&quot;: &quot;/linux/02app/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Kernel&quot;,
+          &quot;link&quot;: &quot;/linux/03kernel/&quot;
+        }
+      ]
+    },
+    {
+      &quot;text&quot;: &quot;Language&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;Assembly&quot;,
+          &quot;link&quot;: &quot;/lang/assembly/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;C&quot;,
+          &quot;link&quot;: &quot;/lang/c/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;C++&quot;,
+          &quot;link&quot;: &quot;/lang/c++/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Rust&quot;,
+          &quot;link&quot;: &quot;/lang/rust/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;JS/TS&quot;,
+          &quot;link&quot;: &quot;/lang/JTS/&quot;
+        }
+      ]
+    },
+    {
+      &quot;text&quot;: &quot;Other&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;CMake&quot;,
+          &quot;link&quot;: &quot;/other/cmake/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Examples&quot;,
+          &quot;link&quot;: &quot;/examples/&quot;
+        }
+      ]
+    }
+  ],
+  &quot;sidebar&quot;: {
+    &quot;/csprimer/&quot;: [
+      {
+        &quot;text&quot;: &quot;CS Primer&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;OS&quot;,
+            &quot;link&quot;: &quot;/csprimer/os/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Network&quot;,
+            &quot;link&quot;: &quot;/csprimer/network/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Database&quot;,
+            &quot;link&quot;: &quot;/csprimer/database/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Compiler&quot;,
+            &quot;link&quot;: &quot;/csprimer/compiler/&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/linux/&quot;: [
+      {
+        &quot;text&quot;: &quot;Linux&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;Basic&quot;,
+            &quot;link&quot;: &quot;/linux/01basic/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;App&quot;,
+            &quot;collapsed&quot;: false,
+            &quot;items&quot;: [
+              {
+                &quot;text&quot;: &quot;UNIX 基础&quot;,
+                &quot;link&quot;: &quot;/linux/02app/01_UNIX_System_Overview&quot;
+              },
+              {
+                &quot;text&quot;: &quot;UNIX 标准及实现&quot;,
+                &quot;link&quot;: &quot;/linux/02app/02_UNIX_Standardization_and_Implementations&quot;
+              },
+              {
+                &quot;text&quot;: &quot;文件 I/O&quot;,
+                &quot;link&quot;: &quot;/linux/02app/03_File_I_O&quot;
+              },
+              {
+                &quot;text&quot;: &quot;文件和目录&quot;,
+                &quot;link&quot;: &quot;/linux/02app/04_Files_and_Directories&quot;
+              },
+              {
+                &quot;text&quot;: &quot;标准 I/O 库&quot;,
+                &quot;link&quot;: &quot;/linux/02app/05_Standard_I_O_Library&quot;
+              },
+              {
+                &quot;text&quot;: &quot;系统数据文件和信息&quot;,
+                &quot;link&quot;: &quot;/linux/02app/06_System_Data_Files_and_Information&quot;
+              },
+              {
+                &quot;text&quot;: &quot;迸程环境&quot;,
+                &quot;link&quot;: &quot;/linux/02app/07_Process_Environment&quot;
+              },
+              {
+                &quot;text&quot;: &quot;进程控制&quot;,
+                &quot;link&quot;: &quot;/linux/02app/08_Process_Control&quot;
+              },
+              {
+                &quot;text&quot;: &quot;进程关系&quot;,
+                &quot;link&quot;: &quot;/linux/02app/09_Process_Relationships&quot;
+              },
+              {
+                &quot;text&quot;: &quot;信号&quot;,
+                &quot;link&quot;: &quot;/linux/02app/10_Signals&quot;
+              },
+              {
+                &quot;text&quot;: &quot;线程&quot;,
+                &quot;link&quot;: &quot;/linux/02app/11_Threads&quot;
+              },
+              {
+                &quot;text&quot;: &quot;线程控制&quot;,
+                &quot;link&quot;: &quot;/linux/02app/12_Thread_Control&quot;
+              },
+              {
+                &quot;text&quot;: &quot;守护进程&quot;,
+                &quot;link&quot;: &quot;/linux/02app/13_Daemon_Processes&quot;
+              },
+              {
+                &quot;text&quot;: &quot;高级 I/O&quot;,
+                &quot;link&quot;: &quot;/linux/02app/14_Advanced_I_O&quot;
+              },
+              {
+                &quot;text&quot;: &quot;迸程间通信&quot;,
+                &quot;link&quot;: &quot;/linux/02app/15_Interprocess_Communication&quot;
+              },
+              {
+                &quot;text&quot;: &quot;网络 IPC :套接字&quot;,
+                &quot;link&quot;: &quot;/linux/02app/16_Network_IPC:_Sockets&quot;
+              },
+              {
+                &quot;text&quot;: &quot;高级 IPC&quot;,
+                &quot;link&quot;: &quot;/linux/02app/17_Advanced_IPC&quot;
+              },
+              {
+                &quot;text&quot;: &quot;终端 I/O&quot;,
+                &quot;link&quot;: &quot;/linux/02app/18_Terminal_I_O&quot;
+              },
+              {
+                &quot;text&quot;: &quot;伪终端&quot;,
+                &quot;link&quot;: &quot;/linux/02app/19_Pseudo_Terminals&quot;
+              },
+              {
+                &quot;text&quot;: &quot;数据库函数库&quot;,
+                &quot;link&quot;: &quot;/linux/02app/20_A_Database_Library&quot;
+              },
+              {
+                &quot;text&quot;: &quot;与网络打印机通信&quot;,
+                &quot;link&quot;: &quot;/linux/02app/21_Communicating_with_a_Network_Printer&quot;
+              }
+            ]
+          },
+          {
+            &quot;text&quot;: &quot;Kernel&quot;,
+            &quot;link&quot;: &quot;/linux/03kernel/&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/lang/&quot;: [
+      {
+        &quot;text&quot;: &quot;Lang&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;Assembly&quot;,
+            &quot;link&quot;: &quot;/lang/assembly/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;C&quot;,
+            &quot;link&quot;: &quot;/lang/c/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;C++&quot;,
+            &quot;link&quot;: &quot;/lang/c++/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Rust&quot;,
+            &quot;link&quot;: &quot;/lang/rust/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;JS/TS&quot;,
+            &quot;link&quot;: &quot;/lang/JTS/&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/other/cmake/&quot;: [
+      {
+        &quot;text&quot;: &quot;CMake&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;Overview&quot;,
+            &quot;link&quot;: &quot;/other/cmake/index&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Hello World&quot;,
+            &quot;link&quot;: &quot;/other/cmake/01_helloworld&quot;
+          },
+          {
+            &quot;text&quot;: &quot;CMake 常用脚本命令&quot;,
+            &quot;link&quot;: &quot;/other/cmake/02_common_script_commands&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Targets&quot;,
+            &quot;link&quot;: &quot;/other/cmake/03_target&quot;
+          },
+          {
+            &quot;text&quot;: &quot;模块&quot;,
+            &quot;link&quot;: &quot;/other/cmake/04_modules&quot;
+          },
+          {
+            &quot;text&quot;: &quot;引入三方库&quot;,
+            &quot;link&quot;: &quot;/other/cmake/05_thirty_part_library&quot;
+          },
+          {
+            &quot;text&quot;: &quot;交叉编译&quot;,
+            &quot;link&quot;: &quot;/other/cmake/06_cross_compiling&quot;
+          },
+          {
+            &quot;text&quot;: &quot;安装、打包&quot;,
+            &quot;link&quot;: &quot;/other/cmake/07_install_pack&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/other/examples/&quot;: [
+      {
+        &quot;text&quot;: &quot;Examples&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;Examples&quot;,
+            &quot;link&quot;: &quot;/markdown-examples&quot;
+          },
+          {
+            &quot;text&quot;: &quot;API Examples&quot;,
+            &quot;link&quot;: &quot;/api-examples&quot;
+          }
+        ]
+      }
+    ]
+  },
+  &quot;socialLinks&quot;: [
+    {
+      &quot;icon&quot;: &quot;github&quot;,
+      &quot;link&quot;: &quot;https://github.com/WShiBin&quot;
+    }
+  ],
+  &quot;footer&quot;: {
+    &quot;copyright&quot;: &quot;Copyright © 2017-2024 Shi Bin&quot;
+  },
+  &quot;search&quot;: {
+    &quot;provider&quot;: &quot;local&quot;
+  },
+  &quot;outline&quot;: {
+    &quot;level&quot;: [
+      2,
+      3
+    ]
+  },
+  &quot;lastUpdated&quot;: {
+    &quot;text&quot;: &quot;Updated at&quot;,
+    &quot;formatOptions&quot;: {
+      &quot;dateStyle&quot;: &quot;full&quot;,
+      &quot;timeStyle&quot;: &quot;medium&quot;
+    }
+  }
+}</pre><h3 id="page-data" tabindex="-1">Page Data <a class="header-anchor" href="#page-data" aria-label="Permalink to &quot;Page Data&quot;">​</a></h3><pre>{
+  &quot;title&quot;: &quot;Runtime API Examples&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;frontmatter&quot;: {
+    &quot;outline&quot;: &quot;deep&quot;,
+    &quot;layout&quot;: &quot;doc&quot;,
+    &quot;prev&quot;: false,
+    &quot;next&quot;: false,
+    &quot;sidebar&quot;: true
+  },
+  &quot;headers&quot;: [],
+  &quot;relativePath&quot;: &quot;examples/api-examples.md&quot;,
+  &quot;filePath&quot;: &quot;examples/api-examples.md&quot;,
+  &quot;lastUpdated&quot;: 1713284123000
+}</pre><h3 id="page-frontmatter" tabindex="-1">Page Frontmatter <a class="header-anchor" href="#page-frontmatter" aria-label="Permalink to &quot;Page Frontmatter&quot;">​</a></h3><pre>{
+  &quot;outline&quot;: &quot;deep&quot;,
+  &quot;layout&quot;: &quot;doc&quot;,
+  &quot;prev&quot;: false,
+  &quot;next&quot;: false,
+  &quot;sidebar&quot;: true
+}</pre><h2 id="more" tabindex="-1">More <a class="header-anchor" href="#more" aria-label="Permalink to &quot;More&quot;">​</a></h2><p>Check out the documentation for the <a href="https://vitepress.dev/reference/runtime-api#usedata" target="_blank" rel="noreferrer">full list of runtime APIs</a>.</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-09de1c0f><!--[--><!--]--><div class="edit-info" data-v-09de1c0f><!----><div class="last-updated" data-v-09de1c0f><p class="VPLastUpdated" data-v-09de1c0f data-v-7e05ebdb>Updated at: <time datetime="2024-04-16T16:15:23.000Z" data-v-7e05ebdb></time></p></div></div><!----></footer><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter" data-v-5d98c3a5 data-v-e315a0ad><div class="container" data-v-e315a0ad><!----><p class="copyright" data-v-e315a0ad>Copyright © 2017-2024 Shi Bin</p></div></footer><!--[--><!--]--></div></div>
+    
+    
+  </body>
+</html>

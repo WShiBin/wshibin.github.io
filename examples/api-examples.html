@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Runtime API Examples | 施斌斌的知识库</title>
+    <meta name="description" content="专注 & 洞察 & 分享">
+    <meta name="generator" content="VitePress v1.1.3">
+    <link rel="preload stylesheet" href="/assets/style.C1PF0lAd.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.f58d5b4f.js"></script>
+    <script type="module" src="/assets/app.D_04OQaE.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/framework.s8d9Ue88.js">
+    <link rel="modulepreload" href="/assets/chunks/theme.DWADtOr-.js">
+    <link rel="modulepreload" href="/assets/examples_api-examples.md.DxRin83R.lean.js">
+    <link rel="icon" href="/vitepress-logo-mini.svg">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0f60ec36></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0f60ec36> Skip to content </a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar top" data-v-ae24b3ad data-v-ccf7ddec><div class="wrapper" data-v-ccf7ddec><div class="container" data-v-ccf7ddec><div class="title" data-v-ccf7ddec><div class="VPNavBarTitle" data-v-ccf7ddec data-v-ab179fa1><a class="title" href="/" data-v-ab179fa1><!--[--><!--]--><!----><span data-v-ab179fa1>ShiBin&#39;s Wiki</span><!--[--><!--]--></a></div></div><div class="content" data-v-ccf7ddec><div class="content-body" data-v-ccf7ddec><!--[--><!--]--><div class="VPNavBarSearch search" data-v-ccf7ddec><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-ccf7ddec data-v-7f418b0f><span id="main-nav-aria-label" class="visually-hidden" data-v-7f418b0f>Main Navigation</span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/archives.html" tabindex="0" data-v-7f418b0f data-v-9c663999><!--[--><span data-v-9c663999>Blogs</span><!--]--></a><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>CS Primer</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/os/" data-v-43f1e123><!--[-->OS<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/network/" data-v-43f1e123><!--[-->Network<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/database/" data-v-43f1e123><!--[-->Database<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/csprimer/compiler/" data-v-43f1e123><!--[-->Compiler<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>Linux</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/linux/01basic/" data-v-43f1e123><!--[-->Basic<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/linux/02app/" data-v-43f1e123><!--[-->App<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/linux/03kernel/" data-v-43f1e123><!--[-->Kernel<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>Language</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/assembly/" data-v-43f1e123><!--[-->Assembly<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/c/" data-v-43f1e123><!--[-->C<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/c++/" data-v-43f1e123><!--[-->C++<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/rust/" data-v-43f1e123><!--[-->Rust<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/lang/typescript/" data-v-43f1e123><!--[-->JS/TS<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-7f418b0f data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-b6c34ac9><span class="text" data-v-b6c34ac9><!----><span data-v-b6c34ac9>Misc</span><span class="vpi-chevron-down text-icon" data-v-b6c34ac9></span></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><div class="items" data-v-e7ea1737><!--[--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/misc/cmake/index.html" data-v-43f1e123><!--[-->CMake<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/misc/cheatsheet/index.html" data-v-43f1e123><!--[-->Cheat Sheet<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/misc/talks.html" data-v-43f1e123><!--[-->Talks<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-e7ea1737 data-v-43f1e123><a class="VPLink link" href="/misc/about_me.html" data-v-43f1e123><!--[-->About Me<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-ccf7ddec data-v-e6aabb21><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to dark theme" aria-checked="false" data-v-e6aabb21 data-v-d1f28634 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-d1f28634></span><span class="vpi-moon moon" data-v-d1f28634></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-ccf7ddec data-v-0394ad82 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/WShiBin" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-eee4e7cb><span class="vpi-social-github" /></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-ccf7ddec data-v-d0bd9dde data-v-b6c34ac9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-b6c34ac9><span class="vpi-more-horizontal icon" data-v-b6c34ac9></span></button><div class="menu" data-v-b6c34ac9><div class="VPMenu" data-v-b6c34ac9 data-v-e7ea1737><!----><!--[--><!--[--><!----><div class="group" data-v-d0bd9dde><div class="item appearance" data-v-d0bd9dde><p class="label" data-v-d0bd9dde>Appearance</p><div class="appearance-action" data-v-d0bd9dde><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to dark theme" aria-checked="false" data-v-d0bd9dde data-v-d1f28634 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-d1f28634></span><span class="vpi-moon moon" data-v-d1f28634></span><!--]--></span></span></button></div></div></div><div class="group" data-v-d0bd9dde><div class="item social-links" data-v-d0bd9dde><div class="VPSocialLinks social-links-list" data-v-d0bd9dde data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/WShiBin" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-eee4e7cb><span class="vpi-social-github" /></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-ccf7ddec data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-ccf7ddec><div class="divider-line" data-v-ccf7ddec></div></div></div><!----></header><div class="VPLocalNav empty fixed" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><!----><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-267dd0ed><button data-v-267dd0ed>Return to top</button><!----></div></div></div><!----><div class="VPContent" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><div class="VPDocAsideOutline" role="navigation" data-v-3f215769 data-v-935f8a84><div class="content" data-v-935f8a84><div class="outline-marker" data-v-935f8a84></div><div class="outline-title" role="heading" aria-level="2" data-v-935f8a84>On this page</div><nav aria-labelledby="doc-outline-aria-label" data-v-935f8a84><span class="visually-hidden" id="doc-outline-aria-label" data-v-935f8a84> Table of Contents for current page </span><ul class="VPDocOutlineItem root" data-v-935f8a84 data-v-b933a997><!--[--><!--]--></ul></nav></div></div><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--[--><!--[--><div data-v-0fd4bd6f><span class="date" data-v-0fd4bd6f> Published at: </span></div><!--]--><!--]--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _examples_api-examples" data-v-39a288b8><div><h1 id="runtime-api-examples" tabindex="-1">Runtime API Examples <a class="header-anchor" href="#runtime-api-examples" aria-label="Permalink to &quot;Runtime API Examples&quot;">​</a></h1><p>This page demonstrates usage of some of the runtime APIs provided by VitePress.</p><p>The main useData() API can be used to access site, theme, and page data for the current page. It works in both .md and .vue files:</p><div class="language-md vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">md</span><pre class="shiki shiki-themes github-light github-dark vp-code"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> setup</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { useData } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;vitepress&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">theme</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">page</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">frontmatter</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> useData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;--shiki-light-font-weight:bold;--shiki-dark-font-weight:bold;">## Results</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;--shiki-light-font-weight:bold;--shiki-dark-font-weight:bold;">### Theme Data</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;{{ theme }}&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">### Page Data</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;{{ page }}&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">### Page Frontmatter</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;{{ frontmatter }}&lt;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">pre</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&gt;</span></span></code></pre></div><h2 id="results" tabindex="-1">Results <a class="header-anchor" href="#results" aria-label="Permalink to &quot;Results&quot;">​</a></h2><h3 id="theme-data" tabindex="-1">Theme Data <a class="header-anchor" href="#theme-data" aria-label="Permalink to &quot;Theme Data&quot;">​</a></h3><pre>{
+  &quot;siteTitle&quot;: &quot;ShiBin&#39;s Wiki&quot;,
+  &quot;nav&quot;: [
+    {
+      &quot;text&quot;: &quot;Blogs&quot;,
+      &quot;link&quot;: &quot;/archives&quot;
+    },
+    {
+      &quot;text&quot;: &quot;CS Primer&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;OS&quot;,
+          &quot;link&quot;: &quot;/csprimer/os/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Network&quot;,
+          &quot;link&quot;: &quot;/csprimer/network/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Database&quot;,
+          &quot;link&quot;: &quot;/csprimer/database/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Compiler&quot;,
+          &quot;link&quot;: &quot;/csprimer/compiler/&quot;
+        }
+      ]
+    },
+    {
+      &quot;text&quot;: &quot;Linux&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;Basic&quot;,
+          &quot;link&quot;: &quot;/linux/01basic/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;App&quot;,
+          &quot;link&quot;: &quot;/linux/02app/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Kernel&quot;,
+          &quot;link&quot;: &quot;/linux/03kernel/&quot;
+        }
+      ]
+    },
+    {
+      &quot;text&quot;: &quot;Language&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;Assembly&quot;,
+          &quot;link&quot;: &quot;/lang/assembly/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;C&quot;,
+          &quot;link&quot;: &quot;/lang/c/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;C++&quot;,
+          &quot;link&quot;: &quot;/lang/c++/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Rust&quot;,
+          &quot;link&quot;: &quot;/lang/rust/&quot;
+        },
+        {
+          &quot;text&quot;: &quot;JS/TS&quot;,
+          &quot;link&quot;: &quot;/lang/typescript/&quot;
+        }
+      ]
+    },
+    {
+      &quot;text&quot;: &quot;Misc&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;text&quot;: &quot;CMake&quot;,
+          &quot;link&quot;: &quot;/misc/cmake/index&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Cheat Sheet&quot;,
+          &quot;link&quot;: &quot;/misc/cheatsheet/index&quot;
+        },
+        {
+          &quot;text&quot;: &quot;Talks&quot;,
+          &quot;link&quot;: &quot;/misc/talks&quot;
+        },
+        {
+          &quot;text&quot;: &quot;About Me&quot;,
+          &quot;link&quot;: &quot;/misc/about_me&quot;
+        }
+      ]
+    }
+  ],
+  &quot;sidebar&quot;: {
+    &quot;/csprimer/&quot;: [
+      {
+        &quot;text&quot;: &quot;CS Primer&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;OS&quot;,
+            &quot;link&quot;: &quot;/csprimer/os/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Network&quot;,
+            &quot;link&quot;: &quot;/csprimer/network/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Database&quot;,
+            &quot;link&quot;: &quot;/csprimer/database/&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Compiler&quot;,
+            &quot;link&quot;: &quot;/csprimer/compiler/&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/linux/&quot;: [
+      {
+        &quot;text&quot;: &quot;Basic&quot;,
+        &quot;link&quot;: &quot;/linux/01basic/&quot;,
+        &quot;collapsed&quot;: true,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;Linux系统&quot;,
+            &quot;link&quot;: &quot;/linux/01basic/01_system&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Shell及常用命令&quot;,
+            &quot;link&quot;: &quot;/linux/01basic/02_shell&quot;
+          }
+        ]
+      },
+      {
+        &quot;text&quot;: &quot;App&quot;,
+        &quot;collapsed&quot;: true,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;UNIX 基础&quot;,
+            &quot;link&quot;: &quot;/linux/02app/01_UNIX_System_Overview&quot;
+          },
+          {
+            &quot;text&quot;: &quot;UNIX 标准及实现&quot;,
+            &quot;link&quot;: &quot;/linux/02app/02_UNIX_Standardization_and_Implementations&quot;
+          },
+          {
+            &quot;text&quot;: &quot;文件 I/O&quot;,
+            &quot;link&quot;: &quot;/linux/02app/03_File_I_O&quot;
+          },
+          {
+            &quot;text&quot;: &quot;文件和目录&quot;,
+            &quot;link&quot;: &quot;/linux/02app/04_Files_and_Directories&quot;
+          },
+          {
+            &quot;text&quot;: &quot;标准 I/O 库&quot;,
+            &quot;link&quot;: &quot;/linux/02app/05_Standard_I_O_Library&quot;
+          },
+          {
+            &quot;text&quot;: &quot;系统数据文件和信息&quot;,
+            &quot;link&quot;: &quot;/linux/02app/06_System_Data_Files_and_Information&quot;
+          },
+          {
+            &quot;text&quot;: &quot;迸程环境&quot;,
+            &quot;link&quot;: &quot;/linux/02app/07_Process_Environment&quot;
+          },
+          {
+            &quot;text&quot;: &quot;进程控制&quot;,
+            &quot;link&quot;: &quot;/linux/02app/08_Process_Control&quot;
+          },
+          {
+            &quot;text&quot;: &quot;进程关系&quot;,
+            &quot;link&quot;: &quot;/linux/02app/09_Process_Relationships&quot;
+          },
+          {
+            &quot;text&quot;: &quot;信号&quot;,
+            &quot;link&quot;: &quot;/linux/02app/10_Signals&quot;
+          },
+          {
+            &quot;text&quot;: &quot;线程&quot;,
+            &quot;link&quot;: &quot;/linux/02app/11_Threads&quot;
+          },
+          {
+            &quot;text&quot;: &quot;线程控制&quot;,
+            &quot;link&quot;: &quot;/linux/02app/12_Thread_Control&quot;
+          },
+          {
+            &quot;text&quot;: &quot;守护进程&quot;,
+            &quot;link&quot;: &quot;/linux/02app/13_Daemon_Processes&quot;
+          },
+          {
+            &quot;text&quot;: &quot;高级 I/O&quot;,
+            &quot;link&quot;: &quot;/linux/02app/14_Advanced_I_O&quot;
+          },
+          {
+            &quot;text&quot;: &quot;迸程间通信&quot;,
+            &quot;link&quot;: &quot;/linux/02app/15_Interprocess_Communication&quot;
+          },
+          {
+            &quot;text&quot;: &quot;网络 IPC :套接字&quot;,
+            &quot;link&quot;: &quot;/linux/02app/16_Network_IPC:_Sockets&quot;
+          },
+          {
+            &quot;text&quot;: &quot;高级 IPC&quot;,
+            &quot;link&quot;: &quot;/linux/02app/17_Advanced_IPC&quot;
+          },
+          {
+            &quot;text&quot;: &quot;终端 I/O&quot;,
+            &quot;link&quot;: &quot;/linux/02app/18_Terminal_I_O&quot;
+          },
+          {
+            &quot;text&quot;: &quot;伪终端&quot;,
+            &quot;link&quot;: &quot;/linux/02app/19_Pseudo_Terminals&quot;
+          },
+          {
+            &quot;text&quot;: &quot;数据库函数库&quot;,
+            &quot;link&quot;: &quot;/linux/02app/20_A_Database_Library&quot;
+          },
+          {
+            &quot;text&quot;: &quot;与网络打印机通信&quot;,
+            &quot;link&quot;: &quot;/linux/02app/21_Communicating_with_a_Network_Printer&quot;
+          }
+        ]
+      },
+      {
+        &quot;text&quot;: &quot;Kernel&quot;,
+        &quot;collapsed&quot;: true,
+        &quot;link&quot;: &quot;/linux/03kernel/&quot;
+      }
+    ],
+    &quot;/lang/&quot;: [
+      {
+        &quot;text&quot;: &quot;Assembly&quot;,
+        &quot;link&quot;: &quot;/lang/assembly/&quot;
+      },
+      {
+        &quot;text&quot;: &quot;C&quot;,
+        &quot;link&quot;: &quot;/lang/c/&quot;,
+        &quot;collapsed&quot;: true,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;基础&quot;,
+            &quot;link&quot;: &quot;/lang/c/00_basics&quot;
+          },
+          {
+            &quot;text&quot;: &quot;关键字&quot;,
+            &quot;link&quot;: &quot;/lang/c/01_keywords&quot;
+          },
+          {
+            &quot;text&quot;: &quot;内存&quot;,
+            &quot;link&quot;: &quot;/lang/c/02_memory&quot;
+          },
+          {
+            &quot;text&quot;: &quot;指针&quot;,
+            &quot;link&quot;: &quot;/lang/c/03_pointer&quot;
+          },
+          {
+            &quot;text&quot;: &quot;标准库&quot;,
+            &quot;link&quot;: &quot;/lang/c/04_stdlib&quot;
+          },
+          {
+            &quot;text&quot;: &quot;string及其源码&quot;,
+            &quot;link&quot;: &quot;/lang/c/05_string&quot;
+          }
+        ]
+      },
+      {
+        &quot;text&quot;: &quot;C++&quot;,
+        &quot;link&quot;: &quot;/lang/c++/&quot;
+      },
+      {
+        &quot;text&quot;: &quot;Rust&quot;,
+        &quot;link&quot;: &quot;/lang/rust/&quot;,
+        &quot;collapsed&quot;: true,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;简介&quot;,
+            &quot;link&quot;: &quot;/lang/rust/0. Introduction&quot;
+          },
+          {
+            &quot;text&quot;: &quot;入门指南&quot;,
+            &quot;link&quot;: &quot;/lang/rust/1. Getting Started&quot;
+          },
+          {
+            &quot;text&quot;: &quot;写个猜数字游戏&quot;,
+            &quot;link&quot;: &quot;/lang/rust/2. Programming a Guessing Game&quot;
+          },
+          {
+            &quot;text&quot;: &quot;常见编程概念&quot;,
+            &quot;link&quot;: &quot;/lang/rust/3. Common Programming Concepts&quot;
+          },
+          {
+            &quot;text&quot;: &quot;认识所有权&quot;,
+            &quot;link&quot;: &quot;/lang/rust/4. Understanding Ownership&quot;
+          },
+          {
+            &quot;text&quot;: &quot;使用结构体组织相关联的数据&quot;,
+            &quot;link&quot;: &quot;/lang/rust/5. Using Structs to Structure Related Data&quot;
+          },
+          {
+            &quot;text&quot;: &quot;枚举和模式匹配&quot;,
+            &quot;link&quot;: &quot;/lang/rust/6. Enums and Pattern Matching&quot;
+          },
+          {
+            &quot;text&quot;: &quot;使用包、Crate 和模块管理&quot;,
+            &quot;link&quot;: &quot;/lang/rust/7. Managing Growing Projects with Packages, Crates, and Modules&quot;
+          },
+          {
+            &quot;text&quot;: &quot;常见集合&quot;,
+            &quot;link&quot;: &quot;/lang/rust/8. Common Collections&quot;
+          },
+          {
+            &quot;text&quot;: &quot;错误处理&quot;,
+            &quot;link&quot;: &quot;/lang/rust/9. Error Handling&quot;
+          },
+          {
+            &quot;text&quot;: &quot;泛型、Trait 和生命周期&quot;,
+            &quot;link&quot;: &quot;/lang/rust/10. Generic Types, Traits, and Lifetimes&quot;
+          },
+          {
+            &quot;text&quot;: &quot;编写自动化测试&quot;,
+            &quot;link&quot;: &quot;/lang/rust/11. Writing Automated Tests&quot;
+          },
+          {
+            &quot;text&quot;: &quot;项目：构建命令行程序&quot;,
+            &quot;link&quot;: &quot;/lang/rust/12. An IO Project: Building a Command Line Program&quot;
+          },
+          {
+            &quot;text&quot;: &quot;函数式语言功能：迭代器与闭包&quot;,
+            &quot;link&quot;: &quot;/lang/rust/13. Functional Language Features: Iterators and Closures&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Cargo 和 Crates.io 的内容&quot;,
+            &quot;link&quot;: &quot;/lang/rust/14. More about Cargo and Crates.io&quot;
+          },
+          {
+            &quot;text&quot;: &quot;智能指针&quot;,
+            &quot;link&quot;: &quot;/lang/rust/15. Smart Pointers&quot;
+          },
+          {
+            &quot;text&quot;: &quot;无畏并发&quot;,
+            &quot;link&quot;: &quot;/lang/rust/16. Fearless Concurrency&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Rust 的面向对象编程特性&quot;,
+            &quot;link&quot;: &quot;/lang/rust/Introduction&quot;
+          },
+          {
+            &quot;text&quot;: &quot;模式与模式匹配&quot;,
+            &quot;link&quot;: &quot;/lang/rust/Introduction&quot;
+          },
+          {
+            &quot;text&quot;: &quot;高级特征&quot;,
+            &quot;link&quot;: &quot;/lang/rust/Introduction&quot;
+          },
+          {
+            &quot;text&quot;: &quot;项目：构建多线程 web server&quot;,
+            &quot;link&quot;: &quot;/lang/rust/20. Final Project: Building a Multithreaded Web Server&quot;
+          }
+        ]
+      },
+      {
+        &quot;text&quot;: &quot;JS/TS&quot;,
+        &quot;link&quot;: &quot;/lang/typescript/&quot;,
+        &quot;collapsed&quot;: true,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;The Basics&quot;,
+            &quot;link&quot;: &quot;/lang/typescript/01 The Basics&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Everyday Types&quot;,
+            &quot;link&quot;: &quot;/lang/typescript/02 Everyday Types&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Narrowing&quot;,
+            &quot;link&quot;: &quot;/lang/typescript/03 Narrowing&quot;
+          },
+          {
+            &quot;text&quot;: &quot;More on Functions&quot;,
+            &quot;link&quot;: &quot;/lang/typescript/04 More on Functions&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Object Types&quot;,
+            &quot;link&quot;: &quot;/lang/typescript/05 Object Types&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Classes&quot;,
+            &quot;link&quot;: &quot;/lang/typescript/06 Classes&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/misc/cmake/&quot;: [
+      {
+        &quot;text&quot;: &quot;CMake&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;Overview&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/index&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Hello World&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/01_helloworld&quot;
+          },
+          {
+            &quot;text&quot;: &quot;CMake 常用脚本命令&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/02_common_script_commands&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Targets&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/03_target&quot;
+          },
+          {
+            &quot;text&quot;: &quot;模块&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/04_modules&quot;
+          },
+          {
+            &quot;text&quot;: &quot;引入三方库&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/05_thirty_part_library&quot;
+          },
+          {
+            &quot;text&quot;: &quot;交叉编译&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/06_cross_compiling&quot;
+          },
+          {
+            &quot;text&quot;: &quot;安装、打包&quot;,
+            &quot;link&quot;: &quot;/misc/cmake/07_install_pack&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/misc/cheatsheet/&quot;: [
+      {
+        &quot;text&quot;: &quot;Cheat Sheet&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;macOS&quot;,
+            &quot;link&quot;: &quot;/misc/cheatsheet/macos&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Vim&quot;,
+            &quot;link&quot;: &quot;/misc/cheatsheet/vim&quot;
+          },
+          {
+            &quot;text&quot;: &quot;VSCode&quot;,
+            &quot;link&quot;: &quot;/misc/cheatsheet/vscode&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Git&quot;,
+            &quot;link&quot;: &quot;/misc/cheatsheet/git&quot;
+          },
+          {
+            &quot;text&quot;: &quot;GCC&quot;,
+            &quot;link&quot;: &quot;/misc/cheatsheet/gcc&quot;
+          },
+          {
+            &quot;text&quot;: &quot;GDB&quot;,
+            &quot;link&quot;: &quot;/misc/cheatsheet/gdb&quot;
+          },
+          {
+            &quot;text&quot;: &quot;Final Cut Pro&quot;,
+            &quot;link&quot;: &quot;/misc/cheatsheet/final_cut_pro&quot;
+          }
+        ]
+      }
+    ],
+    &quot;/misc/examples/&quot;: [
+      {
+        &quot;text&quot;: &quot;Examples&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;text&quot;: &quot;Examples&quot;,
+            &quot;link&quot;: &quot;/markdown-examples&quot;
+          },
+          {
+            &quot;text&quot;: &quot;API Examples&quot;,
+            &quot;link&quot;: &quot;/api-examples&quot;
+          }
+        ]
+      }
+    ]
+  },
+  &quot;socialLinks&quot;: [
+    {
+      &quot;icon&quot;: &quot;github&quot;,
+      &quot;link&quot;: &quot;https://github.com/WShiBin&quot;
+    }
+  ],
+  &quot;footer&quot;: {
+    &quot;copyright&quot;: &quot;Copyright © 2017-2024 Shi Bin&quot;
+  },
+  &quot;search&quot;: {
+    &quot;provider&quot;: &quot;local&quot;
+  },
+  &quot;outline&quot;: {
+    &quot;level&quot;: [
+      2,
+      3
+    ]
+  },
+  &quot;lastUpdated&quot;: {
+    &quot;text&quot;: &quot;Updated at&quot;,
+    &quot;formatOptions&quot;: {
+      &quot;dateStyle&quot;: &quot;full&quot;,
+      &quot;timeStyle&quot;: &quot;medium&quot;
+    }
+  }
+}</pre><h3 id="page-data" tabindex="-1">Page Data <a class="header-anchor" href="#page-data" aria-label="Permalink to &quot;Page Data&quot;">​</a></h3><pre>{
+  &quot;title&quot;: &quot;Runtime API Examples&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;frontmatter&quot;: {
+    &quot;outline&quot;: &quot;deep&quot;,
+    &quot;layout&quot;: &quot;doc&quot;,
+    &quot;prev&quot;: false,
+    &quot;next&quot;: false,
+    &quot;sidebar&quot;: true
+  },
+  &quot;headers&quot;: [],
+  &quot;relativePath&quot;: &quot;examples/api-examples.md&quot;,
+  &quot;filePath&quot;: &quot;examples/api-examples.md&quot;,
+  &quot;lastUpdated&quot;: 1714231035000
+}</pre><h3 id="page-frontmatter" tabindex="-1">Page Frontmatter <a class="header-anchor" href="#page-frontmatter" aria-label="Permalink to &quot;Page Frontmatter&quot;">​</a></h3><pre>{
+  &quot;outline&quot;: &quot;deep&quot;,
+  &quot;layout&quot;: &quot;doc&quot;,
+  &quot;prev&quot;: false,
+  &quot;next&quot;: false,
+  &quot;sidebar&quot;: true
+}</pre><h2 id="more" tabindex="-1">More <a class="header-anchor" href="#more" aria-label="Permalink to &quot;More&quot;">​</a></h2><p>Check out the documentation for the <a href="https://vitepress.dev/reference/runtime-api#usedata" target="_blank" rel="noreferrer">full list of runtime APIs</a>.</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-09de1c0f><!--[--><!--]--><div class="edit-info" data-v-09de1c0f><!----><div class="last-updated" data-v-09de1c0f><p class="VPLastUpdated" data-v-09de1c0f data-v-7e05ebdb>Updated at: <time datetime="2024-04-27T15:17:15.000Z" data-v-7e05ebdb></time></p></div></div><!----></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter" data-v-5d98c3a5 data-v-e315a0ad><div class="container" data-v-e315a0ad><!----><p class="copyright" data-v-e315a0ad>Copyright © 2017-2024 Shi Bin</p></div></footer><!--[--><!--]--></div></div>
+    
+    
+  </body>
+</html>

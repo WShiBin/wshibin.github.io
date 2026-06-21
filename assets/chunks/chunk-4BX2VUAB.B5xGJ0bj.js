@@ -1,0 +1,1 @@
+import{a as t}from"./theme.1zw9Q9n5.js";function c(t,c){t.accDescr&&c.setAccDescription?.(t.accDescr),t.accTitle&&c.setAccTitle?.(t.accTitle),t.title&&c.setDiagramTitle?.(t.title)}t(c,"populateCommonDb");export{c as p};

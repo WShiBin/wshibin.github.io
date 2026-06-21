@@ -1,0 +1,1 @@
+import{c as e,cG as t,cb as a}from"./chunks/framework.BlkIsu1j.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"multimedia/index.md","filePath":"multimedia/index.md","lastUpdated":1768036151000}');const d=e({name:"multimedia/index.md"},[["render",function(e,i,d,r,m,n){return t(),a("div")}]]);export{i as __pageData,d as default};
